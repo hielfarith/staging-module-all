@@ -59,7 +59,7 @@ $configData = Helper::applClasses();
                         <a href="{{ route('admin.externalUser') }}" class="d-flex align-items-center">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate">
-                                {{ __('msg.userexternal') }}
+                                Institusi Pendidikan
                             </span>
                         </a>
                     </li>
@@ -108,7 +108,7 @@ $configData = Helper::applClasses();
                     <li
                         class="{{ in_array(request()->route()->getName(),['admin.cron_view.CronView'])? 'active': '' }}">
                         <a href="{{ route('admin.cron_view.CronView') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i> 
+                            <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Cron View </span>
                         </a>
                     </li>
@@ -121,7 +121,7 @@ $configData = Helper::applClasses();
                             <li
                                 class="{{ in_array(request()->route()->getName(),['admin.master_data.parameter'])? 'active': '' }}">
                                 <a href="{{ route('admin.master_data.parameter') }}" class="d-flex align-items-center">
-                                    <i data-feather="circle"></i> 
+                                    <i data-feather="circle"></i>
                                     <span class="menu-title text-truncate">Parameter</span>
                                 </a>
                             </li>
@@ -129,7 +129,7 @@ $configData = Helper::applClasses();
                                 class="{{ in_array(request()->route()->getName(),['admin.master_data.Runningnumber'])? 'active': '' }}">
                                 <a href="{{ route('admin.master_data.Runningnumber') }}"
                                     class="d-flex align-items-center">
-                                    <i data-feather="circle"></i> 
+                                    <i data-feather="circle"></i>
                                     <span class="menu-title text-truncate">List of Running Number</span>
                                 </a>
                             </li>
@@ -137,7 +137,7 @@ $configData = Helper::applClasses();
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['admin-log-index'])? 'active': '' }}">
                         <a href="{{ route('admin-log-index') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i> 
+                            <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Audit Log </span>
                         </a>
                     </li>
@@ -182,9 +182,9 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('senarai_permohonan') }}" class="nav-link"> 
+                        <a href="{{ route('senarai_permohonan') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate text-wrap"> Senarai Permohonan </span> 
+                            <span class="menu-title text-truncate text-wrap"> Senarai Permohonan </span>
                         </a>
                     </li>
                 </ul>
@@ -200,37 +200,37 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('helpdesk.dashboard') }}" class="nav-link"> 
+                        <a href="{{ route('helpdesk.dashboard') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Dashboard </span> 
+                            <span class="menu-title text-truncate"> Dashboard </span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('helpdesk.index') }}" class="nav-link"> 
+                        <a href="{{ route('helpdesk.index') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> All Ticket Listing </span>
                          </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('helpdesk.index') }}" class="nav-link"> 
+                        <a href="{{ route('helpdesk.index') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Ongoing Ticket Listing </span> 
+                            <span class="menu-title text-truncate"> Ongoing Ticket Listing </span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('helpdesk.report_yearly') }}" class="nav-link"> 
+                        <a href="{{ route('helpdesk.report_yearly') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Yearly Report </span> 
+                            <span class="menu-title text-truncate"> Yearly Report </span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('helpdesk.report_issues') }}" class="nav-link"> 
+                        <a href="{{ route('helpdesk.report_issues') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Issues Report </span> 
+                            <span class="menu-title text-truncate"> Issues Report </span>
                         </a>
                     </li>
                 </ul>
