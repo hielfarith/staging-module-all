@@ -16,7 +16,7 @@
             background-size: cover;
             background-position: center;
             opacity: 0.5;
-            background-image: url('{{ asset('images/logo/ehartanah.jpg') }}');
+            background-image: url('{{ asset('images/bg_sppip.jpg') }}');
         }
 
         a.ViewProposalButton {
@@ -66,10 +66,11 @@
                     <center>
                         <img class="mb-2" src="{{ asset('images/logo/jata_negara.png') }}" style="width: 10vw">
                         <hr>
-                        <h2 class="mt-2 card-title fw-bold mb-1"> MALAYSIA HEALTH PROMOTION INFORMATION SYSTEM </h2>
+                        <h2 class="mt-2 card-title fw-bold mb-1">
+                            SISTEM PEMERIKSAAN DAN PENILAIAN INSTITUSI PENDIDIKAN
+                        </h2>
                         <p class="text-center mt-2 mt-2">
-                            <a class="ViewProposalButton" target="_blank"
-                                href="{{ url('https://drive.google.com/file/d/1PiptCUQaTzsjtl3Ai5lo_FxDPL5Hf5dN/view') }}">
+                            <a class="ViewProposalButton" target="_blank" href="{{ url('https://drive.google.com/file/d/1PiptCUQaTzsjtl3Ai5lo_FxDPL5Hf5dN/view') }}">
                                 <span class="fw-bolder ViewProposalButton">View Proposal</span>
                             </a>
                         </p>
@@ -145,7 +146,7 @@
             <div class="modal-dialog">
                 <div class="modal-content" style="margin-top: 65%">
                     <div class="modal-header">
-                        <h4 class="modal-title">Pengguna Demo untuk {{ $system_name }}®</h4>
+                        <h4 class="modal-title">Pengguna Demo untuk SPPIP®</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body login" style="height:10%; ">

@@ -21,7 +21,7 @@ $configData = Helper::applClasses();
   <meta name="keywords"
     content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="PIXINVENT">
-  <title> @yield('title') - {{ env('APP_NAME', '') }} </title>
+  <title> @yield('title') | {{ env('APP_NAME', 'SPPIP') }} </title>
   <link rel="apple-touch-icon" href="{{ asset('images/logo/jata_negara.png') }}">
   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo/jata_negara.png') }}">
 
