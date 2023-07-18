@@ -8,7 +8,7 @@ $configData = Helper::applClasses();
             <li class="nav-item me-auto">
                 <a class="navbar-brand" href="{{ url('/') }}">
 
-                    <h2 class="brand-text">System Name</h2>
+                    <h2 class="brand-text">SPPIP</h2>
                 </a>
             </li>
             <li class="nav-item nav-toggle">
@@ -146,6 +146,70 @@ $configData = Helper::applClasses();
             @endhasanyrole
 
             @hasanyrole('admin')
+            <li class="navigation-header">
+                <span> User Settings </span>
+            </li>
+            <li class="nav-item nav-tour user-settings {{ request()->is('admin/user*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="user"></i>
+                    <span class="menu-title text-truncate">
+                        {{ __('msg.user_management') }}
+                    </span>
+                </a>
+                <ul class="menu-content">
+                    <li
+                        class="nav-user-internal {{ in_array(request()->route()->getName(),['admin.internalUser'])? 'active': '' }}">
+                        <a href="{{ route('admin.internalUser') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate">
+                                {{ __('msg.userinternal') }}
+                            </span>
+                        </a>
+                    </li>
+                    <li
+                        class="nav-user-external {{ in_array(request()->route()->getName(),['admin.externalUser'])? 'active': '' }}">
+                        <a href="{{ route('admin.externalUser') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate">
+                                Institusi Pendidikan
+                            </span>
+                        </a>
+                    </li>
+                    <li class="{{ in_array(request()->route()->getName(),['role.index'])? 'active': '' }}">
+                        <a href="{{ route('role.index') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate">
+                                Pengurusan Peranan
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="navigation-header">
+                <span> Pengurusan Instrumen </span>
+            </li>
+            <li class="nav-item {{ request()->is('Pengurusan_Instrumen*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate"> Instrumen Pemeriksaan </span>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('laporan_permohonan.laporan') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Tambah Instrumen </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('senarai_instrumen') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Instrumen </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="navigation-header">
                 <span> Laporan & Statistik </span>
             </li>

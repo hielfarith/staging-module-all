@@ -270,10 +270,15 @@
                         {{-- @endforeach
                         @endif
                         @endif --}}
+                        <a class="dropdown-item"
+                            href="{{ route('prototype_profile') }}">
+                            <i data-feather="user"></i> User Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
                         @if (Auth::check())
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="me-50" data-feather="power"></i> Logout
+                            <i data-feather="power"></i> Logout
                         </a>
                         <form method="POST" id="logout-form" action="{{ route('logout') }}">
                             @csrf
@@ -281,7 +286,7 @@
                         @else
                         <a class="dropdown-item"
                             href="{{ Route::has('login') ? route('login') : 'javascript:void(0)' }}">
-                            <i class="me-50" data-feather="log-in"></i> Login
+                            <i data-feather="log-in"></i> Login
                         </a>
                         @endif
                     </div>

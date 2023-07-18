@@ -275,6 +275,38 @@
             initializeFlatpickr();
         });
     }
+    // Prototype Purposes
+    fakeSuccess = function(title, text) {
+        Swal.fire({
+            title: "Adakah anda pasti?",
+            text: "Hantar permohonan. Teruskan?",
+            icon: 'success',
+            confirmButtonText: 'OK',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('.modal').modal('hide');
+            } else {
+                return false;
+            }
+
+        });
+    }
+
+    fakeRegistration = function(title, text) {
+        Swal.fire({
+            title: "Adakah anda pasti?",
+            text: "Daftar akaun. Teruskan?",
+            icon: 'warning',
+            confirmButtonText: 'Daftar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('.modal').modal('hide');
+            } else {
+                return false;
+            }
+
+        });
+    }
 
     window.userGuiding.identify('1Ax69i57j0j69i60l4')
     //End Default: Ajax Request

@@ -66,14 +66,14 @@ Permohonan
                 vertical-align: middle;
                 text-align: center;
             }
-        
+
             #senarai_permohonan tbody{
                 vertical-align: middle;
             }
-        
+
         </style>
         @php $count = 1; @endphp
-        
+
         <div class="table-responsive">
             <table class="table header_uppercase table-bordered table-responsive table-hovered" id="senarai_permohonan" style="">
                 <thead>
@@ -87,7 +87,7 @@ Permohonan
                         <th rowspan="2"> Tarikh Permohonan </th>
                         <th rowspan="2"> Status Semasa </th>
                     </tr>
-        
+
                     @hasanyrole('admin')
                         <tr>
                             <th> Nama Pemohon </th>
@@ -97,9 +97,9 @@ Permohonan
                         </tr>
                     @endhasanyrole
                 </thead>
-        
+
                 <tbody>
-        
+
                     @hasanyrole('pengguna_luar')
                     <tr>
                         <td> {{ $count++ }} </td>
@@ -147,7 +147,7 @@ Permohonan
                         </td>
                     </tr>
                     @endhasanyrole
-        
+
                     @hasanyrole('admin')
                     <tr>
                         <td> {{ $count++ }} </td>
@@ -199,11 +199,11 @@ Permohonan
                         </td>
                     </tr>
                     @endhasanyrole
-        
+
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 </div>
 @endsection
