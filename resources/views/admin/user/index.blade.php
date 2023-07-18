@@ -4,7 +4,7 @@
     @if($type == "internal")
         {{__('msg.userinternalindex')}}
     @else
-        {{__('msg.userexternalindex')}}
+       Institusi Pendidikan
     @endif
 @endsection
 
@@ -15,7 +15,7 @@
             @if($type == "internal")
                 {{__('msg.userinternalindex')}}
             @else
-                {{__('msg.userexternalindex')}}
+                Institusi Pendidikan
             @endif
         </a>
     </li>
