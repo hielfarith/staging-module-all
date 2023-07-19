@@ -4,6 +4,11 @@
 Instrumen
 @endsection
 
+@section('vendor-style')
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+@endsection
+
+
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('msg.home') }}</a></li>
 <li class="breadcrumb-item"><a href="#"> Instrumen</a></li>
@@ -89,6 +94,7 @@ Instrumen
                         <td> 18/07/2023 </td>
                         <td>
                             <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Action">
+                                <a data-bs-toggle="modal" data-bs-target="#send_instrumen" aria-controls="send_instrumen" class="btn btn-xs btn-default"> <i class="text-info" data-feather="send"></i>
                                 <a data-bs-toggle="modal" data-bs-target="#edit_instrumen" aria-controls="edit_instrumen" class="btn btn-xs btn-default"> <i class="fas fa-pencil text-primary"></i>
                                 <a href="#" class="btn btn-xs btn-default"> <i class="fas fa-trash text-danger"></i> </a>
                             </div>
@@ -103,6 +109,7 @@ Instrumen
                         <td> 18/07/2023 </td>
                         <td>
                             <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Action">
+                                <a data-bs-toggle="modal" data-bs-target="#send_instrumen" aria-controls="send_instrumen" class="btn btn-xs btn-default"> <i class="text-info" data-feather="send"></i>
                                 <a data-bs-toggle="modal" data-bs-target="#edit_instrumen" aria-controls="edit_instrumen" class="btn btn-xs btn-default"> <i class="fas fa-pencil text-primary"></i>
                                 <a href="#" class="btn btn-xs btn-default"> <i class="fas fa-trash text-danger"></i> </a>
                             </div>
@@ -126,12 +133,12 @@ Instrumen
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 mb-1">
                         <label class="form-label fw-bolder">Nama Instrumen </label>
                         <textarea type="text" class="form-control"> </textarea>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 mb-1">
                         <label class="form-label fw-bolder">Keterangan Instrumen </label>
                         <textarea type="text" class="form-control"> </textarea>
                     </div>
@@ -149,8 +156,63 @@ Instrumen
     </div>
 </div>
 
+<div class="modal fade" id="send_instrumen" tabindex="-1" aria-labelledby="send_instrumen" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-light-primary">
+                <h4 class="card-title">
+                    Hantar Instrumen Ke Pihak Institusi
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 mb-1">
+                        <label class="form-label fw-bolder">Senarai Penerima </label>
+                        <select class="select2 form-select" id="select2-multiple" multiple>
+                            <optgroup label="Institusi Awam">
+                                <option value="Awam 1">Awam 1</option>
+                                <option value="Awam 2">Awam 2</option>
+                                <option value="Awam 3">Awam 3</option>
+                            </optgroup>
+                            <optgroup label="Institusi Swasta">
+                                <option value="Swasta 1">Swasta 1</option>
+                                <option value="Swasta 2">Swasta 2</option>
+                                <option value="Swasta 3">Swasta 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 mb-1">
+                        <label class="form-label fw-bolder">Subjek Emel </label>
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <div class="col-md-12 mb-1">
+                        <label class="form-label fw-bolder">Isi Kandungan Emel</label>
+                        <textarea type="text" class="form-control" rows="8"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="btn btn-primary me-1" onclick="fakeSuccess()">
+                        <i data-feather="send"></i>
+                        Hantar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('vendor-script')
+  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 @endsection
 
 @section('page-script')
-    <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 @endsection
