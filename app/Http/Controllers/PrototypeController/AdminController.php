@@ -19,4 +19,9 @@ class AdminController extends Controller
 
         return view('instrumen.senarai_instrumen');
     }
+
+    public function TambahInstrumen(){
+
+        return view('instrumen.tambah_instrumen');
+    }
 }

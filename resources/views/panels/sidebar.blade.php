@@ -196,7 +196,7 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('laporan_permohonan.laporan') }}" class="nav-link">
+                        <a href="{{ route('tambah_instrumen') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Tambah Instrumen </span>
                         </a>

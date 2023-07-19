@@ -9,6 +9,7 @@ Route::controller(PermohonanController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('profile', 'UserProfile')->name('prototype_profile');
+    Route::get('borang_instrumen', 'TambahInstrumen')->name('tambah_instrumen');
     Route::get('instrumen', 'SenaraiInstrumen')->name('senarai_instrumen');
 });
 
