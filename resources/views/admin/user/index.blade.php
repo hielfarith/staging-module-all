@@ -163,6 +163,15 @@
                 {{-- @endcan --}}
             </div>
             <div class="card-body" style="width:100%">
+                <div class="btn-group" role="group" aria-label="Role Action">
+                    <a href="#" class="btn btn-outline-success waves-effect">
+                        <i class="fa fa-file-excel text-success"></i> Excel
+                    </a>
+                    <a href="#" class="btn btn-outline-danger waves-effect">
+                        <i class="fa fa-file-pdf text-danger"></i> PDF
+                    </a>
+                </div>
+
                 @include($type == 'internal' ? 'admin.user.tableUserInternal' : 'admin.user.tableUserExternal')
             </div>
         </div>
