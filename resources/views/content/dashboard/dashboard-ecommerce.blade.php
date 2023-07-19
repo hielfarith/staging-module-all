@@ -646,7 +646,7 @@
 
         <div class="card">
             <div class="card-header border-bottom">
-                <h4 class="card-title">Ringkasan Permohonan Kuarters Sepanjang Tahun</h4>
+                <h4 class="card-title"> Senarai Instrumen Didaftarkan Sepanjang Tahun</h4>
                 <div class="d-flex justify-content-between float-left">
                     <button type="button" class="btn mb-1" data-bs-toggle="collapse"
                         aria-controls="ringkasan_kemajuan_program_table" href="#ringkasan_kemajuan_program_table"
@@ -657,229 +657,36 @@
             </div>
 
             <div class="collapse multi-collapse" id="ringkasan_kemajuan_program_table">
-                <div class="card-body">
-                    <div
-                        class="card-header d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-md-center align-items-start">
-                        <h4 class="card-title">&nbsp;</h4>
+                <div class="table-responsive">
+                    <table class="table header_uppercase table-bordered table-responsive table-hovered" id="senarai_permohonan" style="">
+                        <thead>
+                            <tr>
+                                <th> No. </th>
+                                <th> ID Instrumen </th>
+                                <th> Nama Instrumen </th>
+                                <th> Keterangan Instrumen </th>
+                                <th> Tarikh Didaftarkan </th>
+                            </tr>
+                        </thead>
 
-                        <div class="btn-group mt-md-0 mt-1" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="radio_options" id="radio_option1"
-                                autocomplete="off" checked />
-                            <label class="btn btn-outline-primary" for="radio_option1">2020</label>
+                        <tbody>
+                            <tr>
+                                <td> 1. </td>
+                                <td> 24678 </td>
+                                <td> Pemeriksaan Persediaan Sesi Persekolahan 2023/2024 Jabatan Pendidikan Negeri Perak </td>
+                                <td> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </td>
+                                <td> 18/07/2023 </td>
+                            </tr>
 
-                            <input type="radio" class="btn-check" name="radio_options" id="radio_option2"
-                                autocomplete="off" />
-                            <label class="btn btn-outline-primary" for="radio_option2">2021</label>
-
-                            <input type="radio" class="btn-check" name="radio_options" id="radio_option3"
-                                autocomplete="off" />
-                            <label class="btn btn-outline-primary" for="radio_option3">2022</label>
-
-                            <input type="radio" class="btn-check" name="radio_options" id="radio_option4"
-                                autocomplete="off" />
-                            <label class="btn btn-outline-primary" for="radio_option4">2023</label>
-                        </div>
-                    </div>
-
-                    @php
-                        $count = 1;
-                        $bilangan = 1;
-                        $texts = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet augue magna, nec imperdiet sapien
-                        consectetur ac. Duis ac cursus urna, vel elementum arcu. Maecenas maximus interdum aliquet.';
-                    @endphp
-
-                    <div class="card-datatable table-responsive">
-                        <table class="dt-advanced-search table table-bordered" id="statistik">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2">Bil.</th>
-                                    <th rowspan="2">Bulan</th>
-                                    <th colspan="3">Bilangan Permohonan</th>
-                                    <th colspan="3">Bilangan Kuarters</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Lulus</th>
-                                    <th>Tidak Layak</th>
-                                    <th>Selesai</th>
-                                    <th>Didiami</th>
-                                    <th>Tidak Didiami</th>
-                                    <th>Jumlah Keseluruhan</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>{{ $count++ }}</td>
-                                    <td>Januari</td>
-                                    <td>25</td>
-                                    <td>16</td>
-                                    <td>30</td>
-                                    <td>150</td>
-                                    <td>23</td>
-                                    <td>173</td>
-                                </tr>
-
-                                <tr>
-                                    <td>{{ $count++ }}</td>
-                                    <td>Februari</td>
-                                    <td>25</td>
-                                    <td>16</td>
-                                    <td>30</td>
-                                    <td>150</td>
-                                    <td>23</td>
-                                    <td>173</td>
-                                </tr>
-
-                                <tr>
-                                    <td>{{ $count++ }}</td>
-                                    <td>Mac</td>
-                                    <td>25</td>
-                                    <td>16</td>
-                                    <td>30</td>
-                                    <td>150</td>
-                                    <td>23</td>
-                                    <td>173</td>
-                                </tr>
-                            </tbody>
-
-                            <tfoot>
-                                <tr>
-                                    <th colspan="2">Jumlah Keseluruhan</th>
-                                    <th>250</th>
-                                    <th>222</th>
-                                    <th>450</th>
-                                    <th>22</th>
-                                    <th>222</th>
-                                    <th>22</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header border-bottom">
-                <h4 class="card-title">Ringkasan Status Permohonan Kuarters</h4>
-                <div class="d-flex justify-content-between float-left">
-                    <button type="button" class="btn mb-1" data-bs-toggle="collapse"
-                        aria-controls="ringkasan_kemajuan_program_table" href="#ringkasan_kemajuan_program_table"
-                        role="button" aria-expanded="false">
-                        <i class="fa-solid fa-minus"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="collapse show multi-collapse" id="ringkasan_kemajuan_program_table">
-                <div class="card-body">
-                    <div
-                        class="card-header d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-md-center align-items-start">
-                        <h4 class="card-title">&nbsp;</h4>
-
-                        <div class="btn-group mt-md-0 mt-1" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="radio_options" id="radio_option1"
-                                autocomplete="off" checked />
-                            <label class="btn btn-outline-primary" for="radio_option1">2020</label>
-
-                            <input type="radio" class="btn-check" name="radio_options" id="radio_option2"
-                                autocomplete="off" />
-                            <label class="btn btn-outline-primary" for="radio_option2">2021</label>
-
-                            <input type="radio" class="btn-check" name="radio_options" id="radio_option3"
-                                autocomplete="off" />
-                            <label class="btn btn-outline-primary" for="radio_option3">2022</label>
-
-                            <input type="radio" class="btn-check" name="radio_options" id="radio_option4"
-                                autocomplete="off" />
-                            <label class="btn btn-outline-primary" for="radio_option4">2023</label>
-                        </div>
-                    </div>
-
-                    <div class="card-datatable table-responsive">
-                        <table class="table table-bordered" style="table-layout: auto; width:150%">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2">Bil.</th>
-                                    <th rowspan="2">Nama Program</th>
-                                    <th colspan="3">Peruntukan</th>
-                                    <th colspan="3">Perbelanjaan</th>
-                                    <th rowspan="2">ROI</th>
-                                    <th rowspan="2">Catatan</th>
-                                    <th rowspan="2">Status</th>
-                                </tr>
-
-                                <tr>
-                                    <th>Komitmen (RM)</th>
-                                    <th>Sebenar (RM)</th>
-                                    <th>Peratusan (%)</th>
-                                    <th>Sasaran</th>
-                                    <th>Sebenar</th>
-                                    <th>Peratusan (%)</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>{{ $bilangan++ }}</td>
-                                    <td>Program Akses Kepada Peluang Pembiayaan</td>
-                                    <td>705,029.49</td>
-                                    <td>705,029.49</td>
-                                    <td>82.94</td>
-                                    <td>5,100</td>
-                                    <td>15,232</td>
-                                    <td>298.67</td>
-                                    <td>298.67</td>
-                                    <td>{{ $texts }}</td>
-                                    <td><span class="badge badge-glow bg-primary">Dalam Perlaksanaan</span></td>
-                                </tr>
-
-                                <tr>
-                                    <td>{{ $bilangan++ }}</td>
-                                    <td>Program Intercensi - Peluang Kedua Kepada Usahawan</td>
-                                    <td>705,029.49</td>
-                                    <td>705,029.49</td>
-                                    <td>82.94</td>
-                                    <td>5,100</td>
-                                    <td>15,232</td>
-                                    <td>298.67</td>
-                                    <td>298.67</td>
-                                    <td>{{ $texts }}</td>
-                                    <td><span class="badge badge-glow bg-warning">Siap Peringkat Bayaran</span></td>
-                                </tr>
-
-                                <tr>
-                                    <td>{{ $bilangan++ }}</td>
-                                    <td>Program Kesedaran Harta Intelek Ushawan (SEDAR-HI)</td>
-                                    <td>705,029.49</td>
-                                    <td>705,029.49</td>
-                                    <td>82.94</td>
-                                    <td>5,100</td>
-                                    <td>15,232</td>
-                                    <td>298.67</td>
-                                    <td>298.67</td>
-                                    <td>{{ $texts }}</td>
-                                    <td><span class="badge badge-glow bg-success">Siap Sepenuhnya</span></td>
-                                </tr>
-
-                                <tr>
-                                    <td>{{ $bilangan++ }}</td>
-                                    <td>Penempatan Latihan Kerjaya bafi Graduan TVET (GRACE) 1.0</td>
-                                    <td>705,029.49</td>
-                                    <td>705,029.49</td>
-                                    <td>82.94</td>
-                                    <td>5,100</td>
-                                    <td>15,232</td>
-                                    <td>298.67</td>
-                                    <td>298.67</td>
-                                    <td>{{ $texts }}</td>
-                                    <td><span class="badge badge-glow bg-danger">Belum Mula</span></td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
+                            <tr>
+                                <td> 2 </td>
+                                <td> 20987 </td>
+                                <td> Instrumen Penilaian Implementasi Teknologi dalam Proses Pembelajaran Instrumen Evaluasi Kualiti Sarana dan Prasarana di Sekolah</td>
+                                <td> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </td>
+                                <td> 18/07/2023 </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
