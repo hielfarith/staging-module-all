@@ -124,13 +124,13 @@
                                             Pengurusan
                                         </td>
                                         <td>
-                                            <input type="checkbox" checked>
+                                            2
                                         </td>
                                         <td>
-                                            <input type="checkbox" disabled>
+                                            1
                                         </td>
                                         <td>
-                                            <input type="checkbox" disabled>
+                                            1
                                         </td>
                                         <td>
                                             45%
@@ -150,13 +150,13 @@
                                             Pengajaran dan Pembelajaran
                                         </td>
                                         <td>
-                                            <input type="checkbox" disabled>
+                                            2
                                         </td>
                                         <td>
-                                            <input type="checkbox" checked>
+                                            1
                                         </td>
                                         <td>
-                                            <input type="checkbox" disabled>
+                                            1
                                         </td>
                                         <td>
                                             30%
@@ -176,13 +176,13 @@
                                             Keselamatan
                                         </td>
                                         <td>
-                                            <input type="checkbox" disabled>
+                                            2
                                         </td>
                                         <td>
-                                            <input type="checkbox" checked>
+                                            2
                                         </td>
                                         <td>
-                                            <input type="checkbox" disabled>
+                                            2
                                         </td>
                                         <td>
                                             20%
@@ -203,13 +203,13 @@
                                             Kemudahan
                                         </td>
                                         <td>
-                                            <input type="checkbox" disabled>
+                                            2
                                         </td>
                                         <td>
-                                            <input type="checkbox" disabled>
+                                            2
                                         </td>
                                         <td>
-                                            <input type="checkbox" checked>
+                                            2
                                         </td>
                                         <td>
                                             60%
@@ -218,9 +218,6 @@
                                             40%
                                         </td>
                                     </tr>
-
-
-
                                 </tbody>
                             </table>
                         </div>
