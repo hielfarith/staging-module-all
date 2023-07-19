@@ -82,17 +82,34 @@ Tambah Instrumen
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <td>Nama Atribut</td>
-                            <td>Jenis Atribut</td>
-                            <td>Label Pilihan</td>
-                            <td>Tindakan</td>
+                            <th>Nama Atribut</th>
+                            <th>Jenis Atribut</th>
+                            <th>Label Pilihan</th>
+                            <th>Tindakan</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>Nama Sekolah</td>
+                        <td>text</td>
+                        <td>-</td>
+                        <td>
+                            <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Action">
+                                <a data-bs-toggle="modal" data-bs-target="#edit_instrumen" aria-controls="edit_instrumen" class="btn btn-xs btn-default"> <i class="fas fa-pencil text-primary"></i>
+                                <a href="#" class="btn btn-xs btn-default"> <i class="fas fa-trash text-danger"></i> </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Alamat Sekolah</td>
+                        <td>longtext</td>
+                        <td>-</td>
+                        <td>
+                            <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Action">
+                                <a data-bs-toggle="modal" data-bs-target="#edit_instrumen" aria-controls="edit_instrumen" class="btn btn-xs btn-default"> <i class="fas fa-pencil text-primary"></i>
+                                <a href="#" class="btn btn-xs btn-default"> <i class="fas fa-trash text-danger"></i> </a>
+                            </div>
+                        </td>
                     </tr>
                 </table>
 
