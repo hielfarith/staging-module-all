@@ -125,10 +125,10 @@ $(window).on('load', function () {
         }
       },
       data: {
-        labels: ['7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '13/12', '14/12', '15/12', '16/12', '17/12'],
+        labels: ['Sabah', 'Sarawak', 'Negeri Sembilan', 'WP Kuala Lumpur', 'WP Labuan', 'WP Putrajaya'],
         datasets: [
           {
-            data: [275, 90, 190, 205, 125, 85, 55, 87, 127, 150, 230, 280, 190],
+            data: [275, 90, 190, 205, 125, 85],
             barThickness: 15,
             backgroundColor: successColorShade,
             borderColor: 'transparent'
@@ -326,10 +326,10 @@ $(window).on('load', function () {
         }
       },
       data: {
-        labels: ['MON', 'TUE', 'WED ', 'THU', 'FRI', 'SAT', 'SUN'],
+        labels: ['Institusi Swasa', 'Institusi Awam', 'Institusi Kebangsaan', 'Institusi Negeri'],
         datasets: [
           {
-            data: [710, 350, 470, 580, 230, 460, 120],
+            data: [710, 350, 470, 580],
             barThickness: 15,
             backgroundColor: window.colors.solid.info,
             borderColor: 'transparent'

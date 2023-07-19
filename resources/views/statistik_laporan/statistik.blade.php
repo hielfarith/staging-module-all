@@ -1,13 +1,13 @@
 @extends('layouts/contentLayoutMaster')
 
 @section('header')
-    Statistik Permohonan
+    Statistik
 @endsection
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('msg.home')}}</a></li>
     <li class="breadcrumb-item">
-        <a>Statistik Permohonan</a>
+        <a>Statistik</a>
     </li>
 @endsection
 
@@ -24,56 +24,62 @@
 @section('content')
 
 <section id="chartjs-chart">
-    <div class="row">
+    <div class="row match-height">
 
-        <div class="col-xl-6 col-12">
+        <div class="col-xl-12 col-12">
             <div class="card">
-                <div class="table-responsive">
-                    <table class="table header_uppercase table-bordered table-responsive table-hovered" id="senarai_permohonan" style="">
-                        <thead>
-                            <tr>
-                                <th> No. </th>
-                                <th> Nama Institusi </th>
-                                <th> Peratusan </th>
-                        </thead>
+                <div class="card-header">
+                    <h4 class="card-title fw-bolder">Kedudukan Istitusi (5 Teratas)</h4>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table header_uppercase table-bordered table-responsive table-hovered" id="senarai_permohonan" style="">
+                            <thead>
+                                <tr>
+                                    <th> No. </th>
+                                    <th> Nama Institusi </th>
+                                    <th> Peratusan </th>
+                            </thead>
 
-                        <tbody>
-                            <tr>
-                                <td> 1. </td>
-                                <td> Maktab Rendah Sains MARA </td>
-                                <td> 20 </td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td> 1. </td>
+                                    <td> Maktab Rendah Sains MARA </td>
+                                    <td> 100 </td>
+                                </tr>
 
-                            <tr>
-                                <td> 2 </td>
-                                <td> Universiti Teknologi MARA </td>
-                                <td> 40</td>
-                            </tr>
+                                <tr>
+                                    <td> 2 </td>
+                                    <td> Universiti Teknologi MARA </td>
+                                    <td> 80</td>
+                                </tr>
 
-                            <tr>
-                                <td> 3 </td>
-                                <td> Universiti Sultan Zainal Abidin </td>
-                                <td> 40</td>
-                            </tr>
+                                <tr>
+                                    <td> 3 </td>
+                                    <td> Universiti Sultan Zainal Abidin </td>
+                                    <td> 70</td>
+                                </tr>
 
-                            <tr>
-                                <td> 4 </td>
-                                <td> Kementerian Pelajaran Tinggi Malaysia </td>
-                                <td> 70</td>
-                            </tr>
+                                <tr>
+                                    <td> 4 </td>
+                                    <td> Kementerian Pelajaran Tinggi Malaysia </td>
+                                    <td> 70</td>
+                                </tr>
 
-                            <tr>
-                                <td> 5 </td>
-                                <td> Universiti Sarawak Malaysia </td>
-                                <td> 80</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td> 5 </td>
+                                    <td> Universiti Sarawak Malaysia </td>
+                                    <td> 68</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-xl-6 col-12">
+        <div class="col-xl-4 col-12">
             <div class="card">
                 <div class=" card-header d-flex justify-content-between align-items-sm-center align-items-start flex-sm-row flex-column">
                     <div class="header-left">
@@ -82,19 +88,21 @@
                     <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
                     </div>
                 </div>
+                <hr>
                 <div class="card-body">
                     <canvas class="bar-chart-ex chartjs" data-height="400"></canvas>
                 </div>
             </div>
         </div>
 
-        <div class="col-xl-6 col-12">
+        <div class="col-xl-4 col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-sm-center align-items-start flex-sm-row flex-column">
                     <div class="header-left">
                         <h4 class="card-title">Klasifikasi Program</h4>
                     </div>
                 </div>
+                <hr>
                 <div class="card-body">
                     <canvas class="horizontal-bar-chart-ex chartjs" data-height="400"></canvas>
                 </div>
@@ -139,13 +147,13 @@
             </div>
         </div>--}}
 
-        <div class="col-xl-6 col-12">
+        <div class="col-xl-4 col-12">
             <div class="card">
                 <div class="card-header flex-column align-items-start">
                     <h4 class="card-title">Pencapaian Matlamat Kualiti</h4>
                 </div>
+                <hr>
                 <div class="card-body">
-                    <hr>
                     <h4 class="card-title">
                     <div id="donut-chart"></div>
                 </div>

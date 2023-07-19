@@ -831,13 +831,12 @@ $(function () {
         show: true,
         position: 'bottom'
       },
-      labels: ['Operational', 'Networking', 'Hiring', 'R&D'],
-      series: [85, 16, 50, 50],
+      labels: ['Cemerlang', 'Baik', 'Perlu Pembaharuan'],
+      series: [85, 16, 50],
       colors: [
         chartColors.donut.series1,
         chartColors.donut.series5,
         chartColors.donut.series3,
-        chartColors.donut.series2
       ],
       dataLabels: {
         enabled: true,
