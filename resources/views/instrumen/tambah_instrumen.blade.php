@@ -207,15 +207,22 @@ Tambah Instrumen
         attributeCard.className = "attribute-card";
 
         let attributeHTML = `<b>${attribute.name}</b>: `;
-
         if (attribute.type === "text") {
-          attributeHTML += '<input type="text" class="form-control">';
+          attributeHTML += '<input type="text" class="form-control mb-1">';
         } else if (attribute.type === "longText") {
-          attributeHTML += '<textarea class="form-control"></textarea>';
+          attributeHTML += '<textarea class="form-control mb-1"></textarea>';
         } else if (attribute.type === "checkbox") {
-          attributeHTML += attribute.labels.map(label => `<input type="checkbox">${label}<br>`).join('');
+          attributeHTML += attribute.labels.map(label => `<div class="demo-inline-spacing">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" value="${label}"/>
+                                                                <label class="form-check-label">${label}</label>
+                                                            </div>
+                                                          </div>`).join('');
         } else if (attribute.type === "radio") {
-          attributeHTML += attribute.labels.map(label => `<input type="radio" name="${attribute.name}">${label}<br>`).join('');
+          attributeHTML += attribute.labels.map(label => `<div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="${attribute.name}" value="${label}" />
+                                                            <label class="form-check-label">${label}</label>
+                                                          </div>`).join('');
         }
 
         attributeCard.innerHTML = attributeHTML;
