@@ -24,4 +24,9 @@ class AdminController extends Controller
 
         return view('instrumen.tambah_instrumen');
     }
+
+    public function JawabInstrumen(){
+
+        return view ('instrumen.jawab_instrumen');
+    }
 }

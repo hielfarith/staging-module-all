@@ -237,24 +237,6 @@ $configData = Helper::applClasses();
 
             @hasanyrole('admin|pengguna_luar')
             <li class="navigation-header">
-                <span> Pengurusan </span>
-            </li>
-            <li class="nav-item nav-tour application-management {{ request()->is('permohonan*') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link">
-                    <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Pengurusan Permohonan </span>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('senarai_permohonan') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate text-wrap"> Senarai Permohonan </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="navigation-header">
                 <span>Helpdesk</span>
             </li>
             <li class="nav-item {{ request()->is('employee/list-employee*') ? 'menu-open' : '' }}">
@@ -295,6 +277,26 @@ $configData = Helper::applClasses();
                         <a href="{{ route('helpdesk.report_issues') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Issues Report </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endhasanyrole
+
+            @hasanyrole('pengguna_luar')
+            <li class="navigation-header">
+                <span> Pengurusan Instrumen </span>
+            </li>
+            <li class="nav-item {{ request()->is('Pengurusan_Instrumen*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate"> Instrumen Pemeriksaan </span>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('jawab_instrumen') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Instrumen </span>
                         </a>
                     </li>
                 </ul>

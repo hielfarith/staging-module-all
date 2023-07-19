@@ -15,6 +15,25 @@ Instrumen
 @endsection
 
 @section('content')
+
+@php
+$name = 'SMK KUALA LUMPUR';
+$address1 = 'Taman Sri Sinar Segambut';
+$address2 = 'No.48 Jalan 8, Wilayah Persekutuan';
+$emel = 'smk@gmail.com';
+$website = 'www.smk.com';
+$poscode = '55200';
+$pelajar = '500';
+$keluasan = '3';
+$guru = '20';
+$staff = 15;
+$phone_number = '0112776477';
+$dob = '22-07-1999';
+$tarikh = '22-07-2022';
+$faks = '0295552012';
+$kategori = ['Bandar', 'Luar Bandar', 'Pedalaman'];
+@endphp
+
 <div class="card">
     <div class="card-header">
         <h4 class="card-title fw-bolder"> Senarai Instrumen </h4>
@@ -34,7 +53,7 @@ Instrumen
             </div>
 
             <div class="col-md-4">
-                <label class="form-label fw-bolder">Tarikh Didaftarkan</label>
+                <label class="form-label fw-bolder">Tarikh Diterima</label>
                 <input type="date" class="form-control">
             </div>
 
@@ -81,6 +100,7 @@ Instrumen
                         <th> Nama Instrumen </th>
                         <th> Keterangan Instrumen </th>
                         <th> Tarikh Didaftarkan </th>
+                        <th> Status </th>
                         <th> Tindakan </th>
                     </tr>
                 </thead>
@@ -93,10 +113,11 @@ Instrumen
                         <td> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </td>
                         <td> 18/07/2023 </td>
                         <td>
+                            <span class="badge pill-badge-glow bg-primary">Instrumen Baharu</span>
+                        </td>
+                        <td>
                             <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Action">
-                                <a data-bs-toggle="modal" data-bs-target="#send_instrumen" aria-controls="send_instrumen" class="btn btn-xs btn-default"> <i class="text-info" data-feather="send"></i>
                                 <a data-bs-toggle="modal" data-bs-target="#edit_instrumen" aria-controls="edit_instrumen" class="btn btn-xs btn-default"> <i class="fas fa-pencil text-primary"></i>
-                                <a href="#" class="btn btn-xs btn-default"> <i class="fas fa-trash text-danger"></i> </a>
                             </div>
                         </td>
                     </tr>
@@ -108,10 +129,11 @@ Instrumen
                         <td> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </td>
                         <td> 18/07/2023 </td>
                         <td>
+                            <span class="badge pill-badge-glow bg-success">Instrumen Selesai</span>
+                        </td>
+                        <td>
                             <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Action">
-                                <a data-bs-toggle="modal" data-bs-target="#send_instrumen" aria-controls="send_instrumen" class="btn btn-xs btn-default"> <i class="text-info" data-feather="send"></i>
                                 <a data-bs-toggle="modal" data-bs-target="#edit_instrumen" aria-controls="edit_instrumen" class="btn btn-xs btn-default"> <i class="fas fa-pencil text-primary"></i>
-                                <a href="#" class="btn btn-xs btn-default"> <i class="fas fa-trash text-danger"></i> </a>
                             </div>
                         </td>
                     </tr>
@@ -125,82 +147,54 @@ Instrumen
 <div class="modal fade" id="edit_instrumen" tabindex="-1" aria-labelledby="edit_instrumen" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-light-primary">
-                <h4 class="card-title">
-                    Kemaskini Maklumat Instrumen
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Pemeriksaan Persediaan Sesi Persekolahan 2023/2024 Jabatan Pendidikan Negeri Perak
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12 mb-1">
-                        <label class="form-label fw-bolder">Nama Instrumen </label>
-                        <textarea type="text" class="form-control"> </textarea>
+                <ul class="nav nav-pills nav-justified pt-2" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-uppercase active" id="section1baru-tab" data-bs-toggle="tab" href="#section1baru" aria-controls="section1baru" role="tab" aria-selected="true">
+                            <b>Maklumat Sekolah</b>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-uppercase" id="section2baru-tab" data-bs-toggle="tab" href="#section2baru" aria-controls="section2baru" role="tab" aria-selected="true">
+                            <b>Maklumat Penilaian</b>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-uppercase" id="section3baru-tab" data-bs-toggle="tab" href="#section3baru" aria-controls="section3baru" role="tab" aria-selected="true" aria-selected="true">
+                            <b>Keputusan Penilaian</b>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="section1baru" role="tabpanel" aria-labelledby="section1baru-tab" aria-expanded="false">
+                        <hr>
+                        @include('instrumen.tab.tab1-maklumat-penyertaan')
                     </div>
 
-                    <div class="col-md-12 mb-1">
-                        <label class="form-label fw-bolder">Keterangan Instrumen </label>
-                        <textarea type="text" class="form-control"> </textarea>
+                    <div class="tab-pane" id="section2baru" role="tabpanel" aria-labelledby="section2baru-tab" aria-expanded="true">
+                        @include('instrumen.tab.tab2-maklumat-penilaian')
+                    </div>
+
+                    <div class="tab-pane" id="section3baru" role="tabpanel" aria-labelledby="section3baru-tab" aria-expanded="true">
+                        @include('instrumen.tab.tab3-keputusan-penilaian')
                     </div>
                 </div>
+
             </div>
 
             <div class="modal-footer">
-                <div class="d-flex justify-content-center">
-                    <a href="#" class="btn btn-primary me-1" onclick="fakeSuccess()">
-                        Kemaskini
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="send_instrumen" tabindex="-1" aria-labelledby="send_instrumen" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-light-primary">
-                <h4 class="card-title">
-                    Hantar Instrumen Ke Pihak Institusi
-                </h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12 mb-1">
-                        <label class="form-label fw-bolder">Senarai Penerima </label>
-                        <select class="select2 form-select" id="select2-multiple" multiple>
-                            <optgroup label="Institusi Awam">
-                                <option value="Awam 1">Awam 1</option>
-                                <option value="Awam 2">Awam 2</option>
-                                <option value="Awam 3">Awam 3</option>
-                            </optgroup>
-                            <optgroup label="Institusi Swasta">
-                                <option value="Swasta 1">Swasta 1</option>
-                                <option value="Swasta 2">Swasta 2</option>
-                                <option value="Swasta 3">Swasta 3</option>
-                            </optgroup>
-                        </select>
-                    </div>
-
-                    <div class="col-md-12 mb-1">
-                        <label class="form-label fw-bolder">Subjek Emel </label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                    <div class="col-md-12 mb-1">
-                        <label class="form-label fw-bolder">Isi Kandungan Emel</label>
-                        <textarea type="text" class="form-control" rows="8"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <div class="d-flex justify-content-center">
-                    <a href="#" class="btn btn-primary me-1" onclick="fakeSuccess()">
-                        <i data-feather="send"></i>
-                        Hantar
-                    </a>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-success btn-next" onclick="fakeSuccess()">
+                        <span class="align-middle d-sm-inline-block d-none">Simpan Penilaian</span>
+                        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                    </button>
                 </div>
             </div>
         </div>
