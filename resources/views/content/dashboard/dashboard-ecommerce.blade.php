@@ -404,11 +404,7 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
-
 
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="card">
@@ -483,8 +479,7 @@
                 <div class="col-xl-4 col-md-4 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"> Standard Kualiti Pengasuhan dan Pendidikan Awal Kanak-Kanak
-                                (SKPAK)</h4>
+                            <h4 class="card-title"> Standard Kualiti Pengasuhan dan Pendidikan Awal Kanak-Kanak (SKPAK)</h4>
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -497,8 +492,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h4 class="fw-bolder mb-0">15,000</h4>
-                                        <p class="card-text font-small-3 mb-0">Permohonan</p>
+                                        <h4 class="fw-bolder mb-0">30</h4>
+                                        <p class="card-text font-small-3 mb-0" href="{{ route('jawab_instrumen') }}">Instrumen Diterima</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -510,8 +505,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h4 class="fw-bolder mb-0">15,000</h4>
-                                        <p class="card-text font-small-3 mb-0">Lulus</p>
+                                        <h4 class="fw-bolder mb-0">15</h4>
+                                        <p class="card-text font-small-3 mb-0">Tidak Dijawab</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -523,8 +518,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h4 class="fw-bolder mb-0">15,000</h4>
-                                        <p class="card-text font-small-3 mb-0">Tidak Layak</p>
+                                        <h4 class="fw-bolder mb-0">15</h4>
+                                        <p class="card-text font-small-3 mb-0">Dijawab</p>
                                     </td>
                                 </tr>
                             </table>
@@ -545,8 +540,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h4 class="fw-bolder mb-0">15,000</h4>
-                                        <p class="card-text font-small-3 mb-0">Dihantar</p>
+                                        <h4 class="fw-bolder mb-0">30</h4>
+                                        <p class="card-text font-small-3 mb-0" href="{{ route('jawab_instrumen') }}">Instrumen Diterima</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -558,8 +553,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h4 class="fw-bolder mb-0">15,000</h4>
-                                        <p class="card-text font-small-3 mb-0">Lulus</p>
+                                        <h4 class="fw-bolder mb-0">15</h4>
+                                        <p class="card-text font-small-3 mb-0">Tidak Dijawab</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -571,8 +566,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h4 class="fw-bolder mb-0">15,000</h4>
-                                        <p class="card-text font-small-3 mb-0">Belum Jawab</p>
+                                        <h4 class="fw-bolder mb-0">15</h4>
+                                        <p class="card-text font-small-3 mb-0">Dijawab</p>
                                     </td>
                                 </tr>
                             </table>
@@ -603,51 +598,6 @@
 
         <section id="dashboard-ecommerce">
             <div class="row match-height">
-
-                <div class="col-lg-12 col-12">
-                    <div class="card card-revenue-budget">
-                        <div class="row mx-0">
-                            <div class="col-md-8 col-12 revenue-report-wrapper">
-                                <div class="d-sm-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="card-title mb-50 mb-sm-0">Statistik Permohonan Kuarters Sepanjang Tahun</h4>
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex align-items-center me-2">
-                                            <span class="bullet bullet-primary font-small-3 me-50 cursor-pointer"></span>
-                                            <span>Lulus</span>
-                                        </div>
-                                        <div class="d-flex align-items-center ms-75">
-                                            <span class="bullet bullet-warning font-small-3 me-50 cursor-pointer"></span>
-                                            <span>Tidak Layak</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="revenue-report-chart"></div>
-                            </div>
-                            <div class="col-md-4 col-12 budget-wrapper">
-                                <div class="btn-group">
-                                    <button type="button"
-                                        class="btn btn-outline-primary btn-sm dropdown-toggle budget-dropdown"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        2020
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">2020</a>
-                                        <a class="dropdown-item" href="#">2019</a>
-                                        <a class="dropdown-item" href="#">2018</a>
-                                    </div>
-                                </div>
-                                <h2 class="mb-25">Jumlah Kuaters: 5,200</h2>
-                                <div class="d-flex justify-content-center">
-                                    <span class="fw-bolder me-25">Jumlah Kuarters Didami:</span>
-                                    <span>4,100</span>
-                                </div>
-                                <div id="budget-chart"></div>
-                                <button type="button" class="btn btn-primary">Tambah Maklumat Kuarters</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="card">
                     <div class="card-header border-bottom">
                         <h4 class="card-title"> Senarai Instrumen Didaftarkan Sepanjang Tahun</h4>
