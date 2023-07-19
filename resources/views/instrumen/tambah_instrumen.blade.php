@@ -10,147 +10,201 @@ Tambah Instrumen
 @endsection
 
 @section('content')
-<div class="card">
-    <div class="card-header">
-        <h4 class="card-title fw-bolder"> Tambah Instrumen </h4>
+<div class="row">
+    <div class="col-md-7 col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title fw-bolder"> Tambah Instrumen </h4>
+            </div>
+
+            <hr>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-12 mb-1">
+                        <label class="fw-bolder">Nama Instrumen:</label>
+                        <input class="form-control" type="text" id="namaInstrumenInput">
+                    </div>
+
+                    <div class="col-md-12 col-12 mb-1">
+                        <label class="fw-bolder">Keterangan Instrumen:</label>
+                        <textarea class="form-control" rows="5" id="keteranganInstrumenInput"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <form id="attributeForm">
+                    <div class="row">
+                        <div class="col-md-6 col-12 mb-1">
+                            <label class="fw-bolder">Nama Atribut:</label>
+                            <input class="form-control" type="text" id="attributeName">
+                        </div>
+
+                        <div class="col-md-2 col-12 mb-1">
+                            <label class="fw-bolder">Jenis Atribut:</label>
+                            <select class="form-select select2" id="attributeType" required onchange="handleAttributeTypeChange()">
+                                <option value="" hidden>Type</option>
+                                <option value="text">Text</option>
+                                <option value="longText">Long Text</option>
+                                <option value="checkbox">Checkbox</option>
+                                <option value="radio">Radio</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 col-12 mb-1">
+                            <div id="checkboxRadioOptions" style="display: none;">
+                                <label class="fw-bolder">Label Pilihan:</label>
+                                <input class="form-control" type="text" id="optionLabels" placeholder="Option 1, Option 2, Option 3">
+                                <p class="text-danger">Please use comma as separator for each labels.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end align-items-center my-1 ">
+                        <a class="me-3" type="button" id="reset" href="#">
+                            <span class="text-danger"> &nbsp; </span>
+                        </a>
+                        <button type="button" class="btn btn-sm btn-primary float-right" onclick="addAttribute()">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title fw-bolder"> Senarai Instrumen </h4>
+            </div>
+
+            <hr>
+
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Nama Atribut</td>
+                            <td>Jenis Atribut</td>
+                            <td>Label Pilihan</td>
+                            <td>Tindakan</td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
     </div>
-    <hr>
 
-    <div class="card-body">
-        <div class="row ">
-            <div class="col-md-4">
-                <label class="form-label fw-bolder">ID Instrumen </label>
-                <input type="text" class="form-control">
+    <div class="col-md-5 col-12">
+        <h4 class="fw-bolder mb-1">Contoh Borang Instrumen: </h4>
+        <div class="card">
+            <div class="card-header">
+                <h4 id="dynamicContent"></h4>
             </div>
 
-            <div class="col-md-4">
-                <label class="form-label fw-bolder">Nama Instrumen</label>
-                <input type="text" class="form-control">
-            </div>
+            <hr>
 
-            <div class="col-md-4">
-                <label class="form-label fw-bolder">Tarikh Didaftarkan</label>
-                <input type="date" class="form-control">
-            </div>
-
-            <div class="d-flex justify-content-end align-items-center my-1 ">
-                <a class="me-3" type="button" id="reset" href="#">
-                    <span class="text-danger"> Reset </span>
-                </a>
-                <button type="submit" class="btn btn-success float-right">
-                    <i class="fa fa-search"></i> Search
-                </button>
+            <div class="card-body">
+                <p id="dynamicDescription"></p>
+                <div id="attributeCardContainer"></div>
             </div>
         </div>
-
-        <div class="btn-group" role="group" aria-label="Role Action">
-            <a href="#" class="btn btn-outline-success waves-effect">
-                <i class="fa fa-file-excel text-success"></i> Excel
-            </a>
-            <a href="#" class="btn btn-outline-danger waves-effect">
-                <i class="fa fa-file-pdf text-danger"></i> PDF
-            </a>
-        </div>
-
-        <hr>
-
-        <style>
-            #senarai_permohonan thead th {
-                vertical-align: middle;
-                text-align: center;
-            }
-
-            #senarai_permohonan tbody{
-                vertical-align: middle;
-            }
-
-        </style>
-        @php $count = 1; @endphp
-
-        <div class="table-responsive">
-            <table class="table header_uppercase table-bordered table-responsive table-hovered" id="senarai_permohonan" style="">
-                <thead>
-                    <tr>
-                        <th> No. </th>
-                        <th> ID Instrumen </th>
-                        <th> Nama Instrumen </th>
-                        <th> Keterangan Instrumen </th>
-                        <th> Tarikh Didaftarkan </th>
-                        <th> Tindakan </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td> 1. </td>
-                        <td> 24678 </td>
-                        <td> Pemeriksaan Persediaan Sesi Persekolahan 2023/2024 Jabatan Pendidikan Negeri Perak </td>
-                        <td> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </td>
-                        <td> 18/07/2023 </td>
-                        <td>
-                            <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Action">
-                                <a data-bs-toggle="modal" data-bs-target="#edit_instrumen" aria-controls="edit_instrumen" class="btn btn-xs btn-default"> <i class="fas fa-pencil text-primary"></i>
-                                <a href="#" class="btn btn-xs btn-default"> <i class="fas fa-trash text-danger"></i> </a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td> 2 </td>
-                        <td> 20987 </td>
-                        <td> Instrumen Penilaian Implementasi Teknologi dalam Proses Pembelajaran Instrumen Evaluasi Kualiti Sarana dan Prasarana di Sekolah</td>
-                        <td> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </td>
-                        <td> 18/07/2023 </td>
-                        <td>
-                            <div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Action">
-                                <a data-bs-toggle="modal" data-bs-target="#edit_instrumen" aria-controls="edit_instrumen" class="btn btn-xs btn-default"> <i class="fas fa-pencil text-primary"></i>
-                                <a href="#" class="btn btn-xs btn-default"> <i class="fas fa-trash text-danger"></i> </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
     </div>
 </div>
 
-<div class="modal fade" id="edit_instrumen" tabindex="-1" aria-labelledby="edit_instrumen" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-light-primary">
-                <h4 class="card-title">
-                    Kemaskini Maklumat Instrumen
-                </h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <label class="form-label fw-bolder">Nama Instrumen </label>
-                        <textarea type="text" class="form-control"> </textarea>
-                    </div>
-
-                    <div class="col-md-12">
-                        <label class="form-label fw-bolder">Keterangan Instrumen </label>
-                        <textarea type="text" class="form-control"> </textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <div class="d-flex justify-content-center">
-                    <a href="#" class="btn btn-primary me-1" onclick="fakeSuccess()">
-                        Kemaskini
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="buy-now">
+    <a class="btn btn-danger waves-effect waves-float waves-light" onclick="fakeSuccess()">Simpan</a>
 </div>
 
 @endsection
 
 @section('page-script')
     <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+@endsection
+
+@section('script')
+<script>
+    document.getElementById("namaInstrumenInput").addEventListener("input", updateDynamicContent);
+    document.getElementById("keteranganInstrumenInput").addEventListener("input", updateDynamicContent);
+
+    function updateDynamicContent() {
+        const inputVal = document.getElementById("namaInstrumenInput").value;
+        const keteranganInputVal = document.getElementById("keteranganInstrumenInput").value;
+
+        const dynamicContentDiv = document.getElementById("dynamicContent");
+        const dynamicDescriptionDiv = document.getElementById("dynamicDescription");
+
+        // Update the content of the target element
+        dynamicContentDiv.innerText = inputVal;
+        dynamicDescriptionDiv.innerText = keteranganInputVal;
+    }
+
+    const attributes = [];
+
+    function handleAttributeTypeChange() {
+      const attributeType = document.getElementById("attributeType").value;
+      const checkboxRadioOptions = document.getElementById("checkboxRadioOptions");
+
+      // Show the additional input field if the type is "Checkbox" or "Radio"
+      checkboxRadioOptions.style.display = attributeType === "checkbox" || attributeType === "radio" ? "block" : "none";
+    }
+
+    function addAttribute() {
+      // Get input values
+      const attributeName = document.getElementById("attributeName").value;
+      const attributeType = document.getElementById("attributeType").value;
+
+      // If checkbox or radio, get the option labels and split them into an array
+      const optionLabels = attributeType === "checkbox" || attributeType === "radio"
+        ? document.getElementById("optionLabels").value.split(',').map(label => label.trim())
+        : [];
+
+      // Push the new attribute to the array
+      attributes.push({ name: attributeName, type: attributeType, labels: optionLabels });
+
+      // Update the card container
+      updateCardContainer();
+
+      // Clear the input fields after adding the attribute
+      document.getElementById("attributeName").value = "";
+      document.getElementById("attributeType").value = "text"; // Reset to default option
+      document.getElementById("optionLabels").value = "";
+      document.getElementById("checkboxRadioOptions").style.display = "none"; // Hide the additional input field
+    }
+
+    function updateCardContainer() {
+      // Get the container
+      const container = document.getElementById("attributeCardContainer");
+
+      // Clear the container
+      container.innerHTML = "";
+
+      // Create and append the attribute cards
+      attributes.forEach((attribute) => {
+        const attributeCard = document.createElement("div");
+        attributeCard.className = "attribute-card";
+
+        let attributeHTML = `<b>${attribute.name}</b>: `;
+
+        if (attribute.type === "text") {
+          attributeHTML += '<input type="text" class="form-control">';
+        } else if (attribute.type === "longText") {
+          attributeHTML += '<textarea class="form-control"></textarea>';
+        } else if (attribute.type === "checkbox") {
+          attributeHTML += attribute.labels.map(label => `<input type="checkbox">${label}<br>`).join('');
+        } else if (attribute.type === "radio") {
+          attributeHTML += attribute.labels.map(label => `<input type="radio" name="${attribute.name}">${label}<br>`).join('');
+        }
+
+        attributeCard.innerHTML = attributeHTML;
+        container.appendChild(attributeCard);
+      });
+    }
+  </script>
+
 @endsection
