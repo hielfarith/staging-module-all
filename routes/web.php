@@ -101,7 +101,7 @@ Route::prefix('admin')->group(function () {
     Route::get('internalUser',[UserController::class,'index'])->name('admin.internalUser');
     Route::get('externalUser',[UserController::class,'index'])->name('admin.externalUser');
     Route::get('getUser/{userId}', [UserController::class,'getUser'])->name('user.getUser');
-    Route::get('edit/{roleId}', [RoleController::class,'getRole'])->name('role.edit');
+    Route::get('update/{roleId}', [RoleController::class,'getRole'])->name('role.edit');
 
     Route::resource('project', ProjectController::class);
     Route::prefix('project')->group(function () {

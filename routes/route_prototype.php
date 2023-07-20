@@ -11,7 +11,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('profile', 'UserProfile')->name('prototype_profile');
     Route::get('borang_instrumen', 'TambahInstrumen')->name('tambah_instrumen');
     Route::get('instrumen', 'SenaraiInstrumen')->name('senarai_instrumen');
-    Route::get('/', 'JawabInstrumen')->name('jawab_instrumen');
+    Route::get('isi_instrumen', 'JawabInstrumen')->name('jawab_instrumen');
 
 
 });
