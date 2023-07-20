@@ -12,6 +12,28 @@
 @endsection
 
 @section('content')
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-light-primary">
+                <h4 class="card-title">
+                    Instrument Dynamic Form
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add the video element inside the modal body -->
+                <video width="100%" controls autoplay>
+                    <source src="https://drive.google.com/uc?export=download&id=1lfQXrs1AvzsKWyFaWa-t263Pyjsyndxu" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
     @hasanyrole('superadmin')
         <section class="app-user-view-account">
             <div class="row match-height">
@@ -669,4 +691,12 @@
 @section('page-script')
     <script src="{{ asset(mix('js/scripts/pages/dashboard-analytics.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/pages/dashboard-ecommerce.js')) }}"></script>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+    });
+</script>
 @endsection
