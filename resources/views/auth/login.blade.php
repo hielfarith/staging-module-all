@@ -70,7 +70,7 @@
                             SISTEM PEMERIKSAAN DAN PENILAIAN INSTITUSI PENDIDIKAN
                         </h2>
                         <p class="text-center mt-2 mt-2">
-                            <a class="ViewProposalButton" target="_blank" href="{{ url('https://drive.google.com/file/d/1PiptCUQaTzsjtl3Ai5lo_FxDPL5Hf5dN/view') }}">
+                            <a class="ViewProposalButton" target="_blank" href="{{ url('https://online.anyflip.com/akkxw/gdpq/mobile/index.html') }}">
                                 <span class="fw-bolder ViewProposalButton">View Proposal</span>
                             </a>
                         </p>
