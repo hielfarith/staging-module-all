@@ -270,10 +270,7 @@
                         {{-- @endforeach
                         @endif
                         @endif --}}
-                        <a class="dropdown-item"
-                            href="{{ route('prototype_profile') }}">
-                            <i data-feather="user"></i> User Profile
-                        </a>
+                       
                         <div class="dropdown-divider"></div>
                         @if (Auth::check())
                         <a class="dropdown-item" href="{{ route('logout') }}"
