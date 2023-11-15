@@ -18,12 +18,9 @@ class UsersTableSeeder extends Seeder
         \DB::table('users')->insert(array(
             0 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-03-22 10:29:10',
                 'email' => 'superadmin@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 1,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -36,12 +33,9 @@ class UsersTableSeeder extends Seeder
             ),
             1 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-03-22 10:29:10',
                 'email' => 'admin@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 2,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -54,12 +48,9 @@ class UsersTableSeeder extends Seeder
             ),
             2 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'aisyah_rahman@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 11,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -72,12 +63,9 @@ class UsersTableSeeder extends Seeder
             ),
             3 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'siti_ahmad@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 12,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -90,12 +78,9 @@ class UsersTableSeeder extends Seeder
             ),
             4 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'diana_danielle@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 13,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -108,12 +93,9 @@ class UsersTableSeeder extends Seeder
             ),
             5 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'nurul_alisah@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 14,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -126,12 +108,9 @@ class UsersTableSeeder extends Seeder
             ),
             6 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'puteri_liyana@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 15,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -144,12 +123,9 @@ class UsersTableSeeder extends Seeder
             ),
             7 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'fatimah_azzahra@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 16,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -162,12 +138,9 @@ class UsersTableSeeder extends Seeder
             ),
             8 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'khadija_ismail@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 17,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -180,12 +153,9 @@ class UsersTableSeeder extends Seeder
             ),
             9 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'alya_sabrina@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 18,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -198,12 +168,9 @@ class UsersTableSeeder extends Seeder
             ),
             10 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'aiman_hakim@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 19,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -216,12 +183,9 @@ class UsersTableSeeder extends Seeder
             ),
             11 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'sharifah_aisyah@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 20,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -234,12 +198,9 @@ class UsersTableSeeder extends Seeder
             ),
             12 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'syafiq_salleh@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 21,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -252,12 +213,9 @@ class UsersTableSeeder extends Seeder
             ),
             13 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'nur_hamizah@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 22,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -270,12 +228,9 @@ class UsersTableSeeder extends Seeder
             ),
             14 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'adi_yusoff@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 23,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -288,12 +243,9 @@ class UsersTableSeeder extends Seeder
             ),
             15 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'amir_hamzah@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 24,
                 'is_active' => 0,
                 'isClient' => 0,
@@ -306,12 +258,9 @@ class UsersTableSeeder extends Seeder
             ),
             16 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'safawi_rashid@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 25,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -324,12 +273,9 @@ class UsersTableSeeder extends Seeder
             ),
             17 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'ahmad_khairudin@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 26,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -342,12 +288,9 @@ class UsersTableSeeder extends Seeder
             ),
             18 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'siti_syahirah@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 27,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -360,12 +303,9 @@ class UsersTableSeeder extends Seeder
             ),
             19 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'sofea_afrina@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 28,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -378,12 +318,9 @@ class UsersTableSeeder extends Seeder
             ),
             20 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'dellina_nabilla@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 29,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -396,12 +333,9 @@ class UsersTableSeeder extends Seeder
             ),
             21 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'syafiq_ahmad@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 30,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -414,12 +348,9 @@ class UsersTableSeeder extends Seeder
             ),
             22 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => null,
                 'email' => 'farid_kamil@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 31,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -432,12 +363,9 @@ class UsersTableSeeder extends Seeder
             ),
             23 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-07-07 21:26:29',
                 'email' => 'nelydia_senrose@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 32,
                 'is_active' => 1,
                 'isClient' => 1,
@@ -450,12 +378,9 @@ class UsersTableSeeder extends Seeder
             ),
             24 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-01 14:39:01',
                 'email' => 'amir_ahnaf@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => null,
                 'id' => 34,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -468,12 +393,9 @@ class UsersTableSeeder extends Seeder
             ),
             25 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:22',
                 'email' => 'test1@getnada.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 35,
                 'is_active' => 0,
                 'isClient' => 0,
@@ -486,12 +408,9 @@ class UsersTableSeeder extends Seeder
             ),
             26 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'daiyan_trisyia@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 36,
                 'is_active' => 0,
                 'isClient' => 0,
@@ -504,12 +423,9 @@ class UsersTableSeeder extends Seeder
             ),
             27 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'muhd_haiqal@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 37,
                 'is_active' => 0,
                 'isClient' => 0,
@@ -522,12 +438,9 @@ class UsersTableSeeder extends Seeder
             ),
             28 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'selena_gomez@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 60,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -540,12 +453,9 @@ class UsersTableSeeder extends Seeder
             ),
             29 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'afif_farhaan@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 61,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -558,12 +468,9 @@ class UsersTableSeeder extends Seeder
             ),
             30 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'anuar_zain@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 62,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -576,12 +483,9 @@ class UsersTableSeeder extends Seeder
             ),
             31 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'siti_najwa@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 63,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -594,12 +498,9 @@ class UsersTableSeeder extends Seeder
             ),
             32 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'fahrin_ahmad@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 64,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -612,12 +513,9 @@ class UsersTableSeeder extends Seeder
             ),
             33 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'irfan_bakti@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 65,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -630,12 +528,9 @@ class UsersTableSeeder extends Seeder
             ),
             34 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'aizat_amdan@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 66,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -648,12 +543,9 @@ class UsersTableSeeder extends Seeder
             ),
             35 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'muhd_adli@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 67,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -666,12 +558,9 @@ class UsersTableSeeder extends Seeder
             ),
             36 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'siti_nordiana@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 68,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -684,12 +573,9 @@ class UsersTableSeeder extends Seeder
             ),
             37 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'ezad_lazim@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 69,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -702,12 +588,9 @@ class UsersTableSeeder extends Seeder
             ),
             38 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'kamil_hafiz@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 70,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -720,12 +603,9 @@ class UsersTableSeeder extends Seeder
             ),
             39 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'nurul_huda@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 71,
                 'is_active' => 1,
                 'isClient' => 0,
@@ -738,12 +618,9 @@ class UsersTableSeeder extends Seeder
             ),
             40 =>
             array(
-                'avatar' => null,
-                'avatar_original' => null,
                 'created_at' => '2022-08-24 11:15:23',
                 'email' => 'joe_flizzow@yopmail.com',
                 'email_verified_at' => null,
-                'google_id' => '-',
                 'id' => 72,
                 'is_active' => 1,
                 'isClient' => 0,

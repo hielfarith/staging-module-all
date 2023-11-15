@@ -72,7 +72,6 @@ class UserController extends Controller
                 })
                 ->editColumn('role', function ($users) use ($type) {
 
-                    $displayName = $users->getRolesDisplay();
                     $roles = implode(",", $users->getRoleNames()->toArray());
                         $role_label = '</br>';
                         $role_label .= '<td>';
@@ -82,10 +81,8 @@ class UserController extends Controller
                             $role_label .= '<span class="badge rounded-pill bg-light-secondary">Admin</span>';
                         } elseif  ($roles == "superadmin"){
                             $role_label .= '<span class="badge rounded-pill bg-light-info">Superadmin</span>';
-                        } elseif  ($roles == "pengguna_luar"){
-                            $role_label .= '<span class="badge rounded-pill bg-light-info">Admin Institusi</span>';
                         }else {
-                            $role_label .= '<span class="badge rounded-pill bg-light-info">'.$displayName.'</span> &nbsp;';
+                            $role_label .= '<span class="badge rounded-pill bg-light-info">'.$roles.'</span> &nbsp;';
                         }
                         $role_label .= "</td>";
 
