@@ -35,6 +35,12 @@
 <style>
     /*--applies to all---*/
 
+    .error-message {
+        color: red;
+        font-size: 12px;
+        display: none;
+    }
+    
     /*--card border--*/
     .border-dark {
         border: 1px solid #b8c2cc!important;

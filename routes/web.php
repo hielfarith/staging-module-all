@@ -97,41 +97,19 @@ Route::prefix('admin')->group(function () {
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
-/*──────────────┐
-│ Documentation │
-│ Route         │
-└───────────────*/
-include 'documentation.php';
-// END DOCUMENTATION ROUTE
-
-
-// include 'route_prototype.php';
-Route::controller(DatabaseView::class)->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::get('database_view/index', 'index')->name('admin.database_view.index');
-    });
-});
-
-//Cron View
-Route::prefix('cron_view')->group(function () {
-    Route::get('CronView', [CronViewController::class, 'index'])->name('admin.cron_view.CronView');
-});
-     Route::prefix('master_data')->group(function () {
-    Route::get('parameter', [MasterDataController::class, 'parameter'])->name('admin.master_data.parameter');
-    Route::get('Runningnumber', [MasterDataController::class, 'RunningNoList'])->name('admin.master_data.Runningnumber');
-});
-
 // update the routes later
-Route::prefix('dynamic')->group(function () {
-    Route::get('/form', [FormSubmissionController::class, 'index'])->name('create-form');
-    Route::get('fillform', [FormSubmissionController::class, 'fillform'])->name('fillform');
-    Route::get('listfillform', [FormSubmissionController::class, 'listFillForm'])->name('listfillform');
-    Route::post('viewform/{id}', [FormSubmissionController::class, 'viewform'])->name('viewform');
-    Route::get('/download/{id}/{name}', [FormSubmissionController::class, 'download'])->name('download');
+Route::controller(FormSubmissionController::class)->group(function () {
+    Route::prefix('dynamic')->group(function () {
+        Route::get('form','index')->name('create-form');
+        Route::get('fillform','fillform')->name('fillform');
+        Route::get('listfillform','listFillForm')->name('listfillform');
+        Route::post('viewform/{id}','viewform')->name('viewform');
+        Route::get('download/{id}/{name}','download')->name('download');
 
-    Route::post('choose-form', [FormSubmissionController::class, 'chooseForm'])->name('choose-form');
-    Route::post('form-submit', [FormSubmissionController::class, 'formSubmit'])->name('form-submit');
-    Route::post('input-field', [FormSubmissionController::class, 'inputdata'])->name('input-field');
-    Route::post('saveform', [FormSubmissionController::class, 'saveform'])->name('saveform');
-    Route::post('checkname', [FormSubmissionController::class, 'checkname'])->name('checkname');
+        Route::post('choose-form','chooseForm')->name('choose-form');
+        Route::post('form-submit','formSubmit')->name('form-submit');
+        Route::post('input-field','inputdata')->name('input-field');
+        Route::post('saveform','saveform')->name('saveform');
+        Route::post('checkname','checkname')->name('checkname');
+    });
 });
