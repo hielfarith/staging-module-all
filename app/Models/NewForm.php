@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class NewForm extends Model
 {
     use HasFactory;
+
+    public $table = 'new_form';
 }
