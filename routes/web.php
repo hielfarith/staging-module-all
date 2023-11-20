@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ActivityLogController;
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -52,6 +54,12 @@ Route::prefix('profile')->group(function () {
 Route::controller(UserProfileController::class)->group(function () {
     Route::prefix('user-profile')->group(function () {
         Route::get('user_profile', 'viewUserProfile')->name('user_profile');
+    });
+});
+
+Route::controller(ForgotPasswordController::class)->group(function () {
+    Route::prefix('profile')->group(function () {
+        Route::post('update', 'update')->name('update_password');
     });
 });
 
