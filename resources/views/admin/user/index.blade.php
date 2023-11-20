@@ -4,7 +4,7 @@
     @if($type == "internal")
         {{__('msg.userinternalindex')}}
     @else
-       Institusi Pendidikan
+       Pengguna Luaran
     @endif
 @endsection
 
@@ -15,7 +15,7 @@
             @if($type == "internal")
                 {{__('msg.userinternalindex')}}
             @else
-                Institusi Pendidikan
+                Pengguna Luaran
             @endif
         </a>
     </li>
@@ -31,47 +31,19 @@
                 </div>
             </div>
         </div>
+
         <!-- Role cards -->
         <div class="row">
-
             <div class="col-xl-4 col-lg-6 col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <span>Total Users</span>
-                            <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Kim Karlos" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/3.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Katy Turner" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/9.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Peter Adward" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/12.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Kaith D'souza" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/10.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="John Parker" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/11.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                            </ul>
                         </div>
                         <div class="d-flex justify-content-between align-items-end mt-1 pt-25">
                             <div class="role-heading">
                                 <h4 class="fw-bolder">{{ $totalUser }}</h4>
-                                <a href="javascript:;" class="role-edit-modal" data-bs-toggle="modal"
-                                    data-bs-target="#addRoleModal">
+                                <a href="javascript:;" class="role-edit-modal" data-bs-toggle="modal" data-bs-target="#addRoleModal">
                                 </a>
                             </div>
                         </div>
@@ -84,39 +56,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <span>Total Active Users</span>
-                            <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Kim Merchent" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/10.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Sam D'souza" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/6.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Nurvi Karlos" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/3.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Andrew Tye" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/8.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Rossie Kim" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/9.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                            </ul>
                         </div>
                         <div class="d-flex justify-content-between align-items-end mt-1 pt-25">
                             <div class="role-heading">
                                 <h4 class="fw-bolder">{{ $activeUser }}</h4>
-                                <a href="javascript:;" class="role-edit-modal" data-bs-toggle="modal"
-                                    data-bs-target="#addRoleModal">
+                                <a href="javascript:;" class="role-edit-modal" data-bs-toggle="modal" data-bs-target="#addRoleModal">
                                 </a>
                             </div>
                         </div>
@@ -129,19 +73,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <span>Total Inactive Users</span>
-                            <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    title="Kim Merchent" class="avatar avatar-sm pull-up">
-                                    <img class="rounded-circle" src="{{ asset('images/avatars/10.png') }}"
-                                        alt="Avatar" />
-                                </li>
-                            </ul>
                         </div>
                         <div class="d-flex justify-content-between align-items-end mt-1 pt-25">
                             <div class="role-heading">
                                 <h4 class="fw-bolder">{{ $inactiveUser }}</h4>
-                                <a href="javascript:;" class="role-edit-modal" data-bs-toggle="modal"
-                                    data-bs-target="#addRoleModal">
+                                <a href="javascript:;" class="role-edit-modal" data-bs-toggle="modal" data-bs-target="#addRoleModal">
                                 </a>
                             </div>
                         </div>
@@ -162,25 +98,17 @@
                 @endhasanyrole
                 {{-- @endcan --}}
             </div>
-            <div class="card-body" style="width:100%">
-                <div class="btn-group" role="group" aria-label="Role Action">
-                    <a href="#" class="btn btn-outline-success waves-effect">
-                        <i class="fa fa-file-excel text-success"></i> Excel
-                    </a>
-                    <a href="#" class="btn btn-outline-danger waves-effect">
-                        <i class="fa fa-file-pdf text-danger"></i> PDF
-                    </a>
-                </div>
-
+            <hr>
+            
+            <div class="card-body">
                 @include($type == 'internal' ? 'admin.user.tableUserInternal' : 'admin.user.tableUserExternal')
             </div>
         </div>
     </div>
 </div>
 
-@Include("admin.user.userForm")
-<div class="col-12" id="showUser"></div>
-
+    @include("admin.user.userForm")
+    <div class="col-12" id="showUser"></div>
 @endsection
 
 @section('script')
