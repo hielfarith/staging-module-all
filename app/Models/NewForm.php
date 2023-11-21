@@ -9,5 +9,5 @@ class NewForm extends Model
 {
     use HasFactory;
 
-    public $table = 'new_form';
+    public $table = 'new_forms';
 }
