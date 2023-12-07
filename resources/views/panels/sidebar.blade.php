@@ -35,25 +35,25 @@ $configData = Helper::applClasses();
             <li class="navigation-header">
                 <span> Pengurusan Instrumen [SAI]</span>
             </li>
-            <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
+            <li class="nav-item {{ request()->is('pengurusan_instrumen_sai*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
                     <span class="menu-title text-truncate"> Instrumen </span>
                 </a>
                 <ul class="nav">
-                    <li class="nav-item">
+                    <li class="{{ in_array(request()->route()->getName(),['create-form'])? 'active': '' }}">
                         <a href="{{ route('create-form') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Tambah Instrumen </span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="{{ in_array(request()->route()->getName(),['fillform'])? 'active': '' }}">
                         <a href="{{ route('fillform') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Senarai Instrumen </span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="{{ in_array(request()->route()->getName(),['listfillform'])? 'active': '' }}">
                         <a href="{{ route('listfillform') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Jawab Instrumen </span>
@@ -71,19 +71,19 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate"> Instrumen </span>
                 </a>
                 <ul class="nav">
-                    <li class="nav-item">
+                    <li class="{{ in_array(request()->route()->getName(),['instrumen_baru'])? 'active': '' }}">
                         <a href="{{ route('instrumen_baru') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Tambah Instrumen </span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen'])? 'active': '' }}">
                         <a href="{{ route('senarai_instrumen') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Senarai Instrumen </span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
+                    {{-- <li class="{{ in_array(request()->route()->getName(),['instrumen_dijawab'])? 'active': '' }}">
                         <a href="{{ route('instrumen_dijawab') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Jawab Instrumen </span>
@@ -103,8 +103,7 @@ $configData = Helper::applClasses();
                     </span>
                 </a>
                 <ul class="menu-content">
-                    <li
-                        class="nav-user-internal {{ in_array(request()->route()->getName(),['admin.internalUser'])? 'active': '' }}">
+                    <li class="nav-user-internal {{ in_array(request()->route()->getName(),['admin.internalUser'])? 'active': '' }}">
                         <a href="{{ route('admin.internalUser') }}" class="d-flex align-items-center">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate">
@@ -112,8 +111,7 @@ $configData = Helper::applClasses();
                             </span>
                         </a>
                     </li>
-                    <li
-                        class="nav-user-external {{ in_array(request()->route()->getName(),['admin.externalUser'])? 'active': '' }}">
+                    <li class="nav-user-external {{ in_array(request()->route()->getName(),['admin.externalUser'])? 'active': '' }}">
                         <a href="{{ route('admin.externalUser') }}" class="d-flex align-items-center">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate">
