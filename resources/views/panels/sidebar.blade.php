@@ -77,18 +77,18 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate"> Tambah Instrumen </span>
                         </a>
                     </li>
-                    <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen'])? 'active': '' }}">
-                        <a href="{{ route('senarai_instrumen') }}" class="nav-link">
+                    <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">
+                        <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Instrumen </span>
+                            <span class="menu-title text-truncate"> Instrumen Dijawab </span>
                         </a>
                     </li>
-                    {{-- <li class="{{ in_array(request()->route()->getName(),['instrumen_dijawab'])? 'active': '' }}">
-                        <a href="{{ route('instrumen_dijawab') }}" class="nav-link">
+                    <li class="{{ in_array(request()->route()->getName(),['pilih_instrumen'])? 'active': '' }}">
+                        <a href="{{ route('pilih_instrumen') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Jawab Instrumen </span>
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </li>
 
