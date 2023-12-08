@@ -42,7 +42,7 @@ Pengurusan Instrumen
 
                     {{-- Button: Submit Whole Form [generalFormSubmit] (Hidden)--}}
                     {{-- <button class="btn" type="submit" onclick="generalFormSubmit(this);" id="submit-instrument-name" hidden></button> --}}
-                    <button type="submit" class="btn btn-primary">submit</button>
+                    <button type="submit" class="btn btn-primary" id="submit-instrument-name" hidden>submit</button>
                 </form>
             </div>
 
@@ -127,9 +127,9 @@ Pengurusan Instrumen
 </div>
 
 {{-- Button: Submit Whole Form --}}
-{{-- <div class="buy-now">
+<div class="buy-now">
     <a class="btn btn-danger waves-effect waves-float waves-light" onclick="$('#submit-instrument-name').trigger('click');">Simpan</a>
-</div> --}}
+</div>
 @endsection
 
 @section('script')
