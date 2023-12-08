@@ -8,6 +8,13 @@
     <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/unijaya/form-wizard-all.js')) }}"></script>
+
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 
 @if ($configData['blankPage'] === false)
     <script src="{{ asset(mix('js/scripts/customizer.js')) }}"></script>
@@ -44,7 +51,7 @@
         });
     }
     //End Custom Initializer General FlatPickr
-    
+
     //Custom Initializer General FlatPickr (Datepicker)
     initializeDropify = function() {
         $('.dropify').dropify()

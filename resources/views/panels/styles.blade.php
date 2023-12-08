@@ -22,8 +22,11 @@
 @endif
 
 @yield('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('css/base/pages/page-faq.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
 
     <style>
         .error-message {
@@ -98,6 +101,17 @@
         font-size:2rem !important;
         }
 
+        .card-search-custom {
+            background-size: cover;
+            background-color: rgba(115, 103, 240, 0.12) !important;
+            .search-input-custom {
+                width: auto;
+                margin: 0 auto;
+                &:focus-within {
+                    box-shadow: none;
+                }
+            }
+        }
     </style>
 
     <link rel="stylesheet" href="{{ asset(mix('css/overrides.css')) }}" />
