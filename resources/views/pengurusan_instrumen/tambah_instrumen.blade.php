@@ -42,7 +42,7 @@ Pengurusan Instrumen
 
                     {{-- Button: Submit Whole Form [generalFormSubmit] (Hidden)--}}
                     {{-- <button class="btn" type="submit" onclick="generalFormSubmit(this);" id="submit-instrument-name" hidden></button> --}}
-                    <button type="submit" class="btn btn-primary" id="submit-instrument-name" hidden>submit</button>
+                    <button type="submit" class="btn btn-primary">submit</button>
                 </form>
             </div>
 
@@ -127,168 +127,167 @@ Pengurusan Instrumen
 </div>
 
 {{-- Button: Submit Whole Form --}}
-<div class="buy-now">
+{{-- <div class="buy-now">
     <a class="btn btn-danger waves-effect waves-float waves-light" onclick="$('#submit-instrument-name').trigger('click');">Simpan</a>
-</div>
+</div> --}}
 @endsection
 
 @section('script')
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
+        // FUNCTION TO DYNAMICALLY DISPLAY FORM NAME AND CATEGORY NAME WITHOUT SAVING
+        document.getElementById("form_name").addEventListener("input", updateDynamicContent);
+        document.getElementById("category_name").addEventListener("input", updateDynamicContent);
+
+        function updateDynamicContent() {
+            const formNameValue = document.getElementById("form_name").value;
+            const categoryValue = document.getElementById("category_name").value;
+
+            const dynamicFormName = document.getElementById("dynamic-form-name");
+            const dynamicFormCategory = document.getElementById("dynamic-form-category");
+
+            dynamicFormName.innerText = formNameValue;
+            dynamicFormCategory.innerText = categoryValue;
         }
-    })
+        // END OF FUNCTION
 
-    // FUNCTION TO DYNAMICALLY DISPLAY FORM NAME AND CATEGORY NAME WITHOUT SAVING
-    document.getElementById("form_name").addEventListener("input", updateDynamicContent);
-    document.getElementById("category_name").addEventListener("input", updateDynamicContent);
+        function sahkan_kategori_borang(type) {
+                var form_name = $('#form_name').val();
+                var name = $('#category_name').val();
+                var url = "{{ route('sahkan_kategori_instrumen') }}";
 
-    function updateDynamicContent() {
-        const formNameValue = document.getElementById("form_name").value;
-        const categoryValue = document.getElementById("category_name").value;
-
-        const dynamicFormName = document.getElementById("dynamic-form-name");
-        const dynamicFormCategory = document.getElementById("dynamic-form-category");
-
-        // Update the content of the target element
-        dynamicFormName.innerText = formNameValue;
-        dynamicFormCategory.innerText = categoryValue;
-    }
-    // END OF FUNCTION
-
-    function sahkan_kategori_borang(type) {
-    		var form_name =$('#form_name').val();
-    		var name =$('#category_name').val();
-    	    var url = "{{ route('checkname') }}";
-
-		 $.ajax({
-            url: url, // Route URL
-            type: 'POST', // Request type (GET, POST, etc.)
-             data: {
-             	form_name: form_name,
-             	name: name,
-             	type: type
-             },
-            success: function(response) {
-                if(!response.success) {
-            		$('#category-error').text('Kategori Telah Wujud!');
-  					$('#category-error').show();
-                } else {
-                	$('#category-error').hide();
+            $.ajax({
+                url: url, // Route URL
+                type: 'POST', // Request type (GET, POST, etc.)
+                data: {
+                    form_name: form_name,
+                    name: name,
+                    type: type
+                },
+                success: function(response) {
+                    if(!response.success) {
+                        $('#category-error').text('Kategori Telah Wujud!');
+                        $('#category-error').show();
+                    } else {
+                        $('#category-error').hide();
+                    }
                 }
+            });
+        }
+
+        function delete_attribute(div) {
+            $('#'+div).remove();
+        }
+
+        function handleChangeSelect() {
+            var type = $('#type').val();
+            if (type == 'select') {
+                $('#divTextareaOptions').show(300);
+            } else {
+                $('#divTextareaOptions').hide(300);
             }
-        });
-    }
+            // if (type == "radio") {
+            // 	$('#sublabel').css("display", "block");
+            // } else {
+            // 	$('#sublabel').css("display", "none");
+            // }
+        }
 
-    function delete_attribute(div) {
-	    $('#'+div).remove();
-    }
+        function tambahAtribut() {
+            const form = document.getElementById("borang-tambah-atribut");
+            const formData = new FormData(form);
+            const formObject = {};
 
-	function handleChangeSelect() {
-		var type = $('#type').val();
-		if (type == 'select') {
-			$('#divTextareaOptions').show(300);
-		} else {
-			$('#divTextareaOptions').hide(300);
-		}
-		// if (type == "radio") {
-		// 	$('#sublabel').css("display", "block");
-		// } else {
-		// 	$('#sublabel').css("display", "none");
-		// }
-	}
+            formData.forEach(function(value, key) {
+                if (formObject[key]) {
+                    if (!Array.isArray(formObject[key])) {
+                        formObject[key] = [formObject[key]];
+                    }
+                    formObject[key].push(value);
+                } else {
+                    formObject[key] = value;
+                }
 
-    function tambahAtribut() {
-    	const form = document.getElementById("borang-tambah-atribut");
-	    const formData = new FormData(form);
-	    const formObject = {};
+            });
 
-	    formData.forEach(function(value, key) {
-	        if (formObject[key]) {
-	            if (!Array.isArray(formObject[key])) {
-	                formObject[key] = [formObject[key]];
-	            }
-	            formObject[key].push(value);
-	        } else {
-	            formObject[key] = value;
-	        }
-
-	    });
-
-		var type = $('#select').val();
-		var label = $('#label_name').val();
-		var name = $('#name').val();
-		var options = '';
-		var type = $('#select').val();
-		if (type == 'select') {
-			options = $('textarea#options').val();
-		}
-		var url = "{{ route('input-field') }}"
-		 $.ajax({
-            url: url, // Route URL
-            type: 'POST', // Request type (GET, POST, etc.)
-             data: formObject,
-            success: function(response) {
-                $('#row-borang-dinamik').append(response);
-                // $('#Modal').modal("hide");
+            var type = $('#select').val();
+            var label = $('#label_name').val();
+            var name = $('#name').val();
+            var options = '';
+            var type = $('#select').val();
+            if (type == 'select') {
+                options = $('textarea#options').val();
             }
+            var url = "{{ route('simpan_atribut') }}"
+            $.ajax({
+                url: url, // Route URL
+                type: 'POST', // Request type (GET, POST, etc.)
+                data: formObject,
+                success: function(response) {
+                    $('#row-borang-dinamik').append(response);
+                    // $('#Modal').modal("hide");
+                }
+            });
+        }
+
+        $('#borang-dinamik').submit(function(event) {
+            event.preventDefault();
+                const form = document.getElementById("borang-dinamik");
+                const formData = new FormData(form);
+                var formObject = [];
+                let i = 0;
+
+                formData.forEach(function(value, name) {
+                    var inputElement = $('#'+name);
+                    var inputType = inputElement.attr('type');
+                    var name = inputElement.attr('name');
+                    var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
+                    var labelName = labelElement.text();
+
+                    if (inputType == 'select') {
+                        var options = [];
+                        var option = inputElement.find('option');
+                        option.each(function() {
+                        var text = $(this).text();
+                        options.push(text);
+                        });
+                    } else {
+                        var options = [];
+                    }
+
+                    formObject[i] = {
+                        label: labelName,
+                        name: name,
+                        type: inputType,
+                        options: options
+                    };
+                    i++;
+                });
+
+                var jsonData = JSON.stringify(formObject);
+                var url = "{{ route('simpan_borang_instrumen') }}"
+                $.ajax({
+                    url: url, // Route URL
+                    type: 'POST', // Request type (GET, POST, etc.)
+                    data: {
+                        form_data : jsonData,
+                        form_name: $('#form_name').val(),
+                        category_name: $('#category_name').val()
+                    },
+                    // contentType: 'application/json',
+                    success: function(response) {
+                        if (response.success) {
+                            window.location.reload()
+                        } else {
+                            $("#error").show("slow").delay(5000).hide("slow");
+                        }
+                    }
+                });
         });
-    }
-
-   $('#borang-dinamik').submit(function(event) {
-    event.preventDefault();
-    	const form = document.getElementById("borang-dinamik");
-	    const formData = new FormData(form);
-	    var formObject = [];
-	    let i = 0;
-
-		formData.forEach(function(value, name) {
-			var inputElement = $('#'+name);
-			var inputType = inputElement.attr('type');
-			var name = inputElement.attr('name');
-			var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
-			var labelName = labelElement.text();
-
-			if (inputType == 'select') {
-	    		var options = [];
-				var option = inputElement.find('option');
-				option.each(function() {
-				  var text = $(this).text();
-				  options.push(text);
-				});
-			} else {
-				var options = [];
-			}
-
-			formObject[i] = {
-	            label: labelName,
-	            name: name,
-	            type: inputType,
-	            options: options
-	        };
-			i++;
-		});
-
-    	var jsonData = JSON.stringify(formObject);
-	    var url = "{{ route('saveform') }}"
-		 $.ajax({
-            url: url, // Route URL
-            type: 'POST', // Request type (GET, POST, etc.)
-             data: {
-             	form_data : jsonData,
-             	form_name: $('#form_name').val(),
-             	category_name: $('#category_name').val()
-             },
-            // contentType: 'application/json',
-            success: function(response) {
-            	if (response.success) {
-            		window.location.reload()
-            	} else {
-            		$("#error").show("slow").delay(5000).hide("slow");
-            	}
-            }
-        });
-    });
-</script>
+    </script>
 @endsection
