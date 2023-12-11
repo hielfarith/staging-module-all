@@ -16,12 +16,17 @@
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 
+    <script src="{{asset('vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
+    <script src="{{asset('vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <script src="{{asset('vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
+
 @if ($configData['blankPage'] === false)
     <script src="{{ asset(mix('js/scripts/customizer.js')) }}"></script>
 @endif
 
 @yield('page-script')
     <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+    {{-- <script src="{{asset('js/scripts/pages/app-invoice.js')}}"></script> --}}
 
 @yield('developer-script')
 @yield('script')
@@ -551,4 +556,6 @@
             initializeFlatpickr();
         });
     }
+
+    
 </script>

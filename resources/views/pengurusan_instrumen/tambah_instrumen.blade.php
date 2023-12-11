@@ -15,279 +15,240 @@ Pengurusan Instrumen
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title fw-bolder"> Instrumen Baru </h4>
-            </div>
+<section class="invoice-add-wrapper">
+    <div class="row invoice-add">
+        <div class="col-xl-9 col-md-8 col-12">
+            <div class="card invoice-preview-card">
+                <!-- Header starts -->
+                <div class="card-body invoice-padding pb-0">
+                    <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
+                        <div>
+                            <div class="logo-wrapper">
+                                <img src="{{ asset('images/logo/jata_negara.png') }}" height="24">
+                                <h3 class="text-primary invoice-logo">Kementerian Pendidikan Malaysia (KPM)</h3>
+                            </div>
 
-            <hr>
+                            {{-- Nama Instrumen --}}
+                            <input type="text" class="form-control mb-25" name="form_name" id="form_name" placeholder="Nama Instrumen">
 
-            <div class="card-body">
-                <form id="borang-dinamik">
+                            {{-- Kategori Instrumen --}}
+                            <input type="text" class="form-control mb-25" name="category_name" id="category_name" placeholder="Kategori Instrumen">
+
+                            {{-- Deskripsi Instrumen --}}
+                            <textarea type="text" class="form-control mb-25" name="" id="">Deskripsi Instrumen</textarea>
+                        </div>
+                        <div class="invoice-number-date mt-md-0 mt-2">
+                            <div class="d-flex align-items-center justify-content-md-end mb-1">
+                                <h4 class="title">ID Instrumen</h4>
+                                <div class="input-group input-group-merge invoice-edit-input-group">
+                                    <div class="input-group-text">
+                                        <i data-feather="hash"></i>
+                                    </div>
+
+                                    {{-- ID Instrument --}}
+                                    <input type="text" class="form-control invoice-edit-input" value="53634" disabled>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="title">Tarikh Didaftar:</span>
+
+                                {{-- Tarikh Instrumen Didaftarkan --}}
+                                <input type="text" class="form-control flatpickr" value="12/02/2023" disabled>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="title">Tarikh Tutup Pengisian:</span>
+
+                                {{-- Tarikh Tutup Pengisian Instrumen --}}
+                                <input type="text" class="form-control flatpickr" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header ends -->
+
+                <hr class="invoice-spacing" />
+
+                <!-- Instrument Form starts -->
+                <div class="card-body invoice-padding invoice-product-details">
+                    <form class="source-item">
+                        <div data-repeater-list="group-a">
+                            <div class="repeater-wrapper" data-repeater-item>
+                                <div class="row">
+                                    <div class="col-12 d-flex product-details-border position-relative pe-0">
+                                        <div class="row w-100 pe-1 py-2">
+                                            <div class="col-lg-12 col-12 mb-lg-0 mb-2 mt-lg-0 mt-2">
+                                                <p class="card-text col-title mb-md-50 mb-0">Atribut</p>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        {{-- Jenis Atribut --}}
+                                                        <select name="type" id="type" class="form-control">
+                                                            <option value="" hidden>Jenis Atribut</option>
+                                                            <option value="text">Text</option>
+                                                            <option value="number">Nombor</option>
+                                                            <option value="file">Muat Naik Fail</option>
+                                                            <option value="select">Pilihan</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-8">
+                                                        &nbsp;
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        {{-- Nama Label --}}
+                                                        <input type="text" class="form-control mt-1" name="label_name" id="label_name" placeholder="Nama Label">
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        {{-- Nama Atribut --}}
+                                                        <input type="text" class="form-control mt-1" name="name" id="name" placeholder="Nama Atribut">
+                                                        <p class="text-danger">Sila gunakan '_' untuk menggantikan ruangan kosong.</p>
+                                                    </div>
+                                                </div>
+
+                                                {{-- Label Pilihan --}}
+                                                <div class="mt-1 divTextareaOptions" style="display: none;">
+                                                    <label class="form-label"> Label Pilihan </label>
+                                                    <textarea name="options" id="options" class="form-control"></textarea>
+                                                    <p class="text-danger">Sila gunakan ',' sebagai pemisah antara pilihan.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- Padam Atribut --}}
+                                        <div class="d-flex flex-column align-items-center justify-content-between border-start invoice-product-actions py-50 px-25">
+                                            <i class="fa fa-trash cursor-pointer font-medium-3 text-danger" data-repeater-delete></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-12 px-0">
+                                {{-- Tambah Atribut --}}
+                                <button type="button" class="btn btn-primary btn-sm btn-add-new" data-repeater-create>
+                                    <i data-feather="plus" class="me-25"></i>
+                                    <span class="align-middle">Tambah Atribut</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Instrument Form ends -->
+
+                <hr class="invoice-spacing mt-0" />
+
+                <!-- Footer starts -->
+                <div class="card-body invoice-padding py-0">
                     <div class="row">
-                        <div class="col-md-12 mb-1">
-                            <label class="form-label"> Nama Instrumen </label>
-                            <input type="text" class="form-control" name="form_name" id="form_name" onkeyup="sahkan_kategori_borang('form')" required>
-                            <div class="error-message" id="formname-error"></div>
-                        </div>
-
-                        <div class="col-md-12 mb-1">
-                            <label class="form-label"> Kategori Instrumen </label>
-                            <input type="text" class="form-control" name="category_name" id="category_name" onkeyup="sahkan_kategori_borang('category')" required>
-                            <div class="error-message" id="category-error"></div>
+                        <div class="col-12">
+                            <div class="mb-2">
+                                <label for="note" class="form-label fw-bold">Penafian dan Hakmilik:</label>
+                                <textarea class="form-control" rows="2" id="note"></textarea>
+                            </div>
                         </div>
                     </div>
-
-                    {{-- Button: Submit Whole Form [generalFormSubmit] (Hidden)--}}
-                    {{-- <button class="btn" type="submit" onclick="generalFormSubmit(this);" id="submit-instrument-name" hidden></button> --}}
-                    <button type="submit" class="btn btn-primary" id="submit-instrument-name" hidden>submit</button>
-                </form>
-            </div>
-
-            <div class="card-footer">
-                <input type="hidden" name="row_count" id="row_count" value="1">
-
-                <form id="borang-tambah-atribut">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-12 mb-1">
-                            <label class="form-label"> Nama Label </label>
-                            <input type="text" class="form-control" name="label_name" id="label_name">
-                        </div>
-
-                        <div class="col-md-12 mb-1">
-                            <label class="form-label"> Nama Atribut </label>
-                            <input type="text" class="form-control" name="name" id="name">
-                            <p class="text-danger">Sila gunakan '_' untuk menggantikan ruangan kosong.</p>
-                        </div>
-
-                        <div class="col-md-4 mb-1">
-                            <label class="form-label"> Jenis Atribut </label>
-                            <select name="type" id="type" class="form-control select2" onchange="handleChangeSelect()">
-                                <option value="" hidden>Jenis Atribut</option>
-                                <option value="text">Text</option>
-                                <option value="number">Nombor</option>
-                                <option value="file">Muat Naik Fail</option>
-                                <option value="select">Pilihan</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-8 mb-1" style="display: none;" id="divTextareaOptions">
-                            <label class="form-label"> Jenis Atribut </label>
-                            <textarea name="options" id="options" class="form-control"></textarea>
-                            <p class="text-danger">Sila gunakan ',' sebagai pemisah antara pilihan.</p>
-                        </div>
-                    </div>
-
-                    {{-- Button: Submit Attribute Form --}}
-                    <div class="d-flex justify-content-end align-items-center my-1">
-                        <button type="button" class="btn btn-primary float-right" onclick="tambahAtribut()">Tambah</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                    <h4 class="fw-bolder me-1"> Nama Instrumen: </h4>
-                    <h4 id="dynamic-form-name"></h4>
-            </div>
-
-            <hr>
-
-            <div class="card-body">
-                <p class="fw-bolder me-1"> Kategori Instrumen: </p>
-                <p id="dynamic-form-category"></p>
-
-                <hr class="mt-1 mb-1">
-
-                <p class="fw-bolder">Senarai Atribut</p>
-
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
-                        {{-- <thead style="vertical-align: middle; text-align: center;">
-                            <tr>
-                                <th>Atribut</th>
-                                <th width="5%">Tindakan</th>
-                            </tr>
-                        </thead> --}}
-
-                        <tbody id="row-borang-dinamik">
-
-                        </tbody>
-                    </table>
+                    <!-- Footer ends -->
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-{{-- Button: Submit Whole Form --}}
-<div class="buy-now">
-    <a class="btn btn-danger waves-effect waves-float waves-light" onclick="$('#submit-instrument-name').trigger('click');">Simpan</a>
-</div>
+        <!-- Tindakan Borang Instrumen starts -->
+        <div class="col-xl-3 col-md-4 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="fw-bolder">Status Instrumen: </h4>
+                    <h4>
+                        <span class="badge rounded-pill badge-light-primary me-1">
+                            Draf
+                        </span>
+                    </h4>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <a href="{{url('app/invoice/preview')}}" class="btn btn-primary w-100 mb-75">Lihat Borang</a>
+                    <button type="button" class="btn btn-success w-100">Simpan</button>
+                </div>
+            </div>
+        </div>
+        <!-- Tindakan Borang Instrumen ends -->
+    </div>
+</section>
 @endsection
 
 @section('script')
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        })
-
-        // FUNCTION TO DYNAMICALLY DISPLAY FORM NAME AND CATEGORY NAME WITHOUT SAVING
-        document.getElementById("form_name").addEventListener("input", updateDynamicContent);
-        document.getElementById("category_name").addEventListener("input", updateDynamicContent);
-
-        function updateDynamicContent() {
-            const formNameValue = document.getElementById("form_name").value;
-            const categoryValue = document.getElementById("category_name").value;
-
-            const dynamicFormName = document.getElementById("dynamic-form-name");
-            const dynamicFormCategory = document.getElementById("dynamic-form-category");
-
-            dynamicFormName.innerText = formNameValue;
-            dynamicFormCategory.innerText = categoryValue;
+<script>
+    function handleAttributeSelection() {
+        var type = $('#type').val();
+        if (type == 'select') {
+            $('.divTextareaOptions').show(300);
+        } else {
+            $('.divTextareaOptions').hide(300);
         }
-        // END OF FUNCTION
+    }
 
-        function sahkan_kategori_borang(type) {
-                var form_name = $('#form_name').val();
-                var name = $('#category_name').val();
-                var url = "{{ route('sahkan_kategori_instrumen') }}";
+    $(function () {
 
-            $.ajax({
-                url: url, // Route URL
-                type: 'POST', // Request type (GET, POST, etc.)
-                data: {
-                    form_name: form_name,
-                    name: name,
-                    type: type
-                },
-                success: function(response) {
-                    if(!response.success) {
-                        $('#category-error').text('Kategori Telah Wujud!');
-                        $('#category-error').show();
-                    } else {
-                        $('#category-error').hide();
-                    }
-                }
-            });
-        }
+    var applyChangesBtn = $('.btn-apply-changes'),
+        sourceItem = $('.source-item'),
+        formName = $('#form_name'),
+        categoryName = $('#category_name'),
+        type = $('#type'),
+        labelName = $('#label_name'),
+        name = $('#name'),
+        options = $('#options'),
+        btnAddNewItem = $('.btn-add-new ');
 
-        function delete_attribute(div) {
-            $('#'+div).remove();
-        }
-
-        function handleChangeSelect() {
-            var type = $('#type').val();
-            if (type == 'select') {
-                $('#divTextareaOptions').show(300);
-            } else {
-                $('#divTextareaOptions').hide(300);
-            }
-            // if (type == "radio") {
-            // 	$('#sublabel').css("display", "block");
-            // } else {
-            // 	$('#sublabel').css("display", "none");
-            // }
-        }
-
-        function tambahAtribut() {
-            const form = document.getElementById("borang-tambah-atribut");
-            const formData = new FormData(form);
-            const formObject = {};
-
-            formData.forEach(function(value, key) {
-                if (formObject[key]) {
-                    if (!Array.isArray(formObject[key])) {
-                        formObject[key] = [formObject[key]];
-                    }
-                    formObject[key].push(value);
-                } else {
-                    formObject[key] = value;
-                }
-
-            });
-
-            var type = $('#select').val();
-            var label = $('#label_name').val();
-            var name = $('#name').val();
-            var options = '';
-            var type = $('#select').val();
-            if (type == 'select') {
-                options = $('textarea#options').val();
-            }
-            var url = "{{ route('simpan_atribut') }}"
-            $.ajax({
-                url: url, // Route URL
-                type: 'POST', // Request type (GET, POST, etc.)
-                data: formObject,
-                success: function(response) {
-                    $('#row-borang-dinamik').append(response);
-                    // $('#Modal').modal("hide");
-                }
-            });
-        }
-
-        $('#borang-dinamik').submit(function(event) {
-            event.preventDefault();
-                const form = document.getElementById("borang-dinamik");
-                const formData = new FormData(form);
-                var formObject = [];
-                let i = 0;
-
-                formData.forEach(function(value, name) {
-                    var inputElement = $('#'+name);
-                    var inputType = inputElement.attr('type');
-                    var name = inputElement.attr('name');
-                    var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
-                    var labelName = labelElement.text();
-
-                    if (inputType == 'select') {
-                        var options = [];
-                        var option = inputElement.find('option');
-                        option.each(function() {
-                        var text = $(this).text();
-                        options.push(text);
-                        });
-                    } else {
-                        var options = [];
-                    }
-
-                    formObject[i] = {
-                        label: labelName,
-                        name: name,
-                        type: inputType,
-                        options: options
-                    };
-                    i++;
-                });
-
-                var jsonData = JSON.stringify(formObject);
-                var url = "{{ route('simpan_borang_instrumen') }}"
-                $.ajax({
-                    url: url, // Route URL
-                    type: 'POST', // Request type (GET, POST, etc.)
-                    data: {
-                        form_data : jsonData,
-                        form_name: $('#form_name').val(),
-                        category_name: $('#category_name').val()
-                    },
-                    // contentType: 'application/json',
-                    success: function(response) {
-                        if (response.success) {
-                            window.location.reload()
-                        } else {
-                            $("#error").show("slow").delay(5000).hide("slow");
-                        }
-                    }
-                });
+    // Repeater init
+    if (sourceItem.length) {
+        sourceItem.on('submit', function (e) {
+            e.preventDefault();
         });
-    </script>
+        sourceItem.repeater({
+            show: function () {
+                $(this).slideDown();
+                handleAttributeSelection();
+            },
+            hide: function (e) {
+                $(this).slideUp();
+            }
+        });
+    }
+
+    // Item details select onchange
+    $(document).on('change', '#type', function () {
+        var $this = $('#type').val();
+        if ($this == 'select') {
+            $('.divTextareaOptions').show(300);
+        } else {
+            $('.divTextareaOptions').hide(300);
+        }
+    });
+
+
+    // function handleAttributeSelection() {
+    //     var type = $('#type').val();
+    //     if (type == 'select') {
+    //         $('#divTextareaOptions').show(300);
+    //     } else {
+    //         $('#divTextareaOptions').hide(300);
+    //     }
+    // }
+
+    if (btnAddNewItem.length) {
+        btnAddNewItem.on('click', function () {
+            if (feather) {
+                // featherSVG();
+                feather.replace({ width: 14, height: 14 });
+            }
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    }
+});
+
+</script>
 @endsection

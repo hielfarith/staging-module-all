@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/themes/dark-layout.css')) }}" />
     <link rel="stylesheet" href="{{ asset(mix('css/base/themes/bordered-layout.css')) }}" />
     <link rel="stylesheet" href="{{ asset(mix('css/base/themes/semi-dark-layout.css')) }}" />
+    <link rel="stylesheet" href="{{asset('vendors/css/pickers/flatpickr/flatpickr.min.css')}}">
 
 @php $configData = Helper::applClasses(); @endphp
 
@@ -27,6 +28,8 @@
 <link rel="stylesheet" href="{{ asset(mix('css/base/pages/page-faq.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
+<link rel="stylesheet" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
+<link rel="stylesheet" href="{{asset('css/base/pages/app-invoice.css')}}">
 
     <style>
         .error-message {
