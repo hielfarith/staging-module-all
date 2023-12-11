@@ -6,13 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\FormSubmission;
 use App\Models\NewForm;
+use DeveloperUnijaya\FlowManagementFunction\Models\Module;
+use DeveloperUnijaya\FlowManagementFunction\Models\ModuleStatus;
+use DeveloperUnijaya\FlowManagementFunction\Facades\FMF;
+
 use Illuminate\Support\Facades\Storage;
 
 class FormSubmissionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index() : View
@@ -38,14 +42,13 @@ class FormSubmissionController extends Controller
         $form->category = $data['category_name'];
         $form->type = 'Ajax'; 
         $form->data = json_encode($data['form_data']);
+        $form->status = 3;
         $form->save();
-        return true;
+        return ['success' => true];
     }
 
     public function checkname(Request $request) {
-
         $data = NewForm::where('category', $request->name)->where('form_name', $request->form_name)->first();
-
         if ($data) {
             return ['success' => false, 'message' => 'name exist', 'type' => $request->type];
         }
@@ -54,6 +57,7 @@ class FormSubmissionController extends Controller
     }
 
     public function fillform() {
+        $canFill = FMF::checkPermission(1, 1, 'fill form');
         $form = NewForm::select(['form_name', 'category'])->get();
         return view('form.fill', compact('form'));
     }
@@ -103,7 +107,6 @@ class FormSubmissionController extends Controller
 
     public function viewform(Request $request) {
         $filledform = FormSubmission::where('id', $request->id)->first();
-
         $data = NewForm::where('form_name', $filledform->form_name)->first();
         $arrays = json_decode(json_decode($data->data), true);
         $form_name = $filledform->form_name;
@@ -112,9 +115,10 @@ class FormSubmissionController extends Controller
         $data = json_decode($filledform->data, true);
         $documents = json_decode($filledform->file_path, true);
         $id = $filledform->id;
-        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id'));
-
-        return view();   
+        $canView = FMF::checkPermission(1, $filledform->status, 'form view');
+        $canVerify = FMF::checkPermission(1, $filledform->status, 'verify form');
+        $canApprove = FMF::checkPermission(1, $filledform->status, 'approve form');
+        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'filledform'));
     }
     
     public function download($id, $name)
@@ -125,5 +129,32 @@ class FormSubmissionController extends Controller
         $filePath = Storage::path($path);
 
         return response()->download($filePath);
+    }
+
+    public function showDynamicFormList(Request $request) {
+        $forms = NewForm::all();
+        return view('form.show-dynamic-form-list', compact('forms'));
+    }
+
+    public function viewFormInput(Request $request) {
+        $data = NewForm::where('id', $request->id)->first();
+        $arrays = json_decode(json_decode($data->data), true);
+        $form_name = $data->form_name;
+        $category = $data->category;
+        $insertone = false;
+        $id = $data->id;
+        $documents= '';
+        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id'));
+
+        return view();   
+    }
+
+    public function verify(Request $request) {
+        $formStatus = $request->status;
+        $id = $request->formid;
+        $data = FormSubmission::where('id', $id)->first();
+        $data->status = $formStatus;
+        
+        return ['success' => $data->save()];
     }
 }

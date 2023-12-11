@@ -124,8 +124,13 @@ Route::prefix('cron_view')->group(function () {
 // update the routes later
 Route::prefix('dynamic')->group(function () {
     Route::get('/form', [FormSubmissionController::class, 'index'])->name('create-form');
+
+    Route::get('form/list', [FormSubmissionController::class, 'showDynamicFormList'])->name('dynamic-form-list');
+    Route::post('viewFormInput/{id}', [FormSubmissionController::class, 'viewFormInput'])->name('view-form-input');
+
     Route::get('fillform', [FormSubmissionController::class, 'fillform'])->name('fillform');
     Route::get('listfillform', [FormSubmissionController::class, 'listFillForm'])->name('listfillform');
+
     Route::post('viewform/{id}', [FormSubmissionController::class, 'viewform'])->name('viewform');
     Route::get('/download/{id}/{name}', [FormSubmissionController::class, 'download'])->name('download');
 
@@ -134,4 +139,6 @@ Route::prefix('dynamic')->group(function () {
     Route::post('input-field', [FormSubmissionController::class, 'inputdata'])->name('input-field');
     Route::post('saveform', [FormSubmissionController::class, 'saveform'])->name('saveform');
     Route::post('checkname', [FormSubmissionController::class, 'checkname'])->name('checkname');
+    Route::post('verify', [FormSubmissionController::class, 'verify'])->name('verify');
+
 });

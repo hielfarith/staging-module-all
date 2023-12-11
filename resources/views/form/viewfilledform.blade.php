@@ -35,3 +35,23 @@
 		@endif
 	@endforeach
 
+
+@if ($canVerify || $canApprove)
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	@if($canVerify && !$canApprove)
+		@php
+		$status = \FMF::getNextStatus(1,$filledform->status,'yes');
+		@endphp
+ 		<button type="button" class="btn btn-primary" onclick="formverify({{$status}},{{$filledform->id}})">Verify</button>
+ 	@endif
+ 	@if($canApprove)
+ 		@php
+		$status = \FMF::getNextStatus(1,$filledform->status,'yes');
+		@endphp
+ 		<button type="button" class="btn btn-primary" onclick="formverify({{$status}},{{$filledform->id}})">Approve</button>
+ 	@endif
+ 	
+ 	<button type="button" class="btn btn-danger" onclick="formverify('5',{{$filledform->id}})">Reject</button>
+</div>
+@endif

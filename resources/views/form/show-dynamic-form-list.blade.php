@@ -34,36 +34,62 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-            <!-- <div class="navbar-header">
-              <a class="navbar-brand" href="{{route('create-form')}}">Create Form</a>
-            </div> -->
-            <div class="navbar-header">
-              <h4>Fill Form</h4>
-              <!-- <a class="navbar-brand" href="{{route('fillform')}}">Fill Form</a> -->
+            <div class="navbar-header text-start">
+                <h4>Dynamic Form List</h4>
             </div>
-            <!-- <div class="navbar-header">
-              <a class="navbar-brand" href="{{route('listfillform')}}">List Form</a>
-            </div> -->
+           
         </div>
         </nav>
     </div>
     <br>
     <br>
     
-    <div class="card container" style="width: 50%;gap: 10px;" id="append">
-      <div class="card-body">
-        <label>Choose Form :</label>
-        <select class="form-control form-group" name="choose_form" id="choose_form" onchange="chooseform()">
-            <option>select</option>
-            @foreach($form as $data)
-            <option value="{{$data['form_name']}}">{{$data['form_name']}}-{{$data['category']}}</option>
-            @endforeach
-        </select>
-        <!-- id="append" -->
-      </div>
+    <div class="container" style="gap: 10px">
+     
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Form ID</th>
+            <th scope="col">Form Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($forms as $key => $form)
+            <tr>
+              <td>{{$key+1}}</td>
+              <td>{{$form->id}}</td>
+              <td>{{$form->form_name}}</td>
+              <td>{{$form->category}}</td>
+              <td><a class="btn-btn-primary" onclick="listForm({{$form->id}})">
+                      <i class="fa fa-eye"></i>
+                  </a></td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
 
 
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Dynamic form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="append">
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submitform()">submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -91,6 +117,24 @@
                 $('#append').append(response);            
             }
         });      
+    }
+
+     function listForm(id){
+        var url = "{{route('view-form-input',['id'=> ':id'])}}";
+        var url = url.replace(':id', id);
+
+        $.ajax({
+            url: url, // Route URL
+            type: 'POST', // Request type (GET, POST, etc.)
+             data: {
+                id: id
+             }, 
+            success: function(response) {
+                $('#Modal').modal("show");
+                $('#append').empty();
+                $('#append').append(response);            
+            }
+        });
     }
   </script>
 </html>

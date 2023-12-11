@@ -73,7 +73,39 @@ $configData = Helper::applClasses();
                     </li>
                 </ul>
             </li>
+            <!-- ---------------- -->
+             <li class="navigation-header">
+                <span> Dynamic Form </span>
+            </li>
+            <li
+                class="nav-item nav-tour system-management {{ request()->is('dynamic*')  ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="settings"></i>
+                    <span class="menu-title text-truncate"> Dynamic Form </span>
+                </a>
+                <ul class="menu-content">
+                    <li class="{{ in_array(request()->route()->getName(),['create-form'])? 'active': '' }}">
+                        <a href="{{ route('create-form') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Create Dynamic Form </span>
+                        </a>
+                    </li>
+                    <li class="{{ in_array(request()->route()->getName(),['dynamic-form-list'])? 'active': '' }}">
+                        <a href="{{ route('dynamic-form-list') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> List Dynamic Form </span>
+                        </a>
+                    </li>
+                    <li class="{{ in_array(request()->route()->getName(),['listfillform'])? 'active': '' }}">
+                        <a href="{{ route('listfillform') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> List Filled Form </span>
+                        </a>
+                    </li>
+                </ul>
 
+            </li>
+            <!-- ---------------- -->
             <li class="navigation-header">
                 <span> System Settings </span>
             </li>
@@ -186,117 +218,60 @@ $configData = Helper::applClasses();
                 </ul>
             </li>
 
-            <li class="navigation-header">
-                <span> Pengurusan Instrumen </span>
+                <li class="navigation-header">
+                <span> Dynamic Form </span>
             </li>
-            <li class="nav-item {{ request()->is('Pengurusan_Instrumen*') ? 'menu-open' : '' }}">
+            <li
+                class="nav-item nav-tour system-management {{ request()->is('dynamic*')  ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
-                    <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Instrumen Pemeriksaan </span>
+                    <i data-feather="settings"></i>
+                    <span class="menu-title text-truncate"> Dynamic Form </span>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('tambah_instrumen') }}" class="nav-link">
+                <ul class="menu-content">
+                    <li class="{{ in_array(request()->route()->getName(),['create-form'])? 'active': '' }}">
+                        <a href="{{ route('create-form') }}" class="d-flex align-items-center">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Tambah Instrumen </span>
+                            <span class="menu-title text-truncate"> Create Dynamic Form </span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('senarai_instrumen') }}" class="nav-link">
+                    <li class="{{ in_array(request()->route()->getName(),['dynamic-form-list'])? 'active': '' }}">
+                        <a href="{{ route('dynamic-form-list') }}" class="d-flex align-items-center">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Instrumen </span>
+                            <span class="menu-title text-truncate"> List Dynamic Form </span>
+                        </a>
+                    </li>
+                    <li class="{{ in_array(request()->route()->getName(),['listfillform'])? 'active': '' }}">
+                        <a href="{{ route('listfillform') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> List Filled Form </span>
                         </a>
                     </li>
                 </ul>
-            </li>
 
-            <li class="navigation-header">
-                <span> Laporan & Statistik </span>
-            </li>
-            <li class="nav-item {{ request()->is('laporan-permohonan*') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link">
-                    <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Statistik & Laporan </span>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('laporan_permohonan.laporan') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Laporan Permohonan </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('laporan_permohonan.statistik') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Statistik Permohonan </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            @endhasanyrole
-
-            @hasanyrole('admin|pengguna_luar')
-            <li class="navigation-header">
-                <span>Helpdesk</span>
-            </li>
-            <li class="nav-item {{ request()->is('employee/list-employee*') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link">
-                    <i data-feather="paperclip"></i>
-                    <span class="menu-title text-truncate"> Helpdesk </span>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('helpdesk.dashboard') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Dashboard </span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('helpdesk.index') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> All Ticket Listing </span>
-                         </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('helpdesk.index') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Ongoing Ticket Listing </span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('helpdesk.report_yearly') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Yearly Report </span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('helpdesk.report_issues') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Issues Report </span>
-                        </a>
-                    </li>
-                </ul>
             </li>
             @endhasanyrole
 
             @hasanyrole('pengguna_luar')
             <li class="navigation-header">
-                <span> Pengurusan Instrumen </span>
+                <span> Dynamic Form </span>
             </li>
-            <li class="nav-item {{ request()->is('Pengurusan_Instrumen*') ? 'menu-open' : '' }}">
+            <li class="nav-item {{ request()->is('dynamic*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Instrumen Pemeriksaan </span>
+                    <span class="menu-title text-truncate"> Dynamic Form </span>
                 </a>
+             
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('jawab_instrumen') }}" class="nav-link">
+                        <a href="{{ route('fillform') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Instrumen </span>
+                            <span class="menu-title text-truncate"> Fill Form </span>
+                        </a>
+                    </li>
+                    <li class="{{ in_array(request()->route()->getName(),['listfillform'])? 'active': '' }}">
+                        <a href="{{ route('listfillform') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> List Filled Form </span>
                         </a>
                     </li>
                 </ul>
