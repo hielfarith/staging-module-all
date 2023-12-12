@@ -75,10 +75,10 @@
 			    				$status = 'Submitted';
 			    				
 			    			} elseif ($forms->status == 3) {
-			    				$status = 'Verifier';
+			    				$status = 'waiting for Verifier';
 			    				
 			    			} elseif ($forms->status == 4) {
-			    				$status = 'Approver';
+			    				$status = 'waiting for Approver';
 			    				
 			    			} elseif ($forms->status == 5) {
 			    				$status = 'Rejected';

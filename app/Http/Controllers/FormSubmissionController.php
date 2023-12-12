@@ -42,7 +42,6 @@ class FormSubmissionController extends Controller
         $form->category = $data['category_name'];
         $form->type = 'Ajax'; 
         $form->data = json_encode($data['form_data']);
-        $form->status = 3;
         $form->save();
         return ['success' => true];
     }
@@ -81,6 +80,7 @@ class FormSubmissionController extends Controller
         $formData->category = $inputData['category_name'];
         $formData->data = json_encode($inputData);
         $formData->json_data = json_encode($inputData);
+        $formData->status = 3;
         $path = [];
         if (count($inputFiles) > 0) {
             foreach ($inputFiles as $key => $value) {
