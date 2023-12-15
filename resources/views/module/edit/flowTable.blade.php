@@ -16,23 +16,29 @@
         @endif
         <?php
             $id = $module->id;
-            $flowmanage = App\Models\ModuleFlowManagement::select('module_id','current_status','next_status', 'action')
-            ->selectRaw('GROUP_CONCAT(DISTINCT module_role_id ORDER BY module_role_id) as concatenated_role_id')
-            ->groupBy('current_status', 'next_status','action', 'module_id')
-            ->get();
+            $flowmanage = App\Models\ModuleFlowManagement::selectRaw('MAX(id) as id, current_status, next_status, action,GROUP_CONCAT(DISTINCT module_role_id ORDER BY module_role_id) as concatenated_role_id')
+                ->groupBy('current_status', 'next_status', 'module_id','action')
+                ->where('module_id', $id)
+                ->orderby('id','asc')
+                ->get();
         ?>
 
-        @foreach($flowmanage as $v) 
-            {{$v->concatenated_role_id}}
-        @endforeach
-
-        @foreach ($module->flowManagements as $flow)
+        @foreach ($flowmanage as $flow)
+         
         <tr>
             <td class="text-center">
                 <span>{{$flow->currentStatus->status_index}}: {{$flow->currentStatus->status_name}}</span>
             </td>
             <td class="text-center">
-                <span>{{$flow->moduleRole->mainRole->name}}</span>
+                <?php
+                    $roles = explode(",", $flow->concatenated_role_id); 
+                ?>
+                @foreach($roles as $key => $role)
+                <?php
+                    $name = \App\Models\Role::where('id', $role)->pluck('name')->first();
+                ?>
+                    <span>{{$key > 0 ? ',' :  ''}} {{$name}} </span>
+                @endforeach
             </td>
             <td class="text-center">
                 <span>{{$flow->action}}</span>

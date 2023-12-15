@@ -12,6 +12,7 @@ use App\Models\NewForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\FMF;
 
 class ModuleController extends Controller
 {
@@ -529,8 +530,8 @@ class ModuleController extends Controller
 
             if(!$request->module_flow_management_id)
                 return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => "Module Flow Management not found. Please refresh"],404);
-
-            $deletedFlowManagement = ModuleFlowManagement::where('id',$request->module_flow_management_id)->delete();;
+            $module = ModuleFlowManagement::where('id',$request->module_flow_management_id)->first();
+            $deletedFlowManagement = ModuleFlowManagement::where('module_id',$module->module_id)->where('current_status', $module->current_status)->where('next_status', $module->next_status)->where('action',$module->action)->delete();;
 
         } catch (\Throwable $e) {
 
