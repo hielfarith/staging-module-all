@@ -116,14 +116,12 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate"> Pengurusan Sistem </span>
                 </a>
                 <ul class="menu-content">
-                    @if (\Composer\InstalledVersions::isInstalled('developer-unijaya/flow-management-function'))
                     <li class="{{ in_array(request()->route()->getName(),['module.index'])? 'active': '' }}">
                         <a href="{{ route('module.index') }}" class="d-flex align-items-center">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Module Configuration </span>
                         </a>
                     </li>
-                    @endif
                     <li class="{{ in_array(request()->route()->getName(),['settings.index'])? 'active': '' }}">
                         <a href="{{ route('settings.index') }}" class="d-flex align-items-center">
                             <i data-feather="circle"></i>

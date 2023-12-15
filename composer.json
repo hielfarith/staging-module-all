@@ -11,16 +11,11 @@
         {
             "type": "vcs",
             "url": "git@github.com:developer-unijaya/laravel-uploaded-file.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:developer-unijaya/flow-management-function.git"
         }
     ],
     "require": {
         "php": "^8.0.2",
         "barryvdh/laravel-snappy": "^1.0",
-        "developer-unijaya/flow-management-function": "^1.4.2",
         "developer-unijaya/laravel-uploaded-file": "^1.1",
         "developer-unijaya/rms-spid": "^0.6.0",
         "dompdf/dompdf": "^2.0",

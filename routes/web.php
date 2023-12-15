@@ -9,7 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\FormSubmissionController;
-
+use App\Http\Controllers\ModuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,5 +140,40 @@ Route::prefix('dynamic')->group(function () {
     Route::post('saveform', [FormSubmissionController::class, 'saveform'])->name('saveform');
     Route::post('checkname', [FormSubmissionController::class, 'checkname'])->name('checkname');
     Route::post('verify', [FormSubmissionController::class, 'verify'])->name('verify');
+
+});
+
+
+Route::controller(ModuleController::class)->prefix('module')->middleware(['web'])->group(function () {
+
+    Route::get('','index')->name('module.index');
+    Route::get('create','create')->name('module.create');
+    Route::get('edit/{id}','edit')->name('module.edit');
+    Route::post('update/{id}','update')->name('module.update');
+    Route::delete('destroy/{id}','destroy')->name('module.destroy');
+
+    Route::get('refreshModuleRoleTable/{module}','refreshModuleRoleTable')->name('module.refreshModuleRoleTable');
+    Route::get('getModuleRole/{moduleRole?}','getModuleRole')->name('module.getModuleRole');
+    Route::post('updateRoleForm','updateRoleForm')->name('module.updateRoleForm');
+    Route::post('deleteRole','deleteRole')->name('module.deleteRole');
+
+    Route::get('refreshModuleTab2/{module}','refreshModuleTab2')->name('module.refreshModuleTab2');
+    Route::get('refreshModuleStatusTable/{module}','refreshModuleStatusTable')->name('module.refreshModuleStatusTable');
+    Route::get('getModuleStatus/{moduleStatus?}','getModuleStatus')->name('module.getModuleStatus');
+    Route::post('updateStatusForm','updateStatusForm')->name('module.updateStatusForm');
+    Route::post('deleteStatus','deleteStatus')->name('module.deleteStatus');
+
+    Route::get('refreshModulePermissionTable/{module}','refreshModulePermissionTable')->name('module.refreshModulePermissionTable');
+    Route::get('getModulePermission/{modulePermission?}','getModulePermission')->name('module.getModulePermission');
+    Route::post('updatePermissionForm','updatePermissionForm')->name('module.updatePermissionForm');
+    Route::post('deletePermission','deletePermission')->name('module.deletePermission');
+
+    Route::get('getModuleTaskForm/{moduleRole?}','getModuleTaskForm')->name('module.getModuleTaskForm');
+    Route::post('updateTaskForm','updateTaskForm')->name('module.updateTaskForm');
+
+    Route::get('refreshModuleTab3/{module}','refreshModuleTab3')->name('module.refreshModuleTab3');
+    Route::get('refreshFlowManagementTable/{module}','refreshFlowManagementTable')->name('module.refreshFlowManagementTable');
+    Route::post('updateFlowManagement','updateFlowManagement')->name('module.updateFlowManagement');
+    Route::post('deleteFlowManagement','deleteFlowManagement')->name('module.deleteFlowManagement');
 
 });
