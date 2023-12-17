@@ -107,18 +107,21 @@ class FormSubmissionController extends Controller
 
     public function viewform(Request $request) {
         $filledform = FormSubmission::where('id', $request->id)->first();
-        $data = NewForm::where('form_name', $filledform->form_name)->first();
-        $arrays = json_decode(json_decode($data->data), true);
+        $DynamicFormData = NewForm::where('form_name', $filledform->form_name)->where('category', $filledform->category)->first();
+        $arrays = json_decode(json_decode($DynamicFormData->data), true);
         $form_name = $filledform->form_name;
         $category = $filledform->category;
         $insertone = false;
         $data = json_decode($filledform->data, true);
         $documents = json_decode($filledform->file_path, true);
         $id = $filledform->id;
+        $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
+        $dynamicModuleId = $moduleId->id;
         $canView = FMF::checkPermission(1, $filledform->status, 'form view');
         $canVerify = FMF::checkPermission(1, $filledform->status, 'verify form');
         $canApprove = FMF::checkPermission(1, $filledform->status, 'approve form');
-        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'filledform'));
+
+        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'filledform', 'dynamicModuleId'));
     }
     
     public function download($id, $name)
@@ -144,7 +147,8 @@ class FormSubmissionController extends Controller
         $insertone = false;
         $id = $data->id;
         $documents= '';
-        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id'));
+        $canView =$canVerify = $canApprove = false;
+        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id', 'canView','canVerify','canApprove'));
 
         return view();   
     }

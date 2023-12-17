@@ -13,11 +13,15 @@
                                     @if(!empty($modules))
                                         <select id="module_name" name="module_name" class="form-control" placeholder="Name of Module" required>
                                             @foreach($modules as $form)
-                                            <option value="{{$form->id}}">{{$form->form_name}}</option>
+                                            <option value="{{$form->id}}">{{$form->form_name}}-{{$form->category}}</option>
                                             @endforeach
                                         </select>
                                     @else
-                                        <input type="text" id="module_name" name="module_name" value="{{ $module->module_name ?? null }}" class="form-control" placeholder="Name of Module" required>
+                                        <?php
+                                            $formData = \App\Models\NewForm::where('id', $module->module_name)->first();
+                                        ?>
+                                        <input type="hidden" id="module_name" name="module_name" value="{{ $module->module_name ?? null }}" class="form-control" placeholder="Name of Module" required>
+                                        <input type="text" id="module_show" name="module_show" value="{{$formData->form_name}}-{{$formData->category}}" class="form-control" placeholder="Name of Module" readonly>
 
                                     @endif
                                 </div>

@@ -45,7 +45,10 @@
                         @foreach($allModule as $module)
                         <tr>
                             <th>{{ (($allModule->currentPage() - 1) * $allModule->perPage()) + $loop->iteration }}</th>
-                            <td>{{ $module->module_name }}</td>
+                            <?php
+                                $formData = \App\Models\NewForm::where('id', $module->module_name)->first();
+                            ?>
+                            <td>{{ $formData->form_name }}-{{$formData->category}}</td>
                             <td class="text-center">
                                 @if( $module->active)
                                     <span class="badge badge-light-success">ACTIVE</span>
