@@ -50,6 +50,6 @@
  	@if($canApprove)
  		<button type="button" class="btn btn-primary" onclick="formverify({{$status}},{{$filledform->id}})">Approve</button>
  	@endif
- 	<button type="button" class="btn btn-danger" onclick="formverify($reject,{{$filledform->id}})">Reject</button>
+ 	<button type="button" class="btn btn-danger" onclick="formverify({{$reject}},{{$filledform->id}})">Reject</button>
 </div>
 @endif
