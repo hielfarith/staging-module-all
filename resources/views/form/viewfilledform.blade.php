@@ -36,21 +36,20 @@
 	@endforeach
 
 @if ($canVerify || $canApprove)
+
+@php
+	$status = \App\Helpers\FMF::getNextStatus($dynamicModuleId, $filledform->status, 'success');
+	$reject = \App\Helpers\FMF::getNextStatus($dynamicModuleId, $filledform->status, 'reject');
+	$query = \App\Helpers\FMF::getNextStatus($dynamicModuleId, $filledform->status, 'query');
+@endphp
 <div class="modal-footer">
 	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 	@if($canVerify && !$canApprove)
-		@php
-		$status = \App\Helpers\FMF::getNextStatus($dynamicModuleId, $filledform->status, 'yes');
-		@endphp
  		<button type="button" class="btn btn-primary" onclick="formverify({{$status}},{{$filledform->id}})">Verify</button>
  	@endif
  	@if($canApprove)
- 		@php
-		$status = \App\Helpers\FMF::getNextStatus($dynamicModuleId, $filledform->status, 'yes');
-		@endphp
  		<button type="button" class="btn btn-primary" onclick="formverify({{$status}},{{$filledform->id}})">Approve</button>
  	@endif
- 	
- 	<button type="button" class="btn btn-danger" onclick="formverify('5',{{$filledform->id}})">Reject</button>
+ 	<button type="button" class="btn btn-danger" onclick="formverify($reject,{{$filledform->id}})">Reject</button>
 </div>
 @endif

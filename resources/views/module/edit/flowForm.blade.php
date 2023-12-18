@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label class="form-label" for="module_role_id">Role <span style="color:red;">*</span></label>
                 @if($module->roles->count() < 1)
-                    <input type="text" id="action" name="action" class="form-control" required disabled value="No Role Added In Module">
+                    <input type="text" id="module_role_id" name="module_role_id" class="form-control" required disabled value="No Role Added In Module">
                 @else
                     <select id="module_role_id" name="module_role_id[]" class="form-control" required multiple>
                         <option value="" hidden>Please Choose Role</option>
@@ -33,11 +33,20 @@
                 @endif
             </div>
         </div>
+        <?php
+            $actions = \App\Models\MasterAction::all();
+        ?>
         <div class="col-md-3 col-12">
             <div class="form-group">
                 <label class="form-label" for="action">Action <span style="color:red;">*</span></label>
                 <div class="input-group">
-                    <input type="text" id="action" name="action" class="form-control" required>
+                    <select id="action" name="action" class="form-control" required>
+                        <option value="">Please Choose action</option>
+                        @foreach ($actions as $action)
+                            <option value="{{ $action->key }}">{{ $action->value }}</option>
+                        @endforeach
+                    </select>
+
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use App\Models\FormSubmission;
 use App\Models\NewForm;
 use App\Models\Module;
+use App\Models\MasterAction;
 use App\Models\ModuleStatus;
 use App\Helpers\FMF;
 
@@ -120,7 +121,6 @@ class FormSubmissionController extends Controller
         $canView = FMF::checkPermission(1, $filledform->status, 'form view');
         $canVerify = FMF::checkPermission(1, $filledform->status, 'verify form');
         $canApprove = FMF::checkPermission(1, $filledform->status, 'approve form');
-
         return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'filledform', 'dynamicModuleId'));
     }
     

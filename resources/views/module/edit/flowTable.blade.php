@@ -24,7 +24,6 @@
         ?>
 
         @foreach ($flowmanage as $flow)
-         
         <tr>
             <td class="text-center">
                 <span>{{$flow->currentStatus->status_index}}: {{$flow->currentStatus->status_name}}</span>
@@ -41,7 +40,7 @@
                 @endforeach
             </td>
             <td class="text-center">
-                <span>{{$flow->action}}</span>
+                <span>{{$flow->actions->value}}</span>
             </td>
             <td class="text-center">
                 @if($flow->nextStatus->module_id != $module->id)

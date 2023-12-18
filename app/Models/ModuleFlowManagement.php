@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Module;
 use App\Models\ModuleRole;
 use App\Models\ModuleStatus;
+use App\Models\MasterAction;
 
 class ModuleFlowManagement extends Model
 {
@@ -50,5 +51,9 @@ class ModuleFlowManagement extends Model
     public function moduleRole(): BelongsTo
     {
         return $this->belongsTo(ModuleRole::class, 'module_role_id');
+    }
+    public function actions(): BelongsTo
+    {
+        return $this->belongsTo(MasterAction::class, 'action', 'key');
     }
 }
