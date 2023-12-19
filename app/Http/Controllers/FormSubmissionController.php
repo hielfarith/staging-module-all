@@ -38,6 +38,7 @@ class FormSubmissionController extends Controller
 
     public function saveform(Request $request) {
         $data = $request->input();
+
         $form = new NewForm();
         $form->form_name = $data['form_name'];
         $form->category = $data['category_name'];
@@ -81,7 +82,13 @@ class FormSubmissionController extends Controller
         $formData->category = $inputData['category_name'];
         $formData->data = json_encode($inputData);
         $formData->json_data = json_encode($inputData);
-        $formData->status = 3;
+
+        $DynamicFormData = NewForm::where('form_name', $inputData['form_name'])->where('category', $inputData['category_name'])->first();
+        $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
+        $dynamicModuleId = $moduleId->id;
+
+        $status = FMF::getNextStatus($dynamicModuleId, $filledform->status, 'submit');
+        $formData->status = $status;
         $path = [];
         if (count($inputFiles) > 0) {
             foreach ($inputFiles as $key => $value) {
@@ -93,7 +100,6 @@ class FormSubmissionController extends Controller
             }
         }
         $formData->file_path = json_encode($path);
-        
         if($formData->save()) {
             return ['success' => true];
         } else {
@@ -118,10 +124,12 @@ class FormSubmissionController extends Controller
         $id = $filledform->id;
         $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
         $dynamicModuleId = $moduleId->id;
-        $canView = FMF::checkPermission(1, $filledform->status, 'form view');
-        $canVerify = FMF::checkPermission(1, $filledform->status, 'verify form');
-        $canApprove = FMF::checkPermission(1, $filledform->status, 'approve form');
-        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'filledform', 'dynamicModuleId'));
+        $canView = FMF::checkPermission($dynamicModuleId, $filledform->status, 'form view');
+        $canVerify = FMF::checkPermission($dynamicModuleId, $filledform->status, 'verify form');
+        $canApprove = FMF::checkPermission($dynamicModuleId, $filledform->status, 'approve form');
+        $canQuery = FMF::checkPermission($dynamicModuleId, $filledform->status, 'query');
+
+        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId'));
     }
     
     public function download($id, $name)

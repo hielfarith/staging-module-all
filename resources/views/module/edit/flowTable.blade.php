@@ -34,9 +34,11 @@
                 ?>
                 @foreach($roles as $key => $role)
                 <?php
-                    $name = \App\Models\Role::where('id', $role)->pluck('name')->first();
+                    $role = \App\Models\ModuleRole::where('id', $role)->first();
+                    // $mainRole = \App\Models\Role::where('role_id', $role)->first();
+
                 ?>
-                    <span>{{$key > 0 ? ',' :  ''}} {{$name}} </span>
+                    <span>{{$key > 0 ? ',' :  ''}} {{$role->mainRole->name}} </span>
                 @endforeach
             </td>
             <td class="text-center">
