@@ -39,7 +39,7 @@
 		@endif
 	@endforeach
 
-@if ($canVerify || $canApprove)
+@if ($canVerify || $canApprove || $canQuery)
 
 @php
 	$status = \App\Helpers\FMF::getNextStatus($dynamicModuleId, $filledform->status, 'success');

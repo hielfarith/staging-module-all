@@ -86,8 +86,9 @@ class FormSubmissionController extends Controller
         $DynamicFormData = NewForm::where('form_name', $inputData['form_name'])->where('category', $inputData['category_name'])->first();
         $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
         $dynamicModuleId = $moduleId->id;
+        $moduleStatus = ModuleStatus::where('module_id', $dynamicModuleId)->where('status_index', 1)->first();
 
-        $status = FMF::getNextStatus($dynamicModuleId, $filledform->status, 'submit');
+        $status = FMF::getNextStatus($dynamicModuleId, $moduleStatus->id, 'submit');
         $formData->status = $status;
         $path = [];
         if (count($inputFiles) > 0) {
@@ -128,7 +129,7 @@ class FormSubmissionController extends Controller
         $canVerify = FMF::checkPermission($dynamicModuleId, $filledform->status, 'verify form');
         $canApprove = FMF::checkPermission($dynamicModuleId, $filledform->status, 'approve form');
         $canQuery = FMF::checkPermission($dynamicModuleId, $filledform->status, 'query');
-
+        
         return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId'));
     }
     

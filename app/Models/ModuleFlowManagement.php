@@ -52,6 +52,7 @@ class ModuleFlowManagement extends Model
     {
         return $this->belongsTo(ModuleRole::class, 'module_role_id');
     }
+    
     public function actions(): BelongsTo
     {
         return $this->belongsTo(MasterAction::class, 'action', 'key');
