@@ -22,6 +22,10 @@ class PengurusanInstrumenController extends Controller
         return view('pengurusan_instrumen.tambah_instrumen');
     }
 
+    public function LihatInstrumen(){
+        return view('pengurusan_instrumen.lihat_instrumen');
+    }
+
     // Sahkan Kategori Instrumen pada Borang Instrumen Baru
     public function SahkanKategoriInstrumen(Request $request) {
         $data = NewForm::where('category', $request->name)->where('form_name', $request->form_name)->first();

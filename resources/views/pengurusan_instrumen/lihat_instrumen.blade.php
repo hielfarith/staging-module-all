@@ -29,15 +29,13 @@ Pengurusan Instrumen
                             </div>
 
                             {{-- Nama Instrumen --}}
-                            <div class="error-message text-danger" id="formname-error"></div>
-                            <input type="text" class="form-control mb-25" name="form_name" id="form_name" placeholder="Nama Instrumen" onkeyup="sahkan_kategori_borang('form')" required>
+                            <h4 class="fw-bolder mb-25">Nama Instrumen</h4>
 
                             {{-- Kategori Instrumen --}}
-                            <div class="error-message text-danger" id="category-error"></div>
-                            <input type="text" class="form-control mb-25" name="category_name" id="category_name" placeholder="Kategori Instrumen" onkeyup="sahkan_kategori_borang('category')" required>
+                            <h6 class="fw-bolder mb-25">Kategori Instrumen</h6>
 
                             {{-- Deskripsi Instrumen --}}
-                            <textarea type="text" class="form-control mb-25" name="" id="" placeholder="Deskripsi Ringkas Instrumen"></textarea>
+                            <p class="mb-25">Deskripsi Ringkas Instrumen</p>
                         </div>
                         <div class="invoice-number-date mt-md-0 mt-2">
                             <div class="d-flex align-items-center justify-content-md-end mb-1">
@@ -61,7 +59,7 @@ Pengurusan Instrumen
                                 <span class="title">Tarikh Tutup Pengisian:</span>
 
                                 {{-- Tarikh Tutup Pengisian Instrumen --}}
-                                <input type="text" class="form-control flatpickr" />
+                                <input type="text" class="form-control flatpickr" value="12/02/2023" disabled>
                             </div>
                         </div>
                     </div>
@@ -72,70 +70,30 @@ Pengurusan Instrumen
 
                 <!-- Instrument Form starts -->
                 <div class="card-body invoice-padding invoice-product-details">
-                    <form class="source-item">
-                        <div data-repeater-list="group-a">
-                            <div class="repeater-wrapper" data-repeater-item>
-                                <div class="row">
-                                    <div class="col-12 d-flex product-details-border position-relative pe-0">
-                                        <div class="row w-100 pe-1 py-2">
-                                            <div class="col-lg-12 col-12 mb-lg-0 mb-2 mt-lg-0 mt-2">
-                                                <p class="card-text col-title mb-md-50 mb-0">Atribut</p>
-
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        {{-- Jenis Atribut --}}
-                                                        <select name="type" id="type" class="form-control">
-                                                            <option value="" hidden>Jenis Atribut</option>
-                                                            <option value="text">Text</option>
-                                                            <option value="number">Nombor</option>
-                                                            <option value="file">Muat Naik Fail</option>
-                                                            <option value="select">Pilihan</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-md-8">
-                                                        &nbsp;
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        {{-- Nama Label --}}
-                                                        <input type="text" class="form-control mt-1" name="label_name" id="label_name" placeholder="Nama Label">
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        {{-- Nama Atribut --}}
-                                                        <input type="text" class="form-control mt-1" name="name" id="name" placeholder="Nama Atribut">
-                                                        <p class="text-danger">Sila gunakan '_' untuk menggantikan ruangan kosong.</p>
-                                                    </div>
-                                                </div>
-
-                                                {{-- Label Pilihan --}}
-                                                <div class="mt-1 divTextareaOptions" style="display: none;">
-                                                    <label class="form-label"> Label Pilihan </label>
-                                                    <textarea name="options" id="options" class="form-control"></textarea>
-                                                    <p class="text-danger">Sila gunakan ',' sebagai pemisah antara pilihan.</p>
-                                                </div>
-                                            </div>
+                    <div class="row">
+                        <div class="col-12 d-flex product-details-border position-relative pe-0">
+                            <div class="row w-100 pe-1 py-2">
+                                <div class="col-lg-12 col-12 mb-lg-0 mb-2 mt-lg-0 mt-2">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-1">
+                                            <label class="form-label fw-bolder">Nama Label 1</label>
+                                            <input type="text" class="form-control" name="" id="" placeholder="Nama Label 1">
                                         </div>
 
-                                        {{-- Padam Atribut --}}
-                                        <div class="d-flex flex-column align-items-center justify-content-between border-start invoice-product-actions py-50 px-25">
-                                            <i class="fa fa-trash cursor-pointer font-medium-3 text-danger" data-repeater-delete></i>
+                                        <div class="col-md-12 mb-1">
+                                            <label class="form-label fw-bolder">Nama Label 2</label>
+                                            <input type="text" class="form-control" name="" id="" placeholder="Nama Label 2">
+                                        </div>
+
+                                        <div class="col-md-12 mb-1">
+                                            <label class="form-label fw-bolder">Nama Label 3</label>
+                                            <input type="text" class="form-control" name="" id="" placeholder="Nama Label 3">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-1">
-                            <div class="col-12 px-0">
-                                {{-- Tambah Atribut --}}
-                                <button type="button" class="btn btn-primary btn-sm btn-add-new" data-repeater-create>
-                                    <i data-feather="plus" class="me-25"></i>
-                                    <span class="align-middle">Tambah Atribut</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
                 <!-- Instrument Form ends -->
 
@@ -143,16 +101,17 @@ Pengurusan Instrumen
 
                 <!-- Footer starts -->
                 <div class="card-body invoice-padding py-0">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="mb-2">
-                                <label for="note" class="form-label fw-bold">Penafian dan Hakmilik:</label>
-                                <textarea class="form-control" rows="2" id="note"></textarea>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-2">
+                                    <p class="fw-bolder mb-25">Hakcipta Terpelihara SKPAK 2023</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Footer ends -->
                 </div>
+                <!-- Footer ends -->
             </div>
         </div>
 
@@ -169,7 +128,7 @@ Pengurusan Instrumen
                 </div>
                 <hr>
                 <div class="card-body">
-                    <a href="{{ route('lihat_instrumen') }}" class="btn btn-primary w-100 mb-75">Lihat Borang</a>
+                    <a href="{{ route('instrumen_baru') }}" class="btn btn-primary w-100 mb-75">Kemaskini Borang</a>
                     <button type="button" class="btn btn-success w-100">Simpan</button>
                 </div>
             </div>

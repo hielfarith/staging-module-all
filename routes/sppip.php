@@ -5,7 +5,9 @@ use App\Http\Controllers\PengurusanInstrumenController;
 Route::controller(PengurusanInstrumenController::class)->group(function () {
     Route::prefix('pengurusan_instrumen')->group(function() {
         Route::get('instrumen_baru','TambahInstrumen')->name('instrumen_baru');
+        Route::get('lihat_instrumen','LihatInstrumen')->name('lihat_instrumen');
         Route::post('sahkan_kategori_instrumen','SahkanKategoriInstrumen')->name('sahkan_kategori_instrumen');
+
 
         Route::post('simpan_atribut','SimpanAtribut')->name('simpan_atribut');
         Route::post('simpan_borang_instrumen','SimpanBorangInstrumen')->name('simpan_borang_instrumen');
