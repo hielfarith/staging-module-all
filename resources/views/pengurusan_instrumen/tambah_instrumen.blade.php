@@ -29,13 +29,15 @@ Pengurusan Instrumen
                             </div>
 
                             {{-- Nama Instrumen --}}
-                            <input type="text" class="form-control mb-25" name="form_name" id="form_name" placeholder="Nama Instrumen">
+                            <div class="error-message text-danger" id="formname-error"></div>
+                            <input type="text" class="form-control mb-25" name="form_name" id="form_name" placeholder="Nama Instrumen" onkeyup="sahkan_kategori_borang('form')" required>
 
                             {{-- Kategori Instrumen --}}
-                            <input type="text" class="form-control mb-25" name="category_name" id="category_name" placeholder="Kategori Instrumen">
+                            <div class="error-message text-danger" id="category-error"></div>
+                            <input type="text" class="form-control mb-25" name="category_name" id="category_name" placeholder="Kategori Instrumen" onkeyup="sahkan_kategori_borang('category')" required>
 
                             {{-- Deskripsi Instrumen --}}
-                            <textarea type="text" class="form-control mb-25" name="" id="">Deskripsi Instrumen</textarea>
+                            <textarea type="text" class="form-control mb-25" name="" id="" placeholder="Deskripsi Ringkas Instrumen"></textarea>
                         </div>
                         <div class="invoice-number-date mt-md-0 mt-2">
                             <div class="d-flex align-items-center justify-content-md-end mb-1">
@@ -179,76 +181,84 @@ Pengurusan Instrumen
 
 @section('script')
 <script>
-    function handleAttributeSelection() {
-        var type = $('#type').val();
-        if (type == 'select') {
-            $('.divTextareaOptions').show(300);
-        } else {
-            $('.divTextareaOptions').hide(300);
-        }
+    function sahkan_kategori_borang(type) {
+        var form_name = $('#form_name').val();
+        var name = $('#category_name').val();
+        var url = "{{ route('sahkan_kategori_instrumen') }}";
+
+        $.ajax({
+            url: url, // Route URL
+            type: 'POST', // Request type (GET, POST, etc.)
+            data: {
+                form_name: form_name,
+                name: name,
+                type: type
+            },
+            success: function(response) {
+                if(!response.success) {
+                    $('#category-error').text('Kategori Telah Wujud!');
+                    $('#category-error').show();
+                } else {
+                    $('#category-error').hide();
+                }
+            }
+        });
     }
 
     $(function () {
+        var applyChangesBtn = $('.btn-apply-changes'),
+            sourceItem = $('.source-item'),
+            formName = $('#form_name'),
+            categoryName = $('#category_name'),
+            type = $('#type'),
+            labelName = $('#label_name'),
+            name = $('#name'),
+            options = $('#options'),
+            btnAddNewItem = $('.btn-add-new ');
 
-    var applyChangesBtn = $('.btn-apply-changes'),
-        sourceItem = $('.source-item'),
-        formName = $('#form_name'),
-        categoryName = $('#category_name'),
-        type = $('#type'),
-        labelName = $('#label_name'),
-        name = $('#name'),
-        options = $('#options'),
-        btnAddNewItem = $('.btn-add-new ');
+        if (sourceItem.length) {
+            sourceItem.on('submit', function (e) {
+                e.preventDefault();
+            });
+            sourceItem.repeater({
+                show: function () {
+                    var repeaterRow = $(this);
+                    repeaterRow.find('#type').on('change', function () {
+                        handleDropdownChange(repeaterRow);
+                    });
+                    $(this).slideDown();
+                    handleDropdownChange(repeaterRow);
+                },
+                hide: function (e) {
+                    $(this).slideUp();
+                }
+            });
+        }
 
-    // Repeater init
-    if (sourceItem.length) {
-        sourceItem.on('submit', function (e) {
-            e.preventDefault();
-        });
-        sourceItem.repeater({
-            show: function () {
-                $(this).slideDown();
-                handleAttributeSelection();
-            },
-            hide: function (e) {
-                $(this).slideUp();
+        function handleDropdownChange(row) {
+            var typeDropdown = row.find('#type');
+            var optionsDiv = row.find('.divTextareaOptions');
+
+            if (typeDropdown.val() === 'select') {
+                optionsDiv.show(300);
+            } else {
+                optionsDiv.hide(300);
             }
-        });
-    }
+        }
 
-    // Item details select onchange
-    $(document).on('change', '#type', function () {
-        var $this = $('#type').val();
-        if ($this == 'select') {
-            $('.divTextareaOptions').show(300);
-        } else {
-            $('.divTextareaOptions').hide(300);
+        if (btnAddNewItem.length) {
+            btnAddNewItem.on('click', function () {
+                if (feather) {
+                    // featherSVG();
+                    feather.replace({ width: 14, height: 14 });
+                }
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            });
         }
     });
-
-
-    // function handleAttributeSelection() {
-    //     var type = $('#type').val();
-    //     if (type == 'select') {
-    //         $('#divTextareaOptions').show(300);
-    //     } else {
-    //         $('#divTextareaOptions').hide(300);
-    //     }
-    // }
-
-    if (btnAddNewItem.length) {
-        btnAddNewItem.on('click', function () {
-            if (feather) {
-                // featherSVG();
-                feather.replace({ width: 14, height: 14 });
-            }
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-        });
-    }
-});
 
 </script>
 @endsection
