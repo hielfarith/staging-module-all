@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\FormSubmission;
 use App\Models\NewForm;
-use DeveloperUnijaya\FlowManagementFunction\Models\Module;
-use DeveloperUnijaya\FlowManagementFunction\Models\ModuleStatus;
-use DeveloperUnijaya\FlowManagementFunction\Facades\FMF;
+use App\Models\Module;
+use App\Models\MasterAction;
+use App\Models\ModuleStatus;
+use App\Helpers\FMF;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -37,6 +38,7 @@ class FormSubmissionController extends Controller
 
     public function saveform(Request $request) {
         $data = $request->input();
+
         $form = new NewForm();
         dd($data);
         
@@ -82,7 +84,14 @@ class FormSubmissionController extends Controller
         $formData->category = $inputData['category_name'];
         $formData->data = json_encode($inputData);
         $formData->json_data = json_encode($inputData);
-        $formData->status = 3;
+
+        $DynamicFormData = NewForm::where('form_name', $inputData['form_name'])->where('category', $inputData['category_name'])->first();
+        $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
+        $dynamicModuleId = $moduleId->id;
+        $moduleStatus = ModuleStatus::where('module_id', $dynamicModuleId)->where('status_index', 1)->first();
+
+        $status = FMF::getNextStatus($dynamicModuleId, $moduleStatus->id, 'submit');
+        $formData->status = $status;
         $path = [];
         if (count($inputFiles) > 0) {
             foreach ($inputFiles as $key => $value) {
@@ -94,7 +103,6 @@ class FormSubmissionController extends Controller
             }
         }
         $formData->file_path = json_encode($path);
-        
         if($formData->save()) {
             return ['success' => true];
         } else {
@@ -109,18 +117,22 @@ class FormSubmissionController extends Controller
 
     public function viewform(Request $request) {
         $filledform = FormSubmission::where('id', $request->id)->first();
-        $data = NewForm::where('form_name', $filledform->form_name)->first();
-        $arrays = json_decode(json_decode($data->data), true);
+        $DynamicFormData = NewForm::where('form_name', $filledform->form_name)->where('category', $filledform->category)->first();
+        $arrays = json_decode(json_decode($DynamicFormData->data), true);
         $form_name = $filledform->form_name;
         $category = $filledform->category;
         $insertone = false;
         $data = json_decode($filledform->data, true);
         $documents = json_decode($filledform->file_path, true);
         $id = $filledform->id;
-        $canView = FMF::checkPermission(1, $filledform->status, 'form view');
-        $canVerify = FMF::checkPermission(1, $filledform->status, 'verify form');
-        $canApprove = FMF::checkPermission(1, $filledform->status, 'approve form');
-        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'filledform'));
+        $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
+        $dynamicModuleId = $moduleId->id;
+        $canView = FMF::checkPermission($dynamicModuleId, $filledform->status, 'form view');
+        $canVerify = FMF::checkPermission($dynamicModuleId, $filledform->status, 'verify form');
+        $canApprove = FMF::checkPermission($dynamicModuleId, $filledform->status, 'approve form');
+        $canQuery = FMF::checkPermission($dynamicModuleId, $filledform->status, 'query');
+        
+        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId'));
     }
     
     public function download($id, $name)
@@ -146,7 +158,8 @@ class FormSubmissionController extends Controller
         $insertone = false;
         $id = $data->id;
         $documents= '';
-        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id'));
+        $canView =$canVerify = $canApprove = false;
+        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id', 'canView','canVerify','canApprove'));
 
         return view();   
     }

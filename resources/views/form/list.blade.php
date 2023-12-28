@@ -68,26 +68,8 @@
 			    		<td>{{$key+1}}</td>
 			    		<td>{{$forms->form_name}}</td>
 			    		<td>{{$forms->category}}</td>
-			    		<?php
-			    			if ($forms->status == 1) {
-			    				$status = 'Draft';
-			    			} elseif ($forms->status == 2) {
-			    				$status = 'Submitted';
-			    				
-			    			} elseif ($forms->status == 3) {
-			    				$status = 'waiting for Verifier';
-			    				
-			    			} elseif ($forms->status == 4) {
-			    				$status = 'waiting for Approver';
-			    				
-			    			} elseif ($forms->status == 5) {
-			    				$status = 'Rejected';
-			    			} elseif ($forms->status == 6) {
-			    				$status = 'Approved';
-			    				
-			    			}
-			    		?>
-			    		<td>{{$status}}</td>
+			    		
+			    		<td>{{$forms->statuses?->status_description ?? '-'}}</td>
 			    		<td><a class="btn-btn-primary" onclick="listForm({{$forms->id}})">
 					            <i class="fa fa-eye"></i>
 					        </a></td>

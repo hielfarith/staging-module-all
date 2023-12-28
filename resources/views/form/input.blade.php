@@ -1,4 +1,5 @@
 @if($insertone)
+
 	@if( in_array($array['type'], ['text', 'number']))
 		<x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="" label="{{$array['label']}}" />
 	@elseif($array['type'] == 'select')

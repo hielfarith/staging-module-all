@@ -1,4 +1,8 @@
 	@foreach($arrays as $array)
+		<?php
+		if(!array_key_exists('type', $array))
+			continue;
+		?>
 		@if( in_array($array['type'], ['text', 'number']))
 			@if(in_array($array['name'], ['form_name','category_name']))
 				@php
@@ -35,23 +39,25 @@
 		@endif
 	@endforeach
 
+@if ($canVerify || $canApprove || $canQuery)
 
-@if ($canVerify || $canApprove)
+@php
+	$status = \App\Helpers\FMF::getNextStatus($dynamicModuleId, $filledform->status, 'success');
+	$reject = \App\Helpers\FMF::getNextStatus($dynamicModuleId, $filledform->status, 'reject');
+	$query = \App\Helpers\FMF::getNextStatus($dynamicModuleId, $filledform->status, 'query');
+@endphp
 <div class="modal-footer">
 	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 	@if($canVerify && !$canApprove)
-		@php
-		$status = \FMF::getNextStatus(1,$filledform->status,'yes');
-		@endphp
  		<button type="button" class="btn btn-primary" onclick="formverify({{$status}},{{$filledform->id}})">Verify</button>
  	@endif
  	@if($canApprove)
- 		@php
-		$status = \FMF::getNextStatus(1,$filledform->status,'yes');
-		@endphp
  		<button type="button" class="btn btn-primary" onclick="formverify({{$status}},{{$filledform->id}})">Approve</button>
  	@endif
+ 	@if($canQuery)
+ 		<button type="button" class="btn btn-primary" onclick="formverify({{$query}},{{$filledform->id}})">Query</button>
+ 	@endif
  	
- 	<button type="button" class="btn btn-danger" onclick="formverify('5',{{$filledform->id}})">Reject</button>
+ 	<button type="button" class="btn btn-danger" onclick="formverify({{$reject}},{{$filledform->id}})">Reject</button>
 </div>
 @endif
