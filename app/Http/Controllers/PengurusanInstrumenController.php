@@ -23,7 +23,9 @@ class PengurusanInstrumenController extends Controller
     }
 
     public function LihatInstrumen(){
-        return view('pengurusan_instrumen.lihat_instrumen');
+         $forms = NewForm::all();
+        return view('pengurusan_instrumen.list-forms', compact('forms'));
+        // return view('pengurusan_instrumen.lihat_instrumen');
     }
 
     // Sahkan Kategori Instrumen pada Borang Instrumen Baru
