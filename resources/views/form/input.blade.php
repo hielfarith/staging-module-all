@@ -1,3 +1,4 @@
+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
 @if($insertone)
 	@if( in_array($array['type'], ['text', 'number']))
 		<x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="" label="{{$array['label']}}" />
@@ -64,7 +65,8 @@
             processData: false,
             success: function(response) {
                if (response.success) {
-             		window.location.reload();
+               	var newurl = "{{route('listfillform')}}";
+             		window.location.href = newurl;
                }
             }
         });

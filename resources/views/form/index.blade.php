@@ -38,7 +38,7 @@
           	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
-		    <div class="navbar-header">
+		    <!-- <div class="navbar-header">
 		      <a class="navbar-brand" href="{{route('create-form')}}">Create Form</a>
 		    </div>
 		    <div class="navbar-header">
@@ -46,7 +46,7 @@
 		    </div>
 		    <div class="navbar-header">
 		      <a class="navbar-brand" href="{{route('listfillform')}}">List Form</a>
-		    </div>
+		    </div> -->
 		</div>
         </nav>
     </div>
@@ -256,7 +256,7 @@
 		});
 
     	var jsonData = JSON.stringify(formObject);
-	    var url = "{{route('saveform')}}"
+	    var url = "{{route('saveform')}}";
 		 $.ajax({
             url: url, // Route URL
             type: 'POST', // Request type (GET, POST, etc.)
@@ -268,7 +268,8 @@
             // contentType: 'application/json',
             success: function(response) {
             	if (response.success) {
-            		window.location.reload()
+            		var location = "{{route('dynamic-form-list')}}"
+            		window.location.href = location;
             	} else {
             		$("#error").show("slow").delay(5000).hide("slow");
             	}

@@ -129,7 +129,39 @@ $configData = Helper::applClasses();
                     </li>
                 </ul>
             </li>
+            <!-- ---------------- -->
+             <li class="navigation-header">
+                <span> Dynamic Form </span>
+            </li>
+            <li
+                class="nav-item nav-tour system-management {{ request()->is('dynamic*')  ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="settings"></i>
+                    <span class="menu-title text-truncate"> Dynamic Form </span>
+                </a>
+                <ul class="menu-content">
+                    <li class="{{ in_array(request()->route()->getName(),['create-form'])? 'active': '' }}">
+                        <a href="{{ route('create-form') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Create Dynamic Form </span>
+                        </a>
+                    </li>
+                    <li class="{{ in_array(request()->route()->getName(),['dynamic-form-list'])? 'active': '' }}">
+                        <a href="{{ route('dynamic-form-list') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> List Dynamic Form </span>
+                        </a>
+                    </li>
+                    <li class="{{ in_array(request()->route()->getName(),['listfillform'])? 'active': '' }}">
+                        <a href="{{ route('listfillform') }}" class="d-flex align-items-center">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> List Filled Form </span>
+                        </a>
+                    </li>
+                </ul>
 
+            </li>
+            <!-- ---------------- -->
             <li class="navigation-header">
                 <span> System Settings </span>
             </li>
