@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('user_name')->nullable();
             $table->string('user_id')->nullable();
             $table->longText('data');
-            $table->tinyint('status');
+            $table->tinyInteger('status');
             $table->json('json_data');
             $table->timestamps();
         });
