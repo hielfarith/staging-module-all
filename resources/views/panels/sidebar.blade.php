@@ -33,36 +33,6 @@ $configData = Helper::applClasses();
 
             @hasanyrole('superadmin|admin')
             <li class="navigation-header">
-                <span> Pengurusan Instrumen [SAI]</span>
-            </li>
-            <li class="nav-item {{ request()->is('pengurusan_instrumen_sai*') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link">
-                    <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Instrumen </span>
-                </a>
-                <ul class="nav">
-                    <li class="{{ in_array(request()->route()->getName(),['create-form'])? 'active': '' }}">
-                        <a href="{{ route('create-form') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Tambah Instrumen </span>
-                        </a>
-                    </li>
-                    <li class="{{ in_array(request()->route()->getName(),['fillform'])? 'active': '' }}">
-                        <a href="{{ route('fillform') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Instrumen </span>
-                        </a>
-                    </li>
-                    <li class="{{ in_array(request()->route()->getName(),['listfillform'])? 'active': '' }}">
-                        <a href="{{ route('listfillform') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Jawab Instrumen </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="navigation-header">
                 <span> Pengurusan Instrumen [SAQINAH]</span>
             </li>
             <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
@@ -129,7 +99,7 @@ $configData = Helper::applClasses();
                     </li>
                 </ul>
             </li>
-            <!-- ---------------- -->
+
              <li class="navigation-header">
                 <span> Dynamic Form </span>
             </li>
@@ -161,7 +131,7 @@ $configData = Helper::applClasses();
                 </ul>
 
             </li>
-            <!-- ---------------- -->
+
             <li class="navigation-header">
                 <span> System Settings </span>
             </li>
