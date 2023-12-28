@@ -27,7 +27,7 @@ Pengurusan Instrumen
                                 <img src="{{ asset('images/logo/jata_negara.png') }}" height="24">
                                 <h3 class="text-primary invoice-logo">Kementerian Pendidikan Malaysia (KPM)</h3>
                             </div>
-
+                            <!-- form start -->
                             {{-- Nama Instrumen --}}
                             <div class="error-message text-danger" id="formname-error"></div>
                             <input type="text" class="form-control mb-25" name="form_name" id="form_name" placeholder="Nama Instrumen" onkeyup="sahkan_kategori_borang('form')" required>
@@ -37,7 +37,7 @@ Pengurusan Instrumen
                             <input type="text" class="form-control mb-25" name="category_name" id="category_name" placeholder="Kategori Instrumen" onkeyup="sahkan_kategori_borang('category')" required>
 
                             {{-- Deskripsi Instrumen --}}
-                            <textarea type="text" class="form-control mb-25" name="" id="" placeholder="Deskripsi Ringkas Instrumen"></textarea>
+                            <textarea type="text" class="form-control mb-25" name="description" id="description" placeholder="Deskripsi Ringkas Instrumen" required></textarea>
                         </div>
                         <div class="invoice-number-date mt-md-0 mt-2">
                             <div class="d-flex align-items-center justify-content-md-end mb-1">
@@ -48,20 +48,19 @@ Pengurusan Instrumen
                                     </div>
 
                                     {{-- ID Instrument --}}
-                                    <input type="text" class="form-control invoice-edit-input" value="53634" disabled>
+                                    <input type="text" class="form-control invoice-edit-input" name="id_instrumen" id="id_instrumen" value="" required>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-1">
                                 <span class="title">Tarikh Didaftar:</span>
 
                                 {{-- Tarikh Instrumen Didaftarkan --}}
-                                <input type="text" class="form-control flatpickr" value="12/02/2023" disabled>
+                                <input type="text" class="form-control flatpickr" name="tarikh_didaftar" id="tarikh_didaftar" value="{{date('d/m/Y')}}" required>
                             </div>
                             <div class="d-flex align-items-center">
                                 <span class="title">Tarikh Tutup Pengisian:</span>
-
                                 {{-- Tarikh Tutup Pengisian Instrumen --}}
-                                <input type="text" class="form-control flatpickr" />
+                                <input type="text" class="form-control flatpickr" name="tarikh_tutup" id="tarikh_tutup" required />
                             </div>
                         </div>
                     </div>
@@ -69,76 +68,22 @@ Pengurusan Instrumen
                 <!-- Header ends -->
 
                 <hr class="invoice-spacing" />
-
-                <!-- Instrument Form starts -->
-                <div class="card-body invoice-padding invoice-product-details">
-                    <form class="source-item">
-                        <div data-repeater-list="group-a">
-                            <div class="repeater-wrapper" data-repeater-item>
-                                <div class="row">
-                                    <div class="col-12 d-flex product-details-border position-relative pe-0">
-                                        <div class="row w-100 pe-1 py-2">
-                                            <div class="col-lg-12 col-12 mb-lg-0 mb-2 mt-lg-0 mt-2">
-                                                <p class="card-text col-title mb-md-50 mb-0">Atribut</p>
-
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        {{-- Jenis Atribut --}}
-                                                        <select name="type" id="type" class="form-control">
-                                                            <option value="" hidden>Jenis Atribut</option>
-                                                            <option value="text">Text</option>
-                                                            <option value="number">Nombor</option>
-                                                            <option value="file">Muat Naik Fail</option>
-                                                            <option value="select">Pilihan</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-md-8">
-                                                        &nbsp;
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        {{-- Nama Label --}}
-                                                        <input type="text" class="form-control mt-1" name="label_name" id="label_name" placeholder="Nama Label">
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        {{-- Nama Atribut --}}
-                                                        <input type="text" class="form-control mt-1" name="name" id="name" placeholder="Nama Atribut">
-                                                        <p class="text-danger">Sila gunakan '_' untuk menggantikan ruangan kosong.</p>
-                                                    </div>
-                                                </div>
-
-                                                {{-- Label Pilihan --}}
-                                                <div class="mt-1 divTextareaOptions" style="display: none;">
-                                                    <label class="form-label"> Label Pilihan </label>
-                                                    <textarea name="options" id="options" class="form-control"></textarea>
-                                                    <p class="text-danger">Sila gunakan ',' sebagai pemisah antara pilihan.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {{-- Padam Atribut --}}
-                                        <div class="d-flex flex-column align-items-center justify-content-between border-start invoice-product-actions py-50 px-25">
-                                            <i class="fa fa-trash cursor-pointer font-medium-3 text-danger" data-repeater-delete></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                
+                <input type="hidden" name="row_count" id="row_count" value="1">
+                    <!-- Instrument Form starts -->
+                    <div class="card-body invoice-padding invoice-product-details" id="row1">
                         <div class="row mt-1">
                             <div class="col-12 px-0">
                                 {{-- Tambah Atribut --}}
-                                <button type="button" class="btn btn-primary btn-sm btn-add-new" data-repeater-create>
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#Modal">
                                     <i data-feather="plus" class="me-25"></i>
                                     <span class="align-middle">Tambah Atribut</span>
                                 </button>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <!-- Instrument Form ends -->
-
+                    </div>
+                    <!-- Instrument Form ends -->
+                </form>
                 <hr class="invoice-spacing mt-0" />
 
                 <!-- Footer starts -->
@@ -169,18 +114,189 @@ Pengurusan Instrumen
                 </div>
                 <hr>
                 <div class="card-body">
-                    <a href="{{ route('lihat_instrumen') }}" class="btn btn-primary w-100 mb-75">Lihat Borang</a>
-                    <button type="button" class="btn btn-success w-100">Simpan</button>
+                    <!-- <a href="{{ route('lihat_instrumen') }}" class="btn btn-primary w-100 mb-75">Lihat Borang</a> -->
+                    <button type="button" class="btn btn-success w-100" onclick="submitDynamicForm()">Simpan</button>
                 </div>
             </div>
         </div>
         <!-- Tindakan Borang Instrumen ends -->
+    </div>
+    <!-- Modal box -->
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="ModalLabel">Dynamic form</h5> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="frm">
+                @csrf
+                <div class="modal-body">
+                    <p class="card-text col-title mb-md-50 mb-0">Atribut</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            {{-- Jenis Atribut --}}
+                            <select name="type" id="type" class="form-control" onchange="changeselect()">
+                                <option value="" hidden>Jenis Atribut</option>
+                                <option value="text">Text</option>
+                                <option value="number">Nombor</option>
+                                <option value="file">Muat Naik Fail</option>
+                                <option value="select">Pilihan</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-8">
+                            &nbsp;
+                        </div>
+
+                        <div class="col-md-6">
+                            {{-- Nama Label --}}
+                            <input type="text" class="form-control mt-1" name="label_name" id="label_name" placeholder="Nama Label">
+                        </div>
+
+                        <div class="col-md-6">
+                            {{-- Nama Atribut --}}
+                            <input type="text" class="form-control mt-1" name="name" id="name" placeholder="Nama Atribut">
+                            <p class="text-danger">Sila gunakan '_' untuk menggantikan ruangan kosong.</p>
+                        </div>
+                        <div class="col-md-12">
+                            {{-- Options for select --}}
+                            <textarea name="options" id="options" class="form-control options" style="display: none;" placeholder="option1;option2;option3"></textarea>
+                            <p class="text-danger options">Add options separated by semicolon(;).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submitform()">submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 @endsection
 
 @section('script')
 <script>
+    function submitform() {
+        const form = document.getElementById("frm");
+        const formData = new FormData(form);
+        const formObject = {};
+
+        formData.forEach(function(value, key) {
+            if (formObject[key]) {
+                if (!Array.isArray(formObject[key])) {
+                    formObject[key] = [formObject[key]];
+                }
+                formObject[key].push(value);
+            } else {
+                formObject[key] = value;
+            }
+            
+        });
+
+        var type = $('#select').val();
+        var label = $('#label_name').val();
+        var name = $('#name').val();
+        var options = '';
+        var type = $('#select').val();
+        if (type == 'select') {
+            options = $('textarea#options').val();
+        }
+        var url = "{{route('input-field')}}"
+         $.ajax({
+            url: url, // Route URL
+            type: 'POST', // Request type (GET, POST, etc.)
+             data: formObject,
+            success: function(response) {
+                $('#row1').append(response);
+                $('#Modal').modal("hide");
+            }
+        });
+    }
+    
+    function deletediv(div) {
+        $('#'+div).remove();
+    }
+
+    function changeselect() {
+        var type = $('#type').val();
+        if (type == 'select') {
+            $('.options').show();
+        } else {
+            $('.options').hide();
+        }
+    }
+
+    function submitDynamicForm() {
+        if (!$('#form_name').val() || !$('#category_name').val() || !$('#description').val() || !$('#id_instrumen').val() || !$('#tarikh_didaftar').val() || !$('#tarikh_tutup').val()) {
+            return false;
+        }
+        $('form#dynamicform').submit();
+    }
+
+    $('#dynamicform').submit(function(event) {
+    event.preventDefault();
+        const form = document.getElementById("dynamicform");
+        const formData = new FormData(form);
+        var formObject = [];
+        let i = 0;
+
+        formData.forEach(function(value, name) {
+            var inputElement = $('#'+name);
+            var inputType = inputElement.attr('type');
+            var name = inputElement.attr('name');
+            var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
+            var labelName = labelElement.text();
+            
+            if (inputType == 'select') {
+                var options = [];
+                var option = inputElement.find('option');
+                option.each(function() {
+                  var text = $(this).text();
+                  options.push(text);
+                });
+            } else {
+                var options = [];
+            }
+
+            formObject[i] = {
+                label: labelName,
+                name: name,
+                type: inputType,
+                options: options
+            };
+            i++;
+        });
+
+        var jsonData = JSON.stringify(formObject);
+        var url = "{{route('saveform')}}";
+         $.ajax({
+            url: url, // Route URL
+            type: 'POST', // Request type (GET, POST, etc.)
+             data: {
+                form_data : jsonData,
+                form_name: $('#form_name').val(),
+                category_name: $('#category_name').val(),
+                description: $('#description').val(),
+                tarikh_didaftar: $('#tarikh_didaftar').val(),
+                tarikh_tutup: $('#tarikh_tutup').val(),
+                id_instrumen: $('#id_instrumen').val()
+             },
+            // contentType: 'application/json',
+            success: function(response) {
+                if (response.success) {
+                    // var location = "{{route('dynamic-form-list')}}"
+                    // window.location.href = location;
+                    window.location.reload();
+                } else {
+                    $("#error").show("slow").delay(5000).hide("slow");
+                }
+            }
+        });
+    });
+
     function sahkan_kategori_borang(type) {
         var form_name = $('#form_name').val();
         var name = $('#category_name').val();

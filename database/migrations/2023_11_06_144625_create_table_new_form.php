@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('new_form', function (Blueprint $table) {
+        Schema::create('new_forms', function (Blueprint $table) {
             $table->id();
             $table->string('form_name');
             $table->string('category'); 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('new_form');
+        Schema::dropIfExists('new_forms');
     }
 };

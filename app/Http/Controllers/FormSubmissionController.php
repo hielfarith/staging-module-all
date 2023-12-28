@@ -30,7 +30,7 @@ class FormSubmissionController extends Controller
         $array['type'] = $request->input('type');
         $array['name'] = $request->input('name');
         $array['label'] = $request->input('label_name');
-        $array['slot'] = explode(",", $request->input('options'));
+        $array['slot'] = explode(";", $request->input('options'));
         $insertone = true;
         return view('form.input', compact('array', 'insertone'));
     }
@@ -38,6 +38,8 @@ class FormSubmissionController extends Controller
     public function saveform(Request $request) {
         $data = $request->input();
         $form = new NewForm();
+        dd($data);
+        
         $form->form_name = $data['form_name'];
         $form->category = $data['category_name'];
         $form->type = 'Ajax'; 
