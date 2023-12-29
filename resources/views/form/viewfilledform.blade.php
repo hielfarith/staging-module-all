@@ -20,7 +20,7 @@
 					<input type="{{$array['type']}}" name="{{$array['name']}}" id="{{$array['name']}}" value="{{$value}}" readonly class="form-control">
 				</div>
 			@else
-				<x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="{{$staticForm ? $data[$array['name']] : ''}}" readonly required label="{{$array['label']}}" />
+				<x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="{{$staticForm ? $data[$array['name']] : ''}}" :required="$array['required']" placeholder="{{$array['placeholder']}}" label="{{$array['label']}}" />
 			@endif
 		@elseif($array['type'] == 'select')
 		<div class="form-group main-container">
@@ -33,7 +33,7 @@
 						$disabled = true;
 					}
 				?>
-				<select class="form-control" {{$disabled}}>  
+				<select class="form-control" {{$disabled}} :required="$array['required']" placeholder="{{$array['placeholder']}}">  
 					@if($staticForm)
 						@foreach($array['options'] as $option)
 							<option>{{$option}}</option>
@@ -50,7 +50,7 @@
 				$url = route('download',['id' => $id,'name' => $array['name']]);
 			?>
 			@if($staticForm) 
-			<x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" accept=".pdf,.doc,.docx" disabled>
+			<x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" :required="$array['required']" placeholder="{{$array['placeholder']}}" accept=".pdf,.doc,.docx" disabled>
 		</x-input-file-field>
 			@else
 			<label>{{$array['label']}}</label>

@@ -51,6 +51,16 @@ class FormSubmissionController extends Controller
         $form = new NewForm();
         $form->form_name = $data['form_name'];
         $form->category = $data['category_name'];
+        $form->description = $data['description'];
+        $form->id_instrumen = $data['id_instrumen'];
+
+        $date1 = str_replace('/', '-',  $data['tarikh_didaftar']);
+        $data['tarikh_didaftar'] = date('Y-m-d', strtotime($date1));
+
+        $date2 = str_replace('/', '-',  $data['tarikh_tutup']);
+        $data['tarikh_tutup'] = date('Y-m-d', strtotime($date2));
+
+        $form->penafian_dan_hakmilik = $data['penafian_dan_hakmilik'];
         $form->type = 'Ajax'; 
         $form->data = json_encode($data['form_data']);
         $form->save();
@@ -89,6 +99,7 @@ class FormSubmissionController extends Controller
         $formData = new FormSubmission;
         $formData->form_name = $inputData['form_name'];
         $formData->category = $inputData['category_name'];
+       
         $formData->data = json_encode($inputData);
         $formData->json_data = json_encode($inputData);
 
