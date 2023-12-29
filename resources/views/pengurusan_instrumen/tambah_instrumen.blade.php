@@ -287,9 +287,9 @@ Pengurusan Instrumen
             // contentType: 'application/json',
             success: function(response) {
                 if (response.success) {
-                    // var location = "{{route('dynamic-form-list')}}"
-                    // window.location.href = location;
-                    window.location.reload();
+                    var location = "{{route('senarai_instrumen_dijawab')}}"
+                    window.location.href = location;
+                    // window.location.reload();
                 } else {
                     $("#error").show("slow").delay(5000).hide("slow");
                 }

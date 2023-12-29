@@ -3,7 +3,11 @@
 @section('header')
 Pengurusan Instrumen
 @endsection
-
+<style type="text/css">
+    .delete-button {
+        display: none;
+    }    
+</style>
 @section('breadcrumb')
 <li class="breadcrumb-item">
     <a href="{{ route('home') }}">{{ __('msg.home') }}</a>
