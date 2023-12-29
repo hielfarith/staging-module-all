@@ -231,7 +231,7 @@ Pengurusan Instrumen
 
     function submitDynamicForm() {
         if (!$('#form_name').val() || !$('#category_name').val() || !$('#description').val() || !$('#id_instrumen').val() || !$('#tarikh_didaftar').val() || !$('#tarikh_tutup').val()) {
-            return false;
+            // return false;
         }
         $('form#dynamicform').submit();
     }
