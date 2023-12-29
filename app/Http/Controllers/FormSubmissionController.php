@@ -28,20 +28,27 @@ class FormSubmissionController extends Controller
     public function inputdata(Request $request)
     {
         $input = $request->input();
+
         $array['type'] = $request->input('type');
-        $array['name'] = $request->input('name');
+        $name = strtolower($request->input('name'));
+        $name = str_replace(" ","_",$name);
+        $array['name'] = $name;
         $array['label'] = $request->input('label_name');
+        if (array_key_exists('required', $input)) {
+            $array['required'] = true;
+        } else {
+            $array['required'] = false;
+        }
+        $array['placeholder'] = $request->input('placeholder');;
         $array['slot'] = explode(";", $request->input('options'));
         $insertone = true;
+
         return view('form.input', compact('array', 'insertone'));
     }
 
     public function saveform(Request $request) {
         $data = $request->input();
-
         $form = new NewForm();
-        dd($data);
-        
         $form->form_name = $data['form_name'];
         $form->category = $data['category_name'];
         $form->type = 'Ajax'; 
@@ -135,6 +142,11 @@ class FormSubmissionController extends Controller
         return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId', 'staticForm'));
     }
     
+    public function previewForm(Request $request) {
+        $input = $request->input();
+        return view('form.preview-form', compact('input'));
+    }
+
     public function download($id, $name)
     {
         $filledform = FormSubmission::where('id', $id)->first();

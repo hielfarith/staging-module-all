@@ -6,6 +6,7 @@ Route::controller(PengurusanInstrumenController::class)->group(function () {
     Route::prefix('pengurusan_instrumen')->group(function() {
         Route::get('instrumen_baru','TambahInstrumen')->name('instrumen_baru');
         Route::get('lihat_instrumen','LihatInstrumen')->name('lihat_instrumen');
+        Route::get('show_all_forms','showAllForms')->name('show_all_forms');
         Route::post('sahkan_kategori_instrumen','SahkanKategoriInstrumen')->name('sahkan_kategori_instrumen');
 
 

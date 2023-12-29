@@ -150,6 +150,7 @@ Route::prefix('dynamic')->group(function () {
     Route::post('saveform', [FormSubmissionController::class, 'saveform'])->name('saveform');
     Route::post('checkname', [FormSubmissionController::class, 'checkname'])->name('checkname');
     Route::post('verify', [FormSubmissionController::class, 'verify'])->name('verify');
+    Route::post('preview-form', [FormSubmissionController::class, 'previewForm'])->name('preview-form');
 });
 
 

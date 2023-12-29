@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('new_forms', function (Blueprint $table) {
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('id_instrumen')->nullable();
             $table->dateTime('tarikh_didaftar')->nullable();
             $table->dateTime('tarikh_tutup')->nullable();
+            $table->longText('penafian_dan_hakmilik')->nullable();
         });
     }
 
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->dropColumn('id_instrumen');
             $table->dropColumn('tarikh_didaftar');
             $table->dropColumn('tarikh_tutup');
+            $table->dropColumn('penafian_dan_hakmilik');
         });
     }
 };

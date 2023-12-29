@@ -1,15 +1,15 @@
 @if($insertone)
-
 	@if( in_array($array['type'], ['text', 'number']))
-		<x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="" label="{{$array['label']}}" />
+		<x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="" :required="$array['required']"
+		label="{{$array['label']}}" placeholder="{{$array['placeholder']}}"></x-input-field>
 	@elseif($array['type'] == 'select')
-		<x-input-select-field name="{{$array['name']}}" label="{{$array['label']}}">
+		<x-input-select-field name="{{$array['name']}}" label="{{$array['label']}}" :required="$array['required']" placeholder="{{$array['placeholder']}}">
 			@foreach($array['slot'] as $option)
 			    <option value="{{$option}}">{{$option}}</option>
 			@endforeach
 		</x-input-select-field>
 	@elseif($array['type'] == 'file')
-		<x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" accept=".pdf,.doc,.docx">
+		<x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" accept=".pdf,.doc,.docx" :required="$array['required']" placeholder="{{$array['placeholder']}}">
 		</x-input-file-field>
 	@endif
 @else

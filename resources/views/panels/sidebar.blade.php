@@ -47,10 +47,10 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate"> Tambah Instrumen </span>
                         </a>
                     </li>
-                    <li class="{{ in_array(request()->route()->getName(),['lihat_instrumen'])? 'active': '' }}">
-                        <a href="{{ route('lihat_instrumen') }}" class="nav-link">
+                    <li class="{{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
+                        <a href="{{ route('show_all_forms') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Lihat Instrumen </span>
+                            <span class="menu-title text-truncate"> List Instrumen </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">

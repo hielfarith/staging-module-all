@@ -1,7 +1,7 @@
 <div class="row" id="div_{{$name}}">
     <label for="{{ $name }}" class="fw-bolder">{{ $label }}</label>
     <div class="col-md-8">
-        <select name="{{ $name }}" id="{{ $name }}" {{ $attributes }} class="form-control" type="select">
+        <select name="{{ $name }}" id="{{ $name }}" {{ $attributes }} class="form-control" type="select" placeholder="{{$placeholder}}"  @if($required) required @endif>
             <option value="">Select</option>
             {{ $slot }}
         </select>

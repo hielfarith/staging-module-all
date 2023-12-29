@@ -71,6 +71,8 @@ Pengurusan Instrumen
                 
                 <input type="hidden" name="row_count" id="row_count" value="1">
                     <!-- Instrument Form starts -->
+                    <form id="dynamicform">
+
                     <div class="card-body invoice-padding invoice-product-details" id="row1">
                         <div class="row mt-1">
                             <div class="col-12 px-0">
@@ -82,8 +84,8 @@ Pengurusan Instrumen
                             </div>
                         </div>
                     </div>
+                    </form>
                     <!-- Instrument Form ends -->
-                </form>
                 <hr class="invoice-spacing mt-0" />
 
                 <!-- Footer starts -->
@@ -92,7 +94,7 @@ Pengurusan Instrumen
                         <div class="col-12">
                             <div class="mb-2">
                                 <label for="note" class="form-label fw-bold">Penafian dan Hakmilik:</label>
-                                <textarea class="form-control" rows="2" id="note"></textarea>
+                                <textarea name="penafian_dan_hakmilik" class="form-control" rows="2" id="penafian_dan_hakmilik"></textarea>
                             </div>
                         </div>
                     </div>
@@ -100,7 +102,7 @@ Pengurusan Instrumen
                 </div>
             </div>
         </div>
-
+ 
         <!-- Tindakan Borang Instrumen starts -->
         <div class="col-xl-3 col-md-4 col-12">
             <div class="card">
@@ -114,14 +116,14 @@ Pengurusan Instrumen
                 </div>
                 <hr>
                 <div class="card-body">
-                    <!-- <a href="{{ route('lihat_instrumen') }}" class="btn btn-primary w-100 mb-75">Lihat Borang</a> -->
+                    <a onclick="preview()" class="btn btn-primary w-100 mb-75">Lihat Borang</a>
                     <button type="button" class="btn btn-success w-100" onclick="submitDynamicForm()">Simpan</button>
                 </div>
             </div>
         </div>
         <!-- Tindakan Borang Instrumen ends -->
     </div>
-    <!-- Modal box -->
+    <!-- Modal box for input filling-->
     <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -159,11 +161,25 @@ Pengurusan Instrumen
                             <input type="text" class="form-control mt-1" name="name" id="name" placeholder="Nama Atribut">
                             <p class="text-danger">Sila gunakan '_' untuk menggantikan ruangan kosong.</p>
                         </div>
+
+
                         <div class="col-md-12">
                             {{-- Options for select --}}
                             <textarea name="options" id="options" class="form-control options" style="display: none;" placeholder="option1;option2;option3"></textarea>
-                            <p class="text-danger options">Add options separated by semicolon(;).</p>
+                            <p class="text-danger options" style="display: none;">Add options separated by semicolon(;).</p>
                         </div>
+
+                        <div class="col-md-8">
+                            {{-- placeholder --}}
+                            <input type="text" class="form-control mt-1" name="placeholder" id="placeholder" placeholder="Place Holder">
+                        </div>
+
+                        <div class="col-md-4">
+                            {{-- required --}}
+                               <input type="checkbox" class="form-check-input mt-1" id="requiredcheck" value=1 name="required">
+                                <label class="form-check-label mt-1" for="requiredcheck">Required</label>
+                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -171,6 +187,24 @@ Pengurusan Instrumen
                     <button type="button" class="btn btn-primary" onclick="submitform()">submit</button>
                 </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+ <!-- Modal box for preview form-->
+    <div class="modal fade" id="ModalPreview" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Lihat</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="ModalPreviewContent">
+                         
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -230,14 +264,25 @@ Pengurusan Instrumen
     }
 
     function submitDynamicForm() {
-        if (!$('#form_name').val() || !$('#category_name').val() || !$('#description').val() || !$('#id_instrumen').val() || !$('#tarikh_didaftar').val() || !$('#tarikh_tutup').val()) {
-            // return false;
-        }
+        // if (!$('#form_name').val() || !$('#category_name').val() || !$('#description').val() || !$('#id_instrumen').val() || !$('#tarikh_didaftar').val() || !$('#tarikh_tutup').val()) {
+        //     // return false;
+        // }
+        $('form#dynamicform').find('select, textarea, input').each(function() {
+            if(!$(this).prop('required')) { 
+                console.log("NR");
+             
+             } else { 
+                var val = $(this).prop('value'); 
+                console.log(val) 
+                console.log("IR"); 
+            } 
+        });
+
         $('form#dynamicform').submit();
     }
 
     $('#dynamicform').submit(function(event) {
-    event.preventDefault();
+        event.preventDefault();
         const form = document.getElementById("dynamicform");
         const formData = new FormData(form);
         var formObject = [];
@@ -249,7 +294,9 @@ Pengurusan Instrumen
             var name = inputElement.attr('name');
             var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
             var labelName = labelElement.text();
-            
+            var required = inputElement.attr('required') ? true : false;
+            var placeholder = inputElement.attr('placeholder');
+
             if (inputType == 'select') {
                 var options = [];
                 var option = inputElement.find('option');
@@ -265,7 +312,9 @@ Pengurusan Instrumen
                 label: labelName,
                 name: name,
                 type: inputType,
-                options: options
+                options: options,
+                required: required,
+                placeholder: placeholder
             };
             i++;
         });
@@ -282,7 +331,8 @@ Pengurusan Instrumen
                 description: $('#description').val(),
                 tarikh_didaftar: $('#tarikh_didaftar').val(),
                 tarikh_tutup: $('#tarikh_tutup').val(),
-                id_instrumen: $('#id_instrumen').val()
+                id_instrumen: $('#id_instrumen').val(),
+                penafian_dan_hakmilik: $('#penafian_dan_hakmilik').val()
              },
             // contentType: 'application/json',
             success: function(response) {
@@ -319,6 +369,67 @@ Pengurusan Instrumen
                 }
             }
         });
+    }
+
+    function  preview() {
+        const form = document.getElementById("dynamicform");
+        const formData = new FormData(form);
+        var formObject = [];
+        let i = 0;
+
+        formData.forEach(function(value, name) {
+            var inputElement = $('#'+name);
+            var inputType = inputElement.attr('type');
+            var name = inputElement.attr('name');
+            var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
+            var labelName = labelElement.text();
+            var required = inputElement.attr('required');
+            var placeholder = inputElement.attr('placeholder');
+
+            if (inputType == 'select') {
+                var options = [];
+                var option = inputElement.find('option');
+                option.each(function() {
+                  var text = $(this).text();
+                  options.push(text);
+                });
+            } else {
+                var options = [];
+            }
+
+            formObject[i] = {
+                label: labelName,
+                name: name,
+                type: inputType,
+                options: options,
+                required: required,
+                placeholder: placeholder
+            };
+            i++;
+        });
+
+        var jsonData = JSON.stringify(formObject);
+        var url = "{{route('preview-form')}}";
+         $.ajax({
+            url: url, // Route URL
+            type: 'POST', // Request type (GET, POST, etc.)
+             data: {
+                form_data : jsonData,
+                form_name: $('#form_name').val(),
+                category_name: $('#category_name').val(),
+                description: $('#description').val(),
+                tarikh_didaftar: $('#tarikh_didaftar').val(),
+                tarikh_tutup: $('#tarikh_tutup').val(),
+                id_instrumen: $('#id_instrumen').val(),
+                penafian_dan_hakmilik: $('#penafian_dan_hakmilik').val()
+             },
+            // contentType: 'application/json',
+            success: function(response) {
+                $('#ModalPreview').modal("show");
+                $('#ModalPreviewContent').empty();
+                $('#ModalPreviewContent').append(response);
+            }
+        }); 
     }
 
     $(function () {
