@@ -125,7 +125,7 @@
                 </div>
                 <hr>
                 <div class="card-body">
-                    <a href="{{ route('instrumen_baru') }}" class="btn btn-primary w-100 mb-75">Kemaskini Borang</a>
+                    <a class="btn btn-primary w-100 mb-75" data-bs-dismiss="modal" aria-label="Close">Kemaskini Borang</a>
                     <button type="button" class="btn btn-success w-100">Simpan</button>
                 </div>
             </div>
