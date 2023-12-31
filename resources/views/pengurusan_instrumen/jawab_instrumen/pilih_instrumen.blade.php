@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+<style type="text/css">
+.delete-button {
+        display: none;
+    }
+</style>
 @section('header')
 Pengurusan Instrumen
 @endsection

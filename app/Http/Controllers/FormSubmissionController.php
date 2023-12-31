@@ -89,12 +89,19 @@ class FormSubmissionController extends Controller
         $form_name = $data->form_name;
         $category = $data->category;
         $insertone = false;
-        return view('form.input', compact('arrays','insertone', 'form_name','category'));
+        $formdata['description'] = $data->description;
+        $formdata['id_instrumen'] = $data->id_instrumen;
+        $formdata['tarikh_tutup'] = $data->tarikh_tutup;
+        $formdata['penafian_dan_hakmilik'] = $data->penafian_dan_hakmilik;
+        $formdata['tarikh_didaftar'] = $data->tarikh_didaftar;
+
+        return view('form.input', compact('arrays','insertone', 'form_name','category', 'formdata'));
     }
 
     public function formSubmit(Request $request)
     {
         $inputData = $request->input();
+
         $inputFiles = $request->file();
         $formData = new FormSubmission;
         $formData->form_name = $inputData['form_name'];

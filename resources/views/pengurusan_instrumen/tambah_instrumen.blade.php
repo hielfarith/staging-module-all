@@ -294,6 +294,7 @@ Pengurusan Instrumen
             var name = inputElement.attr('name');
             var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
             var labelName = labelElement.text();
+            labelName = labelName.replace('*','');
             var required = inputElement.attr('required') ? true : false;
             var placeholder = inputElement.attr('placeholder');
 
@@ -337,9 +338,8 @@ Pengurusan Instrumen
             // contentType: 'application/json',
             success: function(response) {
                 if (response.success) {
-                    var location = "{{route('senarai_instrumen_dijawab')}}"
+                    var location = "{{route('show_all_forms')}}"
                     window.location.href = location;
-                    // window.location.reload();
                 } else {
                     $("#error").show("slow").delay(5000).hide("slow");
                 }
@@ -383,6 +383,7 @@ Pengurusan Instrumen
             var name = inputElement.attr('name');
             var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
             var labelName = labelElement.text();
+            labelName = labelName.replace('*','');
             var required = inputElement.attr('required');
             var placeholder = inputElement.attr('placeholder');
 

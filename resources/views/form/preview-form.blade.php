@@ -126,7 +126,7 @@
                 <hr>
                 <div class="card-body">
                     <a class="btn btn-primary w-100 mb-75" data-bs-dismiss="modal" aria-label="Close">Kemaskini Borang</a>
-                    <button type="button" class="btn btn-success w-100">Simpan</button>
+                    <button type="button" class="btn btn-success w-100" onclick="submitDynamicForm()">Simpan</button>
                 </div>
             </div>
         </div>

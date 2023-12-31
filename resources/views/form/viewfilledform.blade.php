@@ -1,8 +1,5 @@
 	@foreach($arrays as $array)
 		<?php
-		if ($array['type'] == 'select') {
-			// dd($array);
-		}
 		if(!array_key_exists('type', $array))
 			continue;
 		?>
@@ -24,7 +21,7 @@
 			@endif
 		@elseif($array['type'] == 'select')
 		<div class="form-group main-container">
-			<label>{{$array['label']}}</label>
+			<label>{{$array['label']}} @if($array['required']) <span style="color: red;">*</span> @endif</label>
 			<div class="col-md-8">
 				<?php
 					if ($staticForm) {
