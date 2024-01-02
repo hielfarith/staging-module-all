@@ -28,19 +28,19 @@
 				@endphp
 				<div class="form-group main-container">
 					<label>{{$array['label']}}</label>
-					<input type="{{$array['type']}}" name="{{$array['name']}}" id="{{$array['name']}}" value="{{$value}}" readonly class="form-control">
+					<input type="{{$array['type']}}" name="{{$array['name']}}" id="{{$array['name']}}" value="{{$value}}"  class="form-control">
 				</div>
 			@else
-				<x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="" required label="{{$array['label']}}" />
+				<x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="" :required="$array['required']" placeholder="{{$array['placeholder']}}" label="{{$array['label']}}" />
 			@endif
 		@elseif($array['type'] == 'select')
-			<x-input-select-field name="{{$array['name']}}" label="{{$array['label']}}" required>
+			<x-input-select-field name="{{$array['name']}}" label="{{$array['label']}}" :required="$array['required']" placeholder="{{$array['placeholder']}}">
 				@foreach($array['options'] as $option)
 				    <option value="{{$option}}">{{$option}}</option>
 				@endforeach
 			</x-input-select-field>
 		@elseif($array['type'] == 'file')
-			<x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" accept=".pdf,.doc,.docx" required>
+			<x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" accept=".pdf,.doc,.docx" :required="$array['required']" placeholder="{{$array['placeholder']}}">
 			</x-input-file-field>
 		@endif
 	@endforeach

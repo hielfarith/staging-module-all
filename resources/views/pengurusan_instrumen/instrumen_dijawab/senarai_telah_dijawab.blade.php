@@ -140,5 +140,23 @@ function maklumatPengisianInstrumen(id){
         }
     });
 }
+
+function  formverify(status, formid) {
+        var url = "{{route('verify')}}";
+
+        $.ajax({
+            url: url, // Route URL
+            type: 'POST', // Request type (GET, POST, etc.)
+             data: {
+                status: status,
+                formid: formid
+             }, 
+            success: function(response) {
+                if (response.success) {
+                    window.location.reload();
+               } 
+            }
+        });
+    }
 </script>
 @endsection

@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 use App\Models\FormSubmission;
 use App\Models\NewForm;
+use App\Models\Module;
+use App\Models\MasterAction;
+use App\Models\ModuleStatus;
+use App\Helpers\FMF;
+
+use Illuminate\Support\Facades\Storage;
 
 class PengurusanInstrumenController extends Controller
 {
@@ -96,12 +101,26 @@ class PengurusanInstrumenController extends Controller
     public function SimpanInstrumenTelahDijawab(Request $request)
     {
         $inputData = $request->input();
+
         $inputFiles = $request->file();
         $formData = new FormSubmission;
         $formData->form_name = $inputData['form_name'];
         $formData->category = $inputData['category_name'];
+       
         $formData->data = json_encode($inputData);
         $formData->json_data = json_encode($inputData);
+
+        $DynamicFormData = NewForm::where('form_name', $inputData['form_name'])->where('category', $inputData['category_name'])->first();
+        $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
+        if ($moduleId) {
+            $dynamicModuleId = $moduleId->id;
+            $moduleStatus = ModuleStatus::where('module_id', $dynamicModuleId)->where('status_index', 1)->first();
+
+            $status = FMF::getNextStatus($dynamicModuleId, $moduleStatus->id, 'submit');
+        } else {
+            $status = 1;
+        }
+        $formData->status = $status ?? 1;
         $path = [];
         if (count($inputFiles) > 0) {
             foreach ($inputFiles as $key => $value) {
@@ -113,7 +132,6 @@ class PengurusanInstrumenController extends Controller
             }
         }
         $formData->file_path = json_encode($path);
-
         if($formData->save()) {
             return ['success' => true];
         } else {
@@ -158,17 +176,29 @@ class PengurusanInstrumenController extends Controller
     public function LihatInstrumenDijawab(Request $request){
 
         $filledform = FormSubmission::where('id', $request->id)->first();
-        $data = NewForm::where('form_name', $filledform->form_name)->first();
-
-        $arrays = json_decode(json_decode($data->data), true);
+        $DynamicFormData = NewForm::where('form_name', $filledform->form_name)->where('category', $filledform->category)->first();
+        $arrays = json_decode(json_decode($DynamicFormData->data), true);
         $form_name = $filledform->form_name;
         $category = $filledform->category;
         $insertone = false;
         $data = json_decode($filledform->data, true);
         $documents = json_decode($filledform->file_path, true);
         $id = $filledform->id;
+        $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
+        if ($moduleId) {
+            $dynamicModuleId = $moduleId->id;
+            $canView = FMF::checkPermission($dynamicModuleId, $filledform->status, 'form view');
+            $canVerify = FMF::checkPermission($dynamicModuleId, $filledform->status, 'verify form');
+            $canApprove = FMF::checkPermission($dynamicModuleId, $filledform->status, 'approve form');
+            $canQuery = FMF::checkPermission($dynamicModuleId, $filledform->status, 'query');
+        } else {
+            $canView =$canVerify = $canApprove = $canQuery = false;
+            $dynamicModuleId = null;
+        }
 
-        return view('pengurusan_instrumen.instrumen_dijawab.atribut_telah_dijawab', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id'));
+        $staticForm = false;
+
+        return view('pengurusan_instrumen.instrumen_dijawab.atribut_telah_dijawab', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId', 'staticForm'));
     }
 
     // Muat Turun Fail yang Dimuatnaik Semasa Menjawab Instrumen

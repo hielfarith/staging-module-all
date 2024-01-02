@@ -16,6 +16,14 @@
 <div class="row">
     <form id="borang_jawab_instrumen">
         @csrf()
+        <div class="col-md-12 mb-1">
+            <label class="fw-bolder">Nama Instrumen</label>
+            <input class="form-control" type="text" name="form_name" id="form_name" value="{{ $form_name }}" readonly>
+        </div>
+        <div class="col-md-12 mb-1">
+            <label class="fw-bolder">Kategori Instrumen</label>
+            <input class="form-control" type="text" name="category_name" id="category_name" value="{{ $category }}" readonly>
+        </div>
         @foreach($arrays as $array)
             @if( in_array($array['type'], ['text', 'number']))
                 @if(in_array($array['name'], ['form_name','category_name']))
@@ -48,7 +56,7 @@
 
         {{-- Button: Submit Borang Instrumen yang Telah Dijawab --}}
         <div class="d-flex justify-content-end align-items-center my-1">
-            <button type="button" class="btn btn-primary float-right">Hantar</button>
+            <button type="submit" class="btn btn-primary float-right">Hantar</button>
         </div>
     </form>
 </div>
