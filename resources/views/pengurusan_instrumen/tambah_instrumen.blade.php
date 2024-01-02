@@ -144,6 +144,10 @@ Pengurusan Instrumen
                                 <option value="number">Nombor</option>
                                 <option value="file">Muat Naik Fail</option>
                                 <option value="select">Pilihan</option>
+                                <option value="email">Email</option>
+                                <option value="segment">Segment</option>
+                                <!-- <option value="radio">Radio</option> -->
+                                <!-- <option value="checkbox">Checkbox</option> -->
                             </select>
                         </div>
 
@@ -244,6 +248,7 @@ Pengurusan Instrumen
             type: 'POST', // Request type (GET, POST, etc.)
              data: formObject,
             success: function(response) {
+                $('#type').val('');
                 $('#row1').append(response);
                 $('#Modal').modal("hide");
             }
@@ -256,7 +261,7 @@ Pengurusan Instrumen
 
     function changeselect() {
         var type = $('#type').val();
-        if (type == 'select') {
+        if (type == 'select' || type == 'radio' || type == 'checkbox') {
             $('.options').show();
         } else {
             $('.options').hide();
@@ -307,6 +312,12 @@ Pengurusan Instrumen
                 });
             } else {
                 var options = [];
+            }
+           var segment = inputElement.attr('segment');
+
+            if (typeof segment != "undefined") {
+                inputType = 'segment';
+                labelName = inputElement.attr('label');
             }
 
             formObject[i] = {
@@ -376,9 +387,8 @@ Pengurusan Instrumen
         const formData = new FormData(form);
         var formObject = [];
         let i = 0;
-
-        formData.forEach(function(value, name) {
-            var inputElement = $('#'+name);
+         formData.forEach(function(value, name) {
+             var inputElement = $('#'+name);
             var inputType = inputElement.attr('type');
             var name = inputElement.attr('name');
             var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
@@ -386,7 +396,6 @@ Pengurusan Instrumen
             labelName = labelName.replace('*','');
             var required = inputElement.attr('required');
             var placeholder = inputElement.attr('placeholder');
-
             if (inputType == 'select') {
                 var options = [];
                 var option = inputElement.find('option');
@@ -396,6 +405,14 @@ Pengurusan Instrumen
                 });
             } else {
                 var options = [];
+            }
+
+            var segment = inputElement.attr('segment');
+
+            if (typeof segment != "undefined") {
+                inputType = 'segment';
+                labelName = inputElement.attr('label');
+                console.log(segment)
             }
 
             formObject[i] = {
@@ -410,6 +427,7 @@ Pengurusan Instrumen
         });
 
         var jsonData = JSON.stringify(formObject);
+
         var url = "{{route('preview-form')}}";
          $.ajax({
             url: url, // Route URL

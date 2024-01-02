@@ -94,7 +94,7 @@ class PengurusanInstrumenController extends Controller
         $formdata['penafian_dan_hakmilik'] = $data->penafian_dan_hakmilik;
         $formdata['tarikh_didaftar'] = $data->tarikh_didaftar;
 
-        return view('pengurusan_instrumen.jawab_instrumen.atribut_instrumen', compact('arrays','insertone', 'form_name','category', 'formdata'));
+        return view('pengurusan_instrumen.jawab_instrumen.atribut_instrumen', compact('arrays','insertone', 'form_name','category', 'formdata', 'data'));
     }
 
     // Simpan Maklumat Bagi Borang Instrumen yang Telah Dijawab
@@ -198,7 +198,7 @@ class PengurusanInstrumenController extends Controller
 
         $staticForm = false;
 
-        return view('pengurusan_instrumen.instrumen_dijawab.atribut_telah_dijawab', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId', 'staticForm'));
+        return view('pengurusan_instrumen.instrumen_dijawab.atribut_telah_dijawab', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId', 'staticForm', 'DynamicFormData'));
     }
 
     // Muat Turun Fail yang Dimuatnaik Semasa Menjawab Instrumen

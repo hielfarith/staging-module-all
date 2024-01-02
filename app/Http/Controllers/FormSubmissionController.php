@@ -55,10 +55,10 @@ class FormSubmissionController extends Controller
         $form->id_instrumen = $data['id_instrumen'];
 
         $date1 = str_replace('/', '-',  $data['tarikh_didaftar']);
-        $data['tarikh_didaftar'] = date('Y-m-d', strtotime($date1));
+        $form->tarikh_didaftar = date('Y-m-d', strtotime($date1));
 
         $date2 = str_replace('/', '-',  $data['tarikh_tutup']);
-        $data['tarikh_tutup'] = date('Y-m-d', strtotime($date2));
+        $form->tarikh_tutup = date('Y-m-d', strtotime($date2));
 
         $form->penafian_dan_hakmilik = $data['penafian_dan_hakmilik'];
         $form->type = 'Ajax'; 

@@ -11,6 +11,18 @@
 	@elseif($array['type'] == 'file')
 		<x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" accept=".pdf,.doc,.docx" :required="$array['required']" placeholder="{{$array['placeholder']}}">
 		</x-input-file-field>
+	@elseif($array['type'] == 'segment')
+	<div class="row" id="div_{{$array['name']}}" style="text-align: center;">
+		<div class="col-md-8 alert alert-info" role="alert">
+			<p class="fw-bolder">{{$array['label']}}</p>
+		</div>
+        <input type="hidden" id="{{$array['name']}}" name="{{$array['name']}}" label="{{$array['label']}}" segment value="{{$array['label']}}">
+        <div class="col-md-2">
+            <a class="delete-button btn-btn-danger text-danger" onclick="deletediv('div_{{$array['name']}}')">
+                <i class="fa fa-trash"></i>
+            </a>
+        </div>
+	</div>
 	@endif
 @else
 
@@ -42,6 +54,12 @@
 		@elseif($array['type'] == 'file')
 			<x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" accept=".pdf,.doc,.docx" :required="$array['required']" placeholder="{{$array['placeholder']}}">
 			</x-input-file-field>
+		@elseif($array['type'] == 'segment')
+		<div class="row" id="div_{{$array['name']}}" style="text-align: center;">
+			<div class="col-md-8 alert alert-info" role="alert">
+				<p class="fw-bolder">{{$array['label']}}</p>
+			</div>
+		</div>
 		@endif
 	@endforeach
 	<div class="form-group main-container" style="padding-top: 5px;">

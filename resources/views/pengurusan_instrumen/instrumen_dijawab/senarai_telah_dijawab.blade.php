@@ -52,7 +52,7 @@ Pengurusan Instrumen
 </div>
 
 <div class="modal fade text-start" id="modal-instrumen-diisi" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Maklumat Pengisian Instrumen</h4>

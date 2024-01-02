@@ -83,6 +83,10 @@
                                                      @if(isset($data['required']))<span style="color: red;">*</span>  @endif
                                                 </label>
                                                 <input type="file" name="{{$data['name']}}" class="form-control" accept=".pdf,.doc,.docx" placeholder="{{$data['placeholder']}}">
+                                            @elseif($data['type'] == 'segment')
+                                                <div class="row alert alert-info" role="alert" style="text-align: center;">
+                                                    <p class="fw-bolder">{{$data['label']}}</p>
+                                                </div>
                                             @endif
                                             </div>
                                         @endforeach
