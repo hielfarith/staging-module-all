@@ -104,8 +104,11 @@
                     @endforeach
                 </x-input-select-field>
             @elseif($array['type'] == 'segment')
-                <div class="row alert alert-info" role="alert" style="text-align: center;">
-                    <p class="fw-bolder">{{$array['label']}}</p>
+                <div class="row" role="alert">
+                    <div class="col-xl-8 col-md-8 alert alert-info">
+                        <p class="fw-bolder">{{$array['label']}}</p>
+                        <span>{{$array['options']}}</span>
+                    </div>
                 </div>
             @endif
         @endforeach
@@ -131,7 +134,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

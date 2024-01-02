@@ -102,9 +102,10 @@
             @endif
             </div>
          @elseif($array['type'] == 'segment')
-            <div class="row " role="alert" style="text-align: center;">
+            <div class="row " role="alert" >
                 <div class="col-xl-8 col-12 col-md-8 alert alert-info">
                     <p class="fw-bolder">{{$array['label']}}</p>
+                    <span>{{$array['options']}}</span>
                 </div>
             </div>
         @endif

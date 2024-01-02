@@ -84,8 +84,11 @@
                                                 </label>
                                                 <input type="file" name="{{$data['name']}}" class="form-control" accept=".pdf,.doc,.docx" placeholder="{{$data['placeholder']}}">
                                             @elseif($data['type'] == 'segment')
-                                                <div class="row alert alert-info" role="alert" style="text-align: center;">
+                                                <div class="row alert alert-info" role="alert">
                                                     <p class="fw-bolder">{{$data['label']}}</p>
+                                                    <span>
+                                                        {{$data['options']}}
+                                                    </span>
                                                 </div>
                                             @endif
                                             </div>

@@ -30,6 +30,10 @@ class FormSubmissionController extends Controller
         $input = $request->input();
 
         $array['type'] = $request->input('type');
+        if(empty($request->input('name'))) {
+            $name = $request->input('label_name');
+        }
+
         $name = strtolower($request->input('name'));
         $name = str_replace(" ","_",$name);
         $array['name'] = $name;
@@ -39,8 +43,12 @@ class FormSubmissionController extends Controller
         } else {
             $array['required'] = false;
         }
-        $array['placeholder'] = $request->input('placeholder');;
-        $array['slot'] = explode(";", $request->input('options'));
+        $array['placeholder'] = $request->input('placeholder');
+        if ($array['type'] == 'segment') {
+            $array['slot'] = $request->input('options2');
+        } else{
+            $array['slot'] = explode(";", $request->input('options'));
+        }
         $insertone = true;
 
         return view('form.input', compact('array', 'insertone'));

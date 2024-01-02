@@ -173,6 +173,11 @@ Pengurusan Instrumen
                             <p class="text-danger options" style="display: none;">Add options separated by semicolon(;).</p>
                         </div>
 
+                         <div class="col-md-12">
+                            {{-- Options for select --}}
+                            <textarea name="options2" id="options2" class="form-control options2" style="display: none;" placeholder="Description"></textarea>
+                        </div>
+
                         <div class="col-md-8">
                             {{-- placeholder --}}
                             <input type="text" class="form-control mt-1" name="placeholder" id="placeholder" placeholder="Place Holder">
@@ -242,6 +247,9 @@ Pengurusan Instrumen
         if (type == 'select') {
             options = $('textarea#options').val();
         }
+        if (type == 'segment') {
+            options = $('textarea#options2').val();
+        }
         var url = "{{route('input-field')}}"
          $.ajax({
             url: url, // Route URL
@@ -266,6 +274,13 @@ Pengurusan Instrumen
         } else {
             $('.options').hide();
         }
+
+         if (type == 'segment') {
+            $('.options2').show();
+        } else {
+            $('.options2').hide();
+        }
+
     }
 
     function submitDynamicForm() {
@@ -318,6 +333,7 @@ Pengurusan Instrumen
             if (typeof segment != "undefined") {
                 inputType = 'segment';
                 labelName = inputElement.attr('label');
+                options = inputElement.attr('value');
             }
 
             formObject[i] = {
@@ -412,7 +428,7 @@ Pengurusan Instrumen
             if (typeof segment != "undefined") {
                 inputType = 'segment';
                 labelName = inputElement.attr('label');
-                console.log(segment)
+                options = inputElement.attr('value');
             }
 
             formObject[i] = {
