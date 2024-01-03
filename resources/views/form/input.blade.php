@@ -59,7 +59,7 @@
 		<div class="row" id="div_{{$array['name']}}">
 			<div class="col-md-8 alert alert-info" role="alert">
 				<p class="fw-bolder">{{$array['label']}}</p>
-				<span>{{$array['options']}}</span>
+                    <span>{{ empty($array['options']) ? '' : $array['options'] }}</span>
 			</div>
 		</div>
 		@endif

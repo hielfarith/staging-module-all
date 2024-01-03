@@ -195,9 +195,7 @@ class PengurusanInstrumenController extends Controller
             $canView =$canVerify = $canApprove = $canQuery = false;
             $dynamicModuleId = null;
         }
-
         $staticForm = false;
-
         return view('pengurusan_instrumen.instrumen_dijawab.atribut_telah_dijawab', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId', 'staticForm', 'DynamicFormData'));
     }
 
