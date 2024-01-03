@@ -10,7 +10,7 @@
             </a>
         </div>
 </div> 
-
+<br>
 <!-- <tr id="div_{{$name}}">
     <td>
         <label class="fw-bolder" for="{{ $name }}">{{ $label }}</label>

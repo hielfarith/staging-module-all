@@ -15,14 +15,12 @@ class InputRadioField extends Component
     public $label;
     public $name;
     public $required;
-    public $placeholder;
 
-    public function __construct($label, $name, $required, $placeholder)
+    public function __construct($label, $name, $required)
     {
         $this->label = $label;
         $this->name = $name;
         $this->required = $required;
-        $this->placeholder = $placeholder;
     }
 
     /**

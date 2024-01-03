@@ -17,13 +17,29 @@
 			<p class="fw-bolder">{{$array['label']}}</p>
 			<span>{{$array['slot']}}</span>
 		</div>
-        <input type="hidden" id="{{$array['name']}}" name="{{$array['name']}}" label="{{$array['label']}}" segment value="{{$array['slot']}}">
+        <input type="hidden" id="{{$array['name']}}" checktype="{{$array['type']}}" name="{{$array['name']}}" label="{{$array['label']}}" value="{{$array['slot']}}">
         <div class="col-md-2">
             <a class="delete-button btn-btn-danger text-danger" onclick="deletediv('div_{{$array['name']}}')">
                 <i class="fa fa-trash"></i>
             </a>
         </div>
 	</div>
+	@elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
+		<x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']"
+		label="{{$array['label']}}" placeholder="{{$array['placeholder']}}">
+			@foreach($array['slot'] as $option)
+			<label class="form-check-label">
+				@if($array['type'] == 'radio')
+				<span> <i class="fa fa-circle" aria-hidden="true"></i></span> {{$option}}
+				 @endif
+				 @if($array['type'] == 'checkbox')
+				<span> <i class="fa fa-square" aria-hidden="true"></i></span> {{$option}}
+				 @endif
+			</label>
+			@endforeach
+			<input type="hidden" label="{{$array['label']}}" class="form-check-input" checktype="{{$array['type']}}" name="{{$array['name']}}" value="{{json_encode($array['slot'])}}" id="{{$array['name']}}">
+		</x-input-radio-field>
+
 	@endif
 @else
 
@@ -62,6 +78,17 @@
                     <span>{{ empty($array['options']) ? '' : $array['options'] }}</span>
 			</div>
 		</div>
+		@elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
+		<x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']"
+		label="{{$array['label']}}" placeholder="{{$array['placeholder']}}">
+			@foreach($array['options'] as $option)
+			<label class="form-check-label">
+				<input type="{{$array['type']}}" class="form-check-input" name="{{$array['name']}}" value="{{$option}}" id="{{$array['name']}}"
+				 @if($array['required']) required @endif>
+				 {{trim($option)}}
+			</label>
+			@endforeach
+		</x-input-radio-field>
 		@endif
 	@endforeach
 	<div class="form-group main-container" style="padding-top: 5px;">

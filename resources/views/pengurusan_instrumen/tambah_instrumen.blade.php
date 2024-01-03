@@ -146,8 +146,8 @@ Pengurusan Instrumen
                                 <option value="select">Pilihan</option>
                                 <option value="email">Email</option>
                                 <option value="segment">Segment</option>
-                                <!-- <option value="radio">Radio</option> -->
-                                <!-- <option value="checkbox">Checkbox</option> -->
+                                <option value="radio">Radio</option>
+                                <option value="checkbox">Checkbox</option>
                             </select>
                         </div>
 
@@ -404,7 +404,9 @@ Pengurusan Instrumen
         var formObject = [];
         let i = 0;
          formData.forEach(function(value, name) {
-             var inputElement = $('#'+name);
+            var inputElement = $('#'+name);
+            console.log(name)
+            console.log(inputElement)
             var inputType = inputElement.attr('type');
             var name = inputElement.attr('name');
             var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
@@ -412,6 +414,7 @@ Pengurusan Instrumen
             labelName = labelName.replace('*','');
             var required = inputElement.attr('required');
             var placeholder = inputElement.attr('placeholder');
+
             if (inputType == 'select') {
                 var options = [];
                 var option = inputElement.find('option');
@@ -423,14 +426,23 @@ Pengurusan Instrumen
                 var options = [];
             }
 
-            var segment = inputElement.attr('segment');
-
-            if (typeof segment != "undefined") {
-                inputType = 'segment';
-                labelName = inputElement.attr('label');
-                options = inputElement.attr('value');
+            if (inputType == 'hidden') {
+                var checktype = inputElement.attr('checktype');
+                if (checktype == 'segment') {
+                    inputType = 'segment';
+                    labelName = inputElement.attr('label');
+                    options = inputElement.attr('value');
+                } else if(checktype == 'radio') {
+                    inputType = 'radio';
+                    labelName = inputElement.attr('label');
+                     options = inputElement.attr('value');
+                } else if(checktype == 'checkbox') {
+                    inputType = 'checkbox';
+                    labelName = inputElement.attr('label');
+                    options = inputElement.attr('value');
+                }
             }
-
+    
             formObject[i] = {
                 label: labelName,
                 name: name,

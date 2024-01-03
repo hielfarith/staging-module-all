@@ -90,6 +90,22 @@
                                                         {{$data['options']}}
                                                     </span>
                                                 </div>
+                                            @elseif($data['type'] == 'radio' || $data['type'] == 'checkbox')
+                                            <div>
+                                                <label class="form-label fw-bolder">{{$data['label']}} 
+                                                     @if(isset($data['required']))<span style="color: red;">*</span>  @endif
+                                                </label>
+                                            </div>
+                                                <label>
+                                                    <?php
+                                                        $options = json_decode($data['options'], true);
+                                                    ?>
+                                                     @foreach($options as $option)
+                                                     <label>
+                                                        <input type="{{$data['type']}}" name="{{$data['name']}}" class="form-check-input" $data['required']>{{$option}}
+                                                     </label>
+                                                    @endforeach
+                                                </label>
                                             @endif
                                             </div>
                                         @endforeach
