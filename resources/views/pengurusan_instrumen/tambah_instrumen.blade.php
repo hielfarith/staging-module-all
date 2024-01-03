@@ -328,14 +328,23 @@ Pengurusan Instrumen
             } else {
                 var options = [];
             }
-           var segment = inputElement.attr('segment');
-
-            if (typeof segment != "undefined") {
-                inputType = 'segment';
-                labelName = inputElement.attr('label');
-                options = inputElement.attr('value');
+            
+            if (inputType == 'hidden') {
+                var checktype = inputElement.attr('checktype');
+                if (checktype == 'segment') {
+                    inputType = 'segment';
+                    labelName = inputElement.attr('label');
+                    options = inputElement.attr('value');
+                } else if(checktype == 'radio') {
+                    inputType = 'radio';
+                    labelName = inputElement.attr('label');
+                     options = inputElement.attr('value');
+                } else if(checktype == 'checkbox') {
+                    inputType = 'checkbox';
+                    labelName = inputElement.attr('label');
+                    options = inputElement.attr('value');
+                }
             }
-
             formObject[i] = {
                 label: labelName,
                 name: name,
