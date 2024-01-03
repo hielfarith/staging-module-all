@@ -169,13 +169,13 @@ Pengurusan Instrumen
 
                         <div class="col-md-12">
                             {{-- Options for select --}}
-                            <textarea name="options" id="options" class="form-control options" style="display: none;" placeholder="option1;option2;option3"></textarea>
+                            <textarea name="options" id="options" class="form-control options" style="display: none;" placeholder="option1;option2;option3" required></textarea>
                             <p class="text-danger options" style="display: none;">Add options separated by semicolon(;).</p>
                         </div>
 
                          <div class="col-md-12">
                             {{-- Options for select --}}
-                            <textarea name="options2" id="options2" class="form-control options2" style="display: none;" placeholder="Description"></textarea>
+                            <textarea name="options2" id="options2" class="form-control options2" style="display: none;" placeholder="Description" required></textarea>
                         </div>
 
                         <div class="col-md-8">
