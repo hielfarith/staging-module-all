@@ -148,6 +148,8 @@ Pengurusan Instrumen
                                 <option value="segment">Segment</option>
                                 <option value="radio">Radio</option>
                                 <option value="checkbox">Checkbox</option>
+                                <option value="date">Date</option>
+                                <option value="time">Time</option>
                             </select>
                         </div>
 

@@ -48,7 +48,7 @@
                 </div>
                 <!-- Header ends -->
 @if($insertone)
-    @if( in_array($array['type'], ['text', 'number']))
+    @if( in_array($array['type'], ['text', 'number','date','time','email']))
         <x-input-field type="{{$array['type']}}" label="{{$array['label']}}" name="{{$array['name']}}" value="" :required="$array['required']" placeholder="{{$array['placeholder']}}"></x-input-field>
     @elseif($array['type'] == 'select')
         <x-input-select-field name="{{$array['name']}}" label="{{$array['label']}}" :required="$array['required']" placeholder="{{$array['placeholder']}}">
@@ -95,7 +95,7 @@
             <input class="form-control" type="text" name="category_name" id="category_name" value="{{ $category }}" readonly>
         </div>
         @foreach($arrays as $array)
-            @if( in_array($array['type'], ['text', 'number']))
+            @if( in_array($array['type'], ['text', 'number', 'date','time','email']))
                 @if(in_array($array['name'], ['form_name','category_name']))
                     @php
                     if ($array['name'] == 'form_name') {

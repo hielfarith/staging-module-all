@@ -53,7 +53,7 @@
         if(!array_key_exists('type', $array))
             continue;
         ?>
-        @if( in_array($array['type'], ['text', 'number']))
+        @if( in_array($array['type'], ['text', 'number','date','time','email']))
             @if(in_array($array['name'], ['form_name','category_name']))
                 @php
                 if ($array['name'] == 'form_name') {

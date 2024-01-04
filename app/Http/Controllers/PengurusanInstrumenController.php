@@ -101,7 +101,6 @@ class PengurusanInstrumenController extends Controller
     public function SimpanInstrumenTelahDijawab(Request $request)
     {
         $inputData = $request->input();
-
         $inputFiles = $request->file();
         $formData = new FormSubmission;
         $formData->form_name = $inputData['form_name'];

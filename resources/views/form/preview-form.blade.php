@@ -64,7 +64,7 @@
                                             
 
                                             <div class="col-md-12 mb-1">
-                                            @if( in_array($data['type'], ['text', 'number', 'email']))
+                                            @if( in_array($data['type'], ['text', 'number', 'email','date','time']))
                                                 <label class="form-label fw-bolder">{{$data['label']}} 
                                                     @if(isset($data['required']))<span style="color: red;">*</span>  @endif
                                                 </label>

@@ -1,5 +1,5 @@
 @if($insertone)
-	@if( in_array($array['type'], ['text', 'number']))
+	@if( in_array($array['type'], ['text', 'number','date','time','email']))
 		<x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="" :required="$array['required']"
 		label="{{$array['label']}}" placeholder="{{$array['placeholder']}}"></x-input-field>
 	@elseif($array['type'] == 'select')
@@ -46,7 +46,7 @@
 <form id="form-submit">
 	@csrf()
 	@foreach($arrays as $array)
-		@if( in_array($array['type'], ['text', 'number']))
+		@if( in_array($array['type'], ['text', 'number','date','time']))
 			@if(in_array($array['name'], ['form_name','category_name']))
 				@php
 				if ($array['name'] == 'form_name') {
