@@ -65,6 +65,21 @@
                 <p class="fw-bolder">{{$array['label']}}</p>
             </div>
         </div>
+    @elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
+        <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']"
+        label="{{$array['label']}}" placeholder="{{$array['placeholder']}}">
+            @foreach($array['slot'] as $option)
+            <label class="form-check-label">
+                @if($array['type'] == 'radio')
+                <span> <i class="fa fa-circle" aria-hidden="true"></i></span> {{$option}}
+                 @endif
+                 @if($array['type'] == 'checkbox')
+                <span> <i class="fa fa-square" aria-hidden="true"></i></span> {{$option}}
+                 @endif
+            </label>
+            @endforeach
+            <input type="hidden" label="{{$array['label']}}" class="form-check-input" checktype="{{$array['type']}}" name="{{$array['name']}}" value="{{json_encode($array['slot'])}}" id="{{$array['name']}}">
+        </x-input-radio-field>
     @endif
 @else
 
@@ -110,6 +125,19 @@
                     <span>{{ empty($array['options']) ? '' : $array['options'] }}</span>
                     </div>
                 </div>
+            @elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
+            <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']" label="{{$array['label']}}">
+            <?php
+                $options = json_decode($array['options'], true);
+                $name = $array['name'].'[]';                
+            ?>
+            @foreach($options as $option)
+            <label class="form-check-label">
+                 <input type="{{$array['type']}}" class="form-check-input"  name="{{$name}}" value="{{$option}}">
+                 {{$option}}
+            </label>
+            @endforeach
+        </x-input-radio-field>
             @endif
         @endforeach
 

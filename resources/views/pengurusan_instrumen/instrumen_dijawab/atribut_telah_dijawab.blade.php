@@ -101,13 +101,27 @@
             <a href="{{$url}}" class="btn btn-primary">Download File</a>
             @endif
             </div>
-         @elseif($array['type'] == 'segment')
+        @elseif($array['type'] == 'segment')
             <div class="row " role="alert" >
                 <div class="col-xl-8 col-12 col-md-8 alert alert-info">
                     <p class="fw-bolder">{{$array['label']}}</p>
                     <span>{{ empty($array['options']) ? '' : $array['options'] }}</span>
                 </div>
             </div>
+        @elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
+        <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']" label="{{$array['label']}}">
+            <?php
+                $options = json_decode($array['options'], true);
+                $values = $data[$array['name']];
+            ?>
+            @foreach($options as $option)
+            <label class="form-check-label">
+                 <input type="{{$array['type']}}" class="form-check-input"  name="{{$array['name']}}" value="{{$option}}"
+                 @if(in_array($option, $values)) checked  @endif disabled>
+                 {{$option}}
+            </label>
+            @endforeach
+        </x-input-radio-field>
         @endif
     @endforeach
 

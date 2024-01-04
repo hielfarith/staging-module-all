@@ -107,6 +107,19 @@
                 <span>{{ empty($array['options']) ? '' : $array['options'] }}</span>
 			</div>
 		</div>
+		@elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
+		<x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']"
+		label="{{$array['label']}}">
+			<?php
+				$options = json_decode($array['options'], true);
+			?>
+			@foreach($options as $option)
+			<label class="form-check-label">
+				 <input type="{{$array['type']}}" label="{{$array['label']}}" class="form-check-input"  name="{{$array['name']}}" value="{{$option}}">
+				 {{$option}}
+			</label>
+			@endforeach
+		</x-input-radio-field>
 		@endif
 	@endforeach
 	<br>
