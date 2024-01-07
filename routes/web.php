@@ -13,6 +13,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\FormSubmissionController;
 use PhpParser\Node\Expr\Include_;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\PengurusanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,7 +134,7 @@ Route::prefix('cron_view')->group(function () {
 });
 
 // update the routes later
-Route::prefix('dynamic')->group(function () {
+Route::prefix('dynamic')->middleware(['web'])->group(function () {
     Route::get('/form', [FormSubmissionController::class, 'index'])->name('create-form');
 
     Route::get('form/list', [FormSubmissionController::class, 'showDynamicFormList'])->name('dynamic-form-list');
@@ -188,4 +189,13 @@ Route::controller(ModuleController::class)->prefix('module')->middleware(['web']
     Route::post('updateFlowManagement','updateFlowManagement')->name('module.updateFlowManagement');
     Route::post('deleteFlowManagement','deleteFlowManagement')->name('module.deleteFlowManagement');
 
+});
+ 
+
+ //pengurusan controller
+Route::controller(PengurusanController::class)->prefix('admin/internal')->middleware(['web'])->group(function () {
+    Route::get('create-pengguna','viewForm')->name('admin.internal.penggunaform');
+    Route::post('savepengguna','savePengguna')->name('admin.internal.penggunasave');
+    Route::get('senarai-pengguna','listPengguna')->name('admin.internal.penggunalist');
+    Route::post('viewpengguna/{id}','viewPengguna')->name('admin.internal.viewpengguna');
 });

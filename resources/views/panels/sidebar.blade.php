@@ -67,6 +67,33 @@ $configData = Helper::applClasses();
                     </li>
                 </ul>
             </li>
+            <!-- // pengguna menu // -->
+            <li class="navigation-header">
+                <span> Pengurusan Pengguna</span>
+            </li>
+            <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate"> Pengguna </span>
+                </a>
+                <ul class="nav">
+                    <li class="{{ in_array(request()->route()->getName(),['admin.internal.penggunaform'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.penggunaform') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Tambah Pengguna </span>
+                        </a>
+                    </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.internal.penggunalist'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.penggunalist') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Pengguna </span>
+                        </a>
+                    </li>
+                  
+                </ul>
+            </li>
+
 
             <li class="navigation-header">
                 <span> User Settings </span>
