@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-Pengurusan Pengguna
+Pengurusan Penilai
 @endsection
 
 @section('breadcrumb')
@@ -10,18 +10,18 @@ Pengurusan Pengguna
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Pengurusan Pengguna </a>
+    <a href="#"> Pengurusan Penilai </a>
 </li>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title fw-bolder"> Senarai Penggurusan Pengguna </h4>
+        <h4 class="card-title fw-bolder"> Senarai Penggurusan Penilia </h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.penggunaform') }}">
-                <i class="fa-solid fa-add"></i> Tambah Pengguna
+            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.penilaiform') }}">
+                <i class="fa-solid fa-add"></i> Tambah Penilia
             </a>
         </div>
     </div>
@@ -30,7 +30,7 @@ Pengurusan Pengguna
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPengurusan">
+            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPenilai">
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
@@ -47,14 +47,14 @@ Pengurusan Pengguna
     </div>
 </div>
 
-<div class="modal fade text-start" id="modal-penilai-diisi" tabindex="-1" aria-hidden="true">
+<div class="modal fade text-start" id="modal-penilia-diisi" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Maklumat Pengguna</h4>
+                <h4 class="modal-title">Maklumat Penilai</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="modal-body-pengguna"></div>
+            <div class="modal-body" id="modal-body-penilia"></div>
         </div>
     </div>
 </div>
@@ -63,8 +63,9 @@ Pengurusan Pengguna
 @section('script')
 <script>
 $(document).ready(function() {
+
     $(function() {
-        var table = $('#TableSenaraiPengurusan').DataTable({
+        var table = $('#TableSenaraiPenilai').DataTable({
             orderCellsTop: true,
             colReorder: false,
             pageLength: 10,
@@ -120,7 +121,7 @@ $.ajaxSetup({
 })
 
 function maklumatPengguna(id){
-    var url = "{{ route('admin.internal.viewpengguna',['id'=> ':id']) }}";
+    var url = "{{ route('admin.internal.viewpenilai',['id'=> ':id']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({
@@ -130,9 +131,9 @@ function maklumatPengguna(id){
             id: id
             },
         success: function(response) {
-            $('#modal-penilai-diisi').modal("show");
-            $('#modal-body-pengguna').empty();
-            $('#modal-body-pengguna').append(response);
+            $('#modal-penilia-diisi').modal("show");
+            $('#modal-body-penilia').empty();
+            $('#modal-body-penilia').append(response);
         }
     });
 }

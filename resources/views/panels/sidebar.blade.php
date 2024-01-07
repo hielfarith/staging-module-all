@@ -90,7 +90,21 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate"> Senarai Pengguna </span>
                         </a>
                     </li>
-                  
+                    
+                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penilaiform'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.penilaiform') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Tambah Penilai </span>
+                        </a>
+                    </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.internal.penilailist'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.penilailist') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Penilai </span>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
 

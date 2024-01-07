@@ -195,7 +195,7 @@ $('#formpengunna').submit(function(event) {
             contentType: false,
             processData: false,
             success: function(response) {
-               if (response.success) {
+               if (response.status) {
                     var location = "{{route('admin.internal.penggunalist')}}"
                     window.location.href = location;
                }

@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 use App\Models\ProfilPengguna;
+use App\Models\PanelPenilai;
+use App\Models\Master\MasterState;
 
 class PengurusanController extends Controller
 {
 
 	public function viewForm(Request $request)
 	{
-		return view('pengurusan.form');
+		$states = MasterState::all();
+		return view('pengurusan.form', compact('states'));
 	}
 
 	public function savePengguna(Request $request)
@@ -29,14 +32,11 @@ class PengurusanController extends Controller
 
             $input = $request->input();
             $input['status'] = 1;
-            $input['jumlah_kanak'] = 'test';
-            $input['jenisbanugunan'] = 'test';
-            
         	$profilPengguna = new ProfilPengguna;
         	$profilPengguna->create($input);
 
           DB::commit();
-            return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya"]);
+            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
         } catch (\Throwable $e) {
 
             DB::rollback();
@@ -79,7 +79,79 @@ class PengurusanController extends Controller
     public function viewPengguna(Request $request)
     {
     	$pengguna = ProfilPengguna::where('id', $request->id)->first();
-    	return view('pengurusan.view-profile', compact('pengguna'));
+    	$states = MasterState::all();
+    	return view('pengurusan.view-profile', compact('pengguna', 'states'));
+    }
+
+    public function viewFormPenilai(Request $request)
+	{	
+		$states = MasterState::all();
+		return view('pengurusan.penilai.form', compact('states'));
+	}
+
+	public function savePenilai(Request $request)
+	{
+		DB::beginTransaction();
+        try {
+            $validatedData = $request->validate([
+            	'email_peribadi' => 'email',
+            	'email_penyelia' => 'email',
+            	'email_ketua_jabatan' => 'email'
+            ]);
+
+            $input = $request->input();
+            $input['status'] = 1;
+            $input['negeri_skpak'] = json_encode($input['negeri_skpak']);
+
+        	$profilPengguna = new PanelPenilai;
+        	$profilPengguna->create($input);
+
+          DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+	}
+
+	public function listPenilai(Request $request)
+	{
+		if($request->ajax()) {
+
+	        $penilaiList = PanelPenilai::get();
+	        return Datatables::of($penilaiList)
+	            ->editColumn('nama_pengguna', function ($penilaiList) {
+	                return $penilaiList->nama_pengguna;
+	            })
+	            ->editColumn('no_kad', function ($penilaiList) {
+	                return $penilaiList->no_kad;
+	            })
+	            ->editColumn('submission_count', function ($penilaiList) {
+	                return $penilaiList->email_peribadi;
+	            })
+	            ->editColumn('action', function ($penilaiList) {
+	                $button = "";
+	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+	                $button .= '<a onclick="maklumatPengguna(' . $penilaiList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                $button .= "</div>";
+
+	                return $button;
+	            })
+	            ->rawColumns(['action'])
+	            ->make(true);
+    	}
+
+        return view('pengurusan.penilai.list');	
+    }
+
+    public function viewPenilai(Request $request)
+    {
+    	$penilai = PanelPenilai::where('id', $request->id)->first();
+    	$states = MasterState::all();
+    	return view('pengurusan.penilai.view-profile', compact('penilai', 'states'));
     }
 
 }

@@ -198,4 +198,9 @@ Route::controller(PengurusanController::class)->prefix('admin/internal')->middle
     Route::post('savepengguna','savePengguna')->name('admin.internal.penggunasave');
     Route::get('senarai-pengguna','listPengguna')->name('admin.internal.penggunalist');
     Route::post('viewpengguna/{id}','viewPengguna')->name('admin.internal.viewpengguna');
+
+    Route::get('create-penilai','viewFormPenilai')->name('admin.internal.penilaiform');
+    Route::post('savepenilai','savePenilai')->name('admin.internal.penilaisave');
+    Route::get('senarai-penilai','listPenilai')->name('admin.internal.penilailist');
+    Route::post('viewpenilai/{id}','viewPenilai')->name('admin.internal.viewpenilai');
 });
