@@ -77,12 +77,7 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate"> Pengguna </span>
                 </a>
                 <ul class="nav">
-                    <li class="{{ in_array(request()->route()->getName(),['admin.internal.penggunaform'])? 'active': '' }}">
-                        <a href="{{ route('admin.internal.penggunaform') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Tambah Pengguna </span>
-                        </a>
-                    </li>
+                    
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penggunalist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penggunalist') }}" class="nav-link">
@@ -91,13 +86,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
                     
-                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penilaiform'])? 'active': '' }}">
-                        <a href="{{ route('admin.internal.penilaiform') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Tambah Penilai </span>
-                        </a>
-                    </li>
-
+                  
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penilailist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penilailist') }}" class="nav-link">
                             <i data-feather="circle"></i>
@@ -147,7 +136,7 @@ $configData = Helper::applClasses();
                 </ul>
             </li>
 
-             <li class="navigation-header">
+          <!--    <li class="navigation-header">
                 <span> Dynamic Form </span>
             </li>
             <li
@@ -178,7 +167,7 @@ $configData = Helper::applClasses();
                 </ul>
 
             </li>
-
+ -->
             <li class="navigation-header">
                 <span> System Settings </span>
             </li>
