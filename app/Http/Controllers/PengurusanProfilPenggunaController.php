@@ -22,26 +22,30 @@ class PengurusanProfilPenggunaController extends Controller
 
 	public function savePengguna(Request $request)
 	{
-		DB::beginTransaction();
+
+        // dd($request->all());
+        DB::beginTransaction();
         try {
             $validatedData = $request->validate([
-            	'email_peribadi' => 'email',
+                'email_peribadi' => 'email',
             	'email_taska' => 'email',
             	'email_pejabat_penyelia' => 'email'
             ]);
 
             $input = $request->input();
             $input['status'] = 1;
-        	$profilPengguna = new ProfilPengguna;
-        	$profilPengguna->create($input);
 
-          DB::commit();
-            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
+            $profilPengguna = new ProfilPengguna;
+            $profilPengguna->create($input);
+
         } catch (\Throwable $e) {
 
             DB::rollback();
             return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
         }
+
+        DB::commit();
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'redirectRoute' => route('admin.internal.penggunalist')]);
 	}
 
 	public function listPengguna(Request $request)

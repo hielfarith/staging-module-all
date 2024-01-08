@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-Pengurusan Pengguna
+Pengurusan Ketua Taska
 @endsection
 
 @section('breadcrumb')
@@ -14,14 +14,14 @@ Pengurusan Pengguna
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Ketua Taska </a>
+    <a href="#"> Pengurusan Ketua Taska </a>
 </li>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title fw-bolder"> Senarai Pengurusan Ketua Taska </h4>
+        <h4 class="card-title fw-bolder"> Senarai Ketua Taska </h4>
 
         <div class="d-flex justify-content-end align-items-center">
             <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.penggunaform') }}">
