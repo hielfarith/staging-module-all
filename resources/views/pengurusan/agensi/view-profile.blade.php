@@ -20,13 +20,20 @@
             </div>
 
             <div>
+                <label class="fw-bolder"> Jenis :<span style="color: red;">*</span></label>
+                <select class="form-control select2" name="jenis" readonly>
+                        <option value="{{$agensi->jenis}}">{{$agensi->jenis}}</option>
+                </select> 
+            </div>
+            
+            <!-- <div>
                 <label class="fw-bolder">
                     <input type="radio" name="jenis" class="form-check-input" value="Kerajan" @if($agensi->jenis == 'Kerajan') checked @endif disabled>Kerajan
                 </label>
                 <label class="fw-bolder">
                     <input type="radio" name="jenis"class="form-check-input"  value="Swasta" @if($agensi->jenis == 'Swasta') checked @endif disabled>Swasta
                 </label>
-            </div>
+            </div> -->
 
             <div>
                 <label class="fw-bolder">Jawatan:</label>

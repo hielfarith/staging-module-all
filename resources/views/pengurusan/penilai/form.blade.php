@@ -18,32 +18,32 @@ Pengurusan Penilai
     <div class="col-md-8 card">
         <form id="formpenilai">
             <div>
-                <label class="fw-bolder">Nama Pengguna/Penilai:</label>
-                <input type="text" class="form-control" name="nama_pengguna" required>
+                <label class="fw-bolder">Nama Pengguna/Penilai:<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
             </div>
 
             <div>
-                <label class="fw-bolder">No Kad Pengenalan:</label>
+                <label class="fw-bolder">No Kad Pengenalan:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="no_kad" required>
             </div>
 
             <div>
-                <label class="fw-bolder"> Emel Peribadi:</label>
+                <label class="fw-bolder"> Emel Peribadi:<span style="color: red;">*</span></label>
                 <input type="email" class="form-control" name="email_peribadi" required>
             </div>
 
             <div>
-                <label class="fw-bolder"> Emel Ketua Jabatan:</label>
+                <label class="fw-bolder"> Emel Ketua Jabatan:<span style="color: red;">*</span></label>
                 <input type="email" class="form-control" name="email_ketua_jabatan" required>
             </div>
 
             <div>
-                <label class="fw-bolder"> Emel Penyelia:</label>
+                <label class="fw-bolder"> Emel Penyelia:<span style="color: red;">*</span></label>
                 <input type="email" class="form-control" name="email_penyelia" required>
             </div>
 
             <div>
-                <label class="fw-bolder"> Agensi/ Kementerian:</label>
+                <label class="fw-bolder"> Agensi/ Kementerian:<span style="color: red;">*</span></label>
                 <select class="form-control select2" name="agensi_kementerian" required>
                     <option>pilih</option>
                     <option value="Agensi">Agensi</option>
@@ -53,45 +53,37 @@ Pengurusan Penilai
 
             <div>
                 <label class="fw-bolder"> No Tel Pejabat:</label>
-                <input type="text" class="form-control" name="no_tel_pejabat">
+                <input type="text" class="form-control" name="no_tel_pejabat" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
 
              <div>
-                <label class="fw-bolder"> No Tel Peribadi:</label>
-                <input type="text" class="form-control" name="no_tel_peribadi" required>
+                <label class="fw-bolder"> No Tel Peribadi:<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="no_tel_peribadi" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
             
              <div>
-                <label class="fw-bolder"> Alamat 1:</label>
+                <label class="fw-bolder"> Alamat 1:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="alamat1" required>
             </div>
 
              <div>
-                <label class="fw-bolder"> Alamat 2:</label>
+                <label class="fw-bolder"> Alamat 2:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="alamat2" required>
             </div>
 
              <div>
-                <label class="fw-bolder"> Alamat 3:</label>
+                <label class="fw-bolder"> Alamat 3:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="alamat3">
             </div>
 
              <div>
-                <label class="fw-bolder"> Poskod:</label>
-                <input type="text" class="form-control" maxlength="5" name="poskod" required>
+                <label class="fw-bolder"> Poskod:<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" maxlength="5" name="poskod" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
 
-             <div>
-                <label class="fw-bolder"> Daerah:</label>
-                  <select class="form-control select2" name="daerah" required>
-                        <option>pilih</option>
-                        <option>1</option>
-                        <option>2</option>
-                </select>
-            </div>
 
              <div>
-                <label class="fw-bolder"> Negeri:</label>
+                <label class="fw-bolder"> Negeri:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="negeri" required>
                         <option>pilih</option>
                         @foreach($states as $state)
@@ -99,9 +91,17 @@ Pengurusan Penilai
                         @endforeach
                 </select>
             </div>
+             <div>
+                <label class="fw-bolder"> Daerah:<span style="color: red;">*</span></label>
+                  <select class="form-control select2" name="daerah" required>
+                        <option>pilih</option>
+                        <option>1</option>
+                        <option>2</option>
+                </select>
+            </div>
 
             <div>
-                <label class="fw-bolder"> Gred:</label>
+                <label class="fw-bolder"> Gred:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="gred" required>
                         <option>pilih</option>
                         <option>1</option>

@@ -32,12 +32,10 @@
                 <input type="text" class="form-control" name="agensi_kementerian" value="{{$pengguna->agensi_kementerian}}" readonly>
             </div>
 
-            <div>
-                <label class="fw-bolder"> Pilihan [Kerajaan atau swasta]:</label>
-                <select class="form-control select2" name="pilihan_swasta" readonly>
-                        <option>select</option>
-                        <option value="1" selected>1</option>
-                        <option>2</option>
+             <div>
+                <label class="fw-bolder"> Jenis :<span style="color: red;">*</span></label>
+                <select class="form-control select2" name="jenis" readonly>
+                        <option value="{{$pengguna->jenis}}">{{$pengguna->jenis}}</option>
                 </select> 
             </div>
 

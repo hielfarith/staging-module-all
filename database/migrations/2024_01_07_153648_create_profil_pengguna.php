@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('email_pejabat_penyelia');
             $table->string('agensi_kementerian');
             $table->string('jenis');
-            $table->string('jawatan');
-            $table->string('gred');
+            $table->string('jawatan')->nullable();
+            $table->string('gred')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

@@ -84,6 +84,7 @@ $(document).ready(function() {
                 {
                     data: "nama_pengguna",
                     name: "nama_pengguna",
+                    searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
                     }
@@ -91,6 +92,7 @@ $(document).ready(function() {
                 {
                     data: "no_kad",
                     name: "no_kad",
+                    searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
                     }
@@ -98,6 +100,7 @@ $(document).ready(function() {
                 {
                     data: "email_peribadi",
                     name: "email_peribadi",
+                    searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
                     }
