@@ -12,34 +12,39 @@ Pengurusan Pengguna
 <li class="breadcrumb-item">
     <a href="#"> Pengurusan Pengguna </a>
 </li>
+
+<li class="breadcrumb-item">
+    <a href="#"> Ketua Taska </a>
+</li>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title fw-bolder"> Senarai Penggurusan Pengguna </h4>
+        <h4 class="card-title fw-bolder"> Senarai Pengurusan Ketua Taska </h4>
 
         <div class="d-flex justify-content-end align-items-center">
             <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.penggunaform') }}">
-                <i class="fa-solid fa-add"></i> Tambah Pengguna
+                <i class="fa-solid fa-add"></i> Tambah Ketua Taska
             </a>
         </div>
     </div>
- 
+
     <hr>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPengurusan">
+            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPengurusan" style="width: 100%">
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
                         <th>Nama Pengguna</th>
-                        <th>No Kad</th>
+                        <th>No Kad Pengenalan/ Pasport</th>
                         <th width="20%">Email Peribadi</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
+
                 <tbody>
                 </tbody>
             </table>
@@ -47,17 +52,20 @@ Pengurusan Pengguna
     </div>
 </div>
 
-<div class="modal fade text-start" id="modal-penilai-diisi" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="modal-penilai-diisi" tabindex="-1" aria-labelledby="modal-penilai-diisi" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Maklumat Pengguna</h4>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Pengguna</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="modal-body-pengguna"></div>
+
+            <div class="modal-body" id="modal-body-pengguna">
+            </div>
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('script')
@@ -146,11 +154,11 @@ function  formverify(status, formid) {
              data: {
                 status: status,
                 formid: formid
-             }, 
+             },
             success: function(response) {
                 if (response.success) {
                     window.location.reload();
-               } 
+               }
             }
         });
     }
