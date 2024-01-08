@@ -11,13 +11,13 @@ use App\Models\ProfilPengguna;
 use App\Models\PanelPenilai;
 use App\Models\Master\MasterState;
 
-class PengurusanController extends Controller
+class PengurusanProfilPenggunaController extends Controller
 {
 
 	public function viewForm(Request $request)
 	{
 		$states = MasterState::all();
-		return view('pengurusan.form', compact('states'));
+		return view('pengurusan_pengguna.ketua_taska.ketua-taska-baru', compact('states'));
 	}
 
 	public function savePengguna(Request $request)
@@ -73,20 +73,20 @@ class PengurusanController extends Controller
 	            ->make(true);
     	}
 
-        return view('pengurusan.list');	
+        return view('pengurusan_pengguna.ketua_taska.senarai-ketua-taska');
     }
 
     public function viewPengguna(Request $request)
     {
     	$pengguna = ProfilPengguna::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	return view('pengurusan.view-profile', compact('pengguna', 'states'));
+    	return view('pengurusan_pengguna.ketua_taska.lihat-ketua-taska', compact('pengguna', 'states'));
     }
 
     public function viewFormPenilai(Request $request)
-	{	
+	{
 		$states = MasterState::all();
-		return view('pengurusan.penilai.form', compact('states'));
+		return view('pengurusan_pengguna.penilai.penilai-baru', compact('states'));
 	}
 
 	public function savePenilai(Request $request)
@@ -144,14 +144,14 @@ class PengurusanController extends Controller
 	            ->make(true);
     	}
 
-        return view('pengurusan.penilai.list');	
+        return view('pengurusan_pengguna.penilai.senarai-penilai');
     }
 
     public function viewPenilai(Request $request)
     {
     	$penilai = PanelPenilai::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	return view('pengurusan.penilai.view-profile', compact('penilai', 'states'));
+    	return view('pengurusan_pengguna.penilai.lihat-penilai', compact('penilai', 'states'));
     }
 
 }

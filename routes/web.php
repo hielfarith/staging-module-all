@@ -13,7 +13,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\FormSubmissionController;
 use PhpParser\Node\Expr\Include_;
 use App\Http\Controllers\ModuleController;
-use App\Http\Controllers\PengurusanController;
+use App\Http\Controllers\PengurusanProfilPenggunaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -193,7 +193,7 @@ Route::controller(ModuleController::class)->prefix('module')->middleware(['web']
 
 
  //pengurusan controller
-Route::controller(PengurusanController::class)->prefix('pengguna-dalaman')->middleware(['web'])->group(function () {
+Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-dalaman')->middleware(['web'])->group(function () {
     Route::get('pengguna-baru','viewForm')->name('admin.internal.penggunaform');
     Route::post('simpan-pengguna','savePengguna')->name('admin.internal.penggunasave');
     Route::get('senarai-pengguna','listPengguna')->name('admin.internal.penggunalist');
