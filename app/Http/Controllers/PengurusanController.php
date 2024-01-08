@@ -12,6 +12,7 @@ use App\Models\PanelPenilai;
 use App\Models\KetuaAgensi;
 use App\Models\Master\MasterState;
 use App\Models\AhliJawatankuasaKerja;
+use App\Models\AhliJawatankuasaTertinggi;
 
 class PengurusanController extends Controller
 {
@@ -294,7 +295,7 @@ class PengurusanController extends Controller
      public function viewFormJawatankuasatertinggi(Request $request)
 	{
 		$states = MasterState::all();
-		return view('pengurusan.ahli-jawatankuasa.form', compact('states'));
+		return view('pengurusan.ahli-jawatankuasa-tertinggi.form', compact('states'));
 	}
 
 	public function saveJawatankuasatertinggi(Request $request)
@@ -304,7 +305,7 @@ class PengurusanController extends Controller
 
             $input = $request->input(); 
 
-        	$ketuaAgensi = new AhliJawatankuasaKerja;
+        	$ketuaAgensi = new AhliJawatankuasaTertinggi;
         	$ketuaAgensi->create($input);
 
           DB::commit();
@@ -320,7 +321,7 @@ class PengurusanController extends Controller
 	{
 		if($request->ajax()) {
 
-	        $jawatankuasaList = AhliJawatankuasaKerja::get();
+	        $jawatankuasaList = AhliJawatankuasaTertinggi::get();
 	        return Datatables::of($jawatankuasaList)
 	            ->editColumn('nama_pengguna', function ($jawatankuasaList) {
 	                return $jawatankuasaList->nama_pengguna;
@@ -345,14 +346,14 @@ class PengurusanController extends Controller
 	            ->make(true);
     	}
 
-        return view('pengurusan.ahli-jawatankuasa.list');	
+        return view('pengurusan.ahli-jawatankuasa-tertinggi.list');	
     }
 
     public function viewJawatankuasatertinggi(Request $request)
     {
-    	$ahli = AhliJawatankuasaKerja::where('id', $request->id)->first();
+    	$ahli = AhliJawatankuasaTertinggi::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	return view('pengurusan.ahli-jawatankuasa.view-profile', compact('ahli', 'states'));
+    	return view('pengurusan.ahli-jawatankuasa-tertinggi.view-profile', compact('ahli', 'states'));
     }
 
 }

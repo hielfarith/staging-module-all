@@ -107,6 +107,12 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate"> Senarai Ahli Jawtankuasa Kerja </span>
                         </a>
                     </li>
+                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.jawatankuasatertinggilist'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.jawatankuasatertinggilist') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Ahli Jawtankuasa Tertinggi </span>
+                        </a>
+                    </li>
 
                 </ul>
             </li>

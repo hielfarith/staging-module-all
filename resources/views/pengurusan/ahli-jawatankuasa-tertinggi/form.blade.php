@@ -17,7 +17,7 @@ Ahli Jawtankuasa Kerja
 @section('content')
 <div class="row">
     <div class="col-md-8 card">
-        <form id="formahli">
+        <form id="formtertinggi">
             <div>
                 <label class="fw-bolder">Nama Pengguna:</label>
                 <input type="text" class="form-control" name="nama_pengguna" required>
@@ -43,15 +43,6 @@ Ahli Jawtankuasa Kerja
                 <input type="text" class="form-control" name="no_kad" required>
             </div>
             
-            <div>
-                <label class="fw-bolder"> Jawatan/Gred :</label>
-                <select class="form-control select2" name="jawatan" required>
-                        <option>pilih</option>
-                        <option value="Jawatan">Jawatan</option>
-                        <option value="Gred">Gred</option>
-                </select> 
-            </div>
-
             <div>
                 <label class="fw-bolder"> Alamat 1:</label>
                 <input type="text" class="form-control" name="alamat1" required>
@@ -93,7 +84,7 @@ Ahli Jawtankuasa Kerja
 
              <div>
                 <label class="fw-bolder"> Emel Peribadi::</label>
-                <input type="text" class="form-control flatpickr" name="email_peribadi" required>
+                <input type="text" class="form-control" name="email_peribadi" required>
             </div>
 
              <div>
@@ -126,6 +117,19 @@ Ahli Jawtankuasa Kerja
                 <input type="text" class="form-control" name="no_tel_peribadi" maxlength="12" required>
             </div>
 
+            <div>
+                <label class="fw-bolder"> Jawatan/Gred :</label>
+                <select class="form-control select2" name="jawatan" required>
+                        <option>pilih</option>
+                        <option value="Jawatan">Jawatan</option>
+                        <option value="Gred">Gred</option>
+                </select> 
+            </div>
+
+            <div>
+                <label>Tarikh perlantikan AJK Tinggi Unit Jaminan Kualiti:</label>
+                <input type="text" class="form-control flatpickr" name="tarikh_perlantikan" required>
+            </div>
 
             <div class="d-flex justify-content-end align-items-center my-1">
                 <button type="submit" class="btn btn-primary float-right">Hantar</button>
@@ -139,10 +143,10 @@ Ahli Jawtankuasa Kerja
 @section('script')
 <script type="text/javascript">
     
-$('#formahli').submit(function(event) {
+$('#formtertinggi').submit(function(event) {
         event.preventDefault();
-        var formData = new FormData(document.getElementById('formahli'));
-        var url = "{{ route('admin.internal.jawatankuasasave') }}"
+        var formData = new FormData(document.getElementById('formtertinggi'));
+        var url = "{{ route('admin.internal.jawatankuasatertinggisave') }}"
         $.ajax({
             url: url,
             type: 'POST',
@@ -150,8 +154,9 @@ $('#formahli').submit(function(event) {
             contentType: false,
             processData: false,
             success: function(response) {
-               if (response.status) {
-                    var location = "{{route('admin.internal.jawatankuasalist')}}"
+                if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+                    var location = "{{route('admin.internal.jawatankuasatertinggilist')}}"
                     window.location.href = location;
                }
             }

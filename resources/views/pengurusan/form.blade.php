@@ -20,7 +20,7 @@ Pengurusan Pengguna
 
 @section('content')
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 card">
         <form id="formpengunna">
             <div>
                 <label class="fw-bolder">Nama Pengguna/ Ketua TASKA:</label>

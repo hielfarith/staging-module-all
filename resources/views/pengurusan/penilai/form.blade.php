@@ -15,7 +15,7 @@ Pengurusan Penilai
 
 @section('content')
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 card">
         <form id="formpenilai">
             <div>
                 <label class="fw-bolder">Nama Pengguna/Penilai:</label>
