@@ -33,7 +33,7 @@ $configData = Helper::applClasses();
 
             @hasanyrole('superadmin|admin')
             <li class="navigation-header">
-                <span> Pengurusan Instrumen [SAQINAH]</span>
+                <span> Pengurusan Instrumen</span>
             </li>
             <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
@@ -50,7 +50,7 @@ $configData = Helper::applClasses();
                     <li class="{{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
                         <a href="{{ route('show_all_forms') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> List Instrumen </span>
+                            <span class="menu-title text-truncate"> Senarai Instrumen </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">
