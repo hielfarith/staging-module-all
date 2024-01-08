@@ -218,5 +218,5 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
     Route::get('create-jawatankuasatertinggi','viewFormJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggiform');
     Route::post('savejawatankuasatertinggi','saveJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggisave');
     Route::get('senarai-jawatankuasatertinggi','listJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggilist');
-    Route::post('viewjawatankuasatertinggi/{id}','viewJawatankuasatertinggi')->name('admin.internal.viewjawatankuasa');
+    Route::post('viewjawatankuasatertinggi/{id}','viewJawatankuasatertinggi')->name('admin.internal.viewjawatankuasatertinggi');
 });
