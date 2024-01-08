@@ -213,4 +213,9 @@ Route::controller(PengurusanController::class)->prefix('admin/internal')->middle
     Route::post('savejawatankuasa','saveJawatankuasa')->name('admin.internal.jawatankuasasave');
     Route::get('senarai-jawatankuasa','listJawatankuasa')->name('admin.internal.jawatankuasalist');
     Route::post('viewjawatankuasa/{id}','viewJawatankuasa')->name('admin.internal.viewjawatankuasa');
+
+    Route::get('create-jawatankuasatertinggi','viewFormJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggiform');
+    Route::post('savejawatankuasatertinggi','saveJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggisave');
+    Route::get('senarai-jawatankuasatertinggi','listJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggilist');
+    Route::post('viewjawatankuasatertinggi/{id}','viewJawatankuasatertinggi')->name('admin.internal.viewjawatankuasa');
 });
