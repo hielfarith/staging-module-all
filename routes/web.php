@@ -203,4 +203,9 @@ Route::controller(PengurusanController::class)->prefix('admin/internal')->middle
     Route::post('savepenilai','savePenilai')->name('admin.internal.penilaisave');
     Route::get('senarai-penilai','listPenilai')->name('admin.internal.penilailist');
     Route::post('viewpenilai/{id}','viewPenilai')->name('admin.internal.viewpenilai');
+
+    Route::get('create-agensi','viewFormAgensi')->name('admin.internal.agensiform');
+    Route::post('saveagensi','saveAgensi')->name('admin.internal.agensisave');
+    Route::get('senarai-agensi','listAgensi')->name('admin.internal.agensilist');
+    Route::post('viewagensi/{id}','viewAgensi')->name('admin.internal.viewagensi');
 });
