@@ -77,20 +77,20 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate"> Pengguna </span>
                 </a>
                 <ul class="nav">
-                    
+
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penggunalist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penggunalist') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Pengguna </span>
+                            <span class="menu-title text-truncate"> Senarai Ketua Taska </span>
                         </a>
                     </li>
-                    
-                  
+
+
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penilailist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penilailist') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Penilai </span>
+                            <span class="menu-title text-truncate"> Senarai Panel Penilai </span>
                         </a>
                     </li>
 
