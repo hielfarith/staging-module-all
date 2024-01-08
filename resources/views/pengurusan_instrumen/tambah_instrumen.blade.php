@@ -68,24 +68,25 @@ Pengurusan Instrumen
                 <!-- Header ends -->
 
                 <hr class="invoice-spacing" />
-                
+
                 <input type="hidden" name="row_count" id="row_count" value="1">
+
                     <!-- Instrument Form starts -->
                     <form id="dynamicform">
-
-                    <div class="card-body invoice-padding invoice-product-details" id="row1">
-                        <div class="row mt-1">
-                            <div class="col-12 px-0">
-                                {{-- Tambah Atribut --}}
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#Modal">
-                                    <i data-feather="plus" class="me-25"></i>
-                                    <span class="align-middle">Tambah Atribut</span>
-                                </button>
+                        <div class="card-body invoice-padding invoice-product-details" id="row1">
+                            <div class="row mt-1">
+                                <div class="col-12 px-0">
+                                    {{-- Tambah Atribut --}}
+                                    <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="offcanvas" data-bs-target="#BorangTambahAtribut" aria-controls="BorangTambahAtribut">
+                                        <i data-feather="plus" class="me-25"></i>
+                                        <span class="align-middle">Tambah Atribut</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </form>
                     <!-- Instrument Form ends -->
+
                 <hr class="invoice-spacing mt-0" />
 
                 <!-- Footer starts -->
@@ -102,7 +103,7 @@ Pengurusan Instrumen
                 </div>
             </div>
         </div>
- 
+
         <!-- Tindakan Borang Instrumen starts -->
         <div class="col-xl-3 col-md-4 col-12">
             <div class="card">
@@ -123,88 +124,87 @@ Pengurusan Instrumen
         </div>
         <!-- Tindakan Borang Instrumen ends -->
     </div>
+
     <!-- Modal box for input filling-->
-    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <h5 class="modal-title" id="ModalLabel">Dynamic form</h5> -->
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="frm">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="BorangTambahAtribut" aria-labelledby="BorangTambahAtribut" style="width: 30%">
+        <div class="offcanvas-header">
+            <h5 id="BorangTambahAtribut" class="offcanvas-title fw-bolder">Tambah Atribut</h5>
+            <button type="button" class="btn-close text-reset text-danger" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body mx-0 flex-grow-0">
+            <hr>
+            {{-- <form id="frm">
+                @csrf --}}
+
+            <form action="{{ route('input-field') }}" id="frm" method="post" data-swal="Maklumat Penilai Berjaya Disimpan">
                 @csrf
-                <div class="modal-body">
-                    <p class="card-text col-title mb-md-50 mb-0">Atribut</p>
-                    <div class="row">
-                        <div class="col-md-4">
-                            {{-- Jenis Atribut --}}
-                            <select name="type" id="type" class="form-control" onchange="changeselect()">
-                                <option value="" hidden>Jenis Atribut</option>
-                                <option value="text">Text</option>
-                                <option value="number">Nombor</option>
-                                <option value="file">Muat Naik Fail</option>
-                                <option value="select">Pilihan</option>
-                                <option value="email">Email</option>
-                                <option value="segment">Segment</option>
-                                <option value="radio">Radio</option>
-                                <option value="checkbox">Checkbox</option>
-                                <option value="date">Date</option>
-                                <option value="time">Time</option>
-                            </select>
-                        </div>
 
-                        <div class="col-md-8">
-                            &nbsp;
-                        </div>
+                <div class="row">
+                    <div class="col-md-12 mb-1">
+                        <label class="form-label fw-bolder">Jenis Atribut</label>
+                        {{-- Jenis Atribut --}}
+                        <select name="type" id="type" class="form-control select2" onchange="changeselect()">
+                            <option value="" hidden>Jenis Atribut</option>
+                            <option value="segment">Section</option>
+                            <option value="text">Text</option>
+                            <option value="number">Nombor</option>
+                            <option value="email">Email</option>
+                            <option value="date">Tarikh</option>
+                            <option value="time">Masa</option>
+                            <option value="select">Senarai Pilihan (Dropdown List)</option>
+                            <option value="radio">Butang Radio (Radio Button)</option>
+                            <option value="checkbox">Butang Pilihan (Checkbox Button)</option>
+                            <option value="file">Muat Naik Fail</option>
+                        </select>
+                    </div>
 
-                        <div class="col-md-6">
-                            {{-- Nama Label --}}
-                            <input type="text" class="form-control mt-1" name="label_name" id="label_name" placeholder="Nama Label">
-                        </div>
+                    <div class="col-md-12 mb-1">
+                        <label for="form-label fw-bolder">Nama Label</label>
+                        <input type="text" class="form-control" name="label_name" id="label_name">
+                    </div>
 
-                        <div class="col-md-6">
-                            {{-- Nama Atribut --}}
-                            <input type="text" class="form-control mt-1" name="name" id="name" placeholder="Nama Atribut">
-                            <p class="text-danger">Sila gunakan '_' untuk menggantikan ruangan kosong.</p>
-                        </div>
+                    <div class="col-md-12 mb-1">
+                        <label for="form-label fw-bolder">Nama Atribut</label>
+                        <input type="text" class="form-control" name="name" id="name">
+                        <p class="text-danger">Sila gunakan '_' untuk menggantikan ruangan kosong.</p>
+                    </div>
 
+                    <div class="col-md-12 mb-1 options" style="display: none;">
+                        <label for="form-label fw-bolder">Senarai Pilihan</label>
+                        <textarea name="options" id="options" class="form-control" placeholder="Pilihan 1;Pilihan 2;Pilihan 3" required></textarea>
+                        <p class="text-danger">Pilihan dipisahkan menggunakan simbol semicolon(;).</p>
+                    </div>
 
-                        <div class="col-md-12">
-                            {{-- Options for select --}}
-                            <textarea name="options" id="options" class="form-control options" style="display: none;" placeholder="option1;option2;option3" required></textarea>
-                            <p class="text-danger options" style="display: none;">Add options separated by semicolon(;).</p>
-                        </div>
+                    <div class="col-md-12 mb-1 options2" style="display: none;">
+                        <label for="form-label fw-bolder">Keterangan</label>
+                        <textarea name="options2" id="options2" class="form-control" required></textarea>
+                    </div>
 
-                         <div class="col-md-12">
-                            {{-- Options for select --}}
-                            <textarea name="options2" id="options2" class="form-control options2" style="display: none;" placeholder="Description" required></textarea>
-                        </div>
+                    <div class="col-md-12 mb-1">
+                        <label for="form-label fw-bolder">Placeholder Atribut</label>
+                        <input type="text" class="form-control" name="placeholder" id="placeholder">
+                    </div>
 
-                        <div class="col-md-8">
-                            {{-- placeholder --}}
-                            <input type="text" class="form-control mt-1" name="placeholder" id="placeholder" placeholder="Place Holder">
-                        </div>
-
-                        <div class="col-md-4">
-                            {{-- required --}}
-                               <input type="checkbox" class="form-check-input mt-1" id="requiredcheck" value=1 name="required">
-                                <label class="form-check-label mt-1" for="requiredcheck">Required</label>
-                        </div>
-
+                    <div class="col-md-12 mb-1">
+                        <label>&nbsp;</label>
+                        <input type="checkbox" class="form-check-input" id="requiredcheck" value=1 name="required">
+                        <label class="form-check-label" for="requiredcheck">Diperlukan</label>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="submitform()">submit</button>
-                </div>
-                </form>
-            </div>
+            </form>
+
+            <hr class="mb-2 mt-2">
+
+            <button type="button" class="btn btn-primary mb-1 d-grid w-100" onclick="submitform();">Simpan</button>
+            <button type="button" class="btn btn-outline-danger d-grid w-100" data-bs-dismiss="offcanvas">
+                Batal
+            </button>
         </div>
     </div>
 
- <!-- Modal box for preview form-->
+
     <div class="modal fade" id="ModalPreview" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="ModalLabel">Lihat</h5>
@@ -212,7 +212,7 @@ Pengurusan Instrumen
                 </div>
                 <div class="modal-body">
                     <div id="ModalPreviewContent">
-                         
+
                     </div>
                 </div>
 
@@ -238,7 +238,7 @@ Pengurusan Instrumen
             } else {
                 formObject[key] = value;
             }
-            
+
         });
 
         var type = $('#select').val();
@@ -260,11 +260,19 @@ Pengurusan Instrumen
             success: function(response) {
                 $('#type').val('');
                 $('#row1').append(response);
-                $('#Modal').modal("hide");
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Disimpan!',
+                    text: 'Atribut berjaya disimpan.',
+                    showConfirmButton: false,
+                });
+
+                $('#BorangTambahAtribut').offcanvas("hide");
             }
         });
     }
-    
+
     function deletediv(div) {
         $('#'+div).remove();
     }
@@ -290,14 +298,14 @@ Pengurusan Instrumen
         //     // return false;
         // }
         $('form#dynamicform').find('select, textarea, input').each(function() {
-            if(!$(this).prop('required')) { 
+            if(!$(this).prop('required')) {
                 console.log("NR");
-             
-             } else { 
-                var val = $(this).prop('value'); 
-                console.log(val) 
-                console.log("IR"); 
-            } 
+
+             } else {
+                var val = $(this).prop('value');
+                console.log(val)
+                console.log("IR");
+            }
         });
 
         $('form#dynamicform').submit();
@@ -330,7 +338,7 @@ Pengurusan Instrumen
             } else {
                 var options = [];
             }
-            
+
             if (inputType == 'hidden') {
                 var checktype = inputElement.attr('checktype');
                 if (checktype == 'segment') {
@@ -453,7 +461,7 @@ Pengurusan Instrumen
                     options = inputElement.attr('value');
                 }
             }
-    
+
             formObject[i] = {
                 label: labelName,
                 name: name,
@@ -487,63 +495,8 @@ Pengurusan Instrumen
                 $('#ModalPreviewContent').empty();
                 $('#ModalPreviewContent').append(response);
             }
-        }); 
+        });
     }
-
-    $(function () {
-        var applyChangesBtn = $('.btn-apply-changes'),
-            sourceItem = $('.source-item'),
-            formName = $('#form_name'),
-            categoryName = $('#category_name'),
-            type = $('#type'),
-            labelName = $('#label_name'),
-            name = $('#name'),
-            options = $('#options'),
-            btnAddNewItem = $('.btn-add-new ');
-
-        if (sourceItem.length) {
-            sourceItem.on('submit', function (e) {
-                e.preventDefault();
-            });
-            sourceItem.repeater({
-                show: function () {
-                    var repeaterRow = $(this);
-                    repeaterRow.find('#type').on('change', function () {
-                        handleDropdownChange(repeaterRow);
-                    });
-                    $(this).slideDown();
-                    handleDropdownChange(repeaterRow);
-                },
-                hide: function (e) {
-                    $(this).slideUp();
-                }
-            });
-        }
-
-        function handleDropdownChange(row) {
-            var typeDropdown = row.find('#type');
-            var optionsDiv = row.find('.divTextareaOptions');
-
-            if (typeDropdown.val() === 'select') {
-                optionsDiv.show(300);
-            } else {
-                optionsDiv.hide(300);
-            }
-        }
-
-        if (btnAddNewItem.length) {
-            btnAddNewItem.on('click', function () {
-                if (feather) {
-                    // featherSVG();
-                    feather.replace({ width: 14, height: 14 });
-                }
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                    return new bootstrap.Tooltip(tooltipTriggerEl);
-                });
-            });
-        }
-    });
 
 </script>
 @endsection
