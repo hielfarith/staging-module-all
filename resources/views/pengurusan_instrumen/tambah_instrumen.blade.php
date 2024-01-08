@@ -385,7 +385,7 @@ Pengurusan Instrumen
                     Swal.fire({
                         icon: 'success',
                         title: 'Disimpan!',
-                        text: 'Atribut berjaya disimpan.',
+                        text: 'Borang instrumen berjaya disimpan.',
                         showConfirmButton: true,
                     }).then((result) => {
                         if (result.isConfirmed) {
