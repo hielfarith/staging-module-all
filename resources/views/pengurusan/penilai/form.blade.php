@@ -19,37 +19,41 @@ Pengurusan Penilai
         <form id="formpenilai">
             <div>
                 <label class="fw-bolder">Nama Pengguna/Penilai:</label>
-                <input type="text" class="form-control" name="nama_pengguna">
+                <input type="text" class="form-control" name="nama_pengguna" required>
             </div>
 
             <div>
                 <label class="fw-bolder">No Kad Pengenalan:</label>
-                <input type="text" class="form-control" name="no_kad">
+                <input type="text" class="form-control" name="no_kad" required>
             </div>
 
             <div>
                 <label class="fw-bolder"> Emel Peribadi:</label>
-                <input type="email" class="form-control" name="email_peribadi">
+                <input type="email" class="form-control" name="email_peribadi" required>
             </div>
 
             <div>
                 <label class="fw-bolder"> Emel Ketua Jabatan:</label>
-                <input type="email" class="form-control" name="email_ketua_jabatan">
+                <input type="email" class="form-control" name="email_ketua_jabatan" required>
             </div>
 
             <div>
                 <label class="fw-bolder"> Emel Penyelia:</label>
-                <input type="email" class="form-control" name="email_penyelia">
+                <input type="email" class="form-control" name="email_penyelia" required>
             </div>
 
             <div>
                 <label class="fw-bolder"> Agensi/ Kementerian:</label>
-                <input type="text" class="form-control" name="agensi_kementerian">
+                <select class="form-control select2" name="agensi_kementerian" required>
+                    <option>pilih</option>
+                    <option value="Agensi">Agensi</option>
+                    <option value="Kementerian">Kementerian</option>
+                </select> 
             </div>
 
             <div>
                 <label class="fw-bolder"> No Tel Pejabat:</label>
-                <input type="text" class="form-control" name="no_tel_pejabat" required>
+                <input type="text" class="form-control" name="no_tel_pejabat">
             </div>
 
              <div>
@@ -74,13 +78,13 @@ Pengurusan Penilai
 
              <div>
                 <label class="fw-bolder"> Poskod:</label>
-                <input type="text" class="form-control" maxlength="6" name="poskod" required>
+                <input type="text" class="form-control" maxlength="5" name="poskod" required>
             </div>
 
              <div>
                 <label class="fw-bolder"> Daerah:</label>
                   <select class="form-control select2" name="daerah" required>
-                        <option>select</option>
+                        <option>pilih</option>
                         <option>1</option>
                         <option>2</option>
                 </select>
@@ -89,7 +93,7 @@ Pengurusan Penilai
              <div>
                 <label class="fw-bolder"> Negeri:</label>
                   <select class="form-control select2" name="negeri" required>
-                        <option>select</option>
+                        <option>pilih</option>
                         @foreach($states as $state)
                         <option value="{{$state->name}}">{{$state->name}}</option>
                         @endforeach
@@ -98,8 +102,8 @@ Pengurusan Penilai
 
             <div>
                 <label class="fw-bolder"> Gred:</label>
-                  <select class="form-control select2" name="gred">
-                        <option>select</option>
+                  <select class="form-control select2" name="gred" required>
+                        <option>pilih</option>
                         <option>1</option>
                         <option>2</option>
                 </select>
@@ -109,7 +113,7 @@ Pengurusan Penilai
             <div>
                 <label class="fw-bolder"> 3 negeri pilihan bagi menjalankan penilaian SKPAK:</label>
                   <select class="form-control select2" name="negeri_skpak[]" multiple>
-                        <option>select</option>
+                        <option>pilih</option>
                         @foreach($states as $state)
                             <option value="{{$state->name}}">{{$state->name}}</option>
                         @endforeach

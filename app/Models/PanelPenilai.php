@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PanelPenilai extends Model
 {
     use HasFactory;
-
+    /**
+     * The attributes that are mass assignable
+     * @var array
+     */
     protected $fillable = [
                             'nama_pengguna',
                             'no_kad',

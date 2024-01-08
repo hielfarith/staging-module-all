@@ -208,4 +208,9 @@ Route::controller(PengurusanController::class)->prefix('admin/internal')->middle
     Route::post('saveagensi','saveAgensi')->name('admin.internal.agensisave');
     Route::get('senarai-agensi','listAgensi')->name('admin.internal.agensilist');
     Route::post('viewagensi/{id}','viewAgensi')->name('admin.internal.viewagensi');
+
+    Route::get('create-jawatankuasa','viewFormJawatankuasa')->name('admin.internal.jawatankuasaform');
+    Route::post('savejawatankuasa','saveJawatankuasa')->name('admin.internal.jawatankuasasave');
+    Route::get('senarai-jawatankuasa','listJawatankuasa')->name('admin.internal.jawatankuasalist');
+    Route::post('viewjawatankuasa/{id}','viewJawatankuasa')->name('admin.internal.viewjawatankuasa');
 });

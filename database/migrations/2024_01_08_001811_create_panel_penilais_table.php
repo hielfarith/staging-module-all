@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email_penyelia');
             $table->string('email_ketua_jabatan');
             $table->string('agensi_kementerian');
-            $table->string('no_tel_pejabat');
+            $table->string('no_tel_pejabat')->nullable();
             $table->string('no_tel_peribadi');
             $table->string('alamat1');
             $table->string('alamat2');
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('daerah');
             $table->string('negeri');
             $table->string('gred');
-            $table->string('negeri_skpak');
+            $table->string('negeri_skpak')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

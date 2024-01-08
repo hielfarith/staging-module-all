@@ -94,10 +94,17 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.agensilist'])? 'active': '' }}">
+                    <li class="{{ in_array(request()->route()->getName(),['admin.internal.agensilist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.agensilist') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Senarai Ketua Agensi </span>
+                        </a>
+                    </li>
+
+                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.jawatankuasalist'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.jawatankuasalist') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Ahli Jawtankuasa Kerja </span>
                         </a>
                     </li>
 

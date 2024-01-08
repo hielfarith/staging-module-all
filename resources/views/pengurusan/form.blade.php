@@ -24,47 +24,51 @@ Pengurusan Pengguna
         <form id="formpengunna">
             <div>
                 <label class="fw-bolder">Nama Pengguna/ Ketua TASKA:</label>
-                <input type="text" class="form-control" name="nama_pengguna">
+                <input type="text" class="form-control" name="nama_pengguna" required>
             </div>
 
             <div>
                 <label class="fw-bolder">No Kad Pengenalan atau passport:</label>
-                <input type="text" class="form-control" name="no_kad">
+                <input type="text" class="form-control" name="no_kad" required>
             </div>
 
             <div>
                 <label class="fw-bolder"> Emel Peribadi:</label>
-                <input type="email" class="form-control" name="email_peribadi">
+                <input type="email" class="form-control" name="email_peribadi" required>
             </div>
 
             <div>
                 <label class="fw-bolder"> Emel TASKA:</label>
-                <input type="email" class="form-control" name="email_taska">
+                <input type="email" class="form-control" name="email_taska" required>
             </div>
 
             <div>
                 <label class="fw-bolder"> Emel Ibu Pejabat (Negeri)/ Penyelia:</label>
-                <input type="email" class="form-control" name="email_pejabat_penyelia">
+                <input type="email" class="form-control" name="email_pejabat_penyelia" required>
             </div>
 
             <div>
                 <label class="fw-bolder"> Agensi/ Kementerian:</label>
-                <input type="text" class="form-control" name="agensi_kementerian">
+                <select class="form-control select2" name="agensi_kementerian" required>
+                    <option>pilih</option>
+                    <option value="Agensi">Agensi</option>
+                    <option value="Kementerian">Kementerian</option>
+                </select> 
             </div>
 
             <div>
-                <label class="fw-bolder"> Pilihan [Kerajaan atau swasta]:</label>
-                <select class="form-control select2" name="pilihan_swasta">
-                        <option>select</option>
-                        <option>1</option>
-                        <option>2</option>
+                <label class="fw-bolder"> Jenis :</label>
+                <select class="form-control select2" name="jenis" required>
+                        <option>pilih</option>
+                        <option value="Kerajaan">Kerajaan</option>
+                        <option value="Swasta">Swasta</option>
                 </select> 
             </div>
 
             <div>
                 <label class="fw-bolder"> Jawatan:</label>
-                <select class="form-control select2" name="jawatan">
-                        <option>select</option>
+                <select class="form-control select2" name="jawatan" required>
+                        <option>pilih</option>
                         <option>1</option>
                         <option>2</option>
                 </select>
@@ -72,7 +76,7 @@ Pengurusan Pengguna
 
             <div>
                 <label class="fw-bolder"> Gred:</label>
-                  <select class="form-control select2" name="gred">
+                  <select class="form-control select2" name="gred" required>
                         <option>select</option>
                         <option>1</option>
                         <option>2</option>
@@ -91,12 +95,12 @@ Pengurusan Pengguna
 
              <div>
                 <label class="fw-bolder"> Alamat 3:</label>
-                <input type="text" class="form-control" name="agensi_kementerian">
+                <input type="text" class="form-control" name="alamat3">
             </div>
 
              <div>
                 <label class="fw-bolder"> Poskod:</label>
-                <input type="text" class="form-control" name="poskod" required>
+                <input type="text" class="form-control" name="poskod" maxlength="5" required>
             </div>
 
              <div>

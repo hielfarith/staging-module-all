@@ -1,6 +1,7 @@
 @extends('layouts.app')
+
 @section('header')
-Pengurusan KETUA AGENSI
+Ahli Jawtankuasa Kerja
 @endsection
 
 @section('breadcrumb')
@@ -9,14 +10,14 @@ Pengurusan KETUA AGENSI
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Pengurusan KETUA AGENSI </a>
+    <a href="#"> Ahli Jawtankuasa Kerja </a>
 </li>
 @endsection
 
 @section('content')
 <div class="row">
     <div class="col-md-8">
-        <form id="formagensi">
+        <form id="formahli">
             <div>
                 <label class="fw-bolder">Nama Pengguna/Penilai:</label>
                 <input type="text" class="form-control" name="nama_pengguna" required>
@@ -41,46 +42,17 @@ Pengurusan KETUA AGENSI
                 <label class="fw-bolder">No Kad Pengenalan:</label>
                 <input type="text" class="form-control" name="no_kad" required>
             </div>
-
+            
             <div>
-                <label class="fw-bolder">
-                    <input type="radio" name="jenis" class="form-check-input" value="Kerajan">Kerajan
-                </label>
-                <label class="fw-bolder">
-                    <input type="radio" name="jenis"class="form-check-input"  value="Swasta">Swasta
-                </label>
+                <label class="fw-bolder"> Jawatan/Gred :</label>
+                <select class="form-control select2" name="jawatan" required>
+                        <option>pilih</option>
+                        <option value="Jawatan">Jawatan</option>
+                        <option value="Gred">Gred</option>
+                </select> 
             </div>
 
             <div>
-                <label class="fw-bolder">Jawatan:</label>
-                <input type="text" name="jawatan" value="" class="form-control" required>
-            </div>
-
-            <div>
-                <label class="fw-bolder"> Gred:</label>
-                  <select class="form-control select2" name="gred">
-                        <option>select</option>
-                        <option>1</option>
-                        <option>2</option>
-                </select>
-            </div>
-
-            <div>
-                <label class="fw-bolder">
-                    <input type="checkbox" name="modul" value="1" class="form-check-input" required>Modul
-                </label>
-            </div>
-           
-            <div>
-                <label class="fw-bolder"> Agensi/ Kementerian:</label>
-                  <select class="form-control select2" name="agensi_kementerian[]" multiple required>
-                    <option>select</option>
-                    <option value="Agensi">Agensi</option>
-                    <option value="Kementerian">Kementerian</option>
-                </select>
-            </div>
-
-             <div>
                 <label class="fw-bolder"> Alamat 1:</label>
                 <input type="text" class="form-control" name="alamat1" required>
             </div>
@@ -97,13 +69,13 @@ Pengurusan KETUA AGENSI
 
              <div>
                 <label class="fw-bolder"> Poskod:</label>
-                <input type="text" class="form-control" maxlength="5" name="poskod" required>
+                <input type="text" class="form-control" name="poskod" maxlength="5" required>
             </div>
 
              <div>
                 <label class="fw-bolder"> Daerah:</label>
                   <select class="form-control select2" name="daerah" required>
-                        <option>pilih</option>
+                        <option>select</option>
                         <option>1</option>
                         <option>2</option>
                 </select>
@@ -119,11 +91,31 @@ Pengurusan KETUA AGENSI
                 </select>
             </div>
 
-            <div>
-                <label class="fw-bolder">  Emel Ketua Pengarah/ Pengarah:</label>
-                <input type="email" class="form-control" name="email_ketua" required>
+             <div>
+                <label class="fw-bolder"> Emel Peribadi::</label>
+                <input type="text" class="form-control flatpickr" name="email_peribadi" required>
             </div>
-            
+
+             <div>
+                <label class="fw-bolder"> Nama Majikan:</label>
+                <input type="text" class="form-control" name="nama_majikan" >
+            </div>
+
+
+             <div>
+                <label class="fw-bolder"> Emel Majikan:</label>
+                <input type="text" class="form-control" name="email_majikan" >
+            </div>
+
+            <div>
+                <label class="fw-bolder"> Agensi/ Kementerian:</label>
+                <select class="form-control select2" name="agensi_kementerian" required>
+                    <option>pilih</option>
+                    <option value="Agensi">Agensi</option>
+                    <option value="Kementerian">Kementerian</option>
+                </select> 
+            </div>
+
             <div>
                 <label class="fw-bolder"> No Tel Pejabat:</label>
                 <input type="text" class="form-control" name="no_tel_pejabat">
@@ -133,6 +125,7 @@ Pengurusan KETUA AGENSI
                 <label class="fw-bolder"> No Tel Peribadi:</label>
                 <input type="text" class="form-control" name="no_tel_peribadi" maxlength="12" required>
             </div>
+
 
             <div class="d-flex justify-content-end align-items-center my-1">
                 <button type="submit" class="btn btn-primary float-right">Hantar</button>
@@ -146,10 +139,10 @@ Pengurusan KETUA AGENSI
 @section('script')
 <script type="text/javascript">
     
-$('#formagensi').submit(function(event) {
+$('#formahli').submit(function(event) {
         event.preventDefault();
-        var formData = new FormData(document.getElementById('formagensi'));
-        var url = "{{ route('admin.internal.agensisave') }}"
+        var formData = new FormData(document.getElementById('formahli'));
+        var url = "{{ route('admin.internal.jawatankuasasave') }}"
         $.ajax({
             url: url,
             type: 'POST',
@@ -158,7 +151,7 @@ $('#formagensi').submit(function(event) {
             processData: false,
             success: function(response) {
                if (response.status) {
-                    var location = "{{route('admin.internal.agensilist')}}"
+                    var location = "{{route('admin.internal.jawatankuasalist')}}"
                     window.location.href = location;
                }
             }

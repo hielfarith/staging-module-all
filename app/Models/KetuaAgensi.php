@@ -9,8 +9,11 @@ class KetuaAgensi extends Model
 {
     use HasFactory;
 
-   
-protected $fillable = [
+     /**
+     * The attributes that are mass assignable
+     * @var array
+     */
+    protected $fillable = [
                             'nama_pengguna',
                             'panggilan',
                             'no_kad',

@@ -120,7 +120,7 @@ $.ajaxSetup({
         }
 })
 
-function maklumatPengguna(id){
+function maklumatPenilai(id){
     var url = "{{ route('admin.internal.viewpenilai',['id'=> ':id']) }}";
     var url = url.replace(':id', id);
 

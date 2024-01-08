@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-Pengurusan KETUA AGENSI
+Ahli Jawtankuasa Kerja
 @endsection
 
 @section('breadcrumb')
@@ -10,18 +10,18 @@ Pengurusan KETUA AGENSI
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Pengurusan KETUA AGENSI </a>
+    <a href="#"> Ahli Jawtankuasa Kerja </a>
 </li>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title fw-bolder"> Senarai Penggurusan Ketua Agensi </h4>
+        <h4 class="card-title fw-bolder"> Senarai Ahli Jawtankuasa Kerja </h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.agensiform') }}">
-                <i class="fa-solid fa-add"></i> Tambah Ketua Agensi
+            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.jawatankuasaform') }}">
+                <i class="fa-solid fa-add"></i> Tambah Ahli Jawtankuasa Kerja
             </a>
         </div>
     </div>
@@ -30,13 +30,13 @@ Pengurusan KETUA AGENSI
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiAgensi">
+            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiAhli">
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
                         <th>Nama Pengguna</th>
                         <th>No Kad</th>
-                        <th width="20%">Emel Ketua Pengarah/ Pengarah</th>
+                        <th width="20%">Emel Peribadi:</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -47,14 +47,14 @@ Pengurusan KETUA AGENSI
     </div>
 </div>
 
-<div class="modal fade text-start" id="modal-agensi-diisi" tabindex="-1" aria-hidden="true">
+<div class="modal fade text-start" id="modal-ahli-diisi" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Maklumat Penilai</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="modal-body-agensi"></div>
+            <div class="modal-body" id="modal-body-ahli"></div>
         </div>
     </div>
 </div>
@@ -65,7 +65,7 @@ Pengurusan KETUA AGENSI
 $(document).ready(function() {
 
     $(function() {
-        var table = $('#TableSenaraiAgensi').DataTable({
+        var table = $('#TableSenaraiAhli').DataTable({
             orderCellsTop: true,
             colReorder: false,
             pageLength: 10,
@@ -120,8 +120,8 @@ $.ajaxSetup({
         }
 })
 
-function maklumatAgensi(id){
-    var url = "{{ route('admin.internal.viewagensi',['id'=> ':id']) }}";
+function maklumatAhli(id){
+    var url = "{{ route('admin.internal.viewjawatankuasa',['id'=> ':id']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({
@@ -131,9 +131,9 @@ function maklumatAgensi(id){
             id: id
             },
         success: function(response) {
-            $('#modal-agensi-diisi').modal("show");
-            $('#modal-body-agensi').empty();
-            $('#modal-body-agensi').append(response);
+            $('#modal-ahli-diisi').modal("show");
+            $('#modal-body-ahli').empty();
+            $('#modal-body-ahli').append(response);
         }
     });
 }

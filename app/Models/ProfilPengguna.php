@@ -25,7 +25,7 @@ class ProfilPengguna extends Model
                             'email_taska',
                             'email_pejabat_penyelia',
                             'agensi_kementerian',
-                            'pilihan_swasta',
+                            'jenis',
                             'jawatan',
                             'gred',
                             'status',
