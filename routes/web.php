@@ -190,17 +190,17 @@ Route::controller(ModuleController::class)->prefix('module')->middleware(['web']
     Route::post('deleteFlowManagement','deleteFlowManagement')->name('module.deleteFlowManagement');
 
 });
- 
+
 
  //pengurusan controller
-Route::controller(PengurusanController::class)->prefix('admin/internal')->middleware(['web'])->group(function () {
-    Route::get('create-pengguna','viewForm')->name('admin.internal.penggunaform');
-    Route::post('savepengguna','savePengguna')->name('admin.internal.penggunasave');
+Route::controller(PengurusanController::class)->prefix('pengguna-dalaman')->middleware(['web'])->group(function () {
+    Route::get('pengguna-baru','viewForm')->name('admin.internal.penggunaform');
+    Route::post('simpan-pengguna','savePengguna')->name('admin.internal.penggunasave');
     Route::get('senarai-pengguna','listPengguna')->name('admin.internal.penggunalist');
-    Route::post('viewpengguna/{id}','viewPengguna')->name('admin.internal.viewpengguna');
+    Route::post('lihat-pengguna/{id}','viewPengguna')->name('admin.internal.viewpengguna');
 
-    Route::get('create-penilai','viewFormPenilai')->name('admin.internal.penilaiform');
-    Route::post('savepenilai','savePenilai')->name('admin.internal.penilaisave');
+    Route::get('penilai-baru','viewFormPenilai')->name('admin.internal.penilaiform');
+    Route::post('simpan-penilai','savePenilai')->name('admin.internal.penilaisave');
     Route::get('senarai-penilai','listPenilai')->name('admin.internal.penilailist');
-    Route::post('viewpenilai/{id}','viewPenilai')->name('admin.internal.viewpenilai');
+    Route::post('lihat-penilai/{id}','viewPenilai')->name('admin.internal.viewpenilai');
 });
