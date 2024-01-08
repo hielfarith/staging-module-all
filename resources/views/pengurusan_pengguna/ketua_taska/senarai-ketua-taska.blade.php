@@ -38,7 +38,7 @@ Pengurusan Ketua Taska
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
-                        <th>Nama Pengguna</th>
+                        <th>Nama Ketua Taska/ Pengguna</th>
                         <th>No Kad Pengenalan/ Pasport</th>
                         <th width="20%">Email Peribadi</th>
                         <th width="5%">Tindakan</th>
@@ -52,11 +52,11 @@ Pengurusan Ketua Taska
     </div>
 </div>
 
-<div class="modal fade" id="modal-penilai-diisi" tabindex="-1" aria-labelledby="modal-penilai-diisi" aria-hidden="true">
+<div class="modal fade" id="modal-ketua-taska-diisi" tabindex="-1" aria-labelledby="modal-ketua-taska-diisi" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Pengguna</h5>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Ketua Taska</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -138,7 +138,7 @@ function maklumatPengguna(id){
             id: id
             },
         success: function(response) {
-            $('#modal-penilai-diisi').modal("show");
+            $('#modal-ketua-taska-diisi').modal("show");
             $('#modal-body-pengguna').empty();
             $('#modal-body-pengguna').append(response);
         }
