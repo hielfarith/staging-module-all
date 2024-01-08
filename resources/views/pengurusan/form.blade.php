@@ -21,7 +21,7 @@ Pengurusan Pengguna
 @section('content')
 <div class="row">
     <div class="col-md-8 card">
-        <form id="formpengunna">
+        <form id="formpengunna" novalidate="novalidate">
             <div>
                 <label class="fw-bolder">Nama Pengguna/ Ketua TASKA:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
@@ -50,7 +50,7 @@ Pengurusan Pengguna
             <div>
                 <label class="fw-bolder"> Agensi/ Kementerian:<span style="color: red;">*</span></label>
                 <select class="form-control select2" name="agensi_kementerian" required>
-                    <option>pilih</option>
+                    <option value="">pilih</option>
                     <option value="Agensi">Agensi</option>
                     <option value="Kementerian">Kementerian</option>
                 </select> 
@@ -59,7 +59,7 @@ Pengurusan Pengguna
             <div>
                 <label class="fw-bolder"> Jenis :<span style="color: red;">*</span></label>
                 <select class="form-control select2" name="jenis" required onchange="checksjenis(this)">
-                        <option>pilih</option>
+                        <option value="">pilih</option>
                         <option value="Kerajaan">Kerajaan</option>
                         <option value="Swasta">Swasta</option>
                 </select> 
@@ -68,7 +68,7 @@ Pengurusan Pengguna
             <div>
                 <label class="fw-bolder"> Jawatan:<span style="color: red;">*</span></label>
                 <select class="form-control select2" name="jawatan" id="jawatan" required>
-                        <option>pilih</option>
+                        <option value="">pilih</option>
                         <option>1</option>
                         <option>2</option>
                 </select>
@@ -77,7 +77,7 @@ Pengurusan Pengguna
             <div>
                 <label class="fw-bolder"> Gred:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="gred" id="gred" required>
-                        <option>select</option>
+                        <option value="">pilih</option>
                         <option>1</option>
                         <option>2</option>
                 </select>
@@ -106,7 +106,7 @@ Pengurusan Pengguna
              <div>
                 <label class="fw-bolder"> Negeri:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="negeri" required>
-                        <option>pilih</option>
+                        <option value="">pilih</option>
                         @foreach($states as $state)
                         <option value="{{$state->name}}">{{$state->name}}</option>
                         @endforeach
@@ -116,7 +116,7 @@ Pengurusan Pengguna
               <div>
                 <label class="fw-bolder"> Daerah:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="daerah" required>
-                        <option>select</option>
+                        <option value="">pilih</option>
                         <option>1</option>
                         <option>2</option>
                 </select>
@@ -130,7 +130,7 @@ Pengurusan Pengguna
             <div>
                 <label class="fw-bolder"> Jenis Taska:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="jenis_taska" required>
-                        <option>pilih</option>
+                        <option value="">pilih</option>
                         <option value="swasta">swasta</option>
                         <option value="kerajan">kerajan</option>
                 </select>
@@ -155,7 +155,7 @@ Pengurusan Pengguna
             <div>
                 <label class="fw-bolder"> Jenis Banugunan:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="jenisbanugunan" required>
-                        <option>select</option>
+                        <option value="">pilih</option>
                         <option value="tempat kerja">tempat kerja</option>
                         <option value="rumah kedai">rumah kedai</option>
                         <option value="bangunan">bangunan</option>
@@ -191,16 +191,36 @@ Pengurusan Pengguna
 
 function  checksjenis(jenis) {
     if (jenis.value == 'Swasta') {
+        $('#jawatan').val('');
+        $('#gred').val('');
         $('#jawatan').attr('disabled', true);
         $('#gred').attr('disabled', true);
+        $('#jawatan').prop('required',false);
+        $('#gred').prop('required',false);
     } else {
         $('#jawatan').attr('disabled', false);
         $('#gred').attr('disabled', false);
+        $('#jawatan').prop('required',true);
+        $('#gred').prop('required',true);
     }
 }
+
+
 $('#formpengunna').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formpengunna'));
+        formData.forEach(function(value, name) {
+            var element = $("input[name="+name+"]");
+            if (typeof element.attr('name') != 'undefined') {
+                if (element.val() == '') {
+                    Swal.fire('Error', 'Please fill required fields', 'error');
+                    return false;
+                }
+            }
+        });
+        var select2 = ['jenis','jawatan','gred', 'negeri','daerah','jenis_taska','jenisbanugunan'];   
+      
+        return false;
         var url = "{{ route('admin.internal.penggunasave') }}"
         $.ajax({
             url: url,
@@ -211,7 +231,6 @@ $('#formpengunna').submit(function(event) {
             success: function(response) {
                if (response.status) {
                                     Swal.fire('Success', 'Berjaya', 'success');
-
                     var location = "{{route('admin.internal.penggunalist')}}"
                     window.location.href = location;
                }
