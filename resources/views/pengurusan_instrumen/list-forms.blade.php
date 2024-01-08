@@ -1,10 +1,5 @@
 @extends('layouts.app')
 
-<style type="text/css">
-    .delete-button {
-        display: none;
-    }    
-</style>
 @section('header')
 Pengurusan Instrumen
 @endsection
@@ -18,71 +13,127 @@ Pengurusan Instrumen
     <a href="#"> Pengurusan Instrumen </a>
 </li>
 @endsection
+
 @section('content')
-<section class="invoice-add-wrapper">
-    <div class="row invoice-add">
-       <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Form ID</th>
-            <th scope="col">Form Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($forms as $key => $form)
-            <tr>
-              <td>{{$key+1}}</td>
-              <td>{{$form->id}}</td>
-              <td>{{$form->form_name}}</td>
-              <td>{{$form->category}}</td>
-              <td><a class="btn-btn-primary" onclick="listForm({{$form->id}})">
-                      <i class="fa fa-eye"></i>
-                  </a></td>
-            </tr>
-          @endforeach
-        </tbody>
-      </table>
+
+<style>
+    .delete-button {
+        display: none;
+    }
+
+    #TableSenaraiInstrumen thead th {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    #TableSenaraiInstrumen tbody {
+        vertical-align: middle;
+    }
+
+</style>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title fw-bolder">
+            Senarai Instrumen
+        </h4>
     </div>
 
-   <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="append">
-                
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-primary" onclick="submitform()">submit</button> -->
-                </div>
-            </div>
+    <hr>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiInstrumen" style="width: 100%">
+                <thead>
+                    <tr>
+                      <th width="5%">ID Instrumen</th>
+                      <th>Maklumat Instrumen</th>
+                      <th>Kategori</th>
+                      <th>Tarikh Akhir Pengisian</th>
+                      <th width="5%">Tindakan</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                  </tbody>
+            </table>
         </div>
     </div>
-</section>
+</div>
 @endsection
+
 @section('script')
 <script>
-   function listForm(id){
-        var url = "{{route('view-form-input',['id'=> ':id'])}}";
-        var url = url.replace(':id', id);
 
-        $.ajax({
-            url: url, // Route URL
-            type: 'POST', // Request type (GET, POST, etc.)
-             data: {
-                id: id
-             }, 
-            success: function(response) {
-                $('#Modal').modal("show");
-                $('#append').empty();
-                $('#append').append(response);            
-            }
+    $(document).ready(function() {
+
+        $(function() {
+            var table = $('#TableSenaraiInstrumen').DataTable({
+                orderCellsTop: true,
+                colReorder: false,
+                pageLength: 10,
+                processing: true,
+                serverSide: true, //enable if data is large (more than 50,000)
+                ajax: {
+                    url: "{{ fullUrl() }}",
+                    cache: false,
+                },
+                columns: [{
+                        data: "id",
+                        name: "id",
+                        render: function(data, type, row) {
+                            return $("<div/>").html(data).text();
+                        }
+                    },
+                    {
+                        data: "form_name",
+                        name: "form_name",
+                        render: function(data, type, row) {
+                            return $("<div/>").html(data).text();
+                        }
+                    },
+                    {
+                        data: "category",
+                        name: "category",
+                        render: function(data, type, row) {
+                            return $("<div/>").html(data).text();
+                        }
+                    },
+                    {
+                        data: "tarikh_tutup",
+                        name: "tarikh_tutup",
+                        render: function(data, type, row) {
+                            return $("<div/>").html(data).text();
+                        }
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: true,
+                        searchable: true
+                    },
+                ],
+            });
         });
-    }
+    });
+
+    function listForm(id){
+            var url = "{{route('view-form-input',['id'=> ':id'])}}";
+            var url = url.replace(':id', id);
+
+            $.ajax({
+                url: url, // Route URL
+                type: 'POST', // Request type (GET, POST, etc.)
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    $('#Modal').modal("show");
+                    $('#append').empty();
+                    $('#append').append(response);
+                }
+            });
+        }
 </script>
 @endsection

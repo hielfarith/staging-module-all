@@ -33,9 +33,44 @@ class PengurusanInstrumenController extends Controller
         return view('pengurusan_instrumen.lihat_instrumen');
     }
 
-     public function showAllForms(){
-        $forms = NewForm::all();
-        return view('pengurusan_instrumen.list-forms', compact('forms'));
+    public function showAllForms(Request $request){
+        if($request->ajax()) {
+
+            $allForms = NewForm::all();
+
+            return Datatables::of($allForms)
+                ->editColumn('id', function ($forms) {
+                    return $forms->id;
+                })
+                ->editColumn('form_name', function ($forms) {
+                    $maklumat_instrumen = "";
+                    $maklumat_instrumen .= "<b>" . $forms->form_name . "</b>";
+                    $maklumat_instrumen .= "<br>";
+                    $maklumat_instrumen .= "Deskripsi: <i>" . $forms->description . "</i>";
+
+                    return $maklumat_instrumen;
+                })
+                ->editColumn('category', function ($forms) {
+                    return $forms->category;
+                })
+                ->editColumn('tarikh_tutup', function ($forms) {
+                    return $forms->tarikh_tutup;
+                })
+                ->editColumn('action', function ($forms) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="listForm(' . $forms->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('pengurusan_instrumen.list-forms');
      }
 
     // Sahkan Kategori Instrumen pada Borang Instrumen Baru
@@ -105,7 +140,7 @@ class PengurusanInstrumenController extends Controller
         $formData = new FormSubmission;
         $formData->form_name = $inputData['form_name'];
         $formData->category = $inputData['category_name'];
-       
+
         $formData->data = json_encode($inputData);
         $formData->json_data = json_encode($inputData);
 
