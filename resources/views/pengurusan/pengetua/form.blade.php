@@ -1,0 +1,126 @@
+@extends('layouts.app')
+
+@section('header')
+PENGERUSI/ PENGETUA/ GURU BESAR
+@endsection
+
+@section('breadcrumb')
+<li class="breadcrumb-item">
+    <a href="{{ route('home') }}">{{ __('msg.home') }}</a>
+</li>
+
+<li class="breadcrumb-item">
+    <a href="#"> PENGERUSI/ PENGETUA/ GURU BESAR </a>
+</li>
+@endsection
+
+@section('content')
+<div class="row">
+    <div class="col-md-8 card">
+        <form id="formpengetua">
+            <div>
+                <label class="fw-bolder">Nama:</label>
+                <input type="text" class="form-control" name="nama" required>
+            </div>
+
+            <div>
+                <label class="fw-bolder">No Kad Pengenalan:</label>
+                <input type="text" class="form-control" name="no_kp" required>
+            </div>
+            
+            <div>
+                <label class="fw-bolder"> No Tel:</label>
+                <input type="text" class="form-control" name="no_tel" required>
+            </div>
+
+             <div>
+                <label class="fw-bolder"> Email:</label>
+                <input type="text" class="form-control" name="email" required>
+            </div>
+ 
+             <div>
+                <label class="fw-bolder"> Jawatan:</label>
+                  <select class="form-control select2" name="jawatan" required>
+                        <option>select</option>
+                        <option>1</option>
+                        <option>2</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="fw-bolder"> Negeri:</label>
+                  <select class="form-control select2" name="negeri" required>
+                        <option>pilih</option>
+                        @foreach($states as $state)
+                        <option value="{{$state->name}}">{{$state->name}}</option>
+                        @endforeach
+                </select>
+            </div>
+
+            <div>
+                <label class="fw-bolder"> Institusi:</label>
+                  <select class="form-control select2" name="institusi" required>
+                        <option>select</option>
+                        <option>1</option>
+                        <option>2</option>
+                </select>
+            </div>
+
+
+             <div>
+                <label class="fw-bolder"> Sebab Pertukaran:</label>
+                  <select class="form-control select2" name="sebab_pertukaran" id="sebab_pertukaran" required onchange="checksebab(this)">
+                        <option>select</option>
+                        <option value="Dalam Proses Pertukaran Pengerusi/Pengetua/Guru Besar">Dalam Proses Pertukaran Pengerusi/Pengetua/Guru Besar</option>
+                        <option value="Pengambilalihan Pemilikan Baru">Pengambilalihan Pemilikan Baru</option>
+                        <option value="Kematian">Kematian</option>
+                        <option value="Lain-lain">Lain-lain</option>
+                </select>
+                <br>
+                <input type="text" name="sebab_pertukaran_lain" placeholder="Sila nyatakan." id="sebab_pertukaran_lain" class="form-control" style="display: none;">
+            </div>
+            
+            <div class="d-flex justify-content-end align-items-center my-1">
+                <button type="submit" class="btn btn-primary float-right">Hantar</button>
+            </div>    
+        </form>
+    </div>
+</div>
+
+@endsection
+
+@section('script')
+<script type="text/javascript">
+function checksebab(sebab) {
+    if (sebab.value == 'Lain-lain') {
+        $('#sebab_pertukaran_lain').css('display','block');
+        $('#sebab_pertukaran_lain').attr('required', true);
+    } else {
+        $('#sebab_pertukaran_lain').attr('required', false);
+        $('#sebab_pertukaran_lain').css('display','none');
+    }
+}
+
+$('#formpengetua').submit(function(event) {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById('formpengetua'));
+        var url = "{{ route('admin.internal.pengetuasave') }}"
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+                    var location = "{{route('admin.internal.pengetualist')}}"
+                    window.location.href = location;
+               }
+            }
+        });
+
+    });
+</script>
+
+@endsection

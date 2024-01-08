@@ -200,6 +200,8 @@ $('#formpengunna').submit(function(event) {
             processData: false,
             success: function(response) {
                if (response.status) {
+                                    Swal.fire('Success', 'Berjaya', 'success');
+
                     var location = "{{route('admin.internal.penggunalist')}}"
                     window.location.href = location;
                }

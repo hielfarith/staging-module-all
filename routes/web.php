@@ -219,4 +219,10 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
     Route::post('savejawatankuasatertinggi','saveJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggisave');
     Route::get('senarai-jawatankuasatertinggi','listJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggilist');
     Route::post('viewjawatankuasatertinggi/{id}','viewJawatankuasatertinggi')->name('admin.internal.viewjawatankuasatertinggi');
+
+    Route::get('create-pengetua','viewFormPengetua')->name('admin.internal.pengetuaform');
+    Route::post('savepengetua','savePengetua')->name('admin.internal.pengetuasave');
+    Route::get('senarai-pengetua','listPengetua')->name('admin.internal.pengetualist');
+    Route::post('viewpengetua/{id}','viewPengetua')->name('admin.internal.viewpengetua');
+
 });
