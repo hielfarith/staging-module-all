@@ -203,4 +203,20 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
     Route::post('simpan-penilai','savePenilai')->name('admin.internal.penilaisave');
     Route::get('senarai-penilai','listPenilai')->name('admin.internal.penilailist');
     Route::post('lihat-penilai/{id}','viewPenilai')->name('admin.internal.viewpenilai');
+    Route::post('viewpenilai/{id}','viewPenilai')->name('admin.internal.viewpenilai');
+
+    Route::get('create-agensi','viewFormAgensi')->name('admin.internal.agensiform');
+    Route::post('saveagensi','saveAgensi')->name('admin.internal.agensisave');
+    Route::get('senarai-agensi','listAgensi')->name('admin.internal.agensilist');
+    Route::post('viewagensi/{id}','viewAgensi')->name('admin.internal.viewagensi');
+
+    Route::get('create-jawatankuasa','viewFormJawatankuasa')->name('admin.internal.jawatankuasaform');
+    Route::post('savejawatankuasa','saveJawatankuasa')->name('admin.internal.jawatankuasasave');
+    Route::get('senarai-jawatankuasa','listJawatankuasa')->name('admin.internal.jawatankuasalist');
+    Route::post('viewjawatankuasa/{id}','viewJawatankuasa')->name('admin.internal.viewjawatankuasa');
+
+    Route::get('create-jawatankuasatertinggi','viewFormJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggiform');
+    Route::post('savejawatankuasatertinggi','saveJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggisave');
+    Route::get('senarai-jawatankuasatertinggi','listJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggilist');
+    Route::post('viewjawatankuasatertinggi/{id}','viewJawatankuasatertinggi')->name('admin.internal.viewjawatankuasa');
 });

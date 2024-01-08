@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-Pengurusan Panel Penilai
+Ahli Jawtankuasa Kerja
 @endsection
 
 @section('breadcrumb')
@@ -10,37 +10,33 @@ Pengurusan Panel Penilai
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Pengurusan Pengguna </a>
-</li>
-
-<li class="breadcrumb-item">
-    <a href="#"> Pengurusan Panel Penilai </a>
+    <a href="#"> Ahli Jawtankuasa Kerja </a>
 </li>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title fw-bolder"> Senarai Panel Penilai </h4>
+        <h4 class="card-title fw-bolder"> Senarai Ahli Jawtankuasa Kerja </h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.penilaiform') }}">
-                <i class="fa-solid fa-add"></i> Tambah Panel Penilai
+            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.jawatankuasaform') }}">
+                <i class="fa-solid fa-add"></i> Tambah Ahli Jawtankuasa Kerja
             </a>
         </div>
     </div>
-
+ 
     <hr>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPenilai" style="width: 100%">
+            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiAhli">
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
-                        <th>Nama Panel Penilai/ Pengguna</th>
-                        <th>No Kad Pengenalan/ Pasport</th>
-                        <th width="20%">Email Peribadi</th>
+                        <th>Nama Pengguna</th>
+                        <th>No Kad</th>
+                        <th width="20%">Emel Peribadi:</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -51,16 +47,14 @@ Pengurusan Panel Penilai
     </div>
 </div>
 
-<div class="modal fade" id="modal-penilai-diisi" tabindex="-1" aria-labelledby="modal-penilai-diisi" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+<div class="modal fade text-start" id="modal-ahli-diisi" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Panel Penilai</h5>
+                <h4 class="modal-title">Maklumat Penilai</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-            <div class="modal-body" id="modal-body-penilai">
-            </div>
+            <div class="modal-body" id="modal-body-ahli"></div>
         </div>
     </div>
 </div>
@@ -71,7 +65,7 @@ Pengurusan Panel Penilai
 $(document).ready(function() {
 
     $(function() {
-        var table = $('#TableSenaraiPenilai').DataTable({
+        var table = $('#TableSenaraiAhli').DataTable({
             orderCellsTop: true,
             colReorder: false,
             pageLength: 10,
@@ -126,8 +120,8 @@ $.ajaxSetup({
         }
 })
 
-function maklumatPenilai(id){
-    var url = "{{ route('admin.internal.viewpenilai',['id'=> ':id']) }}";
+function maklumatAhli(id){
+    var url = "{{ route('admin.internal.viewjawatankuasa',['id'=> ':id']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({
@@ -137,9 +131,9 @@ function maklumatPenilai(id){
             id: id
             },
         success: function(response) {
-            $('#modal-penilai-diisi').modal("show");
-            $('#modal-body-penilai').empty();
-            $('#modal-body-penilai').append(response);
+            $('#modal-ahli-diisi').modal("show");
+            $('#modal-body-ahli').empty();
+            $('#modal-body-ahli').append(response);
         }
     });
 }
@@ -153,11 +147,11 @@ function  formverify(status, formid) {
              data: {
                 status: status,
                 formid: formid
-             },
+             }, 
             success: function(response) {
                 if (response.success) {
                     window.location.reload();
-               }
+               } 
             }
         });
     }

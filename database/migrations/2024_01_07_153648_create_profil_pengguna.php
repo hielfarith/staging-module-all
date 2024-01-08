@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email_taska');
             $table->string('email_pejabat_penyelia');
             $table->string('agensi_kementerian');
-            $table->string('pilihan_swasta');
+            $table->string('jenis');
             $table->string('jawatan');
             $table->string('gred');
             $table->integer('status');

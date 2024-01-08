@@ -13,25 +13,24 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('panel_penilais', function (Blueprint $table) {
+        Schema::create('ahli_jawatankuasa_kerjas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pengguna');
+            $table->string('panggilan');
             $table->string('no_kad');
-            $table->string('email_peribadi');
-            $table->string('email_penyelia');
-            $table->string('email_ketua_jabatan');
-            $table->string('agensi_kementerian');
-            $table->string('no_tel_pejabat')->nullable();
-            $table->string('no_tel_peribadi');
+            $table->string('jawatan');
             $table->string('alamat1');
             $table->string('alamat2');
             $table->string('alamat3')->nullable();
-            $table->string('poskod', 6);
+            $table->string('poskod', 5);
             $table->string('daerah');
             $table->string('negeri');
-            $table->string('gred');
-            $table->string('negeri_skpak')->nullable();
-            $table->integer('status');
+            $table->string('email_peribadi');
+            $table->string('nama_majikan')->nullable();
+            $table->string('email_majikan')->nullable();
+            $table->string('agensi_kementerian');
+            $table->string('no_tel_pejabat')->nullable();
+            $table->string('no_tel_peribadi');
             $table->timestamps();
         });
     }
@@ -43,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('panel_penilais');
+        Schema::dropIfExists('ahli_jawatankuasa_kerjas');
     }
 };

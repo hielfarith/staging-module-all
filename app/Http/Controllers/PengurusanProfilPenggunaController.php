@@ -9,7 +9,9 @@ use Yajra\DataTables\DataTables;
 
 use App\Models\ProfilPengguna;
 use App\Models\PanelPenilai;
+use App\Models\KetuaAgensi;
 use App\Models\Master\MasterState;
+use App\Models\AhliJawatankuasaKerja;
 
 class PengurusanProfilPenggunaController extends Controller
 {
@@ -60,7 +62,7 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->editColumn('no_kad', function ($penggunaList) {
 	                return $penggunaList->no_kad;
 	            })
-	            ->editColumn('submission_count', function ($penggunaList) {
+	            ->editColumn('email_peribadi', function ($penggunaList) {
 	                return $penggunaList->email_peribadi;
 	            })
 	            ->editColumn('action', function ($penggunaList) {
@@ -156,14 +158,14 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->editColumn('no_kad', function ($penilaiList) {
 	                return $penilaiList->no_kad;
 	            })
-	            ->editColumn('submission_count', function ($penilaiList) {
+	            ->editColumn('email_peribadi', function ($penilaiList) {
 	                return $penilaiList->email_peribadi;
 	            })
 	            ->editColumn('action', function ($penilaiList) {
 	                $button = "";
 	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
-	                $button .= '<a onclick="maklumatPengguna(' . $penilaiList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+	                $button .= '<a onclick="maklumatPenilai(' . $penilaiList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
 
 	                $button .= "</div>";
 
@@ -181,6 +183,205 @@ class PengurusanProfilPenggunaController extends Controller
     	$penilai = PanelPenilai::where('id', $request->id)->first();
     	$states = MasterState::all();
     	return view('pengurusan_pengguna.penilai.lihat-penilai', compact('penilai', 'states'));
+    }
+
+    // ----- Agensi ---- //
+
+    public function viewFormAgensi(Request $request)
+	{	
+		$states = MasterState::all();
+		return view('pengurusan.agensi.form', compact('states'));
+	}
+
+	public function saveAgensi(Request $request)
+	{
+		DB::beginTransaction();
+        try {
+
+            $input = $request->input();
+            $input['agensi_kementerian'] = json_encode($input['agensi_kementerian']);
+            $input['modul'] = isset($input['modul']) ? 1 : 0;
+
+        	$ketuaAgensi = new KetuaAgensi;
+        	$ketuaAgensi->create($input);
+
+          DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+	}
+
+	public function listAgensi(Request $request)
+	{
+		if($request->ajax()) {
+
+	        $agensiList = KetuaAgensi::get();
+	        return Datatables::of($agensiList)
+	            ->editColumn('nama_pengguna', function ($agensiList) {
+	                return $agensiList->nama_pengguna;
+	            })
+	            ->editColumn('no_kad', function ($agensiList) {
+	                return $agensiList->no_kad;
+	            })
+	            ->editColumn('email_peribadi', function ($agensiList) {
+	                return $agensiList->email_ketua;
+	            })
+	            ->editColumn('action', function ($agensiList) {
+	                $button = "";
+	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+	                $button .= '<a onclick="maklumatAgensi(' . $agensiList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                $button .= "</div>";
+
+	                return $button;
+	            })
+	            ->rawColumns(['action'])
+	            ->make(true);
+    	}
+
+        return view('pengurusan.agensi.list');	
+    }
+
+    public function viewAgensi(Request $request)
+    {
+    	$agensi = KetuaAgensi::where('id', $request->id)->first();
+    	$states = MasterState::all();
+    	return view('pengurusan.agensi.view-profile', compact('agensi', 'states'));
+    }
+
+     // ----- Ahli Jawatankuasa ---- //
+    public function viewFormJawatankuasa(Request $request)
+	{
+		$states = MasterState::all();
+		return view('pengurusan.ahli-jawatankuasa.form', compact('states'));
+	}
+
+	public function saveJawatankuasa(Request $request)
+	{
+		DB::beginTransaction();
+        try {
+
+            $input = $request->input(); 
+
+        	$ketuaAgensi = new AhliJawatankuasaKerja;
+        	$ketuaAgensi->create($input);
+
+          DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+	}
+
+	public function listJawatankuasa(Request $request)
+	{
+		if($request->ajax()) {
+
+	        $jawatankuasaList = AhliJawatankuasaKerja::get();
+	        return Datatables::of($jawatankuasaList)
+	            ->editColumn('nama_pengguna', function ($jawatankuasaList) {
+	                return $jawatankuasaList->nama_pengguna;
+	            })
+	            ->editColumn('no_kad', function ($jawatankuasaList) {
+	                return $jawatankuasaList->no_kad;
+	            })
+	            ->editColumn('email_peribadi', function ($jawatankuasaList) {
+	                return $jawatankuasaList->email_peribadi;
+	            })
+	            ->editColumn('action', function ($jawatankuasaList) {
+	                $button = "";
+	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+	                $button .= '<a onclick="maklumatAhli(' . $jawatankuasaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                $button .= "</div>";
+
+	                return $button;
+	            })
+	            ->rawColumns(['action'])
+	            ->make(true);
+    	}
+
+        return view('pengurusan.ahli-jawatankuasa.list');	
+    }
+
+    public function viewJawatankuasa(Request $request)
+    {
+    	$ahli = AhliJawatankuasaKerja::where('id', $request->id)->first();
+    	$states = MasterState::all();
+    	return view('pengurusan.ahli-jawatankuasa.view-profile', compact('ahli', 'states'));
+    }
+
+    // jawatanketuasa tertinggi
+
+     public function viewFormJawatankuasatertinggi(Request $request)
+	{
+		$states = MasterState::all();
+		return view('pengurusan.ahli-jawatankuasa.form', compact('states'));
+	}
+
+	public function saveJawatankuasatertinggi(Request $request)
+	{
+		DB::beginTransaction();
+        try {
+
+            $input = $request->input(); 
+
+        	$ketuaAgensi = new AhliJawatankuasaKerja;
+        	$ketuaAgensi->create($input);
+
+          DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+	}
+
+	public function listJawatankuasatertinggi(Request $request)
+	{
+		if($request->ajax()) {
+
+	        $jawatankuasaList = AhliJawatankuasaKerja::get();
+	        return Datatables::of($jawatankuasaList)
+	            ->editColumn('nama_pengguna', function ($jawatankuasaList) {
+	                return $jawatankuasaList->nama_pengguna;
+	            })
+	            ->editColumn('no_kad', function ($jawatankuasaList) {
+	                return $jawatankuasaList->no_kad;
+	            })
+	            ->editColumn('email_peribadi', function ($jawatankuasaList) {
+	                return $jawatankuasaList->email_peribadi;
+	            })
+	            ->editColumn('action', function ($jawatankuasaList) {
+	                $button = "";
+	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+	                $button .= '<a onclick="maklumatAhli(' . $jawatankuasaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                $button .= "</div>";
+
+	                return $button;
+	            })
+	            ->rawColumns(['action'])
+	            ->make(true);
+    	}
+
+        return view('pengurusan.ahli-jawatankuasa.list');	
+    }
+
+    public function viewJawatankuasatertinggi(Request $request)
+    {
+    	$ahli = AhliJawatankuasaKerja::where('id', $request->id)->first();
+    	$states = MasterState::all();
+    	return view('pengurusan.ahli-jawatankuasa.view-profile', compact('ahli', 'states'));
     }
 
 }
