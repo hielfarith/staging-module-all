@@ -18,12 +18,12 @@ Pengurusan KETUA AGENSI
     <div class="col-md-8">
         <form id="formagensi">
             <div>
-                <label class="fw-bolder">Nama Pengguna/Penilai:</label>
-                <input type="text" class="form-control" name="nama_pengguna" required>
+                <label class="fw-bolder">Nama Pengguna/Penilai:<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
             </div>
 
             <div>
-                <label class="fw-bolder"> Panggilan:</label>
+                <label class="fw-bolder"> Panggilan:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="panggilan" required>
                         <option>pilih</option>
                         <option value="Dato'">Dato'</option>
@@ -38,17 +38,26 @@ Pengurusan KETUA AGENSI
             </div>
 
             <div>
-                <label class="fw-bolder">No Kad Pengenalan:</label>
+                <label class="fw-bolder">No Kad Pengenalan:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="no_kad" required>
             </div>
 
-            <div>
+           <!--  <div>
                 <label class="fw-bolder">
                     <input type="radio" name="jenis" class="form-check-input" value="Kerajan">Kerajan
                 </label>
                 <label class="fw-bolder">
                     <input type="radio" name="jenis"class="form-check-input"  value="Swasta">Swasta
                 </label>
+            </div> -->
+
+             <div>
+                <label class="fw-bolder"> Jenis :<span style="color: red;">*</span></label>
+                <select class="form-control select2" name="jenis" required>
+                        <option>pilih</option>
+                        <option value="Kerajaan">Kerajaan</option>
+                        <option value="Swasta">Swasta</option>
+                </select> 
             </div>
 
             <div>
@@ -97,7 +106,7 @@ Pengurusan KETUA AGENSI
 
              <div>
                 <label class="fw-bolder"> Poskod:</label>
-                <input type="text" class="form-control" maxlength="5" name="poskod" required>
+                <input type="text" class="form-control" maxlength="5" name="poskod" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
 
              <div>
@@ -126,12 +135,12 @@ Pengurusan KETUA AGENSI
             
             <div>
                 <label class="fw-bolder"> No Tel Pejabat:</label>
-                <input type="text" class="form-control" name="no_tel_pejabat">
+                <input type="text" class="form-control" name="no_tel_pejabat" maxlength="12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
 
              <div>
                 <label class="fw-bolder"> No Tel Peribadi:</label>
-                <input type="text" class="form-control" name="no_tel_peribadi" maxlength="12" required>
+                <input type="text" class="form-control" name="no_tel_peribadi" maxlength="12" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
 
             <div class="d-flex justify-content-end align-items-center my-1">

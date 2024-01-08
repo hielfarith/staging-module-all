@@ -19,27 +19,27 @@ PENGERUSI/ PENGETUA/ GURU BESAR
     <div class="col-md-8 card">
         <form id="formpengetua">
             <div>
-                <label class="fw-bolder">Nama:</label>
-                <input type="text" class="form-control" name="nama" required>
+                <label class="fw-bolder">Nama:<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="nama" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
             </div>
 
             <div>
-                <label class="fw-bolder">No Kad Pengenalan:</label>
+                <label class="fw-bolder">No Kad Pengenalan:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="no_kp" required>
             </div>
             
             <div>
-                <label class="fw-bolder"> No Tel:</label>
-                <input type="text" class="form-control" name="no_tel" required>
+                <label class="fw-bolder"> No Tel:<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="no_tel" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
 
              <div>
-                <label class="fw-bolder"> Email:</label>
-                <input type="text" class="form-control" name="email" required>
+                <label class="fw-bolder"> Email:<span style="color: red;">*</span></label>
+                <input type="email" class="form-control" name="email" required>
             </div>
  
              <div>
-                <label class="fw-bolder"> Jawatan:</label>
+                <label class="fw-bolder"> Jawatan:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="jawatan" required>
                         <option>select</option>
                         <option>1</option>
@@ -48,7 +48,7 @@ PENGERUSI/ PENGETUA/ GURU BESAR
             </div>
 
             <div>
-                <label class="fw-bolder"> Negeri:</label>
+                <label class="fw-bolder"> Negeri:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="negeri" required>
                         <option>pilih</option>
                         @foreach($states as $state)
@@ -58,7 +58,7 @@ PENGERUSI/ PENGETUA/ GURU BESAR
             </div>
 
             <div>
-                <label class="fw-bolder"> Institusi:</label>
+                <label class="fw-bolder"> Institusi:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="institusi" required>
                         <option>select</option>
                         <option>1</option>
@@ -68,7 +68,7 @@ PENGERUSI/ PENGETUA/ GURU BESAR
 
 
              <div>
-                <label class="fw-bolder"> Sebab Pertukaran:</label>
+                <label class="fw-bolder"> Sebab Pertukaran:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="sebab_pertukaran" id="sebab_pertukaran" required onchange="checksebab(this)">
                         <option>select</option>
                         <option value="Dalam Proses Pertukaran Pengerusi/Pengetua/Guru Besar">Dalam Proses Pertukaran Pengerusi/Pengetua/Guru Besar</option>
