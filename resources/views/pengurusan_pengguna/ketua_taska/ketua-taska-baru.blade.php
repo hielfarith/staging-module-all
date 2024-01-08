@@ -14,7 +14,7 @@ Pengurusan Ketua Taska
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Pengurusan Ketua Taska </a>
+    <a href="#"> Maklumat Ketua Taska Baru </a>
 </li>
 @endsection
 
@@ -27,8 +27,12 @@ Pengurusan Ketua Taska
 
 <div class="card">
     <div class="card-header">
-
+        <h4 class="card-title fw-bolder">
+            Maklumat Ketua Taska Baru
+        </h4>
     </div>
+
+    <hr>
 
     <div class="card-body">
         <div class="row">

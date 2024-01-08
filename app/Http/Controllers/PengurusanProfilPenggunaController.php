@@ -95,10 +95,11 @@ class PengurusanProfilPenggunaController extends Controller
 
 	public function savePenilai(Request $request)
 	{
-		DB::beginTransaction();
+        // dd($request->all());
+        DB::beginTransaction();
         try {
             $validatedData = $request->validate([
-            	'email_peribadi' => 'email',
+                'email_peribadi' => 'email',
             	'email_penyelia' => 'email',
             	'email_ketua_jabatan' => 'email'
             ]);
@@ -107,16 +108,40 @@ class PengurusanProfilPenggunaController extends Controller
             $input['status'] = 1;
             $input['negeri_skpak'] = json_encode($input['negeri_skpak']);
 
-        	$profilPengguna = new PanelPenilai;
-        	$profilPengguna->create($input);
+            $profilPengguna = new PanelPenilai;
+            $profilPengguna->create($input);
 
-          DB::commit();
-            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
         } catch (\Throwable $e) {
 
             DB::rollback();
             return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
         }
+
+        DB::commit();
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'redirectRoute' => route('admin.internal.penilailist')]);
+
+		// DB::beginTransaction();
+        // try {
+        //     $validatedData = $request->validate([
+        //     	'email_peribadi' => 'email',
+        //     	'email_penyelia' => 'email',
+        //     	'email_ketua_jabatan' => 'email'
+        //     ]);
+
+        //     $input = $request->input();
+        //     $input['status'] = 1;
+        //     $input['negeri_skpak'] = json_encode($input['negeri_skpak']);
+
+        // 	$profilPengguna = new PanelPenilai;
+        // 	$profilPengguna->create($input);
+
+        //   DB::commit();
+        //     return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
+        // } catch (\Throwable $e) {
+
+        //     DB::rollback();
+        //     return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        // }
 	}
 
 	public function listPenilai(Request $request)
