@@ -145,6 +145,7 @@ $('#formpenilai').submit(function(event) {
             processData: false,
             success: function(response) {
                if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
                     var location = "{{route('admin.internal.penilailist')}}"
                     window.location.href = location;
                }

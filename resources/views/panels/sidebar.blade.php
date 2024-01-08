@@ -114,6 +114,13 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
+                      <li class="{{ in_array(request()->route()->getName(),['admin.internal.pengetualist'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.pengetualist') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Pengerusi </span>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
 

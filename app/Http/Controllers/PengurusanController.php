@@ -13,6 +13,7 @@ use App\Models\KetuaAgensi;
 use App\Models\Master\MasterState;
 use App\Models\AhliJawatankuasaKerja;
 use App\Models\AhliJawatankuasaTertinggi;
+use App\Models\PengerusiPengetuaGuru;
 
 class PengurusanController extends Controller
 {
@@ -356,6 +357,73 @@ class PengurusanController extends Controller
     	return view('pengurusan.ahli-jawatankuasa-tertinggi.view-profile', compact('ahli', 'states'));
     }
 
+    // PengerusiPengetuaGuru //
+
+       public function viewFormPengetua(Request $request)
+	{
+		$states = MasterState::all();
+		return view('pengurusan.pengetua.form', compact('states'));
+	}
+
+	public function savePengetua(Request $request)
+	{
+		DB::beginTransaction();
+        try {
+
+            $input = $request->input(); 
+			if($input['sebab_pertukaran'] == 'Lain-lain') {
+				$input['sebab_pertukaran'] = $input['sebab_pertukaran_lain'];
+			}
+        	$ketuaAgensi = new PengerusiPengetuaGuru;
+        	$ketuaAgensi->create($input);
+
+          DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+	}
+
+	public function listPengetua(Request $request)
+	{
+		if($request->ajax()) {
+
+	        $pengetuaList = PengerusiPengetuaGuru::get();
+	        return Datatables::of($pengetuaList)
+	            ->editColumn('nama_pengguna', function ($pengetuaList) {
+	                return $pengetuaList->nama;
+	            })
+	            ->editColumn('no_kad', function ($pengetuaList) {
+	                return $pengetuaList->no_kp;
+	            })
+	            ->editColumn('email_peribadi', function ($pengetuaList) {
+	                return $pengetuaList->email;
+	            })
+	            ->editColumn('action', function ($pengetuaList) {
+	                $button = "";
+	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+	                $button .= '<a onclick="maklumatAhli(' . $pengetuaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                $button .= "</div>";
+
+	                return $button;
+	            })
+	            ->rawColumns(['action'])
+	            ->make(true);
+    	}
+
+        return view('pengurusan.pengetua.list');	
+    }
+
+    public function viewPengetua(Request $request)
+    {
+    	$pengetua = PengerusiPengetuaGuru::where('id', $request->id)->first();
+    	$states = MasterState::all();
+    	return view('pengurusan.pengetua.view-profile', compact('pengetua', 'states'));
+    }
 }
 
 ?>
