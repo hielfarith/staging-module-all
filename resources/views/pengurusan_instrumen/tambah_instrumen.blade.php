@@ -212,10 +212,8 @@ Pengurusan Instrumen
                 </div>
                 <div class="modal-body">
                     <div id="ModalPreviewContent">
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -265,7 +263,7 @@ Pengurusan Instrumen
                     icon: 'success',
                     title: 'Disimpan!',
                     text: 'Atribut berjaya disimpan.',
-                    showConfirmButton: false,
+                    showConfirmButton: true,
                 });
 
                 $('#BorangTambahAtribut').offcanvas("hide");
@@ -384,8 +382,19 @@ Pengurusan Instrumen
             // contentType: 'application/json',
             success: function(response) {
                 if (response.success) {
-                    var location = "{{route('show_all_forms')}}"
-                    window.location.href = location;
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Disimpan!',
+                        text: 'Atribut berjaya disimpan.',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var location = "{{ route('show_all_forms') }}";
+                            window.location.href = location;
+                        }
+                    });
+                    // var location = "{{route('show_all_forms')}}"
+                    // window.location.href = location;
                 } else {
                     $("#error").show("slow").delay(5000).hide("slow");
                 }
