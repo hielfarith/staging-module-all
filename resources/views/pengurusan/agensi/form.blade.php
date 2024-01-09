@@ -36,7 +36,7 @@ Pengurusan Ketua Agensi
                 </h5>
 
                 <div class="col-sm-9 col-12 mb-1">
-                    <label class="form-label fw-bolder">Nama Ketua Agensi/ Pengguna</label>
+                    <label class="form-label fw-bold">Nama Ketua Agensi/ Pengguna</label>
                     <div class="input-group">
                         <span class="input-group-text">
                             <select class="form-control select2" name="panggilan" required>
