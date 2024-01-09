@@ -287,14 +287,6 @@ Pengurusan Ketua Agensi
                 <input type="text" class="form-control" maxlength="5" name="poskod" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
 
-             <div>
-                <label class="fw-bolder"> Daerah:</label>
-                  <select class="form-control select2" name="daerah" required>
-                        <option>pilih</option>
-                        <option>1</option>
-                        <option>2</option>
-                </select>
-            </div>
 
             <div>
                 <label class="fw-bolder"> Negeri:</label>
@@ -302,6 +294,16 @@ Pengurusan Ketua Agensi
                         <option>pilih</option>
                         @foreach($states as $state)
                         <option value="{{$state->name}}">{{$state->name}}</option>
+                        @endforeach
+                </select>
+            </div>
+            
+             <div>
+                <label class="fw-bolder"> Daerah:</label>
+                  <select class="form-control select2" name="daerah" required>
+                        <option>pilih</option>
+                        @foreach($dearhs as $dearh)
+                        <option value="{{$dearh->name}}">{{$dearh->name}}</option>
                         @endforeach
                 </select>
             </div>

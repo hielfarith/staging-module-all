@@ -264,9 +264,10 @@ Pengurusan Ahli Jawatankuasa
             <div>
                 <label class="fw-bolder"> Daerah:<span style="color: red;">*</span></label>
                 <select class="form-control select2" name="daerah" required>
-                        <option>select</option>
-                        <option>1</option>
-                        <option>2</option>
+                        <option>pilih</option>
+                        @foreach($dearhs as $dearh)
+                        <option value="{{$dearh->name}}">{{$dearh->name}}</option>
+                        @endforeach
                 </select>
             </div>
 

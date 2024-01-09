@@ -98,8 +98,9 @@ class PengurusanProfilPenggunaController extends Controller
     public function viewFormPenilai(Request $request)
 	{
 		$states = MasterState::all();
+		$dearhs = MasterDaerah::all();
 		// return view('pengurusan_pengguna.penilai.penilai-baru', compact('states'));
-		return view('pengurusan.penilai.form', compact('states'));
+		return view('pengurusan.penilai.form', compact('states','dearhs'));
 	}
 
 	public function savePenilai(Request $request)
@@ -199,7 +200,9 @@ class PengurusanProfilPenggunaController extends Controller
     public function viewFormAgensi(Request $request)
 	{	
 		$states = MasterState::all();
-		return view('pengurusan.agensi.form', compact('states'));
+		$dearhs = MasterDaerah::all();
+
+		return view('pengurusan.agensi.form', compact('states','dearhs'));
 	}
 
 	public function saveAgensi(Request $request)
@@ -266,7 +269,8 @@ class PengurusanProfilPenggunaController extends Controller
     public function viewFormJawatankuasa(Request $request)
 	{
 		$states = MasterState::all();
-		return view('pengurusan.ahli-jawatankuasa.form', compact('states'));
+		$dearhs = MasterDaerah::all();
+		return view('pengurusan.ahli-jawatankuasa.form', compact('states', 'dearhs'));
 	}
 
 	public function saveJawatankuasa(Request $request)
@@ -332,7 +336,8 @@ class PengurusanProfilPenggunaController extends Controller
      public function viewFormJawatankuasatertinggi(Request $request)
 	{
 		$states = MasterState::all();
-		return view('pengurusan.ahli-jawatankuasa-tertinggi.form', compact('states'));
+		$dearhs = MasterDaerah::all();
+		return view('pengurusan.ahli-jawatankuasa-tertinggi.form', compact('states','dearhs'));
 	}
 
 	public function saveJawatankuasatertinggi(Request $request)
@@ -398,7 +403,9 @@ class PengurusanProfilPenggunaController extends Controller
        public function viewFormPengetua(Request $request)
 	{
 		$states = MasterState::all();
-		return view('pengurusan.pengetua.form', compact('states'));
+		$dearhs = MasterDaerah::all();
+
+		return view('pengurusan.pengetua.form', compact('states','dearhs'));
 	}
 
 	public function savePengetua(Request $request)
@@ -458,7 +465,8 @@ class PengurusanProfilPenggunaController extends Controller
     {
     	$pengetua = PengerusiPengetuaGuru::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	return view('pengurusan.pengetua.view-profile', compact('pengetua', 'states'));
+    	$dearhs = MasterDaerah::all();
+    	return view('pengurusan.pengetua.view-profile', compact('pengetua', 'states','dearhs'));
     }
 }
 
