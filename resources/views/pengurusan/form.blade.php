@@ -65,7 +65,7 @@ Pengurusan Ketua Taska
                 </div>
 
                 <div class="col-md-2 mb-1">
-                    <label class="fw-bold form-label">Emel TASKA
+                    <label class="fw-bold form-label">Emel Taska
                         <span class="text-danger">*</span>
                     </label>
                     <input type="email" class="form-control" name="email_taska" required>
@@ -166,7 +166,7 @@ Pengurusan Ketua Taska
                     <label class="fw-bold form-label">Negeri
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="negeri" required>
+                    <select class="form-control select2" name="negeri" id="negeri" required onchange="changenegeri(this)">
                         <option value="" hidden>Negeri</option>
                         @foreach($states as $state)
                             <option value="{{$state->name}}">{{$state->name}}</option>
@@ -178,11 +178,8 @@ Pengurusan Ketua Taska
                     <label class="fw-bold form-label">Daerah
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="daerah" required>
-                        <option value="" hidden>Daerah</option>
-                        @foreach($dearhs as $dearh)
-                            <option value="{{$dearh->name}}">{{$dearh->name}}</option>
-                        @endforeach
+                    <select class="form-control select2" name="daerah" required id="daerah">
+                       <!-- add -->
                     </select>
                 </div>
 
@@ -265,7 +262,7 @@ Pengurusan Ketua Taska
     <div class="col-md-8 card">
         <form id="formpengunna" novalidate="novalidate">
             <div>
-                <label class="fw-bold">Nama Pengguna/ Ketua TASKA<span style="color: red;">*</span></label>
+                <label class="fw-bold">Nama Pengguna/ Ketua Taska<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
             </div>
 
@@ -280,7 +277,7 @@ Pengurusan Ketua Taska
             </div>
 
             <div>
-                <label class="fw-bold"> Emel TASKA<span style="color: red;">*</span></label>
+                <label class="fw-bold"> Emel Taska<span style="color: red;">*</span></label>
                 <input type="email" class="form-control" name="email_taska" required>
             </div>
 
@@ -347,7 +344,7 @@ Pengurusan Ketua Taska
 
              <div>
                 <label class="fw-bold"> Negeri<span style="color: red;">*</span></label>
-                  <select class="form-control select2" name="negeri" required>
+                  <select class="form-control select2" name="negeri" required onchange="changenegeri(this)">
                         <option value="">pilih</option>
                         @foreach($states as $state)
                         <option value="{{$state->name}}">{{$state->name}}</option>
@@ -431,6 +428,24 @@ Pengurusan Ketua Taska
 
 @section('script')
 <script type="text/javascript">
+function changenegeri(negeri){
+    var negerivalue = negeri.value;
+     var url = "{{ route('admin.internal.checkdaerah') }}"
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                negeri: negerivalue
+            },
+            success: function(response) {
+                $('#daerah').empty();
+                $('#daerah').append('<option value="" selected>Sila Pilih:-</option>');
+                $.each(response.daerahs, function(key, value) {
+                    $('#daerah').append('<option value="'+ value +'">'+ value +'</option>');
+                });
+            }
+        });
+}
 
 function  checksjenis(jenis) {
     if (jenis.value == 'Swasta') {

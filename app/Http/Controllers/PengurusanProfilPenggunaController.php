@@ -22,9 +22,9 @@ class PengurusanProfilPenggunaController extends Controller
 	public function viewForm(Request $request)
 	{
 		$states = MasterState::all();
-		$dearhs = MasterDaerah::all();
+		$daerahs = MasterDaerah::all();
 		// return view('pengurusan_pengguna.ketua_taska.ketua-taska-baru', compact('states'));
-		return view('pengurusan.form', compact('states', 'dearhs'));
+		return view('pengurusan.form', compact('states', 'daerahs'));
 	}
 
 	public function savePengguna(Request $request)
@@ -40,8 +40,11 @@ class PengurusanProfilPenggunaController extends Controller
 
             $input = $request->input();
             $input['status'] = 1;
-
-            $profilPengguna = new ProfilPengguna;
+            if (array_key_exists('pengguna_id', $input)) {
+            	$profilPengguna = ProfilPengguna::where('id', $input['pengguna_id'])->first();
+            } else {
+            	$profilPengguna = new ProfilPengguna;
+            }
             $profilPengguna->create($input);
 
         } catch (\Throwable $e) {
@@ -73,7 +76,8 @@ class PengurusanProfilPenggunaController extends Controller
 	                $button = "";
 	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
-	                $button .= '<a onclick="maklumatPengguna(' . $penggunaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+	                $button .= '<a onclick="maklumatPengguna('.$penggunaList->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+	                $button .= '<a onclick="maklumatPenggunaEdit('.$penggunaList->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
 
 	                $button .= "</div>";
 
@@ -91,8 +95,14 @@ class PengurusanProfilPenggunaController extends Controller
     {
     	$pengguna = ProfilPengguna::where('id', $request->id)->first();
     	$states = MasterState::all();
+    	$daerahs = MasterDaerah::all();
+    	if ($request->type == 'view') {
+    		$readonly = 'readonly';
+    	} else {
+    		$readonly = '';
+    	}
     	// return view('pengurusan_pengguna.ketua_taska.lihat-ketua-taska', compact('pengguna', 'states'));
-    	return view('pengurusan.view-profile', compact('pengguna', 'states'));
+    	return view('pengurusan.view-profile', compact('pengguna', 'states', 'daerahs', 'readonly'));
     }
 
     public function viewFormPenilai(Request $request)
@@ -467,6 +477,14 @@ class PengurusanProfilPenggunaController extends Controller
     	$states = MasterState::all();
     	$dearhs = MasterDaerah::all();
     	return view('pengurusan.pengetua.view-profile', compact('pengetua', 'states','dearhs'));
+    }
+
+    public function checkDaerah(Request $request)
+    {
+    	$negeri = $request->negeri;
+    	$negeriKod = MasterState::where('name', $negeri)->first();
+    	$daerahs = MasterDaerah::where('neg_kod', $negeriKod->code)->pluck('name')->toArray();
+    	return ['success' => true, 'daerahs' => $daerahs];
     }
 }
 

@@ -194,10 +194,12 @@ Route::controller(ModuleController::class)->prefix('module')->middleware(['web']
 
  //pengurusan controller
 Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-dalaman')->middleware(['web'])->group(function () {
+    Route::post('checkdaerah','checkDaerah')->name('admin.internal.checkdaerah');
+
     Route::get('pengguna-baru','viewForm')->name('admin.internal.penggunaform');
     Route::post('simpan-pengguna','savePengguna')->name('admin.internal.penggunasave');
     Route::get('senarai-pengguna','listPengguna')->name('admin.internal.penggunalist');
-    Route::post('lihat-pengguna/{id}','viewPengguna')->name('admin.internal.viewpengguna');
+    Route::post('lihat-pengguna/{id}/{type}','viewPengguna')->name('admin.internal.viewpengguna');
 
     Route::get('penilai-baru','viewFormPenilai')->name('admin.internal.penilaiform');
     Route::post('simpan-penilai','savePenilai')->name('admin.internal.penilaisave');

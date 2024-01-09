@@ -80,7 +80,7 @@ Pengurusan Ketua Taska
 </div>
 
 <div class="modal fade" id="modal-penilai-diisi" tabindex="-1" aria-labelledby="modal-penilai-diisi" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Ketua Taska/ Pengguna</h5>
@@ -96,6 +96,7 @@ Pengurusan Ketua Taska
 
 @section('script')
 <script>
+
 $(document).ready(function() {
     $(function() {
         var table = $('#TableSenaraiPengurusan').DataTable({
@@ -157,7 +158,25 @@ $.ajaxSetup({
 })
 
 function maklumatPengguna(id){
-    var url = "{{ route('admin.internal.viewpengguna',['id'=> ':id']) }}";
+    var url = "{{ route('admin.internal.viewpengguna',['id'=> ':id', 'type' => 'view']) }}";
+    var url = url.replace(':id', id);
+
+    $.ajax({
+        url: url, // Route URL
+        type: 'POST', // Request type (GET, POST, etc.)
+            data: {
+            id: id
+            },
+        success: function(response) {
+            $('#modal-penilai-diisi').modal("show");
+            $('#modal-body-pengguna').empty();
+            $('#modal-body-pengguna').append(response);
+        }
+    });
+}
+
+function maklumatPenggunaEdit(id){
+    var url = "{{ route('admin.internal.viewpengguna',['id'=> ':id', 'type' => 'edit']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({
