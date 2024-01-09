@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-Ahli Jawtankuasa Kerja
+Pengurusan Ahli Jawatankuasa
 @endsection
 
 @section('breadcrumb')
@@ -10,12 +10,191 @@ Ahli Jawtankuasa Kerja
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Ahli Jawtankuasa Kerja </a>
+    <a href="#"> Pengurusan Pengguna </a>
+</li>
+
+<li class="breadcrumb-item">
+    <a href="#"> Maklumat Ahli Jawatankuasa Baru </a>
 </li>
 @endsection
 
 @section('content')
-<div class="row">
+<style>
+    .delete-button {
+        display: none;
+    }
+</style>
+
+<div class="card">
+
+    <div class="card-body">
+        <form id="formahli">
+            <div class="row">
+
+                <h5 class="mb-2 fw-bold">
+                    <span class="badge rounded-pill badge-light-primary">
+                        Maklumat Ahli Jawatankuasa
+                    </span>
+                </h5>
+
+                <div class="col-sm-9 col-12 mb-1">
+                    <label class="form-label fw-bold">Nama Ahli Jawatankuasa/ Pengguna
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <select class="form-control select2" name="panggilan" required>
+                                <option value="" hidden>Gelaran</option>
+                                <option value="Dato'">Dato'</option>
+                                <option value="Datin">Datin</option>
+                                <option value="Prof.">Prof.</option>
+                                <option value="Prof Madya">Prof Madya</option>
+                                <option value="Dr.">Dr.</option>
+                                <option value="Tuan">Tuan</option>
+                                <option value="Puan">Puan</option>
+                                <option value="Cik">Cik</option>
+                            </select>
+                        </span>
+                        <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-1">
+                    <label class="fw-bold form-label">No Kad Pengenalan/ Pasport
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="no_kad" required>
+                </div>
+
+                <div class="col-md-2 mb-1">
+                    <label class="fw-bold form-label">No Tel Pejabat
+                    </label>
+                    <input type="text" class="form-control" name="no_tel_pejabat" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength=12>
+                </div>
+
+                <div class="col-md-3 mb-1">
+                    <label class="fw-bold form-label">No Tel Peribadi
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="no_tel_peribadi" maxlength="12" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                </div>
+
+                <div class="col-md-3 mb-1">
+                    <label class="fw-bold form-label">Emel Peribadi
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="email" class="form-control" name="email_peribadi" required>
+                </div>
+
+                <div class="col-md-2 mb-1">
+                    <label class="fw-bold form-label">Jenis
+                        <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-control select2" name="jawatan" required>
+                        <option value="" hidden>Jenis</option>
+                        <option value="Jawatan">Jawatan</option>
+                        <option value="Gred">Gred</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2 mb-1">
+                    <label class="fw-bold form-label">Agensi/ Kementerian
+                        <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-control select2" name="agensi_kementerian" required>
+                        <option value="" hidden>Jenis</option>
+                        <option value="Agensi">Agensi</option>
+                        <option value="Kementerian">Kementerian</option>
+                    </select>
+                </div>
+
+                <hr>
+                <h5 class="mb-2 fw-bold">
+                    <span class="badge rounded-pill badge-light-primary">
+                        Maklumat Majikan
+                    </span>
+                </h5>
+
+                <div class="col-md-8 mb-1">
+                    <label class="fw-bold form-label">Nama Majikan
+                    </label>
+                    <input type="text" class="form-control" name="nama_majikan">
+                </div>
+
+                <div class="col-md-4 mb-1">
+                    <label class="fw-bold form-label">Emel Majikan
+                    </label>
+                    <input type="email" class="form-control" name="email_peribadi">
+                </div>
+
+                <hr>
+                <h5 class="mb-2 fw-bold">
+                    <span class="badge rounded-pill badge-light-primary">
+                        Maklumat Alamat
+                    </span>
+                </h5>
+
+                <div class="col-md-12 mb-1">
+                    <label class="fw-bold form-label">Alamat
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="alamat1" placeholder="Alamat 1" required>
+                </div>
+
+                <div class="col-md-12 mb-1">
+                    {{-- <label class="fw-bold form-label">Alamat 2
+                        <span class="text-danger">*</span>
+                    </label> --}}
+                    <input type="text" class="form-control" name="alamat2" placeholder="Alamat 2" required>
+                </div>
+
+                <div class="col-md-12 mb-1">
+                    {{-- <label class="fw-bold form-label">Alamat 3</label> --}}
+                    <input type="text" class="form-control" name="alamat3" placeholder="Alamat 3">
+                </div>
+
+                <div class="col-md-4 mb-1">
+                    <label class="fw-bold form-label">Negeri
+                        <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-control select2" name="negeri" required>
+                        <option value="" hidden>Negeri</option>
+                        @foreach($states as $state)
+                            <option value="{{$state->name}}">{{$state->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-1">
+                    <label class="fw-bold form-label">Daerah
+                        <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-control select2" name="daerah" required>
+                        <option value="" hidden>Daerah</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-1">
+                    <label class="fw-bold form-label">Poskod
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="poskod" maxlength="5" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="d-flex justify-content-end align-items-center mt-1">
+                <button type="submit" class="btn btn-primary float-right">Hantar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{{-- <div class="row">
     <div class="col-md-8 card">
         <form id="formahli">
             <div>
@@ -25,7 +204,7 @@ Ahli Jawtankuasa Kerja
 
             <div>
                 <label class="fw-bolder"> Panggilan:<span style="color: red;">*</span></label>
-                  <select class="form-control select2" name="panggilan" required>
+                <select class="form-control select2" name="panggilan" required>
                         <option>pilih</option>
                         <option value="Dato'">Dato'</option>
                         <option value="Datin">Datin</option>
@@ -42,14 +221,14 @@ Ahli Jawtankuasa Kerja
                 <label class="fw-bolder">No Kad Pengenalan:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="no_kad" required>
             </div>
-            
+
             <div>
                 <label class="fw-bolder"> Jawatan/Gred :<span style="color: red;">*</span></label>
                 <select class="form-control select2" name="jawatan" required>
                         <option>pilih</option>
                         <option value="Jawatan">Jawatan</option>
                         <option value="Gred">Gred</option>
-                </select> 
+                </select>
             </div>
 
             <div>
@@ -57,17 +236,17 @@ Ahli Jawtankuasa Kerja
                 <input type="text" class="form-control" name="alamat1" required>
             </div>
 
-             <div>
+            <div>
                 <label class="fw-bolder"> Alamat 2:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="alamat2" required>
             </div>
 
-             <div>
+            <div>
                 <label class="fw-bolder"> Alamat 3:</label>
                 <input type="text" class="form-control" name="alamat3">
             </div>
 
-             <div>
+            <div>
                 <label class="fw-bolder"> Poskod:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="poskod" maxlength="5" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
@@ -75,34 +254,34 @@ Ahli Jawtankuasa Kerja
 
             <div>
                 <label class="fw-bolder"> Negeri:<span style="color: red;">*</span></label>
-                  <select class="form-control select2" name="negeri" required>
+                <select class="form-control select2" name="negeri" required>
                         <option>pilih</option>
                         @foreach($states as $state)
                         <option value="{{$state->name}}">{{$state->name}}</option>
                         @endforeach
                 </select>
             </div>
-             <div>
+            <div>
                 <label class="fw-bolder"> Daerah:<span style="color: red;">*</span></label>
-                  <select class="form-control select2" name="daerah" required>
+                <select class="form-control select2" name="daerah" required>
                         <option>select</option>
                         <option>1</option>
                         <option>2</option>
                 </select>
             </div>
 
-             <div>
+            <div>
                 <label class="fw-bolder"> Emel Peribadi:<span style="color: red;">*</span></label>
                 <input type="email" class="form-control" name="email_peribadi" required>
             </div>
 
-             <div>
+            <div>
                 <label class="fw-bolder"> Nama Majikan:</label>
                 <input type="text" class="form-control" name="nama_majikan" >
             </div>
 
 
-             <div>
+            <div>
                 <label class="fw-bolder"> Emel Majikan:</label>
                 <input type="email" class="form-control" name="email_majikan" >
             </div>
@@ -113,7 +292,7 @@ Ahli Jawtankuasa Kerja
                     <option>pilih</option>
                     <option value="Agensi">Agensi</option>
                     <option value="Kementerian">Kementerian</option>
-                </select> 
+                </select>
             </div>
 
             <div>
@@ -121,7 +300,7 @@ Ahli Jawtankuasa Kerja
                 <input type="text" class="form-control" name="no_tel_pejabat" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength=12>
             </div>
 
-             <div>
+            <div>
                 <label class="fw-bolder"> No Tel Peribadi:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="no_tel_peribadi" maxlength="12" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
@@ -129,16 +308,16 @@ Ahli Jawtankuasa Kerja
 
             <div class="d-flex justify-content-end align-items-center my-1">
                 <button type="submit" class="btn btn-primary float-right">Hantar</button>
-            </div>    
+            </div>
         </form>
     </div>
-</div>
+</div> --}}
 
 @endsection
 
 @section('script')
 <script type="text/javascript">
-    
+
 $('#formahli').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formahli'));
