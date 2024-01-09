@@ -51,7 +51,7 @@ Pengurusan Ketua Agensi
                                 <option value="Cik">Cik</option>
                             </select>
                         </span>
-                        <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                        <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
                     </div>
                 </div>
 
@@ -338,6 +338,7 @@ Pengurusan Ketua Agensi
 $('#formagensi').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formagensi'));
+        var error = false;
         $('select.select2').each(function() {
             var element = $(this);
             var select2Value = element.select2('data');
@@ -354,7 +355,7 @@ $('#formagensi').submit(function(event) {
 
 
         formData.forEach(function(value, name) {
-            var element = $("input[name="+name+"]");
+            var element = $("input[name='"+name+"']");
             if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
                 if (element.val() == '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');

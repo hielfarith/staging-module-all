@@ -104,6 +104,7 @@ function checksebab(sebab) {
 $('#formpengetua').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formpengetua'));
+        var error = false;
         $('select.select2').each(function() {
             var element = $(this);
             var select2Value = element.select2('data');
@@ -118,9 +119,8 @@ $('#formpengetua').submit(function(event) {
             }
         });
 
-
         formData.forEach(function(value, name) {
-            var element = $("input[name="+name+"]");
+            var element = $("input[name='"+name+"']");
             if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
                 if (element.val() == '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
