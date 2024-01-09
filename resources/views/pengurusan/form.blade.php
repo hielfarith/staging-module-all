@@ -453,9 +453,25 @@ $('#formpengunna').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formpengunna'));
         var error = false;
+
+        $('select.select2').each(function() {
+            var element = $(this);
+            var select2Value = element.select2('data');
+            var selectedValues = element.val();
+            var fieldName = element.attr('name');
+            if (typeof element.attr('disabled') == 'undefined') {
+
+                if (!selectedValues || selectedValues === '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    return false; // Stop the loop if an error is found
+                }
+            }
+        });
+
+
         formData.forEach(function(value, name) {
             var element = $("input[name="+name+"]");
-            if (typeof element.attr('name') != undefined && typeof element.attr('required') != undefined) {
+            if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
                 if (element.val() == '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
                     error = true;
@@ -464,7 +480,6 @@ $('#formpengunna').submit(function(event) {
             }
         });
 
-        var select2 = ['jenis','jawatan','gred', 'negeri','daerah','jenis_taska','jenisbanugunan'];
         if (error) {
             return false;
         }

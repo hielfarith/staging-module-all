@@ -27,7 +27,7 @@ Pengurusan Ketua Agensi
 
 <div class="card">
     <div class="card-body">
-        <form id="formagensi">
+        <form id="formagensi" novalidate="novalidate">
             <div class="row">
                 <h5 class="mb-2 fw-bold">
                     <span class="badge rounded-pill badge-light-primary">
@@ -336,6 +336,35 @@ Pengurusan Ketua Agensi
 $('#formagensi').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formagensi'));
+        $('select.select2').each(function() {
+            var element = $(this);
+            var select2Value = element.select2('data');
+            var selectedValues = element.val();
+            var fieldName = element.attr('name');
+            if (typeof element.attr('disabled') == 'undefined') {
+
+                if (!selectedValues || selectedValues === '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    return false; // Stop the loop if an error is found
+                }
+            }
+        });
+
+
+        formData.forEach(function(value, name) {
+            var element = $("input[name="+name+"]");
+            if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
+                if (element.val() == '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
+                    return false;
+                }
+            }
+        });
+
+        if (error) {
+            return false;
+        }
         var url = "{{ route('admin.internal.agensisave') }}"
         $.ajax({
             url: url,

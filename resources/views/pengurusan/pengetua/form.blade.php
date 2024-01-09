@@ -17,7 +17,7 @@ PENGERUSI/ PENGETUA/ GURU BESAR
 @section('content')
 <div class="row">
     <div class="col-md-8 card">
-        <form id="formpengetua">
+        <form id="formpengetua" novalidate="novalidate">
             <div>
                 <label class="fw-bolder">Nama:<span style="color: red;">*</span></label>
                 <input type="text" class="form-control" name="nama" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
@@ -104,6 +104,35 @@ function checksebab(sebab) {
 $('#formpengetua').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formpengetua'));
+        $('select.select2').each(function() {
+            var element = $(this);
+            var select2Value = element.select2('data');
+            var selectedValues = element.val();
+            var fieldName = element.attr('name');
+            if (typeof element.attr('disabled') == 'undefined') {
+
+                if (!selectedValues || selectedValues === '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    return false; // Stop the loop if an error is found
+                }
+            }
+        });
+
+
+        formData.forEach(function(value, name) {
+            var element = $("input[name="+name+"]");
+            if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
+                if (element.val() == '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
+                    return false;
+                }
+            }
+        });
+
+        if (error) {
+            return false;
+        }
         var url = "{{ route('admin.internal.pengetuasave') }}"
         $.ajax({
             url: url,
