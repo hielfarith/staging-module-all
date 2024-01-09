@@ -263,7 +263,7 @@ Pengurusan Ketua Taska
         <form id="formpengunna" novalidate="novalidate">
             <div>
                 <label class="fw-bold">Nama Pengguna/ Ketua Taska<span style="color: red;">*</span></label>
-                <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
             </div>
 
             <div>
@@ -344,7 +344,7 @@ Pengurusan Ketua Taska
 
              <div>
                 <label class="fw-bold"> Negeri<span style="color: red;">*</span></label>
-                  <select class="form-control select2" name="negeri" required onchange="changenegeri(this)">
+                  <select class="form-control select2" name="negeri" id="negeri" required onchange="changenegeri(this)">
                         <option value="">pilih</option>
                         @foreach($states as $state)
                         <option value="{{$state->name}}">{{$state->name}}</option>
@@ -354,7 +354,7 @@ Pengurusan Ketua Taska
 
               <div>
                 <label class="fw-bold"> Daerah<span style="color: red;">*</span></label>
-                  <select class="form-control select2" name="daerah" required>
+                  <select class="form-control select2" name="daerah" id="daerah" required>
                        <option value="">pilih</option>
                         @foreach($dearhs as $dearh)
                         <option value="{{$dearh->name}}">{{$dearh->name}}</option>
@@ -430,21 +430,21 @@ Pengurusan Ketua Taska
 <script type="text/javascript">
 function changenegeri(negeri){
     var negerivalue = negeri.value;
-     var url = "{{ route('admin.internal.checkdaerah') }}"
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: {
-                negeri: negerivalue
-            },
-            success: function(response) {
-                $('#daerah').empty();
-                $('#daerah').append('<option value="" selected>Sila Pilih:-</option>');
-                $.each(response.daerahs, function(key, value) {
-                    $('#daerah').append('<option value="'+ value +'">'+ value +'</option>');
-                });
-            }
-        });
+    var url = "{{ route('admin.internal.checkdaerah') }}"
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            negeri: negerivalue
+        },
+        success: function(response) {
+            $('#daerah').empty();
+            $('#daerah').append('<option value="" selected>Sila Pilih:-</option>');
+            $.each(response.daerahs, function(key, value) {
+                $('#daerah').append('<option value="'+ value +'">'+ value +'</option>');
+            });
+        }
+    });
 }
 
 function  checksjenis(jenis) {

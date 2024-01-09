@@ -204,8 +204,8 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
     Route::get('penilai-baru','viewFormPenilai')->name('admin.internal.penilaiform');
     Route::post('simpan-penilai','savePenilai')->name('admin.internal.penilaisave');
     Route::get('senarai-penilai','listPenilai')->name('admin.internal.penilailist');
-    Route::post('lihat-penilai/{id}','viewPenilai')->name('admin.internal.viewpenilai');
-    Route::post('viewpenilai/{id}','viewPenilai')->name('admin.internal.viewpenilai');
+    Route::post('lihat-penilai/{id}/{type}','viewPenilai')->name('admin.internal.viewpenilai');
+    // Route::post('viewpenilai/{id}/{type}','viewPenilai')->name('admin.internal.viewpenilai');
 
     Route::get('create-agensi','viewFormAgensi')->name('admin.internal.agensiform');
     Route::post('saveagensi','saveAgensi')->name('admin.internal.agensisave');

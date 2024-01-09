@@ -68,7 +68,9 @@ Pengurusan Panel Penilai
                         <th width="5%">No.</th>
                         <th>Nama Panel Penilai/ Pengguna</th>
                         <th>No. Kad Pengenalan/ Pasport</th>
-                        <th>Email Peribadi</th>
+                        <th>Emell Peribadi</th>
+                        <th>Emel Penyelia</th>
+                        <th>Agensi / Kementerian</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -80,7 +82,7 @@ Pengurusan Panel Penilai
 </div>
 
 <div class="modal fade" id="modal-penilia-diisi" tabindex="-1" aria-labelledby="modal-penilia-diisi" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Panel Penilai/ Pengguna</h5>
@@ -97,7 +99,9 @@ Pengurusan Panel Penilai
 @section('script')
 <script>
 $(document).ready(function() {
-
+$('#modal-penilia-diisi').on('shown.bs.modal', function () {
+    $('.select2').select2();
+});
     $(function() {
         var table = $('#TableSenaraiPenilai').DataTable({
             orderCellsTop: true,
@@ -141,6 +145,22 @@ $(document).ready(function() {
                     }
                 },
                 {
+                    data: "email_penyelia",
+                    name: "email_penyelia",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "agensi_kementerian",
+                    name: "agensi_kementerian",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
                     data: 'action',
                     name: 'action',
                     orderable: true,
@@ -158,7 +178,25 @@ $.ajaxSetup({
 })
 
 function maklumatPenilai(id){
-    var url = "{{ route('admin.internal.viewpenilai',['id'=> ':id']) }}";
+    var url = "{{ route('admin.internal.viewpenilai',['id'=> ':id',  'type' => 'view']) }}";
+    var url = url.replace(':id', id);
+
+    $.ajax({
+        url: url, // Route URL
+        type: 'POST', // Request type (GET, POST, etc.)
+            data: {
+            id: id
+            },
+        success: function(response) {
+            $('#modal-penilia-diisi').modal("show");
+            $('#modal-body-penilia').empty();
+            $('#modal-body-penilia').append(response);
+        }
+    });
+}
+
+function  maklumatPenilaiEdit(id){
+    var url = "{{ route('admin.internal.viewpenilai',['id'=> ':id',  'type' => 'edit']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({

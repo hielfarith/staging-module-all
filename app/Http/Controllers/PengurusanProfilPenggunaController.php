@@ -42,10 +42,11 @@ class PengurusanProfilPenggunaController extends Controller
             $input['status'] = 1;
             if (array_key_exists('pengguna_id', $input)) {
             	$profilPengguna = ProfilPengguna::where('id', $input['pengguna_id'])->first();
+            	$profilPengguna->update($input);
             } else {
             	$profilPengguna = new ProfilPengguna;
+            	$profilPengguna->create($input);
             }
-            $profilPengguna->create($input);
 
         } catch (\Throwable $e) {
 
@@ -132,10 +133,15 @@ class PengurusanProfilPenggunaController extends Controller
 
             $input = $request->input();
             $input['status'] = 1;
-            $input['negeri_skpak'] = json_encode($input['negeri_skpak']);
+            $input['negeri_skpak'] = isset($input['negeri_skpak']) ? json_encode($input['negeri_skpak']) : null;
 
-            $profilPengguna = new PanelPenilai;
-            $profilPengguna->create($input);
+            if (array_key_exists('penilai_id', $input)) {
+            	$profilPenilai = PanelPenilai::where('id', $input['penilai_id'])->first();
+            	$profilPenilai->update($input);
+            } else {
+            	$profilPenilai = new PanelPenilai;
+            	$profilPenilai->create($input);
+            }
 
         } catch (\Throwable $e) {
 
@@ -145,29 +151,6 @@ class PengurusanProfilPenggunaController extends Controller
 
         DB::commit();
         return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'redirectRoute' => route('admin.internal.penilailist')]);
-
-		// DB::beginTransaction();
-        // try {
-        //     $validatedData = $request->validate([
-        //     	'email_peribadi' => 'email',
-        //     	'email_penyelia' => 'email',
-        //     	'email_ketua_jabatan' => 'email'
-        //     ]);
-
-        //     $input = $request->input();
-        //     $input['status'] = 1;
-        //     $input['negeri_skpak'] = json_encode($input['negeri_skpak']);
-
-        // 	$profilPengguna = new PanelPenilai;
-        // 	$profilPengguna->create($input);
-
-        //   DB::commit();
-        //     return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
-        // } catch (\Throwable $e) {
-
-        //     DB::rollback();
-        //     return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
-        // }
 	}
 
 	public function listPenilai(Request $request)
@@ -185,11 +168,19 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->editColumn('email_peribadi', function ($penilaiList) {
 	                return $penilaiList->email_peribadi;
 	            })
+	            ->editColumn('email_penyelia', function ($penilaiList) {
+	                return $penilaiList->email_penyelia;
+	            })
+	            ->editColumn('agensi_kementerian', function ($penilaiList) {
+	                return $penilaiList->agensi_kementerian;
+	            })
 	            ->editColumn('action', function ($penilaiList) {
 	                $button = "";
 	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
 	                $button .= '<a onclick="maklumatPenilai(' . $penilaiList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	               	$button .= '<a onclick="maklumatPenilaiEdit(' . $penilaiList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
 
 	                $button .= "</div>";
 
@@ -207,8 +198,14 @@ class PengurusanProfilPenggunaController extends Controller
     {
     	$penilai = PanelPenilai::where('id', $request->id)->first();
     	$states = MasterState::all();
+    	$daerahs = MasterDaerah::all();
+    	if ($request->type == 'view') {
+    		$readonly = 'readonly';
+    	} else {
+    		$readonly = '';
+    	}
     	// return view('pengurusan_pengguna.penilai.lihat-penilai', compact('penilai', 'states'));
-    	return view('pengurusan.penilai.view-profile', compact('penilai', 'states'));
+    	return view('pengurusan.penilai.view-profile', compact('penilai', 'states', 'daerahs', 'readonly'));
     }
 
     // ----- Agensi ---- //

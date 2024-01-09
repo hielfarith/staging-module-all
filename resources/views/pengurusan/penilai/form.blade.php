@@ -40,7 +40,7 @@ Pengurusan Panel Penilai
                     <label class="fw-bold form-label">Nama Panel Penilai/ Pengguna
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                    <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
                 </div>
 
                 <div class="col-md-3 mb-1">
@@ -149,7 +149,7 @@ Pengurusan Panel Penilai
                     <label class="fw-bold form-label">Negeri
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="negeri" required>
+                    <select class="form-control select2" name="negeri" id="negeri" required onchange="changenegeri(this)">
                         <option value="" hidden>Negeri</option>
                         @foreach($states as $state)
                             <option value="{{$state->name}}">{{$state->name}}</option>
@@ -161,10 +161,8 @@ Pengurusan Panel Penilai
                     <label class="fw-bold form-label">Daerah
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="daerah" required>
-                        <option value="" hidden>Daerah</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                    <select class="form-control select2" name="daerah" id="daerah" required>
+                         
                     </select>
                 </div>
 
@@ -308,13 +306,14 @@ Pengurusan Panel Penilai
 $('#formpenilai').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formpenilai'));
+        var error = false;
+
         $('select.select2').each(function() {
             var element = $(this);
             var select2Value = element.select2('data');
             var selectedValues = element.val();
             var fieldName = element.attr('name');
             if (typeof element.attr('disabled') == 'undefined') {
-
                 if (!selectedValues || selectedValues === '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
                     return false; // Stop the loop if an error is found
@@ -324,7 +323,7 @@ $('#formpenilai').submit(function(event) {
 
 
         formData.forEach(function(value, name) {
-            var element = $("input[name="+name+"]");
+            var element = $("input[name='"+name+"']");
             if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
                 if (element.val() == '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');

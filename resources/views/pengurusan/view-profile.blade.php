@@ -294,19 +294,19 @@ function changenegeri(negeri){
         var formData = new FormData(document.getElementById('formpengunna'));
         var error = false;
 
-        // $('select.select2').each(function() {
-        //     var element = $(this);
-        //     var select2Value = element.select2('data');
-        //     var selectedValues = element.val();
-        //     var fieldName = element.attr('name');
-        //     if (typeof element.attr('disabled') == 'undefined') {
+        $('select.select2').each(function() {
+            var element = $(this);
+            var select2Value = element.select2('data');
+            var selectedValues = element.val();
+            var fieldName = element.attr('name');
+            if (typeof element.attr('disabled') == 'undefined') {
 
-        //         if (!selectedValues || selectedValues === '') {
-        //             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-        //             return false; // Stop the loop if an error is found
-        //         }
-        //     }
-        // });
+                if (!selectedValues || selectedValues === '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    return false; // Stop the loop if an error is found
+                }
+            }
+        });
 
 
         formData.forEach(function(value, name) {

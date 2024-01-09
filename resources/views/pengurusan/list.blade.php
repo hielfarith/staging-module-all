@@ -81,7 +81,7 @@ Pengurusan Ketua Taska
     </div>
 </div>
 
-<div class="modal fade" id="modal-penilai-diisi" tabindex="-1" aria-labelledby="modal-penilai-diisi" aria-hidden="true">
+<div class="modal fade" id="modal-pengguna-diisi" tabindex="-1" aria-labelledby="modal-pengguna-diisi" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -100,6 +100,9 @@ Pengurusan Ketua Taska
 <script>
 
 $(document).ready(function() {
+$('#modal-pengguna-diisi').on('shown.bs.modal', function () {
+    $('.select2').select2();
+});
     $(function() {
         var table = $('#TableSenaraiPengurusan').DataTable({
             orderCellsTop: true,
@@ -186,7 +189,7 @@ function maklumatPengguna(id){
             id: id
             },
         success: function(response) {
-            $('#modal-penilai-diisi').modal("show");
+            $('#modal-pengguna-diisi').modal("show");
             $('#modal-body-pengguna').empty();
             $('#modal-body-pengguna').append(response);
         }
@@ -204,7 +207,7 @@ function maklumatPenggunaEdit(id){
             id: id
             },
         success: function(response) {
-            $('#modal-penilai-diisi').modal("show");
+            $('#modal-pengguna-diisi').modal("show");
             $('#modal-body-pengguna').empty();
             $('#modal-body-pengguna').append(response);
         }
