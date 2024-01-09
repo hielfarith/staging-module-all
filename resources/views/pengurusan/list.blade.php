@@ -102,6 +102,9 @@ Pengurusan Ketua Taska
 $(document).ready(function() {
 $('#modal-pengguna-diisi').on('shown.bs.modal', function () {
     $('.select2').select2();
+    flatpickr(".flatpickr", {
+        dateFormat: "d/m/Y"
+    });
 });
     $(function() {
         var table = $('#TableSenaraiPengurusan').DataTable({

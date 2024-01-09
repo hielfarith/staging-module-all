@@ -103,6 +103,7 @@ $('#modal-penilia-diisi').on('shown.bs.modal', function () {
     $('.select2').select2({
         maximumSelectionLength: 3
     });
+    
 });
 
     $(function() {
