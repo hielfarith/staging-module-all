@@ -111,7 +111,7 @@ Pengurusan Panel Penilai
                     <label class="fw-bold form-label">3 negeri pilihan bagi menjalankan penilaian SKPAK
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="negeri_skpak[]" multiple>
+                    <select class="form-control select2" name="negeri_skpak[]" id="negeri_skpak" multiple>
                         <option value="" hidden>3 negeri pilihan bagi menjalankan penilaian SKPAK</option>
                         @foreach($states as $state)
                             <option value="{{$state->name}}">{{$state->name}}</option>
@@ -302,7 +302,11 @@ Pengurusan Panel Penilai
 
 @section('script')
 <script type="text/javascript">
-
+$(document).ready(function() {
+    $('#negeri_skpak').select2({
+        maximumSelectionLength: 3
+    });
+});
 $('#formpenilai').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formpenilai'));

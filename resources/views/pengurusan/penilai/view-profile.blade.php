@@ -88,10 +88,10 @@
                     <label class="fw-bold form-label">3 negeri pilihan bagi menjalankan penilaian SKPAK
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="negeri_skpak[]" multiple>
+                    <select class="form-control select2" name="negeri_skpak[]" id="negeri_skpak" multiple>
                         <option value="" hidden>3 negeri pilihan bagi menjalankan penilaian SKPAK</option>
                         @foreach($states as $state)
-                            <option value="{{$state->name}}" @if(in_array($state->name, $data))selected @endif>{{$state->name}}</option>
+                            <option value="{{$state->name}}" @if(!empty($data) && in_array($state->name, $data))selected @endif>{{$state->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -164,6 +164,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+
     $('#negeri').trigger('change');
 
     var jenisValue = $('#jenis').val();

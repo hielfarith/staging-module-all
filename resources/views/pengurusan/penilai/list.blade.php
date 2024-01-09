@@ -100,8 +100,11 @@ Pengurusan Panel Penilai
 <script>
 $(document).ready(function() {
 $('#modal-penilia-diisi').on('shown.bs.modal', function () {
-    $('.select2').select2();
+    $('.select2').select2({
+        maximumSelectionLength: 3
+    });
 });
+
     $(function() {
         var table = $('#TableSenaraiPenilai').DataTable({
             orderCellsTop: true,
