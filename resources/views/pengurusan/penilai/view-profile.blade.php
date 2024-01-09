@@ -81,7 +81,9 @@
 
                     </select>
                 </div>
-
+                <?php
+                    $data = json_decode($penilai->negeri_skpak, true);
+                ?>
                 <div class="col-md-6 mb-1">
                     <label class="fw-bold form-label">3 negeri pilihan bagi menjalankan penilaian SKPAK
                         <span class="text-danger">*</span>
@@ -89,7 +91,7 @@
                     <select class="form-control select2" name="negeri_skpak[]" multiple>
                         <option value="" hidden>3 negeri pilihan bagi menjalankan penilaian SKPAK</option>
                         @foreach($states as $state)
-                            <option value="{{$state->name}}">{{$state->name}}</option>
+                            <option value="{{$state->name}}" @if(in_array($state->name, $data))selected @endif>{{$state->name}}</option>
                         @endforeach
                     </select>
                 </div>
