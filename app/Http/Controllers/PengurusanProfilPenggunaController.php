@@ -21,13 +21,13 @@ class PengurusanProfilPenggunaController extends Controller
 	public function viewForm(Request $request)
 	{
 		$states = MasterState::all();
-		return view('pengurusan_pengguna.ketua_taska.ketua-taska-baru', compact('states'));
+		// return view('pengurusan_pengguna.ketua_taska.ketua-taska-baru', compact('states'));
+		return view('pengurusan.form', compact('states'));
 	}
 
 	public function savePengguna(Request $request)
 	{
 
-        // dd($request->all());
         DB::beginTransaction();
         try {
             $validatedData = $request->validate([
@@ -81,20 +81,23 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->make(true);
     	}
 
-        return view('pengurusan_pengguna.ketua_taska.senarai-ketua-taska');
+        // return view('pengurusan_pengguna.ketua_taska.senarai-ketua-taska');
+        return view('pengurusan.list');
     }
 
     public function viewPengguna(Request $request)
     {
     	$pengguna = ProfilPengguna::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	return view('pengurusan_pengguna.ketua_taska.lihat-ketua-taska', compact('pengguna', 'states'));
+    	// return view('pengurusan_pengguna.ketua_taska.lihat-ketua-taska', compact('pengguna', 'states'));
+    	return view('pengurusan.view-profile', compact('pengguna', 'states'));
     }
 
     public function viewFormPenilai(Request $request)
 	{
 		$states = MasterState::all();
-		return view('pengurusan_pengguna.penilai.penilai-baru', compact('states'));
+		// return view('pengurusan_pengguna.penilai.penilai-baru', compact('states'));
+		return view('pengurusan.penilai.form', compact('states'));
 	}
 
 	public function savePenilai(Request $request)
@@ -177,14 +180,16 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->make(true);
     	}
 
-        return view('pengurusan_pengguna.penilai.senarai-penilai');
+        // return view('pengurusan_pengguna.penilai.senarai-penilai');
+        return view('pengurusan.penilai.list');
     }
 
     public function viewPenilai(Request $request)
     {
     	$penilai = PanelPenilai::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	return view('pengurusan_pengguna.penilai.lihat-penilai', compact('penilai', 'states'));
+    	// return view('pengurusan_pengguna.penilai.lihat-penilai', compact('penilai', 'states'));
+    	return view('pengurusan.penilai.view-profile', compact('penilai', 'states'));
     }
 
     // ----- Agensi ---- //

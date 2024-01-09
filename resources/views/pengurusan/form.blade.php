@@ -220,7 +220,6 @@ $('#formpengunna').submit(function(event) {
         });
         var select2 = ['jenis','jawatan','gred', 'negeri','daerah','jenis_taska','jenisbanugunan'];   
       
-        return false;
         var url = "{{ route('admin.internal.penggunasave') }}"
         $.ajax({
             url: url,
@@ -230,7 +229,7 @@ $('#formpengunna').submit(function(event) {
             processData: false,
             success: function(response) {
                if (response.status) {
-                                    Swal.fire('Success', 'Berjaya', 'success');
+                    Swal.fire('Success', 'Berjaya', 'success');
                     var location = "{{route('admin.internal.penggunalist')}}"
                     window.location.href = location;
                }
