@@ -81,7 +81,6 @@ Pengurusan Penilai
                 <input type="text" class="form-control" maxlength="5" name="poskod" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
             </div>
 
-
              <div>
                 <label class="fw-bolder"> Negeri:<span style="color: red;">*</span></label>
                   <select class="form-control select2" name="negeri" required>
