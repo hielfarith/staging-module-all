@@ -40,8 +40,9 @@ class PengurusanProfilPenggunaController extends Controller
 
             $input = $request->input();
             $input['status'] = 1;
-            if (array_key_exists('pengguna_id', $input)) {
-            	$profilPengguna = ProfilPengguna::where('id', $input['pengguna_id'])->first();
+            if (array_key_exists('pennguna_id', $input)) {
+            	$profilPengguna = ProfilPengguna::where('id', $input['pennguna_id'])->first();
+            	unset($input['pennguna_id']);
             	$profilPengguna->update($input);
             } else {
             	$profilPengguna = new ProfilPengguna;
@@ -137,6 +138,7 @@ class PengurusanProfilPenggunaController extends Controller
 
             if (array_key_exists('penilai_id', $input)) {
             	$profilPenilai = PanelPenilai::where('id', $input['penilai_id'])->first();
+            	unset($input['penilai_id']);
             	$profilPenilai->update($input);
             } else {
             	$profilPenilai = new PanelPenilai;
