@@ -74,7 +74,7 @@ $configData = Helper::applClasses();
             <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Pengguna </span>
+                    <span class="menu-title text-truncate"> Senarai Pengguna </span>
                 </a>
                 <ul class="nav">
 
@@ -82,7 +82,7 @@ $configData = Helper::applClasses();
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penggunalist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penggunalist') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Ketua Taska </span>
+                            <span class="menu-title text-truncate"> Ketua Taska </span>
                         </a>
                     </li>
 
@@ -90,34 +90,34 @@ $configData = Helper::applClasses();
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penilailist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penilailist') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Panel Penilai </span>
+                            <span class="menu-title text-truncate"> Panel Penilai </span>
                         </a>
                     </li>
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.agensilist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.agensilist') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Ketua Agensi </span>
+                            <span class="menu-title text-truncate"> Ketua Agensi </span>
                         </a>
                     </li>
 
                      <li class="{{ in_array(request()->route()->getName(),['admin.internal.jawatankuasalist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.jawatankuasalist') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Ahli Jawtankuasa Kerja </span>
+                            <span class="menu-title text-truncate"> Ahli Jawatan Kerja </span>
                         </a>
                     </li>
                      <li class="{{ in_array(request()->route()->getName(),['admin.internal.jawatankuasatertinggilist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.jawatankuasatertinggilist') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Ahli Jawtankuasa Tertinggi </span>
+                            <span class="menu-title text-truncate"> Ahli Jawatan Tertinggi </span>
                         </a>
                     </li>
 
                       <li class="{{ in_array(request()->route()->getName(),['admin.internal.pengetualist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.pengetualist') }}" class="nav-link">
                             <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Pengerusi </span>
+                            <span class="menu-title text-truncate"> Pengerusi </span>
                         </a>
                     </li>
 
