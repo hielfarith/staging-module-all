@@ -42,18 +42,14 @@
             <div>
                 <label class="fw-bolder"> Jawatan:</label>
                 <select class="form-control select2" name="jawatan" readonly>
-                        <option>select</option>
-                        <option>1</option>
-                        <option selected>2</option>
+                        <option value="{{$pengguna->jawatan}}" selected>{{$pengguna->jawatan}}</option>
                 </select>
             </div>
 
             <div>
                 <label class="fw-bolder"> Gred:</label>
                   <select class="form-control select2" name="gred" readonly>
-                        <option>select</option>
-                        <option>1</option>
-                        <option selected>2</option>
+                        <option value="{{$pengguna->gred}}" selected>{{$pengguna->gred}}</option>
                 </select>
             </div>
 
