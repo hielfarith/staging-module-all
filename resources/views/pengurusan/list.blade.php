@@ -69,6 +69,8 @@ Pengurusan Ketua Taska
                         <th>Nama Ketua Taska/ Pengguna</th>
                         <th>No. Kad Pengenalan/ Pasport</th>
                         <th>Email Peribadi</th>
+                        <th>Jenis</th>
+                        <th>Tarikh Penubuhan</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -135,6 +137,22 @@ $(document).ready(function() {
                 {
                     data: "email_peribadi",
                     name: "email_peribadi",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "jenis",
+                    name: "jenis",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "tarikh_penubuhan",
+                    name: "tarikh_penubuhan",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();

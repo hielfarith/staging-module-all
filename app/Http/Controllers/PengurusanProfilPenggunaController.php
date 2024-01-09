@@ -72,6 +72,12 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->editColumn('email_peribadi', function ($penggunaList) {
 	                return $penggunaList->email_peribadi;
 	            })
+	            ->editColumn('jenis', function ($penggunaList) {
+	                return $penggunaList->jenis;
+	            })
+	            ->editColumn('tarikh_penubuhan', function ($penggunaList) {
+	                return $penggunaList->tarikh_penubuhan;
+	            })
 	            ->editColumn('action', function ($penggunaList) {
 	                $button = "";
 	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
