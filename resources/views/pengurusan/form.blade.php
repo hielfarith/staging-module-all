@@ -212,7 +212,7 @@ $('#formpengunna').submit(function(event) {
         var error = false;
         formData.forEach(function(value, name) {
             var element = $("input[name="+name+"]");
-            if (typeof element.attr('name') != 'undefined') {
+            if (typeof element.attr('name') != undefined && typeof element.attr('required') != undefined) {
                 if (element.val() == '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
                     error = true;

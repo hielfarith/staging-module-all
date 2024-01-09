@@ -93,7 +93,7 @@ Ahli Jawtankuasa Kerja
 
              <div>
                 <label class="fw-bolder"> Emel Peribadi:<span style="color: red;">*</span></label>
-                <input type="email" class="form-control flatpickr" name="email_peribadi" required>
+                <input type="email" class="form-control" name="email_peribadi" required>
             </div>
 
              <div>
