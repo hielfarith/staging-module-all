@@ -11,6 +11,7 @@ use App\Models\ProfilPengguna;
 use App\Models\PanelPenilai;
 use App\Models\KetuaAgensi;
 use App\Models\Master\MasterState;
+use App\Models\MasterDaerah;
 use App\Models\AhliJawatankuasaKerja;
 use App\Models\AhliJawatankuasaTertinggi;
 use App\Models\PengerusiPengetuaGuru;
@@ -21,8 +22,9 @@ class PengurusanProfilPenggunaController extends Controller
 	public function viewForm(Request $request)
 	{
 		$states = MasterState::all();
+		$dearhs = MasterDaerah::all();
 		// return view('pengurusan_pengguna.ketua_taska.ketua-taska-baru', compact('states'));
-		return view('pengurusan.form', compact('states'));
+		return view('pengurusan.form', compact('states', 'dearhs'));
 	}
 
 	public function savePengguna(Request $request)

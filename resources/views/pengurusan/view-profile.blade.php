@@ -80,18 +80,13 @@
              <div>
                 <label class="fw-bolder"> Daerah:</label>
                   <select class="form-control select2" name="daerah" readonly>
-                        <option>select</option>
-                        <option>1</option>
-                        <option>2</option>
-                </select>
+                        <option value="{{$pengguna->daerah}}" selected>{{$pengguna->daerah}}</option>                </select>
             </div>
 
              <div>
                 <label class="fw-bolder"> Negeri:</label>
                   <select class="form-control select2" name="negeri" readonly>
-                        <option>select</option>
-                        <option>1</option>
-                        <option>2</option>
+                         <option value="{{$pengguna->negeri}}" selected>{{$pengguna->negeri}}</option>
                 </select>
             </div>
 
