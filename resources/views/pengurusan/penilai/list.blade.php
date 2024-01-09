@@ -35,7 +35,7 @@ Pengurusan Panel Penilai
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Ketua Taska/ Pengguna</label>
+                <label class="form-label">Nama Panel Penilai/ Pengguna</label>
                 <input type="text" class="form-control">
             </div>
 
