@@ -33,31 +33,32 @@ Pengurusan Ketua Taska
     <hr>
 
     <div class="card-body">
-        <div class="row">
-            <div class="col-md-4">
-                <label class="form-label">Nama Ketua Taska/ Pengguna</label>
-                <input type="text" class="form-control">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-label">Nama Ketua Taska/ Pengguna</label>
+                    <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">No. Kad Pengenalan/ Pasport</label>
+                    <input type="text" name="no_kad"  id="no_kad" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Email Peribadi</label>
+                    <input type="text" name="email_peribadi" id="email_peribadi" class="form-control">
+                </div>
             </div>
 
-            <div class="col-md-4">
-                <label class="form-label">No. Kad Pengenalan/ Pasport</label>
-                <input type="text" class="form-control">
+            <div class="d-flex justify-content-end align-items-center mt-1">
+                <a class="me-3 text-danger" type="button" id="reset" href="#">
+                    Setkan Semula
+                </a>
+                <button type="button" onclick="search()" class="btn btn-success float-right">
+                    <i class="fa fa-search me-1"></i> Cari
+                </button>
             </div>
 
-            <div class="col-md-4">
-                <label class="form-label">Email Peribadi</label>
-                <input type="text" class="form-control">
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-end align-items-center mt-1">
-            <a class="me-3 text-danger" type="button" id="reset" href="#">
-                Setkan Semula
-            </a>
-            <button type="submit" value="Filter" class="btn btn-success float-right">
-                <i class="fa fa-search me-1"></i> Cari
-            </button>
-        </div>
 
         <hr>
 
@@ -116,6 +117,11 @@ $('#modal-pengguna-diisi').on('shown.bs.modal', function () {
             ajax: {
                 url: "{{ fullUrl() }}",
                 cache: false,
+                data: function (d) {
+                    d.nama_pengguna = $('#nama_pengguna').val();
+                    d.no_kad = $('#no_kad').val();
+                    d.email_peribadi = $('#email_peribadi').val();
+                },
             },
             columns: [{
                     data: "id",
@@ -234,5 +240,39 @@ function  formverify(status, formid) {
             }
         });
     }
+    function  search(argument) {
+        var nama_pengguna = $('#nama_pengguna').val();
+        var no_kad = $('#no_kad').val();
+        var email_peribadi = $('#email_peribadi').val();
+
+        // var url = "{{route('admin.internal.penggunalist')}}";
+
+        // $.ajax({
+        //     url: url, // Route URL
+        //     type: 'GET', // Request type (GET, POST, etc.)
+        //      data: {
+        //         nama_pengguna: nama_pengguna,
+        //         no_kad: no_kad,
+        //         email_peribadi: email_peribadi
+        //      },
+        //      dataType: 'JSON',
+        //     success: function(response) {
+        //         if (response.success) {
+        //             window.location.reload();
+        //        }
+        //     }
+        // });
+        // 
+
+    // Trigger DataTable reload with the custom parameter
+    $('#TableSenaraiPengurusan').DataTable().ajax.reload(null, false, {
+        data: {
+            nama_pengguna : $('#nama_pengguna').val(),
+            no_kad : $('#no_kad').val(),
+            email_peribadi : $('#email_peribadi').val()
+        }
+    });
+    }
+  
 </script>
 @endsection

@@ -39,6 +39,7 @@ class PengurusanProfilPenggunaController extends Controller
             ]);
 
             $input = $request->input();
+
             $input['status'] = 1;
             if (array_key_exists('pennguna_id', $input)) {
             	$profilPengguna = ProfilPengguna::where('id', $input['pennguna_id'])->first();
@@ -62,8 +63,16 @@ class PengurusanProfilPenggunaController extends Controller
 	public function listPengguna(Request $request)
 	{
 		if($request->ajax()) {
-
-	        $penggunaList = ProfilPengguna::get();
+	        $penggunaList = ProfilPengguna::where('id', '!=', 0);
+	        if ($request->has('nama_pengguna') && !empty($request->input('nama_pengguna'))) {
+		        $penggunaList->where('nama_pengguna', $request->input('nama_pengguna'));
+		    }
+		    if ($request->has('no_kad') && !empty($request->input('no_kad'))) {
+		        $penggunaList->where('no_kad', $request->input('no_kad'));
+		    }
+		    if ($request->has('email_peribadi') && !empty($request->input('email_peribadi'))) {
+		        $penggunaList->where('email_peribadi', $request->input('email_peribadi'));
+		    }
 	        return Datatables::of($penggunaList)
 	            ->editColumn('nama_pengguna', function ($penggunaList) {
 	                return $penggunaList->nama_pengguna;
