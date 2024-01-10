@@ -29,6 +29,32 @@ PENGERUSI/ PENGETUA/ GURU BESAR
     <hr>
 
     <div class="card-body">
+              <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">Nama Ahli Jawatankuasa/ Pengguna</label>
+                <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control">
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">No. Kad Pengenalan/ Pasport</label>
+                <input type="text" name="no_kad"  id="no_kad" class="form-control">
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Email Peribadi</label>
+                <input type="text" name="email_peribadi" id="email_peribadi" class="form-control">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end align-items-center mt-1">
+            <a class="me-3 text-danger" type="button" id="reset" href="#">
+                Setkan Semula
+            </a>
+           <button type="button" onclick="search()" class="btn btn-success float-right">
+                    <i class="fa fa-search me-1"></i> Cari
+            </button>
+        </div>
+        <hr>
         <div class="table-responsive">
             <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPengetua">
                 <thead>
@@ -37,6 +63,8 @@ PENGERUSI/ PENGETUA/ GURU BESAR
                         <th>Nama Pengguna</th>
                         <th>No Kad</th>
                         <th width="20%">Emel Peribadi:</th>
+                        <th>No Tel</th>
+                        <th>Institusi</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -47,14 +75,14 @@ PENGERUSI/ PENGETUA/ GURU BESAR
     </div>
 </div>
 
-<div class="modal fade text-start" id="modal-ahli-diisi" tabindex="-1" aria-hidden="true">
+<div class="modal fade text-start" id="modal-pengetua-diisi" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Maklumat Penilai</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="modal-body-ahli"></div>
+            <div class="modal-body" id="modal-body-pengetua"></div>
         </div>
     </div>
 </div>
@@ -63,17 +91,27 @@ PENGERUSI/ PENGETUA/ GURU BESAR
 @section('script')
 <script>
 $(document).ready(function() {
-
+    $('#modal-pengetua-diisi').on('shown.bs.modal', function () {
+    $('.select2').select2({ 
+    });
+    
+});
     $(function() {
         var table = $('#TableSenaraiPengetua').DataTable({
             orderCellsTop: true,
             colReorder: false,
             pageLength: 10,
             processing: true,
+            searching: false,
             serverSide: true, //enable if data is large (more than 50,000)
             ajax: {
                 url: "{{ fullUrl() }}",
                 cache: false,
+                data: function (d) {
+                    d.nama_pengguna = $('#nama_pengguna').val();
+                    d.no_kad = $('#no_kad').val();
+                    d.email_peribadi = $('#email_peribadi').val();
+                },
             },
             columns: [{
                     data: "id",
@@ -107,6 +145,23 @@ $(document).ready(function() {
                     }
                 },
                 {
+                    data: "no_tel",
+                    name: "no_tel",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "institusi",
+                    name: "institusi",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+
+                {
                     data: 'action',
                     name: 'action',
                     orderable: true,
@@ -123,8 +178,8 @@ $.ajaxSetup({
         }
 })
 
-function maklumatAhli(id){
-    var url = "{{ route('admin.internal.viewpengetua',['id'=> ':id']) }}";
+function maklumatpengetua(id){
+    var url = "{{ route('admin.internal.viewpengetua',['id'=> ':id', 'type' => 'view']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({
@@ -134,9 +189,27 @@ function maklumatAhli(id){
             id: id
             },
         success: function(response) {
-            $('#modal-ahli-diisi').modal("show");
-            $('#modal-body-ahli').empty();
-            $('#modal-body-ahli').append(response);
+            $('#modal-pengetua-diisi').modal("show");
+            $('#modal-body-pengetua').empty();
+            $('#modal-body-pengetua').append(response);
+        }
+    });
+}
+
+function maklumatpengetuaEdit(id){
+    var url = "{{ route('admin.internal.viewpengetua',['id'=> ':id', 'type' => 'edit']) }}";
+    var url = url.replace(':id', id);
+
+    $.ajax({
+        url: url, // Route URL
+        type: 'POST', // Request type (GET, POST, etc.)
+            data: {
+            id: id
+            },
+        success: function(response) {
+            $('#modal-pengetua-diisi').modal("show");
+            $('#modal-body-pengetua').empty();
+            $('#modal-body-pengetua').append(response);
         }
     });
 }
@@ -158,5 +231,21 @@ function  formverify(status, formid) {
             }
         });
     }
+
+function  search() {
+    var nama_pengguna = $('#nama_pengguna').val();
+    var no_kad = $('#no_kad').val();
+    var email_peribadi = $('#email_peribadi').val();
+
+    $('#TableSenaraiPengetua').DataTable().ajax.reload(null, false, {
+        data: {
+            nama_pengguna : $('#nama_pengguna').val(),
+            no_kad : $('#no_kad').val(),
+            email_peribadi : $('#email_peribadi').val()
+        }
+    });
+}
+
+
 </script>
 @endsection

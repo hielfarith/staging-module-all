@@ -20,7 +20,7 @@ PENGERUSI/ PENGETUA/ GURU BESAR
         <form id="formpengetua" novalidate="novalidate">
             <div>
                 <label class="fw-bolder">Nama:<span style="color: red;">*</span></label>
-                <input type="text" class="form-control" name="nama" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                <input type="text" class="form-control" name="nama" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
             </div>
 
             <div>
@@ -49,7 +49,7 @@ PENGERUSI/ PENGETUA/ GURU BESAR
 
             <div>
                 <label class="fw-bolder"> Negeri:<span style="color: red;">*</span></label>
-                  <select class="form-control select2" name="negeri" required>
+                  <select class="form-control select2" name="negeri" id="negeri" required>
                         <option>pilih</option>
                         @foreach($states as $state)
                         <option value="{{$state->name}}">{{$state->name}}</option>
@@ -114,6 +114,7 @@ $('#formpengetua').submit(function(event) {
 
                 if (!selectedValues || selectedValues === '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
                     return false; // Stop the loop if an error is found
                 }
             }

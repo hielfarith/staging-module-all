@@ -205,7 +205,7 @@ Pengurusan Ahli Jawatankuasa Tinggi
         <form id="formtertinggi">
             <div>
                 <label class="fw-bolder">Nama Pengguna:<span style="color: red;">*</span></label>
-                <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
             </div>
 
             <div>

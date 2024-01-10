@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('negeri');
             $table->string('institusi');
             $table->string('sebab_pertukaran');
+            $table->string('sebab_pertukaran_lain')->nullable();
             $table->timestamps();
         });
     }

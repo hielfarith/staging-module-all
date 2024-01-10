@@ -109,6 +109,7 @@ $('#modal-tertinggi-diisi').on('shown.bs.modal', function () {
             colReorder: false,
             pageLength: 10,
             processing: true,
+            searching: false,
             serverSide: true, //enable if data is large (more than 50,000)
             ajax: {
                 url: "{{ fullUrl() }}",

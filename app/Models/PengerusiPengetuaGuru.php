@@ -21,6 +21,7 @@ class PengerusiPengetuaGuru extends Model
                     'jawatan',
                     'negeri',
                     'institusi',
-                    'sebab_pertukaran'
+                    'sebab_pertukaran',
+                    'sebab_pertukaran_lain'
                 ];
 }

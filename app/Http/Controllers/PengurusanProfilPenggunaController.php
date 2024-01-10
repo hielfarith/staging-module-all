@@ -545,9 +545,9 @@ class PengurusanProfilPenggunaController extends Controller
         try {
 
             $input = $request->input(); 
-			if($input['sebab_pertukaran'] == 'Lain-lain') {
-				$input['sebab_pertukaran'] = $input['sebab_pertukaran_lain'];
-			}
+			// if($input['sebab_pertukaran'] == 'Lain-lain') {
+			// 	$input['sebab_pertukaran'] = $input['sebab_pertukaran_lain'];
+			// }
 
 			if (array_key_exists('pengetua_id', $input)) {
             	$PengerusiPengetuaGuru = PengerusiPengetuaGuru::where('id', $input['pengetua_id'])->first();
@@ -602,7 +602,10 @@ class PengurusanProfilPenggunaController extends Controller
 	                $button = "";
 	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
-	                $button .= '<a onclick="maklumatAhli(' . $pengetuaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+	                $button .= '<a onclick="maklumatpengetua(' . $pengetuaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                 $button .= '<a onclick="maklumatpengetuaEdit(' . $pengetuaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
 
 	                $button .= "</div>";
 
