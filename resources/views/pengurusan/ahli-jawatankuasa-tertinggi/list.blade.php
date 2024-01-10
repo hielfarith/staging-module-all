@@ -33,20 +33,20 @@ Pengurusan Ahli Jawatankuasa Tinggi
     <hr>
 
     <div class="card-body">
-        <div class="row">
+          <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Ahli Jawatankuasa Tinggi/ Pengguna</label>
-                <input type="text" class="form-control">
+                <label class="form-label">Nama Ahli Jawatankuasa/ Pengguna</label>
+                <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control">
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">No. Kad Pengenalan/ Pasport</label>
-                <input type="text" class="form-control">
+                <input type="text" name="no_kad"  id="no_kad" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Emel Peribadi</label>
-                <input type="text" class="form-control">
+                <label class="form-label">Email Peribadi</label>
+                <input type="text" name="email_peribadi" id="email_peribadi" class="form-control">
             </div>
         </div>
 
@@ -54,8 +54,8 @@ Pengurusan Ahli Jawatankuasa Tinggi
             <a class="me-3 text-danger" type="button" id="reset" href="#">
                 Setkan Semula
             </a>
-            <button type="submit" value="Filter" class="btn btn-success float-right">
-                <i class="fa fa-search me-1"></i> Cari
+           <button type="button" onclick="search()" class="btn btn-success float-right">
+                    <i class="fa fa-search me-1"></i> Cari
             </button>
         </div>
 
@@ -65,9 +65,11 @@ Pengurusan Ahli Jawatankuasa Tinggi
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
+                        <th>Penggilan</th>
                         <th>Nama Ahli Jawatankuasa Tinggi</th>
                         <th>No. Kad Pengenalan/ Pasport</th>
                         <th>Emel Peribadi</th>
+                        <th>No Tel Pejabat</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -79,7 +81,7 @@ Pengurusan Ahli Jawatankuasa Tinggi
 </div>
 
 <div class="modal fade" id="modal-tertinggi-diisi" tabindex="-1" aria-labelledby="modal-tertinggi-diisi" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Ahli Jawatankuasa/ Pengguna</h5>
@@ -96,7 +98,11 @@ Pengurusan Ahli Jawatankuasa Tinggi
 @section('script')
 <script>
 $(document).ready(function() {
-
+$('#modal-tertinggi-diisi').on('shown.bs.modal', function () {
+    $('.select2').select2({ 
+    });
+    
+});
     $(function() {
         var table = $('#TableSenaraiTertinggi').DataTable({
             orderCellsTop: true,
@@ -107,10 +113,23 @@ $(document).ready(function() {
             ajax: {
                 url: "{{ fullUrl() }}",
                 cache: false,
+                 data: function (d) {
+                    d.nama_pengguna = $('#nama_pengguna').val();
+                    d.no_kad = $('#no_kad').val();
+                    d.email_peribadi = $('#email_peribadi').val();
+                },
             },
             columns: [{
                     data: "id",
                     name: "id",
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "panggilan",
+                    name: "panggilan",
+                    searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
                     }
@@ -139,6 +158,14 @@ $(document).ready(function() {
                         return $("<div/>").html(data).text();
                     }
                 },
+                 {
+                    data: "no_tel_peribadi",
+                    name: "no_tel_peribadi",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
                 {
                     data: 'action',
                     name: 'action',
@@ -157,7 +184,7 @@ $.ajaxSetup({
 })
 
 function maklumatAhli(id){
-    var url = "{{ route('admin.internal.viewjawatankuasatertinggi',['id'=> ':id']) }}";
+    var url = "{{ route('admin.internal.viewjawatankuasatertinggi',['id'=> ':id', 'type' => 'view']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({
@@ -174,22 +201,57 @@ function maklumatAhli(id){
     });
 }
 
-function  formverify(status, formid) {
-        var url = "{{route('verify')}}";
+function maklumatAhliEdit(id){
+    var url = "{{ route('admin.internal.viewjawatankuasatertinggi',['id'=> ':id', 'type' => 'edit']) }}";
+    var url = url.replace(':id', id);
 
-        $.ajax({
-            url: url, // Route URL
-            type: 'POST', // Request type (GET, POST, etc.)
-             data: {
-                status: status,
-                formid: formid
-             },
-            success: function(response) {
-                if (response.success) {
-                    window.location.reload();
-               }
-            }
-        });
-    }
+    $.ajax({
+        url: url, // Route URL
+        type: 'POST', // Request type (GET, POST, etc.)
+            data: {
+            id: id
+            },
+        success: function(response) {
+            $('#modal-tertinggi-diisi').modal("show");
+            $('#modal-body-tertinggi').empty();
+            $('#modal-body-tertinggi').append(response);
+        }
+    });
+}
+
+
+
+function  formverify(status, formid) {
+    var url = "{{route('verify')}}";
+
+    $.ajax({
+        url: url, // Route URL
+        type: 'POST', // Request type (GET, POST, etc.)
+         data: {
+            status: status,
+            formid: formid
+         },
+        success: function(response) {
+            if (response.success) {
+                window.location.reload();
+           }
+        }
+    });
+}
+
+function  search() {
+    var nama_pengguna = $('#nama_pengguna').val();
+    var no_kad = $('#no_kad').val();
+    var email_peribadi = $('#email_peribadi').val();
+
+    $('#TableSenaraiTertinggi').DataTable().ajax.reload(null, false, {
+        data: {
+            nama_pengguna : $('#nama_pengguna').val(),
+            no_kad : $('#no_kad').val(),
+            email_peribadi : $('#email_peribadi').val()
+        }
+    });
+}
+
 </script>
 @endsection

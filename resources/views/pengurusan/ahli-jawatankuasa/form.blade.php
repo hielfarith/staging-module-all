@@ -124,7 +124,7 @@ Pengurusan Ahli Jawatankuasa
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Emel Majikan
                     </label>
-                    <input type="email" class="form-control" name="email_peribadi">
+                    <input type="email" class="form-control" name="email_majikan">
                 </div>
 
                 <hr>

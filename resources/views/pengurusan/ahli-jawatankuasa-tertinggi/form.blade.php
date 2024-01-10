@@ -133,7 +133,7 @@ Pengurusan Ahli Jawatankuasa Tinggi
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Emel Majikan
                     </label>
-                    <input type="email" class="form-control" name="email_peribadi">
+                    <input type="email" class="form-control" name="email_majikan">
                 </div>
 
                 <hr>
@@ -166,8 +166,8 @@ Pengurusan Ahli Jawatankuasa Tinggi
                     <label class="fw-bold form-label">Negeri
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="negeri" required>
-                        <option value="" hidden>Negeri</option>
+                    <select class="form-control select2" name="negeri" id="negeri" required onchange="changenegeri(this)">
+                        <option value="" hidden>Sila pilih</option>
                         @foreach($states as $state)
                             <option value="{{$state->name}}">{{$state->name}}</option>
                         @endforeach
@@ -178,10 +178,8 @@ Pengurusan Ahli Jawatankuasa Tinggi
                     <label class="fw-bold form-label">Daerah
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="daerah" required>
-                        <option value="" hidden>Daerah</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                    <select class="form-control select2" name="daerah" id="daerah" required>
+                        <option value="" hidden>Sila pilih</option>
                     </select>
                 </div>
 
@@ -345,6 +343,7 @@ $('#formtertinggi').submit(function(event) {
 
                 if (!selectedValues || selectedValues === '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
                     return false; // Stop the loop if an error is found
                 }
             }

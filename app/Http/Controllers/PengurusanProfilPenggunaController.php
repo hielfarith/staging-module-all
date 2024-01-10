@@ -353,7 +353,7 @@ class PengurusanProfilPenggunaController extends Controller
             	$AhliJawatankuasaKerja = new AhliJawatankuasaKerja;
         		$AhliJawatankuasaKerja->create($input);
             }
-            
+
           DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
         } catch (\Throwable $e) {
@@ -375,7 +375,7 @@ class PengurusanProfilPenggunaController extends Controller
 		        $jawatankuasaList->where('no_kad', $request->input('no_kad'));
 		    }
 		    if ($request->has('email_peribadi') && !empty($request->input('email_peribadi'))) {
-		        $jawatankuasaList->where('email_peribadi', $request->input('email_ketua'));
+		        $jawatankuasaList->where('email_peribadi', $request->input('email_peribadi'));
 		    }
 
 	        return Datatables::of($jawatankuasaList)
@@ -391,8 +391,8 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->editColumn('email_peribadi', function ($jawatankuasaList) {
 	                return $jawatankuasaList->email_peribadi;
 	            })
-	            ->editColumn('no_tel_pejabat', function ($jawatankuasaList) {
-	                return $jawatankuasaList->no_tel_pejabat;
+	            ->editColumn('no_tel_peribadi', function ($jawatankuasaList) {
+	                return $jawatankuasaList->no_tel_peribadi;
 	            })
 	            ->editColumn('action', function ($jawatankuasaList) {
 	                $button = "";
@@ -446,9 +446,15 @@ class PengurusanProfilPenggunaController extends Controller
 
             $input = $request->input(); 
 
-        	$ketuaAgensi = new AhliJawatankuasaTertinggi;
-        	$ketuaAgensi->create($input);
-
+            if (array_key_exists('tinggi_id', $input)) {
+            	$AhliJawatankuasaTertinggi = AhliJawatankuasaTertinggi::where('id', $input['tinggi_id'])->first();
+            	unset($input['tinggi_id']);
+            	$AhliJawatankuasaTertinggi->update($input);
+            } else {
+            	$AhliJawatankuasaTertinggi = new AhliJawatankuasaTertinggi;
+        		$AhliJawatankuasaTertinggi->create($input);
+            }
+ 
           DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
         } catch (\Throwable $e) {
@@ -462,8 +468,21 @@ class PengurusanProfilPenggunaController extends Controller
 	{
 		if($request->ajax()) {
 
-	        $jawatankuasaList = AhliJawatankuasaTertinggi::get();
+	        $jawatankuasaList = AhliJawatankuasaTertinggi::where('id', '!=', 0);
+	        if ($request->has('nama_pengguna') && !empty($request->input('nama_pengguna'))) {
+		        $jawatankuasaList->where('nama_pengguna', 'like','%'. $request->input('nama_pengguna'). '%');
+		    }
+		    if ($request->has('no_kad') && !empty($request->input('no_kad'))) {
+		        $jawatankuasaList->where('no_kad', $request->input('no_kad'));
+		    }
+		    if ($request->has('email_peribadi') && !empty($request->input('email_peribadi'))) {
+		        $jawatankuasaList->where('email_peribadi', $request->input('email_peribadi'));
+		    }
+
 	        return Datatables::of($jawatankuasaList)
+	        	->editColumn('panggilan', function ($jawatankuasaList) {
+	                return $jawatankuasaList->panggilan;
+	            })
 	            ->editColumn('nama_pengguna', function ($jawatankuasaList) {
 	                return $jawatankuasaList->nama_pengguna;
 	            })
@@ -473,11 +492,17 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->editColumn('email_peribadi', function ($jawatankuasaList) {
 	                return $jawatankuasaList->email_peribadi;
 	            })
+	            ->editColumn('no_tel_pejabat', function ($jawatankuasaList) {
+	                return $jawatankuasaList->no_tel_pejabat;
+	            })
 	            ->editColumn('action', function ($jawatankuasaList) {
 	                $button = "";
 	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
 	                $button .= '<a onclick="maklumatAhli(' . $jawatankuasaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                $button .= '<a onclick="maklumatAhliEdit(' . $jawatankuasaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
 
 	                $button .= "</div>";
 
@@ -523,8 +548,15 @@ class PengurusanProfilPenggunaController extends Controller
 			if($input['sebab_pertukaran'] == 'Lain-lain') {
 				$input['sebab_pertukaran'] = $input['sebab_pertukaran_lain'];
 			}
-        	$ketuaAgensi = new PengerusiPengetuaGuru;
-        	$ketuaAgensi->create($input);
+
+			if (array_key_exists('pengetua_id', $input)) {
+            	$PengerusiPengetuaGuru = PengerusiPengetuaGuru::where('id', $input['pengetua_id'])->first();
+            	unset($input['pengetua_id']);
+            	$PengerusiPengetuaGuru->update($input);
+            } else {
+            	$PengerusiPengetuaGuru = new PengerusiPengetuaGuru;
+        		$PengerusiPengetuaGuru->create($input);
+            }
 
           DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
@@ -539,7 +571,17 @@ class PengurusanProfilPenggunaController extends Controller
 	{
 		if($request->ajax()) {
 
-	        $pengetuaList = PengerusiPengetuaGuru::get();
+	         $pengetuaList = PengerusiPengetuaGuru::where('id', '!=', 0);
+	        if ($request->has('nama_pengguna') && !empty($request->input('nama_pengguna'))) {
+		        $pengetuaList->where('nama', 'like','%'. $request->input('nama_pengguna'). '%');
+		    }
+		    if ($request->has('no_kad') && !empty($request->input('no_kad'))) {
+		        $pengetuaList->where('no_kp', $request->input('no_kad'));
+		    }
+		    if ($request->has('email_peribadi') && !empty($request->input('email_peribadi'))) {
+		        $pengetuaList->where('email', $request->input('email_peribadi'));
+		    }
+
 	        return Datatables::of($pengetuaList)
 	            ->editColumn('nama_pengguna', function ($pengetuaList) {
 	                return $pengetuaList->nama;
@@ -549,6 +591,12 @@ class PengurusanProfilPenggunaController extends Controller
 	            })
 	            ->editColumn('email_peribadi', function ($pengetuaList) {
 	                return $pengetuaList->email;
+	            })
+	            ->editColumn('no_tel', function ($pengetuaList) {
+	                return $pengetuaList->no_tel;
+	            })
+	             ->editColumn('institusi', function ($pengetuaList) {
+	                return $pengetuaList->institusi;
 	            })
 	            ->editColumn('action', function ($pengetuaList) {
 	                $button = "";
