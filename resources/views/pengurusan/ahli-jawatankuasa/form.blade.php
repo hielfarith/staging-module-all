@@ -157,8 +157,8 @@ Pengurusan Ahli Jawatankuasa
                     <label class="fw-bold form-label">Negeri
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="negeri" required>
-                        <option value="" hidden>Negeri</option>
+                    <select class="form-control select2" name="negeri" required id="negeri" onchange="changenegeri(this)">
+                        <option value="" hidden>Sila pilih</option>
                         @foreach($states as $state)
                             <option value="{{$state->name}}">{{$state->name}}</option>
                         @endforeach
@@ -169,10 +169,8 @@ Pengurusan Ahli Jawatankuasa
                     <label class="fw-bold form-label">Daerah
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="daerah" required>
-                        <option value="" hidden>Daerah</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                    <select class="form-control select2" name="daerah" id="daerah" required>
+                        
                     </select>
                 </div>
 
@@ -199,7 +197,7 @@ Pengurusan Ahli Jawatankuasa
         <form id="formahli">
             <div>
                 <label class="fw-bolder">Nama Pengguna:<span style="color: red;">*</span></label>
-                <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
             </div>
 
             <div>
@@ -254,7 +252,7 @@ Pengurusan Ahli Jawatankuasa
 
             <div>
                 <label class="fw-bolder"> Negeri:<span style="color: red;">*</span></label>
-                <select class="form-control select2" name="negeri" required>
+                <select class="form-control select2" name="negeri" required id="negeri" onchange="changenegeri(this)">
                         <option>pilih</option>
                         @foreach($states as $state)
                         <option value="{{$state->name}}">{{$state->name}}</option>
@@ -263,11 +261,8 @@ Pengurusan Ahli Jawatankuasa
             </div>
             <div>
                 <label class="fw-bolder"> Daerah:<span style="color: red;">*</span></label>
-                <select class="form-control select2" name="daerah" required>
-                        <option>pilih</option>
-                        @foreach($dearhs as $dearh)
-                        <option value="{{$dearh->name}}">{{$dearh->name}}</option>
-                        @endforeach
+                <select class="form-control select2" name="daerah" required id="daerah">
+                        
                 </select>
             </div>
 
@@ -319,6 +314,7 @@ Pengurusan Ahli Jawatankuasa
 @section('script')
 <script type="text/javascript">
 
+
 $('#formahli').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formahli'));
@@ -332,6 +328,7 @@ $('#formahli').submit(function(event) {
 
                 if (!selectedValues || selectedValues === '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
                     return false; // Stop the loop if an error is found
                 }
             }

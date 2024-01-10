@@ -245,33 +245,13 @@ function  formverify(status, formid) {
         var no_kad = $('#no_kad').val();
         var email_peribadi = $('#email_peribadi').val();
 
-        // var url = "{{route('admin.internal.penggunalist')}}";
-
-        // $.ajax({
-        //     url: url, // Route URL
-        //     type: 'GET', // Request type (GET, POST, etc.)
-        //      data: {
-        //         nama_pengguna: nama_pengguna,
-        //         no_kad: no_kad,
-        //         email_peribadi: email_peribadi
-        //      },
-        //      dataType: 'JSON',
-        //     success: function(response) {
-        //         if (response.success) {
-        //             window.location.reload();
-        //        }
-        //     }
-        // });
-        // 
-
-    // Trigger DataTable reload with the custom parameter
-    $('#TableSenaraiPengurusan').DataTable().ajax.reload(null, false, {
-        data: {
-            nama_pengguna : $('#nama_pengguna').val(),
-            no_kad : $('#no_kad').val(),
-            email_peribadi : $('#email_peribadi').val()
-        }
-    });
+        $('#TableSenaraiPengurusan').DataTable().ajax.reload(null, false, {
+            data: {
+                nama_pengguna : $('#nama_pengguna').val(),
+                no_kad : $('#no_kad').val(),
+                email_peribadi : $('#email_peribadi').val()
+            }
+        });
     }
   
 </script>

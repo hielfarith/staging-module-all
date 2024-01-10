@@ -166,8 +166,8 @@ Pengurusan Ketua Agensi
                     <label class="fw-bold form-label">Negeri
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="negeri" required>
-                        <option value="" hidden>Negeri</option>
+                    <select class="form-control select2" name="negeri" required onchange="changenegeri(this)" id="negeri">
+                        <option value="" hidden>Sila pilih</option>
                         @foreach($states as $state)
                             <option value="{{$state->name}}">{{$state->name}}</option>
                         @endforeach
@@ -178,10 +178,8 @@ Pengurusan Ketua Agensi
                     <label class="fw-bold form-label">Daerah
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="daerah" required>
-                        <option value="" hidden>Daerah</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                    <select class="form-control select2" name="daerah"  id="daerah" required>
+                        <option value="" hidden>Sila pilih</option>
                     </select>
                 </div>
 

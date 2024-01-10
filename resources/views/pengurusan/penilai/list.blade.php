@@ -33,20 +33,21 @@ Pengurusan Panel Penilai
     <hr>
 
     <div class="card-body">
+        
         <div class="row">
             <div class="col-md-4">
                 <label class="form-label">Nama Panel Penilai/ Pengguna</label>
-                <input type="text" class="form-control">
+                <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control">
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">No. Kad Pengenalan/ Pasport</label>
-                <input type="text" class="form-control">
+                <input type="text" name="no_kad"  id="no_kad" class="form-control">
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">Email Peribadi</label>
-                <input type="text" class="form-control">
+                <input type="text" name="email_peribadi" id="email_peribadi" class="form-control">
             </div>
         </div>
 
@@ -54,8 +55,8 @@ Pengurusan Panel Penilai
             <a class="me-3 text-danger" type="button" id="reset" href="#">
                 Setkan Semula
             </a>
-            <button type="submit" value="Filter" class="btn btn-success float-right">
-                <i class="fa fa-search me-1"></i> Cari
+           <button type="button" onclick="search()" class="btn btn-success float-right">
+                    <i class="fa fa-search me-1"></i> Cari
             </button>
         </div>
 
@@ -116,6 +117,11 @@ $('#modal-penilia-diisi').on('shown.bs.modal', function () {
             ajax: {
                 url: "{{ fullUrl() }}",
                 cache: false,
+                data: function (d) {
+                    d.nama_pengguna = $('#nama_pengguna').val();
+                    d.no_kad = $('#no_kad').val();
+                    d.email_peribadi = $('#email_peribadi').val();
+                },
             },
             columns: [{
                     data: "id",
@@ -234,5 +240,20 @@ function  formverify(status, formid) {
             }
         });
     }
+
+function  search(argument) {
+    var nama_pengguna = $('#nama_pengguna').val();
+    var no_kad = $('#no_kad').val();
+    var email_peribadi = $('#email_peribadi').val();
+
+    $('#TableSenaraiPenilai').DataTable().ajax.reload(null, false, {
+        data: {
+            nama_pengguna : $('#nama_pengguna').val(),
+            no_kad : $('#no_kad').val(),
+            email_peribadi : $('#email_peribadi').val()
+        }
+    });
+}
+  
 </script>
 @endsection

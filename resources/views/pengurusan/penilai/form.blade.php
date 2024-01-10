@@ -307,6 +307,25 @@ $(document).ready(function() {
         maximumSelectionLength: 3
     });
 });
+function changenegeri(negeri){
+    var negerivalue = negeri.value;
+    var url = "{{ route('admin.internal.checkdaerah') }}"
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            negeri: negerivalue
+        },
+        success: function(response) {
+            $('#daerah').empty();
+            $('#daerah').append('<option value="" selected>Sila Pilih:-</option>');
+            $.each(response.daerahs, function(key, value) {
+                $('#daerah').append('<option value="'+ value +'">'+ value +'</option>');
+            });
+        }
+    });
+}
+
 $('#formpenilai').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formpenilai'));

@@ -168,7 +168,17 @@ class PengurusanProfilPenggunaController extends Controller
 	{
 		if($request->ajax()) {
 
-	        $penilaiList = PanelPenilai::get();
+	        $penilaiList = PanelPenilai::where('id', '!=', 0);
+	        if ($request->has('nama_pengguna') && !empty($request->input('nama_pengguna'))) {
+		        $penilaiList->where('nama_pengguna', $request->input('nama_pengguna'));
+		    }
+		    if ($request->has('no_kad') && !empty($request->input('no_kad'))) {
+		        $penilaiList->where('no_kad', $request->input('no_kad'));
+		    }
+		    if ($request->has('email_peribadi') && !empty($request->input('email_peribadi'))) {
+		        $penilaiList->where('email_peribadi', $request->input('email_peribadi'));
+		    }
+
 	        return Datatables::of($penilaiList)
 	            ->editColumn('nama_pengguna', function ($penilaiList) {
 	                return $penilaiList->nama_pengguna;
@@ -212,11 +222,13 @@ class PengurusanProfilPenggunaController extends Controller
     	$daerahs = MasterDaerah::all();
     	if ($request->type == 'view') {
     		$readonly = 'readonly';
+    		$disabled = 'disabled';
     	} else {
+    		$disabled = '';
     		$readonly = '';
     	}
     	// return view('pengurusan_pengguna.penilai.lihat-penilai', compact('penilai', 'states'));
-    	return view('pengurusan.penilai.view-profile', compact('penilai', 'states', 'daerahs', 'readonly'));
+    	return view('pengurusan.penilai.view-profile', compact('penilai', 'states', 'daerahs', 'readonly', 'disabled'));
     }
 
     // ----- Agensi ---- //
@@ -238,9 +250,15 @@ class PengurusanProfilPenggunaController extends Controller
             $input['agensi_kementerian'] = json_encode($input['agensi_kementerian']);
             $input['modul'] = isset($input['modul']) ? 1 : 0;
 
-        	$ketuaAgensi = new KetuaAgensi;
-        	$ketuaAgensi->create($input);
-
+            if (array_key_exists('agensi_id', $input)) {
+            	$ketuaAgensi = KetuaAgensi::where('id', $input['agensi_id'])->first();
+            	unset($input['agensi_id']);
+            	$ketuaAgensi->update($input);
+            } else {
+            	$ketuaAgensi = new KetuaAgensi;
+        		$ketuaAgensi->create($input);
+            }
+        	
           DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
         } catch (\Throwable $e) {
@@ -253,8 +271,18 @@ class PengurusanProfilPenggunaController extends Controller
 	public function listAgensi(Request $request)
 	{
 		if($request->ajax()) {
+			$agensiList = KetuaAgensi::where('id', '!=', 0);
+	        if ($request->has('nama_pengguna') && !empty($request->input('nama_pengguna'))) {
+		        $agensiList->where('nama_pengguna', $request->input('nama_pengguna'));
+		    }
+		    if ($request->has('no_kad') && !empty($request->input('no_kad'))) {
+		        $agensiList->where('no_kad', $request->input('no_kad'));
+		    }
+		    if ($request->has('email_ketua') && !empty($request->input('email_ketua'))) {
+		        $agensiList->where('email_ketua', $request->input('email_ketua'));
+		    }
 
-	        $agensiList = KetuaAgensi::get();
+
 	        return Datatables::of($agensiList)
 	            ->editColumn('nama_pengguna', function ($agensiList) {
 	                return $agensiList->nama_pengguna;
@@ -265,11 +293,16 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->editColumn('email_peribadi', function ($agensiList) {
 	                return $agensiList->email_ketua;
 	            })
+	             ->editColumn('no_tel_pejabat', function ($agensiList) {
+	                return $agensiList->no_tel_pejabat;
+	            })
 	            ->editColumn('action', function ($agensiList) {
 	                $button = "";
 	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
 	                $button .= '<a onclick="maklumatAgensi(' . $agensiList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                $button .= '<a onclick="maklumatAgensiEdit(' . $agensiList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
 
 	                $button .= "</div>";
 
@@ -286,7 +319,14 @@ class PengurusanProfilPenggunaController extends Controller
     {
     	$agensi = KetuaAgensi::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	return view('pengurusan.agensi.view-profile', compact('agensi', 'states'));
+    	if ($request->type == 'view') {
+    		$readonly = 'readonly';
+    		$disabled = 'disabled';
+    	} else {
+    		$readonly = '';
+    		$disabled = '';
+    	}
+    	return view('pengurusan.agensi.view-profile', compact('agensi', 'states', 'readonly', 'disabled'));
     }
 
      // ----- Ahli Jawatankuasa ---- //
@@ -294,6 +334,7 @@ class PengurusanProfilPenggunaController extends Controller
 	{
 		$states = MasterState::all();
 		$dearhs = MasterDaerah::all();
+
 		return view('pengurusan.ahli-jawatankuasa.form', compact('states', 'dearhs'));
 	}
 
@@ -304,9 +345,15 @@ class PengurusanProfilPenggunaController extends Controller
 
             $input = $request->input(); 
 
-        	$ketuaAgensi = new AhliJawatankuasaKerja;
-        	$ketuaAgensi->create($input);
-
+             if (array_key_exists('ahli_id', $input)) {
+            	$AhliJawatankuasaKerja = AhliJawatankuasaKerja::where('id', $input['ahli_id'])->first();
+            	unset($input['ahli_id']);
+            	$AhliJawatankuasaKerja->update($input);
+            } else {
+            	$AhliJawatankuasaKerja = new AhliJawatankuasaKerja;
+        		$AhliJawatankuasaKerja->create($input);
+            }
+            
           DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
         } catch (\Throwable $e) {
@@ -320,8 +367,21 @@ class PengurusanProfilPenggunaController extends Controller
 	{
 		if($request->ajax()) {
 
-	        $jawatankuasaList = AhliJawatankuasaKerja::get();
+	        $jawatankuasaList = AhliJawatankuasaKerja::where('id', '!=', 0);
+	        if ($request->has('nama_pengguna') && !empty($request->input('nama_pengguna'))) {
+		        $jawatankuasaList->where('nama_pengguna', 'like','%'. $request->input('nama_pengguna'). '%');
+		    }
+		    if ($request->has('no_kad') && !empty($request->input('no_kad'))) {
+		        $jawatankuasaList->where('no_kad', $request->input('no_kad'));
+		    }
+		    if ($request->has('email_peribadi') && !empty($request->input('email_peribadi'))) {
+		        $jawatankuasaList->where('email_peribadi', $request->input('email_ketua'));
+		    }
+
 	        return Datatables::of($jawatankuasaList)
+	        	->editColumn('panggilan', function ($jawatankuasaList) {
+	                return $jawatankuasaList->panggilan;
+	            })
 	            ->editColumn('nama_pengguna', function ($jawatankuasaList) {
 	                return $jawatankuasaList->nama_pengguna;
 	            })
@@ -331,11 +391,17 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->editColumn('email_peribadi', function ($jawatankuasaList) {
 	                return $jawatankuasaList->email_peribadi;
 	            })
+	            ->editColumn('no_tel_pejabat', function ($jawatankuasaList) {
+	                return $jawatankuasaList->no_tel_pejabat;
+	            })
 	            ->editColumn('action', function ($jawatankuasaList) {
 	                $button = "";
 	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
 	                $button .= '<a onclick="maklumatAhli(' . $jawatankuasaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                $button .= '<a onclick="maklumatAhliEdit(' . $jawatankuasaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
 
 	                $button .= "</div>";
 
@@ -352,7 +418,15 @@ class PengurusanProfilPenggunaController extends Controller
     {
     	$ahli = AhliJawatankuasaKerja::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	return view('pengurusan.ahli-jawatankuasa.view-profile', compact('ahli', 'states'));
+    	if ($request->type == 'view') {
+    		$readonly = 'readonly';
+    		$disabled = 'disabled';
+    	} else {
+    		$disabled = '';
+    		$readonly = '';
+    	}
+
+    	return view('pengurusan.ahli-jawatankuasa.view-profile', compact('ahli', 'states', 'readonly', 'disabled'));
     }
 
     // jawatanketuasa tertinggi
@@ -361,6 +435,7 @@ class PengurusanProfilPenggunaController extends Controller
 	{
 		$states = MasterState::all();
 		$dearhs = MasterDaerah::all();
+		
 		return view('pengurusan.ahli-jawatankuasa-tertinggi.form', compact('states','dearhs'));
 	}
 
@@ -419,7 +494,14 @@ class PengurusanProfilPenggunaController extends Controller
     {
     	$ahli = AhliJawatankuasaTertinggi::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	return view('pengurusan.ahli-jawatankuasa-tertinggi.view-profile', compact('ahli', 'states'));
+    	if ($request->type == 'view') {
+    		$readonly = 'readonly';
+    		$disabled = 'disabled';
+    	} else {
+    		$disabled = '';
+    		$readonly = '';
+    	}
+    	return view('pengurusan.ahli-jawatankuasa-tertinggi.view-profile', compact('ahli', 'states', 'readonly', 'disabled'));
     }
 
     // PengerusiPengetuaGuru //
@@ -490,7 +572,14 @@ class PengurusanProfilPenggunaController extends Controller
     	$pengetua = PengerusiPengetuaGuru::where('id', $request->id)->first();
     	$states = MasterState::all();
     	$dearhs = MasterDaerah::all();
-    	return view('pengurusan.pengetua.view-profile', compact('pengetua', 'states','dearhs'));
+    	if ($request->type == 'view') {
+    		$readonly = 'readonly';
+    		$disabled = 'disabled';
+    	} else {
+    		$disabled = '';
+    		$readonly = '';
+    	}
+    	return view('pengurusan.pengetua.view-profile', compact('pengetua', 'states','dearhs', 'disabled', 'readonly'));
     }
 
     public function checkDaerah(Request $request)
