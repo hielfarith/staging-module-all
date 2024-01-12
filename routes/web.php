@@ -14,6 +14,7 @@ use App\Http\Controllers\FormSubmissionController;
 use PhpParser\Node\Expr\Include_;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PengurusanProfilPenggunaController;
+use App\Http\Controllers\InstrumenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -191,7 +192,7 @@ Route::controller(ModuleController::class)->prefix('module')->middleware(['web']
 
 });
 
-
+    
  //pengurusan controller
 Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-dalaman')->middleware(['web'])->group(function () {
     Route::post('checkdaerah','checkDaerah')->name('admin.internal.checkdaerah');
@@ -226,5 +227,16 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
     Route::post('savepengetua','savePengetua')->name('admin.internal.pengetuasave');
     Route::get('senarai-pengetua','listPengetua')->name('admin.internal.pengetualist');
     Route::post('viewpengetua/{id}/{type}','viewPengetua')->name('admin.internal.viewpengetua');
+
+});
+
+// instrumen controller
+
+ //pengurusan controller
+Route::controller(InstrumenController::class)->prefix('instrumen')->middleware(['web'])->group(function () {
+    Route::get('create','viewForm')->name('admin.instrumen.form');
+    Route::post('instrumenskpak-submit','saveSkpak')->name('admin.instrumen.instrumenskpak-submit');
+    Route::get('instrumenskpak-list','listInstrumenSkpak')->name('admin.instrumen.instrumenskpak-list');
+    Route::post('instrumenskpak-view/{id}/{type}','viewInstrumenSkpak')->name('admin.instrumen.instrumenskpak-view');
 
 });

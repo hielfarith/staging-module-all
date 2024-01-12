@@ -19,6 +19,11 @@ use App\Models\PengerusiPengetuaGuru;
 class PengurusanProfilPenggunaController extends Controller
 {
 
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
 	public function viewForm(Request $request)
 	{
 		$states = MasterState::all();
