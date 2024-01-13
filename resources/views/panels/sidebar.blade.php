@@ -41,6 +41,14 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate"> Instrumen </span>
                 </a>
                 <ul class="nav">
+
+                      <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> List Instrumen New</span>
+                        </a>
+                    </li>
+
                     <li class="{{ in_array(request()->route()->getName(),['instrumen_baru'])? 'active': '' }}">
                         <a href="{{ route('instrumen_baru') }}" class="nav-link">
                             <i data-feather="circle"></i>
@@ -53,6 +61,7 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate"> Senarai Instrumen </span>
                         </a>
                     </li>
+
                     <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">
                         <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
                             <i data-feather="circle"></i>
