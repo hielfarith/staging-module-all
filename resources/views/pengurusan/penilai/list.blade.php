@@ -33,7 +33,7 @@ Pengurusan Panel Penilai
     <hr>
 
     <div class="card-body">
-        
+
         <div class="row">
             <div class="col-md-4">
                 <label class="form-label">Nama Panel Penilai/ Pengguna</label>
@@ -69,7 +69,7 @@ Pengurusan Panel Penilai
                         <th width="5%">No.</th>
                         <th>Nama Panel Penilai/ Pengguna</th>
                         <th>No. Kad Pengenalan/ Pasport</th>
-                        <th>Emell Peribadi</th>
+                        <th>Emel Peribadi</th>
                         <th>Emel Penyelia</th>
                         <th>Agensi / Kementerian</th>
                         <th width="5%">Tindakan</th>
@@ -104,7 +104,7 @@ $('#modal-penilia-diisi').on('shown.bs.modal', function () {
     $('.select2').select2({
         maximumSelectionLength: 3
     });
-    
+
 });
 
     $(function() {
@@ -254,6 +254,6 @@ function  search(argument) {
         }
     });
 }
-  
+
 </script>
 @endsection
