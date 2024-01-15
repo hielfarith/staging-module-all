@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
+use App\Models\TetapanAspek;
 use App\Models\InstrumenSkpakSpksIkeps;
 
 class InstrumenController extends Controller
@@ -18,7 +19,11 @@ class InstrumenController extends Controller
 
     public function viewForm(Request $request)
     {
-        return view('instrumen_update.form');
+        if($request->type == 'instrumen' ) {
+            return view('instrumen_update.form');
+        } elseif ($request->type == 'tetapan-aspek') {
+            return view('instrumen_update.tetapan-aspek.form');
+        }
     }
 
     public function saveSkpak(Request $request) {
@@ -101,5 +106,87 @@ class InstrumenController extends Controller
             $disabled = '';
         }
         return view('instrumen_update.view-profile', compact('instrumen', 'readonly', 'disabled'));
+    }
+
+     // Aspek //
+
+    public function saveAspek(Request $request) {
+         DB::beginTransaction();
+        try {           
+            $input = $request->input();
+
+            $input['status'] = 1;
+            if (array_key_exists('tetapan_aspek_id', $input)) {
+                $TetapanAspek = TetapanAspek::where('id', $input['tetapan_aspek_id'])->first();
+                unset($input['tetapan_aspek_id']);
+                $TetapanAspek->update($input);
+            } else {
+                $TetapanAspek = new TetapanAspek;
+                $TetapanAspek->create($input);
+            }
+
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+
+        DB::commit();
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'redirectRoute' => route('admin.internal.penggunalist')]);
+    }
+
+    public function listTetapanAspek(Request $request)
+    {
+        if($request->ajax()) {
+            $tetapanAspek = TetapanAspek::where('id', '!=', 0);
+            if ($request->has('nama_aspek') && !empty($request->input('nama_aspek'))) {
+                $tetapanAspek->where('nama_aspek', 'LIKE' ,'%'.$request->input('nama_aspek').'%');
+            }
+            if ($request->has('status_aspek') && !empty($request->input('status_aspek'))) {
+                $tetapanAspek->where('status_aspek','LIKE' ,'%'.$request->input('status_aspek').'%');
+            }
+            if ($request->has('tarikh_kuatkuasa_aspek') && !empty($request->input('tarikh_kuatkuasa_aspek'))) {
+                $tetapanAspek->where('tarikh_kuatkuasa_aspek','LIKE' ,'%'.$request->input('tarikh_kuatkuasa_aspek').'%');
+            }
+            return Datatables::of($tetapanAspek)
+                ->editColumn('nama_aspek', function ($tetapanAspek) {
+                    return $tetapanAspek->nama_aspek;
+                })
+                ->editColumn('status_aspek', function ($tetapanAspek) {
+                    return $tetapanAspek->status_aspek;
+                })
+                ->editColumn('tarikh_kuatkuasa_aspek', function ($tetapanAspek) {
+                    return $tetapanAspek->tarikh_kuatkuasa_aspek;
+                })
+                
+                ->editColumn('action', function ($tetapanAspek) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatAspek('.$tetapanAspek->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatAspekEdit('.$tetapanAspek->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('instrumen_update.tetapan-aspek.list');
+    }
+
+    public function viewTetapanAspek(Request $request)
+    {
+        $aspek = TetapanAspek::where('id', $request->id)->first();
+        if ($request->type == 'view') {
+            $readonly = 'readonly';
+            $disabled = 'disabled';
+        } else {
+            $readonly = '';
+            $disabled = '';
+        }
+        return view('instrumen_update.tetapan-aspek.view-profile', compact('aspek', 'readonly', 'disabled'));
     }
 }

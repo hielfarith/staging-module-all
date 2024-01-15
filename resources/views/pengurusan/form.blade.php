@@ -47,7 +47,7 @@ Pengurusan Ketua Taska
                     <label class="fw-bold form-label">Nama Pengguna/ Ketua Taska
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                    <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
                 </div>
 
                 <div class="col-md-3 mb-1">

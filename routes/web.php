@@ -234,9 +234,13 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
 
  //pengurusan controller
 Route::controller(InstrumenController::class)->prefix('instrumen')->middleware(['web'])->group(function () {
-    Route::get('create','viewForm')->name('admin.instrumen.form');
+    Route::get('create/{type}','viewForm')->name('admin.instrumen.form');
     Route::post('instrumenskpak-submit','saveSkpak')->name('admin.instrumen.instrumenskpak-submit');
     Route::get('instrumenskpak-list','listInstrumenSkpak')->name('admin.instrumen.instrumenskpak-list');
     Route::post('instrumenskpak-view/{id}/{type}','viewInstrumenSkpak')->name('admin.instrumen.instrumenskpak-view');
+
+    Route::post('tetapan-aspek-submit','saveAspek')->name('admin.instrumen.tetapan-aspek-submit');
+    Route::get('tetapan-aspek-list','listTetapanAspek')->name('admin.instrumen.tetapan-aspek-list');
+    Route::post('tetapan-aspek-view/{id}/{type}','viewTetapanAspek')->name('admin.instrumen.tetapan-aspek-view');
 
 });

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-Instrumen
+TETAPAN ASPEK
 @endsection
 
 @section('breadcrumb')
@@ -10,22 +10,22 @@ Instrumen
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Instrumen </a>
+    <a href="#"> TETAPAN ASPEK </a>
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Instrumen </a>
+    <a href="#"> TETAPAN ASPEK </a>
 </li>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title fw-bolder"> Senarai Instrumen </h4>
+        <h4 class="card-title fw-bolder"> Senarai Tetapan Aspek</h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'instrumen' ]) }}">
-                <i class="fa-solid fa-add"></i> Tambah Instrumen
+            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'tetapan-aspek']) }}">
+                <i class="fa-solid fa-add"></i> Tambah Tetapan Aspek
             </a>
         </div>
     </div>
@@ -36,18 +36,18 @@ Instrumen
    
         <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Instrumen</label>
-                <input type="text" name="nama_instrumen" id="nama_instrumen" class="form-control">
+                <label class="form-label">Nama Aspek</label>
+                <input type="text" name="nama_aspek" id="nama_aspek" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Tujuan Instrumen</label>
-                <input type="text" name="tujuan_instrumen"  id="tujuan_instrumen" class="form-control">
+                <label class="form-label">Status Aspek</label>
+                <input type="text" name="status_aspek"  id="status_aspek" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Pengguna Instrumen</label>
-                <input type="text" name="pengguna_instrumen" id="pengguna_instrumen" class="form-control">
+                <label class="form-label">Tarikh Kuatkuasa Aspek</label>
+                <input type="text" name="tarikh_kuatkuasa_aspek" id="tarikh_kuatkuasa_aspek" class="form-control flatpickr">
             </div>
         </div>
 
@@ -64,14 +64,13 @@ Instrumen
         <hr>
 
         <div class="table-responsive">
-            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiInstrumen">
+            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiAspek">
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
-                        <th>Nama Instrumen</th>
-                        <th>Tujuan Instrumen</th>
-                        <th>Pengguna Instrumen</th>
-                        <th>Tarikh Kuatkuasa</th>
+                        <th>Nama Aspek</th>
+                        <th>Status Aspek</th>
+                        <th>Tarikh Kuatkuasa Aspek</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -82,7 +81,7 @@ Instrumen
     </div>
 </div>
 
-<div class="modal fade" id="modal-instrumen-diisi" tabindex="-1" aria-labelledby="modal-instrumen-diisi" aria-hidden="true">
+<div class="modal fade" id="modal-aspek-diisi" tabindex="-1" aria-labelledby="modal-aspek-diisi" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -90,7 +89,7 @@ Instrumen
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="modal-body" id="modal-body-instrumen">
+            <div class="modal-body" id="modal-body-aspek">
             </div>
         </div>
     </div>
@@ -101,7 +100,7 @@ Instrumen
 <script>
 $(document).ready(function() {
 
-$('#modal-instrumen-diisi').on('shown.bs.modal', function () {
+$('#modal-aspek-diisi').on('shown.bs.modal', function () {
     $('.select2').select2({ 
     });
     flatpickr(".flatpickr", {
@@ -111,7 +110,7 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
 });
 
     $(function() {
-        var table = $('#TableSenaraiInstrumen').DataTable({
+        var table = $('#TableSenaraiAspek').DataTable({
             orderCellsTop: true,
             colReorder: false,
             pageLength: 10,
@@ -122,9 +121,9 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
                 url: "{{ fullUrl() }}",
                 cache: false,
                 data: function (d) {
-                    d.nama_instrumen = $('#nama_instrumen').val();
-                    d.tujuan_instrumen = $('#tujuan_instrumen').val();
-                    d.pengguna_instrumen = $('#pengguna_instrumen').val();
+                    d.nama_aspek = $('#nama_aspek').val();
+                    d.status_aspek = $('#status_aspek').val();
+                    d.tarikh_kuatkuasa_aspek = $('#tarikh_kuatkuasa_aspek').val();
                 },
             },
             columns: [{
@@ -135,32 +134,24 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
                     }
                 },
                 {
-                    data: "nama_instrumen",
-                    name: "nama_instrumen",
+                    data: "nama_aspek",
+                    name: "nama_aspek",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
                     }
                 },
                 {
-                    data: "tujuan_instrumen",
-                    name: "tujuan_instrumen",
+                    data: "status_aspek",
+                    name: "status_aspek",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
                     }
                 },
                 {
-                    data: "pengguna_instrumen",
-                    name: "pengguna_instrumen",
-                    searchable: true,
-                    render: function(data, type, row) {
-                        return $("<div/>").html(data).text();
-                    }
-                },
-                {
-                    data: "tarikh_kuatkuasa",
-                    name: "tarikh_kuatkuasa",
+                    data: "tarikh_kuatkuasa_aspek",
+                    name: "tarikh_kuatkuasa_aspek",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
@@ -183,8 +174,8 @@ $.ajaxSetup({
         }
 })
 
-function maklumatInstrumen(id){
-    var url = "{{ route('admin.instrumen.instrumenskpak-view',['id'=> ':id', 'type' => 'view']) }}";
+function maklumatAspek(id){
+    var url = "{{ route('admin.instrumen.tetapan-aspek-view',['id'=> ':id', 'type' => 'view']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({
@@ -194,15 +185,15 @@ function maklumatInstrumen(id){
             id: id
             },
         success: function(response) {
-            $('#modal-instrumen-diisi').modal("show");
-            $('#modal-body-instrumen').empty();
-            $('#modal-body-instrumen').append(response);
+            $('#modal-aspek-diisi').modal("show");
+            $('#modal-body-aspek').empty();
+            $('#modal-body-aspek').append(response);
         }
     });
 }
 
-function maklumatInstrumenEdit(id) {
-    var url = "{{ route('admin.instrumen.instrumenskpak-view',['id'=> ':id', 'type' => 'edit']) }}";
+function maklumatAspekEdit(id) {
+    var url = "{{ route('admin.instrumen.tetapan-aspek-view',['id'=> ':id', 'type' => 'edit']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({
@@ -212,23 +203,23 @@ function maklumatInstrumenEdit(id) {
             id: id
             },
         success: function(response) {
-            $('#modal-instrumen-diisi').modal("show");
-            $('#modal-body-instrumen').empty();
-            $('#modal-body-instrumen').append(response);
+            $('#modal-aspek-diisi').modal("show");
+            $('#modal-body-aspek').empty();
+            $('#modal-body-aspek').append(response);
         }
     });
 }
 
 function  search() {
-    var nama_instrumen = $('#nama_instrumen').val();
-    var tujuan_instrumen = $('#tujuan_instrumen').val();
-    var pengguna_instrumen = $('#pengguna_instrumen').val();
+    var nama_aspek = $('#nama_aspek').val();
+    var status_aspek = $('#status_aspek').val();
+    var tarikh_kuatkuasa_aspek = $('#tarikh_kuatkuasa_aspek').val();
 
-    $('#TableSenaraiInstrumen').DataTable().ajax.reload(null, false, {
+    $('#TableSenaraiAspek').DataTable().ajax.reload(null, false, {
         data: {
-            nama_instrumen : $('#nama_instrumen').val(),
-            tujuan_instrumen : $('#tujuan_instrumen').val(),
-            pengguna_instrumen : $('#pengguna_instrumen').val()
+            nama_aspek : $('#nama_aspek').val(),
+            status_aspek : $('#status_aspek').val(),
+            tarikh_kuatkuasa_aspek : $('#tarikh_kuatkuasa_aspek').val()
         }
     });
 }
