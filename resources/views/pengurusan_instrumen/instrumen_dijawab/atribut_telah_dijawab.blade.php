@@ -1,54 +1,55 @@
 <div class="row invoice-add">
-        <div class="col-xl-12 col-md-12 col-12">
-            <div class="card invoice-preview-card">
- <!-- Header starts -->
-                <div class="card-body invoice-padding pb-0">
-                    <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
-                        <div>
-                            <div class="logo-wrapper">
-                                <img src="{{ asset('images/logo/jata_negara.png') }}" height="24">
-                                <h3 class="text-primary invoice-logo">Kementerian Pendidikan Malaysia (KPM)</h3>
-                            </div>
-
-                            {{-- Nama Instrumen --}}
-                            <h4 class="fw-bolder mb-25">{{$form_name}}</h4>
-
-                            {{-- Kategori Instrumen --}}
-                            <h6 class="fw-bolder mb-25">{{$category}}</h6>
-
-                            {{-- Deskripsi Instrumen --}}
-                            <p class="mb-25">{{$DynamicFormData->description}}</p>
+    <div class="col-xl-12 col-md-12 col-12">
+        <div class="card invoice-preview-card">
+            <!-- Header starts -->
+            <div class="card-body invoice-padding pb-0">
+                <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
+                    <div>
+                        <div class="logo-wrapper">
+                            <img src="{{ asset('images/logo/jata_negara.png') }}" height="24">
+                            <h3 class="text-primary invoice-logo">Kementerian Pendidikan Malaysia (KPM)</h3>
                         </div>
-                        <div class="invoice-number-date mt-md-0 mt-2">
-                            <div class="d-flex align-items-center justify-content-md-end mb-1">
-                                <h4 class="title">ID Instrumen</h4>
-                                <div class="input-group input-group-merge invoice-edit-input-group">
-                                    <div class="input-group-text">
-                                        <i data-feather="hash"></i>
-                                    </div>
 
-                                    {{-- ID Instrument --}}
-                                    <input type="text" class="form-control invoice-edit-input" value="{{$DynamicFormData->id_instrumen}}" disabled>
+                        {{-- Nama Instrumen --}}
+                        <h4 class="fw-bolder mb-25">{{$form_name}}</h4>
+
+                        {{-- Kategori Instrumen --}}
+                        <h6 class="fw-bolder mb-25">{{$category}}</h6>
+
+                        {{-- Deskripsi Instrumen --}}
+                        <p class="mb-25">{{$DynamicFormData->description}}</p>
+                    </div>
+                    <div class="invoice-number-date mt-md-0 mt-2">
+                        <div class="d-flex align-items-center justify-content-md-end mb-1">
+                            <h4 class="title">ID Instrumen</h4>
+                            <div class="input-group input-group-merge invoice-edit-input-group">
+                                <div class="input-group-text">
+                                    <i data-feather="hash"></i>
                                 </div>
-                            </div>
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="title">Tarikh Didaftar:</span>
 
-                                {{-- Tarikh Instrumen Didaftarkan --}}
-                                <input type="text" class="form-control flatpickr" value="{{date('d/m/Y', strtotime($DynamicFormData->tarikh_didaftar))}}" disabled>
+                                {{-- ID Instrument --}}
+                                <input type="text" class="form-control invoice-edit-input" value="{{$DynamicFormData->id_instrumen}}" disabled>
                             </div>
-                            <div class="d-flex align-items-center">
-                                <span class="title">Tarikh Tutup Pengisian:</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-1">
+                            <span class="title">Tarikh Didaftar:</span>
 
-                                {{-- Tarikh Tutup Pengisian Instrumen --}}
-                                <input type="text" class="form-control flatpickr" value="{{ date('d/m/Y', strtotime($DynamicFormData->tarikh_tutup))}}" disabled>
-                            </div>
+                            {{-- Tarikh Instrumen Didaftarkan --}}
+                            <input type="text" class="form-control flatpickr" value="{{date('d/m/Y', strtotime($DynamicFormData->tarikh_didaftar))}}" disabled>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="title">Tarikh Tutup Pengisian:</span>
+
+                            {{-- Tarikh Tutup Pengisian Instrumen --}}
+                            <input type="text" class="form-control flatpickr" value="{{ date('d/m/Y', strtotime($DynamicFormData->tarikh_tutup))}}" disabled>
                         </div>
                     </div>
                 </div>
-                <!-- Header ends -->
+                <hr>
 
-@foreach($arrays as $array)
+            <!-- Header ends -->
+
+        @foreach($arrays as $array)
         <?php
         if(!array_key_exists('type', $array))
             continue;
@@ -62,45 +63,50 @@
                     $value = $category;
                 }
                 @endphp
-                
+
             @else
                 <x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="{{$staticForm ? '' : $data[$array['name']]}}" :required="$array['required']" placeholder="{{$array['placeholder']}}" label="{{$array['label']}}" readonly/>
             @endif
+
         @elseif($array['type'] == 'select')
-        <div class="form-group main-container">
-            <label>{{$array['label']}} @if($array['required']) <span style="color: red;">*</span> @endif</label>
-            <div class="col-md-8">
-                <?php
-                    if ($staticForm) {
-                        $disabled = false;
-                    } else {
-                        $disabled = true;
-                    }
-                ?>
-                <select class="form-control" {{$disabled}} :required="$array['required']" placeholder="{{$array['placeholder']}}">  
-                    @if($staticForm)
-                        @foreach($array['options'] as $option)
-                            <option>{{$option}}</option>
-                        @endforeach
-                    @else
-                        <option>{{$data[$array['name']]}}</option>
-                    @endif
-                </select>
-            </div>
-        </div>
-        @elseif($array['type'] == 'file')
-            <div class="form-group main-container">
+        <div class="col-md-12 mb-1">
+            <label class="form-label fw-bold">{{$array['label']}}
+                @if($array['required'])
+                    <span class="text-danger">*</span>
+                @endif
+            </label>
             <?php
-                $url = route('download',['id' => $id,'name' => $array['name']]);
+                if ($staticForm) {
+                    $disabled = false;
+                } else {
+                    $disabled = true;
+                }
             ?>
-            @if($staticForm) 
-            <x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" :required="$array['required']" placeholder="{{$array['placeholder']}}" accept=".pdf,.doc,.docx" disabled>
-            </x-input-file-field>
-            @else
-            <label>{{$array['label']}}</label>
-            <a href="{{$url}}" class="btn btn-primary">Download File</a>
-            @endif
+            <select class="form-control" {{$disabled}} :required="$array['required']" placeholder="{{$array['placeholder']}}">
+                @if($staticForm)
+                    @foreach($array['options'] as $option)
+                        <option>{{$option}}</option>
+                    @endforeach
+                @else
+                    <option>{{$data[$array['name']]}}</option>
+                @endif
+            </select>
+        </div>
+
+        @elseif($array['type'] == 'file')
+            <div class="col-md-12 mb-1">
+                <?php
+                    $url = route('download',['id' => $id,'name' => $array['name']]);
+                ?>
+                @if($staticForm)
+                    <x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" :required="$array['required']" placeholder="{{$array['placeholder']}}" accept=".pdf,.doc,.docx" disabled>
+                    </x-input-file-field>
+                @else
+                    <label class="form-label fw-bold">{{$array['label']}}</label>
+                    <a href="{{$url}}" class="btn btn-primary">Download File</a>
+                @endif
             </div>
+
         @elseif($array['type'] == 'segment')
             <div class="row " role="alert" >
                 <div class="col-xl-8 col-12 col-md-8 alert alert-info">
@@ -108,22 +114,51 @@
                     <span>{{ empty($array['options']) ? '' : $array['options'] }}</span>
                 </div>
             </div>
+
+            {{-- <section class="horizontal-wizard">
+                <div class="bs-stepper horizontal-wizard-example">
+                    <div class="bs-stepper-header" role="tablist">
+                        <div class="step" data-target="#{{$array['label']}}" role="tab" id="{{$array['label']}}-trigger">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-box">#</span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title">{{$array['label']}}</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="bs-stepper-content">
+                            <div id="{{$array['label']}}" class="content" role="tabpanel" aria-labelledby="{{$array['label']}}-trigger">
+                                <div class="content-header">
+                                    <h5 class="mb-0">{{$array['label']}}</h5>
+                                </div>
+                                <div class="row">
+                                    {{ empty($array['options']) ? '' : $array['options'] }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section> --}}
+
         @elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
-        <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']" label="{{$array['label']}}">
-            <?php
-                $options = json_decode($array['options'], true);
-                $values = $data[$array['name']];
-            ?>
-            @foreach($options as $option)
-            <label class="form-check-label">
-                 <input type="{{$array['type']}}" class="form-check-input"  name="{{$array['name']}}" value="{{$option}}"
-                 @if(in_array($option, $values)) checked  @endif disabled>
-                 {{$option}}
-            </label>
-            @endforeach
-        </x-input-radio-field>
+            <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']" label="{{$array['label']}}">
+                <?php
+                    $options = json_decode($array['options'], true);
+                    $values = $data[$array['name']];
+                ?>
+                <div class="col-md-12 mb-1">
+                    <div class="demo-inline-spacing">
+                        @foreach($options as $option)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="{{$array['type']}}" name="{{$array['name']}}" id="inlineRadio1" value="{{$option}}" @if(in_array($option, $values)) checked  @endif disabled />
+                            <label class="form-check-label">{{$option}}</label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </x-input-radio-field>
         @endif
     @endforeach
+</div>
 
     <br>
       <hr class="invoice-spacing mt-0" />
@@ -162,7 +197,7 @@
     @if($canQuery)
         <button type="button" class="btn btn-primary" onclick="formverify({{$query}},{{$filledform->id}})">Query</button>
     @endif
-    
+
     <button type="button" class="btn btn-danger" onclick="formverify({{$reject}},{{$filledform->id}})">Reject</button>
 </div>
 @endif
