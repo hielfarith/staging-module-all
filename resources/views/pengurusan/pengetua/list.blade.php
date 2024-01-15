@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-PENGERUSI/ PENGETUA/ GURU BESAR
+Pengurusan Pengerusi/ Pengetua/ Guru Besar
 @endsection
 
 @section('breadcrumb')
@@ -10,14 +10,18 @@ PENGERUSI/ PENGETUA/ GURU BESAR
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> PENGERUSI/ PENGETUA/ GURU BESAR </a>
+    <a href="#"> Pengurusan Pengguna </a>
+</li>
+
+<li class="breadcrumb-item">
+    <a href="#"> Pengurusan Pengerusi/ Pengetua/ Guru Besar </a>
 </li>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title fw-bolder"> Senarai PENGERUSI/ PENGETUA/ GURU BESAR </h4>
+        <h4 class="card-title fw-bolder"> Senarai Pengerusi/ Pengetua/ Guru Besar </h4>
 
         <div class="d-flex justify-content-end align-items-center">
             <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.pengetuaform') }}">
@@ -25,13 +29,13 @@ PENGERUSI/ PENGETUA/ GURU BESAR
             </a>
         </div>
     </div>
- 
+
     <hr>
 
     <div class="card-body">
               <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Ahli Jawatankuasa/ Pengguna</label>
+                <label class="form-label">Nama Pengerusi/ Pengetua/ Guru Besar/ Pengguna</label>
                 <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control">
             </div>
 
@@ -60,11 +64,11 @@ PENGERUSI/ PENGETUA/ GURU BESAR
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
-                        <th>Nama Pengguna</th>
-                        <th>No Kad</th>
-                        <th width="20%">Emel Peribadi:</th>
-                        <th>No Tel</th>
-                        <th>Institusi</th>
+                        <th>Nama Pengerusi/ Pengetua/ Guru Besar/ Pengguna</th>
+                        <th>No. Kad Pengenalan/ Pasport</th>
+                        <th>Email Peribadi</th>
+                        <th>Jenis</th>
+                        <th>Tarikh Penubuhan</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -75,14 +79,16 @@ PENGERUSI/ PENGETUA/ GURU BESAR
     </div>
 </div>
 
-<div class="modal fade text-start" id="modal-pengetua-diisi" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="modal-pengetua-diisi" tabindex="-1" aria-labelledby="modal-pengetua-diisi" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Maklumat Penilai</h4>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Pengerusi/ Pengetua/ Guru Besar/ Pengguna</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="modal-body-pengetua"></div>
+
+            <div class="modal-body" id="modal-body-pengetua">
+            </div>
         </div>
     </div>
 </div>
@@ -92,9 +98,9 @@ PENGERUSI/ PENGETUA/ GURU BESAR
 <script>
 $(document).ready(function() {
     $('#modal-pengetua-diisi').on('shown.bs.modal', function () {
-    $('.select2').select2({ 
+    $('.select2').select2({
     });
-    
+
 });
     $(function() {
         var table = $('#TableSenaraiPengetua').DataTable({
@@ -223,11 +229,11 @@ function  formverify(status, formid) {
              data: {
                 status: status,
                 formid: formid
-             }, 
+             },
             success: function(response) {
                 if (response.success) {
                     window.location.reload();
-               } 
+               }
             }
         });
     }
