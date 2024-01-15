@@ -42,7 +42,10 @@ TETAPAN ASPEK
                         Maklumat Tetapan Aspek
                     </span>
                 </h5>
-
+                <?php
+                    $type = Request::segment(4);
+                ?>
+                <input type="hidden" name="type" id="type" value="{{$type}}">
                 <div class="col-md-9 mb-1">
                     <label class="fw-bold form-label">Nama Aspek
                         <span class="text-danger">*</span>
@@ -50,14 +53,14 @@ TETAPAN ASPEK
                     <input type="text" class="form-control" name="nama_aspek" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
                 </div>
 
-
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Kuatkuasa Aspek
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa_aspek" required>
-                </div>
-
+               @if($type == 'SKPAK')
+                    <div class="col-md-3 mb-1">
+                        <label class="fw-bold form-label">Tarikh Kuatkuasa Aspek
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa_aspek" required>
+                    </div>
+                @endif
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Status Aspek:
                         <span class="text-danger">*</span>
@@ -90,14 +93,14 @@ TETAPAN ASPEK
                             <option value="2">2</option>
                     </select>
                 </div>
-
+                 @if($type != 'SUB')
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Wajaran Skala
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" name="wajaran_skala" class="form-control" required>
                 </div>
-
+                @endif
             <hr>
             <div class="d-flex justify-content-end align-items-center mt-1">
                 <button type="submit" class="btn btn-primary float-right">Simpan</button>
@@ -156,7 +159,16 @@ $('#formpaspek').submit(function(event) {
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.instrumen.tetapan-aspek-list')}}"
+                    var type = $('#type').val();
+                    if (type == 'SKPAK') {
+                        var location = "{{route('admin.instrumen.tetapan-aspek-list')}}"
+                    } else if (type == 'IKEPS')
+                    {
+                        var location = "{{route('admin.instrumen.tetapan-aspek-ikeps-list')}}"
+                    }
+                    else if (type == 'SUB') {
+                        var location = "{{route('admin.instrumen.tetapan-aspek-sub-list')}}"
+                    }
                     window.location.href = location;
                }
             }

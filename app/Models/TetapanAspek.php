@@ -15,6 +15,7 @@ class TetapanAspek extends Model
             'status_aspek',
             'belum_set',
             'telah_set',
-            'wajaran_skala'
+            'wajaran_skala',
+            'type'
             ];
 }

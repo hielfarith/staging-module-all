@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('tetapan_aspeks', function (Blueprint $table) {
             $table->id();
             $table->string('nama_aspek');
-            $table->string('tarikh_kuatkuasa_aspek');
+            $table->string('tarikh_kuatkuasa_aspek')->nullable();
             $table->string('status_aspek');
             $table->string('belum_set');
             $table->string('telah_set');
-            $table->string('wajaran_skala');
+            $table->string('wajaran_skala')->nullable();
+            $table->string('type');
             $table->timestamps();
         });
     }

@@ -137,28 +137,42 @@ class InstrumenController extends Controller
 
     public function listTetapanAspek(Request $request)
     {
+        $type = 'SKPAK';
+        if (request()->route()->getName() == 'admin.instrumen.tetapan-aspek-list') {
+            $tetapanAspek = TetapanAspek::where('id', '!=', 0)->where('type', 'SKPAK');
+            $type = 'SKPAK';
+        }
+        if (request()->route()->getName() == 'admin.instrumen.tetapan-aspek-ikeps-list') {
+            $tetapanAspek = TetapanAspek::where('id', '!=', 0)->where('type', 'IKEPS');
+            $type = 'IKEPS';
+        }
+        if (request()->route()->getName() == 'admin.instrumen.tetapan-aspek-sub-list') {
+            $tetapanAspek = TetapanAspek::where('id', '!=', 0)->where('type', 'SUB');
+            $type = 'SUB';
+        }
+
         if($request->ajax()) {
-            $tetapanAspek = TetapanAspek::where('id', '!=', 0);
+
             if ($request->has('nama_aspek') && !empty($request->input('nama_aspek'))) {
                 $tetapanAspek->where('nama_aspek', 'LIKE' ,'%'.$request->input('nama_aspek').'%');
             }
             if ($request->has('status_aspek') && !empty($request->input('status_aspek'))) {
                 $tetapanAspek->where('status_aspek','LIKE' ,'%'.$request->input('status_aspek').'%');
             }
-            if ($request->has('tarikh_kuatkuasa_aspek') && !empty($request->input('tarikh_kuatkuasa_aspek'))) {
-                $tetapanAspek->where('tarikh_kuatkuasa_aspek','LIKE' ,'%'.$request->input('tarikh_kuatkuasa_aspek').'%');
+            if ($request->has('belum_set') && !empty($request->input('belum_set'))) {
+                $tetapanAspek->where('belum_set','LIKE' ,'%'.$request->input('belum_set').'%');
             }
             return Datatables::of($tetapanAspek)
+                ->addIndexColumn()
                 ->editColumn('nama_aspek', function ($tetapanAspek) {
                     return $tetapanAspek->nama_aspek;
                 })
                 ->editColumn('status_aspek', function ($tetapanAspek) {
                     return $tetapanAspek->status_aspek;
                 })
-                ->editColumn('tarikh_kuatkuasa_aspek', function ($tetapanAspek) {
-                    return $tetapanAspek->tarikh_kuatkuasa_aspek;
+                ->editColumn('belum_set', function ($tetapanAspek) {
+                    return $tetapanAspek->belum_set;
                 })
-                
                 ->editColumn('action', function ($tetapanAspek) {
                     $button = "";
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
@@ -174,7 +188,7 @@ class InstrumenController extends Controller
                 ->make(true);
         }
 
-        return view('instrumen_update.tetapan-aspek.list');
+        return view('instrumen_update.tetapan-aspek.list', compact('type'));
     }
 
     public function viewTetapanAspek(Request $request)
@@ -187,6 +201,8 @@ class InstrumenController extends Controller
             $readonly = '';
             $disabled = '';
         }
-        return view('instrumen_update.tetapan-aspek.view-profile', compact('aspek', 'readonly', 'disabled'));
+        $type = $request->type;
+
+        return view('instrumen_update.tetapan-aspek.view-profile', compact('aspek', 'readonly', 'disabled', 'type'));
     }
 }

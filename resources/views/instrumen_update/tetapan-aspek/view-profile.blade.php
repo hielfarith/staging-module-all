@@ -8,6 +8,8 @@
                     </span>
                 </h5>
                 <input type="hidden" name="tetapan_aspek_id" value="{{$aspek->id}}">
+                <input type="hidden" name="type" value="{{$aspek->type}}" id="type">
+
                 <div class="col-md-9 mb-1">
                     <label class="fw-bold form-label">Nama Aspek
                         <span class="text-danger">*</span>
@@ -15,13 +17,14 @@
                     <input type="text" class="form-control" name="nama_aspek" value="{{$aspek->nama_aspek}}" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8" {{$readonly}}>
                 </div>
 
-
+                @if($aspek->type == 'SKPAK')
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Tarikh Kuatkuasa Aspek
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa_aspek" value="{{$aspek->tarikh_kuatkuasa_aspek}}" required {{$readonly}}>
                 </div>
+                @endif
 
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Status Aspek:
@@ -55,13 +58,15 @@
                             <option value="2"  @if($aspek->telah_set == '2') selected @endif>2</option>
                     </select>
                 </div>
-
+                @if($aspek->type != 'SUB')
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Wajaran Skala
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" name="wajaran_skala" class="form-control" value="{{$aspek->wajaran_skala}}" required {{$readonly}}>
                 </div>
+                @endif
+                
                 @if($readonly != 'readonly')
                 <hr>
                 <div class="d-flex justify-content-end align-items-center mt-1">

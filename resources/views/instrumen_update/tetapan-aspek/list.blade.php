@@ -19,17 +19,18 @@ TETAPAN ASPEK
 @endsection
 
 @section('content')
+
 <div class="card">
     <div class="card-header">
         <h4 class="card-title fw-bolder"> Senarai Tetapan Aspek</h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'tetapan-aspek']) }}">
+            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'tetapan-aspek', 'model' => $type]) }}">
                 <i class="fa-solid fa-add"></i> Tambah Tetapan Aspek
             </a>
         </div>
     </div>
-
+    <input type="hidden" name="type" value="{{$type}}" id="type">
     <hr>
 
     <div class="card-body">
@@ -46,8 +47,8 @@ TETAPAN ASPEK
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Tarikh Kuatkuasa Aspek</label>
-                <input type="text" name="tarikh_kuatkuasa_aspek" id="tarikh_kuatkuasa_aspek" class="form-control flatpickr">
+                <label class="form-label">Belum Set</label>
+                <input type="text" name="belum_set" id="belum_set" class="form-control flatpickr">
             </div>
         </div>
 
@@ -70,7 +71,7 @@ TETAPAN ASPEK
                         <th width="5%">No.</th>
                         <th>Nama Aspek</th>
                         <th>Status Aspek</th>
-                        <th>Tarikh Kuatkuasa Aspek</th>
+                        <th>Belum Set</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -123,16 +124,12 @@ $('#modal-aspek-diisi').on('shown.bs.modal', function () {
                 data: function (d) {
                     d.nama_aspek = $('#nama_aspek').val();
                     d.status_aspek = $('#status_aspek').val();
-                    d.tarikh_kuatkuasa_aspek = $('#tarikh_kuatkuasa_aspek').val();
+                    d.belum_set = $('#belum_set').val();
                 },
             },
-            columns: [{
-                    data: "id",
-                    name: "id",
-                    render: function(data, type, row) {
-                        return $("<div/>").html(data).text();
-                    }
-                },
+            columns: [
+                       { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+
                 {
                     data: "nama_aspek",
                     name: "nama_aspek",
@@ -150,8 +147,8 @@ $('#modal-aspek-diisi').on('shown.bs.modal', function () {
                     }
                 },
                 {
-                    data: "tarikh_kuatkuasa_aspek",
-                    name: "tarikh_kuatkuasa_aspek",
+                    data: "belum_set",
+                    name: "belum_set",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
@@ -177,12 +174,14 @@ $.ajaxSetup({
 function maklumatAspek(id){
     var url = "{{ route('admin.instrumen.tetapan-aspek-view',['id'=> ':id', 'type' => 'view']) }}";
     var url = url.replace(':id', id);
+    var type = $('#type').val();
 
     $.ajax({
         url: url, // Route URL
         type: 'POST', // Request type (GET, POST, etc.)
             data: {
-            id: id
+            id: id,
+            type: type
             },
         success: function(response) {
             $('#modal-aspek-diisi').modal("show");
@@ -195,12 +194,14 @@ function maklumatAspek(id){
 function maklumatAspekEdit(id) {
     var url = "{{ route('admin.instrumen.tetapan-aspek-view',['id'=> ':id', 'type' => 'edit']) }}";
     var url = url.replace(':id', id);
+    var type = $('#type').val();
 
     $.ajax({
         url: url, // Route URL
         type: 'POST', // Request type (GET, POST, etc.)
             data: {
-            id: id
+            id: id,
+            type: type
             },
         success: function(response) {
             $('#modal-aspek-diisi').modal("show");
@@ -213,13 +214,13 @@ function maklumatAspekEdit(id) {
 function  search() {
     var nama_aspek = $('#nama_aspek').val();
     var status_aspek = $('#status_aspek').val();
-    var tarikh_kuatkuasa_aspek = $('#tarikh_kuatkuasa_aspek').val();
+    var belum_set = $('#belum_set').val();
 
     $('#TableSenaraiAspek').DataTable().ajax.reload(null, false, {
         data: {
             nama_aspek : $('#nama_aspek').val(),
             status_aspek : $('#status_aspek').val(),
-            tarikh_kuatkuasa_aspek : $('#tarikh_kuatkuasa_aspek').val()
+            belum_set : $('#belum_set').val()
         }
     });
 }
