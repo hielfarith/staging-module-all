@@ -34,7 +34,7 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
                     <label class="fw-bold form-label"> Nama Instrumen
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="nama_instrumen" required>
+                    <input type="text" class="form-control" name="nama_instrumen" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
                 </div>
                  <div class="col-md-6 mb-1">
                     <label class="fw-bold form-label">  Tujuan Instrumen
@@ -192,6 +192,7 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
             processData: false,
             success: function(response) {
                if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
                     var location = "{{route('admin.instrumen.instrumenskpak-list')}}"
                     window.location.href = location;
                }

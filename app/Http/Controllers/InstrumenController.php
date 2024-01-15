@@ -23,9 +23,7 @@ class InstrumenController extends Controller
 
     public function saveSkpak(Request $request) {
          DB::beginTransaction();
-        try {
-           
-
+        try {           
             $input = $request->input();
 
             $input['status'] = 1;
@@ -70,6 +68,9 @@ class InstrumenController extends Controller
                 })
                 ->editColumn('pengguna_instrumen', function ($instrumenList) {
                     return $instrumenList->pengguna_instrumen;
+                })
+                ->editColumn('tarikh_kuatkuasa', function ($instrumenList) {
+                    return $instrumenList->tarikh_kuatkuasa;
                 })
                 ->editColumn('action', function ($instrumenList) {
                     $button = "";

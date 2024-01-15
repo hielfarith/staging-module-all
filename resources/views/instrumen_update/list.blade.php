@@ -71,6 +71,7 @@ Instrumen
                         <th>Nama Instrumen</th>
                         <th>Tujuan Instrumen</th>
                         <th>Pengguna Instrumen</th>
+                        <th>Tarikh Kuatkuasa</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -102,6 +103,9 @@ $(document).ready(function() {
 
 $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
     $('.select2').select2({ 
+    });
+    flatpickr(".flatpickr", {
+        dateFormat: "d/m/Y"
     });
     
 });
@@ -149,6 +153,14 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
                 {
                     data: "pengguna_instrumen",
                     name: "pengguna_instrumen",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "tarikh_kuatkuasa",
+                    name: "tarikh_kuatkuasa",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
@@ -203,24 +215,6 @@ function maklumatInstrumenEdit(id) {
             $('#modal-instrumen-diisi').modal("show");
             $('#modal-body-instrumen').empty();
             $('#modal-body-instrumen').append(response);
-        }
-    });
-}
-
-function  formverify(status, formid) {
-    var url = "{{route('verify')}}";
-
-    $.ajax({
-        url: url, // Route URL
-        type: 'POST', // Request type (GET, POST, etc.)
-         data: {
-            status: status,
-            formid: formid
-         },
-        success: function(response) {
-            if (response.success) {
-                window.location.reload();
-           }
         }
     });
 }
