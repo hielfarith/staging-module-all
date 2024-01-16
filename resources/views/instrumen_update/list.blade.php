@@ -13,9 +13,6 @@ Instrumen
     <a href="#"> Instrumen </a>
 </li>
 
-<li class="breadcrumb-item">
-    <a href="#"> Instrumen </a>
-</li>
 @endsection
 
 @section('content')

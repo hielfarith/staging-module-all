@@ -12,10 +12,7 @@ TETAPAN ITEM
 <li class="breadcrumb-item">
     <a href="#"> TETAPAN ITEM </a>
 </li>
-
-<li class="breadcrumb-item">
-    <a href="#"> TETAPAN ITEM </a>
-</li>
+ 
 @endsection
 
 @section('content')

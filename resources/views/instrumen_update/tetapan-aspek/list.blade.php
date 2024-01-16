@@ -13,9 +13,6 @@ TETAPAN ASPEK
     <a href="#"> TETAPAN ASPEK </a>
 </li>
 
-<li class="breadcrumb-item">
-    <a href="#"> TETAPAN ASPEK </a>
-</li>
 @endsection
 
 @section('content')
