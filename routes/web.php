@@ -241,15 +241,25 @@ Route::controller(InstrumenController::class)->prefix('instrumen')->middleware([
     Route::post('instrumenskpak-view/{id}/{type}','viewInstrumenSkpak')->name('admin.instrumen.instrumenskpak-view');
 
     Route::post('tetapan-aspek-submit','saveAspek')->name('admin.instrumen.tetapan-aspek-submit');
-    Route::get('tetapan-aspek-list','listTetapanAspek')->name('admin.instrumen.tetapan-aspek-list');
     Route::post('tetapan-aspek-view/{id}/{type}','viewTetapanAspek')->name('admin.instrumen.tetapan-aspek-view');
 
-    Route::get('tetapan-aspek-ikeps-list','listTetapanAspek')->name('admin.instrumen.tetapan-aspek-ikeps-list');
     Route::get('tetapan-aspek-sub-list','listTetapanAspek')->name('admin.instrumen.tetapan-aspek-sub-list');
     // item
     Route::post('tetapan-item-submit','saveItem')->name('admin.instrumen.tetapan-item-submit');
     Route::get('tetapan-item-list','listTetapanItem')->name('admin.instrumen.tetapan-item-list');
     Route::get('tetapan-item-sub-list','listTetapanItem')->name('admin.instrumen.tetapan-item-sub-list');
     Route::post('tetapan-item-view/{id}/{type}','viewTetapanItem')->name('admin.instrumen.tetapan-item-view');
+
+});
+
+Route::controller(InstrumenController::class)->prefix('ikeps')->middleware(['web'])->group(function () {
+    Route::get('tetapan-aspek-list','listTetapanAspek')->name('admin.instrumen.tetapan-aspek-list');
+    Route::get('tetapan-aspek-ikeps-list','listTetapanAspek')->name('admin.instrumen.tetapan-aspek-ikeps-list');
+    Route::get('tetapan-tarikh-list','listTetapanTarikh')->name('admin.instrumen.tetapan-tarikh-list');
+     Route::get('create/tetapan-tarikh','viewFormTetapanTarikh')->name('admin.instrumen.tetapan-tarikh.form');
+     
+    Route::post('tetapan-tarikh-view/{id}/{type}','viewTetapanTarikh')->name('admin.instrumen.tetapan-tarikh-view');
+
+    Route::post('tetapan-tarikh-submit','saveTarikh')->name('admin.instrumen.tetapan-tarikh-submit');
 
 });

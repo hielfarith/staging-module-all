@@ -82,7 +82,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
+                    <!--  <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Senarai Tetapan Aspek</span>
@@ -94,7 +94,7 @@ $configData = Helper::applClasses();
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Senarai Tetapan Aspek Ikeps</span>
                         </a>
-                    </li>
+                    </li> -->
 
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-sub-list'])? 'active': '' }}">
@@ -145,6 +145,87 @@ $configData = Helper::applClasses();
                     </li>
                 </ul>
             </li>
+
+            <!-- // new menu -->
+
+            
+            <li class="navigation-header">
+                <span> SKIPS</span>
+            </li>
+             <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate"> SKIPS </span>
+                </a>
+                <ul class="nav">
+
+                    
+                </ul>
+            </li>
+
+            <li class="navigation-header">
+                <span>  iKEPS</span>
+            </li>
+             <li class="nav-item {{ request()->is('admin/ikeps*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate"> iKEPS </span>
+                </a>
+                <ul class="nav">
+                       <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Tetapan Aspek</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-ikeps-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Tetapan Aspek Ikeps</span>
+                        </a>
+                    </li>
+
+                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-tarikh-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.tetapan-tarikh-list') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Tetapan Tarikh Instrumen</span>
+                        </a>
+                    </li>
+
+                    
+                </ul>
+            </li>
+
+            <li class="navigation-header">
+                <span> SKPAK</span>
+            </li>
+             <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate"> SKPAK </span>
+                </a>
+                <ul class="nav">
+
+                    
+                </ul>
+            </li>
+
+            <li class="navigation-header">
+                <span> SPKS</span>
+            </li>
+             <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate"> SPKS </span>
+                </a>
+                <ul class="nav">
+
+                    
+                </ul>
+            </li>
+
+            <!-- --end new menu-->
             <!-- // pengguna menu // -->
             <li class="navigation-header">
                 <span> Pengurusan Pengguna</span>

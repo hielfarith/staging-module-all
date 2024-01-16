@@ -10,6 +10,7 @@ use Yajra\DataTables\DataTables;
 use App\Models\TetapanAspek;
 use App\Models\InstrumenSkpakSpksIkeps;
 use App\Models\TetapanItem;
+use App\Models\TetapanTarikhInstrumen;
 
 class InstrumenController extends Controller
 {
@@ -300,5 +301,93 @@ class InstrumenController extends Controller
         $type = $request->typedata;
 
         return view('instrumen_update.tetapan-item.view-profile', compact('item', 'readonly', 'disabled', 'type'));
+    }
+
+    public function listTetapanTarikh(Request $request)
+    {
+
+        if($request->ajax()) {
+            $tetapanTarikh = TetapanTarikhInstrumen::where('id', '!=', 0);
+
+            return Datatables::of($tetapanTarikh)
+                ->addIndexColumn()
+                ->editColumn('tarikh_mula', function ($tetapanTarikh) {
+                    return $tetapanTarikh->tarikh_mula;
+                })
+                ->editColumn('tarikh_mula_bulan', function ($tetapanTarikh) {
+                    return $tetapanTarikh->tarikh_mula_bulan;
+                })
+                ->editColumn('tarikh_mula_tahun', function ($tetapanTarikh) {
+                    return $tetapanTarikh->tarikh_mula_tahun;
+                })
+                ->editColumn('tarikh_akhir', function ($tetapanTarikh) {
+                    return $tetapanTarikh->tarikh_akhir;
+                })
+                ->editColumn('tarikh_akhir_bulan', function ($tetapanTarikh) {
+                    return $tetapanTarikh->tarikh_akhir_bulan;
+                })
+                ->editColumn('tarikh_akhir_tahun', function ($tetapanTarikh) {
+                    return $tetapanTarikh->tarikh_akhir_tahun;
+                })
+                ->editColumn('action', function ($tetapanTarikh) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatTarikh('.$tetapanTarikh->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatTarikhEdit('.$tetapanTarikh->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('instrumen_update.tetapan-tarikh.list');
+    }
+
+    public function viewFormTetapanTarikh(Request $request)
+    {
+        return view('instrumen_update.tetapan-tarikh.form');
+    }
+
+    public function viewTetapanTarikh(Request $request)
+    {
+        $tetapanTarikh = TetapanTarikhInstrumen::where('id', $request->id)->first();
+        if ($request->type == 'view') {
+            $readonly = 'readonly';
+            $disabled = 'disabled';
+        } else {
+            $readonly = '';
+            $disabled = '';
+        }
+        return view('instrumen_update.tetapan-tarikh.view-profile', compact('tetapanTarikh','readonly', 'disabled'));   
+    }
+
+    public function saveTarikh(Request $request)
+    {
+         DB::beginTransaction();
+        try {           
+            $input = $request->input();
+
+            if (array_key_exists('tetapan_tarikh_id', $input)) {
+                $TetapanTarikhInstrumen = TetapanTarikhInstrumen::where('id', $input['tetapan_tarikh_id'])->first();
+                unset($input['tetapan_tarikh_id']);
+                $TetapanTarikhInstrumen->update($input);
+            } else {
+                $TetapanTarikhInstrumen = new TetapanTarikhInstrumen;
+                $TetapanTarikhInstrumen->create($input);
+            }
+
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+
+        DB::commit();
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya"]);
+ 
     }
 }
