@@ -217,7 +217,7 @@ $('#formitem').submit(function(event) {
                     var type = $('#type').val();
                     if (type == 'SKPAK') {
                         var location = "{{route('admin.instrumen.tetapan-item-list')}}"
-                    } else if (type == 'IKEPS')
+                    } else if (type == 'SPKS')
                     {
                         var location = "{{route('admin.instrumen.tetapan-item-sub-list')}}"
                     } 

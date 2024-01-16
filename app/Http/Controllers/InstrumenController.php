@@ -224,12 +224,15 @@ class InstrumenController extends Controller
                 $TetapanItem = new TetapanItem;
                 $TetapanItem->create($input);
             }
-     
+
         } catch (\Throwable $e) {
 
             DB::rollback();
             return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
         }
+
+        DB::commit();
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'redirectRoute' => route('admin.internal.penggunalist')]);
     }
 
     public function listTetapanItem(Request $request)
