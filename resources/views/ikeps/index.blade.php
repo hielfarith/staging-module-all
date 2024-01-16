@@ -11,16 +11,6 @@ I-KePS
 @endsection
 
 @section('content')
-<style>
-    #borang_ikeps thead th {
-        vertical-align: middle;
-        text-align: center;
-    }
-
-    #borang_ikeps tbody{
-        vertical-align: middle;
-    }
-</style>
 
 <div class="card">
     <div class="card-header">
@@ -96,12 +86,14 @@ I-KePS
 @endsection
 
 @section('script')
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
+    alert('hello');
     function HandlePemeriksaanKeselamatan() {
         var pemeriksaanKeselamatan = $('#pemeriksaan_keselamatan').val();
             if (pemeriksaanKeselamatan == '1') {
                 $('#tarikh_pemeriksaan').show();
-            } elseif (pemeriksaanKeselamatan == '2') {
+            } else if (pemeriksaanKeselamatan == '2') {
                 $('#tarikh_pemeriksaan').hide();
             } else {
                 $('#tarikh_pemeriksaan').hide();
