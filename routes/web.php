@@ -245,5 +245,10 @@ Route::controller(InstrumenController::class)->prefix('instrumen')->middleware([
 
     Route::get('tetapan-aspek-ikeps-list','listTetapanAspek')->name('admin.instrumen.tetapan-aspek-ikeps-list');
     Route::get('tetapan-aspek-sub-list','listTetapanAspek')->name('admin.instrumen.tetapan-aspek-sub-list');
+    // item
+    Route::post('tetapan-item-submit','saveItem')->name('admin.instrumen.tetapan-item-submit');
+    Route::get('tetapan-item-list','listTetapanItem')->name('admin.instrumen.tetapan-item-list');
+    Route::get('tetapan-item-sub-list','listTetapanItem')->name('admin.instrumen.tetapan-item-sub-list');
+    Route::post('tetapan-item-view/{id}/{type}','viewTetapanItem')->name('admin.instrumen.tetapan-item-view');
 
 });

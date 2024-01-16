@@ -71,6 +71,20 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-item-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.tetapan-item-list') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Tetapan Item</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-item-sub-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.tetapan-item-sub-list') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Senarai Tetapan Item Spks</span>
+                        </a>
+                    </li>
+
                     <li class="{{ in_array(request()->route()->getName(),['instrumen_baru'])? 'active': '' }}">
                         <a href="{{ route('instrumen_baru') }}" class="nav-link">
                             <i data-feather="circle"></i>

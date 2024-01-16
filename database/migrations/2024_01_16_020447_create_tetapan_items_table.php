@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('tetapan_items', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_aspek');
-            $table->string('tarikh_kuatkuasa_aspek');
-            $table->string('status_aspek');
+            $table->string('nama_item');
+            $table->string('tarikh_kuatkuasa_item');
+            $table->string('status_item');
             $table->string('belum_set');
             $table->string('telah_set');
             $table->string('wajaran_skala');

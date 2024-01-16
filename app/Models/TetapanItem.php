@@ -9,9 +9,9 @@ class TetapanItem extends Model
 {
     use HasFactory;
     protected $fillable = [
-            'nama_aspek',
-            'tarikh_kuatkuasa_aspek',
-            'status_aspek',
+            'nama_item',
+            'tarikh_kuatkuasa_item',
+            'status_item',
             'belum_set',
             'telah_set',
             'wajaran_skala',

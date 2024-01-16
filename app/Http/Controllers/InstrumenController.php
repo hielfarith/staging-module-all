@@ -24,6 +24,8 @@ class InstrumenController extends Controller
             return view('instrumen_update.form');
         } elseif ($request->type == 'tetapan-aspek') {
             return view('instrumen_update.tetapan-aspek.form');
+        } elseif ($request->type == 'tetapan-item') {
+            return view('instrumen_update.tetapan-item.form');
         }
     }
 
@@ -202,8 +204,98 @@ class InstrumenController extends Controller
             $readonly = '';
             $disabled = '';
         }
-        $type = $request->type;
+        $type = $request->typedata;
 
         return view('instrumen_update.tetapan-aspek.view-profile', compact('aspek', 'readonly', 'disabled', 'type'));
+    }
+
+    // tetapan item //
+
+    public function saveItem(Request $request) {
+         DB::beginTransaction();
+        try {           
+            $input = $request->input();
+
+            if (array_key_exists('tetapan_item_id', $input)) {
+                $TetapanItem = TetapanItem::where('id', $input['tetapan_item_id'])->first();
+                unset($input['tetapan_item_id']);
+                $TetapanItem->update($input);
+            } else {
+                $TetapanItem = new TetapanItem;
+                $TetapanItem->create($input);
+            }
+     
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+    }
+
+    public function listTetapanItem(Request $request)
+    {
+        $type = 'SKPAK';
+        if (request()->route()->getName() == 'admin.instrumen.tetapan-item-list') {
+            $tetapanItem = TetapanItem::where('id', '!=', 0)->where('type', 'SKPAK');
+            $type = 'SKPAK';
+        }
+        if (request()->route()->getName() == 'admin.instrumen.tetapan-item-sub-list') {
+            $tetapanItem = TetapanItem::where('id', '!=', 0)->where('type', 'SPKS');
+            $type = 'SPKS';
+        }
+
+        if($request->ajax()) {
+
+            if ($request->has('nama_item') && !empty($request->input('nama_item'))) {
+                $tetapanItem->where('nama_item', 'LIKE' ,'%'.$request->input('nama_item').'%');
+            }
+            if ($request->has('status_item') && !empty($request->input('status_item'))) {
+                $tetapanItem->where('status_item','LIKE' ,'%'.$request->input('status_item').'%');
+            }
+            if ($request->has('belum_set') && !empty($request->input('belum_set'))) {
+                $tetapanItem->where('belum_set','LIKE' ,'%'.$request->input('belum_set').'%');
+            }
+            return Datatables::of($tetapanItem)
+                ->addIndexColumn()
+                ->editColumn('nama_item', function ($tetapanItem) {
+                    return $tetapanItem->nama_item;
+                })
+                ->editColumn('status_item', function ($tetapanItem) {
+                    return $tetapanItem->status_item;
+                })
+                ->editColumn('belum_set', function ($tetapanItem) {
+                    return $tetapanItem->belum_set;
+                })
+                ->editColumn('action', function ($tetapanItem) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatItem('.$tetapanItem->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatItemEdit('.$tetapanItem->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('instrumen_update.tetapan-item.list', compact('type'));
+    }
+
+    public function viewTetapanItem(Request $request)
+    {
+        $item = TetapanItem::where('id', $request->id)->first();
+        if ($request->type == 'view') {
+            $readonly = 'readonly';
+            $disabled = 'disabled';
+        } else {
+            $readonly = '';
+            $disabled = '';
+        }
+        $type = $request->typedata;
+
+        return view('instrumen_update.tetapan-item.view-profile', compact('item', 'readonly', 'disabled', 'type'));
     }
 }
