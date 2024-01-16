@@ -107,5 +107,17 @@ I-KePS
                 $('#tarikh_pemeriksaan').hide();
             }
     }
+
+    $('.next-tab').on('click', function() {
+        var currentTab = $(this).closest('.tab-pane');
+        var nextTab = currentTab.next('.tab-pane');
+        $('a[href="#' + nextTab.attr('id') + '"]').tab('show');
+    });
+
+    $('.prev-tab').on('click', function() {
+        var currentTab = $(this).closest('.tab-pane');
+        var prevTab = currentTab.prev('.tab-pane');
+        $('a[href="#' + prevTab.attr('id') + '"]').tab('show');
+    });
 </script>
 @endsection
