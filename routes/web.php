@@ -157,6 +157,7 @@ Route::prefix('dynamic')->middleware(['web'])->group(function () {
 
 
 include 'sppip.php';
+include 'ikeps.php';
 
 Route::controller(ModuleController::class)->prefix('module')->middleware(['web'])->group(function () {
 
@@ -192,7 +193,7 @@ Route::controller(ModuleController::class)->prefix('module')->middleware(['web']
 
 });
 
-    
+
  //pengurusan controller
 Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-dalaman')->middleware(['web'])->group(function () {
     Route::post('checkdaerah','checkDaerah')->name('admin.internal.checkdaerah');
