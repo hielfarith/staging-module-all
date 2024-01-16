@@ -33,6 +33,39 @@ $configData = Helper::applClasses();
 
             @hasanyrole('superadmin|admin')
             <li class="navigation-header">
+                <span> Pengurusan Modul</span>
+            </li>
+            <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate"> Modul/ Instrumen </span>
+                </a>
+                <ul class="nav">
+                    <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
+                        <a href="{{ route('ikeps_baru') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Instrument I-KePS </span>
+                        </a>
+
+                        <ul class="nav">
+                            <li class="{{ in_array(request()->route()->getName(),['ikeps_baru'])? 'active': '' }}">
+                                <a href="{{ route('ikeps_baru') }}" class="nav-link">
+                                    <i data-feather="circle"></i>
+                                    <span class="menu-title text-truncate"> Pengisian I-KePS </span>
+                                </a>
+                            </li>
+                            <li class="{{ in_array(request()->route()->getName(),['ringkasan_ikeps'])? 'active': '' }}">
+                                <a href="{{ route('ringkasan_ikeps') }}" class="nav-link">
+                                    <i data-feather="circle"></i>
+                                    <span class="menu-title text-truncate"> Ringkasan Maklumat </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="navigation-header">
                 <span> Pengurusan Instrumen</span>
             </li>
             <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
