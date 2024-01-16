@@ -9,6 +9,7 @@ use Yajra\DataTables\DataTables;
 
 use App\Models\TetapanAspek;
 use App\Models\InstrumenSkpakSpksIkeps;
+use App\Models\TetapanItem;
 
 class InstrumenController extends Controller
 {
