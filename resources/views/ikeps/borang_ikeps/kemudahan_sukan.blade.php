@@ -127,6 +127,14 @@
             @endforeach
 
             <tr>
+                <td colspan="13" class="bg-light-primary">
+                    <h5 class="fw-bold text-uppercase text-primary">
+                        2. Padang Hoki
+                    </h5>
+                </td>
+            </tr>
+
+            <tr>
                 <td> Padang Hoki </td>
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
