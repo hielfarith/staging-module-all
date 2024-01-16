@@ -1,438 +1,194 @@
+<div class="row">
+
+    <div class="col-md-12 mt-2 mb-2">
+        <label class="form-label fw-bold">Nama Sekolah</label>
+        <input type="text" class="form-control" id="" name="" value="" disabled>
+    </div>
+</div>
+
+<hr>
 
 <div class="table-responsive">
-    <table class="table header_uppercase table-bordered table-hovered">
+    <table class="table table-bordered table-hovered">
         <thead>
             <tr>
-                <th colspan='8' class="bg-light-info">Pengurusan</th>
+                <th rowspan="2">&nbsp;</th>
+                <th rowspan="2">Ada</th>
+                <th rowspan="2">Tiada</th>
+                <th colspan="2">Gunasama</th>
+                <th rowspan="2">Bilangan</th>
+                <th colspan="2">Masih Digunakan</th>
+                <th colspan="5">Status Fizikal</th>
+            </tr>
+            <tr>
+                <th>Ya</th>
+                <th>Tidak</th>
+                <th>Ya</th>
+                <th>Tidak</th>
+                <th class="bg-light-success">Selesa</th>
+                <th class="bg-light-secondary">Tidak Selesa</th>
+                <th class="bg-light-warning">Kefungsian</th>
+                <th class="bg-light-info">Sekuriti</th>
+                <th class="bg-light-danger">Keselamatan</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td rowspan='2'>Komponen Penilaian</td>
-                <td colspan='7' class="text-center">Rate</td>
+                <td colspan="13" class="bg-light-primary">
+                    <h5 class="fw-bold text-uppercase text-primary">
+                        1. Padang Bola Sepak
+                    </h5>
+                </td>
             </tr>
+
+            <?php
+                $bola_sepaks = ['1.1 Saiz Padang Standard Pertandingan',
+                                '1.2 Saiz Padang Untuk Latihan Sahaja'
+                                ];
+                $hokis = ['2.1 Saiz Padang Standard Pertandingan',
+                            '2.2 Saiz Padang Untuk Latihan Sahaja',
+                            '2.2 Padang Rumput Standard Pertandingan',
+                            '2.2 Padang Rumput Untuk Latihan Sahaja'
+                        ];
+                $ada_tiadas = ['ada' => 1, 'tiada' => 2];
+                $gunasamas = ['ada' => 1, 'tiada' => 2];
+                $masih_digunakans = ['ada' => 1, 'tiada' => 2];
+                $status_fizikals = [ 'selesa' => 1,
+                                    'tidak_selesa' => 2,
+                                    'kefungsian' => 3,
+                                    'sekuriti' => 4,
+                                    'keselamatan' => 5,
+                                ];
+
+            ?>
+
             <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>Jumlah</td>
+                <td> Bola Sepak </td>
+                @foreach ($ada_tiadas as $id => $ada_tiada)
+                    <td>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                        </div>
+                    </td>
+                @endforeach
+
+                <td colspan="2" class="text-danger">
+                    Maklumat Tidak Berkenaan
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" id="" name="">
+                </td>
+
+                <td colspan="7" class="text-danger">
+                    Maklumat Tidak Berkenaan
+                </td>
             </tr>
-            <tr>
-                <td> 1. Pelan Strategik</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 2. Pelaksanaan & pemantauan pelan strategik</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 3. Komitmen membudayakan kualiti, inovasi dan kreativiti</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 4. Pengiktirafan yang Diterima</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <thead>
+
+            @foreach($bola_sepaks as $bola_sepak)
                 <tr>
-                    <th colspan='8' class="bg-light-info">Perkhidmatan-Perkhidmatan Teras (Core)</th>
+                    <td> {{ $bola_sepak }} </td>
+                    @foreach ($ada_tiadas as $id => $ada_tiada)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                            </div>
+                        </td>
+                    @endforeach
+
+                    @foreach ($gunasamas as $id => $gunasama)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gunasama" id="{{ $id }}" value="{{ $gunasama }}">
+                            </div>
+                        </td>
+                    @endforeach
+
+                    <td>
+                        <input type="text" class="form-control" id="" name="">
+                    </td>
+
+                    @foreach ($masih_digunakans as $id => $masih_digunakan)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="masih_digunakan" id="{{ $id }}" value="{{ $masih_digunakan }}">
+                            </div>
+                        </td>
+                    @endforeach
+
+                    @foreach ($status_fizikals as $id => $status_fizikal)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status_fizikal" id="{{ $id }}" value="{{ $status_fizikal }}">
+                            </div>
+                        </td>
+                    @endforeach
                 </tr>
-            </thead>
-        <tbody>
+            @endforeach
+
             <tr>
-                <td rowspan='2'>Komponen Penilaian</td>
-                <td colspan='7' class="text-center">Rate</td>
+                <td> Padang Hoki </td>
+                @foreach ($ada_tiadas as $id => $ada_tiada)
+                    <td>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                        </div>
+                    </td>
+                @endforeach
+
+                <td colspan="2" class="text-danger">
+                    Maklumat Tidak Berkenaan
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" id="" name="">
+                </td>
+
+                <td colspan="7" class="text-danger">
+                    Maklumat Tidak Berkenaan
+                </td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>Jumlah</td>
-            </tr>
-            <tr>
-                <td> 1. Aktiviti-Aktiviti Pelaksanaan Dasar Pelesenan dan Kawalan Perniagaan</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 2. Aktiviti-Aktiviti Kawalan Kemajuan</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 3. Melaksanakan panduan inisiatif kejiranan hijau di kawasan PBT / NASPAL</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 4. Kepatuhan undang-undang / garis panduanKepatuhan undang-undang / garis panduan</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <thead>
+
+            @foreach($hokis as $hoki)
                 <tr>
-                    <th colspan='8' class="bg-light-info">Pengurusan Pelanggan</th>
+                    <td> {{ $hoki }} </td>
+                    @foreach ($ada_tiadas as $id => $ada_tiada)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                            </div>
+                        </td>
+                    @endforeach
+
+                    @foreach ($gunasamas as $id => $gunasama)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gunasama" id="{{ $id }}" value="{{ $gunasama }}">
+                            </div>
+                        </td>
+                    @endforeach
+
+                    <td>
+                        <input type="text" class="form-control" id="" name="">
+                    </td>
+
+                    @foreach ($masih_digunakans as $id => $masih_digunakan)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="masih_digunakan" id="{{ $id }}" value="{{ $masih_digunakan }}">
+                            </div>
+                        </td>
+                    @endforeach
+
+                    @foreach ($status_fizikals as $id => $status_fizikal)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status_fizikal" id="{{ $id }}" value="{{ $status_fizikal }}">
+                            </div>
+                        </td>
+                    @endforeach
                 </tr>
-            </thead>
-        <tbody>
-            <tr>
-                <td rowspan='2'>Komponen Penilaian</td>
-                <td colspan='7' class="text-center">Rate</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>Jumlah</td>
-            </tr>
-            <tr>
-                <td> 1. Kaunter Khidmat Pelanggan</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 2. Kemudahan Sokongan kepada Pelanggan</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 3. Kemudahan untuk Pelanggan</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 4. Kepatuhan undang-undang / garis panduan</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <thead>
-                <tr>
-                    <th colspan='8' class="bg-light-info">Penyertaan Komuniti dan Pandangan Penduduk</th>
-                </tr>
-            </thead>
-        <tbody>
-            <tr>
-                <td rowspan='2'>Komponen Penilaian</td>
-                <td colspan='7' class="text-center">Rate</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>Jumlah</td>
-            </tr>
-            <tr>
-                <td> 1. Aktiviti-Aktivit Penglibatan Komuniti</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 2. Hubungan OKU</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 3. Program Komuniti</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td> 4. Mengiktiraf dan Menghargai Rakyat</td>
-                <td>
-                    <input type="checkbox" id="" name="" value="1" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="2" disabled>
-                </td>
-                <td class="bg-light-success">
-                    <input type="checkbox" id="" name="" value="3" checked disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="4" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="5" disabled>
-                </td>
-                <td>
-                    <input type="checkbox" id="" name="" value="6" disabled>
-                </td>
-                <td>3</td>
-            </tr>
-            <tr class="bg-light-danger">
-                <th colspan='7'>Jumlah Keseluruhan</th>
-                <th>48</th>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

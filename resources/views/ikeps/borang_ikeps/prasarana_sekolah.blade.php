@@ -1,12 +1,8 @@
 <div class="row">
 
-    <div class="col-md-8 mt-2 mb-2">
+    <div class="col-md-12 mt-2 mb-2">
         <label class="form-label fw-bold">Nama Sekolah</label>
         <input type="text" class="form-control" id="" name="" value="" disabled>
-    </div>
-
-    <div class="col-md-4">
-        &nbsp;
     </div>
 
     <div class="col-md-4">
