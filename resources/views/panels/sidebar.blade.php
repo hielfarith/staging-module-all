@@ -148,7 +148,7 @@ $configData = Helper::applClasses();
 
             <!-- // new menu -->
 
-            
+
             <li class="navigation-header">
                 <span> SKIPS</span>
             </li>
@@ -159,7 +159,7 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    
+
                 </ul>
             </li>
 
@@ -193,7 +193,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    
+
                 </ul>
             </li>
 
@@ -207,7 +207,7 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    
+
                 </ul>
             </li>
 
@@ -221,7 +221,7 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    
+
                 </ul>
             </li>
 
@@ -237,14 +237,18 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-
+                    <li class="{{ in_array(request()->route()->getName(),['admin.internal.jurulatihlist'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.jurulatihlist') }}" class="nav-link">
+                            <i data-feather="circle"></i>
+                            <span class="menu-title text-truncate"> Jurulatih </span>
+                        </a>
+                    </li>
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penggunalist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penggunalist') }}" class="nav-link">
                             <i data-feather="circle"></i>
                             <span class="menu-title text-truncate"> Ketua Taska </span>
                         </a>
                     </li>
-
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penilailist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penilailist') }}" class="nav-link">
@@ -279,7 +283,6 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate"> Pengerusi </span>
                         </a>
                     </li>
-
                 </ul>
             </li>
 

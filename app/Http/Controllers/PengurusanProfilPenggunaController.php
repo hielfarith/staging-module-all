@@ -14,6 +14,7 @@ use App\Models\Master\MasterState;
 use App\Models\MasterDaerah;
 use App\Models\AhliJawatankuasaKerja;
 use App\Models\AhliJawatankuasaTertinggi;
+use App\Models\Master\MasterCountry;
 use App\Models\PengerusiPengetuaGuru;
 
 class PengurusanProfilPenggunaController extends Controller
@@ -23,7 +24,7 @@ class PengurusanProfilPenggunaController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
 	public function viewForm(Request $request)
 	{
 		$states = MasterState::all();
@@ -239,7 +240,7 @@ class PengurusanProfilPenggunaController extends Controller
     // ----- Agensi ---- //
 
     public function viewFormAgensi(Request $request)
-	{	
+	{
 		$states = MasterState::all();
 		$dearhs = MasterDaerah::all();
 
@@ -263,7 +264,7 @@ class PengurusanProfilPenggunaController extends Controller
             	$ketuaAgensi = new KetuaAgensi;
         		$ketuaAgensi->create($input);
             }
-        	
+
           DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
         } catch (\Throwable $e) {
@@ -317,7 +318,7 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->make(true);
     	}
 
-        return view('pengurusan.agensi.list');	
+        return view('pengurusan.agensi.list');
     }
 
     public function viewAgensi(Request $request)
@@ -348,7 +349,7 @@ class PengurusanProfilPenggunaController extends Controller
 		DB::beginTransaction();
         try {
 
-            $input = $request->input(); 
+            $input = $request->input();
 
              if (array_key_exists('ahli_id', $input)) {
             	$AhliJawatankuasaKerja = AhliJawatankuasaKerja::where('id', $input['ahli_id'])->first();
@@ -416,7 +417,7 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->make(true);
     	}
 
-        return view('pengurusan.ahli-jawatankuasa.list');	
+        return view('pengurusan.ahli-jawatankuasa.list');
     }
 
     public function viewJawatankuasa(Request $request)
@@ -440,7 +441,7 @@ class PengurusanProfilPenggunaController extends Controller
 	{
 		$states = MasterState::all();
 		$dearhs = MasterDaerah::all();
-		
+
 		return view('pengurusan.ahli-jawatankuasa-tertinggi.form', compact('states','dearhs'));
 	}
 
@@ -449,7 +450,7 @@ class PengurusanProfilPenggunaController extends Controller
 		DB::beginTransaction();
         try {
 
-            $input = $request->input(); 
+            $input = $request->input();
 
             if (array_key_exists('tinggi_id', $input)) {
             	$AhliJawatankuasaTertinggi = AhliJawatankuasaTertinggi::where('id', $input['tinggi_id'])->first();
@@ -459,7 +460,7 @@ class PengurusanProfilPenggunaController extends Controller
             	$AhliJawatankuasaTertinggi = new AhliJawatankuasaTertinggi;
         		$AhliJawatankuasaTertinggi->create($input);
             }
- 
+
           DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
         } catch (\Throwable $e) {
@@ -517,7 +518,7 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->make(true);
     	}
 
-        return view('pengurusan.ahli-jawatankuasa-tertinggi.list');	
+        return view('pengurusan.ahli-jawatankuasa-tertinggi.list');
     }
 
     public function viewJawatankuasatertinggi(Request $request)
@@ -549,7 +550,7 @@ class PengurusanProfilPenggunaController extends Controller
 		DB::beginTransaction();
         try {
 
-            $input = $request->input(); 
+            $input = $request->input();
 			// if($input['sebab_pertukaran'] == 'Lain-lain') {
 			// 	$input['sebab_pertukaran'] = $input['sebab_pertukaran_lain'];
 			// }
@@ -620,7 +621,7 @@ class PengurusanProfilPenggunaController extends Controller
 	            ->make(true);
     	}
 
-        return view('pengurusan.pengetua.list');	
+        return view('pengurusan.pengetua.list');
     }
 
     public function viewPengetua(Request $request)
@@ -645,6 +646,39 @@ class PengurusanProfilPenggunaController extends Controller
     	$daerahs = MasterDaerah::where('neg_kod', $negeriKod->code)->pluck('name')->toArray();
     	return ['success' => true, 'daerahs' => $daerahs];
     }
+
+    // Jurulatih
+    public function viewFormJurulatih(Request $request)
+    {
+        $negaras = MasterCountry::all();
+        $jantinas = [1=> 'Lelaki', 2=> 'Perempuan'];
+        $kaums = [1=> 'Melayu', 2=> 'Cina', 3=> 'India', 4=> 'Bumiputera Sabah', 5=> 'Bumiputera Sarawak', 6=> 'Lain-lain'];
+        $negeris = MasterState::all();
+        $sukans = [ 1 => 'Bola Sepak',
+                    2 => 'Bola Keranjang',
+                    3 => 'Tenis',
+                    4 => 'Renang',
+                    5 => 'Badminton',
+                    6 => 'Larian',
+                    7 => 'Gimnastik',
+                    8 => 'Bola Tampar',
+                    9 => 'Berbasikal',
+                    10 => 'Ping Pong',
+                ];
+
+        return view('pengurusan.jurulatih.form', compact('negaras','jantinas','kaums','negeris', 'sukans'));
+    }
+
+    public function listJurulatih(Request $request)
+	{
+        return view('pengurusan.jurulatih.list');
+    }
+
+    public function viewJurulatih(Request $request)
+    {
+        return view('pengurusan.jurulatih.view-profile');
+    }
+
 }
 
 ?>

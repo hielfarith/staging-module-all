@@ -229,6 +229,11 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
     Route::get('senarai-pengetua','listPengetua')->name('admin.internal.pengetualist');
     Route::post('viewpengetua/{id}/{type}','viewPengetua')->name('admin.internal.viewpengetua');
 
+    Route::get('create-jurulatih','viewFormJurulatih')->name('admin.internal.jurulatihform');
+    Route::post('savejurulatih','saveJurulatih')->name('admin.internal.jurulatihsave');
+    Route::get('senarai-jurulatih','listJurulatih')->name('admin.internal.jurulatihlist');
+    Route::post('viewjurulatih/{id}/{type}','viewJurulatih')->name('admin.internal.viewjurulatih');
+
 });
 
 // instrumen controller
@@ -257,7 +262,7 @@ Route::controller(InstrumenController::class)->prefix('ikeps')->middleware(['web
     Route::get('tetapan-aspek-ikeps-list','listTetapanAspek')->name('admin.instrumen.tetapan-aspek-ikeps-list');
     Route::get('tetapan-tarikh-list','listTetapanTarikh')->name('admin.instrumen.tetapan-tarikh-list');
      Route::get('create/tetapan-tarikh','viewFormTetapanTarikh')->name('admin.instrumen.tetapan-tarikh.form');
-     
+
     Route::post('tetapan-tarikh-view/{id}/{type}','viewTetapanTarikh')->name('admin.instrumen.tetapan-tarikh-view');
 
     Route::post('tetapan-tarikh-submit','saveTarikh')->name('admin.instrumen.tetapan-tarikh-submit');
