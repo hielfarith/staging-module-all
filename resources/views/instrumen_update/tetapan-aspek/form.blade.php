@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-TETAPAN ASPEK
+Tetapan Aspek
 @endsection
 
 @section('breadcrumb')
@@ -10,11 +10,11 @@ TETAPAN ASPEK
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> TETAPAN ASPEK </a>
+    <a href="#"> Pengurusan I-KePS </a>
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Maklumat Tetapan Aspek </a>
+    <a href="#"> Tetapan Aspek </a>
 </li>
 @endsection
 
@@ -46,7 +46,7 @@ TETAPAN ASPEK
                     $type = Request::segment(4);
                 ?>
                 <input type="hidden" name="type" id="type" value="{{$type}}">
-                <div class="col-md-9 mb-1">
+                <div class="col-md-12 mb-1">
                     <label class="fw-bold form-label">Nama Aspek
                         <span class="text-danger">*</span>
                     </label>
@@ -66,7 +66,7 @@ TETAPAN ASPEK
                         <span class="text-danger">*</span>
                     </label>
                     <select class="form-control select2" name="status_aspek" required>
-                        <option value="" hidden>Sila Pilij</option>
+                        <option value="" hidden>Sila Pilih</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                     </select>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-TETAPAN ASPEK
+Tetapan Aspek
 @endsection
 
 @section('breadcrumb')
@@ -10,9 +10,12 @@ TETAPAN ASPEK
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> TETAPAN ASPEK </a>
+    <a href="#"> Pengurusan I-KePS </a>
 </li>
 
+<li class="breadcrumb-item">
+    <a href="#"> Tetapan Aspek </a>
+</li>
 @endsection
 
 @section('content')
@@ -31,7 +34,7 @@ TETAPAN ASPEK
     <hr>
 
     <div class="card-body">
-   
+
         <div class="row">
             <div class="col-md-4">
                 <label class="form-label">Nama Aspek</label>
@@ -83,7 +86,7 @@ TETAPAN ASPEK
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Instrumen</h5>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Tetapan Aspek</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -99,12 +102,12 @@ TETAPAN ASPEK
 $(document).ready(function() {
 
 $('#modal-aspek-diisi').on('shown.bs.modal', function () {
-    $('.select2').select2({ 
+    $('.select2').select2({
     });
     flatpickr(".flatpickr", {
         dateFormat: "d/m/Y"
     });
-    
+
 });
 
     $(function() {
