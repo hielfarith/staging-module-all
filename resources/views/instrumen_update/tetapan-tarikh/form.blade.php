@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-TETAPAN Tarikh Instrumen
+Tetapan Tarikh Instrumen
 @endsection
 
 @section('breadcrumb')
@@ -10,53 +10,50 @@ TETAPAN Tarikh Instrumen
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> TETAPAN Tarikh Instrumen </a>
+    <a href="#"> Tetapan Tarikh Instrumen </a>
 </li>
-<!-- 
-<li class="breadcrumb-item">
-    <a href="#"> Maklumat Tetapan Tarikh Instrumen </a>
-</li> -->
 @endsection
 
 @section('content')
-<style>
-    .delete-button {
-        display: none;
-    }
-</style>
 
 <div class="card">
-    {{-- <div class="card-header">
-        <h4 class="card-title fw-bold">
-            Maklumat Ketua Taska Baru
-        </h4>
+    <div class="card-header">
+        <h4 class="fw-bolder card-title">Maklumat Tarikh Instrumen</h4>
     </div>
 
-    <hr> --}}
+    <hr>
 
-<ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Penilaian Kendiri</a>
-    </li>
-    <li class="nav-item" role="presentation">
-        <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Verfikasi</a>
-    </li>
-    <li class="nav-item" role="presentation">
-        <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Validasi</a>
-    </li>
-</ul>
-<div class="tab-content pt-5" id="tab-content">
-  <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
-      @include('instrumen_update.tetapan-tarikh.tab')
-  </div>
-  <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
-      @include('instrumen_update.tetapan-tarikh.tab')
-  </div>
-  <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
-      @include('instrumen_update.tetapan-tarikh.tab')
-  </div>
-</div>
+    <div class="card-body">
+        <ul class="nav nav-pills nav-justified" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link text-uppercase active fw-bolder" id="penilaian-kendiri-tab" data-bs-toggle="tab" href="#penilaian-kendiri-tab" role="tab" aria-controls="penilaian-kendiri-tab" aria-selected="true">
+                    Penilaian Kendiri
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link text-uppercase fw-bolder" id="verifikasi-tab" data-bs-toggle="tab" href="#verifikasi-tab" role="tab" aria-controls="verifikasi-tab" aria-selected="false">
+                    Verfikasi
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link text-uppercase fw-bolder" id="validasi-tab" data-bs-toggle="tab" href="#validasi-tab" role="tab" aria-controls="validasi-tab" aria-selected="false">
+                    Validasi
+                </a>
+            </li>
+        </ul>
 
+        <div class="tab-content" id="tab-content">
+            <div class="tab-pane show active" id="penilaian-kendiri-tab" role="tabpanel" aria-labelledby="penilaian-kendiri-tab">
+                @include('instrumen_update.tetapan-tarikh.tab')
+            </div>
+            <div class="tab-pane" id="verifikasi-tab" role="tabpanel" aria-labelledby="verifikasi-tab">
+                @include('instrumen_update.tetapan-tarikh.tab')
+            </div>
+            <div class="tab-pane" id="validasi-tab" role="tabpanel" aria-labelledby="validasi-tab">
+                @include('instrumen_update.tetapan-tarikh.tab')
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
