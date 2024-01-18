@@ -18,6 +18,8 @@ use App\Models\Master\MasterCountry;
 use App\Models\PengerusiPengetuaGuru;
 use App\Models\Jurulatih;
 
+use Illuminate\Support\Facades\Storage;
+
 class PengurusanProfilPenggunaController extends Controller
 {
 
@@ -753,7 +755,7 @@ class PengurusanProfilPenggunaController extends Controller
 		DB::beginTransaction();
         try {
             $input = $request->input();
-            $input['bandar'] = 'test';
+            $input['jurulaith_sukan'] = json_encode($input['jurulaith_sukan']);
             $inputFiles = $request->file();
 
 	        if (count($inputFiles) > 0) {
@@ -783,6 +785,13 @@ class PengurusanProfilPenggunaController extends Controller
             DB::rollback();
             return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
         }
+	}
+
+	public function download($id, $name) {
+		$filledform = Jurulatih::where('id', $id)->first();
+        $filePath = Storage::path($filledform->$name);
+
+        return response()->download($filePath);
 	}
 
 }

@@ -141,10 +141,13 @@
         <label class="fw-bold form-label">Jurulatih Sukan
             <span class="text-danger">*</span>
         </label>
-        <select name="jurulaith_sukan" id="" class="form-control select2" multiple required {{$disabled}}>
+        <?php
+            $decodedSukan = json_decode($jurulatih->jurulaith_sukan, true);
+        ?>
+        <select name="jurulaith_sukan[]" id="" class="form-control select2" multiple required {{$disabled}}>
             <option value="" hidden>Jurulatih Sukan</option>
             @foreach ($sukans as $id => $sukan)
-                <option value="{{ $id }}" @if($jurulatih->jurulaith_sukan == $id)  @endif>{{ $sukan }}</option>
+                <option value="{{ $id }}" @if(in_array($id, $decodedSukan))  @endif>{{ $sukan }}</option>
             @endforeach
         </select>
     </div>
@@ -263,7 +266,13 @@
         <label class="fw-bold form-label">Muat Naik Sijil
             <span class="text-danger">*</span>
         </label>
-        <input type="file" class="form-control" name="sijil_path" required {{$readonly}}>
+        <?php
+            $url = route('jurulatih-download',['id' => $jurulatih->id,'name' => 'sijil_path']);
+        ?>
+        @if (!empty($jurulatih->sijil_path))
+            <a href="{{$url}}" class="btn btn-primary">Download File</a>
+        @endif
+        <input type="file" class="form-control" name="sijil_path" required {{$disabled}}>
     </div>
 
     <hr>
@@ -291,7 +300,14 @@
         <label class="fw-bold form-label">Muat Naik Sijil
             <span class="text-danger">*</span>
         </label>
-        <input type="file" class="form-control" name="sains_sukan_sijil_path" required {{$readonly}}>
+        <?php
+            $url = route('jurulatih-download',['id' => $jurulatih->id,'name' => 'sains_sukan_sijil_path']);
+        ?>
+        @if (!empty($jurulatih->sains_sukan_sijil_path))
+            <a href="{{$url}}" class="btn btn-primary">Download File</a>
+        @endif
+
+        <input type="file" class="form-control" name="sains_sukan_sijil_path" required {{$disabled}}>
     </div>
 
     <hr>
@@ -319,7 +335,14 @@
         <label class="fw-bold form-label">Muat Naik Sijil
             <span class="text-danger">*</span>
         </label>
-        <input type="file" class="form-control" name="spkk_sijil_path" required {{$readonly}}>
+        <?php
+            $url = route('jurulatih-download',['id' => $jurulatih->id,'name' => 'spkk_sijil_path']);
+        ?>
+        @if (!empty($jurulatih->spkk_sijil_path))
+            <a href="{{$url}}" class="btn btn-primary">Download File</a>
+        @endif
+
+        <input type="file" class="form-control" name="spkk_sijil_path" required {{$disabled}}>
     </div>
 
     <hr>
