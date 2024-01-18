@@ -1,79 +1,67 @@
-<div class="card">
-    <div class="card-body">
-                       <form id="formitem" novalidate="novalidate">
-            <div class="row">
-                <h5 class="mb-2 fw-bold">
-                    <span class="badge rounded-pill badge-light-primary">
-                        Maklumat Tetapan Tarikh Instrumen
-                    </span>
-                </h5>
-              <input type="hidden" name="tetapan_tarikh_id" value="{{$tetapanTarikh->id}}">
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Mula
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" class="form-control flatpickr" name="tarikh_mula" required value="{{$tetapanTarikh->tarikh_mula}}" {{$readonly}}>
-                </div>
+<form id="formitem" novalidate="novalidate">
+    <input type="hidden" name="tetapan_tarikh_id" value="{{$tetapanTarikh->id}}">
+    <div class="row">
+        <h4 class="mb-2 fw-bold">
+            <span class="badge rounded-pill badge-light-success">
+                Maklumat Tarikh Mula
+            </span>
+        </h4>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Mula hari
-                        <!-- <span class="text-danger">*</span> -->
-                    </label>
-                    <input type="text" class="form-control" name="tarikh_mula_hari" value="{{$tetapanTarikh->tarikh_mula_hari}}" {{$readonly}}>
-                </div>
+        <div class="col-md-12 mb-1">
+            <label class="fw-bold form-label">Tarikh Mula</label>
+            <input type="text" class="form-control flatpickr" name="tarikh_mula" required value="{{$tetapanTarikh->tarikh_mula}}" {{$readonly}}>
+        </div>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Mula Bulan
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" class="form-control" name="tarikh_mula_bulan" value="{{$tetapanTarikh->tarikh_mula_bulan}}" required {{$readonly}}>
-                </div>
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Tarikh Mula</label>
+            <input type="text" class="form-control" name="tarikh_mula_hari" value="{{$tetapanTarikh->tarikh_mula_hari}}" {{$readonly}}>
+        </div>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Mula Tahun
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" class="form-control" name="tarikh_mula_tahun" value="{{$tetapanTarikh->tarikh_mula_tahun}}" required {{$readonly}}>
-                </div>
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Tarikh Mula Bulan</label>
+            <input type="text" class="form-control" name="tarikh_mula_bulan" value="{{$tetapanTarikh->tarikh_mula_bulan}}" required {{$readonly}}>
+        </div>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Akhir
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" class="form-control flatpickr" name="tarikh_akhir" required value="{{$tetapanTarikh->tarikh_akhir}}" required {{$readonly}}>
-                </div>
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Tarikh Mula Tahun</label>
+            <input type="text" class="form-control" name="tarikh_mula_tahun" value="{{$tetapanTarikh->tarikh_mula_tahun}}" required {{$readonly}}>
+        </div>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Akhir hari
-                        <!-- <span class="text-danger">*</span> -->
-                    </label>
-                    <input type="text" class="form-control" name="tarikh_akhir_hari" value="{{$tetapanTarikh->tarikh_akhir_hari}}" {{$readonly}} >
-                </div>
+        <hr>
+        <h4 class="mb-2 fw-bold">
+            <span class="badge rounded-pill badge-light-danger">
+                Maklumat Tarikh Akhir
+            </span>
+        </h4>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Akhir Bulan
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" class="form-control" name="tarikh_akhir_bulan" value="{{$tetapanTarikh->tarikh_akhir_bulan}}" {{$readonly}} required>
-                </div>
+        <div class="col-md-12 mb-1">
+            <label class="fw-bold form-label">Tarikh Akhir</label>
+            <input type="text" class="form-control flatpickr" name="tarikh_akhir" required value="{{$tetapanTarikh->tarikh_akhir}}" required {{$readonly}}>
+        </div>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Akhir Tahun
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" class="form-control" name="tarikh_akhir_tahun" value="{{$tetapanTarikh->tarikh_akhir_tahun}}" {{$readonly}} required>
-                </div>
-            </div>
-            <hr>
-            @if($readonly != 'readonly')
-            <div class="d-flex justify-content-end align-items-center mt-1">
-                <button type="submit" class="btn btn-primary float-right">Simpan</button>
-            </div>
-            @endif
-        </form>
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Tarikh Akhir hari</label>
+            <input type="text" class="form-control" name="tarikh_akhir_hari" value="{{$tetapanTarikh->tarikh_akhir_hari}}" {{$readonly}}>
+        </div>
 
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Tarikh Akhir Bulan</label>
+            <input type="text" class="form-control" name="tarikh_akhir_bulan" value="{{$tetapanTarikh->tarikh_akhir_bulan}}" {{$readonly}} required>
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Tarikh Akhir Tahun</label>
+            <input type="text" class="form-control" name="tarikh_akhir_tahun" value="{{$tetapanTarikh->tarikh_akhir_tahun}}" {{$readonly}} required>
+        </div>
     </div>
-</div>
+
+    @if($readonly != 'readonly')
+    <hr>
+        <div class="d-flex justify-content-end align-items-center mt-1">
+            <button type="submit" class="btn btn-primary float-right">Simpan</button>
+        </div>
+    @endif
+</form>
 
 <script type="text/javascript">
     $('#formpaspek').submit(function(event) {

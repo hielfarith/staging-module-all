@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-TETAPAN ASPEK
+Tetapan Aspek
 @endsection
 
 @section('breadcrumb')
@@ -10,11 +10,11 @@ TETAPAN ASPEK
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> TETAPAN ASPEK </a>
+    <a href="#"> Pengurusan I-KePS </a>
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Maklumat Tetapan Aspek </a>
+    <a href="#"> Tetapan Aspek </a>
 </li>
 @endsection
 
@@ -46,7 +46,7 @@ TETAPAN ASPEK
                     $type = Request::segment(4);
                 ?>
                 <input type="hidden" name="type" id="type" value="{{$type}}">
-                <div class="col-md-9 mb-1">
+                <div class="col-md-12 mb-1">
                     <label class="fw-bold form-label">Nama Aspek
                         <span class="text-danger">*</span>
                     </label>
@@ -66,33 +66,12 @@ TETAPAN ASPEK
                         <span class="text-danger">*</span>
                     </label>
                     <select class="form-control select2" name="status_aspek" required>
-                        <option value="" hidden>Sila Pilij</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <option value="" hidden>Sila Pilih</option>
+                        <option value="Belum Set">Belum Set</option>
+                        <option value="Telah Set">Telah Set</option>
                     </select>
                 </div>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Belum Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="belum_set" required >
-                        <option value="" hidden>Sila pilih</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </div>
-
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Telah Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="telah_set" id="telah_set" required>
-                            <option value="" hidden>Sila Pilih</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                    </select>
-                </div>
                  @if($type != 'SUB')
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Wajaran Skala
@@ -128,6 +107,7 @@ $('#formpaspek').submit(function(event) {
 
                 if (!selectedValues || selectedValues === '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
                     return false; // Stop the loop if an error is found
                 }
             }

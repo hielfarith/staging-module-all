@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('instrumen_skpak_spks_ikeps', function (Blueprint $table) {
+        Schema::create('instrumen_skpak_spks_ikep', function (Blueprint $table) {
             $table->id();
             $table->string('nama_instrumen');
             $table->longText('tujuan_instrumen');
@@ -48,6 +48,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instrumen_skpak_spks_ikeps');
+         Schema::dropIfExists('instrumen_skpak_spks_ikep');
+
     }
 };

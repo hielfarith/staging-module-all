@@ -1,295 +1,424 @@
-<form id="formpengunna">
-    <input type="hidden" name="pennguna_id" id="pennguna_id" value="{{$pengguna->id}}">
-    <div class="row">
-        <h5 class="mb-2 fw-bold">
-            <span class="badge rounded-pill badge-light-primary">
-                Maklumat Ketua Taska
-            </span>
-        </h5>
+<form id="formjurulaith" novalidate="novalidate">
+    <input type="hidden" name="jurulatih_id" value="{{$jurulatih->id}}"> 
+<div class="row">
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Maklumat Jurulatih
+        </span>
+    </h5>
 
-        <div class="col-md-9 mb-1">
-            <label class="fw-bold form-label">Nama Pengguna/ Ketua Taska
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="nama_pengguna" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8" {{$readonly}} value={{$pengguna->nama_pengguna}}>
-        </div>
-
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">No Kad Pengenalan/ Pasport
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="no_kad" required  {{$readonly}} value={{$pengguna->no_kad}}>
-        </div>
-
-        <div class="col-md-2 mb-1">
-            <label class="fw-bold form-label">Emel Peribadi
-                <span class="text-danger">*</span>
-            </label>
-            <input type="email" class="form-control" name="email_peribadi" required {{$readonly}} value={{$pengguna->email_peribadi}}>
-        </div>
-
-        <div class="col-md-2 mb-1">
-            <label class="fw-bold form-label">Emel Taska
-                <span class="text-danger">*</span>
-            </label>
-            <input type="email" class="form-control" name="email_taska" required {{$readonly}} value={{$pengguna->email_taska}}>
-        </div>
-
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">Emel Ibu Pejabat (Negeri)/ Penyelia
-                <span class="text-danger">*</span>
-            </label>
-            <input type="email" class="form-control" name="email_pejabat_penyelia" required {{$readonly}} value={{$pengguna->email_pejabat_penyelia}}>
-        </div>
-
-        <div class="col-md-2 mb-1">
-            <label class="fw-bold form-label">No Tel Pejabat
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="no_tel_pejabat" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength=12 {{$readonly}} value={{$pengguna->no_tel_pejabat}}>
-        </div>
-
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">No Tel Peribadi
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="no_tel_peribadi" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength=12 {{$readonly}} value={{$pengguna->no_tel_peribadi}}>
-        </div>
-
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">Agensi/ Kementerian
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="agensi_kementerian" required>
-                <option value="" hidden>Agensi/ Kementerian</option>
-                <option value="Agensi" @if($pengguna->agensi_kementerian == 'Agensi') selected @endif>Agensi</option>
-                <option value="Kementerian" @if($pengguna->agensi_kementerian == 'Kementerian') selected @endif>Kementerian</option>
-            </select>
-        </div>
-
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">Jenis
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="jenis" required id="jenis" onchange="checksjenis(this)">
-                <option value="" hidden>Pilih</option>
-                <option value="Kerajaan" @if($pengguna->jenis == 'Kerajaan') selected @endif>Kerajaan</option>
-                <option value="Swasta" @if($pengguna->jenis == 'Swasta') selected @endif>Swasta</option>
-            </select>
-        </div>
-
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">Jawatan
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="jawatan" id="jawatan" required>
-                    <option value="" hidden>Pilih</option>
-                    <option value="1" @if($pengguna->jawatan == '1') selected @endif>1</option>
-                    <option value="2" @if($pengguna->jawatan == '2') selected @endif>2</option>
-            </select>
-        </div>
-
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">Gred
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="gred" id="gred" required>
-                <option value="" hidden>Pilih</option>
-                <option value="1" @if($pengguna->gred == '1') selected @endif>1</option>
-                <option value="2" @if($pengguna->gred == '2') selected @endif>2</option>
-            </select>
-        </div>
-
-        <hr>
-        <h5 class="mb-2 fw-bold">
-            <span class="badge rounded-pill badge-light-primary">
-                Maklumat Alamat
-            </span>
-        </h5>
-
-        <div class="col-md-12 mb-1">
-            <label class="fw-bold form-label">Alamat
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="alamat1" placeholder="Alamat 1" required {{$readonly}} value="{{$pengguna->alamat1}}">
-        </div>
-
-        <div class="col-md-12 mb-1">
-            {{-- <label class="fw-bold form-label">Alamat 2
-                <span class="text-danger">*</span>
-            </label> --}}
-            <input type="text" class="form-control" name="alamat2" placeholder="Alamat 2" required {{$readonly}} value="{{$pengguna->alamat2}}">
-        </div>
-
-        <div class="col-md-12 mb-1">
-            {{-- <label class="fw-bold form-label">Alamat 3</label> --}}
-            <input type="text" class="form-control" name="alamat3" placeholder="Alamat 3" {{$readonly}} value="{{$pengguna->alamat3}}">
-        </div>
-
-        <div class="col-md-4 mb-1">
-            <label class="fw-bold form-label">Negeri
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="negeri" id="negeri" required onchange="changenegeri(this)">
-                <option value="" hidden>pilih</option>
-                @foreach($states as $state)
-                    <option value="{{$state->name}}" @if($pengguna->negeri == $state->name) selected @endif>{{$state->name}}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="col-md-4 mb-1">
-            <label class="fw-bold form-label">Daerah
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="daerah" id="daerah" required>
-
-            </select>
-            <input type="hidden" name="daerah_selected" value="{{$pengguna->daerah}}" id="daerah_selected">
-        </div>
-
-        <div class="col-md-4 mb-1">
-            <label class="fw-bold form-label">Poskod
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="poskod" maxlength="5" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' {{$readonly}} value="{{$pengguna->poskod}}">
-        </div>
-
-        <hr>
-        <h5 class="mb-2 fw-bold">
-            <span class="badge rounded-pill badge-light-primary">
-                Maklumat Taska
-            </span>
-        </h5>
-
-        <div class="col mb-1">
-            <label class="fw-bold form-label">Jenis Taska
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="jenis_taska" required>
-                <option value="">pilih</option>
-                <option value="Swasta" @if($pengguna->jenis_taska == 'Swasta') selected @endif>Swasta</option>
-                <option value="Kerajan" @if($pengguna->jenis_taska == 'Kerajan') selected @endif>Kerajan</option>
-            </select>
-        </div>
-
-        <div class="col mb-1">
-            <label class="fw-bold form-label">Tarikh Penubuhan
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control flatpickr" name="tarikh_penubuhan" required {{$readonly}} value="{{$pengguna->tarikh_penubuhan}}">
-        </div>
-
-        <div class="col mb-1">
-            <label class="fw-bold form-label">Jenis Bangunan
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="jenisbanugunan" required>
-                <option value="">pilih</option>
-                <option value="Tempat Kerja"  @if($pengguna->jenisbanugunan == 'Kerajan') selected @endif>Tempat Kerja</option>
-                <option value="Rumah Kedai"  @if($pengguna->jenisbanugunan == 'Rumah Kedai') selected @endif>Rumah Kedai</option>
-                <option value="Bangunan"  @if($pengguna->jenisbanugunan == 'Bangunan') selected @endif>Bangunan</option>
-                <option value="Teres"  @if($pengguna->jenisbanugunan == 'Teres') selected @endif>Teres</option>
-                <option value="Banglo"  @if($pengguna->jenisbanugunan == 'Banglo') selected @endif>Banglo</option>
-            </select>
-        </div>
-
-        <div class="col mb-1">
-            <label class="fw-bold form-label">Jumlah Pendidik
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="jumla_pendidik" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' {{$readonly}} value="{{$pengguna->jumla_pendidik}}">
-        </div>
-
-        <div class="col mb-1">
-            <label class="fw-bold form-label">Jumlah Kanak-Kanak
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="jumlah_kanak" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' {{$readonly}} value="{{$pengguna->jumlah_kanak}}">
-        </div>
-
-        <div class="col mb-1">
-            <label class="fw-bold form-label">Jumlah Staf Sokongan
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="jumla_staf_sokogan" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' {{$readonly}} value="{{$pengguna->jumla_staf_sokogan}}">
-        </div>
+    <div class="col-md-9 mb-1">
+        <label class="fw-bold form-label">Nama Jurulatih/ Pengguna
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="nama_pengguna" required {{$readonly}} value="{{$jurulatih->nama_pengguna}}">
     </div>
 
-    @if($readonly != 'readonly')
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">No Kad Pengenalan/ Pasport
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="no_kad" required {{$readonly}} value="{{$jurulatih->no_kad}}">
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Warganegara
+            <span class="text-danger">*</span>
+        </label>
+        <select name="warganegara" id="warganegara" class="form-control select2" required {{$disabled}}>
+            <option value="" hidden>Warganergara</option>
+            @foreach ($negaras as $negara)
+                <option value="{{ $negara->name }}" @if($jurulatih->warganegara == $negara->name)  selected @endif>{{ $negara->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Jantina
+            <span class="text-danger">*</span>
+        </label>
+        <select name="jantina" id="jantina" class="form-control select2" required {{$disabled}}>
+            <option value="" hidden>Warganergara</option>
+            @foreach ($jantinas as $id => $jantina)
+                <option value="{{ $id }}" @if($jurulatih->jantina == $id)  selected @endif>{{ $jantina }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Kaum
+            <span class="text-danger">*</span>
+        </label>
+        <select name="kaum" id="kaum" class="form-control select2" required {{$disabled}}>
+            <option value="" hidden>Kaum</option>
+            @foreach ($kaums as $id => $kaum)
+                <option value="{{ $id }}" @if($jurulatih->kaum == $id)  selected @endif>{{ $kaum }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Tarikh Lahir
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="tarikh_lahir" name="tarikh_lahir" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required {{$readonly}} value="{{$jurulatih->tarikh_lahir}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Telefon Rumah
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="telefon_rumah" required {{$readonly}} value="{{$jurulatih->telefon_rumah}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Telefon Bimbit
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="telefon_bimbit" required {{$readonly}} value="{{$jurulatih->telefon_bimbit}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Email
+            <span class="text-danger">*</span>
+        </label>
+        <input type="email" class="form-control" name="email" required {{$readonly}} value="{{$jurulatih->telefon_bimbit}}">
+    </div>
+
     <hr>
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Maklumat Penempatan/ Lantikan
+        </span>
+    </h5>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Gred Jawatan
+            <span class="text-danger">*</span>
+        </label>
+        <select class="form-control select2" name="gred_jawatan" id="gred_jawatan" required {{$disabled}}>
+            <option value="" hidden>Gred</option>
+            <option value="1" @if($jurulatih->gred_jawatan == '1') selected @endif>1</option>
+            <option value="2" @if($jurulatih->gred_jawatan == '2') selected @endif>2</option>
+        </select>
     </div>
-    @endif
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Tarikh Lantikan ke Gred Semasa
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="" name="tarikh_lantikan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required {{$readonly}} value="{{$jurulatih->tarikh_lantikan}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Tarikh Mula Bertugas di PLD
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="" name="tarikh_mula" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required {{$readonly}} value="{{$jurulatih->tarikh_mula}}">
+    </div>
+
+    <div class="col-md-12 mb-1">
+        <label class="fw-bold form-label">Majikan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="majikan" required {{$readonly}} value="{{$jurulatih->majikan}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label"> Jarak Rumah ke Pusat Latihan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="jarak_rumah" required {{$readonly}} value="{{$jurulatih->jarak_rumah}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label"> Penerima Bayaran Insentif Jurulatih Sukan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="penerima_bayaran" required {{$readonly}} value="{{$jurulatih->penerima_bayaran}}">
+    </div>
+
+    <div class="col-md-12 mb-1">
+        <label class="fw-bold form-label">Jurulatih Sukan
+            <span class="text-danger">*</span>
+        </label>
+        <?php
+            $decodedSukan = json_decode($jurulatih->jurulaith_sukan, true);
+            $decodedSukan = [1,2,3,4];
+        ?>
+        <select name="jurulaith_sukan[]" id="" class="form-control select2" multiple required {{$disabled}}>
+            <option value="" hidden>Jurulatih Sukan</option>
+            @foreach ($sukans as $id => $sukan)
+                <option value="{{ $id }}" @if(in_array($id, $decodedSukan)) selected @endif>{{ $sukan }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <hr>
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Maklumat Alamat
+        </span>
+    </h5>
+
+    <div class="col-md-12 mb-1">
+        <label class="fw-bold form-label">Alamat
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="alamat1" placeholder="Alamat 1" required {{$readonly}} value="{{$jurulatih->alamat1}}">
+    </div>
+
+    <div class="col-md-12 mb-1">
+        {{-- <label class="fw-bold form-label">Alamat 2
+            <span class="text-danger">*</span>
+        </label> --}}
+        <input type="text" class="form-control" name="alamat2" placeholder="Alamat 2" required {{$readonly}} value="{{$jurulatih->alamat2}}">
+    </div>
+
+    <div class="col-md-12 mb-1">
+        {{-- <label class="fw-bold form-label">Alamat 3</label> --}}
+        <input type="text" class="form-control" name="alamat3" placeholder="Alamat 3"  {{$readonly}} value="{{$jurulatih->alamat3}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Bandar
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="bandar" required {{$readonly}} value="{{$jurulatih->bandar}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Negeri
+            <span class="text-danger">*</span>
+        </label>
+        <select name="negeri" id="" class="form-control select2" required {{$disabled}}>
+            <option value="" hidden>Negeri</option>
+            @foreach ($negeris as $negeri)
+                <option value="{{ $negeri->name }}" @if($jurulatih->negeri == $negeri->name) selected  @endif>{{ $negeri->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Poskod
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="poskod" maxlength="5" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' required {{$readonly}} value="{{$jurulatih->poskod}}">
+    </div>
+
+    <hr>
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Maklumat Kesihatan
+        </span>
+    </h5>
+
+    <div class="col-md-12 mb-1">
+        <label class="fw-bold form-label">Maklumat Kesihatan
+            <span class="text-danger">*</span>
+        </label>
+        <textarea class="form-control" name="maklumat_kesihatan" id="" rows="4" required {{$disabled}}>{{$jurulatih->maklumat_kesihatan}}</textarea>
+    </div>
+
+    <hr>
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Maklumat Sekolah
+        </span>
+    </h5>
+
+    <div class="col-md-12 mb-1">
+        <label class="fw-bold form-label">Maklumat Sekolah
+            <span class="text-danger">*</span>
+        </label>
+        <textarea class="form-control" name="maklumat_sekolah" id="" rows="4" required {{$disabled}}>
+            {{$jurulatih->maklumat_sekolah}}
+        </textarea>
+    </div>
+
+    <hr>
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Spesifik
+        </span>
+    </h5>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Persijilan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="persijilan" required {{$readonly}} value="{{$jurulatih->persijilan}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Tahap/Gred
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="tahap_gred" required {{$readonly}} value="{{$jurulatih->tahap_gred}}">
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="fw-bold form-label">Tarikh Pensijilan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="" name="tarikh_pensijilan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required {{$readonly}} value="{{$jurulatih->tarikh_pensijilan}}">
+    </div>
+
+    <div class="col-md-12 mb-1">
+        <label class="fw-bold form-label">Muat Naik Sijil
+            <span class="text-danger">*</span>
+        </label>
+        <?php
+            $url = route('jurulatih-download',['id' => $jurulatih->id,'name' => 'sijil_path']);
+        ?>
+        @if (!empty($jurulatih->sijil_path))
+            <a href="{{$url}}" class="btn btn-primary">Download File</a>
+        @endif
+        <input type="file" class="form-control" name="sijil_path" {{$disabled}}>
+    </div>
+
+    <hr>
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Sains Sukan
+        </span>
+    </h5>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Persijilan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="sains_sukan_persijilan" required {{$readonly}} value="{{$jurulatih->sains_sukan_persijilan}}">
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Tarikh Pensijilan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="" name="sains_sukan_tarikh_pensijilan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required {{$readonly}} value="{{$jurulatih->sains_sukan_tarikh_pensijilan}}">
+    </div>
+
+    <div class="col-md-12 mb-1">
+        <label class="fw-bold form-label">Muat Naik Sijil
+            <span class="text-danger">*</span>
+        </label>
+        <?php
+            $url = route('jurulatih-download',['id' => $jurulatih->id,'name' => 'sains_sukan_sijil_path']);
+        ?>
+        @if (!empty($jurulatih->sains_sukan_sijil_path))
+            <a href="{{$url}}" class="btn btn-primary">Download File</a>
+        @endif
+
+        <input type="file" class="form-control" name="sains_sukan_sijil_path" {{$disabled}}>
+    </div>
+
+    <hr>
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Skim Persijilan Kejurulatihan Kebangsaan (SPKK)
+        </span>
+    </h5>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Persijilan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="spkk_persijilan" required {{$readonly}} value="{{$jurulatih->spkk_persijilan}}">
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Tarikh Pensijilan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="" name="spkk_tarikh_pensijilan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required {{$readonly}} value="{{$jurulatih->spkk_tarikh_pensijilan}}">
+    </div>
+
+    <div class="col-md-12 mb-1">
+        <label class="fw-bold form-label">Muat Naik Sijil
+            <span class="text-danger">*</span>
+        </label>
+        <?php
+            $url = route('jurulatih-download',['id' => $jurulatih->id,'name' => 'spkk_sijil_path']);
+        ?>
+        @if (!empty($jurulatih->spkk_sijil_path))
+            <a href="{{$url}}" class="btn btn-primary">Download File</a>
+        @endif
+
+        <input type="file" class="form-control" name="spkk_sijil_path" {{$disabled}}>
+    </div>
+
+    <hr>
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Pencapaian Sebagai Jurulatih
+        </span>
+    </h5>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Sukan/ Permainan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="sukan_permainan" required {{$readonly}} value="{{$jurulatih->sukan_permainan}}">
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Kejohanan
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="kejohanan" required {{$readonly}} value="{{$jurulatih->kejohanan}}">
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Tahun
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="tahun" required {{$readonly}} value="{{$jurulatih->tahun}}">
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Peringkat
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="peringkat" required {{$readonly}} value="{{$jurulatih->peringkat}}">
+    </div>
+
+    <hr>
+    <h5 class="mb-2 fw-bold">
+        <span class="badge rounded-pill badge-light-primary">
+            Anugerah yang Diterima
+        </span>
+    </h5>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Anugerah
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="anugerah" required {{$readonly}} value="{{$jurulatih->anugerah}}">
+    </div>
+
+    <div class="col-md-3 mb-1">
+        <label class="fw-bold form-label">Tahun
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" name="anugerah_tahun" required {{$readonly}} value="{{$jurulatih->anugerah_tahun}}">
+    </div>
+</div>
+@if($readonly != 'readonly')
+<hr>
+<div class="d-flex justify-content-end align-items-center mt-1">
+    <button type="submit" class="btn btn-primary float-right">Simpan</button>
+</div>
+@endif
 </form>
 
+ 
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#negeri').trigger('change');
-
-    var jenisValue = $('#jenis').val();
-    if (jenisValue == 'Swasta') {
-        $('#jawatan').val('');
-        $('#gred').val('');
-        $('#jawatan').attr('disabled', true);
-        $('#gred').attr('disabled', true);
-        $('#jawatan').prop('required',false);
-        $('#gred').prop('required',false);
-    } else {
-        $('#jawatan').attr('disabled', false);
-        $('#gred').attr('disabled', false);
-        $('#jawatan').prop('required',true);
-        $('#gred').prop('required',true);
-    }
-});
-
-function changenegeri(negeri){
-    var negerivalue = negeri.value;
-     var url = "{{ route('admin.internal.checkdaerah') }}"
-    $.ajax({
-        url: url,
-        type: 'POST',
-        data: {
-            negeri: negerivalue
-        },
-        success: function(response) {
-            var val = $('#daerah_selected').val();
-            $('#daerah').empty();
-            $.each(response.daerahs, function(key, value) {
-                if(val == value) {
-                    $('#daerah').append('<option value="'+ value +'" selected>'+ value +'</option>');
-                } else {
-                    $('#daerah').append('<option value="'+ value +'">'+ value +'</option>');
-                }
-            });
-        }
-    });
-}
-
-
-   function  checksjenis(jenis) {
-        if (jenis.value == 'Swasta') {
-            $('#jawatan').val('');
-            $('#gred').val('');
-            $('#jawatan').attr('disabled', true);
-            $('#gred').attr('disabled', true);
-            $('#jawatan').prop('required',false);
-            $('#gred').prop('required',false);
-        } else {
-            $('#jawatan').attr('disabled', false);
-            $('#gred').attr('disabled', false);
-            $('#jawatan').prop('required',true);
-            $('#gred').prop('required',true);
-        }
-    }
-
-    $('#formpengunna').submit(function(event) {
+$('#formjurulaith').submit(function(event) {
         event.preventDefault();
-        var formData = new FormData(document.getElementById('formpengunna'));
+        var formData = new FormData(document.getElementById('formjurulaith'));
         var error = false;
 
-        $('select.select2').each(function() {
+        $('#formjurulaith').find('select.select2').each(function() {
             var element = $(this);
             var select2Value = element.select2('data');
             var selectedValues = element.val();
@@ -297,16 +426,16 @@ function changenegeri(negeri){
             if (typeof element.attr('disabled') == 'undefined') {
 
                 if (!selectedValues || selectedValues === '') {
+                    console.log(fieldName);
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-                    error=true;
+                    error = true;
                     return false; // Stop the loop if an error is found
                 }
             }
         });
 
-
         formData.forEach(function(value, name) {
-            var element = $("input[name="+name+"]");
+            var element = $("input[name='"+name+"']");
             if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
                 if (element.val() == '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
@@ -320,7 +449,7 @@ function changenegeri(negeri){
             return false;
         }
 
-        var url = "{{ route('admin.internal.penggunasave') }}"
+        var url = "{{ route('admin.internal.jurulatihsave') }}"
         $.ajax({
             url: url,
             type: 'POST',
@@ -330,12 +459,11 @@ function changenegeri(negeri){
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.internal.penggunalist')}}"
+                    var location = "{{route('admin.internal.jurulatihlist')}}"
                     window.location.href = location;
                }
             }
         });
 
     });
-
 </script>

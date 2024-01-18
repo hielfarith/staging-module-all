@@ -1,41 +1,4 @@
-@extends('layouts.app')
-
-@section('header')
-TETAPAN Item
-@endsection
-
-@section('breadcrumb')
-<li class="breadcrumb-item">
-    <a href="{{ route('home') }}">{{ __('msg.home') }}</a>
-</li>
-
-<li class="breadcrumb-item">
-    <a href="#"> TETAPAN Item </a>
-</li>
-
-<li class="breadcrumb-item">
-    <a href="#"> Maklumat Tetapan Item </a>
-</li>
-@endsection
-
-@section('content')
-<style>
-    .delete-button {
-        display: none;
-    }
-</style>
-
-<div class="card">
-    {{-- <div class="card-header">
-        <h4 class="card-title fw-bold">
-            Maklumat Ketua Taska Baru
-        </h4>
-    </div>
-
-    <hr> --}}
-
-    <div class="card-body">
-        <form id="formitem" novalidate="novalidate">
+<form id="formitem" novalidate="novalidate">
             <div class="row">
                 <h5 class="mb-2 fw-bold">
                     <span class="badge rounded-pill badge-light-primary">
@@ -155,16 +118,12 @@ TETAPAN Item
                 </div>
 
                 @endif
-
+            </div>
             <hr>
             <div class="d-flex justify-content-end align-items-center mt-1">
                 <button type="submit" class="btn btn-primary float-right">Simpan</button>
             </div>
         </form>
-    </div>
-</div>
-
-@endsection
 
 @section('script')
 <script type="text/javascript">
@@ -174,7 +133,7 @@ $('#formitem').submit(function(event) {
         var formData = new FormData(document.getElementById('formitem'));
         var error = false;
 
-        $('select.select2').each(function() {
+        $('#formitem').find('select.select2').each(function() {
             var element = $(this);
             var select2Value = element.select2('data');
             var selectedValues = element.val();
@@ -229,5 +188,4 @@ $('#formitem').submit(function(event) {
 
     });
 </script>
-
 @endsection
