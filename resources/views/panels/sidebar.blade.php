@@ -49,16 +49,16 @@ $configData = Helper::applClasses();
                         </a>
 
                         <ul class="menu-content">
-                            <li class="{{ in_array(request()->route()->getName(), ['ikeps_baru']) ? 'active' : '' }}">
-                                <a href="{{ route('ikeps_baru') }}" class="d-flex align-items-center">
+                            <li class="{{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
+                                <a href="{{ route('ikeps.ikeps_baru') }}" class="d-flex align-items-center">
                                     <span class="menu-title text-truncate">
                                         Pengisian I-KePS
                                     </span>
                                 </a>
                             </li>
 
-                            <li class="{{ in_array(request()->route()->getName(), ['ringkasan_ikeps']) ? 'active' : '' }}">
-                                <a href="{{ route('ringkasan_ikeps') }}" class="d-flex align-items-center">
+                            <li class="{{ in_array(request()->route()->getName(), ['ikeps.ringkasan_ikeps']) ? 'active' : '' }}">
+                                <a href="{{ route('ikeps.ringkasan_ikeps') }}" class="d-flex align-items-center">
                                     <span class="menu-title text-truncate">
                                         Ringkasan Maklumat
                                     </span>

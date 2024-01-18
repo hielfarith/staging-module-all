@@ -42,24 +42,35 @@
             </tr>
 
             <?php
-                $bola_sepaks = ['1.1 Saiz Padang Standard Pertandingan',
-                                '1.2 Saiz Padang Untuk Latihan Sahaja'
-                                ];
-                $hokis = ['2.1 Saiz Padang Standard Pertandingan',
-                            '2.2 Saiz Padang Untuk Latihan Sahaja',
-                            '2.2 Padang Rumput Standard Pertandingan',
-                            '2.2 Padang Rumput Untuk Latihan Sahaja'
-                        ];
-                $ada_tiadas = ['ada' => 1, 'tiada' => 2];
-                $gunasamas = ['ada' => 1, 'tiada' => 2];
-                $masih_digunakans = ['ada' => 1, 'tiada' => 2];
-                $status_fizikals = [ 'selesa' => 1,
-                                    'tidak_selesa' => 2,
-                                    'kefungsian' => 3,
-                                    'sekuriti' => 4,
-                                    'keselamatan' => 5,
-                                ];
-
+                $bola_sepaks = [
+                    '1.1 Saiz Padang Standard Pertandingan',
+                    '1.2 Saiz Padang Untuk Latihan Sahaja'
+                ];
+                $hokis = [
+                    '2.1 Saiz Padang Standard Pertandingan',
+                    '2.2 Saiz Padang Untuk Latihan Sahaja',
+                    '2.2 Padang Rumput Standard Pertandingan',
+                    '2.2 Padang Rumput Untuk Latihan Sahaja'
+                ];
+                $ada_tiadas = [
+                    'ada' => 1, 
+                    'tiada' => 0
+                ];
+                $gunasamas = [
+                    'ada' => 1, 
+                    'tiada' => 0
+                ];
+                $masih_digunakans = [
+                    'ada' => 1, 
+                    'tiada' => 0
+                ];
+                $status_fizikals = [ 
+                    'selesa' => 1,
+                    'tidak_selesa' => 2,
+                    'kefungsian' => 3,
+                    'sekuriti' => 4,
+                    'keselamatan' => 5,
+                ];
             ?>
 
             <tr>
