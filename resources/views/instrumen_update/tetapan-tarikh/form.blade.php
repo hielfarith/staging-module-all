@@ -26,22 +26,22 @@ Tetapan Tarikh Instrumen
     <div class="card-body">
         <ul class="nav nav-pills nav-justified" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link active fw-bolder" id="penilaian-kendiri-tab" data-bs-toggle="tab" href="#penilaian-kendiri-tab" role="tab" aria-controls="penilaian-kendiri-tab" aria-selected="true">
+                <a class="nav-link text-uppercase active fw-bolder" id="penilaian-kendiri-tab" data-bs-toggle="tab" href="#penilaian-kendiri-tab" role="tab" aria-controls="penilaian-kendiri-tab" aria-selected="true">
                     Penilaian Kendiri
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link fw-bolder" id="verifikasi-tab" data-bs-toggle="tab" href="#verifikasi-tab" role="tab" aria-controls="verifikasi-tab" aria-selected="false">
+                <a class="nav-link text-uppercase fw-bolder" id="verifikasi-tab" data-bs-toggle="tab" href="#verifikasi-tab" role="tab" aria-controls="verifikasi-tab" aria-selected="false">
                     Verfikasi
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link fw-bolder" id="validasi-tab" data-bs-toggle="tab" href="#validasi-tab" role="tab" aria-controls="validasi-tab" aria-selected="false">
+                <a class="nav-link text-uppercase fw-bolder" id="validasi-tab" data-bs-toggle="tab" href="#validasi-tab" role="tab" aria-controls="validasi-tab" aria-selected="false">
                     Validasi
                 </a>
             </li>
         </ul>
-        
+
         <div class="tab-content" id="tab-content">
             <div class="tab-pane show active" id="penilaian-kendiri-tab" role="tabpanel" aria-labelledby="penilaian-kendiri-tab">
                 @include('instrumen_update.tetapan-tarikh.tab')
