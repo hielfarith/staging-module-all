@@ -88,7 +88,6 @@ I-KePS
 @section('script')
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    alert('hello');
     function HandlePemeriksaanKeselamatan() {
         var pemeriksaanKeselamatan = $('#pemeriksaan_keselamatan').val();
             if (pemeriksaanKeselamatan == '1') {
