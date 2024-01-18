@@ -10,7 +10,7 @@ Instrumen
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Instrumen </a>
+    <a href="#"> Sedia Ada </a>
 </li>
 
 @endsection
@@ -18,11 +18,11 @@ Instrumen
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title fw-bolder"> Senarai Instrumen </h4>
+        <h4 class="card-title fw-bolder"> Senarai Sedia Ada  </h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'instrumen', 'model' => 'instrumen']) }}">
-                <i class="fa-solid fa-add"></i> Tambah Instrumen
+            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'sedia-ada']) }}">
+                <i class="fa-solid fa-add"></i> Tambah Sedia Ada 
             </a>
         </div>
     </div>
@@ -124,7 +124,7 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
                     d.pengguna_instrumen = $('#pengguna_instrumen').val();
                 },
             },
-            columns: [ 
+            columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                 {
                     data: "nama_instrumen",

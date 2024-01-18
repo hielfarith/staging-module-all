@@ -65,44 +65,15 @@ TETAPAN Item
                         <span class="text-danger">*</span>
                     </label>
                     <label>
-                        <input type="radio" name="status_item" class="form-check-input" value="1"> 1
+                        <input type="radio" name="status_item" class="form-check-input" value="Belum Set"> Belum Set
                     </label>
 
                      <label>
-                        <input type="radio" name="status_item" class="form-check-input" value="2"> 2
+                        <input type="radio" name="status_item" class="form-check-input" value="Telah Set"> Telah Set
                     </label>
                 </div>
-
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Belum Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="belum_set" required >
-                        <option value="" hidden>Sila pilih</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </div>
-
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Telah Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="telah_set" id="telah_set" required>
-                            <option value="" hidden>Sila Pilih</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                    </select>
-                </div>
-
-                 <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tetapan Skala
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" name="tetapan_skala" class="form-control" required>
-                </div>
-
-                 <div class="col-md-3 mb-1">
+                
+                 <div class="col-md-2 mb-1">
                     <label class="fw-bold form-label">Julat Skala
                         <span class="text-danger">*</span>
                     </label>
@@ -113,6 +84,14 @@ TETAPAN Item
                         <input type="radio" name="julat_skala" class="form-check-input" required value="2">2
                     </label>
                 </div>
+
+                 <div class="col-md-3 mb-1">
+                    <label class="fw-bold form-label">Tetapan Skala
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="tetapan_skala" class="form-control" required>
+                </div>
+
 
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Wajaran Skala

@@ -27,6 +27,8 @@ class InstrumenController extends Controller
             return view('instrumen_update.tetapan-aspek.form');
         } elseif ($request->type == 'tetapan-item') {
             return view('instrumen_update.tetapan-item.form');
+        } elseif ($request->type == 'sedia-ada') {
+            return view('instrumen_update.sedia-ada.form');
         }
     }
 
@@ -34,8 +36,10 @@ class InstrumenController extends Controller
          DB::beginTransaction();
         try {           
             $input = $request->input();
-
             $input['status'] = 1;
+            if (!isset($input['type'])) {
+                $input['type'] = 'SKPAK';
+            }
             if (array_key_exists('instrumen_id', $input)) {
                 $InstrumenSkpakSpksIkeps = InstrumenSkpakSpksIkeps::where('id', $input['instrumen_id'])->first();
                 unset($input['instrumen_id']);
@@ -58,7 +62,7 @@ class InstrumenController extends Controller
     public function listInstrumenSkpak(Request $request)
     {
         if($request->ajax()) {
-            $instrumenList = InstrumenSkpakSpksIkeps::where('id', '!=', 0);
+            $instrumenList = InstrumenSkpakSpksIkeps::where('id', '!=', 0)->where('type', 'SKPAK');
             if ($request->has('nama_instrumen') && !empty($request->input('nama_instrumen'))) {
                 $instrumenList->where('nama_instrumen', 'LIKE' ,'%'.$request->input('nama_instrumen').'%');
             }
@@ -69,6 +73,7 @@ class InstrumenController extends Controller
                 $instrumenList->where('pengguna_instrumen','LIKE' ,'%'.$request->input('pengguna_instrumen').'%');
             }
             return Datatables::of($instrumenList)
+                ->addIndexColumn()
                 ->editColumn('nama_instrumen', function ($instrumenList) {
                     return $instrumenList->nama_instrumen;
                 })
@@ -389,5 +394,51 @@ class InstrumenController extends Controller
         DB::commit();
         return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya"]);
  
+    }
+
+    public function listSediaAda(Request $request)
+    {
+
+        if($request->ajax()) {
+            $instrumenList = InstrumenSkpakSpksIkeps::where('id', '!=', 0)->where('type', 'SEDIA');;
+            if ($request->has('nama_instrumen') && !empty($request->input('nama_instrumen'))) {
+                $instrumenList->where('nama_instrumen', 'LIKE' ,'%'.$request->input('nama_instrumen').'%');
+            }
+            if ($request->has('tujuan_instrumen') && !empty($request->input('tujuan_instrumen'))) {
+                $instrumenList->where('tujuan_instrumen','LIKE' ,'%'.$request->input('tujuan_instrumen').'%');
+            }
+            if ($request->has('pengguna_instrumen') && !empty($request->input('pengguna_instrumen'))) {
+                $instrumenList->where('pengguna_instrumen','LIKE' ,'%'.$request->input('pengguna_instrumen').'%');
+            }
+            return Datatables::of($instrumenList)
+                ->addIndexColumn()
+                ->editColumn('nama_instrumen', function ($instrumenList) {
+                    return $instrumenList->nama_instrumen;
+                })
+                ->editColumn('tujuan_instrumen', function ($instrumenList) {
+                    return $instrumenList->tujuan_instrumen;
+                })
+                ->editColumn('pengguna_instrumen', function ($instrumenList) {
+                    return $instrumenList->pengguna_instrumen;
+                })
+                ->editColumn('tarikh_kuatkuasa', function ($instrumenList) {
+                    return $instrumenList->tarikh_kuatkuasa;
+                })
+                ->editColumn('action', function ($instrumenList) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatInstrumen('.$instrumenList->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatInstrumenEdit('.$instrumenList->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('instrumen_update.sedia-ada.list');
     }
 }

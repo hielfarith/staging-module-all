@@ -1,72 +1,43 @@
 <form id="formitem" novalidate="novalidate">
             <div class="row">
-                <h5 class="mb-2 fw-bold">
+                <h5 class="mb-2 fw-bolder">
                     <span class="badge rounded-pill badge-light-primary">
                         Maklumat Tetapan Item
                     </span>
                 </h5>
                 <?php
-                    $type = Request::segment(4);
+                    $type = 'SKPAK';
                 ?>
                 <input type="hidden" name="type" id="type" value="{{$type}}">
                 <div class="col-md-9 mb-1">
-                    <label class="fw-bold form-label">Nama Item
+                    <label class="fw-bolder form-label">Nama Item
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control" name="nama_item" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
                 </div>
 
                 <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tarikh Kuatkuasa Item
+                    <label class="fw-bolder form-label">Tarikh Kuatkuasa Item
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa_item" required>
                 </div>
 
                 <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Status Item:
+                    <label class="fw-bolder form-label">Status Item:
                         <span class="text-danger">*</span>
                     </label>
                     <label>
-                        <input type="radio" name="status_item" class="form-check-input" value="1"> 1
+                        <input type="radio" name="status_item" class="form-check-input" value="Belum Set"> Belum Set
                     </label>
 
                      <label>
-                        <input type="radio" name="status_item" class="form-check-input" value="2"> 2
+                        <input type="radio" name="status_item" class="form-check-input" value="Telah Set">Telah Set
                     </label>
                 </div>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Belum Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="belum_set" required >
-                        <option value="" hidden>Sila pilih</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </div>
-
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Telah Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="telah_set" id="telah_set" required>
-                            <option value="" hidden>Sila Pilih</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                    </select>
-                </div>
-
-                 <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tetapan Skala
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" name="tetapan_skala" class="form-control" required>
-                </div>
-
-                 <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Julat Skala
+                <div class="col-md-2 mb-1">
+                    <label class="fw-bolder form-label">Julat Skala
                         <span class="text-danger">*</span>
                     </label>
                     <label>
@@ -77,8 +48,17 @@
                     </label>
                 </div>
 
+
+                 <div class="col-md-3 mb-1">
+                    <label class="fw-bolder form-label">Tetapan Skala
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="tetapan_skala" class="form-control" required>
+                </div>
+
+                
                 <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Wajaran Skala
+                    <label class="fw-bolder form-label">Wajaran Skala
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" name="wajaran_skala" class="form-control" required>
@@ -89,7 +69,7 @@
                 @if($type == 'SPKS')
                 
                 <div class="col-md-3 mb-1">
-                <label class="fw-bold form-label">Tindakan oleh siapa
+                <label class="fw-bolder form-label">Tindakan oleh siapa
                     <span class="text-danger">*</span>
                 </label>
                     <select class="form-control select2" name="tindakan_oleh_siapa" id="tindakan_oleh_siapa" required>
@@ -100,7 +80,7 @@
                 </div>
 
                 <div class="col-md-3 mb-1">
-                <label class="fw-bold form-label">Role Aspek
+                <label class="fw-bolder form-label">Role Aspek
                     <span class="text-danger">*</span>
                 </label>
                     <select class="form-control select2" name="role_aspek" id="role_aspek" required>
@@ -111,7 +91,7 @@
                 </div>
 
                 <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Markah Skala Mandatori Catatan
+                    <label class="fw-bolder form-label">Markah Skala Mandatori Catatan
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" name="markah_skala_mandatori_catatan" class="form-control" required>

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('verifikasi_oleh');
             $table->string('validasi_oleh');
             $table->string('perakuan_oleh');
-            $table->string('tempoh_bagi_setiap_proses');
+            $table->string('tempoh_bagi_setiap_proses')->nullable();
             $table->string('instrumen_perlu_diisi')->nullable();
             $table->string('tarikh_kuatkuasa');
             $table->tinyInteger('tetapan_keperluan_pengemaskinian_data_terkini');
@@ -36,7 +36,9 @@ return new class extends Migration
             $table->string('tempoh_verifikasi_lain');
             $table->string('tempoh_validasi');
             $table->string('tempoh_validasi_lain');
+            $table->string('tempoh_perakuan');
             $table->string('tempoh_perakuan_lain');
+            $table->string('type');
             $table->timestamps();
         });
     }

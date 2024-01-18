@@ -79,12 +79,6 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap"> List Instrumen New</span>
-                        </a>
-                    </li>
-
                     <!--  <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Aspek</span>
@@ -121,11 +115,7 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate text-wrap"> Tambah Instrumen </span>
                         </a>
                     </li>
-                    <li class="{{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
-                        <a href="{{ route('show_all_forms') }}" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap"> Senarai Instrumen </span>
-                        </a>
-                    </li>
+                   
 
                     <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">
                         <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
@@ -160,10 +150,30 @@ $configData = Helper::applClasses();
              <li class="nav-item {{ request()->is('admin/ikeps*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate text-wrap"> Pengurusan I-KePS </span>
+                    <span class="menu-title text-truncate text-wrap"> Pengurusan Instrumen I-keps </span>
                 </a>
                 <ul class="nav">
-                       <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
+                        </a>
+                    </li>
+
+                     <li class="{{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
+                        <a href="{{ route('show_all_forms') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Senarai Instrumen </span>
+                        </a>
+                    </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.senarai-sedia-ada'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-sedia-ada') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Senarai Sedia Ada </span>
+                        </a>
+                    </li>
+
+                    
+                    <!--    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
                         </a>
@@ -179,7 +189,7 @@ $configData = Helper::applClasses();
                         <a href="{{ route('admin.instrumen.tetapan-tarikh-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Pengurusan Tarikh Instrumen </span>
                         </a>
-                    </li>
+                    </li> -->
 
 
                 </ul>

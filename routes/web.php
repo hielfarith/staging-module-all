@@ -242,7 +242,7 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
 
  //pengurusan controller
 Route::controller(InstrumenController::class)->prefix('instrumen')->middleware(['web'])->group(function () {
-    Route::get('create/{type}/{model}','viewForm')->name('admin.instrumen.form');
+    Route::get('tambha/{type}/{model?}','viewForm')->name('admin.instrumen.form');
     Route::post('instrumenskpak-submit','saveSkpak')->name('admin.instrumen.instrumenskpak-submit');
     Route::get('instrumenskpak-list','listInstrumenSkpak')->name('admin.instrumen.instrumenskpak-list');
     Route::post('instrumenskpak-view/{id}/{type}','viewInstrumenSkpak')->name('admin.instrumen.instrumenskpak-view');
@@ -256,6 +256,8 @@ Route::controller(InstrumenController::class)->prefix('instrumen')->middleware([
     Route::get('tetapan-item-list','listTetapanItem')->name('admin.instrumen.tetapan-item-list');
     Route::get('tetapan-item-sub-list','listTetapanItem')->name('admin.instrumen.tetapan-item-sub-list');
     Route::post('tetapan-item-view/{id}/{type}','viewTetapanItem')->name('admin.instrumen.tetapan-item-view');
+
+    Route::get('senarai-sedia-ada','listSediaAda')->name('admin.instrumen.senarai-sedia-ada');
 
 });
 

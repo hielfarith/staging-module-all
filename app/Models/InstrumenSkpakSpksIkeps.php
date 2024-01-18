@@ -10,7 +10,7 @@ class InstrumenSkpakSpksIkeps extends Model
     use HasFactory;
 
     public $table = 'instrumen_skpak_spks_ikep';
-        /**
+    /**
      * The attributes that are mass assignable
      * @var array
      */
@@ -36,6 +36,8 @@ class InstrumenSkpakSpksIkeps extends Model
             'tempoh_verifikasi_lain',
             'tempoh_validasi',
             'tempoh_validasi_lain',
-            'tempoh_perakuan_lain'
+            'tempoh_perakuan',
+            'tempoh_perakuan_lain',
+            'type'
         ];
 }

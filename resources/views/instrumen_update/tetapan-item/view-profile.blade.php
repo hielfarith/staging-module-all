@@ -32,44 +32,15 @@
                         <span class="text-danger">*</span>
                     </label>
                     <label>
-                        <input type="radio" name="status_item" class="form-check-input" value="1" @if($item->status_item == '1') checked @endif {{$disabled}}> 1
+                        <input type="radio" name="status_item" class="form-check-input" value="Belum Set" @if($item->status_item == 'Belum Set') checked @endif {{$disabled}}> Belum Set
                     </label>
 
                      <label>
-                        <input type="radio" name="status_item" class="form-check-input" value="2" @if($item->status_item == '2') checked @endif {{$disabled}}> 2
+                        <input type="radio" name="status_item" class="form-check-input" value="Telah Set" @if($item->status_item == 'Telah Set') checked @endif {{$disabled}}> Telah Set
                     </label>
                 </div>
-
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Belum Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="belum_set" required {{$disabled}}>
-                        <option value="" hidden>Sila pilih</option>
-                        <option value="1"  @if($item->belum_set == '1') selected @endif>1</option>
-                        <option value="2"  @if($item->belum_set == '2') selected @endif>2</option>
-                    </select>
-                </div>
-
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Telah Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="telah_set" id="telah_set" required {{$disabled}}>
-                            <option value="" hidden>Sila Pilih</option>
-                            <option value="1"  @if($item->telah_set == '1') selected @endif>1</option>
-                            <option value="2"  @if($item->telah_set == '2') selected @endif>2</option>
-                    </select>
-                </div>
-
-                 <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Tetapan Skala
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" name="tetapan_skala" class="form-control" required value="{{$item->tetapan_skala}}" {{$readonly}}>
-                </div>
-
-                 <div class="col-md-3 mb-1">
+ 
+                 <div class="col-md-2 mb-1">
                     <label class="fw-bold form-label">Julat Skala
                         <span class="text-danger">*</span>
                     </label>
@@ -79,6 +50,13 @@
                      <label>
                         <input type="radio" name="julat_skala" class="form-check-input" required value="2"  @if($item->julat_skala == '2') checked @endif {{$disabled}}>2
                     </label>
+                </div>
+
+                <div class="col-md-3 mb-1">
+                    <label class="fw-bold form-label">Tetapan Skala
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="tetapan_skala" class="form-control" required value="{{$item->tetapan_skala}}" {{$readonly}}>
                 </div>
 
                 <div class="col-md-3 mb-1">

@@ -48,10 +48,10 @@
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_pengisian" required>
                             <option value="">Sila Pilih</option>
-                            <option value="Monthly">Monthly</option>
-                            <option value="Weekly">Weekly</option>
+                            <option value="Bulan">Bulan</option>
+                            <option value="Minggu">Minggu</option>
                         </select>
-                        <input type="text" class="form-control" name="tempoh_pengisian_lain" required>
+                        <input type="text" class="form-control" name="tempoh_pengisian_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                     </div>
                 </div>
 
@@ -73,10 +73,10 @@
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_pengeshan" required >
                             <option value="">Sila Pilih</option>
-                            <option value="Monthly">Monthly</option>
-                            <option value="Weekly">Weekly</option>
+                            <option value="Bulan">Bulan</option>
+                            <option value="Minggu">Minggu</option>
                     </select>
-                        <input type="text" class="form-control" name="tempoh_pengeshan_lain" required>
+                        <input type="text" class="form-control" name="tempoh_pengeshan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                     </div>
                 </div>
 
@@ -98,10 +98,10 @@
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_verifikasi" required >
                             <option value="">Sila Pilih</option>
-                            <option value="Monthly">Monthly</option>
-                            <option value="Weekly">Weekly</option>
+                            <option value="Bulan">Bulan</option>
+                            <option value="Minggu">Minggu</option>
                     </select>
-                    <input type="text" class="form-control" name="tempoh_verifikasi_lain" required>
+                    <input type="text" class="form-control" name="tempoh_verifikasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                     </div>
                 </div>
 
@@ -118,22 +118,22 @@
                     </select>
                 </div>
 
-                  <div class="col-md-3 mb-1">
+                <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label"> Tempoh Validasi Oleh
                         <span class="text-danger">*</span>
                     </label>
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_validasi" required >
                             <option value="">Sila Pilih</option>
-                            <option value="Monthly">Monthly</option>
-                            <option value="Weekly">Weekly</option>
+                            <option value="Bulan">Bulan</option>
+                            <option value="Minggu">Minggu</option>
                     </select>
-                    <input type="text" class="form-control" name="tempoh_validasi_lain" required>
+                    <input type="text" class="form-control" name="tempoh_validasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                     </div>
                 </div>
 
                 <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Perakuan Oleh : 
+                    <label class="fw-bold form-label">Perakuan Oleh
                         <span class="text-danger">*</span>
                     </label>
                     <select class="form-control select2" name="perakuan_oleh"  required>
@@ -150,18 +150,18 @@
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_perakuan" required >
                             <option value="">Sila Pilih</option>
-                            <option value="Monthly">Monthly</option>
-                            <option value="Weekly">Weekly</option>
+                            <option value="Bulan">Bulan</option>
+                            <option value="Minggu">Minggu</option>
                     </select>
-                    <input type="text" class="form-control" name="tempoh_perakuan_lain" required>
+                    <input type="text" class="form-control" name="tempoh_perakuan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                     </div>
                 </div>
 
                  <div class="col-md-4 mb-1">
-                    <label class="fw-bold form-label">Instrumen perlu diisi : [Pilihan setiap xx bulan]
+                    <label class="fw-bold form-label">Instrumen perlu diisi
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="instrumen_perlu_diisi" required>
+                    <input type="text" class="form-control" name="instrumen_perlu_diisi" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                 </div>
 
                  <div class="col-md-4 mb-1">
@@ -190,6 +190,14 @@
 @section('script')
 
 <script type="text/javascript">
+
+   $(document).ready(function() {
+    $('.select2').select2({
+      placeholder: 'Sila Pilih',
+      allowClear: true // Adds a clear button to the dropdown
+    });
+  });
+
     $('#forminstrumenskpak').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('forminstrumenskpak'));
