@@ -18,40 +18,6 @@
             opacity: 0.5;
             background-image: url('{{ asset('images/bg_sppip.jpg') }}');
         }
-
-        a.ViewProposalButton {
-            background-color: #1c87c9;
-            -webkit-border-radius: 60px;
-            border-radius: 60px;
-            border: none;
-            color: #eeeeee;
-            cursor: pointer;
-            display: inline-block;
-            padding: 5px 15px;
-            text-align: center;
-            text-decoration: none;
-        }
-
-        @keyframes glowing {
-            0% {
-                background-color: #0d0f65;
-                box-shadow: 0 0 5px #0d0f65;
-            }
-
-            50% {
-                background-color: #0d0f65;
-                box-shadow: 0 0 20px #0d0f65;
-            }
-
-            100% {
-                background-color: #0d0f65;
-                box-shadow: 0 0 5px #0d0f65;
-            }
-        }
-
-        a.ViewProposalButton {
-            animation: glowing 1300ms infinite;
-        }
     </style>
 @endsection
 
@@ -69,11 +35,6 @@
                         <h2 class="mt-2 card-title fw-bold mb-1">
                             SISTEM PEMERIKSAAN DAN PENILAIAN INSTITUSI PENDIDIKAN
                         </h2>
-                        <p class="text-center mt-2 mt-2">
-                            <a class="ViewProposalButton" target="_blank" href="{{ url('https://online.anyflip.com/akkxw/gdpq/mobile/index.html') }}">
-                                <span class="fw-bolder ViewProposalButton">View Proposal</span>
-                            </a>
-                        </p>
 
                         <p class="card-text mb-2">Please sign-in to your account</p>
 
