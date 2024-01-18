@@ -1,4 +1,5 @@
 <form id="formjurulaith" novalidate="novalidate">
+    <input type="hidden" name="jurulatih_id" value="{{$jurulatih->id}}"> 
 <div class="row">
     <h5 class="mb-2 fw-bold">
         <span class="badge rounded-pill badge-light-primary">
@@ -97,8 +98,8 @@
         </label>
         <select class="form-control select2" name="gred_jawatan" id="gred_jawatan" required {{$disabled}}>
             <option value="" hidden>Gred</option>
-            <option value="1" @if($jurulatih->gred_jawatan == '1')  @endif>1</option>
-            <option value="2" @if($jurulatih->gred_jawatan == '1')  @endif>2</option>
+            <option value="1" @if($jurulatih->gred_jawatan == '1') selected @endif>1</option>
+            <option value="2" @if($jurulatih->gred_jawatan == '2') selected @endif>2</option>
         </select>
     </div>
 
@@ -143,11 +144,12 @@
         </label>
         <?php
             $decodedSukan = json_decode($jurulatih->jurulaith_sukan, true);
+            $decodedSukan = [1,2,3,4];
         ?>
         <select name="jurulaith_sukan[]" id="" class="form-control select2" multiple required {{$disabled}}>
             <option value="" hidden>Jurulatih Sukan</option>
             @foreach ($sukans as $id => $sukan)
-                <option value="{{ $id }}" @if(in_array($id, $decodedSukan))  @endif>{{ $sukan }}</option>
+                <option value="{{ $id }}" @if(in_array($id, $decodedSukan)) selected @endif>{{ $sukan }}</option>
             @endforeach
         </select>
     </div>
@@ -192,7 +194,7 @@
         <select name="negeri" id="" class="form-control select2" required {{$disabled}}>
             <option value="" hidden>Negeri</option>
             @foreach ($negeris as $negeri)
-                <option value="{{ $negeri->name }}" @if($jurulatih->negeri == $negeri->name)  @endif>{{ $negeri->name }}</option>
+                <option value="{{ $negeri->name }}" @if($jurulatih->negeri == $negeri->name) selected  @endif>{{ $negeri->name }}</option>
             @endforeach
         </select>
     </div>
@@ -272,7 +274,7 @@
         @if (!empty($jurulatih->sijil_path))
             <a href="{{$url}}" class="btn btn-primary">Download File</a>
         @endif
-        <input type="file" class="form-control" name="sijil_path" required {{$disabled}}>
+        <input type="file" class="form-control" name="sijil_path" {{$disabled}}>
     </div>
 
     <hr>
@@ -307,7 +309,7 @@
             <a href="{{$url}}" class="btn btn-primary">Download File</a>
         @endif
 
-        <input type="file" class="form-control" name="sains_sukan_sijil_path" required {{$disabled}}>
+        <input type="file" class="form-control" name="sains_sukan_sijil_path" {{$disabled}}>
     </div>
 
     <hr>
@@ -342,7 +344,7 @@
             <a href="{{$url}}" class="btn btn-primary">Download File</a>
         @endif
 
-        <input type="file" class="form-control" name="spkk_sijil_path" required {{$disabled}}>
+        <input type="file" class="form-control" name="spkk_sijil_path" {{$disabled}}>
     </div>
 
     <hr>
@@ -433,7 +435,7 @@ $('#formjurulaith').submit(function(event) {
         });
 
         formData.forEach(function(value, name) {
-            var element = $("input[name="+name+"]");
+            var element = $("input[name='"+name+"']");
             if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
                 if (element.val() == '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');

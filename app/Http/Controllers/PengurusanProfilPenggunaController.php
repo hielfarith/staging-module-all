@@ -768,10 +768,18 @@ class PengurusanProfilPenggunaController extends Controller
 	                $input[$key] = $path;
 	            }
 	        }
-
 			if (array_key_exists('jurulatih_id', $input)) {
 	        	$jurulatih = Jurulatih::where('id', $input['jurulatih_id'])->first();
 	        	unset($input['jurulatih_id']);
+	        	if (!isset($input['sijil_path'])) {
+	        		$input['sijil_path'] = $jurulatih->sijil_path;
+	        	}
+	        	if (!isset($input['sains_sukan_sijil_path'])) {
+	        		$input['sains_sukan_sijil_path'] = $jurulatih->sains_sukan_sijil_path;
+	        	}
+	        	if (!isset($input['spkk_sijil_path'])) {
+	        		$input['spkk_sijil_path'] = $jurulatih->spkk_sijil_path;
+	        	}
 	        	$jurulatih->update($input);
 	        } else {
 	        	$jurulatih = new Jurulatih;
