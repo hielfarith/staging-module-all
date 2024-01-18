@@ -24,7 +24,7 @@ Pengurusan Jurulatih
         <h4 class="card-title fw-bolder"> Senarai Jurulatih </h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.penggunaform') }}">
+            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.internal.jurulatihform') }}">
                 <i class="fa-solid fa-add"></i> Tambah Jurulatih
             </a>
         </div>
