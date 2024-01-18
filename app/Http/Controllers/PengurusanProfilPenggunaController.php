@@ -16,6 +16,7 @@ use App\Models\AhliJawatankuasaKerja;
 use App\Models\AhliJawatankuasaTertinggi;
 use App\Models\Master\MasterCountry;
 use App\Models\PengerusiPengetuaGuru;
+use App\Models\Jurulatih;
 
 class PengurusanProfilPenggunaController extends Controller
 {
@@ -671,13 +672,118 @@ class PengurusanProfilPenggunaController extends Controller
 
     public function listJurulatih(Request $request)
 	{
+		if($request->ajax()) {
+
+	        $Jurulatih = Jurulatih::where('id', '!=', 0);
+	        if ($request->has('nama_pengguna') && !empty($request->input('nama_pengguna'))) {
+		        $Jurulatih->where('nama_pengguna', 'like','%'. $request->input('nama_pengguna'). '%');
+		    }
+		    if ($request->has('no_kad') && !empty($request->input('no_kad'))) {
+		        $Jurulatih->where('no_kad', 'like','%'. $request->input('no_kad') . '%');
+		    }
+		    if ($request->has('gred_jawatan') && !empty($request->input('gred_jawatan'))) {
+		        $Jurulatih->where('gred_jawatan','like','%'.  $request->input('gred_jawatan'). '%');
+		    }
+
+	        return Datatables::of($Jurulatih)
+	            ->editColumn('nama_pengguna', function ($Jurulatih) {
+	                return $Jurulatih->nama_pengguna;
+	            })
+	            ->editColumn('no_kad', function ($Jurulatih) {
+	                return $Jurulatih->no_kad;
+	            })
+	            ->editColumn('gred_jawatan', function ($Jurulatih) {
+	                return $Jurulatih->gred_jawatan;
+	            })
+	            ->editColumn('tarikh_mula', function ($Jurulatih) {
+	                return $Jurulatih->tarikh_mula;
+	            })
+	            ->editColumn('action', function ($Jurulatih) {
+	                $button = "";
+	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+	                $button .= '<a onclick="maklumatJurulatih(' . $Jurulatih->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+	                 $button .= '<a onclick="maklumatJurulatihEdit(' . $Jurulatih->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+
+	                $button .= "</div>";
+
+	                return $button;
+	            })
+	            ->rawColumns(['action'])
+	            ->make(true);
+    	}
+
         return view('pengurusan.jurulatih.list');
     }
 
     public function viewJurulatih(Request $request)
     {
-        return view('pengurusan.jurulatih.view-profile');
+    	$negaras = MasterCountry::all();
+        $jantinas = [1=> 'Lelaki', 2=> 'Perempuan'];
+        $kaums = [1=> 'Melayu', 2=> 'Cina', 3=> 'India', 4=> 'Bumiputera Sabah', 5=> 'Bumiputera Sarawak', 6=> 'Lain-lain'];
+        $negeris = MasterState::all();
+        $sukans = [ 1 => 'Bola Sepak',
+                    2 => 'Bola Keranjang',
+                    3 => 'Tenis',
+                    4 => 'Renang',
+                    5 => 'Badminton',
+                    6 => 'Larian',
+                    7 => 'Gimnastik',
+                    8 => 'Bola Tampar',
+                    9 => 'Berbasikal',
+                    10 => 'Ping Pong',
+                ];
+
+        $jurulatih = Jurulatih::where('id', $request->id)->first();
+        if ($request->type == 'view') {
+    		$readonly = 'readonly';
+    		$disabled = 'disabled';
+    	} else {
+    		$disabled = '';
+    		$readonly = '';
+    	}
+
+        return view('pengurusan.jurulatih.view-profile', compact('negaras','jantinas','kaums','negeris', 'sukans', 'readonly', 'disabled', 'jurulatih'));
     }
+
+    public function saveJurulatih(Request $request)
+	{
+		DB::beginTransaction();
+        try {
+            $input = $request->input();
+            $input['bandar'] = 'test';
+            $inputFiles = $request->file();
+
+	        if (count($inputFiles) > 0) {
+	            foreach ($inputFiles as $key => $value) {
+	                $filenameWithExt = $request->file($key)->getClientOriginalName();
+	                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+	                $extension = $request->file($key)->getClientOriginalExtension();
+	                $fileNameToStore = $filename.'.'.$extension;
+	                $path = $request->file($key)->storeAs('public/uploads/'.$key,$fileNameToStore);
+	                $input[$key] = $path;
+	            }
+	        }
+
+			if (array_key_exists('jurulatih_id', $input)) {
+	        	$jurulatih = Jurulatih::where('id', $input['jurulatih_id'])->first();
+	        	unset($input['jurulatih_id']);
+	        	$jurulatih->update($input);
+	        } else {
+	        	$jurulatih = new Jurulatih;
+	    		$jurulatih->create($input);
+	        }
+		      
+          DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+	}
 
 }
 
