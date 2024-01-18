@@ -27,37 +27,41 @@ $configData = Helper::applClasses();
             <li class="nav-item {{ in_array(request()->route()->getName(),['home'])? 'menu-open': '' }}">
                 <a href="{{ route('home') }}" class="d-flex align-items-center">
                     <i data-feather="home"></i>
-                    <span class="menu-title text-truncate">{{ __('msg.home') }} </span>
+                    <span class="menu-title text-truncate text-wrap">{{ __('msg.home') }} </span>
                 </a>
             </li>
 
             @hasanyrole('superadmin|admin')
             <li class="navigation-header">
-                <span> Pengurusan Modul</span>
+                <span> Pengurusan Modul </span>
             </li>
             <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Modul/ Instrumen </span>
+                    <span class="menu-title text-truncate"> Modul </span>
                 </a>
-                <ul class="nav">
+                <ul class="menu-content">
                     <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
-                        <a href="{{ route('ikeps_baru') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Instrument I-KePS </span>
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate">
+                                Instrument I-KePS
+                            </span>
                         </a>
 
-                        <ul class="nav">
-                            <li class="{{ in_array(request()->route()->getName(),['ikeps_baru'])? 'active': '' }}">
-                                <a href="{{ route('ikeps_baru') }}" class="nav-link">
-                                    <i data-feather="circle"></i>
-                                    <span class="menu-title text-truncate"> Pengisian I-KePS </span>
+                        <ul class="menu-content">
+                            <li class="{{ in_array(request()->route()->getName(), ['ikeps_baru']) ? 'active' : '' }}">
+                                <a href="{{ route('ikeps_baru') }}" class="d-flex align-items-center">
+                                    <span class="menu-title text-truncate">
+                                        Pengisian I-KePS
+                                    </span>
                                 </a>
                             </li>
-                            <li class="{{ in_array(request()->route()->getName(),['ringkasan_ikeps'])? 'active': '' }}">
-                                <a href="{{ route('ringkasan_ikeps') }}" class="nav-link">
-                                    <i data-feather="circle"></i>
-                                    <span class="menu-title text-truncate"> Ringkasan Maklumat </span>
+
+                            <li class="{{ in_array(request()->route()->getName(), ['ringkasan_ikeps']) ? 'active' : '' }}">
+                                <a href="{{ route('ringkasan_ikeps') }}" class="d-flex align-items-center">
+                                    <span class="menu-title text-truncate">
+                                        Ringkasan Maklumat
+                                    </span>
                                 </a>
                             </li>
                         </ul>
@@ -71,91 +75,78 @@ $configData = Helper::applClasses();
             <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Instrumen </span>
+                    <span class="menu-title text-truncate text-wrap"> Instrumen </span>
                 </a>
                 <ul class="nav">
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> List Instrumen New</span>
+                            <span class="menu-title text-truncate text-wrap"> List Instrumen New</span>
                         </a>
                     </li>
 
                     <!--  <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Tetapan Aspek</span>
+                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Aspek</span>
                         </a>
                     </li>
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-ikeps-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Tetapan Aspek Ikeps</span>
+                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Aspek Ikeps</span>
                         </a>
                     </li> -->
 
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-sub-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-sub-list') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Tetapan Sub Aspek</span>
+                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Sub Aspek</span>
                         </a>
                     </li>
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-item-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-item-list') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Tetapan Item</span>
+                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Item</span>
                         </a>
                     </li>
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-item-sub-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-item-sub-list') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Tetapan Item Spks</span>
+                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Item SKPS</span>
                         </a>
                     </li>
 
                     <li class="{{ in_array(request()->route()->getName(),['instrumen_baru'])? 'active': '' }}">
                         <a href="{{ route('instrumen_baru') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Tambah Instrumen </span>
+                            <span class="menu-title text-truncate text-wrap"> Tambah Instrumen </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
                         <a href="{{ route('show_all_forms') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Instrumen </span>
+                            <span class="menu-title text-truncate text-wrap"> Senarai Instrumen </span>
                         </a>
                     </li>
 
                     <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">
                         <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Instrumen Dijawab </span>
+                            <span class="menu-title text-truncate text-wrap"> Instrumen Dijawab </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['pilih_instrumen'])? 'active': '' }}">
                         <a href="{{ route('pilih_instrumen') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Jawab Instrumen </span>
+                            <span class="menu-title text-truncate text-wrap"> Jawab Instrumen </span>
                         </a>
                     </li>
                 </ul>
             </li>
 
-            <!-- // new menu -->
-
-<!-- 
-            <li class="navigation-header">
+            <!-- <li class="navigation-header">
                 <span> SKIPS</span>
             </li>
              <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> SKIPS </span>
+                    <span class="menu-title text-truncate text-wrap"> SKIPS </span>
                 </a>
                 <ul class="nav">
 
@@ -164,32 +155,29 @@ $configData = Helper::applClasses();
             </li> -->
 
             <li class="navigation-header">
-                <span>  iKEPS</span>
+                <span>  Modul I-KePS </span>
             </li>
              <li class="nav-item {{ request()->is('admin/ikeps*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> iKEPS </span>
+                    <span class="menu-title text-truncate text-wrap"> Pengurusan I-KePS </span>
                 </a>
                 <ul class="nav">
                        <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Tetapan Aspek</span>
+                            <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
                         </a>
                     </li>
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-ikeps-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Tetapan Aspek Ikeps</span>
+                            <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek I-KePS </span>
                         </a>
                     </li>
 
                      <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-tarikh-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-tarikh-list') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Senarai Tetapan Tarikh Instrumen</span>
+                            <span class="menu-title text-truncate text-wrap"> Pengurusan Tarikh Instrumen </span>
                         </a>
                     </li>
 
@@ -197,13 +185,13 @@ $configData = Helper::applClasses();
                 </ul>
             </li>
 
-      <!--       <li class="navigation-header">
+            <!-- <li class="navigation-header">
                 <span> SKPAK</span>
             </li>
              <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> SKPAK </span>
+                    <span class="menu-title text-truncate text-wrap"> SKPAK </span>
                 </a>
                 <ul class="nav">
 
@@ -217,7 +205,7 @@ $configData = Helper::applClasses();
              <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> SPKS </span>
+                    <span class="menu-title text-truncate text-wrap"> SPKS </span>
                 </a>
                 <ul class="nav">
 
@@ -233,54 +221,47 @@ $configData = Helper::applClasses();
             <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Senarai Pengguna </span>
+                    <span class="menu-title text-truncate text-wrap"> Senarai Pengguna </span>
                 </a>
                 <ul class="nav">
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.jurulatihlist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.jurulatihlist') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Jurulatih </span>
+                            <span class="menu-title text-truncate text-wrap"> Jurulatih </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penggunalist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penggunalist') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Ketua Taska </span>
+                            <span class="menu-title text-truncate text-wrap"> Ketua Taska </span>
                         </a>
                     </li>
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.penilailist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.penilailist') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Panel Penilai </span>
+                            <span class="menu-title text-truncate text-wrap"> Panel Penilai </span>
                         </a>
                     </li>
 
                     <li class="{{ in_array(request()->route()->getName(),['admin.internal.agensilist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.agensilist') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Ketua Agensi </span>
+                            <span class="menu-title text-truncate text-wrap"> Ketua Agensi </span>
                         </a>
                     </li>
 
                      <li class="{{ in_array(request()->route()->getName(),['admin.internal.jawatankuasalist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.jawatankuasalist') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Ahli Jawatan Kerja </span>
+                            <span class="menu-title text-truncate text-wrap"> Ahli Jawatan Kerja </span>
                         </a>
                     </li>
                      <li class="{{ in_array(request()->route()->getName(),['admin.internal.jawatankuasatertinggilist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.jawatankuasatertinggilist') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Ahli Jawatan Tertinggi </span>
+                            <span class="menu-title text-truncate text-wrap"> Ahli Jawatan Tertinggi </span>
                         </a>
                     </li>
 
                       <li class="{{ in_array(request()->route()->getName(),['admin.internal.pengetualist'])? 'active': '' }}">
                         <a href="{{ route('admin.internal.pengetualist') }}" class="nav-link">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Pengerusi </span>
+                            <span class="menu-title text-truncate text-wrap"> Pengerusi </span>
                         </a>
                     </li>
                 </ul>
@@ -293,31 +274,28 @@ $configData = Helper::applClasses();
             <li class="nav-item nav-tour user-settings {{ request()->is('admin/user*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="user"></i>
-                    <span class="menu-title text-truncate">
+                    <span class="menu-title text-truncate text-wrap">
                         {{ __('msg.user_management') }}
                     </span>
                 </a>
                 <ul class="menu-content">
                     <li class="nav-user-internal {{ in_array(request()->route()->getName(),['admin.internalUser'])? 'active': '' }}">
                         <a href="{{ route('admin.internalUser') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate">
+                            <span class="menu-title text-truncate text-wrap">
                                 {{ __('msg.userinternal') }}
                             </span>
                         </a>
                     </li>
                     <li class="nav-user-external {{ in_array(request()->route()->getName(),['admin.externalUser'])? 'active': '' }}">
                         <a href="{{ route('admin.externalUser') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate">
+                            <span class="menu-title text-truncate text-wrap">
                                 Institusi Pendidikan
                             </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['role.index'])? 'active': '' }}">
                         <a href="{{ route('role.index') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate">
+                            <span class="menu-title text-truncate text-wrap">
                                 Pengurusan Peranan
                             </span>
                         </a>
@@ -332,25 +310,22 @@ $configData = Helper::applClasses();
                 class="nav-item nav-tour system-management {{ request()->is('dynamic*')  ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="settings"></i>
-                    <span class="menu-title text-truncate"> Dynamic Form </span>
+                    <span class="menu-title text-truncate text-wrap"> Dynamic Form </span>
                 </a>
                 <ul class="menu-content">
                     <li class="{{ in_array(request()->route()->getName(),['create-form'])? 'active': '' }}">
                         <a href="{{ route('create-form') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Create Dynamic Form </span>
+                            <span class="menu-title text-truncate text-wrap"> Create Dynamic Form </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['dynamic-form-list'])? 'active': '' }}">
                         <a href="{{ route('dynamic-form-list') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> List Dynamic Form </span>
+                            <span class="menu-title text-truncate text-wrap"> List Dynamic Form </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['listfillform'])? 'active': '' }}">
                         <a href="{{ route('listfillform') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> List Filled Form </span>
+                            <span class="menu-title text-truncate text-wrap"> List Filled Form </span>
                         </a>
                     </li>
                 </ul>
@@ -363,25 +338,22 @@ $configData = Helper::applClasses();
             <li class="nav-item nav-tour system-management {{ request()->is('admin/settings*') || request()->is('admin/log*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="settings"></i>
-                    <span class="menu-title text-truncate"> Pengurusan Sistem </span>
+                    <span class="menu-title text-truncate text-wrap"> Pengurusan Sistem </span>
                 </a>
                 <ul class="menu-content">
                     <li class="{{ in_array(request()->route()->getName(),['module.index'])? 'active': '' }}">
                         <a href="{{ route('module.index') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Module Configuration </span>
+                            <span class="menu-title text-truncate text-wrap"> Module Configuration </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['settings.index'])? 'active': '' }}">
                         <a href="{{ route('settings.index') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> {{ __('msg.system_config') }} </span>
+                            <span class="menu-title text-truncate text-wrap"> {{ __('msg.system_config') }} </span>
                         </a>
                     </li>
                     <li class="{{ in_array(request()->route()->getName(),['admin-log-index'])? 'active': '' }}">
                         <a href="{{ route('admin-log-index') }}" class="d-flex align-items-center">
-                            <i data-feather="circle"></i>
-                            <span class="menu-title text-truncate"> Audit Log </span>
+                            <span class="menu-title text-truncate text-wrap"> Audit Log </span>
                         </a>
                     </li>
                 </ul>
