@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-TETAPAN Tarikh
+Tetapan Tarikh
 @endsection
 
 @section('breadcrumb')
@@ -10,13 +10,31 @@ TETAPAN Tarikh
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> TETAPAN Tarikh </a>
+    <a href="#"> Pengurusan I-KePS </a>
 </li>
- 
+
+<li class="breadcrumb-item">
+    <a href="#"> Tetapan Tarikh </a>
+</li>
+
 @endsection
 
 @section('content')
+<style>
+    #TableSenaraiTarikh thead th {
+        vertical-align: middle;
+        text-align: center;
+    }
 
+    #TableSenaraiTarikh tbody {
+        vertical-align: middle;
+    }
+
+    #TableSenaraiTarikh table {
+        width: 100% !important;
+        /* word-wrap: break-word; */
+    }
+</style>
 <div class="card">
     <div class="card-header">
         <h4 class="card-title fw-bolder"> Senarai Tetapan Tarikh</h4>
@@ -30,19 +48,23 @@ TETAPAN Tarikh
     <hr>
 
     <div class="card-body">
-   
+
         <div class="table-responsive">
             <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiTarikh">
                 <thead>
                     <tr>
-                        <th width="5%">No.</th>
+                        <th rowspan="2" width="5%">No.</th>
+                        <th colspan="3" class="bg-light-success">Tarikh Mula</th>
+                        <th colspan="3" class="bg-light-danger">Tarikh Akhir</th>
+                        <th rowspan="2" width="5%">Tindakan</th>
+                    </tr>
+                    <tr>
                         <th>Tarikh Mula</th>
                         <th>Tarikh Mula Bulan</th>
                         <th>Tarikh Mula Tahun</th>
                         <th>Tarikh Akhir</th>
                         <th>Tarikh Akhir Bulan</th>
                         <th>Tarikh Akhir Tahun</th>
-                        <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,10 +75,10 @@ TETAPAN Tarikh
 </div>
 
 <div class="modal fade" id="modal-tarikh-diisi" tabindex="-1" aria-labelledby="modal-tarikh-diisi" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Instrumen</h5>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Maklumat Tetapan Tarikh</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -72,12 +94,12 @@ TETAPAN Tarikh
 $(document).ready(function() {
 
 $('#modal-tarikh-diisi').on('shown.bs.modal', function () {
-    $('.select2').select2({ 
+    $('.select2').select2({
     });
     flatpickr(".flatpickr", {
         dateFormat: "d/m/Y"
     });
-    
+
 });
 
     $(function() {
@@ -162,7 +184,7 @@ $.ajaxSetup({
 function maklumatTarikh(id){
     var url = "{{ route('admin.instrumen.tetapan-tarikh-view',['id'=> ':id', 'type' => 'view']) }}";
     var url = url.replace(':id', id);
-   
+
     $.ajax({
         url: url, // Route URL
         type: 'POST', // Request type (GET, POST, etc.)
@@ -180,7 +202,7 @@ function maklumatTarikh(id){
 function maklumatTarikhEdit(id) {
     var url = "{{ route('admin.instrumen.tetapan-tarikh-view',['id'=> ':id', 'type' => 'edit']) }}";
     var url = url.replace(':id', id);
-   
+
     $.ajax({
         url: url, // Route URL
         type: 'POST', // Request type (GET, POST, etc.)
