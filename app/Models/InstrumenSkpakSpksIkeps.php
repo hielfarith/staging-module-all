@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class InstrumenSkpakSpksIkeps extends Model
 {
     use HasFactory;
+
+    public $table = 'instrumen_skpak_spks_ikep';
         /**
      * The attributes that are mass assignable
      * @var array
@@ -25,6 +27,15 @@ class InstrumenSkpakSpksIkeps extends Model
             'instrumen_perlu_diisi',
             'tarikh_kuatkuasa',
             'tetapan_keperluan_pengemaskinian_data_terkini',
-            'status'
+            'status',
+            'tempoh_pengisian',
+            'tempoh_pengisian_lain',
+            'tempoh_pengeshan',
+            'tempoh_pengeshan_lain',
+            'tempoh_verifikasi',
+            'tempoh_verifikasi_lain',
+            'tempoh_validasi',
+            'tempoh_validasi_lain',
+            'tempoh_perakuan_lain'
         ];
 }
