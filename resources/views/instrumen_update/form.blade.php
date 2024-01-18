@@ -22,7 +22,7 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
 
 <div class="card">
     <div class="card-body">
-        <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Instrumen</a>
     </li>
