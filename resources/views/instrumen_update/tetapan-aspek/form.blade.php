@@ -67,32 +67,11 @@ Tetapan Aspek
                     </label>
                     <select class="form-control select2" name="status_aspek" required>
                         <option value="" hidden>Sila Pilih</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <option value="Belum Set">Belum Set</option>
+                        <option value="Telah Set">Telah Set</option>
                     </select>
                 </div>
 
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Belum Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="belum_set" required >
-                        <option value="" hidden>Sila pilih</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </div>
-
-                <div class="col-md-3 mb-1">
-                    <label class="fw-bold form-label">Telah Set
-                        <span class="text-danger">*</span>
-                    </label>
-                    <select class="form-control select2" name="telah_set" id="telah_set" required>
-                            <option value="" hidden>Sila Pilih</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                    </select>
-                </div>
                  @if($type != 'SUB')
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Wajaran Skala

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('nama_aspek');
             $table->string('tarikh_kuatkuasa_aspek')->nullable();
             $table->string('status_aspek');
-            $table->string('belum_set');
-            $table->string('telah_set');
+            $table->string('belum_set')->nullable();
+            $table->string('telah_set')->nullable();
             $table->string('wajaran_skala')->nullable();
             $table->string('type');
             $table->timestamps();
