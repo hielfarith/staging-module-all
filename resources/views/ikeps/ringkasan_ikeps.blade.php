@@ -16,7 +16,7 @@ I-KePS
         <h4 class="card-title fw-bolder"> Instrumen Bancian Kemudahan Prasasarana dan Program Sukan Sekolah </h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('ikeps_baru') }}">
+            <a type="button" class="btn btn-primary float-right" href="{{ route('ikeps.ikeps_baru') }}">
                 Pengisian Baru
             </a>
         </div>

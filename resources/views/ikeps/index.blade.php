@@ -91,11 +91,11 @@ I-KePS
     function HandlePemeriksaanKeselamatan() {
         var pemeriksaanKeselamatan = $('#pemeriksaan_keselamatan').val();
             if (pemeriksaanKeselamatan == '1') {
-                $('#tarikh_pemeriksaan').show();
+                $('#div_tarikh_pemeriksaan').show();
             } else if (pemeriksaanKeselamatan == '2') {
-                $('#tarikh_pemeriksaan').hide();
+                $('#div_tarikh_pemeriksaan').hide();
             } else {
-                $('#tarikh_pemeriksaan').hide();
+                $('#div_tarikh_pemeriksaan').hide();
             }
     }
 
@@ -110,5 +110,23 @@ I-KePS
         var prevTab = currentTab.prev('.tab-pane');
         $('a[href="#' + prevTab.attr('id') + '"]').tab('show');
     });
+
+    function submitTab(form){
+        $.ajax({
+            url: $(form).attr('action'),
+            method: $(form).attr('method'),
+            data: new FormData($(form)[0]),
+            async: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                toastr.success(data.title ?? "Berjaya Disimpan");
+            },
+            error: function(data) {
+                var data = data.responseJSON;
+                Swal.fire(data.title, data.detail, 'error');
+            }
+        });
+    }
 </script>
 @endsection

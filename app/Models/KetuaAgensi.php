@@ -14,22 +14,22 @@ class KetuaAgensi extends Model
      * @var array
      */
     protected $fillable = [
-                            'nama_pengguna',
-                            'panggilan',
-                            'no_kad',
-                            'jawatan',
-                            'gred',
-                            'jenis',
-                            'modul',
-                            'agensi_kementerian',
-                            'email_ketua',
-                            'no_tel_pejabat',
-                            'no_tel_peribadi',
-                            'alamat1',
-                            'alamat2',
-                            'alamat3',
-                            'poskod',
-                            'daerah',
-                            'negeri'
-                            ];
+        'nama_pengguna',
+        'panggilan',
+        'no_kad',
+        'jawatan',
+        'gred',
+        'jenis',
+        'modul',
+        'agensi_kementerian',
+        'email_ketua',
+        'no_tel_pejabat',
+        'no_tel_peribadi',
+        'alamat1',
+        'alamat2',
+        'alamat3',
+        'poskod',
+        'daerah',
+        'negeri'
+    ];
 }
