@@ -199,6 +199,7 @@
     </div>
 </div>
 
+@section('script')
 <script>
 function submitform() {
     const form = document.getElementById("frm");
@@ -486,3 +487,4 @@ function  preview() {
 }
 
 </script>
+@endsection

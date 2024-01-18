@@ -61,7 +61,7 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
         event.preventDefault();
         var formData = new FormData(document.getElementById('forminstrumenskpak'));
         var error = false;
-        $('select.select2').each(function() {
+        $('#forminstrumenskpak').find('select.select2').each(function() {
             var element = $(this);
             var select2Value = element.select2('data');
             var selectedValues = element.val();
@@ -70,6 +70,7 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
 
                 if (!selectedValues || selectedValues === '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
                     return false; // Stop the loop if an error is found
                 }
             }

@@ -6,7 +6,7 @@
             </span>
         </h5>
         <?php
-            $type = Request::segment(4);
+            $type = 'SUB'
         ?>
         <input type="hidden" name="type" id="type" value="{{$type}}">
         <div class="col-md-9 mb-1">
@@ -50,7 +50,7 @@
             <label class="fw-bold form-label">Telah Set
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-control select2" name="telah_set" id="telah_set" required>
+            <select class="form-control select2" name="telah_set" required>
                     <option value="" hidden>Sila Pilih</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -70,15 +70,14 @@
         <button type="submit" class="btn btn-primary float-right">Simpan</button>
     </div>
 </form>
-
+@section('script')
 <script type="text/javascript">
-
 $('#formpaspek').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formpaspek'));
         var error = false;
 
-        $('select.select2').each(function() {
+        $('#formpaspek').find('select.select2').each(function() {
             var element = $(this);
             var select2Value = element.select2('data');
             var selectedValues = element.val();
@@ -86,7 +85,9 @@ $('#formpaspek').submit(function(event) {
             if (typeof element.attr('disabled') == 'undefined') {
 
                 if (!selectedValues || selectedValues === '') {
+                    console.log(fieldName);
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
                     return false; // Stop the loop if an error is found
                 }
             }
@@ -118,16 +119,7 @@ $('#formpaspek').submit(function(event) {
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var type = $('#type').val();
-                    if (type == 'SKPAK') {
-                        var location = "{{route('admin.instrumen.tetapan-aspek-list')}}"
-                    } else if (type == 'IKEPS')
-                    {
-                        var location = "{{route('admin.instrumen.tetapan-aspek-ikeps-list')}}"
-                    }
-                    else if (type == 'SUB') {
-                        var location = "{{route('admin.instrumen.tetapan-aspek-sub-list')}}"
-                    }
+                    var location = "{{route('admin.instrumen.tetapan-aspek-sub-list')}}"
                     window.location.href = location;
                }
             }
@@ -135,3 +127,4 @@ $('#formpaspek').submit(function(event) {
 
     });
 </script>
+@endsection

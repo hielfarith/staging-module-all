@@ -125,14 +125,15 @@
             </div>
         </form>
 
-        <script type="text/javascript">
+@section('script')
+<script type="text/javascript">
 
 $('#formitem').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('formitem'));
         var error = false;
 
-        $('select.select2').each(function() {
+        $('#formitem').find('select.select2').each(function() {
             var element = $(this);
             var select2Value = element.select2('data');
             var selectedValues = element.val();
@@ -141,6 +142,7 @@ $('#formitem').submit(function(event) {
 
                 if (!selectedValues || selectedValues === '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
                     return false; // Stop the loop if an error is found
                 }
             }
@@ -186,3 +188,4 @@ $('#formitem').submit(function(event) {
 
     });
 </script>
+@endsection
