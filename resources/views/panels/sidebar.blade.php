@@ -148,7 +148,7 @@ $configData = Helper::applClasses();
 
             <!-- // new menu -->
 
-
+<!-- 
             <li class="navigation-header">
                 <span> SKIPS</span>
             </li>
@@ -161,7 +161,7 @@ $configData = Helper::applClasses();
 
 
                 </ul>
-            </li>
+            </li> -->
 
             <li class="navigation-header">
                 <span>  iKEPS</span>
@@ -197,7 +197,7 @@ $configData = Helper::applClasses();
                 </ul>
             </li>
 
-            <li class="navigation-header">
+      <!--       <li class="navigation-header">
                 <span> SKPAK</span>
             </li>
              <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
@@ -223,7 +223,7 @@ $configData = Helper::applClasses();
 
 
                 </ul>
-            </li>
+            </li> -->
 
             <!-- --end new menu-->
             <!-- // pengguna menu // -->
