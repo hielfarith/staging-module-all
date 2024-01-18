@@ -1,3 +1,5 @@
+<form id="praSekForm" action="{{ route('ikeps.store', 'prasarana_sekolah') }}" method="POST">
+@csrf
 <div class="row">
 
     <div class="col-md-12 mt-2 mb-2">
@@ -21,11 +23,11 @@
         </select>
     </div>
 
-    <div class="col-md-4 mt-4" id="tarikh_pemeriksaan" style="display: none;">
+    <div class="col-md-4 mt-4" id="div_tarikh_pemeriksaan" style="display: none;">
         <label class="form-label fw-bold">
             Tarikh Pemeriksaan
         </label>
-        <input type="text" id="" name="" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD">
+        <input type="text" id="tarikh_pemeriksaan" name="tarikh_pemeriksaan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD">
     </div>
 </div>
 
@@ -99,22 +101,36 @@
             </tr>
 
             <?php
-                $padangs = ['2.1 Keluasan Trek 400M',
-                            '2.2 Keluasan Trek 300M',
-                            '2.3 Keluasan Trek 200M',
-                            '2.4 Keluasan Trek Kurang 200M'
-                            ];
-                $treks = ['3.1 Trek 400M','3.2 Trek 200M', '3.3 Lain-lain'];
-                $ada_tiadas = ['ada' => 1, 'tiada' => 2];
-                $gunasamas = ['ada' => 1, 'tiada' => 2];
-                $masih_digunakans = ['ada' => 1, 'tiada' => 2];
-                $status_fizikals = [ 'selesa' => 1,
-                                    'tidak_selesa' => 2,
-                                    'kefungsian' => 3,
-                                    'sekuriti' => 4,
-                                    'keselamatan' => 5,
-                                ];
-
+                $padangs = [
+                    'kt_400' => '2.1 Keluasan Trek 400M',
+                    'kt_300' => '2.2 Keluasan Trek 300M',
+                    'kt_200' => '2.3 Keluasan Trek 200M',
+                    'ktk_200' => '2.4 Keluasan Trek Kurang 200M'
+                ];
+                $treks = [
+                    'trek_400' => '3.1 Trek 400M',
+                    'trek_200' => '3.2 Trek 200M', 
+                    'trek_lain' => '3.3 Lain-lain'
+                ];
+                $ada_tiadas = [
+                    'ada' => 1, 
+                    'tiada' => 0
+                ];
+                $gunasamas = [
+                    'ada' => 1, 
+                    'tiada' => 0
+                ];
+                $masih_digunakans = [
+                    'ada' => 1, 
+                    'tiada' => 0
+                ];
+                $status_fizikals = [ 
+                    'selesa' => 1,
+                    'tidak_selesa' => 2,
+                    'kefungsian' => 3,
+                    'sekuriti' => 4,
+                    'keselamatan' => 5,
+                ];
             ?>
 
             <tr>
@@ -122,7 +138,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="padang_sekolah" id="{{ 'padang_'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -130,35 +146,27 @@
                 @foreach ($gunasamas as $id => $gunasama)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gunasama" id="{{ $id }}" value="{{ $gunasama }}">
+                            <input class="form-check-input" type="radio" name="ps_gunasama" id="{{ 'ps_gunasama_'.$id }}" value="{{ $gunasama }}">
                         </div>
                     </td>
                 @endforeach
 
                 <td>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" name="ps_bilangan" id="ps_bilangan">
                 </td>
 
-                @foreach ($masih_digunakans as $id => $masih_digunakan)
-                    <td>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="masih_digunakan" id="{{ $id }}" value="{{ $masih_digunakan }}">
-                        </div>
-                    </td>
-                @endforeach
-
-                <td colspan="5" class="text-danger">
+                <td colspan="7" class="text-danger">
                     Maklumat Tidak Berkenaan
                 </td>
             </tr>
 
-            @foreach($padangs as $padang)
+            @foreach($padangs as $pdKey => $padang)
                 <tr>
                     <td> {{ $padang }} </td>
                     @foreach ($ada_tiadas as $id => $ada_tiada)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                                <input class="form-check-input" type="radio" name="{{ $pdKey }}" id="{{ $pdKey.'_'.$id }}" value="{{ $ada_tiada }}">
                             </div>
                         </td>
                     @endforeach
@@ -166,19 +174,19 @@
                     @foreach ($gunasamas as $id => $gunasama)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gunasama" id="{{ $id }}" value="{{ $gunasama }}">
+                                <input class="form-check-input" type="radio" name="{{ $pdKey.'_gunasama' }}" id="{{ $pdKey.'_gunasama_'.$id }}" value="{{ $gunasama }}">
                             </div>
                         </td>
                     @endforeach
 
                     <td>
-                        <input type="text" class="form-control" id="" name="">
+                        <input type="text" class="form-control" id="{{ $pdKey.'_bilangan' }}" name="{{ $pdKey.'_bilangan' }}">
                     </td>
 
                     @foreach ($masih_digunakans as $id => $masih_digunakan)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="masih_digunakan" id="{{ $id }}" value="{{ $masih_digunakan }}">
+                                <input class="form-check-input" type="radio" name="{{ $pdKey.'_masih_digunakan' }}" id="{{ $pdKey.'_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
                             </div>
                         </td>
                     @endforeach
@@ -186,7 +194,7 @@
                     @foreach ($status_fizikals as $id => $status_fizikal)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status_fizikal" id="{{ $id }}" value="{{ $status_fizikal }}">
+                                <input class="form-check-input" type="radio" name="{{ $pdKey.'_status_fizikal' }}" id="{{ $pdKey.'_status_fizikal_'.$id }}" value="{{ $status_fizikal }}">
                             </div>
                         </td>
                     @endforeach
@@ -200,12 +208,13 @@
                     </h5>
                 </td>
             </tr>
+
             <tr>
                 <td> Trek Sintetik</td>
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="trek_sintetik" id="{{ 'trek_sintektik_'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -215,23 +224,74 @@
                 </td>
 
                 <td>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="ts_bilangan" name="ts_bilangan">
                 </td>
 
                 <td colspan="7" class="text-danger">
                     Maklumat Tidak Berkenaan
                 </td>
             </tr>
+
+            @foreach($treks as $trekKey => $trek)
+                <tr>
+                    <td> {{ $trek }} @if($trekKey == 'trek_lain') <input class="form-control" id="{{ $trekKey.'_details' }}" id="{{ $trekKey.'_details' }}" @endif</td>
+                    @foreach ($ada_tiadas as $id => $ada_tiada)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="{{ $trekKey }}" id="{{ $trekKey.'_'.$id }}" value="{{ $ada_tiada }}">
+                            </div>
+                        </td>
+                    @endforeach
+
+                    @foreach ($gunasamas as $id => $gunasama)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="{{ $trekKey.'_gunasama' }}" id="{{ $trekKey.'_gunasama_'.$id }}" value="{{ $gunasama }}">
+                            </div>
+                        </td>
+                    @endforeach
+
+                    <td>
+                        <input type="text" class="form-control" id="{{ $trekKey.'_bilangan' }}" name="{{ $trekKey.'_bilangan' }}">
+                    </td>
+
+                    @foreach ($masih_digunakans as $id => $masih_digunakan)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="{{ $trekKey.'_masih_digunakan' }}" id="{{ $trekKey.'_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
+                            </div>
+                        </td>
+                    @endforeach
+
+                    @foreach ($status_fizikals as $id => $status_fizikal)
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="{{ $trekKey.'_status_fizikal' }}" id="{{ $trekKey.'_status_fizikal_'.$id }}" value="{{ $status_fizikal }}">
+                            </div>
+                        </td>
+                    @endforeach
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
 
+<br>
+
+<div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary"  onclick="submitTab('#praSekForm')">Simpan</button>
+</div>
+
+<br>
+
+</form>
 <div class="card-footer">
-    <div class="d-flex justify-content-between">
-        <button class="btn btn-outline-secondary prev-tab">
+    {{-- <div class="d-flex justify-content-between"> --}}
+    <div class="d-flex justify-content-end">
+        {{-- <button class="btn btn-outline-secondary prev-tab">
             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
             <span class="align-middle d-sm-inline-block d-none">Kembali</span>
-        </button>
+        </button> --}}
         <button class="btn btn-primary next-tab">
             <span class="align-middle d-sm-inline-block d-none">Seterusnya</span>
             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
