@@ -825,9 +825,9 @@
 
 <br>
 
-<div class="d-flex justify-content-center">
+<!-- <div class="d-flex justify-content-center">
     <button type="button" class="btn btn-primary"  onclick="submitTab('#praSekForm')">Simpan</button>
-</div>
+</div> -->
 
 <br>
 
