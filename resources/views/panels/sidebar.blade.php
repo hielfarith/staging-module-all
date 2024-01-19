@@ -401,23 +401,25 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
-                        </a>
-                    </li>
-
                      <li class="{{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
                         <a href="{{ route('show_all_forms') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Senarai Instrumen </span>
                         </a>
                     </li>
 
+                
                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.senarai-sedia-ada'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.senarai-sedia-ada') }}" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap"> Senarai Sedia Ada </span>
+                            <span class="menu-title text-truncate text-wrap"> Konfigurasi Instrumen Sedia Ada </span>
                         </a>
                     </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Konfigurasi Instrumen Baru</span>
+                        </a>
+                    </li>
+
 
                     <li class="{{ in_array(request()->route()->getName(),['module.index'])? 'active': '' }}">
                         <a href="{{ route('module.index') }}" class="d-flex align-items-center">
