@@ -50,6 +50,14 @@
                                 </div>
                             </div>
                         </div>
+
+                         <div class="form-group row">
+                            <div class="col-sm-10">
+                            <label for="inputDescription" class="col-sm-2 col-form-label">
+                                <input type="checkbox" name="dynamic" class="form-check-input" value="1"> 
+                                Dynamic form</label>
+                            </div>
+                        </div>
                         <div class="col-md-12 col-12">
                             <div class="form-group">
                                 <label class="form-label fw-bolder" for="role_description">Permissions <span

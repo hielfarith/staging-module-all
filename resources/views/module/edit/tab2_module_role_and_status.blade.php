@@ -11,7 +11,7 @@
                 <b>ROLE MANAGEMENT</b>
                 <div class="d-flex justify-content-end align-items-center">
                     <button type="button" class="btn btn-success btn-sm float-right" onclick="viewModuleRoleForm()">
-                        <i class="fa-solid fa-add"></i> Add
+                        <i class="fa-solid fa-add"></i> Tambah
                     </button>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <b>STATUS MANAGEMENT</b>
                 <div class="d-flex justify-content-end align-items-center">
                     <button type="button" class="btn btn-success btn-sm float-right" onclick="viewModuleStatusForm()">
-                        <i class="fa-solid fa-add"></i> Add
+                        <i class="fa-solid fa-add"></i> Tambah
                     </button>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <b>PERMISSION MANAGEMENT</b>
                 <div class="d-flex justify-content-end align-items-center">
                     <button type="button" class="btn btn-success btn-sm float-right" onclick="viewModulePermissionForm()">
-                        <i class="fa-solid fa-add"></i> Add
+                        <i class="fa-solid fa-add"></i> Tambah
                     </button>
                 </div>
             </div>

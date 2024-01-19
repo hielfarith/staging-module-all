@@ -86,8 +86,12 @@ class RoleController extends Controller
             'description' => 'required|string',
             'display_name' => 'required|string',
         ]);
-
-        $role = Role::create(['name' => $request->role_name, 'description' => $request->role_description, 'display_name' => $request->role_display, 'guard_name' => 'web']);
+        if (isset($request->dynamic)) {
+            $dynamic = 1;
+        } else {
+            $dynamic = 0;
+        }
+        $role = Role::create(['name' => $request->role_name, 'description' => $request->role_description, 'display_name' => $request->role_display, 'guard_name' => 'web', 'dynamic' => $dynamic]);
 
 
 

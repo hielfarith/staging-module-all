@@ -1,10 +1,10 @@
 <table class="table header_uppercase table-bordered table-responsive" width="100%">
     <thead>
         <tr>
-            <th class="font-weight-bold text-center" width="05%">INDEX</th>
-            <th class="font-weight-bold text-center" width="30%">NAME</th>
-            <th class="font-weight-bold text-center" width="35%">DESCRIPTION</th>
-            <th class="font-weight-bold text-center" width="5%">ACTION</th>
+            <th class="font-weight-bold text-center" width="05%">Index</th>
+            <th class="font-weight-bold text-center" width="30%">Nama</th>
+            <th class="font-weight-bold text-center" width="35%">Deskripsi</th>
+            <th class="font-weight-bold text-center" width="5%">Tindakan</th>
         </tr>
     </thead>
     <tbody>

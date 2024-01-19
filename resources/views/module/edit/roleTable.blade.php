@@ -2,9 +2,9 @@
     <thead>
         <tr>
             <th class="font-weight-bold text-center" width="05%">NO</th>
-            <th class="font-weight-bold text-center" width="30%">NAME</th>
-            <th class="font-weight-bold text-center" width="35%">DESCRIPTION</th>
-            <th class="font-weight-bold text-center" width="5%">ACTION</th>
+            <th class="font-weight-bold text-center" width="30%">NAMA</th>
+            <th class="font-weight-bold text-center" width="35%">DeSKRPSI</th>
+            <th class="font-weight-bold text-center" width="5%">Tindakan</th>
         </tr>
     </thead>
     <tbody>

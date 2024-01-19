@@ -22,10 +22,10 @@
                                 <label class="form-label" for="role_id">Role</label>
                                 <div class="input-group">
                                     @php
-                                        $roles = \App\Models\Role::all();
+                                        $roles = \App\Models\Role::where('dynamic',1)->get();
                                     @endphp
                                     <select name="role_id" id="role_id" class="select2 form-select">
-                                        <option value="" hidden> Choose Role</option>
+                                        <option value="" hidden> Pilih Role</option>
                                         @foreach ($roles as $role)
                                             <option value="{{$role->id}}"> {{$role->name}}</option>
                                         @endforeach
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="form-label" for="role_description">Role Description <span class="text text-danger">*</span> </label>
+                                <label class="form-label" for="role_description">Role Diskripsi <span class="text text-danger">*</span> </label>
                                 <div class="input-group">
                                     <textarea id="role_description" name="role_description" class="form-control" placeholder="Description of Role" required></textarea>
                                 </div>

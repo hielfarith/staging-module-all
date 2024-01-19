@@ -23,11 +23,11 @@
         <!-- /.info-box -->
         <ul class="nav nav-tabs nav-fill" role="tablist">
             <li class="nav-item">
-                <a class="text-uppercase nav-link active " id="formA-tab" data-bs-toggle="tab" href="#formA" aria-controls="formA" role="tab" aria-selected="true"> Module Information </a>
+                <a class="text-uppercase nav-link active " id="formA-tab" data-bs-toggle="tab" href="#formA" aria-controls="formA" role="tab" aria-selected="true"> Maklumat Flow </a>
             </li>
             @if($module)
             <li class="nav-item">
-                <a class="text-uppercase nav-link " id="formB-tab" data-bs-toggle="tab" href="#formB" aria-controls="formB" role="tab" aria-selected="true"> Role, Status and Permission Management </a>
+                <a class="text-uppercase nav-link " id="formB-tab" data-bs-toggle="tab" href="#formB" aria-controls="formB" role="tab" aria-selected="true"> Pengurusan Role, Status & Permission </a>
             </li>
             <li class="nav-item">
                 <a class="text-uppercase nav-link " id="formC-tab" data-bs-toggle="tab" href="#formC" aria-controls="formC" role="tab" aria-selected="true" onclick="refreshModuleTab3()"> Flow Management </a>
@@ -98,8 +98,7 @@
                         contentType: false,
                         processData: false,
                         success: function(data) {
-                            // console.log(data);
-
+                            
                             $('#roleForm input[name="module_role_id"]').val(data.detail.id);
                             $('#roleForm select[name="role_id"] option').each(function(){
                                 if(data.detail.role_id == parseInt(this.value))

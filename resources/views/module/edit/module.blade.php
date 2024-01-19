@@ -1,6 +1,6 @@
 
 <div class="card">
-            <div class="card-header"><b>MODULE INFORMATION</b> </div>
+            <div class="card-header"><b>Maklumat Flow</b> </div>
             <div class="card-body">
                 <form action="{{ route('module.update',0) }}" method="POST" class="form-horizontal" autocomplete="off" data-reloadPage="true">
                     <div class="row">
@@ -8,7 +8,7 @@
                         <input type="hidden" name="module_id" value="{{$module->id ?? null}}" />
                         <div class="col-md-3 col-12">
                             <div class="form-group">
-                                <label class="form-label" for="module_name">Module Name <span class="text text-danger">*</span> </label>
+                                <label class="form-label" for="module_name">Nama Instrumen <span class="text text-danger">*</span> </label>
                                 <div class="input-group">
                                     @if(!empty($modules))
                                         <select id="module_name" name="module_name" class="form-control" placeholder="Name of Module" required>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-3 col-12">
                             <div class="form-group">
-                                <label class="form-label" for="module_short_name">Module Short Name <span class="text text-danger">*</span> </label>
+                                <label class="form-label" for="module_short_name">Nama Instrumen [Pendek] <span class="text text-danger">*</span> </label>
                                 <div class="input-group">
                                     <input type="text" id="module_short_name" name="module_short_name" value="{{ $module->module_short_name ?? null }}" class="form-control" placeholder="Short Name of Module" required>
                                 </div>
@@ -38,7 +38,7 @@
 
                         <div class="col-md-3 col-12">
                             <div class="form-group">
-                                <label class="form-label" for="module_description">Module Description </label>
+                                <label class="form-label" for="module_description">Deskripsi Flow </label>
                                 <div class="input-group">
                                     <textarea  id="module_description" name="module_description" class="form-control" placeholder="Module Description">{{$module->module_description ?? ""}}</textarea>
                                 </div>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-md-1 col-12">
                             <div class="form-group">
-                                <label class="form-check-label mb-50" for="active">Active </label>
+                                <label class="form-check-label mb-50" for="active">Aktif </label>
                                 <div class="form-check form-check-success form-switch">
                                     <input type="checkbox" class="form-check-input" id="active" name="active" {{$module?->active ? "checked" : ""}}>
                                 </div>

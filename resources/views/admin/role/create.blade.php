@@ -33,6 +33,7 @@
                             <input type="text" name="description" class="form-control" id="inputDescription" placeholder="Description">
                         </div>
                     </div>
+                   
                     <div class="form-group row">
                         <label for="inputDescription" class="col-sm-2 col-form-label">Permissions</label>
                         <div class="col-sm-10 d-flex flex-row flex-wrap mt-1">
