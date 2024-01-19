@@ -36,7 +36,7 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
       @include('instrumen_update.sedia-ada.tab1')
     </div>
     <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
-      @include('ikeps.borang_ikeps.prasarana_sekolah')
+        @include('instrumen_update.sedia-ada.tab2')
     </div>
 </div>
     </div>
