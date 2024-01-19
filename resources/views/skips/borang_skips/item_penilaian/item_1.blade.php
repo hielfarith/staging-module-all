@@ -103,6 +103,7 @@ $options = [
     }
 </style>
 
+
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem1">
         <thead>
