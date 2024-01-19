@@ -369,6 +369,84 @@ $configData = Helper::applClasses();
                 </ul>
             </li>
             @endhasanyrole
+
+            @hasanyrole('jabatan_pendidikan_negeri')
+                 
+
+                <li class="navigation-header">
+                <span> Pengurusan Pengguna</span>
+            </li>
+            <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> Senarai Pengguna </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.internal.jurulatihlist'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.jurulatihlist') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Jurulatih </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="navigation-header">
+                <span>  Modul I-KePS </span>
+            </li>
+             <li class="nav-item {{ request()->is('admin/ikeps*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> Pengurusan Instrumen </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
+                        </a>
+                    </li>
+
+                     <li class="{{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
+                        <a href="{{ route('show_all_forms') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Senarai Instrumen </span>
+                        </a>
+                    </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.senarai-sedia-ada'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-sedia-ada') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Senarai Sedia Ada </span>
+                        </a>
+                    </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['module.index'])? 'active': '' }}">
+                        <a href="{{ route('module.index') }}" class="d-flex align-items-center">
+                            <span class="menu-title text-truncate text-wrap"> Pengurusan Flow Instrumen </span>
+                        </a>
+                    </li>
+                    
+                    <!--    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
+                        </a>
+                    </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-ikeps-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek I-KePS </span>
+                        </a>
+                    </li>
+
+                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-tarikh-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.tetapan-tarikh-list') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Pengurusan Tarikh Instrumen </span>
+                        </a>
+                    </li> -->
+
+
+                </ul>
+            </li>
+            @endhasanyrole
         </ul>
     </div>
 </div>
