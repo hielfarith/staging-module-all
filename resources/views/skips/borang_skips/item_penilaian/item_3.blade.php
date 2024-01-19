@@ -64,23 +64,23 @@ $option_kurikulums = [
 
 
 <style>
-    #NilaiItem2 thead th {
+    #NilaiItem3 thead th {
         vertical-align: middle;
         text-align: center;
     }
 
-    #NilaiItem2 tbody {
+    #NilaiItem3 tbody {
         vertical-align: middle;
     }
 
-    #NilaiItem2 table {
+    #NilaiItem3 table {
         width: 100% !important;
         /* word-wrap: break-word; */
     }
 </style>
 
 <div class="table-responsive">
-    <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem2">
+    <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem3">
         <thead>
             <tr>
                 <th rowspan="2" width="5%">No.</th>
