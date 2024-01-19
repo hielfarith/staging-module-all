@@ -57,15 +57,18 @@ SKIPS
 
         <div class="tab-content">
             <div class="tab-pane fade" id="butiran-pemeriksaan" role="tabpanel" aria-labelledby="butiran-pemeriksaan-tab">
+                <hr>
                 @include('skips.borang_skips.butiran_pemeriksaan')
             </div>
             <div class="tab-pane fade show active" id="butiran-institusi" role="tabpanel" aria-labelledby="butiran-institusi-tab">
                 @include('skips.borang_skips.butiran_institusi')
             </div>
             <div class="tab-pane fade" id="item" role="tabpanel" aria-labelledby="item-tab">
+                <hr>
                 @include('skips.index_item')
             </div>
             <div class="tab-pane fade" id="skor-item" role="tabpanel" aria-labelledby="skor-item-tab">
+                <hr>
                 @include('skips.index_penilaian')
             </div>
             <div class="tab-pane fade" id="pencapaian" role="tabpanel" aria-labelledby="pencapaian-tab">
@@ -81,35 +84,6 @@ SKIPS
 
 @section('script')
 <script>
-
-    $('.next-tab').on('click', function() {
-        var currentTab = $(this).closest('.tab-pane');
-        var nextTab = currentTab.next('.tab-pane');
-        $('a[href="#' + nextTab.attr('id') + '"]').tab('show');
-    });
-
-    $('.prev-tab').on('click', function() {
-        var currentTab = $(this).closest('.tab-pane');
-        var prevTab = currentTab.prev('.tab-pane');
-        $('a[href="#' + prevTab.attr('id') + '"]').tab('show');
-    });
-
-    function submitTab(form){
-        $.ajax({
-            url: $(form).attr('action'),
-            method: $(form).attr('method'),
-            data: new FormData($(form)[0]),
-            async: true,
-            contentType: false,
-            processData: false,
-            success: function(data) {
-                toastr.success(data.title ?? "Berjaya Disimpan");
-            },
-            error: function(data) {
-                var data = data.responseJSON;
-                Swal.fire(data.title, data.detail, 'error');
-            }
-        });
-    }
+    
 </script>
 @endsection
