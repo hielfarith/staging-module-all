@@ -158,6 +158,7 @@ Route::prefix('dynamic')->middleware(['web'])->group(function () {
 
 include 'sppip.php';
 include 'ikeps.php';
+include 'skips.php';
 
 Route::controller(ModuleController::class)->prefix('module')->middleware(['web'])->group(function () {
 
@@ -233,7 +234,7 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
     Route::post('savejurulatih','saveJurulatih')->name('admin.internal.jurulatihsave');
     Route::get('senarai-jurulatih','listJurulatih')->name('admin.internal.jurulatihlist');
     Route::post('viewjurulatih/{id}/{type}','viewJurulatih')->name('admin.internal.viewjurulatih');
-    
+
     Route::get('download/{id}/{name}','download')->name('jurulatih-download');
 
 });

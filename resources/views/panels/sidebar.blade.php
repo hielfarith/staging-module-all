@@ -66,6 +66,32 @@ $configData = Helper::applClasses();
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate">
+                                Instrument SKIPS
+                            </span>
+                        </a>
+
+                        <ul class="menu-content">
+                            <li class="{{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                                <a href="{{ route('skips.skips_baru') }}" class="d-flex align-items-center">
+                                    <span class="menu-title text-truncate">
+                                        Pengisian SKIPS
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="{{ in_array(request()->route()->getName(), ['skips.ringkasan_skips']) ? 'active' : '' }}">
+                                <a href="{{ route('skips.ringkasan_skips') }}" class="d-flex align-items-center">
+                                    <span class="menu-title text-truncate">
+                                        Ringkasan Maklumat
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
 
@@ -115,7 +141,7 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate text-wrap"> Tambah Instrumen </span>
                         </a>
                     </li>
-                   
+
 
                     <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">
                         <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
@@ -172,7 +198,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    
+
                     <!--    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
@@ -371,7 +397,7 @@ $configData = Helper::applClasses();
             @endhasanyrole
 
             @hasanyrole('jabatan_pendidikan_negeri')
-                 
+
 
                 <li class="navigation-header">
                 <span> Pengurusan Pengguna</span>
@@ -426,7 +452,7 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate text-wrap"> Pengurusan Flow Instrumen </span>
                         </a>
                     </li>
-                    
+
                     <!--    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
