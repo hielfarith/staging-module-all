@@ -191,6 +191,7 @@ Route::controller(ModuleController::class)->prefix('module')->middleware(['web']
     Route::get('refreshFlowManagementTable/{module}','refreshFlowManagementTable')->name('module.refreshFlowManagementTable');
     Route::post('updateFlowManagement','updateFlowManagement')->name('module.updateFlowManagement');
     Route::post('deleteFlowManagement','deleteFlowManagement')->name('module.deleteFlowManagement');
+    Route::post('viewModuleTypes','viewModuleTypes')->name('module.viewModuleTypes');
 
 });
 

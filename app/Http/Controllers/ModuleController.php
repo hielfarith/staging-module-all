@@ -9,6 +9,8 @@ use App\Models\ModulePermission;
 use App\Models\ModuleTask;
 use App\Models\ModuleFlowManagement;
 use App\Models\NewForm;
+use App\Models\InstrumenSkpakSpksIkeps;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -62,6 +64,7 @@ class ModuleController extends Controller
             $module->module_short_name = $request->module_short_name;
             $module->module_description = $request->module_description;
             $module->active = $request->has('active');
+            $module->module_type = $request->module_type;
             $module->save();
 
             session()->put('success', 'Success');
@@ -81,8 +84,7 @@ class ModuleController extends Controller
         try{
 
             $module = Module::where('id',$id)->first();
-            // $flowHasModule = FlowHasModule::where('entity_type','App\Models\Module')->where('entity_id',$module->id)->first();
-            // $flowHasModule->delete();
+            
             $module->delete();
 
             session()->put('success', 'Success');
@@ -542,5 +544,17 @@ class ModuleController extends Controller
         DB::commit();
         return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya"]);
     }
+
+    public function viewModuleTypes(Request $request)
+    {
+        $type = $request->module_type ;
+        if ($type == 'NewForm') {
+            $formData = NewForm::all();
+        } else {
+            $formData = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->get();
+        }
+        return ['formdata' => $formData];
+
+   }
 
 }

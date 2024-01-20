@@ -35,6 +35,7 @@ class Module extends Model
         'module_short_name',
         'module_description',
         'active',
+        'module_type'
     ];
 
     /**

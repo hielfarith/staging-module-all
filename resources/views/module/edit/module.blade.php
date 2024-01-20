@@ -6,27 +6,49 @@
                     <div class="row">
                         @csrf
                         <input type="hidden" name="module_id" value="{{$module->id ?? null}}" />
+
+                         <div class="col-md-3 col-12">
+                            <div class="form-group">
+                                <label class="form-label" for="module_type">Type <span class="text text-danger">*</span> </label>
+                                <div >
+                                    <select id="module_type" name="module_type" class="form-control select2" placeholder="Name of Module" required onchange="typechange(this)">
+                                            <option value="">Sila Pilih</option>
+                                            <option value="SEDIA" @if($module?->module_type == 'SEDIA') selected @endif>SEDIA</option>
+                                            <option value="NewForm" @if($module?->module_type == 'NewForm') selected @endif>Dynamic Form</option>
+                                        </select>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-3 col-12">
                             <div class="form-group">
                                 <label class="form-label" for="module_name">Nama Instrumen <span class="text text-danger">*</span> </label>
-                                <div class="input-group">
+                                <div class="">
                                     @if(!empty($modules))
-                                        <select id="module_name" name="module_name" class="form-control" placeholder="Name of Module" required>
-                                            @foreach($modules as $form)
-                                            <option value="{{$form->id}}">{{$form->form_name}}-{{$form->category}}</option>
-                                            @endforeach
+                                        <select id="module_name" name="module_name" class="form-control select2" placeholder="Name of Module" required>
+                                             
                                         </select>
                                     @else
                                         <?php
-                                            $formData = \App\Models\NewForm::where('id', $module->module_name)->first();
+                                            if ($module->module_type == 'NewForm') {
+                                                $formData = \App\Models\NewForm::where('id', $module->module_name)->first();
+                                            } else {
+                                                $formData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $module->module_name)->first();
+                                            }
                                         ?>
                                         <input type="hidden" id="module_name" name="module_name" value="{{ $module->module_name ?? null }}" class="form-control" placeholder="Name of Module" required>
-                                        <input type="text" id="module_show" name="module_show" value="{{$formData->form_name}}-{{$formData->category}}" class="form-control" placeholder="Name of Module" readonly>
-
+                                        @if($module->module_type == 'NewForm') 
+                                            <input type="text" id="module_show" name="module_show" value="{{$formData->form_name}}-{{$formData->category}}" class="form-control" placeholder="Name of Module" readonly>
+                                        @else
+                                            <input type="text" id="module_show" name="module_show" value="{{$formData->nama_instrumen}}" class="form-control" placeholder="Name of Module" readonly>
+                                        @endif
                                     @endif
                                 </div>
                             </div>
                         </div>
+                        
+
                         <div class="col-md-3 col-12">
                             <div class="form-group">
                                 <label class="form-label" for="module_short_name">Nama Instrumen [Pendek] <span class="text text-danger">*</span> </label>
@@ -61,3 +83,31 @@
                 </form>
             </div>
         </div>
+@section('script')
+<script type="text/javascript">
+
+    function typechange(argument){
+    var type = argument.value;
+    $('#module_name').empty();
+    var url = "{{ route('module.viewModuleTypes') }}"
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            module_type: type
+        },
+        success: function(response) {
+            $('#module_name').empty();
+            $('#module_name').append('<option value="" selected>Sila Pilih:-</option>');
+            $.each(response.formdata, function(key, value) {
+                if (type == 'SEDIA') {
+                    $('#module_name').append('<option value="'+ value.id +'">'+ value.nama_instrumen +'</option>');
+                } else {
+                    $('#module_name').append('<option value="'+ value.id +'">'+ value.form_name+'-'+ value.category+'</option>');
+                }
+            });
+        }
+    });
+}
+</script>
+@endsection
