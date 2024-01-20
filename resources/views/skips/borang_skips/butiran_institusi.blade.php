@@ -79,7 +79,7 @@
             </label>
             <input type="text" id="" class="form-control">
 
-            <label class="form-label fw-bold text-titlecase mt-1"> Tarikh Tamat
+            <label class="form-label fw-bold text-titlecase mt-1"> Tarikh Tamat Perakuan Pendaftaran
                 <span class="text-danger">*</span>
             </label>
             <input type="text" id="" name="" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD">
@@ -91,7 +91,7 @@
             </label>
             <input type="text" id="" class="form-control">
 
-            <label class="form-label fw-bold text-titlecase mt-1"> Tarikh Tamat
+            <label class="form-label fw-bold text-titlecase mt-1"> Tarikh Tamat Kelulusan KDN
                 <span class="text-danger">*</span>
             </label>
             <input type="text" id="" name="" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD">

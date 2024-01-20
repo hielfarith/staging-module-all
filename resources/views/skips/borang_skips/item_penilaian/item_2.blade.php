@@ -9,7 +9,7 @@ $institusis = [
     'pelantikan_guru_dan_kontrak_kerja' => '2.4.3 Surat Pelantikan Guru Dan Kontrak Kerja',
     'pelantikan_pekerja_dan_kontrak_kerja' => '2.4.4 Surat Pelantikan Pekerja Dan Kontrak Kerja',
     'kebenaran_mengajar_guru_kerajaan' => '2.4.5 Surat Kebenaran Mengajar (Guru Kerajaan)',
-    'rekod_profil' => '2.4 Rekod Profil',
+    'rekod_profil' => '2.5 Rekod Profil',
     'profil_institusi' => '2.5.1 Profil Institusi',
     'profil_guru' => '2.5.2 Profil Guru',
     'profil_staf' => '2.5.3 Profil Staf',
@@ -28,205 +28,207 @@ $institusis = [
 
 $option_institusis = [
     'piagam_pelanggan' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="ada_minit_pelantikan">Ada Minit Pelantikan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Ada Minit Pelantikan</i>',
     ],
 
     'visi_dan_misi' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="ada_minit_pelantikan">Ada Minit Pelantikan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Ada Minit Pelantikan</i>',
     ],
 
     'perancangan_strategik' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="ada_minit_pelantikan">Ada Minit Pelantikan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Ada Minit Pelantikan</i>',
     ],
 
     'surat_surat_pelantikan' => [
-        0 => '<td colspan="6"></td>',
+        0 => '',
     ],
 
     'pelantikan_pengelola' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="ada_minit_pelantikan">Ada Minit Pelantikan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Ada Minit Pelantikan</i>',
     ],
 
     'pelantikan_pengetua_dan_kontrak_kerja' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="ada_minit_pelantikan">Ada Minit Pelantikan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Ada Minit Pelantikan</i>',
     ],
 
     'pelantikan_guru_dan_kontrak_kerja' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="ada_minit_pelantikan">Ada Minit Pelantikan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Ada Minit Pelantikan</i>',
     ],
 
     'pelantikan_pekerja_dan_kontrak_kerja' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="ada_minit_pelantikan">Ada Minit Pelantikan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Ada Minit Pelantikan</i>',
     ],
 
     'kebenaran_mengajar_guru_kerajaan' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="difailkan">Difailkan</option><option value="dikemaskini">Dikemaskini</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="ada_minit_pelantikan">Ada Minit Pelantikan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Ada Minit Pelantikan</i>',
     ],
 
     'rekod_profil' => [
-       0 => '<td colspan="6"></td>',
+       0 => '',
     ],
 
     'profil_institusi' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Institusi<option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Institusi<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Institusi<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Institusi<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Institusi<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
     'profil_guru' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Guru<option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Guru<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Guru<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Guru<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Guru<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
     'profil_staf' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Staf<option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Staf<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Staf<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Staf<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Staf<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
     'profil_pelajar' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Pelajar<option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Pelajar<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Pelajar<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Pelajar<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Profil Pelajar<option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
+
     'pengurusan_rekod' => [
-       0 => '<td colspan="6"></td>',
+       0 => '',
     ],
 
     'rekod_pendaftaran_pelajar' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
     'rekod_sijil_tamat_belajar' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
     'rekod_kedatangan_pelajar' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
     'rekod_kedatangan_guru' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
     'rekod_pelawat' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
     'takwim_tahunan' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="didokumentasi">Didokumentasi</option><option value="dikemaskini">Dikemaskini</option><option value="sistematik">Sistematik</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Didokumentasi</i>',
+        3 => '<i>Ada, Didokumentasi, Dikemaskini</i>',
+        4 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik</i>',
+        5 => '<i>Ada, Didokumentasi, Dikemaskini, Sistematik, Kebolehcapaian</i>',
     ],
 
     'perkhidmatan_pelanggan' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="mempunyai_kaunter">Mempunyai Kaunter</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="mempunyai_kaunter">Mempunyai Kaunter</option><option value="kemas_dan_tersusun">Kemas dan Tersusun</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="mempunyai_kaunter">Mempunyai Kaunter</option><option value="kemas_dan_tersusun">Kemas dan Tersusun</option><option value="pegawai_khas_mesra_pelanggan">Pegawai Khas/Mesra Pelanggan</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="mempunyai_kaunter">Mempunyai Kaunter</option><option value="kemas_dan_tersusun">Kemas dan Tersusun</option><option value="pegawai_khas_mesra_pelanggan">Pegawai Khas/Mesra Pelanggan</option><option value="peti_cadangan">Peti Cadangan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Mempunyai Kaunter</i>',
+        3 => '<i>Ada, Mempunyai Kaunter, Kemas dan Tersusun</i>',
+        4 => '<i>Ada, Mempunyai Kaunter, Kemas dan Tersusun, Pegawai Khas/Mesra Pelanggan</i>',
+        5 => '<i>Ada, Mempunyai Kaunter, Kemas dan Tersusun, Pegawai Khas/Mesra Pelanggan, Peti Cadangan</i>',
     ],
 
     'paparan_untuk_makluman_umum' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="strategik">Strategik</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="strategik">Strategik</option><option value="bermaklumat">Bermaklumat</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="strategik">Strategik</option><option value="bermaklumat">Bermaklumat</option><option value="kemas">Kemas</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada</option><option value="strategik">Strategik</option><option value="bermaklumat">Bermaklumat</option><option value="kemas">Kemas</option><option value="terkini">Terkini</option></select></td>',
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Strategik</i>',
+        3 => '<i>Ada, Strategik, Bermaklumat</i>',
+        4 => '<i>Ada, Strategik, Bermaklumat, Kemas</i>',
+        5 => '<i>Ada, Strategik, Bermaklumat, Kemas, Terkini</i>',
     ],
 
     'pengurusan_aduan' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada SOP</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada SOP</option><option value="sop_dipamerkan">SOP Dipamerkan</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada SOP</option><option value="sop_dipamerkan">SOP Dipamerkan</option><option value="rekod_aduan">Ada Rekod Aduan</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada SOP</option><option value="sop_dipamerkan">SOP Dipamerkan</option><option value="rekod_aduan">Ada Rekod Aduan</option><option value="tindakan_aduan">Ada Tindakan Terhadap Aduan</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="ada">Ada SOP</option><option value="sop_dipamerkan">SOP Dipamerkan</option><option value="rekod_aduan">Ada Rekod Aduan</option><option value="tindakan_aduan">Ada Tindakan Terhadap Aduan</option><option value="minit_aduan">Minit Mesyuarat Pengurusan Berkenaan Aduan</option></select></td>',
+        0 => '',
+        1 => '<i>Ada SOP</i>',
+        2 => '<i>Ada SOP, SOP Dipamerkan</i>',
+        3 => '<i>Ada SOP, SOP Dipamerkan, Ada Rekod Aduan</i>',
+        4 => '<i>Ada SOP, SOP Dipamerkan, Ada Rekod Aduan, Ada Tindakan Terhadap Aduan</i>',
+        5 => '<i>Ada SOP, SOP Dipamerkan, Ada Rekod Aduan, Ada Tindakan Terhadap Aduan, Minit Mesyuarat Pengurusan Berkenaan Aduan</i>',
     ],
+
 ];
 @endphp
 
@@ -238,6 +240,7 @@ $option_institusis = [
 
     #NilaiItem2 tbody {
         vertical-align: middle;
+        text-align: center;
     }
 
     #NilaiItem2 table {
@@ -246,41 +249,55 @@ $option_institusis = [
     }
 </style>
 
-<div class="table-responsive">
-    <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem2">
-        <thead>
-            <tr>
-                <th rowspan="2" width="5%">No.</th>
-                <th rowspan="2" width="20%"> Kriteria </th>
-                <th width="12">0</th>
-                <th width="12">1</th>
-                <th width="12">2</th>
-                <th width="12">3</th>
-                <th width="12">4</th>
-                <th width="12">5</th>
-            </tr>
-
-            <tr>
-                <th>TIADA</th>
-                <th>LEMAH</th>
-                <th>SEDERHANA</th>
-                <th>HARAPAN</th>
-                <th>BAIK</th>
-                <th>CEMERLANG</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td colspan="8">Pengurusan Institusi</td>
-            </tr>
-            @foreach ($institusis as $index => $institusi)
+<form>
+    <div class="table-responsive">
+        <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem2">
+            <thead>
                 <tr>
-                    <td colspan="2"> {{ $institusi }}</td>
-                    @foreach ($option_institusis[$index] as $option_institusi)
-                        {!! $option_institusi !!}
-                    @endforeach
+                    <th rowspan="2" width="5%">No.</th>
+                    <th rowspan="2" width="20%"> Kriteria </th>
+                    <th width="12">0</th>
+                    <th width="12">1</th>
+                    <th width="12">2</th>
+                    <th width="12">3</th>
+                    <th width="12">4</th>
+                    <th width="12">5</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+
+                <tr>
+                    <th>TIADA</th>
+                    <th>LEMAH</th>
+                    <th>SEDERHANA</th>
+                    <th>HARAPAN</th>
+                    <th>BAIK</th>
+                    <th>CEMERLANG</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="8">Pengurusan Institusi</td>
+                </tr>
+                @foreach ($institusis as $index => $institusi)
+                    <tr>
+                        <td colspan="2"> {{ $institusi }}</td>
+                        @foreach ($option_institusis[$index] as $option_institusi)
+                            <td>
+                                <div class="form-check form-check-inline mb-1">
+                                    <input class="form-check-input" type="radio" name="{{ $institusi }}" id="" value="">
+                                </div>
+                                <br>
+
+                                {!! $option_institusi !!}
+                            </td>
+                        @endforeach
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+    </div>
+</form>
