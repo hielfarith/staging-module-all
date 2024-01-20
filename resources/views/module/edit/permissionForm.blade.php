@@ -20,8 +20,14 @@
                         <div class="col-md-12 col-12">
                             <div class="form-group">
                                 <label class="form-label" for="perm_name">Permission Name <span class="text text-danger">*</span> </label>
-                                <div class="input-group">
-                                    <input type="text" id="perm_name" name="perm_name" value="" class="form-control" placeholder="Name of Permission" required>
+                                <div class="">
+                                    <select name="perm_name" id="perm_name" class="select2 form-select form-control" required>
+                                        <option value="" hidden> Pilih Role</option>
+                                            <option value="view form">View Form</option>
+                                            <option value="verify form">Verify Form</option>
+                                            <option value="approve form">Approve Form</option>
+                                            <option value="reject">Reject</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

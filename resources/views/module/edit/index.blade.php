@@ -53,12 +53,45 @@
 @endsection
 
 @section('script')
+
 {{-- Tab 1 Module Information --}}
+
+<script type="text/javascript">
+    function typechange(argument){
+    var type = argument.value;
+    $('#module_name').empty();
+    var url = "{{ route('module.viewModuleTypes') }}"
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            module_type: type
+        },
+        success: function(response) {
+            $('#module_name').empty();
+            $('#module_name').append('<option value="" selected>Sila Pilih:-</option>');
+            $.each(response.formdata, function(key, value) {
+                if (type == 'SEDIA') {
+                    $('#module_name').append('<option value="'+ value.id +'">'+ value.nama_instrumen +'</option>');
+                } else {
+                    $('#module_name').append('<option value="'+ value.id +'">'+ value.form_name+'-'+ value.category+'</option>');
+                }
+            });
+        }
+    });
+}
+</script>
 
 {{-- END Tab 1 Module Information --}}
 {{-- Tab 2 Module Role, Status and Permission --}}
     {{-- General  --}}
         <script>
+            $('.select2').on('shown.bs.modal', function () {
+                $('.select2').select2();
+                flatpickr(".flatpickr", {
+                    dateFormat: "d/m/Y"
+                });
+            });
             refreshModuleTab2 = function(url){
                 event.preventDefault();
                 //Generally, when submit success, close all modal.
@@ -72,7 +105,6 @@
     {{-- End General --}}
     {{-- Module Role  --}}
         <script>
-
             viewModuleRoleForm = function(role_id = null){
 
                 var roleFormModal;

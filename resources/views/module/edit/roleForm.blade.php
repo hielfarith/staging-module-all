@@ -20,11 +20,11 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="form-label" for="role_id">Role</label>
-                                <div class="input-group">
+                                <div class="">
                                     @php
                                         $roles = \App\Models\Role::where('dynamic',1)->get();
                                     @endphp
-                                    <select name="role_id" id="role_id" class="select2 form-select">
+                                    <select name="role_id" id="role_id" class="select2 form-select form-control">
                                         <option value="" hidden> Pilih Role</option>
                                         @foreach ($roles as $role)
                                             <option value="{{$role->id}}"> {{$role->name}}</option>

@@ -160,10 +160,11 @@ class FormSubmissionController extends Controller
         $id = $filledform->id;
         $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
         $dynamicModuleId = $moduleId->id;
-        $canView = FMF::checkPermission($dynamicModuleId, $filledform->status, 'form view');
-        $canVerify = FMF::checkPermission($dynamicModuleId, $filledform->status, 'verify form');
-        $canApprove = FMF::checkPermission($dynamicModuleId, $filledform->status, 'approve form');
+        $canView = FMF::checkPermission($dynamicModuleId, $filledform->status, 'view');
+        $canVerify = FMF::checkPermission($dynamicModuleId, $filledform->status, 'verify');
+        $canApprove = FMF::checkPermission($dynamicModuleId, $filledform->status, 'approve');
         $canQuery = FMF::checkPermission($dynamicModuleId, $filledform->status, 'query');
+        $canReject = FMF::checkPermission($dynamicModuleId, $filledform->status, 'reject');
         $staticForm = false;
         return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId', 'staticForm'));
     }
