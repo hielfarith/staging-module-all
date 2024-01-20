@@ -15,7 +15,7 @@ $pendaftarans = [
 ?>
 
 <div class="table-responsive">
-    <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPengurusan">
+    <table class="table header_uppercase table-bordered table-hovered" id="">
         <thead>
             <tr>
                 <th width="5%">1.0.</th>

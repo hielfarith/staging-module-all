@@ -13,77 +13,81 @@ $pendaftarans = [
 
 $options = [
     'kelulusan_penubuhan' => [
-        0 => '<td></td>',
-        1 => '<td></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Kelulusan Penubuhan</option><option value="ada">Ada</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Kelulusan Penubuhan</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Kelulusan Penubuhan</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option><option value="difailkan">Difailkan</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Kelulusan Penubuhan</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '',
+        2 => '<i>Ada</i>',
+        3 => '<i>Ada, Lengkap</i>',
+        4 => '<i>Ada, Lengkap, Difailkan</i>',
+        5 => '<i>Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
     ],
     'perakuan_pendaftaran' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Perakuan Pendaftaran</option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Perakuan Pendaftaran</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Perakuan Pendaftaran</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option><option value="dipamerkan">Dipamerkan</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Perakuan Pendaftaran</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option><option value="dipamerkan">Dipamerkan</option><option value="strategik">Strategik</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Perakuan Pendaftaran</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option><option value="dipamerkan">Dipamerkan</option><option value="strategik">Strategik</option><option value="kemas">Kemas</option></select></td>',
+        0 => '',
+        1 => '<i> Ada</i>',
+        2 => '<i> Ada, Lengkap</i>',
+        3 => '<i> Ada, Lengkap, Dipamerkan</i>',
+        4 => '<i> Ada, Lengkap, Dipamerkan, Strategik</i>',
+        5 => '<i> Ada, Lengkap, Dipamerkan, Strategik, Kemas</i>',
     ],
+
     'permit_pengelola' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="">Permit Pengelola</option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="">Permit Pengelola</option><option value="ada">Ada</option><option value="terkini">Terkini</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="">Permit Pengelola</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="">Permit Pengelola</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option><option value="difailkan">Difailkan</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="">Permit Pengelola</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i> Ada</i>',
+        2 => '<i> Ada, Terkini</i>',
+        3 => '<i> Ada, Terkini, Mecukupi</i>',
+        4 => '<i> Ada, Terkini, Mecukupi, Difailkan</i>',
+        5 => '<i> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
     ],
     'permit_pekerja' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Pekerja</option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Pekerja</option><option value="ada">Ada</option><option value="terkini">Terkini</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Pekerja</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Pekerja</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option><option value="difailkan">Difailkan</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Pekerja</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i> Ada</i>',
+        2 => '<i> Ada, Terkini</i>',
+        3 => '<i> Ada, Terkini, Mecukupi</i>',
+        4 => '<i> Ada, Terkini, Mecukupi, Difailkan</i>',
+        5 => '<i> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
     ],
+
     'kelulusan_pengetua' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Kelulusan Pengetua</option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Kelulusan Pengetua</option><option value="ada">Ada</option><option value="terkini">Terkini</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Kelulusan Pengetua</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="difailkan">Difailkan</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Kelulusan Pengetua</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Kelulusan Pengetua</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="dipamerkan">Dipamerkan</option></select></td>',
+        0 => '',
+        1 => '<i> Ada</i>',
+        2 => '<i> Ada, Terkini</i>',
+        3 => '<i> Ada, Terkini, Difailkan</i>',
+        4 => '<i> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
+        5 => '<i> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
     ],
     'permit_guru' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Guru</option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Guru</option><option value="ada">Ada</option><option value="terkini">Terkini</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Guru</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Guru</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option><option value="difailkan">Difailkan</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Permit Guru</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i> Ada</i>',
+        2 => '<i> Ada, Terkini</i>',
+        3 => '<i> Ada, Terkini, Mecukupi</i>',
+        4 => '<i> Ada, Terkini, Mecukupi, Difailkan</i>',
+        5 => '<i> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
     ],
     'suratcara_pengelola' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Suratcara Pengelola</option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Suratcara Pengelola</option><option value="ada">Ada</option><option value="terkini">Terkini</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Suratcara Pengelola</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Suratcara Pengelola</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option><option value="difailkan">Difailkan</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Suratcara Pengelola</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="mecukupi">Mecukupi</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i> Ada</i>',
+        2 => '<i> Ada, Terkini</i>',
+        3 => '<i> Ada, Terkini, Mecukupi</i>',
+        4 => '<i> Ada, Terkini, Mecukupi, Difailkan</i>',
+        5 => '<i> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
     ],
+
     'yuran_dan_bayaran_lain' => [
-        0 => '<td></td>',
-        1 => '<td></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Yuran & Bayaran Lain</option><option value="ada">Ada</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Yuran & Bayaran Lain</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Yuran & Bayaran Lain</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option><option value="difailkan">Difailkan</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Yuran & Bayaran Lain</option><option value="ada">Ada</option><option value="lengkap">Lengkap</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
+        0 => '',
+        1 => '<i> Ada</i>',
+        2 => '<i> Ada, Lengkap</i>',
+        3 => '<i> Ada, Lengkap, Difailkan</i>',
+        4 => '<i> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
+        5 => '<i> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
     ],
     'surat_surat_sokongan_agensi' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Surat Sokongan</option><option value="ada">Ada</option></select></td>',
-        2 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Surat Sokongan</option><option value="ada">Ada</option><option value="terkini">Terkini</option></select></td>',
-        3 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Surat Sokongan</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="difailkan">Difailkan</option></select></td>',
-        4 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Surat Sokongan</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option></select></td>',
-        5 => '<td><select class="form-select select2" name="" id=""><option value="" hidden>Surat Sokongan</option><option value="ada">Ada</option><option value="terkini">Terkini</option><option value="difailkan">Difailkan</option><option value="kebolehcapaian">Kebolehcapaian</option><option value="dipamerkan">Dipamerkan</option></select></td>',
+        0 => '',
+        1 => '<i> Ada</i>',
+        2 => '<i> Ada, Terkini</i>',
+        3 => '<i> Ada, Terkini, Difailkan</i>',
+        4 => '<i> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
+        5 => '<i> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
     ],
+
 ];
 @endphp
 
@@ -95,6 +99,7 @@ $options = [
 
     #NilaiItem1 tbody {
         vertical-align: middle;
+        text-align: center;
     }
 
     #NilaiItem1 table {
@@ -103,41 +108,57 @@ $options = [
     }
 </style>
 
-<div class="table-responsive">
-    <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem1">
-        <thead>
-            <tr>
-                <th rowspan="2" width="5%">No.</th>
-                <th rowspan="2" width="20%"> Kriteria </th>
-                <th width="12">0</th>
-                <th width="12">1</th>
-                <th width="12">2</th>
-                <th width="12">3</th>
-                <th width="12">4</th>
-                <th width="12">5</th>
-            </tr>
 
-            <tr>
-                <th>TIADA</th>
-                <th>LEMAH</th>
-                <th>SEDERHANA</th>
-                <th>HARAPAN</th>
-                <th>BAIK</th>
-                <th>CEMERLANG</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td colspan="8">PENUBUHAN DAN PENDAFTARAN</td>
-            </tr>
-            @foreach ($pendaftarans as $index => $pendaftaran)
+<form>
+    <div class="table-responsive">
+        <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem1">
+            <thead>
                 <tr>
-                    <td colspan="2"> {{ $pendaftaran }}</td>
-                    @foreach ($options[$index] as $option)
-                        {!! $option !!}
-                    @endforeach
+                    <th rowspan="2" width="5%">No.</th>
+                    <th rowspan="2" width="20%"> Kriteria </th>
+                    <th width="12">0</th>
+                    <th width="12">1</th>
+                    <th width="12">2</th>
+                    <th width="12">3</th>
+                    <th width="12">4</th>
+                    <th width="12">5</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+
+                <tr>
+                    <th>TIADA</th>
+                    <th>LEMAH</th>
+                    <th>SEDERHANA</th>
+                    <th>HARAPAN</th>
+                    <th>BAIK</th>
+                    <th>CEMERLANG</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="8">PENUBUHAN DAN PENDAFTARAN</td>
+                </tr>
+                @foreach ($pendaftarans as $index => $pendaftaran)
+                    <tr>
+                        <td colspan="2"> {{ $pendaftaran }}</td>
+
+                        @foreach ($options[$index] as $option)
+                            <td>
+                                <div class="form-check form-check-inline mb-1">
+                                    <input class="form-check-input" type="radio" name="{{ $pendaftaran }}" id="" value="">
+                                </div>
+                                <br>
+
+                                {!! $option !!}
+                            </td>
+                        @endforeach
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+    </div>
+</form>
