@@ -1,41 +1,52 @@
 <?php
 
-$pendaftarans = [
-    'kelulusan_penubuhan' => '1.1 Surat Kelulusan Penubuhan',
-    'perakuan_pendaftaran' => '1.2 Perakuan Pendaftaran',
-    'permit_pengelola' => '1.3 Permit Pengelola',
-    'permit_pekerja' => '1.4 Permit Pekerja',
-    'kelulusan_pengetua' => '1.5 Surat Kelulusan Pengetua ',
-    'permit_guru' => '1.6 Permit Guru',
-    'suratcara_pengelola' => '1.7 Suratcara Pengelola',
-    'yuran_dan_bayaran_lain' => '1.8 Yuran dan Bayaran Lain',
-    'surat_surat_sokongan_agensi' => '1.9 Surat-surat Sokongan Agensi',
+$institusis = [
+    'piagam_pelanggan' => '2.1. Piagam Pelanggan',
+    'visi_dan_misi' => '2.2. Visi dan Misi',
+    'perancangan_strategik' => '2.3. Perancangan Strategik / Hala Tuju',
+    'surat_surat_pelantikan' => '2.4 Surat Surat Perlantikan',
+    'pelantikan_pengelola' => '2.4.1 Surat Pelantikan Pengelola',
+    'pelantikan_pengetua_dan_kontrak_kerja' => '2.4.2 Surat Pelantikan Pengetua Dan Kontrak Kerja',
+    'pelantikan_guru_dan_kontrak_kerja' => '2.4.3 Surat Pelantikan Guru Dan Kontrak Kerja',
+    'pelantikan_pekerja_dan_kontrak_kerja' => '2.4.4 Surat Pelantikan Pekerja Dan Kontrak Kerja',
+    'kebenaran_mengajar_guru_kerajaan' => '2.4.5 Surat Kebenaran Mengajar (Guru Kerajaan)',
+    'rekod_profil' => '2.5 Rekod Profil',
+    'profil_institusi' => '2.5.1 Profil Institusi',
+    'profil_guru' => '2.5.2 Profil Guru',
+    'profil_staf' => '2.5.3 Profil Staf',
+    'profil_pelajar' => '2.5.4 Profil Pelajar',
+    'pengurusan_rekod' => '2.6 Pengurusan Rekod',
+    'rekod_pendaftaran_pelajar' => '2.6.1 Rekod Pendaftaran Pelajar',
+    'rekod_sijil_tamat_belajar' => '2.6.2 Rekod Sijil Tamat Belajar',
+    'rekod_kedatangan_pelajar' => '2.6.3 Rekod Kedatangan Pelajar',
+    'rekod_kedatangan_guru' => '2.6.4 Rekod Kedatangan Guru',
+    'rekod_pelawat' => '2.6.5 Rekod Pelawat',
+    'takwim_tahunan' => '2.7. Takwim Tahunan Pusat Bahasa/Pusat Kemahiran',
+    'perkhidmatan_pelanggan' => '2.8. Perkhidmatan Pelanggan',
+    'paparan_untuk_makluman_umum' => '2.9. Paparan untuk Makluman Umum',
+    'pengurusan_aduan' => '2.10 Pengurusan Aduan',
 ];
 
 ?>
 
 <div class="table-responsive">
-    <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPengurusan">
+    <table class="table header_uppercase table-bordered table-hovered" id="">
         <thead>
             <tr>
-                <th width="5%">1.0.</th>
-                <th> PENUBUHAN & PENDAFTARAN </th>
+                <th width="5%">2.0.</th>
+                <th> PENUBUHAN INSTITUSI </th>
                 <th width="10%">SKOR</th>
             </tr>
         </thead>
 
         <tbody>
             <tr>
-                <td rowspan="10">
-                    <i>
-                        Seksyen 79
-                    </i>
-                </td>
+                <td rowspan="25"></td>
             </tr>
-            @foreach ($pendaftarans as $pendaftaran)
+            @foreach ($institusis as $institusi)
                 <tr>
                     <td>
-                        {{ $pendaftaran }}
+                        {{ $institusi }}
                     </td>
                     <td>
                         <a class="text-success">Auto Calculated</a>
