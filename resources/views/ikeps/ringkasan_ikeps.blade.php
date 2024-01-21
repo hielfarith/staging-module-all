@@ -295,12 +295,13 @@ I-KePS
                     </tr>
                 </thead>
                 <?php 
+                $totalZon = $totalDaerah = $totalBahagian = $totalNegeri = $totalKebangsaan = $totalAntarabangsa = 0;
+
                 if($statusPertanyaan){
                 ?>
                 <tbody>
                     <?php
                     $sukan_mssm = config('staticdata.ikeps.status_penyertaan.sukan_mssm');
-                    $totalZon = $totalDaerah = $totalBahagian = $totalNegeri = $totalKebangsaan = $totalAntarabangsa = 0;
                     ?>
                     @foreach($sukan_mssm as $mssmKey => $sukan)
                         <?php
@@ -368,12 +369,13 @@ I-KePS
                     </tr>
                 </thead>
                 <?php 
+                $totalZon = $totalDaerah = $totalBahagian = $totalNegeri = $totalKebangsaan = $totalAntarabangsa = 0;
+                
                 if($statusPertanyaan){
                 ?>
                 <tbody>
                     <?php
                     $sukan_lain = config('staticdata.ikeps.status_penyertaan.sukan_lain');
-                    $totalZon = $totalDaerah = $totalBahagian = $totalNegeri = $totalKebangsaan = $totalAntarabangsa = 0;
                     ?>
                     @foreach($sukan_lain as $lainKey => $sukan)
                         <?php
