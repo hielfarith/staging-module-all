@@ -236,6 +236,15 @@ class InstrumenController extends Controller
                 $TetapanItem = TetapanItem::where('id', $input['tetapan_item_id'])->first();
                 unset($input['tetapan_item_id']);
                 $TetapanItem->update($input);
+            } elseif(array_key_exists('instrumen_id', $input)) {
+                $TetapanItem = TetapanItem::where('instrumen_id', $input['instrumen_id'])->first();
+                
+                if (!empty($TetapanItem)) {
+                    $TetapanItem->update($input);
+                } else {
+                    $TetapanItem = new TetapanItem;
+                    $TetapanItem->create($input);
+                }
             } else {
                 $TetapanItem = new TetapanItem;
                 $TetapanItem->create($input);
