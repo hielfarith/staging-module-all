@@ -1,3 +1,11 @@
+ <?php
+    $instrumenid = Request::segment(4);
+    if (!empty($instrumenid)) {
+        $item = App\Models\TetapanItem::where('instrumen_id', $instrumenid)->first();
+    } else {
+        $item = null;
+    }
+?>
 <form id="formitem" novalidate="novalidate">
             <div class="row">
                 <h5 class="mb-2 fw-bolder">
@@ -13,14 +21,14 @@
                     <label class="fw-bolder form-label">Nama Item
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="nama_item" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
+                    <input type="text" class="form-control" name="nama_item" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8" value="{{$item?->nama_item}}">
                 </div>
 
                 <div class="col-md-3 mb-1">
                     <label class="fw-bolder form-label">Tarikh Kuatkuasa Item
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa_item" required>
+                    <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa_item" required value="{{$item?->tarikh_kuatkuasa_item}}">
                 </div>
 
                 <div class="col-md-3 mb-1">
@@ -28,11 +36,11 @@
                         <span class="text-danger">*</span>
                     </label>
                     <label>
-                        <input type="radio" name="status_item" class="form-check-input" value="Belum Set"> Belum Set
+                        <input type="radio" name="status_item" class="form-check-input" value="Belum Set" @if($item?->status_item == 'Belum Set') checked @endif> Belum Set
                     </label>
 
                      <label>
-                        <input type="radio" name="status_item" class="form-check-input" value="Telah Set">Telah Set
+                        <input type="radio" name="status_item" class="form-check-input" value="Telah Set" @if($item?->status_item == 'Telah Set') checked @endif>Telah Set
                     </label>
                 </div>
 
@@ -41,10 +49,10 @@
                         <span class="text-danger">*</span>
                     </label>
                     <label>
-                        <input type="radio" name="julat_skala" class="form-check-input" required value="1">1
+                        <input type="radio" name="julat_skala" class="form-check-input" required value="1" @if($item?->julat_skala == '1') checked @endif>1
                     </label>
                      <label>
-                        <input type="radio" name="julat_skala" class="form-check-input" required value="2">2
+                        <input type="radio" name="julat_skala" class="form-check-input" required value="2" @if($item?->julat_skala == '2') checked @endif>2
                     </label>
                 </div>
 
@@ -53,7 +61,7 @@
                     <label class="fw-bolder form-label">Tetapan Skala
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="tetapan_skala" class="form-control" required>
+                    <input type="text" name="tetapan_skala" class="form-control" required value="{{$item?->tetapan_skala}}">
                 </div>
 
                 
@@ -61,7 +69,7 @@
                     <label class="fw-bolder form-label">Wajaran Skala
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="wajaran_skala" class="form-control" required>
+                    <input type="text" name="wajaran_skala" class="form-control" required value="{{$item?->wajaran_skala}}">
                 </div>
 
                
@@ -100,9 +108,7 @@
                 @endif
             </div>
             <hr>
-            <?php
-                $instrumenid = Request::segment(4);
-            ?>
+           
             @if(!empty($instrumenid))
             <hr>
             <div class="d-flex justify-content-end align-items-center mt-1">

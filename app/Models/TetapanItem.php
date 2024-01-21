@@ -12,8 +12,6 @@ class TetapanItem extends Model
             'nama_item',
             'tarikh_kuatkuasa_item',
             'status_item',
-            'belum_set',
-            'telah_set',
             'wajaran_skala',
             'tindakan_oleh_siapa',
             'tetapan_skala',

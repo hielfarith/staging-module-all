@@ -13,8 +13,6 @@ class TetapanAspek extends Model
             'nama_aspek',
             'tarikh_kuatkuasa_aspek',
             'status_aspek',
-            'belum_set',
-            'telah_set',
             'wajaran_skala',
             'type',
             'instrumen_id'

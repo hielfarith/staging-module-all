@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('nama_item');
             $table->string('tarikh_kuatkuasa_item');
             $table->string('status_item');
-            $table->string('belum_set');
-            $table->string('telah_set');
             $table->string('wajaran_skala');
             $table->string('tindakan_oleh_siapa')->nullable();
             $table->string('tetapan_skala');
