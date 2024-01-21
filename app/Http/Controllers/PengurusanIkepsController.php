@@ -108,4 +108,8 @@ class PengurusanIkepsController extends Controller
     public function PemantauanPengisianIkeps(Request $request){
         return view ('ikeps.laporan_ikeps.pemantauan_pengisian');
     }
+
+    public function DashboardIkeps(Request $request){
+        return view ('dashboard.dashboard_bpsukan');
+    }
 }

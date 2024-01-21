@@ -10,6 +10,7 @@ Route::controller(PengurusanIkepsController::class)->group(function () {
 
         Route::get('laporan-pengisian','LaporanRingkasanIkeps')->name('laporan_ikeps');
         Route::get('pemantauan-pengisian','PemantauanPengisianIkeps')->name('pemantauan_ikeps');
+        Route::get('dashboard','DashboardIkeps')->name('dashboard_ikeps');
 
     });
 });
