@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('tempoh_bagi_setiap_proses')->nullable();
             $table->string('instrumen_perlu_diisi')->nullable();
             $table->string('tarikh_kuatkuasa');
-            $table->tinyInteger('tetapan_keperluan_pengemaskinian_data_terkini');
+            $table->tinyInteger('tetapan_keperluan_pengemaskinian_data_terkini')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->string('tempoh_pengisian');
             $table->string('tempoh_pengisian_lain');

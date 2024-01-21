@@ -172,17 +172,15 @@
                 </div>
 
                 <div class="col-md-4 mb-1">
-                    <label>
-                    <input type="checkbox" class="form-check-input" name="tetapan_keperluan_pengemaskinian_data_terkini" required value="1">Tetapan Keperluan Pengemaskinian Data Terkini
+                    <label class="fw-bold form-label">
+                    <input type="checkbox" class="form-check-input" required name="tetapan_keperluan_pengemaskinian_data_terkini" value="1">
+                    Tetapan Keperluan Pengemaskinian Data Terkini
                         <span class="text-danger">*</span>
-
                     </label>
                 </div>
-
                 <div class="d-flex justify-content-end align-items-center my-1">
-                    <button type="submit" class="btn btn-primary float-right">Hantar</button>
+                    <button type="submit" class="btn btn-primary float-right">Simpan</button>
                  </div>
-
             </div>
         </form>
 
@@ -193,43 +191,53 @@
 
    $(document).ready(function() {
     $('.select2').select2({
-      placeholder: 'Sila Pilih',
-      allowClear: true // Adds a clear button to the dropdown
-    });
-  });
+        placeholder: 'Sila Pilih',
+        allowClear: true // Adds a clear button to the dropdown
+        });
+   });
 
     $('#forminstrumenskpak').submit(function(event) {
         event.preventDefault();
         var formData = new FormData(document.getElementById('forminstrumenskpak'));
         var error = false;
-        $('#forminstrumenskpak').find('select.select2').each(function() {
-            var element = $(this);
-            var select2Value = element.select2('data');
-            var selectedValues = element.val();
-            var fieldName = element.attr('name');
-            if (typeof element.attr('disabled') == 'undefined') {
-
-                if (!selectedValues || selectedValues === '') {
-                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-                    error = true;
-                    return false; // Stop the loop if an error is found
-                }
+        
+         $('form#forminstrumenskpak').find('select, textarea, input, checkbox').each(function() {
+            if(this.required && this.type == 'checkbox' && !this.checked) {
+                error = true;
+            }
+            if (this.required && this.value == '') {
+                error = true;
             }
         });
 
+        // $('#forminstrumenskpak').find('select.select2').each(function() {
+        //     var element = $(this);
+        //     var select2Value = element.select2('data');
+        //     var selectedValues = element.val();
+        //     var fieldName = element.attr('name');
+        //     if (typeof element.attr('disabled') == 'undefined') {
 
-        formData.forEach(function(value, name) {
-            var element = $("input[name='"+name+"']");
-            if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
-                if (element.val() == '') {
-                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-                    error = true;
-                    return false;
-                }
-            }
-        });
+        //         if (!selectedValues || selectedValues === '') {
+        //             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+        //             error = true;
+        //             return false; // Stop the loop if an error is found
+        //         }
+        //     }
+        // });
+
+        // formData.forEach(function(value, name) {
+        //     var element = $("input[name='"+name+"']");
+        //     if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
+        //         if (element.val() == '') {
+        //             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+        //             error = true;
+        //             return false;
+        //         }
+        //     }
+        // });
 
         if (error) {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
         var url = "{{ route('admin.instrumen.instrumenskpak-submit') }}"

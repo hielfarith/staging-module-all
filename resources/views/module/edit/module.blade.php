@@ -31,17 +31,17 @@
                                         </select>
                                     @else
                                         <?php
-                                            if ($module->module_type == 'NewForm') {
-                                                $formData = \App\Models\NewForm::where('id', $module->module_name)->first();
-                                            } else {
+                                            if ($module->module_type == 'SEDIA') {
                                                 $formData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $module->module_name)->first();
+                                            } else {
+                                                $formData = \App\Models\NewForm::where('id', $module->module_name)->first();
                                             }
                                         ?>
                                         <input type="hidden" id="module_name" name="module_name" value="{{ $module->module_name ?? null }}" class="form-control" placeholder="Name of Module" required>
-                                        @if($module->module_type == 'NewForm') 
-                                            <input type="text" id="module_show" name="module_show" value="{{$formData->form_name}}-{{$formData->category}}" class="form-control" placeholder="Name of Module" readonly>
-                                        @else
+                                        @if($module->module_type == 'SEDIA') 
                                             <input type="text" id="module_show" name="module_show" value="{{$formData->nama_instrumen}}" class="form-control" placeholder="Name of Module" readonly>
+                                        @else
+                                            <input type="text" id="module_show" name="module_show" value="{{$formData->form_name}}" class="form-control" placeholder="Name of Module" readonly>
                                         @endif
                                     @endif
                                 </div>

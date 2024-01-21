@@ -26,6 +26,7 @@
                                             <option value="view form">View Form</option>
                                             <option value="verify form">Verify Form</option>
                                             <option value="approve form">Approve Form</option>
+                                            <option value="query">Query</option>
                                             <option value="reject">Reject</option>
                                     </select>
                                 </div>

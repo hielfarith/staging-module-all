@@ -173,7 +173,8 @@
 
                 <div class="col-md-4 mb-1">
                     <label>
-                    <input type="checkbox" class="form-check-input" name="tetapan_keperluan_pengemaskinian_data_terkini" required value="1">Tetapan Keperluan Pengemaskinian Data Terkini
+                    <input type="checkbox" class="form-check-input" name="tetapan_keperluan_pengemaskinian_data_terkini" required value="1">
+                    <b>Tetapan Keperluan Pengemaskinian Data Terkini</b>
                         <span class="text-danger">*</span>
 
                     </label>

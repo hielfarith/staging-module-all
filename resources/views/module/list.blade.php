@@ -46,9 +46,17 @@
                         <tr>
                             <th>{{ (($allModule->currentPage() - 1) * $allModule->perPage()) + $loop->iteration }}</th>
                             <?php
-                                $formData = \App\Models\NewForm::where('id', $module->module_name)->first();
+                                if ($module->module_type == 'SEDIA') {
+                                    $formData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $module->module_name)->first();
+                                } else {
+                                    $formData = \App\Models\NewForm::where('id', $module->module_name)->first();
+                                }
                             ?>
-                            <td>{{ $formData->form_name }}-{{$formData->category}}</td>
+                            @if ($module->module_type == 'NewForm') 
+                                <td>{{ $formData->form_name }}</td>
+                            @else
+                                <td>{{ $formData->nama_instrumen }}</td>
+                            @endif
                             <td class="text-center">
                                 @if( $module->active)
                                     <span class="badge badge-light-success">ACTIVE</span>

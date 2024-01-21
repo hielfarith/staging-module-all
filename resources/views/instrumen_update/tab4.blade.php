@@ -198,190 +198,8 @@
         </div>
     </div>
 </div>
-
-@section('script')
-<script>
-function submitform() {
-    const form = document.getElementById("frm");
-    const formData = new FormData(form);
-    const formObject = {};
-
-    formData.forEach(function(value, key) {
-        if (formObject[key]) {
-            if (!Array.isArray(formObject[key])) {
-                formObject[key] = [formObject[key]];
-            }
-            formObject[key].push(value);
-        } else {
-            formObject[key] = value;
-        }
-
-    });
-
-    var type = $('#select').val();
-    var label = $('#label_name').val();
-    var name = $('#name').val();
-    var options = '';
-    var type = $('#select').val();
-    if (type == 'select') {
-        options = $('textarea#options').val();
-    }
-    if (type == 'segment') {
-        options = $('textarea#options2').val();
-    }
-    var url = "{{route('input-field')}}"
-     $.ajax({
-        url: url, // Route URL
-        type: 'POST', // Request type (GET, POST, etc.)
-         data: formObject,
-        success: function(response) {
-            $('#type').val('');
-            $('#row1').append(response);
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Disimpan!',
-                text: 'Atribut berjaya disimpan.',
-                showConfirmButton: true,
-            });
-
-            $('#BorangTambahAtribut').offcanvas("hide");
-        }
-    });
-}
-
-function deletediv(div) {
-    $('#'+div).remove();
-}
-
-function changeselect() {
-    var type = $('#type').val();
-    if (type == 'select' || type == 'radio' || type == 'checkbox') {
-        $('.options').show();
-    } else {
-        $('.options').hide();
-    }
-
-     if (type == 'segment') {
-        $('.options2').show();
-    } else {
-        $('.options2').hide();
-    }
-
-}
-
-function submitDynamicForm() {
-    // if (!$('#form_name').val() || !$('#category_name').val() || !$('#description').val() || !$('#id_instrumen').val() || !$('#tarikh_didaftar').val() || !$('#tarikh_tutup').val()) {
-    //     // return false;
-    // }
-    $('form#dynamicform').find('select, textarea, input').each(function() {
-        if(!$(this).prop('required')) {
-            console.log("NR");
-
-         } else {
-            var val = $(this).prop('value');
-            console.log(val)
-            console.log("IR");
-        }
-    });
-
-    $('form#dynamicform').submit();
-}
-
-$('#dynamicform').submit(function(event) {
-    event.preventDefault();
-    const form = document.getElementById("dynamicform");
-    const formData = new FormData(form);
-    var formObject = [];
-    let i = 0;
-
-    formData.forEach(function(value, name) {
-        var inputElement = $('#'+name);
-        var inputType = inputElement.attr('type');
-        var name = inputElement.attr('name');
-        var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
-        var labelName = labelElement.text();
-        labelName = labelName.replace('*','');
-        var required = inputElement.attr('required') ? true : false;
-        var placeholder = inputElement.attr('placeholder');
-
-        if (inputType == 'select') {
-            var options = [];
-            var option = inputElement.find('option');
-            option.each(function() {
-              var text = $(this).text();
-              options.push(text);
-            });
-        } else {
-            var options = [];
-        }
-
-        if (inputType == 'hidden') {
-            var checktype = inputElement.attr('checktype');
-            if (checktype == 'segment') {
-                inputType = 'segment';
-                labelName = inputElement.attr('label');
-                options = inputElement.attr('value');
-            } else if(checktype == 'radio') {
-                inputType = 'radio';
-                labelName = inputElement.attr('label');
-                 options = inputElement.attr('value');
-            } else if(checktype == 'checkbox') {
-                inputType = 'checkbox';
-                labelName = inputElement.attr('label');
-                options = inputElement.attr('value');
-            }
-        }
-        formObject[i] = {
-            label: labelName,
-            name: name,
-            type: inputType,
-            options: options,
-            required: required,
-            placeholder: placeholder
-        };
-        i++;
-    });
-
-    var jsonData = JSON.stringify(formObject);
-    var url = "{{route('saveform')}}";
-     $.ajax({
-        url: url, // Route URL
-        type: 'POST', // Request type (GET, POST, etc.)
-         data: {
-            form_data : jsonData,
-            form_name: $('#form_name').val(),
-            category_name: $('#category_name').val(),
-            description: $('#description').val(),
-            tarikh_didaftar: $('#tarikh_didaftar').val(),
-            tarikh_tutup: $('#tarikh_tutup').val(),
-            id_instrumen: $('#id_instrumen').val(),
-            penafian_dan_hakmilik: $('#penafian_dan_hakmilik').val()
-         },
-        // contentType: 'application/json',
-        success: function(response) {
-            if (response.success) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Disimpan!',
-                    text: 'Borang instrumen berjaya disimpan.',
-                    showConfirmButton: true,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var location = "{{ route('show_all_forms') }}";
-                        window.location.href = location;
-                    }
-                });
-                // var location = "{{route('show_all_forms')}}"
-                // window.location.href = location;
-            } else {
-                $("#error").show("slow").delay(5000).hide("slow");
-            }
-        }
-    });
-});
-
-function sahkan_kategori_borang(type) {
+<script type="text/javascript">
+    function sahkan_kategori_borang(type) {
     var form_name = $('#form_name').val();
     var name = $('#category_name').val();
     var url = "{{ route('sahkan_kategori_instrumen') }}";
@@ -486,5 +304,186 @@ function  preview() {
     });
 }
 
+function submitform() {
+    const form = document.getElementById("frm");
+    const formData = new FormData(form);
+    const formObject = {};
+
+    formData.forEach(function(value, key) {
+        if (formObject[key]) {
+            if (!Array.isArray(formObject[key])) {
+                formObject[key] = [formObject[key]];
+            }
+            formObject[key].push(value);
+        } else {
+            formObject[key] = value;
+        }
+
+    });
+
+    var type = $('#select').val();
+    var label = $('#label_name').val();
+    var name = $('#name').val();
+    var options = '';
+    var type = $('#select').val();
+    if (type == 'select') {
+        options = $('textarea#options').val();
+    }
+    if (type == 'segment') {
+        options = $('textarea#options2').val();
+    }
+    var url = "{{route('input-field')}}"
+     $.ajax({
+        url: url, // Route URL
+        type: 'POST', // Request type (GET, POST, etc.)
+         data: formObject,
+        success: function(response) {
+            $('#type').val('');
+            $('#row1').append(response);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Disimpan!',
+                text: 'Atribut berjaya disimpan.',
+                showConfirmButton: true,
+            });
+
+            $('#BorangTambahAtribut').offcanvas("hide");
+        }
+    });
+}
+
+function deletediv(div) {
+    $('#'+div).remove();
+}
+
+function changeselect() {
+    var type = $('#type').val();
+    if (type == 'select' || type == 'radio' || type == 'checkbox') {
+        $('.options').show();
+    } else {
+        $('.options').hide();
+    }
+
+     if (type == 'segment') {
+        $('.options2').show();
+    } else {
+        $('.options2').hide();
+    }
+
+}
+
+function submitDynamicForm() {
+    // if (!$('#form_name').val() || !$('#category_name').val() || !$('#description').val() || !$('#id_instrumen').val() || !$('#tarikh_didaftar').val() || !$('#tarikh_tutup').val()) {
+    //     // return false;
+    // }
+    $('form#dynamicform').find('select, textarea, input').each(function() {
+        if(!$(this).prop('required')) {
+         } else {
+            var val = $(this).prop('value');
+        }
+    });
+
+    $('form#dynamicform').submit();
+}
 </script>
+
+@section('script')
+<script type="text/javascript">
+
+$('#dynamicform').submit(function(event) {
+    event.preventDefault();
+    const form = document.getElementById("dynamicform");
+    const formData = new FormData(form);
+    var formObject = [];
+    let i = 0;
+
+    formData.forEach(function(value, name) {
+        var inputElement = $('#'+name);
+        var inputType = inputElement.attr('type');
+        var name = inputElement.attr('name');
+        var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
+        var labelName = labelElement.text();
+        labelName = labelName.replace('*','');
+        var required = inputElement.attr('required') ? true : false;
+        var placeholder = inputElement.attr('placeholder');
+
+        if (inputType == 'select') {
+            var options = [];
+            var option = inputElement.find('option');
+            option.each(function() {
+              var text = $(this).text();
+              options.push(text);
+            });
+        } else {
+            var options = [];
+        }
+
+        if (inputType == 'hidden') {
+            var checktype = inputElement.attr('checktype');
+            if (checktype == 'segment') {
+                inputType = 'segment';
+                labelName = inputElement.attr('label');
+                options = inputElement.attr('value');
+            } else if(checktype == 'radio') {
+                inputType = 'radio';
+                labelName = inputElement.attr('label');
+                 options = inputElement.attr('value');
+            } else if(checktype == 'checkbox') {
+                inputType = 'checkbox';
+                labelName = inputElement.attr('label');
+                options = inputElement.attr('value');
+            }
+        }
+        formObject[i] = {
+            label: labelName,
+            name: name,
+            type: inputType,
+            options: options,
+            required: required,
+            placeholder: placeholder
+        };
+        i++;
+    });
+
+    var jsonData = JSON.stringify(formObject);
+    var url = "{{route('saveform')}}";
+     $.ajax({
+        url: url, // Route URL
+        type: 'POST', // Request type (GET, POST, etc.)
+         data: {
+            form_data : jsonData,
+            form_name: $('#form_name').val(),
+            category_name: $('#category_name').val(),
+            description: $('#description').val(),
+            tarikh_didaftar: $('#tarikh_didaftar').val(),
+            tarikh_tutup: $('#tarikh_tutup').val(),
+            id_instrumen: $('#id_instrumen').val(),
+            penafian_dan_hakmilik: $('#penafian_dan_hakmilik').val()
+         },
+        // contentType: 'application/json',
+        success: function(response) {
+            if (response.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Disimpan!',
+                    text: 'Borang instrumen berjaya disimpan.',
+                    showConfirmButton: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var location = "{{ route('show_all_forms') }}";
+                        window.location.href = location;
+                    }
+                });
+                // var location = "{{route('show_all_forms')}}"
+                // window.location.href = location;
+            } else {
+                $("#error").show("slow").delay(5000).hide("slow");
+            }
+        }
+    });
+});
+
+</script>
+
 @endsection
