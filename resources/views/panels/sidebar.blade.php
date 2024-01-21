@@ -38,12 +38,12 @@ $configData = Helper::applClasses();
             <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate"> Modul </span>
+                    <span class="menu-title text-truncate text-wrap"> Modul </span>
                 </a>
                 <ul class="menu-content">
                     <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link">
-                            <span class="menu-title text-truncate">
+                            <span class="menu-title text-truncate text-wrap">
                                 Instrument I-KePS
                             </span>
                         </a>
@@ -51,7 +51,7 @@ $configData = Helper::applClasses();
                         <ul class="menu-content">
                             <li class="{{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
                                 <a href="{{ route('ikeps.ikeps_baru') }}" class="d-flex align-items-center">
-                                    <span class="menu-title text-truncate">
+                                    <span class="menu-title text-truncate text-wrap">
                                         Pengisian I-KePS
                                     </span>
                                 </a>
@@ -59,8 +59,24 @@ $configData = Helper::applClasses();
 
                             <li class="{{ in_array(request()->route()->getName(), ['ikeps.ringkasan_ikeps']) ? 'active' : '' }}">
                                 <a href="{{ route('ikeps.ringkasan_ikeps') }}" class="d-flex align-items-center">
-                                    <span class="menu-title text-truncate">
+                                    <span class="menu-title text-truncate text-wrap">
                                         Ringkasan Maklumat
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="{{ in_array(request()->route()->getName(), ['ikeps.laporan_ikeps']) ? 'active' : '' }}">
+                                <a href="{{ route('ikeps.laporan_ikeps') }}" class="d-flex align-items-center">
+                                    <span class="menu-title text-truncate text-wrap">
+                                        Ringkasan Maklumat (BPSUKAN)
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="{{ in_array(request()->route()->getName(), ['ikeps.pemantauan_ikeps']) ? 'active' : '' }}">
+                                <a href="{{ route('ikeps.pemantauan_ikeps') }}" class="d-flex align-items-center">
+                                    <span class="menu-title text-truncate text-wrap">
+                                        Pemantauan Pengisian
                                     </span>
                                 </a>
                             </li>
@@ -69,7 +85,7 @@ $configData = Helper::applClasses();
 
                     <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link">
-                            <span class="menu-title text-truncate">
+                            <span class="menu-title text-truncate text-wrap">
                                 Instrument SKIPS
                             </span>
                         </a>
@@ -77,7 +93,7 @@ $configData = Helper::applClasses();
                         <ul class="menu-content">
                             <li class="{{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
                                 <a href="{{ route('skips.skips_baru') }}" class="d-flex align-items-center">
-                                    <span class="menu-title text-truncate">
+                                    <span class="menu-title text-truncate text-wrap">
                                         Pengisian SKIPS
                                     </span>
                                 </a>
@@ -85,7 +101,7 @@ $configData = Helper::applClasses();
 
                             <li class="{{ in_array(request()->route()->getName(), ['skips.ringkasan_skips']) ? 'active' : '' }}">
                                 <a href="{{ route('skips.ringkasan_skips') }}" class="d-flex align-items-center">
-                                    <span class="menu-title text-truncate">
+                                    <span class="menu-title text-truncate text-wrap">
                                         Ringkasan Maklumat
                                     </span>
                                 </a>
@@ -433,7 +449,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                
+
                     <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.senarai-sedia-ada'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.senarai-sedia-ada') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Konfigurasi Instrumen Sedia Ada </span>
