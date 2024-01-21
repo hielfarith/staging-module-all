@@ -30,6 +30,18 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap">{{ __('msg.home') }} </span>
                 </a>
             </li>
+            <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'menu-open': '' }}">
+                <a href="#" class="d-flex align-items-center">
+                    {{-- <i data-feather="home"></i> --}}
+                    <span class="menu-title text-truncate text-wrap">Announcement</span>
+                </a>
+            </li>
+            <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.dashboard_ikeps']) ? 'active' : '' }}">
+                <a href="{{ route('ikeps.dashboard_ikeps') }}" class="d-flex align-items-center">
+                    {{-- <i data-feather="home"></i> --}}
+                    <span class="menu-title text-truncate text-wrap">Dashboard I-KePS</span>
+                </a>
+            </li>
 
             @hasanyrole('superadmin|admin')
             <li class="navigation-header">
