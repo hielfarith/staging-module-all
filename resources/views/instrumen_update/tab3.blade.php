@@ -100,72 +100,75 @@
                 @endif
             </div>
             <hr>
+            <?php
+                $instrumenid = Request::segment(4);
+            ?>
+            @if(!empty($instrumenid))
+            <hr>
             <div class="d-flex justify-content-end align-items-center mt-1">
-                <button type="submit" class="btn btn-primary float-right">Simpan</button>
+                <button type="button" class="btn btn-success" onclick="submitItem()">Simpan</button>
             </div>
+            @endif
+            <input type="hidden" name="instrumen_id" id="instrumen_id" value="{{$instrumenid}}">
         </form>
 
-@section('script')
 <script type="text/javascript">
 
-$('#formitem').submit(function(event) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById('formitem'));
-        var error = false;
+function submitItem(){
+    var formData = new FormData(document.getElementById('formitem'));
+    var error = false;
 
-        $('#formitem').find('select.select2').each(function() {
-            var element = $(this);
-            var select2Value = element.select2('data');
-            var selectedValues = element.val();
-            var fieldName = element.attr('name');
-            if (typeof element.attr('disabled') == 'undefined') {
+    $('#formitem').find('select.select2').each(function() {
+        var element = $(this);
+        var select2Value = element.select2('data');
+        var selectedValues = element.val();
+        var fieldName = element.attr('name');
+        if (typeof element.attr('disabled') == 'undefined') {
 
-                if (!selectedValues || selectedValues === '') {
-                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-                    error = true;
-                    return false; // Stop the loop if an error is found
-                }
+            if (!selectedValues || selectedValues === '') {
+                Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                error = true;
+                return false; // Stop the loop if an error is found
             }
-        });
-
-
-        formData.forEach(function(value, name) {
-            var element = $("input[name="+name+"]");
-            if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
-                if (element.val() == '') {
-                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-                    error = true;
-                    return false;
-                }
-            }
-        });
-
-        if (error) {
-            return false;
         }
-
-        var url = "{{ route('admin.instrumen.tetapan-item-submit') }}"
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-               if (response.status) {
-                    Swal.fire('Success', 'Berjaya', 'success');
-                    var type = $('#type').val();
-                    if (type == 'SKPAK') {
-                        var location = "{{route('admin.instrumen.tetapan-item-list')}}"
-                    } else if (type == 'SPKS')
-                    {
-                        var location = "{{route('admin.instrumen.tetapan-item-sub-list')}}"
-                    } 
-                    window.location.href = location;
-               }
-            }
-        });
-
     });
+
+
+    formData.forEach(function(value, name) {
+        var element = $("input[name="+name+"]");
+        if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
+            if (element.val() == '') {
+                Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                error = true;
+                return false;
+            }
+        }
+    });
+
+    if (error) {
+        return false;
+    }
+
+    var url = "{{ route('admin.instrumen.tetapan-item-submit') }}"
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+           if (response.status) {
+                Swal.fire('Success', 'Berjaya', 'success');
+                var type = $('#type').val();
+                if (type == 'SKPAK') {
+                    var location = "{{route('admin.instrumen.tetapan-item-list')}}"
+                } else if (type == 'SPKS')
+                {
+                    var location = "{{route('admin.instrumen.tetapan-item-sub-list')}}"
+                } 
+                // window.location.href = location;
+           }
+        }
+    });
+};
 </script>
-@endsection

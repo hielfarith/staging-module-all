@@ -1,3 +1,11 @@
+<?php
+    $instrumenid = Request::segment(4);
+    if (!empty($instrumenid)) {
+        $aspek = \App\Models\TetapanAspek::where('instrumen_id', $instrumenid)->first();
+    } else {
+        $aspek = null;
+    }
+?>
 <form id="formpaspek" novalidate="novalidate">
     <div class="row">
         <h5 class="mb-2 fw-bold">
@@ -13,7 +21,7 @@
             <label class="fw-bold form-label">Nama Aspek
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" class="form-control" name="nama_aspek" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
+            <input type="text" class="form-control" name="nama_aspek" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8" value="{{$aspek?->nama_aspek}}">
         </div>
 
        @if($type == 'SKPAK')
@@ -30,12 +38,12 @@
             </label>
             <select class="form-control select2" name="status_aspek" required>
                 <option value="" hidden>Sila Pilij</option>
-                <option value="Belum Set">Belum Set</option>
-                <option value="Telah Set">Telah Set</option>
+                <option value="Belum Set" @if($aspek?->status_aspek == 'Belum Set') selected @endif>Belum Set</option>
+                <option value=" Set" @if($aspek?->status_aspek == 'Telah Set') selected @endif>Telah Set</option>
             </select>
         </div>
 
-         @if($type != 'SUB')
+        @if($type != 'SUB')
         <div class="col-md-3 mb-1">
             <label class="fw-bold form-label">Wajaran Skala
                 <span class="text-danger">*</span>
@@ -44,15 +52,17 @@
         </div>
         @endif
     </div>
+    
+    @if(!empty($instrumenid))
     <hr>
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+        <button type="button" class="btn btn-success" onclick="submitAspek()">Simpan</button>
     </div>
+    @endif
+    <input type="hidden" name="instrumen_id" id="instrumen_id" value="{{$instrumenid}}">
 </form>
-@section('script')
 <script type="text/javascript">
-$('#formpaspek').submit(function(event) {
-        event.preventDefault();
+    function submitAspek() {
         var formData = new FormData(document.getElementById('formpaspek'));
         var error = false;
 
@@ -99,11 +109,10 @@ $('#formpaspek').submit(function(event) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
                     var location = "{{route('admin.instrumen.tetapan-aspek-sub-list')}}"
-                    window.location.href = location;
+                    // window.location.href = location;
                }
             }
         });
-
-    });
+    }
+ 
 </script>
-@endsection

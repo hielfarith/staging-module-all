@@ -1,3 +1,11 @@
+<?php
+    $instrumenid = Request::segment(4);
+    if (!empty($instrumenid)) {
+        $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->first();
+    } else {
+        $instrumenData = null;
+    }
+?>
     <form id="forminstrumenskpak" novalidate="novalidate">
             <div class="row">
                 <h5 class="mb-2 fw-bold">
@@ -10,13 +18,13 @@
                     <label class="fw-bold form-label"> Nama Instrumen
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="nama_instrumen" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
+                    <input type="text" class="form-control" name="nama_instrumen" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8" value="{{$instrumenData?->nama_instrumen}}">
                 </div>
                  <div class="col-md-6 mb-1">
                     <label class="fw-bold form-label">  Tujuan Instrumen
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="tujuan_instrumen" required>
+                    <input type="text" class="form-control" name="tujuan_instrumen" required value="{{$instrumenData?->tujuan_instrumen}}">
                 </div>
 
                 <div class="col-md-3 mb-1">
@@ -25,8 +33,8 @@
                     </label>
                     <select class="form-control select2" name="pengguna_instrumen" required>
                         <option value="">Sila Pilih</option>
-                        <option value="PENTADBIR">PENTADBIR</option>
-                        <option value="GURU INSTITUSI">GURU INSTITUSI</option>
+                        <option value="PENTADBIR" @if($instrumenData?->pengguna_instrumen == 'PENTADBIR') selected  @endif>PENTADBIR</option>
+                        <option value="GURU INSTITUSI" @if($instrumenData?->pengguna_instrumen == 'PENTADBIR') selected  @endif>GURU INSTITUSI</option>
                     </select>
                 </div>
 
@@ -36,8 +44,8 @@
                     </label>
                     <select  class="form-control select2" name="pengisian_oleh" required>
                           <option value="">Sila Pilih</option>
-                        <option value="PENGETUA">PENGETUA</option>
-                        <option value="GURU BESAR INSTITUSI">GURU BESAR INSTITUSI</option>
+                        <option value="PENGETUA" @if($instrumenData?->pengisian_oleh == 'PENGETUA') selected  @endif>PENGETUA</option>
+                        <option value="GURU BESAR INSTITUSI" @if($instrumenData?->pengisian_oleh == 'GURU BESAR INSTITUSI') selected  @endif>GURU BESAR INSTITUSI</option>
                     </select>
                 </div>
 
@@ -48,10 +56,10 @@
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_pengisian" required>
                             <option value="">Sila Pilih</option>
-                            <option value="Bulan">Bulan</option>
-                            <option value="Minggu">Minggu</option>
+                            <option value="Bulan" @if($instrumenData?->tempoh_pengisian == 'Bulan') selected  @endif>Bulan</option>
+                            <option value="Minggu" @if($instrumenData?->tempoh_pengisian == 'Minggu') selected  @endif>Minggu</option>
                         </select>
-                        <input type="text" class="form-control" name="tempoh_pengisian_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                        <input type="text" class="form-control" name="tempoh_pengisian_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumenData?->tempoh_pengisian_lain}}">
                     </div>
                 </div>
 
@@ -61,8 +69,8 @@
                     </label>
                     <select class="form-control select2" name="pengesahan_ole" required >
                           <option value="">Sila Pilih</option>
-                        <option value="PPD ">PPD </option>
-                        <option value="JPN">JPN</option>
+                        <option value="PPD" @if($instrumenData?->pengesahan_ole == 'PPD') selected  @endif>PPD </option>
+                        <option value="JPN" @if($instrumenData?->pengesahan_ole == 'JPN') selected  @endif>JPN</option>
                     </select>
                 </div>
 
@@ -73,10 +81,10 @@
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_pengeshan" required >
                             <option value="">Sila Pilih</option>
-                            <option value="Bulan">Bulan</option>
-                            <option value="Minggu">Minggu</option>
+                            <option value="Bulan" @if($instrumenData?->tempoh_pengeshan == 'Bulan') selected  @endif>Bulan</option>
+                            <option value="Minggu" @if($instrumenData?->tempoh_pengeshan == 'Minggu') selected  @endif>Minggu</option>
                     </select>
-                        <input type="text" class="form-control" name="tempoh_pengeshan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                        <input type="text" class="form-control" name="tempoh_pengeshan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumenData?->tempoh_pengeshan_lain}}">
                     </div>
                 </div>
 
@@ -86,8 +94,8 @@
                     </label>
                     <select class="form-control select2" name="verifikasi_oleh" required>
                       <option value="">Sila Pilih</option>
-                        <option value="JPN">JPN</option>
-                        <option value="KPM">KPM</option>
+                        <option value="JPN" @if($instrumenData?->verifikasi_oleh == 'JPN') selected  @endif>JPN</option>
+                        <option value="KPM" @if($instrumenData?->verifikasi_oleh == 'KPM') selected  @endif>KPM</option>
                     </select>
                 </div>
 
@@ -98,10 +106,10 @@
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_verifikasi" required >
                             <option value="">Sila Pilih</option>
-                            <option value="Bulan">Bulan</option>
-                            <option value="Minggu">Minggu</option>
+                            <option value="Bulan" @if($instrumenData?->tempoh_verifikasi_lain == 'Bulan') selected  @endif>Bulan</option>
+                            <option value="Minggu" @if($instrumenData?->tempoh_verifikasi_lain == 'Minggu') selected  @endif>Minggu</option>
                     </select>
-                    <input type="text" class="form-control" name="tempoh_verifikasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    <input type="text" class="form-control" name="tempoh_verifikasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumenData?->tempoh_verifikasi_lain}}">
                     </div>
                 </div>
 
@@ -112,9 +120,9 @@
                     </label>
                     <select class="form-control select2" name="validasi_oleh" required>
                         <option value="">Sila Pilih</option>
-                        <option value="PPD">PPD</option>
-                        <option value="JPN">JPN</option>
-                        <option value="KPM">KPM</option>
+                        <option value="PPD" @if($instrumenData?->validasi_oleh == 'PPD') selected  @endif>PPD</option>
+                        <option value="JPN" @if($instrumenData?->validasi_oleh == 'JPN') selected  @endif>JPN</option>
+                        <option value="KPM" @if($instrumenData?->validasi_oleh == 'KPM') selected  @endif>KPM</option>
                     </select>
                 </div>
 
@@ -125,10 +133,10 @@
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_validasi" required >
                             <option value="">Sila Pilih</option>
-                            <option value="Bulan">Bulan</option>
-                            <option value="Minggu">Minggu</option>
+                            <option value="Bulan" @if($instrumenData?->tempoh_validasi == 'Bulan') selected  @endif>Bulan</option>
+                            <option value="Minggu" @if($instrumenData?->tempoh_validasi == 'Minggu') selected  @endif>Minggu</option>
                     </select>
-                    <input type="text" class="form-control" name="tempoh_validasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    <input type="text" class="form-control" name="tempoh_validasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumenData?->tempoh_validasi_lain}}">
                     </div>
                 </div>
 
@@ -138,8 +146,8 @@
                     </label>
                     <select class="form-control select2" name="perakuan_oleh"  required>
                           <option value="">Sila Pilih</option>
-                        <option value="PENTADBIR">PENTADBIR</option>
-                        <option value="GURU INSTITUSI">GURU INSTITUSI</option>
+                        <option value="PENTADBIR" @if($instrumenData?->perakuan_oleh == 'PENTADBIR') selected  @endif>PENTADBIR</option>
+                        <option value="GURU INSTITUSI" @if($instrumenData?->perakuan_oleh == 'GURU INSTITUSI') selected  @endif>GURU INSTITUSI</option>
                     </select>
                 </div>
 
@@ -150,10 +158,10 @@
                     <div class="input-group">
                         <select class="form-control select2" name="tempoh_perakuan" required >
                             <option value="">Sila Pilih</option>
-                            <option value="Bulan">Bulan</option>
-                            <option value="Minggu">Minggu</option>
+                            <option value="Bulan" @if($instrumenData?->tempoh_perakuan == 'Bulan') selected  @endif>Bulan</option>
+                            <option value="Minggu" @if($instrumenData?->tempoh_perakuan == 'Minggu') selected  @endif>Minggu</option>
                     </select>
-                    <input type="text" class="form-control" name="tempoh_perakuan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    <input type="text" class="form-control" name="tempoh_perakuan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumenData?->tempoh_perakuan_lain}}">
                     </div>
                 </div>
 
@@ -161,19 +169,19 @@
                     <label class="fw-bold form-label">Instrumen perlu diisi
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="instrumen_perlu_diisi" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    <input type="text" class="form-control" name="instrumen_perlu_diisi" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumenData?->instrumen_perlu_diisi}}">
                 </div>
 
                  <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Tarikh Kuatkuasa
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" required>
+                    <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" required value="{{$instrumenData?->tarikh_kuatkuasa}}">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">
-                    <input type="checkbox" class="form-check-input" required name="tetapan_keperluan_pengemaskinian_data_terkini" value="1">
+                    <input type="checkbox" class="form-check-input" required name="tetapan_keperluan_pengemaskinian_data_terkini" value="1" @if($instrumenData?->tetapan_keperluan_pengemaskinian_data_terkini) checked  @endif>
                     Tetapan Keperluan Pengemaskinian Data Terkini
                         <span class="text-danger">*</span>
                     </label>
@@ -182,6 +190,7 @@
                     <button type="submit" class="btn btn-primary float-right">Simpan</button>
                  </div>
             </div>
+            <input type="hidden" name="instrumen_id" id="instrumen_id" value="{{$instrumenData ? $instrumenData->id : 0}}">
         </form>
 
 
@@ -250,7 +259,10 @@
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.instrumen.instrumenskpak-list')}}"
+                    var id = response.data.id;
+                    $('#instrumen_id').val(id);
+                    var location = "{{route('admin.instrumen.form',[ 'type' => 'instrumen', 'model' => ':id'])}}";
+                    var location = location.replace(':id', id);
                     window.location.href = location;
                }
             }

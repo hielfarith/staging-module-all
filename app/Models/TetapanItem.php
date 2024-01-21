@@ -20,6 +20,7 @@ class TetapanItem extends Model
             'julat_skala',
             'markah_skala_mandatori_catatan',
             'role_aspek',
-            'type'
+            'type',
+            'instrumen_id'
         ];
 }

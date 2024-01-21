@@ -34,19 +34,20 @@ class InstrumenController extends Controller
 
     public function saveSkpak(Request $request) {
          DB::beginTransaction();
-        try {           
+        try {
+
             $input = $request->input();
             $input['status'] = 1;
             if (!isset($input['type'])) {
                 $input['type'] = 'SKPAK';
             }
-            if (array_key_exists('instrumen_id', $input)) {
+            if (array_key_exists('instrumen_id', $input) && $input['instrumen_id'] != 0) {
                 $InstrumenSkpakSpksIkeps = InstrumenSkpakSpksIkeps::where('id', $input['instrumen_id'])->first();
                 unset($input['instrumen_id']);
-                $InstrumenSkpakSpksIkeps->update($input);
+                $instrumenSkpakSpksIkeps = $InstrumenSkpakSpksIkeps->update($input);
             } else {
                 $InstrumenSkpakSpksIkeps = new InstrumenSkpakSpksIkeps;
-                $InstrumenSkpakSpksIkeps->create($input);
+                $instrumenSkpakSpksIkeps = $InstrumenSkpakSpksIkeps->create($input);
             }
 
         } catch (\Throwable $e) {
@@ -56,7 +57,8 @@ class InstrumenController extends Controller
         }
 
         DB::commit();
-        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'redirectRoute' => route('admin.internal.penggunalist')]);
+
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'redirectRoute' => route('admin.internal.penggunalist'), 'data' => $instrumenSkpakSpksIkeps]);
     }
 
     public function listInstrumenSkpak(Request $request)
@@ -123,12 +125,20 @@ class InstrumenController extends Controller
          DB::beginTransaction();
         try {           
             $input = $request->input();
-
-            $input['status'] = 1;
+            $input['status'] = 1;   
             if (array_key_exists('tetapan_aspek_id', $input)) {
                 $TetapanAspek = TetapanAspek::where('id', $input['tetapan_aspek_id'])->first();
                 unset($input['tetapan_aspek_id']);
                 $TetapanAspek->update($input);
+            } elseif(array_key_exists('instrumen_id', $input)) {
+                $TetapanAspek = TetapanAspek::where('instrumen_id', $input['instrumen_id'])->first();
+                
+                if (!empty($TetapanAspek)) {
+                    $TetapanAspek->update($input);
+                } else {
+                    $TetapanAspek = new TetapanAspek;
+                    $TetapanAspek->create($input);
+                }
             } else {
                 $TetapanAspek = new TetapanAspek;
                 $TetapanAspek->create($input);

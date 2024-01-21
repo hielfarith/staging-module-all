@@ -21,7 +21,7 @@ Instrumen
         <h4 class="card-title fw-bolder"> Senarai Instrumen </h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'instrumen', 'model' => 'instrumen']) }}">
+            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'instrumen']) }}">
                 <i class="fa-solid fa-add"></i> Tambah Instrumen
             </a>
         </div>

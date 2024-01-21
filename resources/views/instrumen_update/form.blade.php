@@ -52,7 +52,6 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
         </div>
     </div>
 </div>
-<input type="hidden" name="instrument_saved" id="instrument_saved" value="tetsing">
 @endsection
 
 @section('script')
@@ -60,5 +59,13 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
  $('.select2').select2({
       placeholder: 'Sila Pilih'
     });
+
+
+$('#dynamicform').submit(function(event) {
+    event.preventDefault();
+    
+});
+
+
 </script>
 @endsection

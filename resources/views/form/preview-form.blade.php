@@ -28,7 +28,7 @@
                                     </div>
 
                                     {{-- ID Instrument --}}
-                                    <input type="text" class="form-control invoice-edit-input" value="{{$input['id_instrumen']}}" disabled>
+                                    <input type="text" class="form-control invoice-edit-input" value="{{$input['instrumen_id']}}" disabled>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-1">

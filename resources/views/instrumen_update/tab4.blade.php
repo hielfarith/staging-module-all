@@ -1,3 +1,11 @@
+<?php
+    $instrumenid = Request::segment(4);
+    if (!empty($instrumenid)) {
+        $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->first();
+    } else {
+        $instrumenData = null;
+    }
+?>
 <div class="row invoice-add">
     <div class="col-xl-9 col-md-8 col-12">
         <div class="card invoice-preview-card">
@@ -12,7 +20,7 @@
                         <!-- form start -->
                         {{-- Nama Instrumen --}}
                         <div class="error-message text-danger" id="formname-error"></div>
-                        <input type="text" class="form-control mb-25" name="form_name" id="form_name" placeholder="Nama Instrumen" onkeyup="sahkan_kategori_borang('form')" required>
+                        <input type="text" class="form-control mb-25" name="form_name" id="form_name" placeholder="Nama Instrumen" onkeyup="sahkan_kategori_borang('form')" required value="{{$instrumenData?->nama_instrumen}}" readonly>
 
                         {{-- Kategori Instrumen --}}
                         <div class="error-message text-danger" id="category-error"></div>
@@ -30,7 +38,7 @@
                                 </div>
 
                                 {{-- ID Instrument --}}
-                                <input type="text" class="form-control invoice-edit-input" name="id_instrumen" id="id_instrumen" value="" required>
+                                <input type="text" class="form-control invoice-edit-input" name="instrumen_id" id="instrumen_id" value="{{$instrumenData?->id}}" required>
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-1">
@@ -52,6 +60,7 @@
             <hr class="invoice-spacing" />
 
             <input type="hidden" name="row_count" id="row_count" value="1">
+            <input type="hidden" name="instrumen_id" id="instrumen_id" value="{{$instrumenid}}">
 
                 <!-- Instrument Form starts -->
                 <form id="dynamicform">
@@ -97,11 +106,13 @@
                     </span>
                 </h4>
             </div>
+            @if(!empty($instrumenid))
             <hr>
             <div class="card-body">
                 <a onclick="preview()" class="btn btn-primary w-100 mb-75">Lihat Borang</a>
                 <button type="button" class="btn btn-success w-100" onclick="submitDynamicForm()">Simpan</button>
             </div>
+            @endif
         </div>
     </div>
     <!-- Tindakan Borang Instrumen ends -->
@@ -117,7 +128,7 @@
         <hr>
         {{-- <form id="frm">
             @csrf --}}
-
+       
         <form action="{{ route('input-field') }}" id="frm" method="post" data-swal="Maklumat Penilai Berjaya Disimpan">
             @csrf
 
@@ -125,7 +136,7 @@
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bolder">Jenis Atribut</label>
                     {{-- Jenis Atribut --}}
-                    <select name="type" id="type" class="form-control select2" onchange="changeselect()">
+                    <select name="typeData" id="typeData" class="form-control select2" onchange="changeselect()">
                         <option value="" hidden>Jenis Atribut</option>
                         <option value="segment">Section</option>
                         <option value="text">Text</option>
@@ -174,13 +185,15 @@
                 </div>
             </div>
         </form>
-
+           
+        @if(!empty($instrumenid))
         <hr class="mb-2 mt-2">
 
         <button type="button" class="btn btn-primary mb-1 d-grid w-100" onclick="submitform();">Simpan</button>
         <button type="button" class="btn btn-outline-danger d-grid w-100" data-bs-dismiss="offcanvas">
             Batal
         </button>
+        @endif
     </div>
 </div>
 
@@ -203,7 +216,6 @@
     var form_name = $('#form_name').val();
     var name = $('#category_name').val();
     var url = "{{ route('sahkan_kategori_instrumen') }}";
-
     $.ajax({
         url: url, // Route URL
         type: 'POST', // Request type (GET, POST, etc.)
@@ -230,8 +242,6 @@ function  preview() {
     let i = 0;
      formData.forEach(function(value, name) {
         var inputElement = $('#'+name);
-        console.log(name)
-        console.log(inputElement)
         var inputType = inputElement.attr('type');
         var name = inputElement.attr('name');
         var labelElement = $('label[for="' + inputElement.attr('id') + '"]');
@@ -286,6 +296,7 @@ function  preview() {
         url: url, // Route URL
         type: 'POST', // Request type (GET, POST, etc.)
          data: {
+            instrumen_id: $('#instrumen_id').val(),
             form_data : jsonData,
             form_name: $('#form_name').val(),
             category_name: $('#category_name').val(),
@@ -338,16 +349,14 @@ function submitform() {
         type: 'POST', // Request type (GET, POST, etc.)
          data: formObject,
         success: function(response) {
-            $('#type').val('');
+            $('#typeData').val('');
             $('#row1').append(response);
-
             Swal.fire({
                 icon: 'success',
                 title: 'Disimpan!',
                 text: 'Atribut berjaya disimpan.',
                 showConfirmButton: true,
             });
-
             $('#BorangTambahAtribut').offcanvas("hide");
         }
     });
@@ -358,7 +367,8 @@ function deletediv(div) {
 }
 
 function changeselect() {
-    var type = $('#type').val();
+    console.log('in')
+    var type = $('#typeData').val();
     if (type == 'select' || type == 'radio' || type == 'checkbox') {
         $('.options').show();
     } else {
@@ -374,25 +384,15 @@ function changeselect() {
 }
 
 function submitDynamicForm() {
-    // if (!$('#form_name').val() || !$('#category_name').val() || !$('#description').val() || !$('#id_instrumen').val() || !$('#tarikh_didaftar').val() || !$('#tarikh_tutup').val()) {
-    //     // return false;
-    // }
-    $('form#dynamicform').find('select, textarea, input').each(function() {
-        if(!$(this).prop('required')) {
-         } else {
-            var val = $(this).prop('value');
-        }
-    });
+    
+    // $('form#dynamicform').find('select, textarea, input').each(function() {
+    //     if(!$(this).prop('required')) {
+    //      } else {
+    //         var val = $(this).prop('value');
+    //     }
+    // });
 
-    $('form#dynamicform').submit();
-}
-</script>
-
-@section('script')
-<script type="text/javascript">
-
-$('#dynamicform').submit(function(event) {
-    event.preventDefault();
+    // $('form#dynamicform').submit();
     const form = document.getElementById("dynamicform");
     const formData = new FormData(form);
     var formObject = [];
@@ -452,13 +452,14 @@ $('#dynamicform').submit(function(event) {
         url: url, // Route URL
         type: 'POST', // Request type (GET, POST, etc.)
          data: {
+            instrumen_id: $('#instrumen_id').val(),
             form_data : jsonData,
             form_name: $('#form_name').val(),
             category_name: $('#category_name').val(),
             description: $('#description').val(),
             tarikh_didaftar: $('#tarikh_didaftar').val(),
             tarikh_tutup: $('#tarikh_tutup').val(),
-            id_instrumen: $('#id_instrumen').val(),
+            id_instrumen: $('#instrumen_id').val(),
             penafian_dan_hakmilik: $('#penafian_dan_hakmilik').val()
          },
         // contentType: 'application/json',
@@ -482,7 +483,11 @@ $('#dynamicform').submit(function(event) {
             }
         }
     });
-});
+}
+</script>
+
+@section('script')
+<script type="text/javascript">
 
 </script>
 

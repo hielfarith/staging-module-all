@@ -29,7 +29,7 @@ class FormSubmissionController extends Controller
     {
         $input = $request->input();
 
-        $array['type'] = $request->input('type');
+        $array['type'] = $request->input('typeData');
         if(empty($request->input('name'))) {
             $name = $request->input('label_name');
         }
@@ -56,11 +56,15 @@ class FormSubmissionController extends Controller
 
     public function saveform(Request $request) {
         $data = $request->input();
-        $form = new NewForm();
+        
+        $form = NewForm::where('instrumen_id', $data['instrumen_id'])->first();
+        if (empty($form)) {
+            $form = new NewForm;
+        }
         $form->form_name = $data['form_name'];
         $form->category = $data['category_name'];
         $form->description = $data['description'];
-        $form->id_instrumen = $data['id_instrumen'];
+        $form->instrumen_id = $data['instrumen_id'];
 
         $date1 = str_replace('/', '-',  $data['tarikh_didaftar']);
         $form->tarikh_didaftar = date('Y-m-d', strtotime($date1));

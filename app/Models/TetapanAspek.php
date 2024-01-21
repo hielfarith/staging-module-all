@@ -16,6 +16,7 @@ class TetapanAspek extends Model
             'belum_set',
             'telah_set',
             'wajaran_skala',
-            'type'
+            'type',
+            'instrumen_id'
             ];
 }
