@@ -22,13 +22,13 @@
     th {
       vertical-align: top;
       text-transform: uppercase;
-      font-size: 1.1rem;
+      font-size: $table-th-font-size;;
       letter-spacing: 0.5px;
     }
   }
-  tbody{
-    font-size: 1.1rem;
-  }
+//   tbody{
+//     font-size: 1.1rem;
+//   }
   &.table-sm {
     th,
     td {
