@@ -31,7 +31,7 @@
         > li > a i {
           height: 20px;
           width: 20px;
-          font-size: 1.45rem;
+          font-size: 1.5rem;
           margin-right: 1.1rem;
           flex-shrink: 0;
         }
@@ -40,7 +40,7 @@
           > li > a svg,
           > li > a i {
             margin-right: 1.45rem;
-            font-size: 11px;
+            font-size: 1.1rem;
             height: 11px;
             width: 11px;
           }
@@ -66,7 +66,7 @@
                 &:before {
                   height: 20px;
                   width: 20px;
-                  font-size: 1.45rem;
+                  font-size: 1.5rem;
                 }
               }
             }
@@ -135,7 +135,7 @@
               a {
                 background: whitesmoke;
                 box-shadow: none;
-                color: #565656;
+                color: #000000;
               }
             }
           }
