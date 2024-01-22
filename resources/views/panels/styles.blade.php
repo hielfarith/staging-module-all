@@ -32,6 +32,10 @@
 <link rel="stylesheet" href="{{asset('css/base/pages/app-invoice.css')}}">
 
     <style>
+        .table .header_uppercase .table-bordered .table-hovered{
+            font-size: 1.1rem;
+        }
+
         .error-message {
             color: red;
             font-size: 12px;
@@ -82,10 +86,12 @@
 
         /*--Fixed FormLabel sizing from bootstrap--*/
         .form-label {
-            font-size: var(--bs-body-font-size);
+            /* font-size: var(--bs-body-font-size); */
+            font-size: 1.1rem;
         }
         .col-form-label{
-            font-size: var(--bs-body-font-size);
+            /* font-size: var(--bs-body-font-size); */
+            font-size: 1.1rem;
         }
 
         /*--Fixed Form Group margin too near--*/

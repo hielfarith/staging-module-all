@@ -581,13 +581,13 @@ $list-group-action-active-bg: $component-active-bg !default;
 
 // Breadcrumbs
 
-$breadcrumb-font-size: 1rem !default;
+$breadcrumb-font-size: 1.1rem !default;
 $breadcrumb-padding-y: 0.3rem !default;
 $breadcrumb-item-padding-x: 0.6rem !default;
 $breadcrumb-margin-bottom: 0 !default;
 $breadcrumb-bg: transparent !default;
-$breadcrumb-divider-color: $body-color !default;
-$breadcrumb-active-color: $body-color !default;
+$breadcrumb-divider-color: #800020 !default;
+$breadcrumb-active-color: #800020 !default;
 $breadcrumb-divider-flipped: quote('\\') !default;
 $breadcrumb-border-radius: 0 !default;
 
