@@ -1,22 +1,23 @@
 <style>
-    #prasarana_sekolah_ikeps thead th {
+    #prasarana_sukan_ikeps thead th {
         vertical-align: middle;
         text-align: center;
     }
 
-    #prasarana_sekolah_ikeps tbody {
+    #prasarana_sukan_ikeps tbody {
         vertical-align: middle;
         text-align: center;
     }
 
-    #prasarana_sekolah_ikeps table {
+    #prasarana_sukan_ikeps table {
         width: 100% !important;
         /* word-wrap: break-word; */
     }
 </style>
 
-<form id="praSekForm" action="{{ route('ikeps.store', 'prasarana_sekolah') }}" method="POST">
+<form id="praSukForm" action="{{ route('ikeps.store', 'prasarana_sukan') }}" method="POST">
 @csrf
+
 <div class="row">
 
     <div class="col-md-12 mt-2 mb-2">
@@ -51,7 +52,7 @@
 <hr>
 
 <div class="table-responsive">
-    <table class="table table-bordered table-hovered" id="prasarana_sekolah_ikeps">
+    <table class="table table-bordered table-hovered" id="prasarana_sukan_ikeps">
         <thead>
             <tr>
                 <th rowspan="2">&nbsp;</th>
@@ -75,6 +76,61 @@
             </tr>
         </thead>
         <tbody>
+
+            <?php
+            $padangs = [
+                'kt_400' => '2.1 Keluasan Trek 400M',
+                'kt_300' => '2.2 Keluasan Trek 300M',
+                'kt_200' => '2.3 Keluasan Trek 200M',
+                'ktk_200' => '2.4 Keluasan Trek Kurang 200M',
+            ];
+            $treks = [
+                'trek_400' => '3.1 Trek 400M',
+                'trek_200' => '3.2 Trek 200M',
+                'trek_lain' => '3.3 Lain-lain',
+            ];
+            $astakas = [
+                'km_500' => '4.1 Kapasiti Melebihi 500',
+                'kk_500' => '4.1 Kapasiti Kurang 500',
+            ];
+            $dewans = [
+                'dewan_besar' => '5.1 Dewan Besar',
+                'dewan_khas' => '5.2 Dewan Khas Untuk Sukan',
+            ];
+            $bilik_sukans = [
+                'stor_1' => '6.1 Stor 1 Bay',
+                'stor_2' => '6.2 Stor 2 Bay',
+                'stor_3' => '6.3 Stor 3 Bay',
+            ];
+            $bilik_persalinans = [
+                'murid_lelaki' => '7.1 Murid Lelaki',
+                'murid_perempuan' => '7.2 Murid Perempuan',
+            ];
+            $gelanggangs = [
+                'terbuka_berbumbung' => '8.1 Gelanggan Terbuka Berbumbung',
+                'terbuka' => '8.2 Gelanggan Terbuka',
+            ];
+            $ada_tiadas = [
+                'ada' => 1,
+                'tiada' => 0,
+            ];
+            $gunasamas = [
+                'ada' => 1,
+                'tiada' => 0,
+            ];
+            $masih_digunakans = [
+                'ada' => 1,
+                'tiada' => 0,
+            ];
+            $status_fizikals = [
+                'selesa' => 1,
+                'tidak_selesa' => 2,
+                'kefungsian' => 3,
+                'sekuriti' => 4,
+                'keselamatan' => 5,
+            ];
+            ?>
+
             <tr>
                 <td colspan="13" class="bg-light-primary">
                     <h5 class="fw-bold text-uppercase text-primary mb-1">
@@ -84,22 +140,26 @@
                     <div class="row">
                         <div class="col-md-4 mb-1">
                             <label class="form-label fw-bold">
-                                Status Hakmilik Padang
+                                Status Hak Milik Padang
                             </label>
-                            <select name="" id="" class="form-control select2">
+                            <select name="status_padang" id="status_padang" class="form-control select2">
                                 <option value="" hidden></option>
-                                <option value="1">Sewa</option>
-                                <option value="2">Hakmilik Sekolah</option>
+                                <?php
+                                $status_padang = config('staticdata.ikeps.prasarana_sukan.padang_sekolah.sub.status_padang');
+                                foreach($status_padang as $statusKey => $status){
+                                ?>
+                                <option value="{{ $statusKey }}">{{ $status }}</option>
+                                <?php 
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="col-md-4 mb-1">
                             <label class="form-label fw-bold">
-                                Status Hakmilik Padang
                             </label>
-                            <select name="" id="" class="form-control select2">
+                            <select name="status_padang_butiran" id="status_padang_butiran" class="form-control select2">
                                 <option value="" hidden></option>
-                                <option value="1">Sewa</option>
-                                <option value="2">Hakmilik Sekolah</option>
+                                <option value="1">Sekolah A</option>
                             </select>
                         </div>
 
@@ -107,69 +167,21 @@
                             <label class="form-label fw-bold">
                                 Gred Padang
                             </label>
-                            <select name="" id="" class="form-control select2">
+                            <select name="gred_padang" id="gred_padang" class="form-control select2">
                                 <option value="" hidden></option>
-                                <option value="1">A</option>
-                                <option value="2">B</option>
+                                <?php
+                                $gred_padang = config('staticdata.ikeps.prasarana_sukan.padang_sekolah.sub.gred_padang');
+                                foreach($gred_padang as $gredKey => $gred){
+                                ?>
+                                <option value="{{ $gredKey }}">{{ $gred }}</option>
+                                <?php 
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
                 </td>
             </tr>
-
-            <?php
-                $padangs = [
-                    'kt_400' => '2.1 Keluasan Trek 400M',
-                    'kt_300' => '2.2 Keluasan Trek 300M',
-                    'kt_200' => '2.3 Keluasan Trek 200M',
-                    'ktk_200' => '2.4 Keluasan Trek Kurang 200M'
-                ];
-                $treks = [
-                    'trek_400' => '3.1 Trek 400M',
-                    'trek_200' => '3.2 Trek 200M',
-                    'trek_lain' => '3.3 Lain-lain'
-                ];
-                $astakas = [
-                    'astaka_l_500' => '4.1 Kapasiti Melebihi 500',
-                    'astaka_k_500' => '4.1 Kapasiti Kurang 500'
-                ];
-                $dewans = [
-                    'd_besar' => '5.1 Dewan Besar',
-                    'd_khas' => '5.2 Dewan Khas Untuk Sukan'
-                ];
-                $bilik_sukans = [
-                    'bps_1' => '6.1 Stor 1 Bay',
-                    'bps_2' => '6.2 Stor 2 Bay',
-                    'bps_3' => '6.3 Stor 3 Bay',
-                ];
-                $bilik_persalinans = [
-                    'bp_lelaki' => '7.1 Murid Lelaki',
-                    'bp_perempuan' => '7.2 Murid Perempuan'
-                ];
-                $gelanggangs = [
-                    'gt_bumbung' => '8.1 Gelanggan Terbuka Berbumbung',
-                    'gt' => '8.2 Gelanggan Terbuka',
-                ];
-                $ada_tiadas = [
-                    'ada' => 1,
-                    'tiada' => 0
-                ];
-                $gunasamas = [
-                    'ada' => 1,
-                    'tiada' => 0
-                ];
-                $masih_digunakans = [
-                    'ada' => 1,
-                    'tiada' => 0
-                ];
-                $status_fizikals = [
-                    'selesa' => 1,
-                    'tidak_selesa' => 2,
-                    'kefungsian' => 3,
-                    'sekuriti' => 4,
-                    'keselamatan' => 5,
-                ];
-            ?>
 
             <tr>
                 <td> Padang Sekolah</td>
@@ -184,13 +196,13 @@
                 @foreach ($gunasamas as $id => $gunasama)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="ps_gunasama" id="{{ 'ps_gunasama_'.$id }}" value="{{ $gunasama }}">
+                            <input class="form-check-input" type="radio" name="padang_sekolah_gunasama" id="{{ 'padang_sekolah_gunasama_'.$id }}" value="{{ $gunasama }}">
                         </div>
                     </td>
                 @endforeach
 
                 <td>
-                    <input type="text" class="form-control" name="ps_bilangan" id="ps_bilangan">
+                    <input type="text" class="form-control" name="padang_sekolah_bilangan" id="padang_sekolah_bilangan">
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -262,7 +274,7 @@
                 </td>
 
                 <td>
-                    <input type="text" class="form-control" id="ts_bilangan" name="ts_bilangan">
+                    <input type="text" class="form-control" id="trek_sintetik_bilangan" name="trek_sintetik_bilangan">
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -272,7 +284,7 @@
 
             @foreach($treks as $trekKey => $trek)
                 <tr>
-                    <td> {{ $trek }} @if($trekKey == 'trek_lain') <input class="form-control" id="{{ $trekKey.'_details' }}" id="{{ $trekKey.'_details' }}" @endif</td>
+                    <td> {{ $trek }} @if($trekKey == 'trek_lain') <input class="form-control" name="{{ $trekKey.'_butiran' }}" id="{{ $trekKey.'_butiran' }}"> @endif</td>
                     @foreach ($ada_tiadas as $id => $ada_tiada)
                         <td>
                             <div class="form-check form-check-inline">
@@ -324,7 +336,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="astaka" id="{{ 'astaka'.$id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="astaka" id="{{ 'astaka_'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -474,7 +486,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bilik_alat_sukan" id="{{ 'bilik_alat_sukan'.$id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="bilik_sukan" id="{{ 'bilik_sukan'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -485,7 +497,7 @@
                 </td>
 
                 <td>
-                    <input type="text" class="form-control" name="bps_bilangan" id="bps_bilangan">
+                    <input type="text" class="form-control" name="bilik_sukan_bilangan" id="bilik_sukan_bilangan">
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -547,7 +559,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bilik_salin" id="{{ 'bilik_salin'.$id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="bilik_persalinan" id="{{ 'bilik_persalinan'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -558,7 +570,7 @@
                 </td>
 
                 <td>
-                    <input type="text" class="form-control" name="bilik_salin_bilangan" id="bilik_salin_bilangan">
+                    <input type="text" class="form-control" name="bilik_persalinan_bilangan" id="bilik_persalinan_bilangan">
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -620,7 +632,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gelanggang" id="{{ 'gelanggang'.$id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="gelanggang_serbaguna" id="{{ 'gelanggang_serbaguna'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -631,7 +643,7 @@
                 </td>
 
                 <td>
-                    <input type="text" class="form-control" name="gelanggang_bilangan" id="gelanggang_bilangan">
+                    <input type="text" class="form-control" name="gelanggang_serbaguna_bilangan" id="gelanggang_serbaguna_bilangan">
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -693,7 +705,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bk" id="{{ 'bk_'.$id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="bilik_kecergasan" id="{{ 'bilik_kecergasan_'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -701,19 +713,19 @@
                 @foreach ($gunasamas as $id => $gunasama)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bk_gunasama" id="{{ 'bk_gunasama_'.$id }}" value="{{ $gunasama }}">
+                            <input class="form-check-input" type="radio" name="bilik_kecergasan_gunasama" id="{{ 'bilik_kecergasan_gunasama_'.$id }}" value="{{ $gunasama }}">
                         </div>
                     </td>
                 @endforeach
 
                 <td>
-                    <input type="text" class="form-control" id="bk_bilangan" name="bk_bilangan">
+                    <input type="text" class="form-control" id="bilik_kecergasan_bilangan" name="bilik_kecergasan_bilangan">
                 </td>
 
                 @foreach ($masih_digunakans as $id => $masih_digunakan)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bk_masih_digunakan" id="{{ 'bk_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
+                            <input class="form-check-input" type="radio" name="bilik_kecergasan_masih_digunakan" id="{{ 'bilik_kecergasan_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
                         </div>
                     </td>
                 @endforeach
@@ -721,7 +733,7 @@
                 @foreach ($status_fizikals as $id => $status_fizikal)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bk_status_fizikal" id="{{ 'bk_status_fizikal'.$id }}" value="{{ $status_fizikal }}">
+                            <input class="form-check-input" type="radio" name="bilik_kecergasan_status_fizikal" id="{{ 'bilik_kecergasan_status_fizikal'.$id }}" value="{{ $status_fizikal }}">
                         </div>
                     </td>
                 @endforeach
@@ -740,7 +752,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="mss" id="{{ 'mss_'.$id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="makmal_sains" id="{{ 'makmal_sains_'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -748,19 +760,19 @@
                 @foreach ($gunasamas as $id => $gunasama)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="mss_gunasama" id="{{ 'mss_gunasama_'.$id }}" value="{{ $gunasama }}">
+                            <input class="form-check-input" type="radio" name="makmal_sains_gunasama" id="{{ 'makmal_sains_gunasama_'.$id }}" value="{{ $gunasama }}">
                         </div>
                     </td>
                 @endforeach
 
                 <td>
-                    <input type="text" class="form-control" id="mss_bilangan" name="mss_bilangan">
+                    <input type="text" class="form-control" id="makmal_sains_bilangan" name="makmal_sains_bilangan">
                 </td>
 
                 @foreach ($masih_digunakans as $id => $masih_digunakan)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="mss_masih_digunakan" id="{{ 'mss_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
+                            <input class="form-check-input" type="radio" name="makmal_sains_masih_digunakan" id="{{ 'makmal_sains_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
                         </div>
                     </td>
                 @endforeach
@@ -768,7 +780,7 @@
                 @foreach ($status_fizikals as $id => $status_fizikal)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="mss_status_fizikal" id="{{ 'mss_status_fizikal'.$id }}" value="{{ $status_fizikal }}">
+                            <input class="form-check-input" type="radio" name="makmal_sains_status_fizikal" id="{{ 'makmal_sains_status_fizikal'.$id }}" value="{{ $status_fizikal }}">
                         </div>
                     </td>
                 @endforeach
@@ -787,7 +799,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="k_renang_" id="{{ 'k_renang__'.$id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="kolam_renang" id="{{ 'kolam_renang_'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -795,19 +807,19 @@
                 @foreach ($gunasamas as $id => $gunasama)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="k_renang_gunasama" id="{{ 'k_renang_gunasama_'.$id }}" value="{{ $gunasama }}">
+                            <input class="form-check-input" type="radio" name="kolam_renang_gunasama" id="{{ 'kolam_renang_gunasama_'.$id }}" value="{{ $gunasama }}">
                         </div>
                     </td>
                 @endforeach
 
                 <td>
-                    <input type="text" class="form-control" id="k_renang_bilangan" name="k_renang_bilangan">
+                    <input type="text" class="form-control" id="kolam_renang_bilangan" name="kolam_renang_bilangan">
                 </td>
 
                 @foreach ($masih_digunakans as $id => $masih_digunakan)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="k_renang_masih_digunakan" id="{{ 'k_renang_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
+                            <input class="form-check-input" type="radio" name="kolam_renang_masih_digunakan" id="{{ 'kolam_renang_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
                         </div>
                     </td>
                 @endforeach
@@ -815,10 +827,12 @@
                 @foreach ($status_fizikals as $id => $status_fizikal)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="k_renangstatus_fizikal" id="{{ 'k_renangstatus_fizikal'.$id }}" value="{{ $status_fizikal }}">
+                            <input class="form-check-input" type="radio" name="kolam_renang_status_fizikal" id="{{ 'kolam_renang_status_fizikal'.$id }}" value="{{ $status_fizikal }}">
                         </div>
                     </td>
                 @endforeach
+            </tr>
+
         </tbody>
     </table>
 </div>
@@ -826,12 +840,13 @@
 <br>
 
 <div class="d-flex justify-content-center">
-    <button type="button" class="btn btn-primary"  onclick="submitTab('#praSekForm')">Simpan</button>
+    <button type="button" class="btn btn-primary" onclick="submitTab('#praSukForm')">Simpan</button>
 </div>
 
 <br>
 
 </form>
+
 <div class="card-footer">
     {{-- <div class="d-flex justify-content-between"> --}}
     <div class="d-flex justify-content-end">

@@ -1,3 +1,6 @@
+<form id="perSukForm" action="{{ route('ikeps.store', 'perancangan_sukan') }}" method="POST">
+@csrf
+
 <div class="row">
 
     <div class="col-md-2 mt-2 mb-2">
@@ -28,48 +31,53 @@
         <tbody>
 
             <?php
-                $perancangans = ['1. Sukan Utama (Sekolah Berwatak dalam Sukan)',
-                                '2. Inisiatif Sekolah Mewujudkan Program Pembangunan Bakat Sukan',
-                                '3. Projek Sukan Sekolah Dengan Majlis Sukan Negeri/ Majlis Sukan Negara (MSN)/ Kementerian Belia dan Sukan (KBS)/ atau Persatuan Sukan Kebangsaan',
-                                '4. Projek/ Program Sukan Disekolah yang Dianjurkan oleh Kementerian Pendidikan Malaysia',
-                                '5. In House Training Pengurusan Sukan di Sekolah (Latihan Dalam Perkhidmatan LADAP)'
-                                ];
-                $kursuses = ['6.1 Kursus Pengurusan Sukan',
-                            '6.2 Kursus Kejurulatihan',
-                            '6.3 Kursus Kepegawaian',
-                            '6.4 Kursus Sains Sukan'
-                            ];
-                $ada_tiadas = ['ada' => 1, 'tiada' => 2];
+                $perancangans = [
+                    'sukan_utama' => '1. Sukan Utama (Sekolah Berwatak dalam Sukan)',
+                    'inisiatif_sekolah' => '2. Inisiatif Sekolah Mewujudkan Program Pembangunan Bakat Sukan',
+                    'projek_msn' => '3. Projek Sukan Sekolah Dengan Majlis Sukan Negeri/ Majlis Sukan Negara (MSN)/ Kementerian Belia dan Sukan (KBS)/ atau Persatuan Sukan Kebangsaan',
+                    'projek_kpm' => '4. Projek/ Program Sukan Disekolah yang Dianjurkan oleh Kementerian Pendidikan Malaysia',
+                    'ladap' => '5. In House Training Pengurusan Sukan di Sekolah (Latihan Dalam Perkhidmatan LADAP)'
+                ];
+                $kursuses = [
+                    'pengurusan_sukan' => '6.1 Kursus Pengurusan Sukan',
+                    'kejurulatihan' => '6.2 Kursus Kejurulatihan',
+                    'kepegawaian' => '6.3 Kursus Kepegawaian',
+                    'sains_sukan' => '6.4 Kursus Sains Sukan'
+                ];
+                $ada_tiadas = [
+                    'ada' => 1,
+                    'tiada' => 0
+                ];
             ?>
 
-            @foreach($perancangans as $perancangan)
+            @foreach($perancangans as $rancangKey => $perancangan)
                 <tr>
                     <td> {{ $perancangan }} </td>
                     @foreach ($ada_tiadas as $id => $ada_tiada)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                                <input class="form-check-input" type="radio" name="{{ $rancangKey }}" id="{{ $rancangKey.'_'.$id }}" value="{{ $ada_tiada }}">
                             </div>
                         </td>
                     @endforeach
 
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="dilaksanakan_tiap_tahun" id="ya" value="ya">
+                            <input class="form-check-input" type="radio" name="{{ $rancangKey.'_butiran' }}" id="{{ $rancangKey.'_butiran_1' }}" value="1">
                         </div>
                     </td>
 
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="mengikut_keperluan" id="ya" value="ya">
+                            <input class="form-check-input" type="radio" name="{{ $rancangKey.'_butiran' }}" id="{{ $rancangKey.'_butiran_2' }}" value="2">
                         </div>
                     </td>
 
                     <td>
-                        <select name="" id="" class="form-control select2">
+                        <select name="{{ $rancangKey.'_program' }}" id="{{ $rancangKey.'_program' }}" class="form-control select2">
                             <option value="" hidden>Kenyataan Program</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            <option value="1">Olahraga</option>
+                            <option value="2">Merentas Desa</option>
                         </select>
                     </td>
                 </tr>
@@ -83,26 +91,26 @@
                 </td>
             </tr>
 
-            @foreach($kursuses as $kursus)
+            @foreach($kursuses as $kursusKey => $kursus)
                 <tr>
                     <td> {{ $kursus }} </td>
                     @foreach ($ada_tiadas as $id => $ada_tiada)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                                <input class="form-check-input" type="radio" name="{{ $kursusKey }}" id="{{ $kursusKey.'_'.$id }}" value="{{ $ada_tiada }}">
                             </div>
                         </td>
                     @endforeach
 
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="dilaksanakan_tiap_tahun" id="ya" value="ya">
+                            <input class="form-check-input" type="radio" name="{{ $kursusKey.'_butiran' }}" id="{{ $kursusKey.'_butiran_1' }}" value="1">
                         </div>
                     </td>
 
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="mengikut_keperluan" id="ya" value="ya">
+                            <input class="form-check-input" type="radio" name="{{ $kursusKey.'_butiran' }}" id="{{ $kursusKey.'_butiran_2' }}" value="2">
                         </div>
                     </td>
 
@@ -114,6 +122,16 @@
         </tbody>
     </table>
 </div>
+
+<br>
+
+<div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary" onclick="submitTab('#perSukForm')">Simpan</button>
+</div>
+
+<br>
+
+</form>
 
 <div class="card-footer">
     <div class="d-flex justify-content-between">

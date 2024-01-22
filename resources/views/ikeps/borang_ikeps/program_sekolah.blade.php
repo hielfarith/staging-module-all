@@ -1,3 +1,6 @@
+<form id="proSekForm" action="{{ route('ikeps.store', 'program_sekolah') }}" method="POST">
+@csrf
+
 <div class="row">
 
     <div class="col-md-2 mt-2 mb-2">
@@ -20,7 +23,7 @@
                 <th colspan="2" rowspan="2">&nbsp;</th>
                 <th colspan="2">Dilaksanakan</th>
                 <th rowspan="2">Setiap Tahun</th>
-                <th rowspan="2">2 Tahun Sekali</th>
+                <th rowspan="2">Dua Tahun Sekali</th>
                 <th rowspan="2">Bulan Perlaksanaan</th>
             </tr>
             <tr>
@@ -31,45 +34,41 @@
         <tbody>
 
             <?php
-                $programs = [
-                            1 => 'Kejohanan Olahraga Sekolah/ Sukan Tahunan Sekolah',
-                            2 => 'Kejohanan Merentas Desa',
-                            3 => 'Sukantara',
-                            4 => 'Sukan Tahap 1',
-                            5 => 'Sukan Pendidikan Khas',
-                            6 => 'Program Sukan/ Kecergasan',
-                            7 => 'Majlis Anugerah Sukan'
-                        ];
-                $dilaksanakans = [1 => 'Ya', 2 => 'Tidak'];
+                $i = 1;
+                $programs = config('staticdata.ikeps.program_sekolah');
+                $dilaksanakans = [
+                    'ya' => 1, 
+                    'tidak' => 0
+                ];
             ?>
 
-            @foreach($programs as $id => $program)
+            @foreach($programs as $idProgram => $program)
                 <tr>
-                    <td> {{ $id }} </td>
-                    <td> {{ $program }} </td>
+                    <td> {{ $i++ }} </td>
+                    <td> {{ $program }} @if($idProgram == 'lain') <input class="form-control" name="{{ $idProgram.'_butiran' }}" id="{{ $idProgram.'_butiran' }}"> @endif</td>
 
                     @foreach ($dilaksanakans as $id => $dilaksanakan)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="dilaksanakan" id="{{ $id }}" value="{{ $dilaksanakan }}">
+                                <input class="form-check-input" type="radio" name="{{ $idProgram }}" id="{{ $idProgram.'_'.$id }}" value="{{ $dilaksanakan }}">
                             </div>
                         </td>
                     @endforeach
 
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="setiap_tahun" id="ya" value="1">
+                            <input class="form-check-input" type="radio" name="{{ $idProgram.'_kekerapan' }}" id="{{ $idProgram.'_kekerapan_1' }}" value="1">
                         </div>
                     </td>
 
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="dua_tahun" id="ya" value="1">
+                            <input class="form-check-input" type="radio" name="{{ $idProgram.'_kekerapan' }}" id="{{ $idProgram.'_kekerapan_2' }}" value="2">
                         </div>
                     </td>
 
                     <td>
-                        <select name="" id="" class="form-control select2">
+                        <select name="{{ $idProgram.'_perlaksanaan' }}" id="{{ $idProgram.'_perlaksanaan' }" class="form-control select2">
                             <option value="" hidden>Bulan</option>
                             <option value="1">Januari</option>
                             <option value="2">Februari</option>
@@ -90,6 +89,16 @@
         </tbody>
     </table>
 </div>
+
+<br>
+
+<div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary" onclick="submitTab('#proSekForm')">Simpan</button>
+</div>
+
+<br>
+
+</form>
 
 <div class="card-footer">
     <div class="d-flex justify-content-between">

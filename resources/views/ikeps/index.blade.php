@@ -18,9 +18,9 @@ I-KePS
 
         <div class="justify-content-end align-items-center" style="width: 10%">
             <label class="form-label fw-bold">Tahun Kutipan</label>
-            <select name="" id="" class="form-select select2">
+            <select name="tahun" id="tahun" class="form-select select2" onchange="this.options[this.selectedIndex].value && (window.location = '/ikeps/borang-pengisian/'+this.options[this.selectedIndex].value);">
                 @for ($year = date('Y') - 5; $year <= date('Y'); $year++)
-                    <option value="{{ $year }}">{{ $year }}</option>
+                    <option value="{{ $year }}" @if($year == $tahun) selected @endif>{{ $year }}</option>
                 @endfor
             </select>
         </div>
@@ -31,7 +31,7 @@ I-KePS
         <ul class="nav nav-pills nav-justified" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="text-uppercase text-wrap nav-link fw-bolder active" id="prasarana-sukan-tab" data-bs-toggle="tab" href="#prasarana-sukan" aria-controls="prasarana-sukan" role="tab" aria-selected="true">
-                    Prasarana Sekolah
+                    Prasarana Sukan
                 </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -63,7 +63,7 @@ I-KePS
 
         <div class="tab-content">
             <div class="tab-pane fade show active" id="prasarana-sukan" role="tabpanel" aria-labelledby="prasarana-sukan-tab">
-                @include('ikeps.borang_ikeps.prasarana_sekolah')
+                @include('ikeps.borang_ikeps.prasarana_sukan')
             </div>
             <div class="tab-pane fade" id="kemudahan-sukan" role="tabpanel" aria-labelledby="kemudahan-sukan-tab">
                 @include('ikeps.borang_ikeps.kemudahan_sukan')
@@ -111,11 +111,20 @@ I-KePS
         $('a[href="#' + prevTab.attr('id') + '"]').tab('show');
     });
 
+    $('.integerInput').on('input', function() {
+        this.value = this.value
+        .replace(/[^\d]/g, '');// numbers and decimals only
+        
+    });
+
     function submitTab(form){
+        var tahun = $('#tahun').val();
+        var formData = new FormData($(form)[0]);
+        formData.append('tahun', tahun);
         $.ajax({
             url: $(form).attr('action'),
             method: $(form).attr('method'),
-            data: new FormData($(form)[0]),
+            data: formData,
             async: true,
             contentType: false,
             processData: false,

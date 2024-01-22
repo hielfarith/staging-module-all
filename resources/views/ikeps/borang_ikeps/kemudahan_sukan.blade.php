@@ -1,3 +1,6 @@
+<form id="kemSukForm" action="{{ route('ikeps.store', 'kemudahan_sukan') }}" method="POST">
+@csrf
+
 <div class="row">
 
     <div class="col-md-12 mt-2 mb-2">
@@ -33,38 +36,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td colspan="13" class="bg-light-primary">
-                    <h5 class="fw-bold text-uppercase text-primary">
-                        1. Padang Bola Sepak
-                    </h5>
-                </td>
-            </tr>
-
             <?php
-                $bola_sepaks = [
-                    '1.1 Saiz Padang Standard Pertandingan',
-                    '1.2 Saiz Padang Untuk Latihan Sahaja'
-                ];
-                $hokis = [
-                    '2.1 Saiz Padang Standard Pertandingan',
-                    '2.2 Saiz Padang Untuk Latihan Sahaja',
-                    '2.2 Padang Rumput Standard Pertandingan',
-                    '2.2 Padang Rumput Untuk Latihan Sahaja'
-                ];
+                $kemudahan_sukan = config('staticdata.ikeps.kemudahan_sukan');
                 $ada_tiadas = [
-                    'ada' => 1, 
-                    'tiada' => 0
+                    'ada' => 1,
+                    'tiada' => 0,
                 ];
                 $gunasamas = [
-                    'ada' => 1, 
-                    'tiada' => 0
+                    'ada' => 1,
+                    'tiada' => 0,
                 ];
                 $masih_digunakans = [
-                    'ada' => 1, 
-                    'tiada' => 0
+                    'ada' => 1,
+                    'tiada' => 0,
                 ];
-                $status_fizikals = [ 
+                $status_fizikals = [
                     'selesa' => 1,
                     'tidak_selesa' => 2,
                     'kefungsian' => 3,
@@ -73,84 +59,21 @@
                 ];
             ?>
 
-            <tr>
-                <td> Bola Sepak </td>
-                @foreach ($ada_tiadas as $id => $ada_tiada)
-                    <td>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
-                        </div>
-                    </td>
-                @endforeach
-
-                <td colspan="2" class="text-danger">
-                    Maklumat Tidak Berkenaan
-                </td>
-
-                <td>
-                    <input type="text" class="form-control" id="" name="">
-                </td>
-
-                <td colspan="7" class="text-danger">
-                    Maklumat Tidak Berkenaan
-                </td>
-            </tr>
-
-            @foreach($bola_sepaks as $bola_sepak)
-                <tr>
-                    <td> {{ $bola_sepak }} </td>
-                    @foreach ($ada_tiadas as $id => $ada_tiada)
-                        <td>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
-                            </div>
-                        </td>
-                    @endforeach
-
-                    @foreach ($gunasamas as $id => $gunasama)
-                        <td>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gunasama" id="{{ $id }}" value="{{ $gunasama }}">
-                            </div>
-                        </td>
-                    @endforeach
-
-                    <td>
-                        <input type="text" class="form-control" id="" name="">
-                    </td>
-
-                    @foreach ($masih_digunakans as $id => $masih_digunakan)
-                        <td>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="masih_digunakan" id="{{ $id }}" value="{{ $masih_digunakan }}">
-                            </div>
-                        </td>
-                    @endforeach
-
-                    @foreach ($status_fizikals as $id => $status_fizikal)
-                        <td>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status_fizikal" id="{{ $id }}" value="{{ $status_fizikal }}">
-                            </div>
-                        </td>
-                    @endforeach
-                </tr>
-            @endforeach
-
+            @foreach ($kemudahan_sukan as $sukanKey => $sukan)
             <tr>
                 <td colspan="13" class="bg-light-primary">
                     <h5 class="fw-bold text-uppercase text-primary">
-                        2. Padang Hoki
+                        {{ $sukan['title'] }}
                     </h5>
                 </td>
             </tr>
 
             <tr>
-                <td> Padang Hoki </td>
+                <td> {{ $sukan['main'] }}</td>
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $ada_tiada }}">
                         </div>
                     </td>
                 @endforeach
@@ -160,7 +83,7 @@
                 </td>
 
                 <td>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}">
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -168,49 +91,60 @@
                 </td>
             </tr>
 
-            @foreach($hokis as $hoki)
-                <tr>
-                    <td> {{ $hoki }} </td>
-                    @foreach ($ada_tiadas as $id => $ada_tiada)
-                        <td>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ada_tiada" id="{{ $id }}" value="{{ $ada_tiada }}">
-                            </div>
-                        </td>
-                    @endforeach
+                @foreach($sukan['sub'] as $subKey => $sub)
+            <tr>
+                <td> {{ $sub }} @if($subKey == 'bt_lain' || $subKey == 'lain_kemudahan' ) <input class="form-control" name="{{ $subKey.'_butiran' }}" id="{{ $subKey.'_butiran' }}"> @endif</td>
+                        @foreach ($ada_tiadas as $id => $ada_tiada)
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="{{ $subKey }}" id="{{ $subKey.'_'.$id }}" value="{{ $ada_tiada }}">
+                    </div>
+                </td>
+                        @endforeach
 
-                    @foreach ($gunasamas as $id => $gunasama)
-                        <td>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gunasama" id="{{ $id }}" value="{{ $gunasama }}">
-                            </div>
-                        </td>
-                    @endforeach
+                        @foreach ($gunasamas as $id => $gunasama)
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $gunasama }}">
+                    </div>
+                </td>
+                        @endforeach
 
-                    <td>
-                        <input type="text" class="form-control" id="" name="">
-                    </td>
+                <td>
+                    <input type="text" class="form-control" id="{{ $subKey.'_bilangan' }}" name="{{ $subKey.'_bilangan' }}">
+                </td>
 
-                    @foreach ($masih_digunakans as $id => $masih_digunakan)
-                        <td>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="masih_digunakan" id="{{ $id }}" value="{{ $masih_digunakan }}">
-                            </div>
-                        </td>
-                    @endforeach
+                        @foreach ($masih_digunakans as $id => $masih_digunakan)
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="{{ $subKey.'_masih_digunakan' }}" id="{{ $subKey.'_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
+                    </div>
+                </td>
+                        @endforeach
 
-                    @foreach ($status_fizikals as $id => $status_fizikal)
-                        <td>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status_fizikal" id="{{ $id }}" value="{{ $status_fizikal }}">
-                            </div>
-                        </td>
-                    @endforeach
-                </tr>
+                        @foreach ($status_fizikals as $id => $status_fizikal)
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="{{ $subKey.'_status_fizikal' }}" id="{{ $subKey.'_status_fizikal_'.$id }}" value="{{ $status_fizikal }}">
+                    </div>
+                </td>
+                        @endforeach
+            </tr>
+                @endforeach
             @endforeach
         </tbody>
     </table>
 </div>
+
+<br>
+
+<div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary" onclick="submitTab('#kemSukForm')">Simpan</button>
+</div>
+
+<br>
+
+</form>
 
 <div class="card-footer">
     <div class="d-flex justify-content-between">
