@@ -103,7 +103,8 @@
 
           // Brand Text Scss
           .brand-text {
-            color: $primary;
+            // color: $primary;
+            color: #800020;
             padding-left: 1rem;
             margin-bottom: 0;
             font-weight: 600;
@@ -198,7 +199,8 @@
             }
             &:hover {
               background-color: transparent;
-              color: $body-color;
+                //   color: $body-color;
+              color: #800020;
               & > * {
                 transform: translateX(5px);
                 transition: transform 0.2s ease;
@@ -207,13 +209,15 @@
           }
           .active > a {
             background: $body-bg;
-            color: $primary;
+            // color: $primary;
+            color: #800020;
             font-weight: 500;
           }
           .open {
             &.active {
               > a {
-                color: $body-color;
+                // color: $body-color;
+                color: #800020;
                 font-weight: normal;
               }
             }
