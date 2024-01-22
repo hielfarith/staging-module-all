@@ -60,8 +60,12 @@ class FormSubmissionController extends Controller
         DB::beginTransaction();
         try {   
         $data = $request->input();
-
-        $form = NewForm::where('instrumen_id', $data['instrumen_id'])->first();
+        if(array_key_exists('instrumen_id', $data)) {
+            $form = NewForm::where('instrumen_id', $data['instrumen_id'])->first();
+        } else {
+            $form = new NewForm;
+        }
+        
         if (empty($form)) {
             $form = new NewForm;
         }
