@@ -9,9 +9,11 @@ use App\Models\NewForm;
 use App\Models\Module;
 use App\Models\MasterAction;
 use App\Models\ModuleStatus;
-use App\Helpers\FMF;
+use App\Models\TetapanAspek;
 
+use App\Helpers\FMF;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class FormSubmissionController extends Controller
 {
@@ -55,8 +57,10 @@ class FormSubmissionController extends Controller
     }
 
     public function saveform(Request $request) {
+        DB::beginTransaction();
+        try {   
         $data = $request->input();
-        
+
         $form = NewForm::where('instrumen_id', $data['instrumen_id'])->first();
         if (empty($form)) {
             $form = new NewForm;
@@ -76,7 +80,27 @@ class FormSubmissionController extends Controller
         $form->type = 'Ajax'; 
         $form->data = json_encode($data['form_data']);
         $form->save();
+        if(array_key_exists('instrumen_id', $data)) {
+            $TetapanAspek = TetapanAspek::where('instrumen_id', $data['instrumen_id'])->first();
+            $input['nama_aspek'] = $data['nama_aspek'];
+            $input['status_aspek'] = $data['status_aspek'];
+            $input['type'] = 'SUB';
+
+            if (!empty($TetapanAspek)) {
+                $TetapanAspek->update($input);
+            } else {
+                $TetapanAspek = new TetapanAspek;
+                $TetapanAspek->create($input);
+            }
+        }
+
+        DB::commit();
         return ['success' => true];
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
     }
 
     public function checkname(Request $request) {
@@ -203,7 +227,10 @@ class FormSubmissionController extends Controller
         $documents= '';
         $canView =$canVerify = $canApprove = $canQuery = false;
         $staticForm = true;
-        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id', 'canView','canVerify','canApprove', 'canQuery', 'staticForm'));
+
+        $TetapanAspek = TetapanAspek::where('instrumen_id', $data->instrumen_id)->first();
+
+        return view('form.viewfilledform', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id', 'canView','canVerify','canApprove', 'canQuery', 'staticForm', 'TetapanAspek'));
     }
 
     public function verify(Request $request) {

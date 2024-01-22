@@ -26,9 +26,9 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
             <li class="nav-item" role="presentation">
                 <a class="text-uppercase text-wrap nav-link fw-bolder active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Instrumen</a>
             </li>
-            <li class="nav-item" role="presentation">
+            <!-- <li class="nav-item" role="presentation">
                 <a class="text-uppercase text-wrap nav-link fw-bolder" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Sub Aspek</a>
-            </li>
+            </li> -->
             <li class="nav-item" role="presentation">
                 <a class="text-uppercase text-wrap nav-link fw-bolder" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Item</a>
             </li>
@@ -40,9 +40,9 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
             <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
               @include('instrumen_update.tab1')
             </div>
-            <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+         <!--    <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
               @include('instrumen_update.tab2')
-            </div>
+            </div> -->
             <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
               @include('instrumen_update.tab3')
             </div>
@@ -59,13 +59,6 @@ MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
  $('.select2').select2({
       placeholder: 'Sila Pilih'
     });
-
-
-$('#dynamicform').submit(function(event) {
-    event.preventDefault();
-    
-});
-
 
 </script>
 @endsection
