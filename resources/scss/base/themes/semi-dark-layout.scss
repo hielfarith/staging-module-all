@@ -15,20 +15,20 @@
 
   // main menu
   .main-menu {
-    background-color: $theme-dark-card-bg;
+    background-color:  #B62C2C;
     .shadow-bottom {
       background: linear-gradient(
         180deg,
-        $theme-dark-card-bg 44%,
-        rgba($theme-dark-card-bg, 0.51) 73%,
-        rgba($theme-dark-card-bg, 0)
+         #B62C2C 44%,
+        (#B62C2C, 0.51) 73%,
+        (#B62C2C, 0)
       );
     }
     &:not(.expanded) {
       .navigation {
         .sidebar-group-active {
           > a {
-            background-color: $theme-dark-body-bg !important;
+            background-color: #B62C2C !important; //  Black: #161d31
           }
         }
       }
@@ -38,25 +38,25 @@
   // main menu content
   .main-menu-content {
     .navigation-main {
-      background-color: $theme-dark-card-bg;
+      background-color:  #B62C2C;
       .navigation-header {
-        color: $theme-dark-text-muted-color;
+        color: $white; // Grey: #676d7d
       }
       .nav-item {
         a {
-          color: $theme-dark-body-color;
+          color: $white; // Grey: #b4b7bd
         }
         &.open:not(.sidebar-group-active) {
           > a {
-            background-color: $theme-dark-body-bg;
+            background-color: $white; //  Black: #161d31
           }
         }
         a:after,
         a {
-          color: $theme-dark-body-color !important;
+          color: $white !important;
         }
         .menu-content {
-          background-color: $theme-dark-card-bg;
+          background-color:  #B62C2C;
           .active {
             .menu-item {
               color: $white;
@@ -64,7 +64,7 @@
           }
           li:not(.active) {
             a {
-              background-color: $theme-dark-card-bg;
+              background-color:  #B62C2C;
             }
           }
         }
@@ -84,7 +84,7 @@
         }
       }
       .menu-content {
-        background-color: $theme-dark-card-bg;
+        background-color:  #B62C2C;
         .active {
           z-index: 1;
           a {
@@ -101,7 +101,7 @@
       .navigation-main {
         li.active {
           > a {
-            background: $theme-dark-body-bg !important;
+            background: #B62C2C !important; //  Black: #161d31
             color: $white !important;
           }
         }

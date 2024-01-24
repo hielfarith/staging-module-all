@@ -20,7 +20,7 @@
   overflow: hidden;
 
   &.menu-light {
-    @include menu-theme($body-color, $white);
+    @include menu-theme( #B62C2C, $white);
   }
 
   &.menu-dark {

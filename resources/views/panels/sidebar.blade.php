@@ -11,7 +11,7 @@ $configData = Helper::applClasses();
                         <img src="{{ asset('images/logo/jata_negara.png') }}" class="brand-image img-circle elevation-3"
                             style="opacity: .8">
                     </span>
-                    <h2 class="brand-text">SPPIP</h2>
+                    <h2 class="brand-text text-white">SPPIP</h2>
                 </a>
             </li>
             <li class="nav-item nav-toggle">
