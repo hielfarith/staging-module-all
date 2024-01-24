@@ -56,7 +56,7 @@ $configData = Helper::applClasses();
                     <i data-feather="folder"></i>
                     <span class="menu-title text-truncate text-wrap"> Modul </span>
                 </a>
-                <ul class="menu-content">
+                <ul class="nav">
                     <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -64,7 +64,7 @@ $configData = Helper::applClasses();
                             </span>
                         </a>
 
-                        <ul class="menu-content">
+                        <ul class="nav">
                             <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
                                 <a href="{{ route('ikeps.ikeps_baru') }}" class="d-flex align-items-center">
                                     <span class="menu-title text-truncate text-wrap">
@@ -106,7 +106,7 @@ $configData = Helper::applClasses();
                             </span>
                         </a>
 
-                        <ul class="menu-content">
+                        <ul class="nav">
                             <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
                                 <a href="{{ route('skips.skips_baru') }}" class="d-flex align-items-center">
                                     <span class="menu-title text-truncate text-wrap">
