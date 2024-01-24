@@ -13,6 +13,7 @@ use App\Models\ModuleStatus;
 use App\Helpers\FMF;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PengurusanInstrumenController extends Controller
 {
@@ -148,8 +149,8 @@ class PengurusanInstrumenController extends Controller
         $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
         if ($moduleId) {
             $dynamicModuleId = $moduleId->id;
-            $moduleStatus = ModuleStatus::where('module_id', $dynamicModuleId)->where('status_index', 1)->first();
 
+            $moduleStatus = ModuleStatus::where('module_id', $dynamicModuleId)->where('status_index', 1)->first();
             $status = FMF::getNextStatus($dynamicModuleId, $moduleStatus->id, 'submit');
         } else {
             $status = 1;
@@ -186,9 +187,10 @@ class PengurusanInstrumenController extends Controller
                 ->editColumn('category', function ($instrument) {
                     return $instrument->category;
                 })
-                ->editColumn('submission_count', function ($instrument) {
-                    return $instrument->category;
+                ->editColumn('status', function ($instrument) {
+                    return $instrument->statuses->status_description;
                 })
+                 
                 ->editColumn('action', function ($instrument) {
                     $button = "";
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
@@ -225,12 +227,13 @@ class PengurusanInstrumenController extends Controller
             $canVerify = FMF::checkPermission($dynamicModuleId, $filledform->status, 'verify form');
             $canApprove = FMF::checkPermission($dynamicModuleId, $filledform->status, 'approve form');
             $canQuery = FMF::checkPermission($dynamicModuleId, $filledform->status, 'query');
+            $canReject = FMF::checkPermission($dynamicModuleId, $filledform->status, 'reject');
         } else {
-            $canView =$canVerify = $canApprove = $canQuery = false;
+            $canView =$canVerify = $canApprove = $canQuery = $canReject = false;
             $dynamicModuleId = null;
         }
         $staticForm = false;
-        return view('pengurusan_instrumen.instrumen_dijawab.atribut_telah_dijawab', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId', 'staticForm', 'DynamicFormData'));
+        return view('pengurusan_instrumen.instrumen_dijawab.atribut_telah_dijawab', compact('arrays','insertone', 'form_name','category', 'data', 'documents', 'id','canView','canVerify','canApprove', 'canQuery', 'filledform', 'dynamicModuleId', 'staticForm', 'DynamicFormData', 'canReject'));
     }
 
     // Muat Turun Fail yang Dimuatnaik Semasa Menjawab Instrumen

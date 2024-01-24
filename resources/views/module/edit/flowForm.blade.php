@@ -65,20 +65,22 @@
                     @foreach ($module->statuses as $status)
                         <option value="{{ $status->id }}">{{ $status->status_index.": ".$status->status_name }}</option>
                     @endforeach
-                    @foreach ($otherModules as $eachModule)
+                    <!-- @foreach ($otherModules as $eachModule)
                         <option disabled value=""></option>
                         <option style="background-color:rgb(222, 217, 217);" disabled value="">{{$eachModule->module_name}}</option>
                         @foreach ($eachModule->statuses as $status)
                             <option value="{{ $status->id }}">{{ $status->status_index.": ".$status->status_name }}</option>
                         @endforeach
-                    @endforeach
+                    @endforeach -->
                 </select>
             </div>
         </div>
         <div class="d-flex justify-content-end align-items-center">
-            <button type="submit" class="btn btn-primary float-right" onclick="generalFormSubmit(this);">
-                <i class="fa-solid fa-file-print"></i> {{ __('msg.submit')}}
-            </button>
+                <button type="button" id="btnsaveflow" hidden onclick="generalFormSubmit(this);"></button>
+    
+              <div class="modal-footer">
+                <button type="button" id="btnFormFake" class="btn btn-success" onclick="$('#btnsaveflow').trigger('click');">{{ __('msg.submit')}}</button>
+            </div>
         </div>
     </div>
 </form>

@@ -194,7 +194,7 @@
     @if($canApprove)
         <button type="button" class="btn btn-primary" onclick="formverify({{$status}},{{$filledform->id}})">Approve</button>
     @endif
-    @if($canQuery)
+    @if($canQuery && !empty($query))
         <button type="button" class="btn btn-primary" onclick="formverify({{$query}},{{$filledform->id}})">Query</button>
     @endif
 

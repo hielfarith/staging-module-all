@@ -32,12 +32,20 @@ Pengurusan Instrumen
 <div class="card">
     <div class="card-header">
         <h4 class="card-title fw-bolder"> Senarai Instrumen Telah Dijawab </h4>
-
+        <?php
+            if(strpos('pentadbir_instrumen',Auth::user()->getRolesDisplay()) !== false || strpos('superadmin',Auth::user()->getRolesDisplay()) !== false) {
+                $allow =true;
+            } else {
+                $allow = false;
+            }
+        ?>
+        @if($allow)
         <div class="d-flex justify-content-end align-items-center">
             <a type="button" class="btn btn-primary float-right" href="{{ route('instrumen_baru') }}">
                 <i class="fa-solid fa-add"></i> Tambah Instrumen
             </a>
         </div>
+        @endif
     </div>
 
     <hr>
@@ -51,6 +59,7 @@ Pengurusan Instrumen
                         <th>Nama Instrumen</th>
                         <th>Kategori Instrumen</th>
                         <th>Jumlah Pengisian</th>
+                        <th>Status</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -62,7 +71,7 @@ Pengurusan Instrumen
                         <th width="5%">No.</th>
                         <th>Nama Instrumen</th>
                         <th>Kategori Instrumen</th>
-                        <th>Jumlah Pengisian</th>
+                        <th>Status</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                   </thead>
@@ -126,13 +135,14 @@ Pengurusan Instrumen
                             return $("<div/>").html(data).text();
                         }
                     },
-                    {
-                        data: "submission_count",
-                        name: "submission_count",
+                     {
+                        data: "status",
+                        name: "status",
                         render: function(data, type, row) {
                             return $("<div/>").html(data).text();
                         }
                     },
+                    
                     {
                         data: 'action',
                         name: 'action',

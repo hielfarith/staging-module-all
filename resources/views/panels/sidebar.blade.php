@@ -507,6 +507,71 @@ $configData = Helper::applClasses();
                 </ul>
             </li>
             @endhasanyrole
+            <!-- pentadbir role start -->
+            @hasanyrole('pentadbir_instrumen')
+            <li class="navigation-header">
+                <span>  Modul I-KePS </span>
+            </li>
+             <li class="nav-item {{ request()->is('admin/ikeps*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> Pengurusan Instrumen I-keps </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
+                        <a href="{{ route('show_all_forms') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Senarai Instrumen </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endhasanyrole
+
+            @hasanyrole('setiausaha_sukan|guru_sekolah')
+            <li class="navigation-header">
+                <span> Pengurusan Instrumen</span>
+            </li>
+            <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> Instrumen </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="{{ in_array(request()->route()->getName(),['pilih_instrumen'])? 'active': '' }}">
+                        <a href="{{ route('pilih_instrumen') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Jawab Instrumen </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endhasanyrole
+
+            @hasanyrole('pengetua_guru_besar|penolong_kanan_kokurikulum|kpp_pp_ppp')
+            <li class="navigation-header">
+                <span> Pengurusan Instrumen</span>
+            </li>
+            <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> Instrumen </span>
+                </a>
+                <ul class="nav">
+                    <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">
+                        <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Instrumen Dijawab </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endhasanyrole
         </ul>
     </div>
 </div>

@@ -11,6 +11,7 @@ use App\Models\TetapanAspek;
 use App\Models\InstrumenSkpakSpksIkeps;
 use App\Models\TetapanItem;
 use App\Models\TetapanTarikhInstrumen;
+use Illuminate\Support\Facades\Auth;
 
 class InstrumenController extends Controller
 {
@@ -22,7 +23,20 @@ class InstrumenController extends Controller
     public function viewForm(Request $request)
     {
         if($request->type == 'instrumen' ) {
-            return view('instrumen_update.form');
+
+            if(strpos('pentadbir_instrumen',Auth::user()->getRolesDisplay()) !== false || strpos('superadmin',Auth::user()->getRolesDisplay()) !== false) {
+                return view('instrumen_update.form');
+            } else {
+                return response()->json(
+                    [
+                        'errors' => [
+                            'status' => 401,
+                            'message' => 'Unthorized',
+                        ]
+                    ],
+                    401
+                );
+            }
         } elseif ($request->type == 'tetapan-aspek') {
             return view('instrumen_update.tetapan-aspek.form');
         } elseif ($request->type == 'tetapan-item') {
