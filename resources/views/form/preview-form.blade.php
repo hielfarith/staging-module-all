@@ -47,9 +47,27 @@
                     </div>
                 </div>
                 <!-- Header ends -->
-
                 <hr class="invoice-spacing" />
+                
+                <div class="col-md-6 mb-1">
+                    <label class="fw-bold form-label">Nama Aspek
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="nama_aspek" id="nama_aspek" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8" value="{{$input['nama_aspek']}}">
+                </div>
 
+                <div class="col-md-3 mb-1">
+                    <label class="fw-bold form-label">Status Aspek:
+                        <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-control select2" name="status_aspek" id="status_aspek" required>
+                        <option value="" hidden>Sila Pilij</option>
+                        <option value="Belum Set" @if($input["status_aspek"] == 'Belum Set') selected @endif>Belum Set</option>
+                        <option value="Telah Set" @if($input["status_aspek"] == 'Telah Set') selected @endif>Telah Set</option>
+                    </select>
+                </div>
+                <hr class="invoice-spacing" />
+                
                 <!-- Instrument Form starts -->
                 <div class="card-body invoice-padding invoice-product-details">
                     <div class="row">

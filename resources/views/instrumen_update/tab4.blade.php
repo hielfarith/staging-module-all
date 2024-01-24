@@ -2,9 +2,12 @@
     $instrumenid = Request::segment(4);
     if (!empty($instrumenid)) {
         $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->first();
+        $aspek = \App\Models\TetapanAspek::where('instrumen_id', $instrumenid)->first();
     } else {
         $instrumenData = null;
+        $aspek = null;
     }
+
 ?>
 <div class="row invoice-add">
     <div class="col-xl-9 col-md-8 col-12">
@@ -61,6 +64,28 @@
 
             <input type="hidden" name="row_count" id="row_count" value="1">
             <input type="hidden" name="instrumen_id" id="instrumen_id" value="{{$instrumenid}}">
+                
+            <div class="col-md-6 mb-1">
+                <label class="fw-bold form-label">Nama Aspek
+                    <span class="text-danger">*</span>
+                </label>
+                <input type="text" class="form-control" name="nama_aspek" id="nama_aspek" required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8" value="{{$aspek?->nama_aspek}}">
+            </div>
+
+            <div class="col-md-3 mb-1">
+                <label class="fw-bold form-label">Status Aspek:
+                    <span class="text-danger">*</span>
+                </label>
+                <select class="form-control select2" name="status_aspek" id="status_aspek" required>
+                    <option value="" hidden>Sila Pilij</option>
+                    <option value="Belum Set" @if($aspek?->status_aspek == 'Belum Set') selected @endif>Belum Set</option>
+                    <option value="Telah Set" @if($aspek?->status_aspek == 'Telah Set') selected @endif>Telah Set</option>
+                </select>
+            </div>
+            
+            <hr class="invoice-spacing" />
+
+            <input type="hidden" name="type" id="type" value="SUB">
 
                 <!-- Instrument Form starts -->
                 <form id="dynamicform">
@@ -68,7 +93,7 @@
                         <div class="row mt-1">
                             <div class="col-12 px-0">
                                 {{-- Tambah Atribut --}}
-                                <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="offcanvas" data-bs-target="#BorangTambahAtribut" aria-controls="BorangTambahAtribut">
+                                <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="offcanvas" data-bs-target="#BorangTambahAtribut" aria-controls="BorangTambahAtribut" onclick="reset()">
                                     <i data-feather="plus" class="me-25"></i>
                                     <span class="align-middle">Tambah Atribut</span>
                                 </button>
@@ -212,7 +237,8 @@
     </div>
 </div>
 <script type="text/javascript">
-    function sahkan_kategori_borang(type) {
+   
+function sahkan_kategori_borang(type) {
     var form_name = $('#form_name').val();
     var name = $('#category_name').val();
     var url = "{{ route('sahkan_kategori_instrumen') }}";
@@ -235,6 +261,11 @@
     });
 }
 
+function reset() {
+    $('#typeData').val('');
+    $('#label_name').val('');
+    $('#name').val('');
+}
 function  preview() {
     const form = document.getElementById("dynamicform");
     const formData = new FormData(form);
@@ -299,6 +330,8 @@ function  preview() {
             instrumen_id: $('#instrumen_id').val(),
             form_data : jsonData,
             form_name: $('#form_name').val(),
+            nama_aspek: $('#nama_aspek').val(),
+            status_aspek: $('#status_aspek').val(),
             category_name: $('#category_name').val(),
             description: $('#description').val(),
             tarikh_didaftar: $('#tarikh_didaftar').val(),
@@ -367,7 +400,6 @@ function deletediv(div) {
 }
 
 function changeselect() {
-    console.log('in')
     var type = $('#typeData').val();
     if (type == 'select' || type == 'radio' || type == 'checkbox') {
         $('.options').show();
@@ -380,7 +412,7 @@ function changeselect() {
     } else {
         $('.options2').hide();
     }
-
+    reset();
 }
 
 function submitDynamicForm() {
@@ -453,6 +485,8 @@ function submitDynamicForm() {
         type: 'POST', // Request type (GET, POST, etc.)
          data: {
             instrumen_id: $('#instrumen_id').val(),
+            nama_aspek: $('#nama_aspek').val(),
+            status_aspek: $('#status_aspek').val(),
             form_data : jsonData,
             form_name: $('#form_name').val(),
             category_name: $('#category_name').val(),
@@ -488,7 +522,8 @@ function submitDynamicForm() {
 
 @section('script')
 <script type="text/javascript">
-
+     // Attach an event listener to the offcanvas when it is about to be shown
+    
 </script>
 
 @endsection
