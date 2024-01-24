@@ -28,13 +28,13 @@ $configData = Helper::applClasses();
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-            <li class="nav-item {{ in_array(request()->route()->getName(),['home'])? 'menu-open': '' }}">
+            <li class="nav-item {{ in_array(request()->route()->getName(),['home'])? 'active': '' }}">
                 <a href="{{ route('home') }}" class="d-flex align-items-center">
                     <i data-feather="home"></i>
                     <span class="menu-title text-truncate text-wrap">{{ __('msg.home') }} </span>
                 </a>
             </li>
-            <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'menu-open': '' }}">
+            <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
                 <a href="#" class="d-flex align-items-center">
                     {{-- <i data-feather="home"></i> --}}
                     <span class="menu-title text-truncate text-wrap">Announcement</span>
