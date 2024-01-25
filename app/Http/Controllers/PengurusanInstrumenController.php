@@ -223,7 +223,7 @@ class PengurusanInstrumenController extends Controller
         $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
         if ($moduleId) {
             $dynamicModuleId = $moduleId->id;
-            $canView = FMF::checkPermission($dynamicModuleId, $filledform->status, 'form view');
+            $canView = FMF::checkPermission($dynamicModuleId, $filledform->status, 'view form');
             $canVerify = FMF::checkPermission($dynamicModuleId, $filledform->status, 'verify form');
             $canApprove = FMF::checkPermission($dynamicModuleId, $filledform->status, 'approve form');
             $canQuery = FMF::checkPermission($dynamicModuleId, $filledform->status, 'query');

@@ -9,6 +9,12 @@ use App\Models\IkepsPrasaranaSukan;
 use App\Models\IkepsPerancanganSukan;
 use App\Models\IkepsStatusPertanyaan;
 use App\Models\IkepsProgramSekolah;
+use App\Models\InstrumenSkpakSpksIkeps;
+
+use App\Models\Module;
+use App\Models\MasterAction;
+use App\Models\ModuleStatus;
+use App\Helpers\FMF;
 use Carbon;
 use PDO;
 
@@ -49,6 +55,17 @@ class PengurusanIkepsController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            // get fmf first status
+            $staticForm = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->first();
+            $moduleId = Module::where('module_name',$staticForm->id)->where('active',1)->first();
+            if (empty($moduleId)) {
+                return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => "Flow Not defined"], 404);
+            }
+            $staticModuleId = $moduleId->id;
+            $moduleStatus = ModuleStatus::where('module_id', $staticModuleId)->where('status_index', 1)->first();
+
+            $status = FMF::getNextStatus($staticModuleId, $moduleStatus->id, 'submit');
 
             if ($request->tab == 'prasarana_sukan') {
                 $dataValidation = [
@@ -303,6 +320,8 @@ class PengurusanIkepsController extends Controller
 
                         'created_by' => auth()->user()->id,
                         'updated_by' => auth()->user()->id,
+                        // add fmf status
+                        'status' => $status
                     ]
                 );
             }
@@ -1196,5 +1215,53 @@ class PengurusanIkepsController extends Controller
 
     public function DashboardIkeps(Request $request){
         return view ('dashboard.dashboard_bpsukan');
+    }
+
+     public function RingkasanIkepsFmf(Request $request)
+    {
+        if (!isset($request->tahun)) {
+            $tahun = Carbon::now()->format('Y');
+            return to_route('ikeps.ringkasan_ikeps_fmf', ['tahun' => $tahun]);
+        } else {
+            $tahun = $request->tahun;
+        }
+
+        $prasaranaSukan = IkepsPrasaranaSukan::where('tahun', $tahun)->first();
+        $kemudahanSukan = IkepsKemudahanSukan::where('tahun', $tahun)->first();
+        $perancanganSukan = IkepsPerancanganSukan::where('tahun', $tahun)->first();
+        $statusPertanyaan = IkepsStatusPertanyaan::where('tahun', $tahun)->first();
+        $programSekolah = IkepsProgramSekolah::where('tahun', $tahun)->first();
+
+        $canUpdate = false;
+        $staticForm = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->first();
+
+        $moduleId = Module::where('module_name',$staticForm->id)->first();
+        $staticModuleId = $moduleId->id;
+
+        if ($moduleId) {
+            $canView = FMF::checkPermission($staticModuleId, $prasaranaSukan->status, 'view form');
+            $canVerify = FMF::checkPermission($staticModuleId, $prasaranaSukan->status, 'verify form');
+            $canApprove = FMF::checkPermission($staticModuleId, $prasaranaSukan->status, 'approve form');
+            $canQuery = FMF::checkPermission($staticModuleId, $prasaranaSukan->status, 'query');
+            $canReject = FMF::checkPermission($staticModuleId, $prasaranaSukan->status, 'reject');
+        } else {
+            $canView = $canVerify = $canApprove = $canQuery = $canReject = false;
+            $staticModuleId = null;
+        }
+
+        if (!empty($prasaranaSukan) && !empty($kemudahanSukan) && !empty($perancanganSukan) && !empty($statusPertanyaan) && !empty($programSekolah)) {
+            $canUpdate = true;
+        }
+        $statusOfRecord = $prasaranaSukan?->statuses->status_description;
+        return view('ikeps.ringkasan_ikeps_fmf', compact('tahun', 'prasaranaSukan', 'kemudahanSukan', 'perancanganSukan', 'statusPertanyaan', 'programSekolah','canView','canVerify','canApprove','canQuery', 'canReject', 'staticModuleId', 'statusOfRecord'));
+    }
+    public function verify(Request $request)
+    {
+        $formStatus = $request->status;
+        $id = $request->formid;
+        $data = IkepsPrasaranaSukan::where('id', $id)->first();
+        $data->status = $formStatus;
+        
+        return ['success' => $data->save()];
     }
 }

@@ -190,7 +190,7 @@ class FormSubmissionController extends Controller
         $data = json_decode($filledform->data, true);
         $documents = json_decode($filledform->file_path, true);
         $id = $filledform->id;
-        $moduleId = Module::where('module_name',$DynamicFormData->id)->where('type','NewForm')->first();
+        $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
         $dynamicModuleId = $moduleId->id;
         $canView = FMF::checkPermission($dynamicModuleId, $filledform->status, 'view');
         $canVerify = FMF::checkPermission($dynamicModuleId, $filledform->status, 'verify');

@@ -128,7 +128,6 @@ class FMF
 
         $module = Module::where('id',$module_id)->with(['roles','statuses','flowManagements'])->first();
         $moduleStatus = $module->statuses->where('id',$status_id)->first();
-        
         if(!$module || !$moduleStatus)
             return $nextStatus;
 
@@ -143,7 +142,6 @@ class FMF
             return $nextStatus;
 
         $moduleRoleID = $module->roles->whereIn('role_id',$listOfUserRole)->pluck('id')->toArray();
-
         $flowManagement = $module->flowManagements->where('current_status',$moduleStatus->id)->whereIn('module_role_id',$moduleRoleID)->where('action',$action);
 
         if($flowManagement?->count() != 0)

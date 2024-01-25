@@ -154,11 +154,14 @@
 </div>
 
 <br>
-
+<?php
+    $segment = Request::segment(3);
+?>
+@if($segment != 'sedia-ada')
 <div class="d-flex justify-content-center">
     <button type="button" class="btn btn-primary" onclick="submitTab('#staPenForm')">Simpan</button>
 </div>
-
+@endif
 <br>
 
 </form>
