@@ -133,7 +133,8 @@ I-KePS
             },
             error: function(data) {
                 var data = data.responseJSON;
-                Swal.fire(data.title, data.detail, 'error');
+                var message = data.detail.replace(/\(and \d+ more error(?:s)?\)/, '');
+                Swal.fire(data.title, message, 'error');
             }
         });
     }

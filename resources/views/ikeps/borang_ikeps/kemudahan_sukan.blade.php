@@ -38,25 +38,10 @@
         <tbody>
             <?php
                 $kemudahan_sukan = config('staticdata.ikeps.kemudahan_sukan');
-                $ada_tiadas = [
-                    'ada' => 1,
-                    'tiada' => 0,
-                ];
-                $gunasamas = [
-                    'ada' => 1,
-                    'tiada' => 0,
-                ];
-                $masih_digunakans = [
-                    'ada' => 1,
-                    'tiada' => 0,
-                ];
-                $status_fizikals = [
-                    'selesa' => 1,
-                    'tidak_selesa' => 2,
-                    'kefungsian' => 3,
-                    'sekuriti' => 4,
-                    'keselamatan' => 5,
-                ];
+                $ada_tiadas = config('staticdata.ikeps.ada_tiada');
+                $gunasamas = config('staticdata.ikeps.gunasama');
+                $masih_digunakans = config('staticdata.ikeps.masih_digunakan');
+                $status_fizikals = config('staticdata.ikeps.status_fizikal');
             ?>
 
             @foreach ($kemudahan_sukan as $sukanKey => $sukan)
@@ -73,7 +58,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $ada_tiada }}">
+                            <input class="form-check-input" type="radio" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputKemudahan('{{ $sukanKey }}', '{{ $id }}', true)">
                         </div>
                     </td>
                 @endforeach
@@ -83,7 +68,7 @@
                 </td>
 
                 <td>
-                    <input type="text" class="form-control" id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}">
+                    <input type="text" class="form-control" id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -93,11 +78,11 @@
 
                 @foreach($sukan['sub'] as $subKey => $sub)
             <tr>
-                <td> {{ $sub }} @if($subKey == 'bt_lain' || $subKey == 'lain_kemudahan' ) <input class="form-control" name="{{ $subKey.'_butiran' }}" id="{{ $subKey.'_butiran' }}"> @endif</td>
+                <td> {{ $sub }} @if($subKey == 'bt_lain' || $subKey == 'lain_kemudahan' ) <input class="form-control" name="{{ $subKey.'_butiran' }}" id="{{ $subKey.'_butiran' }}" disabled> @endif</td>
                         @foreach ($ada_tiadas as $id => $ada_tiada)
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="{{ $subKey }}" id="{{ $subKey.'_'.$id }}" value="{{ $ada_tiada }}">
+                        <input class="form-check-input" type="radio" name="{{ $subKey }}" id="{{ $subKey.'_'.$id }}" value="{{ $id }}" disabled onclick="checkInputKemudahan('{{ $subKey }}', '{{ $id }}', false)">
                     </div>
                 </td>
                         @endforeach
@@ -105,19 +90,19 @@
                         @foreach ($gunasamas as $id => $gunasama)
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $gunasama }}">
+                        <input class="form-check-input" type="radio" name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
                     </div>
                 </td>
                         @endforeach
 
                 <td>
-                    <input type="text" class="form-control" id="{{ $subKey.'_bilangan' }}" name="{{ $subKey.'_bilangan' }}">
+                    <input type="text" class="form-control" id="{{ $subKey.'_bilangan' }}" name="{{ $subKey.'_bilangan' }}" disabled>
                 </td>
 
                         @foreach ($masih_digunakans as $id => $masih_digunakan)
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="{{ $subKey.'_masih_digunakan' }}" id="{{ $subKey.'_masih_digunakan_'.$id }}" value="{{ $masih_digunakan }}">
+                        <input class="form-check-input" type="radio" name="{{ $subKey.'_masih_digunakan' }}" id="{{ $subKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
                     </div>
                 </td>
                         @endforeach
@@ -125,7 +110,7 @@
                         @foreach ($status_fizikals as $id => $status_fizikal)
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="{{ $subKey.'_status_fizikal' }}" id="{{ $subKey.'_status_fizikal_'.$id }}" value="{{ $status_fizikal }}">
+                        <input class="form-check-input" type="radio" name="{{ $subKey.'_status_fizikal' }}" id="{{ $subKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
                     </div>
                 </td>
                         @endforeach
@@ -158,3 +143,111 @@
         </button>
     </div>
 </div>
+
+<script>
+    function checkInputKemudahan(inputID, value, parent){
+        
+        var inputBilangan = '#'+inputID+'_bilangan';
+        
+        if(value == 1){
+            $(inputBilangan).prop('disabled', false);
+        } else {
+            $(inputBilangan).prop('disabled', true);
+            $(inputBilangan).val('');
+        }
+        if(parent){
+
+            var url = "{{ route('ikeps.get_sub_details', ['tab' => 'kemudahan_sukan','type' => ':replaceThis']) }}";
+            url = url.replace(':replaceThis', inputID);
+            $.ajax({
+                url: url,
+                method: 'GET',
+                async: true,
+                success: function(data) {
+
+                    const menu_list = [
+                        '1', '0', 
+                        'gunasama_1', 'gunasama_0',
+                        'bilangan', 
+                        'masih_digunakan_1', 'masih_digunakan_0',
+                        'status_fizikal_1', 'status_fizikal_2', 'status_fizikal_3', 'status_fizikal_4', 'status_fizikal_5',
+                    ];
+                    // Loop through the detail object
+                    for (var key in data.detail) {
+                        for (var menu in menu_list){
+                            var inputSub = '#'+key+'_'+menu_list[menu];
+                            
+                            if(value == 1){
+                                if(menu_list[menu] == '0' || menu_list[menu] == '1'){
+                                    $(inputSub).prop('disabled', false);
+                                } else {
+                                    if(menu_list[menu] == 'bilangan'){
+                                        $(inputSub).val('');   
+                                    }
+                                    $(inputSub).prop('disabled', true);
+                                }
+
+                                $(inputSub).prop('checked', false);
+                            } else {
+                                $(inputSub).prop('disabled', true);
+
+                                if(menu_list[menu] == '0'){
+                                    $(inputSub).prop('checked', true);
+                                } else {
+                                    if(menu_list[menu] == 'bilangan'){
+                                        $(inputSub).val('');   
+                                    }
+                                    $(inputSub).prop('checked', false);
+                                }
+                            }
+                        }
+
+                        if(key == 'bt_lain' || key == 'lain_kemudahan'){
+                            var inputButiran = '#'+key+'_butiran';
+
+                            $(inputButiran).prop('disabled', true);
+                            $(inputButiran).val('');
+                            
+                        }
+                    }
+                },
+                error: function(data) {
+                    //
+                }
+            });
+
+        } else if(!parent) {
+            const menu_list = [
+                'gunasama_1', 'gunasama_0',
+                'masih_digunakan_1', 'masih_digunakan_0',
+                'status_fizikal_1', 'status_fizikal_2', 'status_fizikal_3', 'status_fizikal_4', 'status_fizikal_5',
+            ];
+
+            for (var menu in menu_list){
+                var input = '#'+inputID+'_'+menu_list[menu];
+
+                $(input).prop('checked', false);
+
+                if(value == 1){
+                    $(input).prop('disabled', false);
+                    if(inputID == 'bt_lain' || inputID == 'lain_kemudahan'){
+                        var inputButiran = '#'+inputID+'_butiran';
+
+                        $(inputButiran).prop('disabled', false);
+                        $(inputButiran).val('');
+                    }
+                } else {
+                    $(input).prop('disabled', true);
+
+                    if(inputID == 'bt_lain' || inputID == 'lain_kemudahan'){
+                        var inputButiran = '#'+inputID+'_butiran';
+
+                        $(inputButiran).prop('disabled', true);
+                        $(inputButiran).val('');
+                    }
+                }
+                
+            }
+        }
+    }
+</script>

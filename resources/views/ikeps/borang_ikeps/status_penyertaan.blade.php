@@ -113,7 +113,7 @@
                     <td> {{ $j++ }} </td>
                     <td>
                         @if ($id == 'lain_1' || $id == 'lain_2' || $id == 'lain_3')
-                        <select class="form-control select2" name="{{ $id.'_zon' }}" id="{{ $id.'_zon' }}">
+                        <select class="form-control select2" name="{{ $id.'_butiran' }}" id="{{ $id.'_butiran' }}">
                             <option value="" hidden>{{ $sukan }}</option>
                             <option value="1">Dart</option>
                             <option value="2">Dodgeball</option>

@@ -5,6 +5,7 @@ use App\Http\Controllers\PengurusanIkepsController;
 Route::controller(PengurusanIkepsController::class)->group(function () {
     Route::prefix('ikeps')->name('ikeps.')->group(function() {
         Route::get('borang-pengisian/{tahun?}','BorangIkepsBaru')->name('ikeps_baru');
+        Route::get('get-sub-details/{tab}/{type}', 'getSubDetails')->name('get_sub_details');
         Route::post('store/{tab}', 'store')->name('store');
         Route::get('ringkasan-pengisian/{tahun?}','RingkasanIkeps')->name('ringkasan_ikeps');
 

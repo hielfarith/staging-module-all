@@ -113,13 +113,13 @@ I-KePS
                         <td>{{ ($prasaranaSukan->$statusFizikal) ? $status_fizikal[$prasaranaSukan->$statusFizikal] : null }}</td>
                         <td>{{ date_format($prasaranaSukan->updated_at, 'Y-m-d') }}
                     </tr>
-                                @elseif($prasaranaSukan->$sukanKey && ($sukanKey == 'status_padang' || $sukanKey == 'gred_padang'))
+                                @elseif($prasaranaSukan->padang_sekolah && ($sukanKey == 'status_padang' || $sukanKey == 'gred_padang'))
                     <tr>
                         <td></td>
                         <td colspan="7">
-                            @if($sukanKey == 'gred_padang')
+                            @if($sukanKey == 'gred_padang' && $prasaranaSukan->padang_sekolah)
                             Gred Padang : Kategori {{ config('staticdata.ikeps.prasarana_sukan.padang_sekolah.sub.gred_padang.'.$prasaranaSukan->$sukanKey) }}
-                            @elseif($sukanKey == 'status_padang')
+                            @elseif($sukanKey == 'status_padang' && $prasaranaSukan->padang_sekolah)
                             Status Hak Milik Padang : {{ config('staticdata.ikeps.prasarana_sukan.padang_sekolah.sub.status_padang.'.$prasaranaSukan->$sukanKey) }}
                             @endif
                         </td>

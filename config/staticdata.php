@@ -18,17 +18,33 @@ return [
     ],
 
     'ikeps' => [
+        'ada_tiada' => [
+            1 => 'Ada',
+            0 => 'Tiada',
+        ],
+
+        'gunasama' => [
+            1 => 'Ya',
+            0 => 'Tidak',
+        ],
+
+        'masih_digunakan' => [
+            1 => 'Ya',
+            0 => 'Tidak',
+        ],
+
         'status_fizikal' => [
-            '1' => 'Selesa',
-            '2' => 'Tidak Selesa',
-            '3' => 'Kefungsian',
-            '4' => 'Sekuriti',
-            '5' => 'Keselamatan',
+            1 => 'Selesa',
+            2 => 'Tidak Selesa',
+            3 => 'Kefungsian',
+            4 => 'Sekuriti',
+            5 => 'Keselamatan',
         ],
 
         'prasarana_sukan' => [
             'padang_sekolah' => [
                 'title' => '2. Padang Sekolah',
+                'main' => 'Padang Sekolah',
                 'sub' => [
                     'kt_400' => '2.1 Keluasan Trek 400M',
                     'kt_300' => '2.2 Keluasan Trek 300M',
@@ -48,6 +64,7 @@ return [
             ],
             'trek_sintetik' => [
                 'title' => '3. Trek Sintetik',
+                'main' => 'Trek Sintetik',
                 'sub' => [
                     'trek_400' => '3.1 Trek 400M',
                     'trek_200' => '3.2 Trek 200M',
@@ -56,6 +73,7 @@ return [
             ],
             'astaka' => [
                 'title' => '4. Astaka',
+                'main' => 'Astaka',
                 'sub' => [
                     'km_500' => '4.1 Kapasiti Melebihi 500',
                     'kk_500' => '4.1 Kapasiti Kurang 500',
@@ -63,6 +81,7 @@ return [
             ],
             'dewan' => [
                 'title' => '5. Dewan',
+                'main' => 'Dewan',
                 'sub' => [
                     'dewan_besar' => '5.1 Dewan Besar',
                     'dewan_khas' => '5.2 Dewan Khas Untuk Sukan',
@@ -70,6 +89,7 @@ return [
             ],
             'bilik_sukan' => [
                 'title' => '6. Bilik Peralatan Sukan (anggaran 1 kelas = 3 bay)',
+                'main' => 'Bilik Peralatan Sukan',
                 'sub' => [
                     'stor_1' => '6.1 Stor 1 Bay',
                     'stor_2' => '6.2 Stor 2 Bay',
@@ -78,6 +98,7 @@ return [
             ],
             'bilik_persalinan' => [
                 'title' => '7. Bilik Persalinan',
+                'main' => 'Bilik Persalinan',
                 'sub' => [
                     'murid_lelaki' => '7.1 Murid Lelaki',
                     'murid_perempuan' => '7.2 Murid Perempuan',
@@ -85,6 +106,7 @@ return [
             ],
             'gelanggang_serbaguna' => [
                 'title' => '8. Gelanggang Serbaguna',
+                'main' => 'Gelanggang Serbaguna',
                 'sub' => [
                     'terbuka_berbumbung' => '8.1 Gelanggan Terbuka Berbumbung',
                     'terbuka' => '8.2 Gelanggan Terbuka',
@@ -92,12 +114,15 @@ return [
             ],
             'bilik_kecergasan' => [
                 'title' => '9. Bilik Kecergasan',
+                'main' => 'Bilik Kecergasan',
             ],
             'makmal_sains' => [
                 'title' => '10. Makmal Sains Sukan',
+                'main' => 'Makmal Sains Sukan',
             ],
             'kolam_renang' => [
                 'title' => '11. Kolam Renang',
+                'main' => 'Kolam Renang',
             ],
         ],
 

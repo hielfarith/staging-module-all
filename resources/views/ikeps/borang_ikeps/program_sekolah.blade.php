@@ -68,7 +68,7 @@
                     </td>
 
                     <td>
-                        <select name="{{ $idProgram.'_perlaksanaan' }}" id="{{ $idProgram.'_perlaksanaan' }" class="form-control select2">
+                        <select name="{{ $idProgram.'_perlaksanaan' }}" id="{{ $idProgram.'_perlaksanaan' }}" class="form-control select2">
                             <option value="" hidden>Bulan</option>
                             <option value="1">Januari</option>
                             <option value="2">Februari</option>

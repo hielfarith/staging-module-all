@@ -10,6 +10,7 @@ use App\Models\IkepsPerancanganSukan;
 use App\Models\IkepsStatusPertanyaan;
 use App\Models\IkepsProgramSekolah;
 use Carbon;
+use PDO;
 
 class PengurusanIkepsController extends Controller
 {
@@ -30,573 +31,714 @@ class PengurusanIkepsController extends Controller
         return view('ikeps.index', compact('tahun'));
     }
 
+    public function getSubDetails(Request $request)
+    {
+        $tab = $request->tab;
+        $type = $request->type;
+        $data = config('staticdata.ikeps.'.$tab.'.'.$type.'.sub');
+
+        if($type == 'padang_sekolah'){
+            unset($data['status_padang']);
+            unset($data['gred_padang']);
+        }
+
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'detail' => $data]);
+    }
+
     public function store(Request $request)
     {
-
         DB::beginTransaction();
         try {
 
             if ($request->tab == 'prasarana_sukan') {
-                IkepsPrasaranaSukan::create([
-                    'tahun' => $request->tahun,
-                    'kod_sekolah' => isset($request->kod_sekolah) ? $request->kod_sekolah : 0,
+                $dataValidation = [
+                    'pemeriksaan_keselamatan' => 'required|boolean',
+                    'tarikh_pemeriksaan' => 'required_if:pemeriksaan_keselamatan,true',
+                ];
+                $msgValidation = [
+                    'pemeriksaan_keselamatan.required' => 'Sila Pilih Pemeriksaan Keselamatan',
+                    'tarikh_pemeriksaan' => 'Sila Pilih Tarikh Pemeriksaan',
+                ];
+                $prasarana_sukan = config('staticdata.ikeps.prasarana_sukan');
+                $column = [
+                    'gunasama',
+                    'bilangan',
+                    'masih_digunakan',
+                    'status_fizikal',
+                ];
 
-                    // Pemeriksaan Keselamatan
-                    'pemeriksaan_keselamatan' => isset($request->pemeriksaan_keselamatan) ? $request->pemeriksaan_keselamatan : null,
-                    'tarikh_pemeriksaan' => isset($request->tarikh_pemeriksaan) ? $request->tarikh_pemeriksaan : null,
+                foreach($prasarana_sukan as $sukanKey => $sukan){
+                    $dataValidation[$sukanKey] = 'required|boolean';
+                    $msgValidation[$sukanKey.'.required'] = 'Sila Pilih '.$sukan['main'];
 
-                    // Padang Sekolah
-                    'padang_sekolah' => $request->padang_sekolah,
-                    'padang_sekolah_gunasama' => isset($request->padang_sekolah_gunasama) ? $request->padang_sekolah_gunasama : null,
-                    'padang_sekolah_bilangan' => isset($request->padang_sekolah_bilangan) ? $request->padang_sekolah_bilangan : null,
+                    if($sukanKey == 'bilik_kecergasan' || $sukanKey == 'makmal_sains' || $sukanKey == 'kolam_renang'){
+                        foreach($column as $col){
 
-                    'status_padang' => isset($request->status_padang) ? $request->status_padang : null,
-                    'status_padang_butiran' => isset($request->status_padang_butiran) ? $request->status_padang_butiran : null,
+                            if($col == 'bilangan'){
+                                $colValidation = 'required_if:'.$sukanKey.',true|integer';
+                                $colMsg = 'Sila Isi ';
+                            } 
+                            else if($col == 'status_fizikal'){
+                                $colValidation = 'required_if:'.$sukanKey.',true|integer|between:1,5';
+                                $colMsg = 'Sila Pilih ';
+                            }
+                            else {
+                                $colValidation = 'required_if:'.$sukanKey.',true|boolean';
+                                $colMsg = 'Sila Pilih ';
+                            }
 
-                    // Keluasan Trek 400M
-                    'kt_400' => isset($request->kt_400) ? $request->kt_400 : false,
-                    'kt_400_gunasama' => isset($request->kt_400_gunasama) ? $request->kt_400_gunasama : null,
-                    'kt_400_bilangan' => isset($request->kt_400_bilangan) ? $request->kt_400_bilangan : null,
-                    'kt_400_masih_digunakan' => isset($request->kt_400_masih_digunakan) ? $request->kt_400_masih_digunakan : null,
-                    'kt_400_status_fizikal' => isset($request->kt_400_status_fizikal) ? $request->kt_400_status_fizikal : null,
+                            $dataValidation[$sukanKey.'_'.$col] = $colValidation;
+                            $msgValidation[$sukanKey.'_'.$col.'.required_if'] = $colMsg.ucwords(str_replace('_', ' ', $col).' '.$sukan['main']);
+                        }
+                    } else {
+                        $dataValidation[$sukanKey.'_bilangan'] = 'required_if:'.$sukanKey.',true|integer';
+                        $msgValidation[$sukanKey.'_bilangan.required_if'] = 'Sila Isi Bilangan '.$sukan['main'];
 
-                    // Keluasan Trek 300M
-                    'kt_300' => isset($request->kt_300) ? $request->kt_300 : false,
-                    'kt_300_gunasama' => isset($request->kt_300_gunasama) ? $request->kt_300_gunasama : null,
-                    'kt_300_bilangan' => isset($request->kt_300_bilangan) ? $request->kt_300_bilangan : null,
-                    'kt_300_masih_digunakan' => isset($request->kt_300_masih_digunakan) ? $request->kt_300_masih_digunakan : null,
-                    'kt_300_status_fizikal' => isset($request->kt_300_status_fizikal) ? $request->kt_300_status_fizikal : null,
+                        if($sukanKey == 'padang_sekolah'){
+                            $dataValidation[$sukanKey.'_gunasama'] = 'required_if:'.$sukanKey.',true|boolean';
+                            $msgValidation[$sukanKey.'_gunasama.required_if'] = 'Sila Pilih Gunasama '.$sukan['main'];
+                        }
 
-                    // Keluasan Trek 200M
-                    'kt_200' => isset($request->kt_200) ? $request->kt_200 : false,
-                    'kt_200_gunasama' => isset($request->kt_200_gunasama) ? $request->kt_200_gunasama : null,
-                    'kt_200_bilangan' => isset($request->kt_200_bilangan) ? $request->kt_200_bilangan : null,
-                    'kt_200_masih_digunakan' => isset($request->kt_200_masih_digunakan) ? $request->kt_200_masih_digunakan : null,
-                    'kt_200_status_fizikal' => isset($request->kt_200_status_fizikal) ? $request->kt_200_status_fizikal : null,
+                        foreach($sukan['sub'] as $subKey => $sub){
+                            if($subKey != 'status_padang' && $subKey != 'gred_padang'){
+                                $dataValidation[$subKey] = 'required_if:'.$sukanKey.',true|boolean';
+                                $msgValidation[$subKey.'.required_if'] = 'Sila Pilih '.$sub;
 
-                    // Keluasan Trek Kurang 200M
-                    'ktk_200' => isset($request->ktk_200) ? $request->ktk_200 : false,
-                    'ktk_200_gunasama' => isset($request->ktk_200_gunasama) ? $request->ktk_200_gunasama : null,
-                    'ktk_200_bilangan' => isset($request->ktk_200_bilangan) ? $request->ktk_200_bilangan : null,
-                    'ktk_200_masih_digunakan' => isset($request->ktk_200_masih_digunakan) ? $request->ktk_200_masih_digunakan : null,
-                    'ktk_200_status_fizikal' => isset($request->ktk_200_status_fizikal) ? $request->ktk_200_status_fizikal : null,
+                                foreach($column as $col){
+                                    if($col == 'bilangan'){
+                                        $colValidation = 'required_if:'.$subKey.',true|integer';
+                                        $colMsg = 'Sila Isi ';
+                                    } 
+                                    else if($col == 'status_fizikal'){
+                                        $colValidation = 'required_if:'.$subKey.',true|integer|between:1,5';
+                                        $colMsg = 'Sila Pilih ';
+                                    }
+                                    else {
+                                        $colValidation = 'required_if:'.$subKey.',true|boolean';
+                                        $colMsg = 'Sila Pilih ';
+                                    }
 
-                    // Gred Padang
-                    'gred_padang' => isset($request->gred_padang) ? $request->gred_padang : null,
+                                    $dataValidation[$subKey.'_'.$col] = $colValidation;
+                                    $msgValidation[$subKey.'_'.$col.'.required_if'] = $colMsg.ucwords(str_replace('_', ' ', $col).' '.$sub);
+                                }
+                            }
+                        }
+                    }
+                }
 
-                    // Trek Sintetik
-                    'trek_sintetik' => $request->trek_sintetik,
-                    'trek_sintetik_bilangan' => isset($request->trek_sintetik_bilangan) ? $request->trek_sintetik_bilangan : null,
+                $request->validate($dataValidation, $msgValidation);
 
-                    // Trek 400M
-                    'trek_400' => isset($request->trek_400) ? $request->trek_400 : false,
-                    'trek_400_gunasama' => isset($request->trek_400_gunasama) ? $request->trek_400_gunasama : null,
-                    'trek_400_bilangan' => isset($request->trek_400_bilangan) ? $request->trek_400_bilangan : null,
-                    'trek_400_masih_digunakan' => isset($request->trek_400_masih_digunakan) ? $request->trek_400_masih_digunakan : null,
-                    'trek_400_status_fizikal' => isset($request->trek_400_status_fizikal) ? $request->trek_400_status_fizikal : null,
+                IkepsPrasaranaSukan::updateOrCreate(
+                    [
+                        'tahun' => $request->tahun,
+                        'kod_sekolah' => isset($request->kod_sekolah) ? $request->kod_sekolah : 0,
+                    ],
+                    [
+                        // Pemeriksaan Keselamatan
+                        'pemeriksaan_keselamatan' => isset($request->pemeriksaan_keselamatan) ? $request->pemeriksaan_keselamatan : null,
+                        'tarikh_pemeriksaan' => isset($request->tarikh_pemeriksaan) ? $request->tarikh_pemeriksaan : null,
 
-                    // Trek 200M
-                    'trek_200' => isset($request->trek_200) ? $request->trek_200 : false,
-                    'trek_200_gunasama' => isset($request->trek_200_gunasama) ? $request->trek_200_gunasama : null,
-                    'trek_200_bilangan' => isset($request->trek_200_bilangan) ? $request->trek_200_bilangan : null,
-                    'trek_200_masih_digunakan' => isset($request->trek_200_masih_digunakan) ? $request->trek_200_masih_digunakan : null,
+                        // Padang Sekolah
+                        'padang_sekolah' => $request->padang_sekolah,
+                        'padang_sekolah_gunasama' => isset($request->padang_sekolah_gunasama) ? $request->padang_sekolah_gunasama : null,
+                        'padang_sekolah_bilangan' => isset($request->padang_sekolah_bilangan) ? $request->padang_sekolah_bilangan : null,
 
-                    // Trek Lain
-                    'trek_lain' => isset($request->trek_lain) ? $request->trek_lain : false,
-                    'trek_lain_butiran' => isset($request->trek_lain_butiran) ? $request->trek_lain_butiran : null,
-                    'trek_lain_gunasama' => isset($request->trek_lain_gunasama) ? $request->trek_lain_gunasama : null,
-                    'trek_lain_bilangan' => isset($request->trek_lain_bilangan) ? $request->trek_lain_bilangan : null,
-                    'trek_lain_masih_digunakan' => isset($request->trek_lain_masih_digunakan) ? $request->trek_lain_masih_digunakan : null,
-                    'trek_lain_status_fizikal' => isset($request->trek_lain_status_fizikal) ? $request->trek_lain_status_fizikal : null,
+                        'status_padang' => isset($request->status_padang) ? $request->status_padang : null,
+                        'status_padang_butiran' => isset($request->status_padang_butiran) ? $request->status_padang_butiran : null,
 
-                    'astaka' => $request->astaka,
-                    'astaka_bilangan' => isset($request->astaka_bilangan) ? $request->astaka_bilangan : null,
+                        // Keluasan Trek 400M
+                        'kt_400' => isset($request->kt_400) ? $request->kt_400 : false,
+                        'kt_400_gunasama' => isset($request->kt_400_gunasama) ? $request->kt_400_gunasama : null,
+                        'kt_400_bilangan' => isset($request->kt_400_bilangan) ? $request->kt_400_bilangan : null,
+                        'kt_400_masih_digunakan' => isset($request->kt_400_masih_digunakan) ? $request->kt_400_masih_digunakan : null,
+                        'kt_400_status_fizikal' => isset($request->kt_400_status_fizikal) ? $request->kt_400_status_fizikal : null,
 
-                    'km_500' => isset($request->km_500) ? $request->km_500 : false,
-                    'km_500_gunasama' => isset($request->km_500_gunasama) ? $request->km_500_gunasama : null,
-                    'km_500_bilangan' => isset($request->km_500_bilangan) ? $request->km_500_bilangan : null,
-                    'km_500_masih_digunakan' => isset($request->km_500_masih_digunakan) ? $request->km_500_masih_digunakan : null,
-                    'km_500_status_fizikal' => isset($request->km_500_status_fizikal) ? $request->km_500_status_fizikal : null,
+                        // Keluasan Trek 300M
+                        'kt_300' => isset($request->kt_300) ? $request->kt_300 : false,
+                        'kt_300_gunasama' => isset($request->kt_300_gunasama) ? $request->kt_300_gunasama : null,
+                        'kt_300_bilangan' => isset($request->kt_300_bilangan) ? $request->kt_300_bilangan : null,
+                        'kt_300_masih_digunakan' => isset($request->kt_300_masih_digunakan) ? $request->kt_300_masih_digunakan : null,
+                        'kt_300_status_fizikal' => isset($request->kt_300_status_fizikal) ? $request->kt_300_status_fizikal : null,
 
-                    'kk_500' => isset($request->kk_500) ? $request->kk_500 : false,
-                    'kk_500_gunasama' => isset($request->kk_500_gunasama) ? $request->kk_500_gunasama : null,
-                    'kk_500_bilangan' => isset($request->kk_500_bilangan) ? $request->kk_500_bilangan : null,
-                    'kk_500_masih_digunakan' => isset($request->kk_500_masih_digunakan) ? $request->kk_500_masih_digunakan : null,
-                    'kk_500_status_fizikal' => isset($request->kk_500_status_fizikal) ? $request->kk_500_status_fizikal : null,
+                        // Keluasan Trek 200M
+                        'kt_200' => isset($request->kt_200) ? $request->kt_200 : false,
+                        'kt_200_gunasama' => isset($request->kt_200_gunasama) ? $request->kt_200_gunasama : null,
+                        'kt_200_bilangan' => isset($request->kt_200_bilangan) ? $request->kt_200_bilangan : null,
+                        'kt_200_masih_digunakan' => isset($request->kt_200_masih_digunakan) ? $request->kt_200_masih_digunakan : null,
+                        'kt_200_status_fizikal' => isset($request->kt_200_status_fizikal) ? $request->kt_200_status_fizikal : null,
 
-                    'dewan' => $request->dewan,
-                    'dewan_bilangan' => isset($request->dewan_bilangan) ? $request->dewan_bilangan : null,
+                        // Keluasan Trek Kurang 200M
+                        'ktk_200' => isset($request->ktk_200) ? $request->ktk_200 : false,
+                        'ktk_200_gunasama' => isset($request->ktk_200_gunasama) ? $request->ktk_200_gunasama : null,
+                        'ktk_200_bilangan' => isset($request->ktk_200_bilangan) ? $request->ktk_200_bilangan : null,
+                        'ktk_200_masih_digunakan' => isset($request->ktk_200_masih_digunakan) ? $request->ktk_200_masih_digunakan : null,
+                        'ktk_200_status_fizikal' => isset($request->ktk_200_status_fizikal) ? $request->ktk_200_status_fizikal : null,
 
-                    'dewan_besar' => isset($request->dewan_besar) ? $request->dewan_besar : false,
-                    'dewan_besar_gunasama' => isset($request->dewan_besar_gunasama) ? $request->dewan_besar_gunasama : null,
-                    'dewan_besar_bilangan' => isset($request->dewan_besar_bilangan) ? $request->dewan_besar_bilangan : null,
-                    'dewan_besar_masih_digunakan' => isset($request->dewan_besar_masih_digunakan) ? $request->dewan_besar_masih_digunakan : null,
-                    'dewan_besar_status_fizikal' => isset($request->dewan_besar_status_fizikal) ? $request->dewan_besar_status_fizikal : null,
+                        // Gred Padang
+                        'gred_padang' => isset($request->gred_padang) ? $request->gred_padang : null,
 
-                    'dewan_khas' => isset($request->dewan_khas) ? $request->dewan_khas : false,
-                    'dewan_khas_gunasama' => isset($request->dewan_khas_gunasama) ? $request->dewan_khas_gunasama : null,
-                    'dewan_khas_bilangan' => isset($request->dewan_khas_bilangan) ? $request->dewan_khas_bilangan : null,
-                    'dewan_khas_masih_digunakan' => isset($request->dewan_khas_masih_digunakan) ? $request->dewan_khas_masih_digunakan : null,
-                    'dewan_khas_status_fizikal' => isset($request->dewan_khas_status_fizikal) ? $request->dewan_khas_status_fizikal : null,
+                        // Trek Sintetik
+                        'trek_sintetik' => $request->trek_sintetik,
+                        'trek_sintetik_bilangan' => isset($request->trek_sintetik_bilangan) ? $request->trek_sintetik_bilangan : null,
 
-                    'bilik_sukan' => $request->bilik_sukan,
-                    'bilik_sukan_bilangan' => isset($request->bilik_sukan_bilangan) ? $request->bilik_sukan_bilangan : null,
+                        // Trek 400M
+                        'trek_400' => isset($request->trek_400) ? $request->trek_400 : false,
+                        'trek_400_gunasama' => isset($request->trek_400_gunasama) ? $request->trek_400_gunasama : null,
+                        'trek_400_bilangan' => isset($request->trek_400_bilangan) ? $request->trek_400_bilangan : null,
+                        'trek_400_masih_digunakan' => isset($request->trek_400_masih_digunakan) ? $request->trek_400_masih_digunakan : null,
+                        'trek_400_status_fizikal' => isset($request->trek_400_status_fizikal) ? $request->trek_400_status_fizikal : null,
 
-                    'stor_1' => isset($request->stor_1) ? $request->stor_1 : false,
-                    'stor_1_gunasama' => isset($request->stor_1_gunasama) ? $request->stor_1_gunasama : null,
-                    'stor_1_bilangan' => isset($request->stor_1_bilangan) ? $request->stor_1_bilangan : null,
-                    'stor_1_masih_digunakan' => isset($request->stor_1_masih_digunakan) ? $request->stor_1_masih_digunakan : null,
-                    'stor_1_status_fizikal' => isset($request->stor_1_status_fizikal) ? $request->stor_1_status_fizikal : null,
+                        // Trek 200M
+                        'trek_200' => isset($request->trek_200) ? $request->trek_200 : false,
+                        'trek_200_gunasama' => isset($request->trek_200_gunasama) ? $request->trek_200_gunasama : null,
+                        'trek_200_bilangan' => isset($request->trek_200_bilangan) ? $request->trek_200_bilangan : null,
+                        'trek_200_masih_digunakan' => isset($request->trek_200_masih_digunakan) ? $request->trek_200_masih_digunakan : null,
 
-                    'stor_2' => isset($request->stor_2) ? $request->stor_2 : false,
-                    'stor_2_gunasama' => isset($request->stor_2_gunasama) ? $request->stor_2_gunasama : null,
-                    'stor_2_bilangan' => isset($request->stor_2_bilangan) ? $request->stor_2_bilangan : null,
-                    'stor_2_masih_digunakan' => isset($request->stor_2_masih_digunakan) ? $request->stor_2_masih_digunakan : null,
-                    'stor_2_status_fizikal' => isset($request->stor_2_status_fizikal) ? $request->stor_2_status_fizikal : null,
+                        // Trek Lain
+                        'trek_lain' => isset($request->trek_lain) ? $request->trek_lain : false,
+                        'trek_lain_butiran' => isset($request->trek_lain_butiran) ? $request->trek_lain_butiran : null,
+                        'trek_lain_gunasama' => isset($request->trek_lain_gunasama) ? $request->trek_lain_gunasama : null,
+                        'trek_lain_bilangan' => isset($request->trek_lain_bilangan) ? $request->trek_lain_bilangan : null,
+                        'trek_lain_masih_digunakan' => isset($request->trek_lain_masih_digunakan) ? $request->trek_lain_masih_digunakan : null,
+                        'trek_lain_status_fizikal' => isset($request->trek_lain_status_fizikal) ? $request->trek_lain_status_fizikal : null,
 
-                    'stor_3' => isset($request->stor_3) ? $request->stor_3 : false,
-                    'stor_3_gunasama' => isset($request->stor_3_gunasama) ? $request->stor_3_gunasama : null,
-                    'stor_3_bilangan' => isset($request->stor_3_bilangan) ? $request->stor_3_bilangan : null,
-                    'stor_3_masih_digunakan' => isset($request->stor_3_masih_digunakan) ? $request->stor_3_masih_digunakan : null,
-                    'stor_3_status_fizikal' => isset($request->stor_3_status_fizikal) ? $request->stor_3_status_fizikal : null,
+                        'astaka' => $request->astaka,
+                        'astaka_bilangan' => isset($request->astaka_bilangan) ? $request->astaka_bilangan : null,
 
-                    'bilik_persalinan' => $request->bilik_persalinan,
-                    'bilik_persalinan_bilangan' => isset($request->bilik_persalinan_bilangan) ? $request->bilik_persalinan_bilangan : null,
+                        'km_500' => isset($request->km_500) ? $request->km_500 : false,
+                        'km_500_gunasama' => isset($request->km_500_gunasama) ? $request->km_500_gunasama : null,
+                        'km_500_bilangan' => isset($request->km_500_bilangan) ? $request->km_500_bilangan : null,
+                        'km_500_masih_digunakan' => isset($request->km_500_masih_digunakan) ? $request->km_500_masih_digunakan : null,
+                        'km_500_status_fizikal' => isset($request->km_500_status_fizikal) ? $request->km_500_status_fizikal : null,
 
-                    'murid_lelaki' => isset($request->murid_lelaki) ? $request->murid_lelaki : false,
-                    'murid_lelaki_gunasama' => isset($request->murid_lelaki_gunasama) ? $request->murid_lelaki_gunasama : null,
-                    'murid_lelaki_bilangan' => isset($request->murid_lelaki_bilangan) ? $request->murid_lelaki_bilangan : null,
-                    'murid_lelaki_masih_digunakan' => isset($request->murid_lelaki_masih_digunakan) ? $request->murid_lelaki_masih_digunakan : null,
-                    'murid_lelaki_status_fizikal' => isset($request->murid_lelaki_status_fizikal) ? $request->murid_lelaki_status_fizikal : null,
+                        'kk_500' => isset($request->kk_500) ? $request->kk_500 : false,
+                        'kk_500_gunasama' => isset($request->kk_500_gunasama) ? $request->kk_500_gunasama : null,
+                        'kk_500_bilangan' => isset($request->kk_500_bilangan) ? $request->kk_500_bilangan : null,
+                        'kk_500_masih_digunakan' => isset($request->kk_500_masih_digunakan) ? $request->kk_500_masih_digunakan : null,
+                        'kk_500_status_fizikal' => isset($request->kk_500_status_fizikal) ? $request->kk_500_status_fizikal : null,
 
-                    'murid_perempuan' => isset($request->murid_perempuan) ? $request->murid_perempuan : false,
-                    'murid_perempuan_gunasama' => isset($request->murid_perempuan_gunasama) ? $request->murid_perempuan_gunasama : null,
-                    'murid_perempuan_bilangan' => isset($request->murid_perempuan_bilangan) ? $request->murid_perempuan_bilangan : null,
-                    'murid_perempuan_masih_digunakan' => isset($request->murid_perempuan_masih_digunakan) ? $request->murid_perempuan_masih_digunakan : null,
-                    'murid_perempuan_status_fizikal' => isset($request->murid_perempuan_status_fizikal) ? $request->murid_perempuan_status_fizikal : null,
+                        'dewan' => $request->dewan,
+                        'dewan_bilangan' => isset($request->dewan_bilangan) ? $request->dewan_bilangan : null,
 
-                    'gelanggang_serbaguna' => $request->gelanggang_serbaguna,
-                    'gelanggang_serbaguna_bilangan' => isset($request->gelanggang_serbaguna_bilangan) ? $request->gelanggang_serbaguna_bilangan : null,
+                        'dewan_besar' => isset($request->dewan_besar) ? $request->dewan_besar : false,
+                        'dewan_besar_gunasama' => isset($request->dewan_besar_gunasama) ? $request->dewan_besar_gunasama : null,
+                        'dewan_besar_bilangan' => isset($request->dewan_besar_bilangan) ? $request->dewan_besar_bilangan : null,
+                        'dewan_besar_masih_digunakan' => isset($request->dewan_besar_masih_digunakan) ? $request->dewan_besar_masih_digunakan : null,
+                        'dewan_besar_status_fizikal' => isset($request->dewan_besar_status_fizikal) ? $request->dewan_besar_status_fizikal : null,
 
-                    'terbuka_berbumbung' => isset($request->terbuka_berbumbung) ? $request->terbuka_berbumbung : false,
-                    'terbuka_berbumbung_gunasama' => isset($request->terbuka_berbumbung_gunasama) ? $request->terbuka_berbumbung_gunasama : null,
-                    'terbuka_berbumbung_bilangan' => isset($request->terbuka_berbumbung_bilangan) ? $request->terbuka_berbumbung_bilangan : null,
-                    'terbuka_berbumbung_masih_digunakan' => isset($request->terbuka_berbumbung_masih_digunakan) ? $request->terbuka_berbumbung_masih_digunakan : null,
-                    'terbuka_berbumbung_status_fizikal' => isset($request->terbuka_berbumbung_status_fizikal) ? $request->terbuka_berbumbung_status_fizikal : null,
+                        'dewan_khas' => isset($request->dewan_khas) ? $request->dewan_khas : false,
+                        'dewan_khas_gunasama' => isset($request->dewan_khas_gunasama) ? $request->dewan_khas_gunasama : null,
+                        'dewan_khas_bilangan' => isset($request->dewan_khas_bilangan) ? $request->dewan_khas_bilangan : null,
+                        'dewan_khas_masih_digunakan' => isset($request->dewan_khas_masih_digunakan) ? $request->dewan_khas_masih_digunakan : null,
+                        'dewan_khas_status_fizikal' => isset($request->dewan_khas_status_fizikal) ? $request->dewan_khas_status_fizikal : null,
 
-                    'terbuka' => isset($request->terbuka) ? $request->terbuka : false,
-                    'terbuka_gunasama' => isset($request->terbuka_gunasama) ? $request->terbuka_gunasama : null,
-                    'terbuka_bilangan' => isset($request->terbuka_bilangan) ? $request->terbuka_bilangan : null,
-                    'terbuka_masih_digunakan' => isset($request->terbuka_masih_digunakan) ? $request->terbuka_masih_digunakan : null,
-                    'terbuka_status_fizikal' => isset($request->terbuka_status_fizikal) ? $request->terbuka_status_fizikal : null,
+                        'bilik_sukan' => $request->bilik_sukan,
+                        'bilik_sukan_bilangan' => isset($request->bilik_sukan_bilangan) ? $request->bilik_sukan_bilangan : null,
 
-                    'bilik_kecergasan' => $request->bilik_kecergasan,
-                    'bilik_kecergasan_gunasama' => isset($request->bilik_kecergasan_gunasama) ? $request->bilik_kecergasan_gunasama : null,
-                    'bilik_kecergasan_bilangan' => isset($request->bilik_kecergasan_bilangan) ? $request->bilik_kecergasan_bilangan : null,
-                    'bilik_kecergasan_masih_digunakan' => isset($request->bilik_kecergasan_masih_digunakan) ? $request->bilik_kecergasan_masih_digunakan : null,
-                    'bilik_kecergasan_status_fizikal' => isset($request->bilik_kecergasan_status_fizikal) ? $request->bilik_kecergasan_status_fizikal : null,
+                        'stor_1' => isset($request->stor_1) ? $request->stor_1 : false,
+                        'stor_1_gunasama' => isset($request->stor_1_gunasama) ? $request->stor_1_gunasama : null,
+                        'stor_1_bilangan' => isset($request->stor_1_bilangan) ? $request->stor_1_bilangan : null,
+                        'stor_1_masih_digunakan' => isset($request->stor_1_masih_digunakan) ? $request->stor_1_masih_digunakan : null,
+                        'stor_1_status_fizikal' => isset($request->stor_1_status_fizikal) ? $request->stor_1_status_fizikal : null,
 
-                    'makmal_sains' => $request->makmal_sains,
-                    'makmal_sains_gunasama' => isset($request->makmal_sains_gunasama) ? $request->makmal_sains_gunasama : null,
-                    'makmal_sains_bilangan' => isset($request->makmal_sains_bilangan) ? $request->makmal_sains_bilangan : null,
-                    'makmal_sains_masih_digunakan' => isset($request->makmal_sains_masih_digunakan) ? $request->makmal_sains_masih_digunakan : null,
-                    'makmal_sains_status_fizikal' => isset($request->makmal_sains_status_fizikal) ? $request->makmal_sains_status_fizikal : null,
+                        'stor_2' => isset($request->stor_2) ? $request->stor_2 : false,
+                        'stor_2_gunasama' => isset($request->stor_2_gunasama) ? $request->stor_2_gunasama : null,
+                        'stor_2_bilangan' => isset($request->stor_2_bilangan) ? $request->stor_2_bilangan : null,
+                        'stor_2_masih_digunakan' => isset($request->stor_2_masih_digunakan) ? $request->stor_2_masih_digunakan : null,
+                        'stor_2_status_fizikal' => isset($request->stor_2_status_fizikal) ? $request->stor_2_status_fizikal : null,
 
-                    'kolam_renang' => $request->kolam_renang,
-                    'kolam_renang_gunasama' => isset($request->kolam_renang_gunasama) ? $request->kolam_renang_gunasama : null,
-                    'kolam_renang_bilangan' => isset($request->kolam_renang_bilangan) ? $request->kolam_renang_bilangan : null,
-                    'kolam_renang_masih_digunakan' => isset($request->kolam_renang_masih_digunakan) ? $request->kolam_renang_masih_digunakan : null,
-                    'kolam_renang_status_fizikal' => isset($request->kolam_renang_status_fizikal) ? $request->kolam_renang_status_fizikal : null,
+                        'stor_3' => isset($request->stor_3) ? $request->stor_3 : false,
+                        'stor_3_gunasama' => isset($request->stor_3_gunasama) ? $request->stor_3_gunasama : null,
+                        'stor_3_bilangan' => isset($request->stor_3_bilangan) ? $request->stor_3_bilangan : null,
+                        'stor_3_masih_digunakan' => isset($request->stor_3_masih_digunakan) ? $request->stor_3_masih_digunakan : null,
+                        'stor_3_status_fizikal' => isset($request->stor_3_status_fizikal) ? $request->stor_3_status_fizikal : null,
 
-                    'created_by' => auth()->user()->id,
-                    'updated_by' => auth()->user()->id,
-                ]);
+                        'bilik_persalinan' => $request->bilik_persalinan,
+                        'bilik_persalinan_bilangan' => isset($request->bilik_persalinan_bilangan) ? $request->bilik_persalinan_bilangan : null,
+
+                        'murid_lelaki' => isset($request->murid_lelaki) ? $request->murid_lelaki : false,
+                        'murid_lelaki_gunasama' => isset($request->murid_lelaki_gunasama) ? $request->murid_lelaki_gunasama : null,
+                        'murid_lelaki_bilangan' => isset($request->murid_lelaki_bilangan) ? $request->murid_lelaki_bilangan : null,
+                        'murid_lelaki_masih_digunakan' => isset($request->murid_lelaki_masih_digunakan) ? $request->murid_lelaki_masih_digunakan : null,
+                        'murid_lelaki_status_fizikal' => isset($request->murid_lelaki_status_fizikal) ? $request->murid_lelaki_status_fizikal : null,
+
+                        'murid_perempuan' => isset($request->murid_perempuan) ? $request->murid_perempuan : false,
+                        'murid_perempuan_gunasama' => isset($request->murid_perempuan_gunasama) ? $request->murid_perempuan_gunasama : null,
+                        'murid_perempuan_bilangan' => isset($request->murid_perempuan_bilangan) ? $request->murid_perempuan_bilangan : null,
+                        'murid_perempuan_masih_digunakan' => isset($request->murid_perempuan_masih_digunakan) ? $request->murid_perempuan_masih_digunakan : null,
+                        'murid_perempuan_status_fizikal' => isset($request->murid_perempuan_status_fizikal) ? $request->murid_perempuan_status_fizikal : null,
+
+                        'gelanggang_serbaguna' => $request->gelanggang_serbaguna,
+                        'gelanggang_serbaguna_bilangan' => isset($request->gelanggang_serbaguna_bilangan) ? $request->gelanggang_serbaguna_bilangan : null,
+
+                        'terbuka_berbumbung' => isset($request->terbuka_berbumbung) ? $request->terbuka_berbumbung : false,
+                        'terbuka_berbumbung_gunasama' => isset($request->terbuka_berbumbung_gunasama) ? $request->terbuka_berbumbung_gunasama : null,
+                        'terbuka_berbumbung_bilangan' => isset($request->terbuka_berbumbung_bilangan) ? $request->terbuka_berbumbung_bilangan : null,
+                        'terbuka_berbumbung_masih_digunakan' => isset($request->terbuka_berbumbung_masih_digunakan) ? $request->terbuka_berbumbung_masih_digunakan : null,
+                        'terbuka_berbumbung_status_fizikal' => isset($request->terbuka_berbumbung_status_fizikal) ? $request->terbuka_berbumbung_status_fizikal : null,
+
+                        'terbuka' => isset($request->terbuka) ? $request->terbuka : false,
+                        'terbuka_gunasama' => isset($request->terbuka_gunasama) ? $request->terbuka_gunasama : null,
+                        'terbuka_bilangan' => isset($request->terbuka_bilangan) ? $request->terbuka_bilangan : null,
+                        'terbuka_masih_digunakan' => isset($request->terbuka_masih_digunakan) ? $request->terbuka_masih_digunakan : null,
+                        'terbuka_status_fizikal' => isset($request->terbuka_status_fizikal) ? $request->terbuka_status_fizikal : null,
+
+                        'bilik_kecergasan' => $request->bilik_kecergasan,
+                        'bilik_kecergasan_gunasama' => isset($request->bilik_kecergasan_gunasama) ? $request->bilik_kecergasan_gunasama : null,
+                        'bilik_kecergasan_bilangan' => isset($request->bilik_kecergasan_bilangan) ? $request->bilik_kecergasan_bilangan : null,
+                        'bilik_kecergasan_masih_digunakan' => isset($request->bilik_kecergasan_masih_digunakan) ? $request->bilik_kecergasan_masih_digunakan : null,
+                        'bilik_kecergasan_status_fizikal' => isset($request->bilik_kecergasan_status_fizikal) ? $request->bilik_kecergasan_status_fizikal : null,
+
+                        'makmal_sains' => $request->makmal_sains,
+                        'makmal_sains_gunasama' => isset($request->makmal_sains_gunasama) ? $request->makmal_sains_gunasama : null,
+                        'makmal_sains_bilangan' => isset($request->makmal_sains_bilangan) ? $request->makmal_sains_bilangan : null,
+                        'makmal_sains_masih_digunakan' => isset($request->makmal_sains_masih_digunakan) ? $request->makmal_sains_masih_digunakan : null,
+                        'makmal_sains_status_fizikal' => isset($request->makmal_sains_status_fizikal) ? $request->makmal_sains_status_fizikal : null,
+
+                        'kolam_renang' => $request->kolam_renang,
+                        'kolam_renang_gunasama' => isset($request->kolam_renang_gunasama) ? $request->kolam_renang_gunasama : null,
+                        'kolam_renang_bilangan' => isset($request->kolam_renang_bilangan) ? $request->kolam_renang_bilangan : null,
+                        'kolam_renang_masih_digunakan' => isset($request->kolam_renang_masih_digunakan) ? $request->kolam_renang_masih_digunakan : null,
+                        'kolam_renang_status_fizikal' => isset($request->kolam_renang_status_fizikal) ? $request->kolam_renang_status_fizikal : null,
+
+                        'created_by' => auth()->user()->id,
+                        'updated_by' => auth()->user()->id,
+                    ]
+                );
             }
 
             if ($request->tab == 'kemudahan_sukan') {
-                IkepsKemudahanSukan::create([
-                    'tahun' => $request->tahun,
-                    'kod_sekolah' => isset($request->kod_sekolah) ? $request->kod_sekolah : 0,
-
-                    // Bola Sepak
-                    'bola_sepak' => $request->bola_sepak,
-                    'bola_sepak_bilangan' => isset($request->bola_sepak_bilangan) ? $request->bola_sepak_bilangan : null,
-
-                    'bs_saiz_standard' => isset($request->bs_saiz_standard) ? $request->bs_saiz_standard : false,
-                    'bs_saiz_standard_gunasama' => isset($request->bs_saiz_standard_gunasama) ? $request->bs_saiz_standard_gunasama : null,
-                    'bs_saiz_standard_bilangan' => isset($request->bs_saiz_standard_bilangan) ? $request->bs_saiz_standard_bilangan : null,
-                    'bs_saiz_standard_masih_digunakan' => isset($request->bs_saiz_standard_masih_digunakan) ? $request->bs_saiz_standard_masih_digunakan : null,
-                    'bs_saiz_standard_status_fizikal' => isset($request->bs_saiz_standard_status_fizikal) ? $request->bs_saiz_standard_status_fizikal : null,
-
-                    'bs_saiz_latihan' => isset($request->bs_saiz_latihan) ? $request->bs_saiz_latihan : false,
-                    'bs_saiz_latihan_gunasama' => isset($request->bs_saiz_latihan_gunasama) ? $request->bs_saiz_latihan_gunasama : null,
-                    'bs_saiz_latihan_bilangan' => isset($request->bs_saiz_latihan_bilangan) ? $request->bs_saiz_latihan_bilangan : null,
-                    'bs_saiz_latihan_masih_digunakan' => isset($request->bs_saiz_latihan_masih_digunakan) ? $request->bs_saiz_latihan_masih_digunakan : null,
-                    'bs_saiz_latihan_status_fizikal' => isset($request->bs_saiz_latihan_status_fizikal) ? $request->bs_saiz_latihan_status_fizikal : null,
-
-                    // Padang Hoki
-                    'hoki' => $request->hoki,
-                    'hoki_bilangan' => isset($request->hoki_bilangan) ? $request->hoki_bilangan : null,
-
-                    'hoki_saiz_standard' => isset($request->hoki_saiz_standard) ? $request->hoki_saiz_standard : false,
-                    'hoki_saiz_standard_gunasama' => isset($request->hoki_saiz_standard_gunasama) ? $request->hoki_saiz_standard_gunasama : null,
-                    'hoki_saiz_standard_bilangan' => isset($request->hoki_saiz_standard_bilangan) ? $request->hoki_saiz_standard_bilangan : null,
-                    'hoki_saiz_standard_masih_digunakan' => isset($request->hoki_saiz_standard_masih_digunakan) ? $request->hoki_saiz_standard_masih_digunakan : null,
-                    'hoki_saiz_standard_status_fizikal' => isset($request->hoki_saiz_standard_status_fizikal) ? $request->hoki_saiz_standard_status_fizikal : null,
-
-                    'hoki_saiz_latihan' => isset($request->hoki_saiz_latihan) ? $request->hoki_saiz_latihan : false,
-                    'hoki_saiz_latihan_gunasama' => isset($request->hoki_saiz_latihan_gunasama) ? $request->hoki_saiz_latihan_gunasama : null,
-                    'hoki_saiz_latihan_bilangan' => isset($request->hoki_saiz_latihan_bilangan) ? $request->hoki_saiz_latihan_bilangan : null,
-                    'hoki_saiz_latihan_masih_digunakan' => isset($request->hoki_saiz_latihan_masih_digunakan) ? $request->hoki_saiz_latihan_masih_digunakan : null,
-                    'hoki_saiz_latihan_status_fizikal' => isset($request->hoki_saiz_latihan_status_fizikal) ? $request->hoki_saiz_latihan_status_fizikal : null,
-
-                    'hoki_rumput_standard' => isset($request->hoki_rumput_standard) ? $request->hoki_rumput_standard : false,
-                    'hoki_rumput_standard_gunasama' => isset($request->hoki_rumput_standard_gunasama) ? $request->hoki_rumput_standard_gunasama : null,
-                    'hoki_rumput_standard_bilangan' => isset($request->hoki_rumput_standard_bilangan) ? $request->hoki_rumput_standard_bilangan : null,
-                    'hoki_rumput_standard_masih_digunakan' => isset($request->hoki_rumput_standard_masih_digunakan) ? $request->hoki_rumput_standard_masih_digunakan : null,
-                    'hoki_rumput_standard_status_fizikal' => isset($request->hoki_rumput_standard_status_fizikal) ? $request->hoki_rumput_standard_status_fizikal : null,
-
-                    'hoki_rumput_latihan' => isset($request->hoki_rumput_latihan) ? $request->hoki_rumput_latihan : false,
-                    'hoki_rumput_latihan_gunasama' => isset($request->hoki_rumput_latihan_gunasama) ? $request->hoki_rumput_latihan_gunasama : null,
-                    'hoki_rumput_latihan_bilangan' => isset($request->hoki_rumput_latihan_bilangan) ? $request->hoki_rumput_latihan_bilangan : null,
-                    'hoki_rumput_latihan_masih_digunakan' => isset($request->hoki_rumput_latihan_masih_digunakan) ? $request->hoki_rumput_latihan_masih_digunakan : null,
-                    'hoki_rumput_latihan_status_fizikal' => isset($request->hoki_rumput_latihan_status_fizikal) ? $request->hoki_rumput_latihan_status_fizikal : null,
-
-                    // Bola Jaring
-                    'bola_jaring' => $request->bola_jaring,
-                    'bola_jaring_bilangan' => isset($request->bola_jaring_bilangan) ? $request->bola_jaring_bilangan : null,
-
-                    'bj_dewan' => isset($request->bj_dewan) ? $request->bj_dewan : false,
-                    'bj_dewan_gunasama' => isset($request->bj_dewan_gunasama) ? $request->bj_dewan_gunasama : null,
-                    'bj_dewan_bilangan' => isset($request->bj_dewan_bilangan) ? $request->bj_dewan_bilangan : null,
-                    'bj_dewan_masih_digunakan' => isset($request->bj_dewan_masih_digunakan) ? $request->bj_dewan_masih_digunakan : null,
-                    'bj_dewan_status_fizikal' => isset($request->bj_dewan_status_fizikal) ? $request->bj_dewan_status_fizikal : null,
-
-                    'bj_berbumbung' => isset($request->bj_berbumbung) ? $request->bj_berbumbung : false,
-                    'bj_berbumbung_gunasama' => isset($request->bj_berbumbung_gunasama) ? $request->bj_berbumbung_gunasama : null,
-                    'bj_berbumbung_bilangan' => isset($request->bj_berbumbung_bilangan) ? $request->bj_berbumbung_bilangan : null,
-                    'bj_berbumbung_masih_digunakan' => isset($request->bj_berbumbung_masih_digunakan) ? $request->bj_berbumbung_masih_digunakan : null,
-                    'bj_berbumbung_status_fizikal' => isset($request->bj_berbumbung_status_fizikal) ? $request->bj_berbumbung_status_fizikal : null,
-
-                    'bj_hardcourt' => isset($request->bj_hardcourt) ? $request->bj_hardcourt : false,
-                    'bj_hardcourt_gunasama' => isset($request->bj_hardcourt_gunasama) ? $request->bj_hardcourt_gunasama : null,
-                    'bj_hardcourt_bilangan' => isset($request->bj_hardcourt_bilangan) ? $request->bj_hardcourt_bilangan : null,
-                    'bj_hardcourt_masih_digunakan' => isset($request->bj_hardcourt_masih_digunakan) ? $request->bj_hardcourt_masih_digunakan : null,
-                    'bj_hardcourt_status_fizikal' => isset($request->bj_hardcourt_status_fizikal) ? $request->bj_hardcourt_status_fizikal : null,
-
-                    'bj_berumput' => isset($request->bj_berumput) ? $request->bj_berumput : false,
-                    'bj_berumput_gunasama' => isset($request->bj_berumput_gunasama) ? $request->bj_berumput_gunasama : null,
-                    'bj_berumput_bilangan' => isset($request->bj_berumput_bilangan) ? $request->bj_berumput_bilangan : null,
-                    'bj_berumput_masih_digunakan' => isset($request->bj_berumput_masih_digunakan) ? $request->bj_berumput_masih_digunakan : null,
-                    'bj_berumput_status_fizikal' => isset($request->bj_berumput_status_fizikal) ? $request->bj_berumput_status_fizikal : null,
-
-                    // Sepak Takraw
-                    'sepak_takraw' => $request->sepak_takraw,
-                    'sepak_takraw_bilangan' => isset($request->sepak_takraw_bilangan) ? $request->sepak_takraw_bilangan : null,
-
-                    'st_dewan' => isset($request->st_dewan) ? $request->st_dewan : false,
-                    'st_dewan_gunasama' => isset($request->st_dewan_gunasama) ? $request->st_dewan_gunasama : null,
-                    'st_dewan_bilangan' => isset($request->st_dewan_bilangan) ? $request->st_dewan_bilangan : null,
-                    'st_dewan_masih_digunakan' => isset($request->st_dewan_masih_digunakan) ? $request->st_dewan_masih_digunakan : null,
-                    'st_dewan_status_fizikal' => isset($request->st_dewan_status_fizikal) ? $request->st_dewan_status_fizikal : null,
-
-                    'st_berbumbung' => isset($request->st_berbumbung) ? $request->st_berbumbung : false,
-                    'st_berbumbung_gunasama' => isset($request->st_berbumbung_gunasama) ? $request->st_berbumbung_gunasama : null,
-                    'st_berbumbung_bilangan' => isset($request->st_berbumbung_bilangan) ? $request->st_berbumbung_bilangan : null,
-                    'st_berbumbung_masih_digunakan' => isset($request->st_berbumbung_masih_digunakan) ? $request->st_berbumbung_masih_digunakan : null,
-                    'st_berbumbung_status_fizikal' => isset($request->st_berbumbung_status_fizikal) ? $request->st_berbumbung_status_fizikal : null,
-
-                    'st_terbuka' => isset($request->st_terbuka) ? $request->st_terbuka : false,
-                    'st_terbuka_gunasama' => isset($request->st_terbuka_gunasama) ? $request->st_terbuka_gunasama : null,
-                    'st_terbuka_bilangan' => isset($request->st_terbuka_bilangan) ? $request->st_terbuka_bilangan : null,
-                    'st_terbuka_masih_digunakan' => isset($request->st_terbuka_masih_digunakan) ? $request->st_terbuka_masih_digunakan : null,
-                    'st_terbuka_status_fizikal' => isset($request->st_terbuka_status_fizikal) ? $request->st_terbuka_status_fizikal : null,
-
-                    // Bola Tampar
-                    'bola_tampar' => $request->bola_tampar,
-                    'bola_tampar_bilangan' => isset($request->bola_tampar_bilangan) ? $request->bola_tampar_bilangan : null,
-
-                    'bt_dewan' => isset($request->bt_dewan) ? $request->bt_dewan : false,
-                    'bt_dewan_gunasama' => isset($request->bt_dewan_gunasama) ? $request->bt_dewan_gunasama : null,
-                    'bt_dewan_bilangan' => isset($request->bt_dewan_bilangan) ? $request->bt_dewan_bilangan : null,
-                    'bt_dewan_masih_digunakan' => isset($request->bt_dewan_masih_digunakan) ? $request->bt_dewan_masih_digunakan : null,
-                    'bt_dewan_status_fizikal' => isset($request->bt_dewan_status_fizikal) ? $request->bt_dewan_status_fizikal : null,
-
-                    'bt_berbumbung' => isset($request->bt_berbumbung) ? $request->bt_berbumbung : false,
-                    'bt_berbumbung_gunasama' => isset($request->bt_berbumbung_gunasama) ? $request->bt_berbumbung_gunasama : null,
-                    'bt_berbumbung_bilangan' => isset($request->bt_berbumbung_bilangan) ? $request->bt_berbumbung_bilangan : null,
-                    'bt_berbumbung_masih_digunakan' => isset($request->bt_berbumbung_masih_digunakan) ? $request->bt_berbumbung_masih_digunakan : null,
-                    'bt_berbumbung_status_fizikal' => isset($request->bt_berbumbung_status_fizikal) ? $request->bt_berbumbung_status_fizikal : null,
-
-                    'bt_terbuka' => isset($request->bt_terbuka) ? $request->bt_terbuka : false,
-                    'bt_terbuka_gunasama' => isset($request->bt_terbuka_gunasama) ? $request->bt_terbuka_gunasama : null,
-                    'bt_terbuka_bilangan' => isset($request->bt_terbuka_bilangan) ? $request->bt_terbuka_bilangan : null,
-                    'bt_terbuka_masih_digunakan' => isset($request->bt_terbuka_masih_digunakan) ? $request->bt_terbuka_masih_digunakan : null,
-                    'bt_terbuka_status_fizikal' => isset($request->bt_terbuka_status_fizikal) ? $request->bt_terbuka_status_fizikal : null,
-
-                    // Badminton
-                    'badminton' => $request->badminton,
-                    'badminton_bilangan' => isset($request->badminton_bilangan) ? $request->badminton_bilangan : null,
-
-                    'badminton_dewan' => isset($request->badminton_dewan) ? $request->badminton_dewan : false,
-                    'badminton_dewan_gunasama' => isset($request->badminton_dewan_gunasama) ? $request->badminton_dewan_gunasama : null,
-                    'badminton_dewan_bilangan' => isset($request->badminton_dewan_bilangan) ? $request->badminton_dewan_bilangan : null,
-                    'badminton_dewan_masih_digunakan' => isset($request->badminton_dewan_masih_digunakan) ? $request->badminton_dewan_masih_digunakan : null,
-                    'badminton_dewan_status_fizikal' => isset($request->badminton_dewan_status_fizikal) ? $request->badminton_dewan_status_fizikal : null,
-
-                    'badminton_berbumbung' => isset($request->badminton_berbumbung) ? $request->badminton_berbumbung : false,
-                    'badminton_berbumbung_gunasama' => isset($request->badminton_berbumbung_gunasama) ? $request->badminton_berbumbung_gunasama : null,
-                    'badminton_berbumbung_bilangan' => isset($request->badminton_berbumbung_bilangan) ? $request->badminton_berbumbung_bilangan : null,
-                    'badminton_berbumbung_masih_digunakan' => isset($request->badminton_berbumbung_masih_digunakan) ? $request->badminton_berbumbung_masih_digunakan : null,
-                    'badminton_berbumbung_status_fizikal' => isset($request->badminton_berbumbung_status_fizikal) ? $request->badminton_berbumbung_status_fizikal : null,
-
-                    'badminton_terbuka' => isset($request->badminton_terbuka) ? $request->badminton_terbuka : false,
-                    'badminton_terbuka_gunasama' => isset($request->badminton_terbuka_gunasama) ? $request->badminton_terbuka_gunasama : null,
-                    'badminton_terbuka_bilangan' => isset($request->badminton_terbuka_bilangan) ? $request->badminton_terbuka_bilangan : null,
-                    'badminton_terbuka_masih_digunakan' => isset($request->badminton_terbuka_masih_digunakan) ? $request->badminton_terbuka_masih_digunakan : null,
-                    'badminton_terbuka_status_fizikal' => isset($request->badminton_terbuka_status_fizikal) ? $request->badminton_terbuka_status_fizikal : null,
-
-                    // Kriket
-                    'kriket' => $request->kriket,
-                    'kriket_bilangan' => isset($request->kriket_bilangan) ? $request->kriket_bilangan : null,
-
-                    'kriket_standard' => isset($request->kriket_standard) ? $request->kriket_standard : false,
-                    'kriket_standard_gunasama' => isset($request->kriket_standard_gunasama) ? $request->kriket_standard_gunasama : null,
-                    'kriket_standard_bilangan' => isset($request->kriket_standard_bilangan) ? $request->kriket_standard_bilangan : null,
-                    'kriket_standard_masih_digunakan' => isset($request->kriket_standard_masih_digunakan) ? $request->kriket_standard_masih_digunakan : null,
-                    'kriket_standard_status_fizikal' => isset($request->kriket_standard_status_fizikal) ? $request->kriket_standard_status_fizikal : null,
-
-                    'kriket_latihan' => isset($request->kriket_latihan) ? $request->kriket_latihan : false,
-                    'kriket_latihan_gunasama' => isset($request->kriket_latihan_gunasama) ? $request->kriket_latihan_gunasama : null,
-                    'kriket_latihan_bilangan' => isset($request->kriket_latihan_bilangan) ? $request->kriket_latihan_bilangan : null,
-                    'kriket_latihan_masih_digunakan' => isset($request->kriket_latihan_masih_digunakan) ? $request->kriket_latihan_masih_digunakan : null,
-                    'kriket_latihan_status_fizikal' => isset($request->kriket_latihan_status_fizikal) ? $request->kriket_latihan_status_fizikal : null,
-
-                    // Tenis
-                    'tenis' => $request->tenis,
-                    'tenis_bilangan' => isset($request->tenis_bilangan) ? $request->tenis_bilangan : null,
-
-                    'tenis_terbuka' => isset($request->tenis_terbuka) ? $request->tenis_terbuka : false,
-                    'tenis_terbuka_gunasama' => isset($request->tenis_terbuka_gunasama) ? $request->tenis_terbuka_gunasama : null,
-                    'tenis_terbuka_bilangan' => isset($request->tenis_terbuka_bilangan) ? $request->tenis_terbuka_bilangan : null,
-                    'tenis_terbuka_masih_digunakan' => isset($request->tenis_terbuka_masih_digunakan) ? $request->tenis_terbuka_masih_digunakan : null,
-                    'tenis_terbuka_status_fizikal' => isset($request->tenis_terbuka_status_fizikal) ? $request->tenis_terbuka_status_fizikal : null,
-
-                    // Ping Pong
-                    'ping_pong' => $request->ping_pong,
-                    'ping_pong_bilangan' => isset($request->ping_pong_bilangan) ? $request->ping_pong_bilangan : null,
-
-                    'pp_tertutup' => isset($request->pp_tertutup) ? $request->pp_tertutup : false,
-                    'pp_tertutup_gunasama' => isset($request->pp_tertutup_gunasama) ? $request->pp_tertutup_gunasama : null,
-                    'pp_tertutup_bilangan' => isset($request->pp_tertutup_bilangan) ? $request->pp_tertutup_bilangan : null,
-                    'pp_tertutup_masih_digunakan' => isset($request->pp_tertutup_masih_digunakan) ? $request->pp_tertutup_masih_digunakan : null,
-                    'pp_tertutup_status_fizikal' => isset($request->pp_tertutup_status_fizikal) ? $request->pp_tertutup_status_fizikal : null,
-
-                    'pp_terbuka' => isset($request->pp_terbuka) ? $request->pp_terbuka : false,
-                    'pp_terbuka_gunasama' => isset($request->pp_terbuka_gunasama) ? $request->pp_terbuka_gunasama : null,
-                    'pp_terbuka_bilangan' => isset($request->pp_terbuka_bilangan) ? $request->pp_terbuka_bilangan : null,
-                    'pp_terbuka_masih_digunakan' => isset($request->pp_terbuka_masih_digunakan) ? $request->pp_terbuka_masih_digunakan : null,
-                    'pp_terbuka_status_fizikal' => isset($request->pp_terbuka_status_fizikal) ? $request->pp_terbuka_status_fizikal : null,
-
-                    // Sofbol
-                    'sofbol' => $request->sofbol,
-                    'sofbol_bilangan' => isset($request->sofbol_bilangan) ? $request->sofbol_bilangan : false,
-
-                    'sofbol_standard' => isset($request->sofbol_standard) ? $request->sofbol_standard : false,
-                    'sofbol_standard_gunasama' => isset($request->sofbol_standard_gunasama) ? $request->sofbol_standard_gunasama : null,
-                    'sofbol_standard_bilangan' => isset($request->sofbol_standard_bilangan) ? $request->sofbol_standard_bilangan : null,
-                    'sofbol_standard_masih_digunakan' => isset($request->sofbol_standard_masih_digunakan) ? $request->sofbol_standard_masih_digunakan : null,
-                    'sofbol_standard_status_fizikal' => isset($request->sofbol_standard_status_fizikal) ? $request->sofbol_standard_status_fizikal : null,
-
-                    'sofbol_latihan' => isset($request->sofbol_latihan) ? $request->sofbol_latihan : false,
-                    'sofbol_latihan_gunasama' => isset($request->sofbol_latihan_gunasama) ? $request->sofbol_latihan_gunasama : null,
-                    'sofbol_latihan_bilangan' => isset($request->sofbol_latihan_bilangan) ? $request->sofbol_latihan_bilangan : null,
-                    'sofbol_latihan_masih_digunakan' => isset($request->sofbol_latihan_masih_digunakan) ? $request->sofbol_latihan_masih_digunakan : null,
-                    'sofbol_latihan_status_fizikal' => isset($request->sofbol_latihan_status_fizikal) ? $request->sofbol_latihan_status_fizikal : null,
-
-                    // Memanah
-                    'memanah' => $request->memanah,
-                    'memanah_bilangan' => isset($request->memanah_bilangan) ? $request->memanah_bilangan : null,
-
-                    'memanah_standard' => isset($request->memanah_standard) ? $request->memanah_standard : false,
-                    'memanah_standard_gunasama' => isset($request->memanah_standard_gunasama) ? $request->memanah_standard_gunasama : null,
-                    'memanah_standard_bilangan' => isset($request->memanah_standard_bilangan) ? $request->memanah_standard_bilangan : null,
-                    'memanah_standard_masih_digunakan' => isset($request->memanah_standard_masih_digunakan) ? $request->memanah_standard_masih_digunakan : null,
-                    'memanah_standard_status_fizikal' => isset($request->memanah_standard_status_fizikal) ? $request->memanah_standard_status_fizikal : null,
-
-                    'memanah_latihan' => isset($request->memanah_latihan) ? $request->memanah_latihan : false,
-                    'memanah_latihan_gunasama' => isset($request->memanah_latihan_gunasama) ? $request->memanah_latihan_gunasama : null,
-                    'memanah_latihan_bilangan' => isset($request->memanah_latihan_bilangan) ? $request->memanah_latihan_bilangan : null,
-                    'memanah_latihan_masih_digunakan' => isset($request->memanah_latihan_masih_digunakan) ? $request->memanah_latihan_masih_digunakan : null,
-                    'memanah_latihan_status_fizikal' => isset($request->memanah_latihan_status_fizikal) ? $request->memanah_latihan_status_fizikal : null,
-
-                    // Skuasy
-                    'skuasy' => $request->skuasy,
-                    'skuasy_bilangan' => isset($request->skuasy_bilangan) ? $request->skuasy_bilangan : null,
-
-                    'skuasy_dewan' => isset($request->skuasy_dewan) ? $request->skuasy_dewan : false,
-                    'skuasy_dewan_gunasama' => isset($request->skuasy_dewan_gunasama) ? $request->skuasy_dewan_gunasama : null,
-                    'skuasy_dewan_bilangan' => isset($request->skuasy_dewan_bilangan) ? $request->skuasy_dewan_bilangan : null,
-                    'skuasy_dewan_masih_digunakan' => isset($request->skuasy_dewan_masih_digunakan) ? $request->skuasy_dewan_masih_digunakan : null,
-                    'skuasy_dewan_status_fizikal' => isset($request->skuasy_dewan_status_fizikal) ? $request->skuasy_dewan_status_fizikal : null,
-
-                    // Gimnastik Artistik
-                    'gimnastik_artistik' => $request->gimnastik_artistik,
-                    'gimnastik_artistik_bilangan' => isset($request->gimnastik_artistik_bilangan) ? $request->gimnastik_artistik_bilangan : null,
-
-                    'ga_standard' => isset($request->ga_standard) ? $request->ga_standard : false,
-                    'ga_standard_gunasama' => isset($request->ga_standard_gunasama) ? $request->ga_standard_gunasama : null,
-                    'ga_standard_bilangan' => isset($request->ga_standard_bilangan) ? $request->ga_standard_bilangan : null,
-                    'ga_standard_masih_digunakan' => isset($request->ga_standard_masih_digunakan) ? $request->ga_standard_masih_digunakan : null,
-                    'ga_standard_status_fizikal' => isset($request->ga_standard_status_fizikal) ? $request->ga_standard_status_fizikal : null,
-
-                    'ga_latihan' => isset($request->ga_latihan) ? $request->ga_latihan : false,
-                    'ga_latihan_gunasama' => isset($request->ga_latihan_gunasama) ? $request->ga_latihan_gunasama : null,
-                    'ga_latihan_bilangan' => isset($request->ga_latihan_bilangan) ? $request->ga_latihan_bilangan : null,
-                    'ga_latihan_masih_digunakan' => isset($request->ga_latihan_masih_digunakan) ? $request->ga_latihan_masih_digunakan : null,
-                    'ga_latihan_status_fizikal' => isset($request->ga_latihan_status_fizikal) ? $request->ga_latihan_status_fizikal : null,
-
-                    // Gimnastik Berirama
-                    'gimnastik_berirama' => $request->gimnastik_berirama,
-                    'gimnastik_berirama_bilangan' => isset($request->gimnastik_berirama_bilangan) ? $request->gimnastik_berirama_bilangan : null,
-
-                    'gb_standard' => isset($request->gb_standard) ? $request->gb_standard : false,
-                    'gb_standard_gunasama' => isset($request->gb_standard_gunasama) ? $request->gb_standard_gunasama : null,
-                    'gb_standard_bilangan' => isset($request->gb_standard_bilangan) ? $request->gb_standard_bilangan : null,
-                    'gb_standard_masih_digunakan' => isset($request->gb_standard_masih_digunakan) ? $request->gb_standard_masih_digunakan : null,
-                    'gb_standard_status_fizikal' => isset($request->gb_standard_status_fizikal) ? $request->gb_standard_status_fizikal : null,
-
-                    'gb_latihan' => isset($request->gb_latihan) ? $request->gb_latihan : false,
-                    'gb_latihan_gunasama' => isset($request->gb_latihan_gunasama) ? $request->gb_latihan_gunasama : null,
-                    'gb_latihan_bilangan' => isset($request->gb_latihan_bilangan) ? $request->gb_latihan_bilangan : null,
-                    'gb_latihan_masih_digunakan' => isset($request->gb_latihan_masih_digunakan) ? $request->gb_latihan_masih_digunakan : null,
-                    'gb_latihan_status_fizikal' => isset($request->gb_latihan_status_fizikal) ? $request->gb_latihan_status_fizikal : null,
-
-                    // Bola Baling
-                    'bola_baling' => $request->bola_baling,
-                    'bola_baling_bilangan' => isset($request->bola_baling_bilangan) ? $request->bola_baling_bilangan : null,
-
-                    'bb_dewan' => isset($request->bb_dewan) ? $request->bb_dewan : false,
-                    'bb_dewan_gunasama' => isset($request->bb_dewan_gunasama) ? $request->bb_dewan_gunasama : null,
-                    'bb_dewan_bilangan' => isset($request->bb_dewan_bilangan) ? $request->bb_dewan_bilangan : null,
-                    'bb_dewan_masih_digunakan' => isset($request->bb_dewan_masih_digunakan) ? $request->bb_dewan_masih_digunakan : null,
-                    'bb_dewan_status_fizikal' => isset($request->bb_dewan_status_fizikal) ? $request->bb_dewan_status_fizikal : null,
-
-                    'bb_berbumbung' => isset($request->bb_berbumbung) ? $request->bb_berbumbung : false,
-                    'bb_berbumbung_gunasama' => isset($request->bb_berbumbung_gunasama) ? $request->bb_berbumbung_gunasama : null,
-                    'bb_berbumbung_bilangan' => isset($request->bb_berbumbung_bilangan) ? $request->bb_berbumbung_bilangan : null,
-                    'bb_berbumbung_masih_digunakan' => isset($request->bb_berbumbung_masih_digunakan) ? $request->bb_berbumbung_masih_digunakan : null,
-                    'bb_berbumbung_status_fizikal' => isset($request->bb_berbumbung_status_fizikal) ? $request->bb_berbumbung_status_fizikal : null,
-
-                    'bb_hardcourt' => isset($request->bb_hardcourt) ? $request->bb_hardcourt : false,
-                    'bb_hardcourt_gunasama' => isset($request->bb_hardcourt_gunasama) ? $request->bb_hardcourt_gunasama : null,
-                    'bb_hardcourt_bilangan' => isset($request->bb_hardcourt_bilangan) ? $request->bb_hardcourt_bilangan : null,
-                    'bb_hardcourt_masih_digunakan' => isset($request->bb_hardcourt_masih_digunakan) ? $request->bb_hardcourt_masih_digunakan : null,
-                    'bb_hardcourt_status_fizikal' => isset($request->bb_hardcourt_status_fizikal) ? $request->bb_hardcourt_status_fizikal : null,
-
-                    'bb_berumput' => isset($request->bb_berumput) ? $request->bb_berumput : false,
-                    'bb_berumput_gunasama' => isset($request->bb_berumput_gunasama) ? $request->bb_berumput_gunasama : null,
-                    'bb_berumput_bilangan' => isset($request->bb_berumput_bilangan) ? $request->bb_berumput_bilangan : null,
-                    'bb_berumput_masih_digunakan' => isset($request->bb_berumput_masih_digunakan) ? $request->bb_berumput_masih_digunakan : null,
-                    'bb_berumput_status_fizikal' => isset($request->bb_berumput_status_fizikal) ? $request->bb_berumput_status_fizikal : null,
-
-                    // Bola Keranjang
-                    'bola_keranjang' => $request->bola_keranjang,
-                    'bola_keranjang_bilangan' => isset($request->bola_keranjang_bilangan) ? $request->bola_keranjang_bilangan : null,
-
-                    'bk_dewan' => isset($request->bk_dewan) ? $request->bk_dewan : false,
-                    'bk_dewan_gunasama' => isset($request->bk_dewan_gunasama) ? $request->bk_dewan_gunasama : null,
-                    'bk_dewan_bilangan' => isset($request->bk_dewan_bilangan) ? $request->bk_dewan_bilangan : null,
-                    'bk_dewan_masih_digunakan' => isset($request->bk_dewan_masih_digunakan) ? $request->bk_dewan_masih_digunakan : null,
-                    'bk_dewan_status_fizikal' => isset($request->bk_dewan_status_fizikal) ? $request->bk_dewan_status_fizikal : null,
-
-                    'bk_berbumbung' => isset($request->bk_berbumbung) ? $request->bk_berbumbung : false,
-                    'bk_berbumbung_gunasama' => isset($request->bk_berbumbung_gunasama) ? $request->bk_berbumbung_gunasama : null,
-                    'bk_berbumbung_bilangan' => isset($request->bk_berbumbung_bilangan) ? $request->bk_berbumbung_bilangan : null,
-                    'bk_berbumbung_masih_digunakan' => isset($request->bk_berbumbung_masih_digunakan) ? $request->bk_berbumbung_masih_digunakan : null,
-                    'bk_berbumbung_status_fizikal' => isset($request->bk_berbumbung_status_fizikal) ? $request->bk_berbumbung_status_fizikal : null,
-
-                    'bk_terbuka' => isset($request->bk_terbuka) ? $request->bk_terbuka : false,
-                    'bk_terbuka_gunasama' => isset($request->bk_terbuka_gunasama) ? $request->bk_terbuka_gunasama : null,
-                    'bk_terbuka_bilangan' => isset($request->bk_terbuka_bilangan) ? $request->bk_terbuka_bilangan : null,
-                    'bk_terbuka_masih_digunakan' => isset($request->bk_terbuka_masih_digunakan) ? $request->bk_terbuka_masih_digunakan : null,
-                    'bk_terbuka_status_fizikal' => isset($request->bk_terbuka_status_fizikal) ? $request->bk_terbuka_status_fizikal : null,
-
-                    // Ragbi
-                    'ragbi' => $request->ragbi,
-                    'ragbi_bilangan' => isset($request->ragbi_bilangan) ? $request->ragbi_bilangan : null,
-
-                    'ragbi_standard' => isset($request->ragbi_standard) ? $request->ragbi_standard : false,
-                    'ragbi_standard_gunasama' => isset($request->ragbi_standard_gunasama) ? $request->ragbi_standard_gunasama : null,
-                    'ragbi_standard_bilangan' => isset($request->ragbi_standard_bilangan) ? $request->ragbi_standard_bilangan : null,
-                    'ragbi_standard_masih_digunakan' => isset($request->ragbi_standard_masih_digunakan) ? $request->ragbi_standard_masih_digunakan : null,
-                    'ragbi_standard_status_fizikal' => isset($request->ragbi_standard_status_fizikal) ? $request->ragbi_standard_status_fizikal : null,
-
-                    'ragbi_latihan' => isset($request->ragbi_latihan) ? $request->ragbi_latihan : false,
-                    'ragbi_latihan_gunasama' => isset($request->ragbi_latihan_gunasama) ? $request->ragbi_latihan_gunasama : null,
-                    'ragbi_latihan_bilangan' => isset($request->ragbi_latihan_bilangan) ? $request->ragbi_latihan_bilangan : null,
-                    'ragbi_latihan_masih_digunakan' => isset($request->ragbi_latihan_masih_digunakan) ? $request->ragbi_latihan_masih_digunakan : null,
-                    'ragbi_latihan_status_fizikal' => isset($request->ragbi_latihan_status_fizikal) ? $request->ragbi_latihan_status_fizikal : null,
-
-                    // Futsal
-                    'futsal' => $request->futsal,
-                    'futsal_bilangan' => isset($request->futsal_bilangan) ? $request->futsal_bilangan : null,
-
-                    'futsal_dewan' => isset($request->futsal_dewan) ? $request->futsal_dewan : false,
-                    'futsal_dewan_gunasama' => isset($request->futsal_dewan_gunasama) ? $request->futsal_dewan_gunasama : null,
-                    'futsal_dewan_bilangan' => isset($request->futsal_dewan_bilangan) ? $request->futsal_dewan_bilangan : null,
-                    'futsal_dewan_masih_digunakan' => isset($request->futsal_dewan_masih_digunakan) ? $request->futsal_dewan_masih_digunakan : null,
-                    'futsal_dewan_status_fizikal' => isset($request->futsal_dewan_status_fizikal) ? $request->futsal_dewan_status_fizikal : null,
-
-                    'futsal_berbumbung' => isset($request->futsal_berbumbung) ? $request->futsal_berbumbung : false,
-                    'futsal_berbumbung_gunasama' => isset($request->futsal_berbumbung_gunasama) ? $request->futsal_berbumbung_gunasama : null,
-                    'futsal_berbumbung_bilangan' => isset($request->futsal_berbumbung_bilangan) ? $request->futsal_berbumbung_bilangan : null,
-                    'futsal_berbumbung_masih_digunakan' => isset($request->futsal_berbumbung_masih_digunakan) ? $request->futsal_berbumbung_masih_digunakan : null,
-                    'futsal_berbumbung_status_fizikal' => isset($request->futsal_berbumbung_status_fizikal) ? $request->futsal_berbumbung_status_fizikal : null,
-
-                    'futsal_terbuka' => isset($request->futsal_terbuka) ? $request->futsal_terbuka : false,
-                    'futsal_terbuka_gunasama' => isset($request->futsal_terbuka_gunasama) ? $request->futsal_terbuka_gunasama : null,
-                    'futsal_terbuka_bilangan' => isset($request->futsal_terbuka_bilangan) ? $request->futsal_terbuka_bilangan : null,
-                    'futsal_terbuka_masih_digunakan' => isset($request->futsal_terbuka_masih_digunakan) ? $request->futsal_terbuka_masih_digunakan : null,
-                    'futsal_terbuka_status_fizikal' => isset($request->futsal_terbuka_status_fizikal) ? $request->futsal_terbuka_status_fizikal : null,
-
-                    // Boling Tenpin
-                    'boling_tenpin' => $request->boling_tenpin,
-                    'boling_tenpin_bilangan' => isset($request->boling_tenpin_bilangan) ? $request->boling_tenpin_bilangan : null,
-
-                    'bt_8' => isset($request->bt_8) ? $request->bt_8 : false,
-                    'bt_8_gunasama' => isset($request->bt_8_gunasama) ? $request->bt_8_gunasama : null,
-                    'bt_8_bilangan' => isset($request->bt_8_bilangan) ? $request->bt_8_bilangan : null,
-                    'bt_8_masih_digunakan' => isset($request->bt_8_masih_digunakan) ? $request->bt_8_masih_digunakan : null,
-                    'bt_8_status_fizikal' => isset($request->bt_8_status_fizikal) ? $request->bt_8_status_fizikal : null,
-
-                    'bt_12' => isset($request->bt_12) ? $request->bt_12 : false,
-                    'bt_12_gunasama' => isset($request->bt_12_gunasama) ? $request->bt_12_gunasama : null,
-                    'bt_12_bilangan' => isset($request->bt_12_bilangan) ? $request->bt_12_bilangan : null,
-                    'bt_12_masih_digunakan' => isset($request->bt_12_masih_digunakan) ? $request->bt_12_masih_digunakan : null,
-                    'bt_12_status_fizikal' => isset($request->bt_12_status_fizikal) ? $request->bt_12_status_fizikal : null,
-
-                    'bt_lain' => isset($request->bt_lain) ? $request->bt_lain : false,
-                    'bt_lain_butiran' => isset($request->bt_lain_butiran) ? $request->bt_lain_butiran : null,
-                    'bt_lain_gunasama' => isset($request->bt_lain_gunasama) ? $request->bt_lain_gunasama : null,
-                    'bt_lain_bilangan' => isset($request->bt_lain_bilangan) ? $request->bt_lain_bilangan : null,
-                    'bt_lain_masih_digunakan' => isset($request->bt_lain_masih_digunakan) ? $request->bt_lain_masih_digunakan : null,
-                    'bt_lain_status_fizikal' => isset($request->bt_lain_status_fizikal) ? $request->bt_lain_status_fizikal : null,
-
-                    // Lain-lain
-                    'lain' => $request->lain,
-                    'lain_bilangan' => isset($request->lain_bilangan) ? $request->lain_bilangan : null,
-
-                    'lain_kemudahan' => isset($request->lain_kemudahan) ? $request->lain_kemudahan : false,
-                    'lain_kemudahan_butiran' => isset($request->lain_kemudahan_butiran) ? $request->lain_kemudahan_butiran : null,
-                    'lain_kemudahan_gunasama' => isset($request->lain_kemudahan_gunasama) ? $request->lain_kemudahan_gunasama : null,
-                    'lain_kemudahan_bilangan' => isset($request->lain_kemudahan_bilangan) ? $request->lain_kemudahan_bilangan : null,
-                    'lain_kemudahan_masih_digunakan' => isset($request->lain_kemudahan_masih_digunakan) ? $request->lain_kemudahan_masih_digunakan : null,
-                    'lain_kemudahan_status_fizikal' => isset($request->lain_kemudahan_status_fizikal) ? $request->lain_kemudahan_status_fizikal : null,
-
-                    'created_by' => auth()->user()->id,
-                    'updated_by' => auth()->user()->id,
-                ]);
+                $dataValidation = [];
+                $msgValidation = [];
+                $kemudahan_sukan = config('staticdata.ikeps.kemudahan_sukan');
+                $column = [
+                    'gunasama',
+                    'bilangan',
+                    'masih_digunakan',
+                    'status_fizikal',
+                ];
+
+                foreach($kemudahan_sukan as $sukanKey => $sukan){
+                    $dataValidation[$sukanKey] = 'required|boolean';
+                    $msgValidation[$sukanKey.'.required'] = 'Sila Pilih '.$sukan['main'];
+
+                    $dataValidation[$sukanKey.'_bilangan'] = 'required_if:'.$sukanKey.',true|integer';
+                    $msgValidation[$sukanKey.'_bilangan.required_if'] = 'Sila Isi Bilangan '.$sukan['main'];
+
+                    foreach($sukan['sub'] as $subKey => $sub){
+                        $dataValidation[$subKey] = 'required_if:'.$sukanKey.',true|boolean';
+                        $msgValidation[$subKey.'.required_if'] = 'Sila Pilih '.$sub;
+
+                        foreach($column as $col){
+                            if($col == 'bilangan'){
+                                $colValidation = 'required_if:'.$subKey.',true|integer';
+                                $colMsg = 'Sila Isi ';
+                            } 
+                            else if($col == 'status_fizikal'){
+                                $colValidation = 'required_if:'.$subKey.',true|integer|between:1,5';
+                                $colMsg = 'Sila Pilih ';
+                            }
+                            else {
+                                $colValidation = 'required_if:'.$subKey.',true|boolean';
+                                $colMsg = 'Sila Pilih ';
+                            }
+
+                            $dataValidation[$subKey.'_'.$col] = $colValidation;
+                            $msgValidation[$subKey.'_'.$col.'.required_if'] = $colMsg.ucwords(str_replace('_', ' ', $col).' '.$sub);
+                        }
+                        
+                    }
+                    
+                }
+
+                $request->validate($dataValidation, $msgValidation);
+
+                IkepsKemudahanSukan::updateOrCreate(
+                    [
+                        'tahun' => $request->tahun,
+                        'kod_sekolah' => isset($request->kod_sekolah) ? $request->kod_sekolah : 0,
+                    ],
+                    [
+                        // Bola Sepak
+                        'bola_sepak' => $request->bola_sepak,
+                        'bola_sepak_bilangan' => isset($request->bola_sepak_bilangan) ? $request->bola_sepak_bilangan : null,
+
+                        'bs_saiz_standard' => isset($request->bs_saiz_standard) ? $request->bs_saiz_standard : false,
+                        'bs_saiz_standard_gunasama' => isset($request->bs_saiz_standard_gunasama) ? $request->bs_saiz_standard_gunasama : null,
+                        'bs_saiz_standard_bilangan' => isset($request->bs_saiz_standard_bilangan) ? $request->bs_saiz_standard_bilangan : null,
+                        'bs_saiz_standard_masih_digunakan' => isset($request->bs_saiz_standard_masih_digunakan) ? $request->bs_saiz_standard_masih_digunakan : null,
+                        'bs_saiz_standard_status_fizikal' => isset($request->bs_saiz_standard_status_fizikal) ? $request->bs_saiz_standard_status_fizikal : null,
+
+                        'bs_saiz_latihan' => isset($request->bs_saiz_latihan) ? $request->bs_saiz_latihan : false,
+                        'bs_saiz_latihan_gunasama' => isset($request->bs_saiz_latihan_gunasama) ? $request->bs_saiz_latihan_gunasama : null,
+                        'bs_saiz_latihan_bilangan' => isset($request->bs_saiz_latihan_bilangan) ? $request->bs_saiz_latihan_bilangan : null,
+                        'bs_saiz_latihan_masih_digunakan' => isset($request->bs_saiz_latihan_masih_digunakan) ? $request->bs_saiz_latihan_masih_digunakan : null,
+                        'bs_saiz_latihan_status_fizikal' => isset($request->bs_saiz_latihan_status_fizikal) ? $request->bs_saiz_latihan_status_fizikal : null,
+
+                        // Padang Hoki
+                        'hoki' => $request->hoki,
+                        'hoki_bilangan' => isset($request->hoki_bilangan) ? $request->hoki_bilangan : null,
+
+                        'hoki_saiz_standard' => isset($request->hoki_saiz_standard) ? $request->hoki_saiz_standard : false,
+                        'hoki_saiz_standard_gunasama' => isset($request->hoki_saiz_standard_gunasama) ? $request->hoki_saiz_standard_gunasama : null,
+                        'hoki_saiz_standard_bilangan' => isset($request->hoki_saiz_standard_bilangan) ? $request->hoki_saiz_standard_bilangan : null,
+                        'hoki_saiz_standard_masih_digunakan' => isset($request->hoki_saiz_standard_masih_digunakan) ? $request->hoki_saiz_standard_masih_digunakan : null,
+                        'hoki_saiz_standard_status_fizikal' => isset($request->hoki_saiz_standard_status_fizikal) ? $request->hoki_saiz_standard_status_fizikal : null,
+
+                        'hoki_saiz_latihan' => isset($request->hoki_saiz_latihan) ? $request->hoki_saiz_latihan : false,
+                        'hoki_saiz_latihan_gunasama' => isset($request->hoki_saiz_latihan_gunasama) ? $request->hoki_saiz_latihan_gunasama : null,
+                        'hoki_saiz_latihan_bilangan' => isset($request->hoki_saiz_latihan_bilangan) ? $request->hoki_saiz_latihan_bilangan : null,
+                        'hoki_saiz_latihan_masih_digunakan' => isset($request->hoki_saiz_latihan_masih_digunakan) ? $request->hoki_saiz_latihan_masih_digunakan : null,
+                        'hoki_saiz_latihan_status_fizikal' => isset($request->hoki_saiz_latihan_status_fizikal) ? $request->hoki_saiz_latihan_status_fizikal : null,
+
+                        'hoki_rumput_standard' => isset($request->hoki_rumput_standard) ? $request->hoki_rumput_standard : false,
+                        'hoki_rumput_standard_gunasama' => isset($request->hoki_rumput_standard_gunasama) ? $request->hoki_rumput_standard_gunasama : null,
+                        'hoki_rumput_standard_bilangan' => isset($request->hoki_rumput_standard_bilangan) ? $request->hoki_rumput_standard_bilangan : null,
+                        'hoki_rumput_standard_masih_digunakan' => isset($request->hoki_rumput_standard_masih_digunakan) ? $request->hoki_rumput_standard_masih_digunakan : null,
+                        'hoki_rumput_standard_status_fizikal' => isset($request->hoki_rumput_standard_status_fizikal) ? $request->hoki_rumput_standard_status_fizikal : null,
+
+                        'hoki_rumput_latihan' => isset($request->hoki_rumput_latihan) ? $request->hoki_rumput_latihan : false,
+                        'hoki_rumput_latihan_gunasama' => isset($request->hoki_rumput_latihan_gunasama) ? $request->hoki_rumput_latihan_gunasama : null,
+                        'hoki_rumput_latihan_bilangan' => isset($request->hoki_rumput_latihan_bilangan) ? $request->hoki_rumput_latihan_bilangan : null,
+                        'hoki_rumput_latihan_masih_digunakan' => isset($request->hoki_rumput_latihan_masih_digunakan) ? $request->hoki_rumput_latihan_masih_digunakan : null,
+                        'hoki_rumput_latihan_status_fizikal' => isset($request->hoki_rumput_latihan_status_fizikal) ? $request->hoki_rumput_latihan_status_fizikal : null,
+
+                        // Bola Jaring
+                        'bola_jaring' => $request->bola_jaring,
+                        'bola_jaring_bilangan' => isset($request->bola_jaring_bilangan) ? $request->bola_jaring_bilangan : null,
+
+                        'bj_dewan' => isset($request->bj_dewan) ? $request->bj_dewan : false,
+                        'bj_dewan_gunasama' => isset($request->bj_dewan_gunasama) ? $request->bj_dewan_gunasama : null,
+                        'bj_dewan_bilangan' => isset($request->bj_dewan_bilangan) ? $request->bj_dewan_bilangan : null,
+                        'bj_dewan_masih_digunakan' => isset($request->bj_dewan_masih_digunakan) ? $request->bj_dewan_masih_digunakan : null,
+                        'bj_dewan_status_fizikal' => isset($request->bj_dewan_status_fizikal) ? $request->bj_dewan_status_fizikal : null,
+
+                        'bj_berbumbung' => isset($request->bj_berbumbung) ? $request->bj_berbumbung : false,
+                        'bj_berbumbung_gunasama' => isset($request->bj_berbumbung_gunasama) ? $request->bj_berbumbung_gunasama : null,
+                        'bj_berbumbung_bilangan' => isset($request->bj_berbumbung_bilangan) ? $request->bj_berbumbung_bilangan : null,
+                        'bj_berbumbung_masih_digunakan' => isset($request->bj_berbumbung_masih_digunakan) ? $request->bj_berbumbung_masih_digunakan : null,
+                        'bj_berbumbung_status_fizikal' => isset($request->bj_berbumbung_status_fizikal) ? $request->bj_berbumbung_status_fizikal : null,
+
+                        'bj_hardcourt' => isset($request->bj_hardcourt) ? $request->bj_hardcourt : false,
+                        'bj_hardcourt_gunasama' => isset($request->bj_hardcourt_gunasama) ? $request->bj_hardcourt_gunasama : null,
+                        'bj_hardcourt_bilangan' => isset($request->bj_hardcourt_bilangan) ? $request->bj_hardcourt_bilangan : null,
+                        'bj_hardcourt_masih_digunakan' => isset($request->bj_hardcourt_masih_digunakan) ? $request->bj_hardcourt_masih_digunakan : null,
+                        'bj_hardcourt_status_fizikal' => isset($request->bj_hardcourt_status_fizikal) ? $request->bj_hardcourt_status_fizikal : null,
+
+                        'bj_berumput' => isset($request->bj_berumput) ? $request->bj_berumput : false,
+                        'bj_berumput_gunasama' => isset($request->bj_berumput_gunasama) ? $request->bj_berumput_gunasama : null,
+                        'bj_berumput_bilangan' => isset($request->bj_berumput_bilangan) ? $request->bj_berumput_bilangan : null,
+                        'bj_berumput_masih_digunakan' => isset($request->bj_berumput_masih_digunakan) ? $request->bj_berumput_masih_digunakan : null,
+                        'bj_berumput_status_fizikal' => isset($request->bj_berumput_status_fizikal) ? $request->bj_berumput_status_fizikal : null,
+
+                        // Sepak Takraw
+                        'sepak_takraw' => $request->sepak_takraw,
+                        'sepak_takraw_bilangan' => isset($request->sepak_takraw_bilangan) ? $request->sepak_takraw_bilangan : null,
+
+                        'st_dewan' => isset($request->st_dewan) ? $request->st_dewan : false,
+                        'st_dewan_gunasama' => isset($request->st_dewan_gunasama) ? $request->st_dewan_gunasama : null,
+                        'st_dewan_bilangan' => isset($request->st_dewan_bilangan) ? $request->st_dewan_bilangan : null,
+                        'st_dewan_masih_digunakan' => isset($request->st_dewan_masih_digunakan) ? $request->st_dewan_masih_digunakan : null,
+                        'st_dewan_status_fizikal' => isset($request->st_dewan_status_fizikal) ? $request->st_dewan_status_fizikal : null,
+
+                        'st_berbumbung' => isset($request->st_berbumbung) ? $request->st_berbumbung : false,
+                        'st_berbumbung_gunasama' => isset($request->st_berbumbung_gunasama) ? $request->st_berbumbung_gunasama : null,
+                        'st_berbumbung_bilangan' => isset($request->st_berbumbung_bilangan) ? $request->st_berbumbung_bilangan : null,
+                        'st_berbumbung_masih_digunakan' => isset($request->st_berbumbung_masih_digunakan) ? $request->st_berbumbung_masih_digunakan : null,
+                        'st_berbumbung_status_fizikal' => isset($request->st_berbumbung_status_fizikal) ? $request->st_berbumbung_status_fizikal : null,
+
+                        'st_terbuka' => isset($request->st_terbuka) ? $request->st_terbuka : false,
+                        'st_terbuka_gunasama' => isset($request->st_terbuka_gunasama) ? $request->st_terbuka_gunasama : null,
+                        'st_terbuka_bilangan' => isset($request->st_terbuka_bilangan) ? $request->st_terbuka_bilangan : null,
+                        'st_terbuka_masih_digunakan' => isset($request->st_terbuka_masih_digunakan) ? $request->st_terbuka_masih_digunakan : null,
+                        'st_terbuka_status_fizikal' => isset($request->st_terbuka_status_fizikal) ? $request->st_terbuka_status_fizikal : null,
+
+                        // Bola Tampar
+                        'bola_tampar' => $request->bola_tampar,
+                        'bola_tampar_bilangan' => isset($request->bola_tampar_bilangan) ? $request->bola_tampar_bilangan : null,
+
+                        'bt_dewan' => isset($request->bt_dewan) ? $request->bt_dewan : false,
+                        'bt_dewan_gunasama' => isset($request->bt_dewan_gunasama) ? $request->bt_dewan_gunasama : null,
+                        'bt_dewan_bilangan' => isset($request->bt_dewan_bilangan) ? $request->bt_dewan_bilangan : null,
+                        'bt_dewan_masih_digunakan' => isset($request->bt_dewan_masih_digunakan) ? $request->bt_dewan_masih_digunakan : null,
+                        'bt_dewan_status_fizikal' => isset($request->bt_dewan_status_fizikal) ? $request->bt_dewan_status_fizikal : null,
+
+                        'bt_berbumbung' => isset($request->bt_berbumbung) ? $request->bt_berbumbung : false,
+                        'bt_berbumbung_gunasama' => isset($request->bt_berbumbung_gunasama) ? $request->bt_berbumbung_gunasama : null,
+                        'bt_berbumbung_bilangan' => isset($request->bt_berbumbung_bilangan) ? $request->bt_berbumbung_bilangan : null,
+                        'bt_berbumbung_masih_digunakan' => isset($request->bt_berbumbung_masih_digunakan) ? $request->bt_berbumbung_masih_digunakan : null,
+                        'bt_berbumbung_status_fizikal' => isset($request->bt_berbumbung_status_fizikal) ? $request->bt_berbumbung_status_fizikal : null,
+
+                        'bt_terbuka' => isset($request->bt_terbuka) ? $request->bt_terbuka : false,
+                        'bt_terbuka_gunasama' => isset($request->bt_terbuka_gunasama) ? $request->bt_terbuka_gunasama : null,
+                        'bt_terbuka_bilangan' => isset($request->bt_terbuka_bilangan) ? $request->bt_terbuka_bilangan : null,
+                        'bt_terbuka_masih_digunakan' => isset($request->bt_terbuka_masih_digunakan) ? $request->bt_terbuka_masih_digunakan : null,
+                        'bt_terbuka_status_fizikal' => isset($request->bt_terbuka_status_fizikal) ? $request->bt_terbuka_status_fizikal : null,
+
+                        // Badminton
+                        'badminton' => $request->badminton,
+                        'badminton_bilangan' => isset($request->badminton_bilangan) ? $request->badminton_bilangan : null,
+
+                        'badminton_dewan' => isset($request->badminton_dewan) ? $request->badminton_dewan : false,
+                        'badminton_dewan_gunasama' => isset($request->badminton_dewan_gunasama) ? $request->badminton_dewan_gunasama : null,
+                        'badminton_dewan_bilangan' => isset($request->badminton_dewan_bilangan) ? $request->badminton_dewan_bilangan : null,
+                        'badminton_dewan_masih_digunakan' => isset($request->badminton_dewan_masih_digunakan) ? $request->badminton_dewan_masih_digunakan : null,
+                        'badminton_dewan_status_fizikal' => isset($request->badminton_dewan_status_fizikal) ? $request->badminton_dewan_status_fizikal : null,
+
+                        'badminton_berbumbung' => isset($request->badminton_berbumbung) ? $request->badminton_berbumbung : false,
+                        'badminton_berbumbung_gunasama' => isset($request->badminton_berbumbung_gunasama) ? $request->badminton_berbumbung_gunasama : null,
+                        'badminton_berbumbung_bilangan' => isset($request->badminton_berbumbung_bilangan) ? $request->badminton_berbumbung_bilangan : null,
+                        'badminton_berbumbung_masih_digunakan' => isset($request->badminton_berbumbung_masih_digunakan) ? $request->badminton_berbumbung_masih_digunakan : null,
+                        'badminton_berbumbung_status_fizikal' => isset($request->badminton_berbumbung_status_fizikal) ? $request->badminton_berbumbung_status_fizikal : null,
+
+                        'badminton_terbuka' => isset($request->badminton_terbuka) ? $request->badminton_terbuka : false,
+                        'badminton_terbuka_gunasama' => isset($request->badminton_terbuka_gunasama) ? $request->badminton_terbuka_gunasama : null,
+                        'badminton_terbuka_bilangan' => isset($request->badminton_terbuka_bilangan) ? $request->badminton_terbuka_bilangan : null,
+                        'badminton_terbuka_masih_digunakan' => isset($request->badminton_terbuka_masih_digunakan) ? $request->badminton_terbuka_masih_digunakan : null,
+                        'badminton_terbuka_status_fizikal' => isset($request->badminton_terbuka_status_fizikal) ? $request->badminton_terbuka_status_fizikal : null,
+
+                        // Kriket
+                        'kriket' => $request->kriket,
+                        'kriket_bilangan' => isset($request->kriket_bilangan) ? $request->kriket_bilangan : null,
+
+                        'kriket_standard' => isset($request->kriket_standard) ? $request->kriket_standard : false,
+                        'kriket_standard_gunasama' => isset($request->kriket_standard_gunasama) ? $request->kriket_standard_gunasama : null,
+                        'kriket_standard_bilangan' => isset($request->kriket_standard_bilangan) ? $request->kriket_standard_bilangan : null,
+                        'kriket_standard_masih_digunakan' => isset($request->kriket_standard_masih_digunakan) ? $request->kriket_standard_masih_digunakan : null,
+                        'kriket_standard_status_fizikal' => isset($request->kriket_standard_status_fizikal) ? $request->kriket_standard_status_fizikal : null,
+
+                        'kriket_latihan' => isset($request->kriket_latihan) ? $request->kriket_latihan : false,
+                        'kriket_latihan_gunasama' => isset($request->kriket_latihan_gunasama) ? $request->kriket_latihan_gunasama : null,
+                        'kriket_latihan_bilangan' => isset($request->kriket_latihan_bilangan) ? $request->kriket_latihan_bilangan : null,
+                        'kriket_latihan_masih_digunakan' => isset($request->kriket_latihan_masih_digunakan) ? $request->kriket_latihan_masih_digunakan : null,
+                        'kriket_latihan_status_fizikal' => isset($request->kriket_latihan_status_fizikal) ? $request->kriket_latihan_status_fizikal : null,
+
+                        // Tenis
+                        'tenis' => $request->tenis,
+                        'tenis_bilangan' => isset($request->tenis_bilangan) ? $request->tenis_bilangan : null,
+
+                        'tenis_terbuka' => isset($request->tenis_terbuka) ? $request->tenis_terbuka : false,
+                        'tenis_terbuka_gunasama' => isset($request->tenis_terbuka_gunasama) ? $request->tenis_terbuka_gunasama : null,
+                        'tenis_terbuka_bilangan' => isset($request->tenis_terbuka_bilangan) ? $request->tenis_terbuka_bilangan : null,
+                        'tenis_terbuka_masih_digunakan' => isset($request->tenis_terbuka_masih_digunakan) ? $request->tenis_terbuka_masih_digunakan : null,
+                        'tenis_terbuka_status_fizikal' => isset($request->tenis_terbuka_status_fizikal) ? $request->tenis_terbuka_status_fizikal : null,
+
+                        // Ping Pong
+                        'ping_pong' => $request->ping_pong,
+                        'ping_pong_bilangan' => isset($request->ping_pong_bilangan) ? $request->ping_pong_bilangan : null,
+
+                        'pp_tertutup' => isset($request->pp_tertutup) ? $request->pp_tertutup : false,
+                        'pp_tertutup_gunasama' => isset($request->pp_tertutup_gunasama) ? $request->pp_tertutup_gunasama : null,
+                        'pp_tertutup_bilangan' => isset($request->pp_tertutup_bilangan) ? $request->pp_tertutup_bilangan : null,
+                        'pp_tertutup_masih_digunakan' => isset($request->pp_tertutup_masih_digunakan) ? $request->pp_tertutup_masih_digunakan : null,
+                        'pp_tertutup_status_fizikal' => isset($request->pp_tertutup_status_fizikal) ? $request->pp_tertutup_status_fizikal : null,
+
+                        'pp_terbuka' => isset($request->pp_terbuka) ? $request->pp_terbuka : false,
+                        'pp_terbuka_gunasama' => isset($request->pp_terbuka_gunasama) ? $request->pp_terbuka_gunasama : null,
+                        'pp_terbuka_bilangan' => isset($request->pp_terbuka_bilangan) ? $request->pp_terbuka_bilangan : null,
+                        'pp_terbuka_masih_digunakan' => isset($request->pp_terbuka_masih_digunakan) ? $request->pp_terbuka_masih_digunakan : null,
+                        'pp_terbuka_status_fizikal' => isset($request->pp_terbuka_status_fizikal) ? $request->pp_terbuka_status_fizikal : null,
+
+                        // Sofbol
+                        'sofbol' => $request->sofbol,
+                        'sofbol_bilangan' => isset($request->sofbol_bilangan) ? $request->sofbol_bilangan : false,
+
+                        'sofbol_standard' => isset($request->sofbol_standard) ? $request->sofbol_standard : false,
+                        'sofbol_standard_gunasama' => isset($request->sofbol_standard_gunasama) ? $request->sofbol_standard_gunasama : null,
+                        'sofbol_standard_bilangan' => isset($request->sofbol_standard_bilangan) ? $request->sofbol_standard_bilangan : null,
+                        'sofbol_standard_masih_digunakan' => isset($request->sofbol_standard_masih_digunakan) ? $request->sofbol_standard_masih_digunakan : null,
+                        'sofbol_standard_status_fizikal' => isset($request->sofbol_standard_status_fizikal) ? $request->sofbol_standard_status_fizikal : null,
+
+                        'sofbol_latihan' => isset($request->sofbol_latihan) ? $request->sofbol_latihan : false,
+                        'sofbol_latihan_gunasama' => isset($request->sofbol_latihan_gunasama) ? $request->sofbol_latihan_gunasama : null,
+                        'sofbol_latihan_bilangan' => isset($request->sofbol_latihan_bilangan) ? $request->sofbol_latihan_bilangan : null,
+                        'sofbol_latihan_masih_digunakan' => isset($request->sofbol_latihan_masih_digunakan) ? $request->sofbol_latihan_masih_digunakan : null,
+                        'sofbol_latihan_status_fizikal' => isset($request->sofbol_latihan_status_fizikal) ? $request->sofbol_latihan_status_fizikal : null,
+
+                        // Memanah
+                        'memanah' => $request->memanah,
+                        'memanah_bilangan' => isset($request->memanah_bilangan) ? $request->memanah_bilangan : null,
+
+                        'memanah_standard' => isset($request->memanah_standard) ? $request->memanah_standard : false,
+                        'memanah_standard_gunasama' => isset($request->memanah_standard_gunasama) ? $request->memanah_standard_gunasama : null,
+                        'memanah_standard_bilangan' => isset($request->memanah_standard_bilangan) ? $request->memanah_standard_bilangan : null,
+                        'memanah_standard_masih_digunakan' => isset($request->memanah_standard_masih_digunakan) ? $request->memanah_standard_masih_digunakan : null,
+                        'memanah_standard_status_fizikal' => isset($request->memanah_standard_status_fizikal) ? $request->memanah_standard_status_fizikal : null,
+
+                        'memanah_latihan' => isset($request->memanah_latihan) ? $request->memanah_latihan : false,
+                        'memanah_latihan_gunasama' => isset($request->memanah_latihan_gunasama) ? $request->memanah_latihan_gunasama : null,
+                        'memanah_latihan_bilangan' => isset($request->memanah_latihan_bilangan) ? $request->memanah_latihan_bilangan : null,
+                        'memanah_latihan_masih_digunakan' => isset($request->memanah_latihan_masih_digunakan) ? $request->memanah_latihan_masih_digunakan : null,
+                        'memanah_latihan_status_fizikal' => isset($request->memanah_latihan_status_fizikal) ? $request->memanah_latihan_status_fizikal : null,
+
+                        // Skuasy
+                        'skuasy' => $request->skuasy,
+                        'skuasy_bilangan' => isset($request->skuasy_bilangan) ? $request->skuasy_bilangan : null,
+
+                        'skuasy_dewan' => isset($request->skuasy_dewan) ? $request->skuasy_dewan : false,
+                        'skuasy_dewan_gunasama' => isset($request->skuasy_dewan_gunasama) ? $request->skuasy_dewan_gunasama : null,
+                        'skuasy_dewan_bilangan' => isset($request->skuasy_dewan_bilangan) ? $request->skuasy_dewan_bilangan : null,
+                        'skuasy_dewan_masih_digunakan' => isset($request->skuasy_dewan_masih_digunakan) ? $request->skuasy_dewan_masih_digunakan : null,
+                        'skuasy_dewan_status_fizikal' => isset($request->skuasy_dewan_status_fizikal) ? $request->skuasy_dewan_status_fizikal : null,
+
+                        // Gimnastik Artistik
+                        'gimnastik_artistik' => $request->gimnastik_artistik,
+                        'gimnastik_artistik_bilangan' => isset($request->gimnastik_artistik_bilangan) ? $request->gimnastik_artistik_bilangan : null,
+
+                        'ga_standard' => isset($request->ga_standard) ? $request->ga_standard : false,
+                        'ga_standard_gunasama' => isset($request->ga_standard_gunasama) ? $request->ga_standard_gunasama : null,
+                        'ga_standard_bilangan' => isset($request->ga_standard_bilangan) ? $request->ga_standard_bilangan : null,
+                        'ga_standard_masih_digunakan' => isset($request->ga_standard_masih_digunakan) ? $request->ga_standard_masih_digunakan : null,
+                        'ga_standard_status_fizikal' => isset($request->ga_standard_status_fizikal) ? $request->ga_standard_status_fizikal : null,
+
+                        'ga_latihan' => isset($request->ga_latihan) ? $request->ga_latihan : false,
+                        'ga_latihan_gunasama' => isset($request->ga_latihan_gunasama) ? $request->ga_latihan_gunasama : null,
+                        'ga_latihan_bilangan' => isset($request->ga_latihan_bilangan) ? $request->ga_latihan_bilangan : null,
+                        'ga_latihan_masih_digunakan' => isset($request->ga_latihan_masih_digunakan) ? $request->ga_latihan_masih_digunakan : null,
+                        'ga_latihan_status_fizikal' => isset($request->ga_latihan_status_fizikal) ? $request->ga_latihan_status_fizikal : null,
+
+                        // Gimnastik Berirama
+                        'gimnastik_berirama' => $request->gimnastik_berirama,
+                        'gimnastik_berirama_bilangan' => isset($request->gimnastik_berirama_bilangan) ? $request->gimnastik_berirama_bilangan : null,
+
+                        'gb_standard' => isset($request->gb_standard) ? $request->gb_standard : false,
+                        'gb_standard_gunasama' => isset($request->gb_standard_gunasama) ? $request->gb_standard_gunasama : null,
+                        'gb_standard_bilangan' => isset($request->gb_standard_bilangan) ? $request->gb_standard_bilangan : null,
+                        'gb_standard_masih_digunakan' => isset($request->gb_standard_masih_digunakan) ? $request->gb_standard_masih_digunakan : null,
+                        'gb_standard_status_fizikal' => isset($request->gb_standard_status_fizikal) ? $request->gb_standard_status_fizikal : null,
+
+                        'gb_latihan' => isset($request->gb_latihan) ? $request->gb_latihan : false,
+                        'gb_latihan_gunasama' => isset($request->gb_latihan_gunasama) ? $request->gb_latihan_gunasama : null,
+                        'gb_latihan_bilangan' => isset($request->gb_latihan_bilangan) ? $request->gb_latihan_bilangan : null,
+                        'gb_latihan_masih_digunakan' => isset($request->gb_latihan_masih_digunakan) ? $request->gb_latihan_masih_digunakan : null,
+                        'gb_latihan_status_fizikal' => isset($request->gb_latihan_status_fizikal) ? $request->gb_latihan_status_fizikal : null,
+
+                        // Bola Baling
+                        'bola_baling' => $request->bola_baling,
+                        'bola_baling_bilangan' => isset($request->bola_baling_bilangan) ? $request->bola_baling_bilangan : null,
+
+                        'bb_dewan' => isset($request->bb_dewan) ? $request->bb_dewan : false,
+                        'bb_dewan_gunasama' => isset($request->bb_dewan_gunasama) ? $request->bb_dewan_gunasama : null,
+                        'bb_dewan_bilangan' => isset($request->bb_dewan_bilangan) ? $request->bb_dewan_bilangan : null,
+                        'bb_dewan_masih_digunakan' => isset($request->bb_dewan_masih_digunakan) ? $request->bb_dewan_masih_digunakan : null,
+                        'bb_dewan_status_fizikal' => isset($request->bb_dewan_status_fizikal) ? $request->bb_dewan_status_fizikal : null,
+
+                        'bb_berbumbung' => isset($request->bb_berbumbung) ? $request->bb_berbumbung : false,
+                        'bb_berbumbung_gunasama' => isset($request->bb_berbumbung_gunasama) ? $request->bb_berbumbung_gunasama : null,
+                        'bb_berbumbung_bilangan' => isset($request->bb_berbumbung_bilangan) ? $request->bb_berbumbung_bilangan : null,
+                        'bb_berbumbung_masih_digunakan' => isset($request->bb_berbumbung_masih_digunakan) ? $request->bb_berbumbung_masih_digunakan : null,
+                        'bb_berbumbung_status_fizikal' => isset($request->bb_berbumbung_status_fizikal) ? $request->bb_berbumbung_status_fizikal : null,
+
+                        'bb_hardcourt' => isset($request->bb_hardcourt) ? $request->bb_hardcourt : false,
+                        'bb_hardcourt_gunasama' => isset($request->bb_hardcourt_gunasama) ? $request->bb_hardcourt_gunasama : null,
+                        'bb_hardcourt_bilangan' => isset($request->bb_hardcourt_bilangan) ? $request->bb_hardcourt_bilangan : null,
+                        'bb_hardcourt_masih_digunakan' => isset($request->bb_hardcourt_masih_digunakan) ? $request->bb_hardcourt_masih_digunakan : null,
+                        'bb_hardcourt_status_fizikal' => isset($request->bb_hardcourt_status_fizikal) ? $request->bb_hardcourt_status_fizikal : null,
+
+                        'bb_berumput' => isset($request->bb_berumput) ? $request->bb_berumput : false,
+                        'bb_berumput_gunasama' => isset($request->bb_berumput_gunasama) ? $request->bb_berumput_gunasama : null,
+                        'bb_berumput_bilangan' => isset($request->bb_berumput_bilangan) ? $request->bb_berumput_bilangan : null,
+                        'bb_berumput_masih_digunakan' => isset($request->bb_berumput_masih_digunakan) ? $request->bb_berumput_masih_digunakan : null,
+                        'bb_berumput_status_fizikal' => isset($request->bb_berumput_status_fizikal) ? $request->bb_berumput_status_fizikal : null,
+
+                        // Bola Keranjang
+                        'bola_keranjang' => $request->bola_keranjang,
+                        'bola_keranjang_bilangan' => isset($request->bola_keranjang_bilangan) ? $request->bola_keranjang_bilangan : null,
+
+                        'bk_dewan' => isset($request->bk_dewan) ? $request->bk_dewan : false,
+                        'bk_dewan_gunasama' => isset($request->bk_dewan_gunasama) ? $request->bk_dewan_gunasama : null,
+                        'bk_dewan_bilangan' => isset($request->bk_dewan_bilangan) ? $request->bk_dewan_bilangan : null,
+                        'bk_dewan_masih_digunakan' => isset($request->bk_dewan_masih_digunakan) ? $request->bk_dewan_masih_digunakan : null,
+                        'bk_dewan_status_fizikal' => isset($request->bk_dewan_status_fizikal) ? $request->bk_dewan_status_fizikal : null,
+
+                        'bk_berbumbung' => isset($request->bk_berbumbung) ? $request->bk_berbumbung : false,
+                        'bk_berbumbung_gunasama' => isset($request->bk_berbumbung_gunasama) ? $request->bk_berbumbung_gunasama : null,
+                        'bk_berbumbung_bilangan' => isset($request->bk_berbumbung_bilangan) ? $request->bk_berbumbung_bilangan : null,
+                        'bk_berbumbung_masih_digunakan' => isset($request->bk_berbumbung_masih_digunakan) ? $request->bk_berbumbung_masih_digunakan : null,
+                        'bk_berbumbung_status_fizikal' => isset($request->bk_berbumbung_status_fizikal) ? $request->bk_berbumbung_status_fizikal : null,
+
+                        'bk_terbuka' => isset($request->bk_terbuka) ? $request->bk_terbuka : false,
+                        'bk_terbuka_gunasama' => isset($request->bk_terbuka_gunasama) ? $request->bk_terbuka_gunasama : null,
+                        'bk_terbuka_bilangan' => isset($request->bk_terbuka_bilangan) ? $request->bk_terbuka_bilangan : null,
+                        'bk_terbuka_masih_digunakan' => isset($request->bk_terbuka_masih_digunakan) ? $request->bk_terbuka_masih_digunakan : null,
+                        'bk_terbuka_status_fizikal' => isset($request->bk_terbuka_status_fizikal) ? $request->bk_terbuka_status_fizikal : null,
+
+                        // Ragbi
+                        'ragbi' => $request->ragbi,
+                        'ragbi_bilangan' => isset($request->ragbi_bilangan) ? $request->ragbi_bilangan : null,
+
+                        'ragbi_standard' => isset($request->ragbi_standard) ? $request->ragbi_standard : false,
+                        'ragbi_standard_gunasama' => isset($request->ragbi_standard_gunasama) ? $request->ragbi_standard_gunasama : null,
+                        'ragbi_standard_bilangan' => isset($request->ragbi_standard_bilangan) ? $request->ragbi_standard_bilangan : null,
+                        'ragbi_standard_masih_digunakan' => isset($request->ragbi_standard_masih_digunakan) ? $request->ragbi_standard_masih_digunakan : null,
+                        'ragbi_standard_status_fizikal' => isset($request->ragbi_standard_status_fizikal) ? $request->ragbi_standard_status_fizikal : null,
+
+                        'ragbi_latihan' => isset($request->ragbi_latihan) ? $request->ragbi_latihan : false,
+                        'ragbi_latihan_gunasama' => isset($request->ragbi_latihan_gunasama) ? $request->ragbi_latihan_gunasama : null,
+                        'ragbi_latihan_bilangan' => isset($request->ragbi_latihan_bilangan) ? $request->ragbi_latihan_bilangan : null,
+                        'ragbi_latihan_masih_digunakan' => isset($request->ragbi_latihan_masih_digunakan) ? $request->ragbi_latihan_masih_digunakan : null,
+                        'ragbi_latihan_status_fizikal' => isset($request->ragbi_latihan_status_fizikal) ? $request->ragbi_latihan_status_fizikal : null,
+
+                        // Futsal
+                        'futsal' => $request->futsal,
+                        'futsal_bilangan' => isset($request->futsal_bilangan) ? $request->futsal_bilangan : null,
+
+                        'futsal_dewan' => isset($request->futsal_dewan) ? $request->futsal_dewan : false,
+                        'futsal_dewan_gunasama' => isset($request->futsal_dewan_gunasama) ? $request->futsal_dewan_gunasama : null,
+                        'futsal_dewan_bilangan' => isset($request->futsal_dewan_bilangan) ? $request->futsal_dewan_bilangan : null,
+                        'futsal_dewan_masih_digunakan' => isset($request->futsal_dewan_masih_digunakan) ? $request->futsal_dewan_masih_digunakan : null,
+                        'futsal_dewan_status_fizikal' => isset($request->futsal_dewan_status_fizikal) ? $request->futsal_dewan_status_fizikal : null,
+
+                        'futsal_berbumbung' => isset($request->futsal_berbumbung) ? $request->futsal_berbumbung : false,
+                        'futsal_berbumbung_gunasama' => isset($request->futsal_berbumbung_gunasama) ? $request->futsal_berbumbung_gunasama : null,
+                        'futsal_berbumbung_bilangan' => isset($request->futsal_berbumbung_bilangan) ? $request->futsal_berbumbung_bilangan : null,
+                        'futsal_berbumbung_masih_digunakan' => isset($request->futsal_berbumbung_masih_digunakan) ? $request->futsal_berbumbung_masih_digunakan : null,
+                        'futsal_berbumbung_status_fizikal' => isset($request->futsal_berbumbung_status_fizikal) ? $request->futsal_berbumbung_status_fizikal : null,
+
+                        'futsal_terbuka' => isset($request->futsal_terbuka) ? $request->futsal_terbuka : false,
+                        'futsal_terbuka_gunasama' => isset($request->futsal_terbuka_gunasama) ? $request->futsal_terbuka_gunasama : null,
+                        'futsal_terbuka_bilangan' => isset($request->futsal_terbuka_bilangan) ? $request->futsal_terbuka_bilangan : null,
+                        'futsal_terbuka_masih_digunakan' => isset($request->futsal_terbuka_masih_digunakan) ? $request->futsal_terbuka_masih_digunakan : null,
+                        'futsal_terbuka_status_fizikal' => isset($request->futsal_terbuka_status_fizikal) ? $request->futsal_terbuka_status_fizikal : null,
+
+                        // Boling Tenpin
+                        'boling_tenpin' => $request->boling_tenpin,
+                        'boling_tenpin_bilangan' => isset($request->boling_tenpin_bilangan) ? $request->boling_tenpin_bilangan : null,
+
+                        'bt_8' => isset($request->bt_8) ? $request->bt_8 : false,
+                        'bt_8_gunasama' => isset($request->bt_8_gunasama) ? $request->bt_8_gunasama : null,
+                        'bt_8_bilangan' => isset($request->bt_8_bilangan) ? $request->bt_8_bilangan : null,
+                        'bt_8_masih_digunakan' => isset($request->bt_8_masih_digunakan) ? $request->bt_8_masih_digunakan : null,
+                        'bt_8_status_fizikal' => isset($request->bt_8_status_fizikal) ? $request->bt_8_status_fizikal : null,
+
+                        'bt_12' => isset($request->bt_12) ? $request->bt_12 : false,
+                        'bt_12_gunasama' => isset($request->bt_12_gunasama) ? $request->bt_12_gunasama : null,
+                        'bt_12_bilangan' => isset($request->bt_12_bilangan) ? $request->bt_12_bilangan : null,
+                        'bt_12_masih_digunakan' => isset($request->bt_12_masih_digunakan) ? $request->bt_12_masih_digunakan : null,
+                        'bt_12_status_fizikal' => isset($request->bt_12_status_fizikal) ? $request->bt_12_status_fizikal : null,
+
+                        'bt_lain' => isset($request->bt_lain) ? $request->bt_lain : false,
+                        'bt_lain_butiran' => isset($request->bt_lain_butiran) ? $request->bt_lain_butiran : null,
+                        'bt_lain_gunasama' => isset($request->bt_lain_gunasama) ? $request->bt_lain_gunasama : null,
+                        'bt_lain_bilangan' => isset($request->bt_lain_bilangan) ? $request->bt_lain_bilangan : null,
+                        'bt_lain_masih_digunakan' => isset($request->bt_lain_masih_digunakan) ? $request->bt_lain_masih_digunakan : null,
+                        'bt_lain_status_fizikal' => isset($request->bt_lain_status_fizikal) ? $request->bt_lain_status_fizikal : null,
+
+                        // Lain-lain
+                        'lain' => $request->lain,
+                        'lain_bilangan' => isset($request->lain_bilangan) ? $request->lain_bilangan : null,
+
+                        'lain_kemudahan' => isset($request->lain_kemudahan) ? $request->lain_kemudahan : false,
+                        'lain_kemudahan_butiran' => isset($request->lain_kemudahan_butiran) ? $request->lain_kemudahan_butiran : null,
+                        'lain_kemudahan_gunasama' => isset($request->lain_kemudahan_gunasama) ? $request->lain_kemudahan_gunasama : null,
+                        'lain_kemudahan_bilangan' => isset($request->lain_kemudahan_bilangan) ? $request->lain_kemudahan_bilangan : null,
+                        'lain_kemudahan_masih_digunakan' => isset($request->lain_kemudahan_masih_digunakan) ? $request->lain_kemudahan_masih_digunakan : null,
+                        'lain_kemudahan_status_fizikal' => isset($request->lain_kemudahan_status_fizikal) ? $request->lain_kemudahan_status_fizikal : null,
+
+                        'created_by' => auth()->user()->id,
+                        'updated_by' => auth()->user()->id,
+                    ]
+                );
             }
 
             if ($request->tab == 'perancangan_sukan') {
