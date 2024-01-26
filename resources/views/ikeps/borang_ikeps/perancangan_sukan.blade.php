@@ -21,11 +21,11 @@
         <thead>
             <tr>
                 <th>Adakah Sekolah Mempunyai Perancangan Program Sukan Di Sekolah?</th>
-                <th>Ada</th>
-                <th>Tiada</th>
-                <th>Dilaksanakan Setiap Tahun</th>
-                <th>Mengikut Keperluan/ Pertandingan</th>
-                <th>Kenyataan Program yang Dijalankan</th>
+                <th style="width: 10%">Ada</th>
+                <th style="width: 10%">Tiada</th>
+                <th style="width: 10%">Dilaksanakan Setiap Tahun</th>
+                <th style="width: 10%">Mengikut Keperluan/ Pertandingan</th>
+                <th style="width: 20%">Kenyataan Program yang Dijalankan</th>
             </tr>
         </thead>
         <tbody>

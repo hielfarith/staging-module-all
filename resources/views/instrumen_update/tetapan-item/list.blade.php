@@ -12,7 +12,7 @@ TETAPAN ITEM
 <li class="breadcrumb-item">
     <a href="#"> TETAPAN ITEM </a>
 </li>
- 
+
 @endsection
 
 @section('content')
@@ -31,20 +31,20 @@ TETAPAN ITEM
     <hr>
 
     <div class="card-body">
-   
+
         <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Item</label>
+                <label class="fw-bolder">Nama Item</label>
                 <input type="text" name="nama_item" id="nama_item" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Status Item</label>
+                <label class="fw-bolder">Status Item</label>
                 <input type="text" name="status_item"  id="status_item" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Belum Set</label>
+                <label class="fw-bolder">Belum Set</label>
                 <input type="text" name="belum_set" id="belum_set" class="form-control flatpickr">
             </div>
         </div>
@@ -99,12 +99,12 @@ TETAPAN ITEM
 $(document).ready(function() {
 
 $('#modal-item-diisi').on('shown.bs.modal', function () {
-    $('.select2').select2({ 
+    $('.select2').select2({
     });
     flatpickr(".flatpickr", {
         dateFormat: "d/m/Y"
     });
-    
+
 });
 
     $(function() {

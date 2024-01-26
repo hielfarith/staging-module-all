@@ -35,17 +35,17 @@ Pengurusan Jurulatih
     <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <label class="form-label">Nama Ketua Taska/ Pengguna</label>
+                    <label class="fw-bolder">Nama Jurulatih/ Pengguna</label>
                     <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control">
                 </div>
 
                 <div class="col-md-4">
-                    <label class="form-label">No. Kad Pengenalan/ Pasport</label>
+                    <label class="fw-bolder">No. Kad Pengenalan/ Pasport</label>
                     <input type="text" name="no_kad"  id="no_kad" class="form-control">
                 </div>
 
                 <div class="col-md-4">
-                    <label class="form-label">Gred Jawatan</label>
+                    <label class="fw-bolder">Gred Jawatan</label>
                     <input type="text" name="gred_jawatan" id="gred_jawatan" class="form-control">
                 </div>
             </div>
@@ -228,6 +228,6 @@ function  search(argument) {
             }
         });
     }
-  
+
 </script>
 @endsection

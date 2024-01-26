@@ -135,7 +135,7 @@ $options = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8">PENUBUHAN DAN PENDAFTARAN</td>
+                    <td colspan="8">Penubuhan & Pendaftaran</td>
                 </tr>
                 @foreach ($pendaftarans as $index => $pendaftaran)
                     <tr>

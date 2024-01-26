@@ -162,7 +162,7 @@ Pengurusan Panel Penilai
                         <span class="text-danger">*</span>
                     </label>
                     <select class="form-control select2" name="daerah" id="daerah" required>
-                         
+
                     </select>
                 </div>
 

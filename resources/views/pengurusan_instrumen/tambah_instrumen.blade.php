@@ -22,7 +22,7 @@ Pengurusan Instrumen
                 <!-- Header starts -->
                 <div class="card-body invoice-padding pb-0">
                     <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
-                        <div>
+                        <div class="me-1" style="width: 70%;">
                             <div class="logo-wrapper">
                                 <img src="{{ asset('images/logo/jata_negara.png') }}" height="24">
                                 <h3 class="text-primary invoice-logo">Kementerian Pendidikan Malaysia (KPM)</h3>
@@ -51,15 +51,12 @@ Pengurusan Instrumen
                                     <input type="text" class="form-control invoice-edit-input" name="id_instrumen" id="id_instrumen" value="" required>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="title">Tarikh Didaftar:</span>
-
-                                {{-- Tarikh Instrumen Didaftarkan --}}
+                            <div class="mb-1">
+                                <label class="fw-bolder"> Tarikh Didaftar</label>
                                 <input type="text" class="form-control flatpickr" name="tarikh_didaftar" id="tarikh_didaftar" value="{{date('d/m/Y')}}" required>
                             </div>
-                            <div class="d-flex align-items-center">
-                                <span class="title">Tarikh Tutup Pengisian:</span>
-                                {{-- Tarikh Tutup Pengisian Instrumen --}}
+                            <div class="mb-1">
+                                <label class="fw-bolder"> Tarikh Tutup Pengisian</label>
                                 <input type="text" class="form-control flatpickr" name="tarikh_tutup" id="tarikh_tutup" required />
                             </div>
                         </div>

@@ -22,7 +22,7 @@ Instrumen
 
         <div class="d-flex justify-content-end align-items-center">
             <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'sedia-ada']) }}">
-                <i class="fa-solid fa-add"></i> Tambah Sedia Ada 
+                <i class="fa-solid fa-add"></i> Tambah Sedia Ada
             </a>
         </div>
     </div>
@@ -30,20 +30,20 @@ Instrumen
     <hr>
 
     <div class="card-body">
-   
+
         <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Instrumen</label>
+                <label class="fw-bolder">Nama Instrumen</label>
                 <input type="text" name="nama_instrumen" id="nama_instrumen" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Tujuan Instrumen</label>
+                <label class="fw-bolder">Tujuan Instrumen</label>
                 <input type="text" name="tujuan_instrumen"  id="tujuan_instrumen" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Pengguna Instrumen</label>
+                <label class="fw-bolder">Pengguna Instrumen</label>
                 <input type="text" name="pengguna_instrumen" id="pengguna_instrumen" class="form-control">
             </div>
         </div>
@@ -99,12 +99,12 @@ Instrumen
 $(document).ready(function() {
 
 $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
-    $('.select2').select2({ 
+    $('.select2').select2({
     });
     flatpickr(".flatpickr", {
         dateFormat: "d/m/Y"
     });
-    
+
 });
 
     $(function() {
