@@ -346,7 +346,7 @@ $configData = Helper::applClasses();
                         {{ __('msg.user_management') }}
                     </span>
                 </a>
-                <ul class="menu-content">
+                <ul class="nav">
                     <li class="nav-user-internal nav-item {{ in_array(request()->route()->getName(),['admin.internalUser'])? 'active': '' }}">
                         <a href="{{ route('admin.internalUser') }}" class="d-flex align-items-center">
                             <span class="menu-title text-truncate text-wrap">
@@ -408,7 +408,7 @@ $configData = Helper::applClasses();
                     <i data-feather="settings"></i>
                     <span class="menu-title text-truncate text-wrap"> Pengurusan Sistem </span>
                 </a>
-                <ul class="menu-content">
+                <ul class="nav">
                     <li class="nav-item {{ in_array(request()->route()->getName(),['module.index'])? 'active': '' }}">
                         <a href="{{ route('module.index') }}" class="d-flex align-items-center">
                             <span class="menu-title text-truncate text-wrap"> Module Configuration </span>
@@ -519,13 +519,13 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    <li class="{{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
                         </a>
                     </li>
 
-                    <li class="{{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
                         <a href="{{ route('show_all_forms') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Senarai Instrumen </span>
                         </a>
@@ -600,7 +600,7 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap"> Instrumen </span>
                 </a>
                 <ul class="nav">
-                    <li class="{{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['senarai_instrumen_dijawab'])? 'active': '' }}">
                         <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Instrumen Dijawab </span>
                         </a>
