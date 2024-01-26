@@ -12,24 +12,19 @@
 <div class="row invoice-add">
     <div class="col-xl-9 col-md-8 col-12">
         <div class="card invoice-preview-card">
-            <!-- Header starts -->
             <div class="card-body invoice-padding pb-0">
                 <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
-                    <div>
+                    <div class="me-1" style="width: 70%;">
                         <div class="logo-wrapper">
                             <img src="{{ asset('images/logo/jata_negara.png') }}" height="24">
                             <h3 class="text-primary invoice-logo">Kementerian Pendidikan Malaysia (KPM)</h3>
                         </div>
-                        <!-- form start -->
-                        {{-- Nama Instrumen --}}
                         <div class="error-message text-danger" id="formname-error"></div>
                         <input type="text" class="form-control mb-25" name="form_name" id="form_name" placeholder="Nama Instrumen" onkeyup="sahkan_kategori_borang('form')" required value="{{$instrumenData?->nama_instrumen}}" readonly>
 
-                        {{-- Kategori Instrumen --}}
                         <div class="error-message text-danger" id="category-error"></div>
                         <input type="text" class="form-control mb-25" name="category_name" id="category_name" placeholder="Kategori Instrumen" onkeyup="sahkan_kategori_borang('category')" required>
 
-                        {{-- Deskripsi Instrumen --}}
                         <textarea type="text" class="form-control mb-25" name="description" id="description" placeholder="Deskripsi Ringkas Instrumen" required></textarea>
                     </div>
                     <div class="invoice-number-date mt-md-0 mt-2">
@@ -40,31 +35,28 @@
                                     <i data-feather="hash"></i>
                                 </div>
 
-                                {{-- ID Instrument --}}
                                 <input type="text" class="form-control invoice-edit-input" name="instrumen_id" id="instrumen_id" value="{{$instrumenData?->id}}" required>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center mb-1">
-                            <span class="title">Tarikh Didaftar:</span>
 
-                            {{-- Tarikh Instrumen Didaftarkan --}}
+                        <div class="mb-1">
+                            <label class="fw-bolder"> Tarikh Didaftar</label>
                             <input type="text" class="form-control flatpickr" name="tarikh_didaftar" id="tarikh_didaftar" value="{{date('d/m/Y')}}" required>
                         </div>
-                        <div class="d-flex align-items-center">
-                            <span class="title">Tarikh Tutup Pengisian:</span>
-                            {{-- Tarikh Tutup Pengisian Instrumen --}}
+
+                        <div class="mb-1">
+                            <label class="fw-bolder"> Tarikh Tutup Pengisian</label>
                             <input type="text" class="form-control flatpickr" name="tarikh_tutup" id="tarikh_tutup" required />
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Header ends -->
 
             <hr class="invoice-spacing" />
 
             <input type="hidden" name="row_count" id="row_count" value="1">
             <input type="hidden" name="instrumen_id" id="instrumen_id" value="{{$instrumenid}}">
-                
+
             <div class="col-md-6 mb-1">
                 <label class="fw-bold form-label">Nama Aspek
                     <span class="text-danger">*</span>
@@ -77,35 +69,31 @@
                     <span class="text-danger">*</span>
                 </label>
                 <select class="form-control select2" name="status_aspek" id="status_aspek" required>
-                    <option value="" hidden>Sila Pilij</option>
+                    <option value="" hidden>Sila Pilih</option>
                     <option value="Belum Set" @if($aspek?->status_aspek == 'Belum Set') selected @endif>Belum Set</option>
                     <option value="Telah Set" @if($aspek?->status_aspek == 'Telah Set') selected @endif>Telah Set</option>
                 </select>
             </div>
-            
+
             <hr class="invoice-spacing" />
 
             <input type="hidden" name="type" id="type" value="SUB">
 
-                <!-- Instrument Form starts -->
-                <form id="dynamicform">
-                    <div class="card-body invoice-padding invoice-product-details" id="row1">
-                        <div class="row mt-1">
-                            <div class="col-12 px-0">
-                                {{-- Tambah Atribut --}}
-                                <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="offcanvas" data-bs-target="#BorangTambahAtribut" aria-controls="BorangTambahAtribut" onclick="reset()">
-                                    <i data-feather="plus" class="me-25"></i>
-                                    <span class="align-middle">Tambah Atribut</span>
-                                </button>
-                            </div>
+            <form id="dynamicform">
+                <div class="card-body invoice-padding invoice-product-details" id="row1">
+                    <div class="row mt-1">
+                        <div class="col-12 px-0">
+                            <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="offcanvas" data-bs-target="#BorangTambahAtribut" aria-controls="BorangTambahAtribut" onclick="reset()">
+                                <i data-feather="plus" class="me-25"></i>
+                                <span class="align-middle">Tambah Atribut</span>
+                            </button>
                         </div>
                     </div>
-                </form>
-                <!-- Instrument Form ends -->
+                </div>
+            </form>
 
             <hr class="invoice-spacing mt-0" />
 
-            <!-- Footer starts -->
             <div class="card-body invoice-padding py-0">
                 <div class="row">
                     <div class="col-12">
@@ -115,12 +103,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- Footer ends -->
             </div>
         </div>
     </div>
 
-    <!-- Tindakan Borang Instrumen starts -->
     <div class="col-xl-3 col-md-4 col-12">
         <div class="card">
             <div class="card-header">
@@ -140,10 +126,8 @@
             @endif
         </div>
     </div>
-    <!-- Tindakan Borang Instrumen ends -->
 </div>
 
-<!-- Modal box for input filling-->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="BorangTambahAtribut" aria-labelledby="BorangTambahAtribut" style="width: 30%">
     <div class="offcanvas-header">
         <h5 id="BorangTambahAtribut" class="offcanvas-title fw-bolder">Tambah Atribut</h5>
@@ -151,16 +135,13 @@
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
         <hr>
-        {{-- <form id="frm">
-            @csrf --}}
-       
+
         <form action="{{ route('input-field') }}" id="frm" method="post" data-swal="Maklumat Penilai Berjaya Disimpan">
             @csrf
 
             <div class="row">
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bolder">Jenis Atribut</label>
-                    {{-- Jenis Atribut --}}
                     <select name="typeData" id="typeData" class="form-control select2" onchange="changeselect()">
                         <option value="" hidden>Jenis Atribut</option>
                         <option value="segment">Section</option>
@@ -210,7 +191,7 @@
                 </div>
             </div>
         </form>
-           
+
         @if(!empty($instrumenid))
         <hr class="mb-2 mt-2">
 
@@ -221,7 +202,6 @@
         @endif
     </div>
 </div>
-
 
 <div class="modal fade" id="ModalPreview" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -236,8 +216,8 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
-   
 function sahkan_kategori_borang(type) {
     var form_name = $('#form_name').val();
     var name = $('#category_name').val();
@@ -416,7 +396,7 @@ function changeselect() {
 }
 
 function submitDynamicForm() {
-    
+
     // $('form#dynamicform').find('select, textarea, input').each(function() {
     //     if(!$(this).prop('required')) {
     //      } else {
@@ -523,7 +503,7 @@ function submitDynamicForm() {
 @section('script')
 <script type="text/javascript">
      // Attach an event listener to the offcanvas when it is about to be shown
-    
+
 </script>
 
 @endsection
