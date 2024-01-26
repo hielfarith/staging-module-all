@@ -4,7 +4,7 @@
             <!-- Header starts -->
             <div class="card-body invoice-padding pb-0">
                 <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
-                    <div>
+                    <div class="me-1" style="width: 70%;">
                         <div class="logo-wrapper">
                             <img src="{{ asset('images/logo/jata_negara.png') }}" height="24">
                             <h3 class="text-primary invoice-logo">Kementerian Pendidikan Malaysia (KPM)</h3>
@@ -31,14 +31,14 @@
                                 <input type="text" class="form-control invoice-edit-input" value="{{$DynamicFormData->id_instrumen}}" disabled>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center mb-1">
-                            <span class="title">Tarikh Didaftar:</span>
+                        <div class="mb-1">
+                            <label class="fw-bolder"> Tarikh Didaftar</label>
 
                             {{-- Tarikh Instrumen Didaftarkan --}}
                             <input type="text" class="form-control flatpickr" value="{{date('d/m/Y', strtotime($DynamicFormData->tarikh_didaftar))}}" disabled>
                         </div>
-                        <div class="d-flex align-items-center">
-                            <span class="title">Tarikh Tutup Pengisian:</span>
+                        <div class="mb-1">
+                            <label class="fw-bolder"> Tarikh Tutup Pengisian</label>
 
                             {{-- Tarikh Tutup Pengisian Instrumen --}}
                             <input type="text" class="form-control flatpickr" value="{{ date('d/m/Y', strtotime($DynamicFormData->tarikh_tutup))}}" disabled>

@@ -33,20 +33,20 @@ Pengurusan Ahli Jawatankuasa
     <hr>
 
     <div class="card-body">
-        
+
         <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Ahli Jawatankuasa/ Pengguna</label>
+                <label class="fw-bolder">Nama Ahli Jawatankuasa/ Pengguna</label>
                 <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">No. Kad Pengenalan/ Pasport</label>
+                <label class="fw-bolder">No. Kad Pengenalan/ Pasport</label>
                 <input type="text" name="no_kad"  id="no_kad" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Email Peribadi</label>
+                <label class="fw-bolder">Email Peribadi</label>
                 <input type="text" name="email_peribadi" id="email_peribadi" class="form-control">
             </div>
         </div>
@@ -100,9 +100,9 @@ Pengurusan Ahli Jawatankuasa
 <script>
 $(document).ready(function() {
 $('#modal-ahli-diisi').on('shown.bs.modal', function () {
-    $('.select2').select2({ 
+    $('.select2').select2({
     });
-    
+
 });
     $(function() {
         var table = $('#TableSenaraiAhli').DataTable({
@@ -128,7 +128,7 @@ $('#modal-ahli-diisi').on('shown.bs.modal', function () {
                         return $("<div/>").html(data).text();
                     }
                 },
-                
+
                  {
                     data: "panggilan",
                     name: "panggilan",

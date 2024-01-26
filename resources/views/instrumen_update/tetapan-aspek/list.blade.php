@@ -37,17 +37,17 @@ Tetapan Aspek
 
         <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Aspek</label>
+                <label class="fw-bolder">Nama Aspek</label>
                 <input type="text" name="nama_aspek" id="nama_aspek" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Status Aspek</label>
+                <label class="fw-bolder">Status Aspek</label>
                 <input type="text" name="status_aspek"  id="status_aspek" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Belum Set</label>
+                <label class="fw-bolder">Belum Set</label>
                 <input type="text" name="belum_set" id="belum_set" class="form-control flatpickr">
             </div>
         </div>

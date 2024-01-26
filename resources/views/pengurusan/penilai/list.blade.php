@@ -36,17 +36,17 @@ Pengurusan Panel Penilai
 
         <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Panel Penilai/ Pengguna</label>
+                <label class="fw-bolder">Nama Panel Penilai/ Pengguna</label>
                 <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">No. Kad Pengenalan/ Pasport</label>
+                <label class="fw-bolder">No. Kad Pengenalan/ Pasport</label>
                 <input type="text" name="no_kad"  id="no_kad" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Email Peribadi</label>
+                <label class="fw-bolder">Email Peribadi</label>
                 <input type="text" name="email_peribadi" id="email_peribadi" class="form-control">
             </div>
         </div>

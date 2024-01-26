@@ -33,20 +33,20 @@ Pengurusan Ketua Agensi
     <hr>
 
     <div class="card-body">
-   
+
         <div class="row">
             <div class="col-md-4">
-                <label class="form-label">Nama Ketua Agensi/ Pengguna</label>
+                <label class="fw-bolder">Nama Ketua Agensi/ Pengguna</label>
                 <input type="text" name="nama_pengguna" id="nama_pengguna" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">No. Kad Pengenalan/ Pasport</label>
+                <label class="fw-bolder">No. Kad Pengenalan/ Pasport</label>
                 <input type="text" name="no_kad"  id="no_kad" class="form-control">
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Emel Ketua Pengarah/ Pengarah</label>
+                <label class="fw-bolder">Emel Ketua Pengarah/ Pengarah</label>
                 <input type="text" name="email_ketua" id="email_ketua" class="form-control">
             </div>
         </div>
@@ -102,9 +102,9 @@ Pengurusan Ketua Agensi
 $(document).ready(function() {
 
 $('#modal-agensi-diisi').on('shown.bs.modal', function () {
-    $('.select2').select2({ 
+    $('.select2').select2({
     });
-    
+
 });
 
     $(function() {
