@@ -392,7 +392,7 @@ function changeselect() {
     } else {
         $('.options2').hide();
     }
-    reset();
+    // reset();
 }
 
 function submitDynamicForm() {

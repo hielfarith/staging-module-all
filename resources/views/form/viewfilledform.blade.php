@@ -76,9 +76,12 @@
                             <x-input-field type="{{$array['type']}}" name="{{$array['name']}}" value="{{$staticForm ? $data[$array['name']] : ''}}" :required="$array['required']" placeholder="{{$array['placeholder']}}" label="{{$array['label']}}" />
                         @endif
                     @elseif($array['type'] == 'select')
-                    <div class="form-group main-container">
-                        <label>{{$array['label']}} @if($array['required']) <span style="color: red;">*</span> @endif</label>
-                        <div class="col-md-8">
+                        <div class="col-md-12 mb-1">
+                            <label class="form-label fw-bold">{{$array['label']}}
+                                @if($array['required'])
+                                    <span class="text-danger">*</span>
+                                @endif
+                            </label>
                             <?php
                                 if ($staticForm) {
                                     $disabled = false;
@@ -96,19 +99,18 @@
                                 @endif
                             </select>
                         </div>
-                    </div>
                     @elseif($array['type'] == 'file')
-                        <div class="form-group main-container">
-                        <?php
-                            $url = route('download',['id' => $id,'name' => $array['name']]);
-                        ?>
-                        @if($staticForm)
-                        <x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" :required="$array['required']" placeholder="{{$array['placeholder']}}" accept=".pdf,.doc,.docx" disabled>
-                    </x-input-file-field>
-                        @else
-                        <label>{{$array['label']}}</label>
-                        <a href="{{$url}}" class="btn btn-primary">Download File</a>
-                        @endif
+                        <div class="col-md-12 mb-1">
+                            <?php
+                                $url = route('download',['id' => $id,'name' => $array['name']]);
+                            ?>
+                            @if($staticForm)
+                                <x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" :required="$array['required']" placeholder="{{$array['placeholder']}}" accept=".pdf,.doc,.docx" disabled>
+                                </x-input-file-field>
+                            @else
+                                <label class="form-label fw-bold">{{$array['label']}}</label>
+                                <a href="{{$url}}" class="btn btn-primary">Download File</a>
+                            @endif
                         </div>
                     @elseif($array['type'] == 'segment')
                     <div class="row" role="alert">
@@ -118,17 +120,21 @@
                         </div>
                     </div>
                     @elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
-                    <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']"
-                    label="{{$array['label']}}">
+                    <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']" label="{{$array['label']}}">
                         <?php
                             $options = json_decode($array['options'], true);
+                            $values = $data[$array['name']];
                         ?>
-                        @foreach($options as $option)
-                        <label class="form-check-label">
-                            <input type="{{$array['type']}}" label="{{$array['label']}}" class="form-check-input"  name="{{$array['name']}}" value="{{$option}}">
-                            {{$option}}
-                        </label>
-                        @endforeach
+                        <div class="col-md-12 mb-1">
+                            <div class="demo-inline-spacing">
+                                @foreach($options as $option)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="{{$array['type']}}" name="{{$array['name']}}" id="inlineRadio1" value="{{$option}}" @if(in_array($option, $values)) checked  @endif disabled />
+                                    <label class="form-check-label">{{$option}}</label>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </x-input-radio-field>
                     @endif
                 @endforeach
