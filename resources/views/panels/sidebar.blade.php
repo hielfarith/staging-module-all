@@ -230,6 +230,12 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
+                     <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skips'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Senarai Skips </span>
+                        </a>
+                    </li>
+
 
                     <!--    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">

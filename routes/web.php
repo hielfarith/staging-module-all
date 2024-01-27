@@ -261,6 +261,10 @@ Route::controller(InstrumenController::class)->prefix('instrumen')->middleware([
 
     Route::get('senarai-sedia-ada','listSediaAda')->name('admin.instrumen.senarai-sedia-ada');
 
+    Route::get('tambah-skips','tambahSkips')->name('admin.instrumen.tambah-skips');
+    Route::get('senarai-skips','listSkips')->name('admin.instrumen.senarai-skips');
+    Route::post('instrumenskips-submit','saveSkips')->name('admin.instrumen.instrumenskips-submit');
+
 });
 
 Route::controller(InstrumenController::class)->prefix('ikeps')->middleware(['web'])->group(function () {

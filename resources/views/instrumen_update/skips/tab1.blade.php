@@ -1,12 +1,12 @@
 <?php
     $instrumenid = Request::segment(4);
     if (!empty($instrumenid)) {
-        $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->where('type','SKPAK')->first();
+        $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->first();
     } else {
         $instrumenData = null;
     }
 ?>
-<form id="forminstrumenskpak" novalidate="novalidate">
+<form id="forminstrumenskips" novalidate="novalidate">
     <div class="row">
         <h5 class="mb-2 fw-bold">
             <span class="badge rounded-pill badge-light-primary">
@@ -238,12 +238,12 @@
         });
    });
 
-    $('#forminstrumenskpak').submit(function(event) {
+    $('#forminstrumenskips').submit(function(event) {
         event.preventDefault();
-        var formData = new FormData(document.getElementById('forminstrumenskpak'));
+        var formData = new FormData(document.getElementById('forminstrumenskips'));
         var error = false;
 
-         $('form#forminstrumenskpak').find('select, textarea, input, checkbox').each(function() {
+         $('form#forminstrumenskips').find('select, textarea, input, checkbox').each(function() {
             if(this.required && this.type == 'checkbox' && !this.checked) {
                 error = true;
             }
@@ -252,37 +252,12 @@
             }
         });
 
-        // $('#forminstrumenskpak').find('select.select2').each(function() {
-        //     var element = $(this);
-        //     var select2Value = element.select2('data');
-        //     var selectedValues = element.val();
-        //     var fieldName = element.attr('name');
-        //     if (typeof element.attr('disabled') == 'undefined') {
-
-        //         if (!selectedValues || selectedValues === '') {
-        //             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-        //             error = true;
-        //             return false; // Stop the loop if an error is found
-        //         }
-        //     }
-        // });
-
-        // formData.forEach(function(value, name) {
-        //     var element = $("input[name='"+name+"']");
-        //     if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
-        //         if (element.val() == '') {
-        //             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-        //             error = true;
-        //             return false;
-        //         }
-        //     }
-        // });
-
         if (error) {
              Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('admin.instrumen.instrumenskpak-submit') }}"
+        
+        var url = "{{ route('admin.instrumen.instrumenskips-submit') }}"
         $.ajax({
             url: url,
             type: 'POST',
@@ -292,10 +267,7 @@
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var id = response.data.id;
-                    $('#instrumen_id').val(id);
-                    var location = "{{route('admin.instrumen.form',[ 'type' => 'instrumen', 'model' => ':id'])}}";
-                    var location = location.replace(':id', id);
+                    var location = "{{route('admin.instrumen.tambah-skips')}}";
                     window.location.href = location;
                }
             }
