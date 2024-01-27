@@ -230,7 +230,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                     <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skips'])? 'active': '' }}">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skips'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Senarai Skips </span>
                         </a>
@@ -542,6 +542,12 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate text-wrap"> Senarai Sedia Ada </span>
                         </a>
                     </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skips'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Senarai Skips </span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             @endhasanyrole
@@ -589,7 +595,6 @@ $configData = Helper::applClasses();
                                     </span>
                                 </a>
                             </li>
-
                         </ul>
                     </li>
                 </ul>
