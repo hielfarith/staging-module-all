@@ -598,7 +598,27 @@ $configData = Helper::applClasses();
                         </ul>
                     </li>
                 </ul>
+                 <ul class="nav">
+                    <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Instrument I-SKIPS
+                            </span>
+                        </a>
+
+                     <ul class="nav">
+                        <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                            <a href="{{ route('skips.skips_baru') }}" class="d-flex align-items-center">
+                                <span class="menu-title text-truncate text-wrap">
+                                    Pengisian SKIPS
+                                </span>
+                            </a>
+                        </li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
+
             @endhasanyrole
 
             @hasanyrole('pengetua_guru_besar|penolong_kanan_kokurikulum|kpp_pp_ppp')
@@ -619,7 +639,7 @@ $configData = Helper::applClasses();
                 </ul>
             </li>
 
-               <li class="navigation-header">
+            <li class="navigation-header">
                 <span> Pengurusan Modul </span>
             </li>
             <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
@@ -649,6 +669,31 @@ $configData = Helper::applClasses();
                 </ul>
             </li>
 
+            <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <span class="menu-title text-truncate text-wrap">
+                        Instrument SKIPS
+                    </span>
+                </a>
+
+                <ul class="nav">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.skips_baru') }}" class="d-flex align-items-center">
+                            <span class="menu-title text-truncate text-wrap">
+                                Pengisian SKIPS
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.ringkasan_skips']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.ringkasan_skips') }}" class="d-flex align-items-center">
+                            <span class="menu-title text-truncate text-wrap">
+                                Ringkasan Maklumat
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             @endhasanyrole
         </ul>
     </div>

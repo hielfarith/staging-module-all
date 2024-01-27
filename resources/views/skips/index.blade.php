@@ -20,14 +20,10 @@ SKIPS
         </h4>
     </div>
     <hr>
-
+    <input type="hidden" name="butiran_id" id="butiran_id" value="{{$butiran_id}}">
     <div class="card-body">
         <ul class="nav nav-pills nav-justified" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="text-uppercase text-wrap nav-link fw-bolder" id="butiran-pemeriksaan-tab" data-bs-toggle="tab" href="#butiran-pemeriksaan" aria-controls="butiran-pemeriksaan" role="tab" aria-selected="true">
-                    BUTIRAN PEMERIKSAAN
-                </a>
-            </li>
+            
             <li class="nav-item" role="presentation">
                 <a class="text-uppercase text-wrap nav-link fw-bolder active" id="butiran-institusi-tab" data-bs-toggle="tab" href="#butiran-institusi" aria-controls="butiran-institusi" role="tab" aria-selected="true">
                     BUTIRAN INSTITUSI
@@ -49,6 +45,12 @@ SKIPS
                 </a>
             </li>
             <li class="nav-item" role="presentation">
+                <a class="text-uppercase text-wrap nav-link fw-bolder" id="butiran-pemeriksaan-tab" data-bs-toggle="tab" href="#butiran-pemeriksaan" aria-controls="butiran-pemeriksaan" role="tab" aria-selected="true">
+                    BUTIRAN PEMERIKSAAN
+                </a>
+            </li>
+
+            <li class="nav-item" role="presentation">
                 <a class="text-uppercase text-wrap nav-link fw-bolder" id="ulasan-tab" data-bs-toggle="tab" href="#ulasan" aria-controls="ulasan" role="tab" aria-selected="true">
                     ULASAN KESELURUHAN PEMERIKSAAN
                 </a>
@@ -56,11 +58,8 @@ SKIPS
         </ul>
 
         <div class="tab-content">
-            <div class="tab-pane fade" id="butiran-pemeriksaan" role="tabpanel" aria-labelledby="butiran-pemeriksaan-tab">
-                <hr>
-                @include('skips.borang_skips.butiran_pemeriksaan')
-            </div>
-            <div class="tab-pane fade show active" id="butiran-institusi" role="tabpanel" aria-labelledby="butiran-institusi-tab">
+            
+            <div class="tab-pane active" id="butiran-institusi" role="tabpanel" aria-labelledby="butiran-institusi-tab">
                 @include('skips.borang_skips.butiran_institusi')
             </div>
             <div class="tab-pane fade" id="item" role="tabpanel" aria-labelledby="item-tab">
@@ -74,6 +73,9 @@ SKIPS
             <div class="tab-pane fade" id="pencapaian" role="tabpanel" aria-labelledby="pencapaian-tab">
                 @include('skips.borang_skips.pencapaian')
             </div>
+            <div class="tab-pane fade" id="butiran-pemeriksaan" role="tabpanel" aria-labelledby="butiran-pemeriksaan-tab">
+                @include('skips.borang_skips.butiran_pemeriksaan')
+            </div>
             <div class="tab-pane fade" id="ulasan" role="tabpanel" aria-labelledby="ulasan-tab">
                 @include('skips.borang_skips.ulasan')
             </div>
@@ -83,7 +85,7 @@ SKIPS
 @endsection
 
 @section('script')
-<script>
-    
+<script type="text/javascript">
+    console.log('dsds')    
 </script>
 @endsection
