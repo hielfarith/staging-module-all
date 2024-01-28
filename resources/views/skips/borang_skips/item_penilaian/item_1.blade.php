@@ -1,8 +1,14 @@
 <form id="penubuhan_pendaftaran">
-
+<?php 
+    $butiran_institusi_id = Request::segment(2);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran);   
+    } else {
+        $penubuhan_pendaftaran = null;
+    }
+?>
 @php
-$butiran_institusi_id = Request::segment(2);
-
 $pendaftarans = [
     'kelulusan_penubuhan' => '1.1 Surat Kelulusan Penubuhan',
     'perakuan_pendaftaran' => '1.2 Perakuan Pendaftaran',
@@ -147,10 +153,9 @@ $options = [
                         <td colspan="2"> {{ $pendaftaran }}</td>
 
                         @foreach ($options[$index] as $key => $option)
-
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$penubuhan_pendaftaran?->$index}} @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index == $key) checked @endif>
                                 </div>
                                 <br>
 

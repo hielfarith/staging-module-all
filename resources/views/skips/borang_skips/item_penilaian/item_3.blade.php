@@ -1,5 +1,13 @@
 <form id="pengurusan_kurikulum">
-
+<?php 
+    $butiran_institusi_id = Request::segment(2);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengurusan_kurikulum = json_decode($tab1->pengurusan_kurikulum);   
+    } else {
+        $pengurusan_kurikulum = null;
+    }
+?>
 @php
 $butiran_institusi_id = Request::segment(2);
 $kurikulums = [
@@ -122,7 +130,7 @@ $option_kurikulums = [
                         @foreach ($option_kurikulums[$index] as $key => $option_kurikulum)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" @if($pengurusan_kurikulum && $pengurusan_kurikulum->$index == $key) checked @endif>
                                 </div>
                                 <br>
 

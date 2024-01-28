@@ -1,4 +1,13 @@
 <form id="piawaian">
+<?php 
+    $butiran_institusi_id = Request::segment(2);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $piawaianData = json_decode($tab1->piawaian);   
+    } else {
+        $piawaianData = null;
+    }
+?>
 @php
 $butiran_institusi_id = Request::segment(2);
 
@@ -120,7 +129,7 @@ $option_piawaians = [
                         @foreach ($option_piawaians[$index] as $key => $option_piawaian)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($piawaianData && $piawaianData->$index == $key) checked @endif>
                                 </div>
                                 <br>
                                 {!! $option_piawaian !!}

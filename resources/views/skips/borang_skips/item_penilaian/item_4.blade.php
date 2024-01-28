@@ -1,5 +1,13 @@
 <form id="pengajaran">
-
+<?php 
+    $butiran_institusi_id = Request::segment(2);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengajaran = json_decode($tab1->pengajaran);   
+    } else {
+        $pengajaran = null;
+    }
+?>
 @php
 $butiran_institusi_id = Request::segment(2);
 $pdps = [
@@ -102,7 +110,7 @@ $option_pdps = [
                         @foreach ($option_pdps[$index] as $key => $option_pdp)
                         <td>
                             <div class="form-check form-check-inline mb-1">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengajaran && $pengajaran->$index == $key) checked @endif>
                             </div>
                             <br>
 
