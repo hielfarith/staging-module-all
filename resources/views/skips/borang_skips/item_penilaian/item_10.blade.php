@@ -85,14 +85,22 @@ $option_antarabangsas = [
             <tr>
                 <td colspan="8">Pengurusan Pengajaran & Pembelajaran</td>
             </tr>
-            {{-- @foreach ($antarabangsas as $index => $antarabangsa)
+             @foreach ($pelajar_antarabangsas as $index => $antarabangsa)
                 <tr>
                     <td colspan="2"> {{ $antarabangsa }}</td>
-                    @foreach ($option_antarabangsas[$index] as $option_antarabangsa)
-                        {!! $option_antarabangsa !!}
-                    @endforeach
+                    @if(isset($option_antarabangsas[$index]))
+                        @foreach ($option_antarabangsas[$index] as $key => $option_antarabangsa)
+                            <td>
+                                <div class="form-check form-check-inline mb-1">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}">
+                                </div>
+                                <br>
+                                {!! $option_antarabangsa !!}
+                            </td>
+                        @endforeach
+                    @endif
                 </tr>
-            @endforeach --}}
+            @endforeach 
         </tbody>
     </table>
 </div>

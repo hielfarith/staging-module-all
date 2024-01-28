@@ -44,19 +44,13 @@
 </div>
   <hr>
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="submit" class="btn btn-primary float-right">Simpan</button> 
+        <button type="button" class="btn btn-primary float-right" onclick="submitformPemeriksan()">Simpan</button>
     </div>
 </form>
 @section('script')
 <script>
     
-    $.ajaxSetup({
-       headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-       }
-    });
-    $('#butiran_pemeriksaan').submit(function(event) {
-        event.preventDefault();
+    function submitformPemeriksan() {
         var formData = new FormData(document.getElementById('butiran_pemeriksaan'));
         var error = false;
 
@@ -87,6 +81,6 @@
             }
         });
 
-    });
+    };
 </script>
 @endsection

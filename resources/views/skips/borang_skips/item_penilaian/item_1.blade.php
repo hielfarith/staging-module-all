@@ -1,4 +1,8 @@
+<form id="penubuhan_pendaftaran">
+
 @php
+$butiran_institusi_id = Request::segment(2);
+
 $pendaftarans = [
     'kelulusan_penubuhan' => '1.1 Surat Kelulusan Penubuhan',
     'perakuan_pendaftaran' => '1.2 Perakuan Pendaftaran',
@@ -134,6 +138,7 @@ $options = [
                 </tr>
             </thead>
             <tbody>
+                <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
                 <tr>
                     <td colspan="8">Penubuhan & Pendaftaran</td>
                 </tr>
@@ -141,10 +146,11 @@ $options = [
                     <tr>
                         <td colspan="2"> {{ $pendaftaran }}</td>
 
-                        @foreach ($options[$index] as $option)
+                        @foreach ($options[$index] as $key => $option)
+
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $pendaftaran }}" id="" value="">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required>
                                 </div>
                                 <br>
 
@@ -153,12 +159,58 @@ $options = [
                         @endforeach
                     </tr>
                 @endforeach
+                </form>
+
             </tbody>
         </table>
     </div>
 
     <hr>
+    @if(!empty($butiran_institusi_id))
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="submit" class="btn btn-primary float-right">Simpan</button>
     </div>
+    @endif
 </form>
+@section('script')
+<script>
+    $.ajaxSetup({
+       headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       }
+    });
+    $('#penubuhan_pendaftaran').submit(function(event) {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById('penubuhan_pendaftaran'));
+        var error = false;
+
+         $('form#penubuhan_pendaftaran').find('radio, input, checkbox').each(function() {
+            if(this.required && this.type == 'checkbox' && !this.checked) {
+                error = true;
+            }
+            if (this.required && this.value == '') {
+                error = true;
+            }
+        });
+ 
+        if (error) {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skips.instrumen-submit', ['tab' => 'penubuhan_pendaftaran']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+
+    });
+</script>
+@endsection
