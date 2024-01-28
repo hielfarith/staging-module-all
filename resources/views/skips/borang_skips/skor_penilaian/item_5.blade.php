@@ -9,10 +9,10 @@ $peperiksaans = [
     $butiran_institusi_id = Request::segment(2);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
-        $pengurusan_penilaian = json_decode($tab1->pengurusan_penilaian);   
+        $pengurusan_penilaian = json_decode($tab1->pengurusan_penilaian);
     } else {
         $pengurusan_penilaian = null;
-    } 
+    }
     $total = $score = 0;
 ?>
 
@@ -57,7 +57,7 @@ $peperiksaans = [
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
                 <td>
-                    <a class="text-success">{{$total}}}</a>
+                    <a class="text-success">{{$total}}</a>
                 </td>
             </tr>
             <tr>

@@ -44,11 +44,11 @@
             KEBERSIHAN & KECERIAAN
         </a>
     </li>
-    <!-- <li class="nav-item" role="presentation">
+    <li class="nav-item" role="presentation">
         <a class="text-wrap nav-link fw-bolder" id="item-10-tab" data-bs-toggle="tab" href="#item-10" aria-controls="item-10" role="tab" aria-selected="true">
             PENGURUSAN PELAJAR ANTARABANGSA
         </a>
-    </li> -->
+    </li>
 </ul>
 
 <div class="tab-content">
@@ -79,7 +79,7 @@
     <div class="tab-pane fade" id="item-9" role="tabpanel" aria-labelledby="item-9-tab">
         @include('skips.borang_skips.item_penilaian.item_9')
     </div>
-    <!-- <div class="tab-pane fade" id="item-10" role="tabpanel" aria-labelledby="item-10-tab">
+    <div class="tab-pane fade" id="item-10" role="tabpanel" aria-labelledby="item-10-tab">
         @include('skips.borang_skips.item_penilaian.item_10')
-    </div> -->
+    </div>
 </div>

@@ -9,6 +9,7 @@ $pelajar_antarabangsas = [
     'tempoh_pengajaran_min_20_jam_seminggu' => '10.1.5 Tempoh Pengajaran Min 20 Jam Seminggu',
     'dokumen_pelajar_antarabangsa' => '10.2 Dokumen Pelajar Antrarabangsa',
     'surat_tawaran_oleh_pusat_bahasa_kemahiran' => '10.2.1 Surat Tawaran Oleh Pusat Bahasa/Kemahiran',
+    'resit_pembayaran_oleh_pusat_bahasa' => '10.2.2 Resit Pembayaran oleh Pusat Bahasa',
     'buku_peraturan_refund_policy' => '10.2.3 Buku Peraturan/Refund Policy',
     'surat_kelulusan_jabatan_imigresen' => '10.2.4 Surat Kelulusan Jabatan Imigresen',
     'salinan_visa_pelajar' => '10.2.5 Salinan Visa Pelajar',
@@ -20,22 +21,142 @@ $pelajar_antarabangsas = [
 ];
 
 $option_antarabangsas = [
-    'persekitaran_kawasan_penyambut_tetamu' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="satu_daripada_tiga">Mempunyai mana-mana satu (1) kriteria</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="dua_daripada_empat">Mempunyai mana-mana dua (2) kriteria</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="tiga_daripada_lima">Mempunyai mana-mana tiga (3) kriteria</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="empat_daripada_enam">Mempunyai mana-mana empat (4) kriteria</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="lima_daripada_tujuh">Mempunyai mana-mana lima (5) kriteria</option></select></td>',
+    'kawalan_dasar' => [
+        0 => '',
     ],
 
-    'bilik_darjah_bilik_khas' => [
-        0 => '<td></td>',
-        1 => '<td><select class="form-select select2"><option value="" hidden></option><option value="satu_daripada_tiga">Mempunyai mana-mana satu (1) kriteria</option></select></td>',
-        2 => '<td><select class="form-select select2"><option value="" hidden></option><option value="dua_daripada_empat">Mempunyai mana-mana dua (2) kriteria</option></select></td>',
-        3 => '<td><select class="form-select select2"><option value="" hidden></option><option value="tiga_daripada_lima">Mempunyai mana-mana tiga (3) kriteria</option></select></td>',
-        4 => '<td><select class="form-select select2"><option value="" hidden></option><option value="empat_daripada_enam">Mempunyai mana-mana empat (4) kriteria</option></select></td>',
-        5 => '<td><select class="form-select select2"><option value="" hidden></option><option value="lima_daripada_tujuh">Mempunyai mana-mana lima (5) kriteria</option></select></td>',
+    'tidak_melebihi_kapasiti_max_lampiran_b' => [
+        0 => '',
+        1 => '',
+        2 => '',
+        3 => '',
+        4 => '',
+        5 => '<i>Mematuhi</i>',
+    ],
+
+    'tidak_melebihi_80_percent_kapasiti_max' => [
+        0 => '',
+        1 => '',
+        2 => '',
+        3 => '',
+        4 => '',
+        5 => '<i>Mematuhi</i>',
+    ],
+
+    'mematuhi_kuota_pelajar_20_percent' => [
+        0 => '',
+        1 => '',
+        2 => '',
+        3 => '',
+        4 => '',
+        5 => '<i>Mematuhi</i>',
+    ],
+
+    'tempoh_pengajaran_min_20_jam_seminggu' => [
+        0 => '',
+        1 => '',
+        2 => '',
+        3 => '',
+        4 => '',
+        5 => '<i>Mematuhi</i>',
+    ],
+
+    'dokumentasi' => [
+        0 => '<i></i>',
+        1 => '<i>Mempunyai sekurang-kurangnya satu (1) kriteria dasar seperti yang disenaraikan</i>',
+        2 => '<i>Mempunyai sekurang-kurangnya satu (2) kriteria dasar seperti yang disenaraikan</i>',
+        3 => '<i>Mempunyai sekurang-kurangnya satu (3) kriteria dasar seperti yang disenaraikan</i>',
+        4 => '<i>Mempunyai sekurang-kurangnya satu (4) kriteria dasar seperti yang disenaraikan</i>',
+        5 => '<i>Mempunyai sekurang-kurangnya satu (5) kriteria dasar seperti yang disenaraikan</i>',
+    ],
+
+    'dokumen_pelajar_antarabangsa' => [
+        0 => '',
+    ],
+
+    'surat_tawaran_oleh_pusat_bahasa_kemahiran' => [
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+    ],
+
+    'resit_pembayaran_oleh_pusat_bahasa' => [
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+    ],
+
+    'buku_peraturan_refund_policy' => [
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+    ],
+
+    'surat_kelulusan_jabatan_imigresen' => [
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+    ],
+
+    'salinan_visa_pelajar' => [
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+    ],
+
+    'surat_sokongan_emgs' => [
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+    ],
+
+    'salinan_pasport' => [
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Difailkan</i>',
+        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+    ],
+
+    'pegawai_hep_antarabangsa' => [
+        0 => '',
+    ],
+
+    'pengurusan_disiplin_pelajar_antarabangsa' => [
+        0 => '',
+        1 => '<i>Ada rekod kehadiran</i>',
+        2 => '<i>Ada rekod kehadiran, Ada surat amaran</i>',
+        3 => '<i>Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis</i>',
+        4 => '<i>Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo</i>',
+        5 => '<i>Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo, Bukti Penghantaran Pulang</i>',
+    ],
+
+    'kelulusan_kementerian_dalam_negeri' => [
+        0 => '',
+        1 => '<i>Ada</i>',
+        2 => '<i>Ada, Terkini</i>',
+        3 => '<i>Ada, Terkini, Kebolehcapaian</i>',
+        4 => '<i>Ada, Terkini, Kebolehcapaian, Dipamerkan</i>',
+        5 => '<i>Ada, Terkini, Kebolehcapaian, Dipamerkan, Kemas / Kreatif</i>',
     ],
 ];
 
@@ -50,6 +171,7 @@ $option_antarabangsas = [
 
     #NilaiItem10 tbody {
         vertical-align: middle;
+        text-align: center;
     }
 
     #NilaiItem10 table {
@@ -83,7 +205,7 @@ $option_antarabangsas = [
         </thead>
         <tbody>
             <tr>
-                <td colspan="8">Pengurusan Pengajaran & Pembelajaran</td>
+                <td colspan="8">Pengurusan Pelajar Antarabangsa</td>
             </tr>
              @foreach ($pelajar_antarabangsas as $index => $antarabangsa)
                 <tr>
@@ -100,7 +222,7 @@ $option_antarabangsas = [
                         @endforeach
                     @endif
                 </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
 </div>
