@@ -7,6 +7,14 @@ $pdps = [
     'penggunaan_bahan_bantu_mengajar' => '4.4 Penggunaan Bahan Bantu Mengajar',
 ];
 
+    $butiran_institusi_id = Request::segment(2);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengajaran = json_decode($tab1->pengajaran);   
+    } else {
+        $pengajaran = null;
+    }
+$total = $score = 0;
 ?>
 
 <div class="table-responsive">
@@ -23,13 +31,24 @@ $pdps = [
             <tr>
                 <td rowspan="24"></td>
             </tr>
-            @foreach ($pdps as $pdp)
+            @foreach ($pdps as $key =>  $pdp)
                 <tr>
                     <td>
                         {{ $pdp }}
                     </td>
                     <td>
-                        <a class="text-success">Auto Calculated</a>
+                    <?php
+                        if($pengajaran) {
+                            if (isset($pengajaran->$key)){
+                                $score = $pengajaran->$key;
+                            } else {
+                                $score = 0;
+                            }
+                            $total = $total+$score;
+                        }
+                    ?>
+
+                        <a class="text-success">{{$score}}</a>
                     </td>
                 </tr>
             @endforeach
@@ -39,13 +58,13 @@ $pdps = [
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">{{$total}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">-</a>
                 </td>
             </tr>
         </tfoot>

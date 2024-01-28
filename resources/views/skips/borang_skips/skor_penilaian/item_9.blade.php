@@ -5,6 +5,14 @@ $kebersihans = [
     'bilik_darjah_bilik_khas' => '9.2 Bilik Darjah / Bilik Khas',
 ];
 
+$butiran_institusi_id = Request::segment(2);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $kebersihanData = json_decode($tab1->kebersihan);   
+    } else {
+        $kebersihanData = null;
+    }
+$score = $total = 0;
 ?>
 
 <div class="table-responsive">
@@ -21,13 +29,24 @@ $kebersihans = [
             <tr>
                 <td rowspan="24"></td>
             </tr>
-            @foreach ($kebersihans as $kebersihan)
+            @foreach ($kebersihans as $key => $kebersihan)
                 <tr>
                     <td>
                         {{ $kebersihan }}
                     </td>
                     <td>
-                        <a class="text-success">Auto Calculated</a>
+                    <?php
+                        if($kebersihanData) {
+                            if (isset($kebersihanData->$key)){
+                                $score = $kebersihanData->$key;
+                            } else {
+                                $score = 0;
+                            }
+                            $total = $total+$score;
+                        }
+                    ?>
+
+                        <a class="text-success">{{$score}}</a>
                     </td>
                 </tr>
             @endforeach
@@ -37,13 +56,13 @@ $kebersihans = [
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">{{$total}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">-</a>
                 </td>
             </tr>
         </tfoot>

@@ -7,5 +7,6 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
         Route::get('/{id?}','BorangSkipsBaru')->name('skips_baru');
         Route::post('store/{tab}', 'store')->name('instrumen-submit');
         Route::get('ringkasan-pengisian','RingkasanSkips')->name('ringkasan_skips');
+        Route::get('senarai-skips','SenaraiSkips')->name('senarai-skips');
     });
 });

@@ -27,6 +27,15 @@ $institusis = [
     'pengurusan_aduan' => '2.10 Pengurusan Aduan',
 ];
 
+    $butiran_institusi_id = Request::segment(2);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengurusan_institusi = json_decode($tab1->pengurusan_institusi);   
+    } else {
+        $pengurusan_institusi = null;
+    }
+    $total = $score = 0;
+
 ?>
 
 <div class="table-responsive">
@@ -43,13 +52,23 @@ $institusis = [
             <tr>
                 <td rowspan="25"></td>
             </tr>
-            @foreach ($institusis as $institusi)
+            @foreach ($institusis as $key => $institusi)
                 <tr>
                     <td>
                         {{ $institusi }}
                     </td>
                     <td>
-                        <a class="text-success">Auto Calculated</a>
+                    <?php
+                        if($pengurusan_institusi) {
+                            if (isset($pengurusan_institusi->$key)){
+                                $score = $pengurusan_institusi->$key;
+                            } else {
+                                $score = 0;
+                            }
+                            $total = $total+$score;
+                        }
+                    ?>
+                        <a class="text-success">{{$score}}</a>
                     </td>
                 </tr>
             @endforeach
@@ -58,14 +77,15 @@ $institusis = [
         <tfoot>
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
+                
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">{{$total}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">-</a>
                 </td>
             </tr>
         </tfoot>
