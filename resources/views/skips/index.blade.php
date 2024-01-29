@@ -39,6 +39,13 @@ SKIPS
                     SKOR ITEM STANDARD KUALITI
                 </a>
             </li>
+            @if($type == 'verfikasi')
+            <li class="nav-item" role="presentation">
+                <a class="text-uppercase text-wrap nav-link fw-bolder" id="item-verifikasi-tab" data-bs-toggle="tab" href="#item-verifikasi" aria-controls="item-verifikasi" role="tab" aria-selected="true">
+                    ITEM STANDARD KUALITI (Verfikasi)
+                </a>
+            </li>
+
             <li class="nav-item" role="presentation">
                 <a class="text-uppercase text-wrap nav-link fw-bolder" id="pencapaian-tab" data-bs-toggle="tab" href="#pencapaian" aria-controls="pencapaian" role="tab" aria-selected="true">
                     PENCAPAIAN KESELURUHAN
@@ -49,12 +56,12 @@ SKIPS
                     BUTIRAN PEMERIKSAAN
                 </a>
             </li>
-
             <li class="nav-item" role="presentation">
                 <a class="text-uppercase text-wrap nav-link fw-bolder" id="ulasan-tab" data-bs-toggle="tab" href="#ulasan" aria-controls="ulasan" role="tab" aria-selected="true">
                     ULASAN KESELURUHAN PEMERIKSAAN
                 </a>
             </li>
+            @endif
         </ul>
 
         <div class="tab-content">
@@ -64,11 +71,15 @@ SKIPS
             </div>
             <div class="tab-pane fade" id="item" role="tabpanel" aria-labelledby="item-tab">
                 <hr>
-                @include('skips.index_item')
+                @include('skips.index_item',['type' => $type, 'tab_name' => 'item_tab'])
             </div>
             <div class="tab-pane fade" id="skor-item" role="tabpanel" aria-labelledby="skor-item-tab">
                 <hr>
                 @include('skips.index_penilaian')
+            </div>
+            <div class="tab-pane fade" id="item-verifikasi" role="tabpanel" aria-labelledby="item-verifikasi-tab">
+                <hr>
+                @include('skips.index_item_verfikasi',['type' => 'verfikasi', 'tab_name' => 'item_verfikasi'])
             </div>
             <div class="tab-pane fade" id="pencapaian" role="tabpanel" aria-labelledby="pencapaian-tab">
                 @include('skips.borang_skips.pencapaian')
@@ -86,6 +97,8 @@ SKIPS
 
 @section('script')
 <script type="text/javascript">
-    console.log('dsds')    
+     
 </script>
 @endsection
+
+ 

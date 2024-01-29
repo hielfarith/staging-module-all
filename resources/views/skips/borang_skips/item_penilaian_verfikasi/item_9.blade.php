@@ -1,4 +1,4 @@
-<form id="kebersihan">
+<form id="kebersihanv">
 <?php 
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
@@ -8,7 +8,13 @@
         $kebersihanData = null;
     }
 
- 
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->kebersihan_verfikasi)) {
+            $kebersihanData = json_decode($tab1->kebersihan_verfikasi);  
+        } else {
+            $kebersihanData = null;
+        }
+    } 
     
 ?>
 @php
@@ -107,26 +113,19 @@ $option_kebersihans = [
     </div>
 
       <hr>
-    @if(!empty($butiran_institusi_id) && $type == 'borang' && $tab_name == 'item_tab')
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitform9()">Simpan</button>
+     <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right" onclick="submitform9v()">Simpan</button>
     </div>
-    @endif
-    @if(!empty($butiran_institusi_id) && $type == 'verfikasi' && $tab_name == 'item_verfikasi')
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitform9()">Simpan</button>
-    </div>
-    @endif
 </form>
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-   function submitform9() {
-        var formData = new FormData(document.getElementById('kebersihan'));
+   function submitform9v() {
+        var formData = new FormData(document.getElementById('kebersihanv'));
         var error = false;
 
-        $('form#kebersihan').find('radio, input').each(function() {
+        $('form#kebersihanv').find('radio, input').each(function() {
             var value = $("input[name='"+this.name+"']:checked").val();
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;

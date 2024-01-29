@@ -7,7 +7,7 @@ $pdps = [
     'penggunaan_bahan_bantu_mengajar' => '4.4 Penggunaan Bahan Bantu Mengajar',
 ];
 
-    $butiran_institusi_id = Request::segment(2);
+    $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengajaran = json_decode($tab1->pengajaran);   

@@ -30,7 +30,8 @@ class PengurusanSkipsController extends Controller
                 return redirect()->route('skips.skips_baru');
             }
         }
-        return view ('skips.index', compact('negeris', 'butiran_id'));
+        $type = $request->segment(2);
+        return view ('skips.index', compact('negeris', 'butiran_id', 'type'));
     }
 
     public function RingkasanSkips(Request $request){
@@ -39,6 +40,7 @@ class PengurusanSkipsController extends Controller
 
     public function store(Request $request, $tab) {
         $input = $request->input();
+
         DB::beginTransaction();
         try {
             if ($tab == 'butiran_pemeriksaan') {
@@ -62,6 +64,11 @@ class PengurusanSkipsController extends Controller
                 if (isset($input['butiran_institusi_id']) && !empty($input['butiran_institusi_id'])) {
                     $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
                     $data[$tab] = json_encode($input);
+                    if($input['usertype'] == 'verfikasi') {
+                        unset($input['usertype']);
+                        unset($data[$tab]);
+                        $data[$tab.'_verfikasi'] = json_encode($input);
+                    }
                     $data['butiran_institusi_id'] = $input['butiran_institusi_id'];
                     if (!empty($item)) {
                         $item = $item->update($data);
@@ -83,8 +90,9 @@ class PengurusanSkipsController extends Controller
     public function SenaraiSkips(Request $request){
 
         if($request->ajax()) {
+            $instrumentListings = ButiranInstitusiSkips::select(['butiran_institusi_id','item_standard_quality_skips.id as item_id', 'butiran_institusi_skips.id as id', 'butiran_institusi_skips.nama_institusi', 'butiran_institusi_skips.nama_pengetua','butiran_institusi_skips.negeri'])->join('item_standard_quality_skips','item_standard_quality_skips.butiran_institusi_id','=','butiran_institusi_skips.id')
+                ->where('item_standard_quality_skips.status',1);
 
-            $instrumentListings = ButiranInstitusiSkips::get();
             return Datatables::of($instrumentListings)
                 ->editColumn('nama_institusi', function ($instrument) {
                     return $instrument->nama_institusi;
@@ -95,12 +103,15 @@ class PengurusanSkipsController extends Controller
                 ->editColumn('negeri', function ($instrument) {
                     return $instrument->negeri;
                 })
-                 
+                ->addColumn('DT_RowIndex', function ($instrument) {
+                    static $index = 1;
+                    return $index++;
+                })
                 ->editColumn('action', function ($instrument) {
                     $button = "";
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
-                    $button .= '<a onclick="maklumatInstrumen(' . $instrument->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
 
                     $button .= "</div>";
 
@@ -161,5 +172,16 @@ class PengurusanSkipsController extends Controller
        }
 
        return view('pengurusan.pengetua.list');
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $input = $request->input();
+        $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['institusi'])->first();
+        if ($item) {
+            $item->status = 1;
+            $item->save();
+        }
+        return ['status' => true, 'data' => $item ];
     }
 }

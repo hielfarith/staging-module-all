@@ -20,6 +20,17 @@ class ItemStandardQualitySkips extends Model
         'kebersihan',
         'kebersihan',
         'pengurusan_pelajar_antarabangsa',
+        'penubuhan_pendaftaran_verfikasi',
+        'pengurusan_institusi_verfikasi',
+        'pengurusan_kurikulum_verfikasi',
+        'pengajaran_verfikasi',
+        'pengurusan_penilaian_verfikasi',
+        'pengurusan_pembangunan_guru_verfikasi',
+        'displin_verfikasi',
+        'piawaian_verfikasi',
+        'kebersihan_verfikasi',
+        'kebersihan_verfikasi',
+        'pengurusan_pelajar_antarabangsa_verfikasi',
         'butiran_institusi_id',
         'status'
     ];

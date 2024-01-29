@@ -1,4 +1,4 @@
-<form id="pengajaran">
+<form id="pengajaranv">
 <?php 
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
@@ -7,7 +7,13 @@
     } else {
         $pengajaran = null;
     }
-   
+   if ($type == 'verfikasi' ) {
+        if (!empty($tab1->pengajaran_verfikasi)) {
+            $pengajaran = json_decode($tab1->pengajaran_verfikasi);  
+        } else {
+            $pengajaran = null;
+        }
+    } 
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -125,10 +131,9 @@ $option_pdps = [
     </div>
 
      <hr>
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitform4()">Simpan</button>
+     <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right" onclick="submitform4v()">Simpan</button>
     </div>
- 
 
 </form>
 
@@ -136,10 +141,10 @@ $option_pdps = [
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
-   function submitform4() {
-        var formData = new FormData(document.getElementById('pengajaran'));
+   function submitform4v() {
+        var formData = new FormData(document.getElementById('pengajaranv'));
         var error = false;
-        $('form#pengajaran').find('radio, input').each(function() {
+        $('form#pengajaranv').find('radio, input').each(function() {
             var value = $("input[name='"+this.name+"']:checked").val();
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;

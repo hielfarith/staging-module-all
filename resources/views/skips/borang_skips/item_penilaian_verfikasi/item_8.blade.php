@@ -1,4 +1,4 @@
-<form id="piawaian">
+<form id="piawaianv">
 <?php 
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
@@ -8,7 +8,13 @@
         $piawaianData = null;
     }
 
- 
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->piawaian_verfikasi)) {
+            $piawaianData = json_decode($tab1->piawaian_verfikasi);  
+        } else {
+            $piawaianData = null;
+        }
+    } 
     ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -144,26 +150,19 @@ $option_piawaians = [
     </div>
 
        <hr>
-    @if(!empty($butiran_institusi_id) && $type == 'borang' && $tab_name == 'item_tab')
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitform8()">Simpan</button>
+     <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right" onclick="submitform8v()">Simpan</button>
     </div>
-    @endif
-    @if(!empty($butiran_institusi_id) && $type == 'verfikasi' && $tab_name == 'item_verfikasi')
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitform8()">Simpan</button>
-    </div>
-    @endif
 </form>
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-   function submitform8() {
-        var formData = new FormData(document.getElementById('piawaian'));
+   function submitform8v() {
+        var formData = new FormData(document.getElementById('piawaianv'));
         var error = false;
 
-        $('form#piawaian').find('radio, input').each(function() {
+        $('form#piawaianv').find('radio, input').each(function() {
             var value = $("input[name='"+this.name+"']:checked").val();
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;

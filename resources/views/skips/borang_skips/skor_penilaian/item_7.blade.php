@@ -6,7 +6,7 @@ $displins = [
     'pengurusan_tindakan_disiplin' => '7.3 Pengurusan Tindakan Disiplin',
 ];
     
-     $butiran_institusi_id = Request::segment(2);
+     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $disiplin = json_decode($tab1->displin);   

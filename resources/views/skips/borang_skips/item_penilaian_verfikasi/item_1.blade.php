@@ -1,11 +1,12 @@
 <?php 
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
-    if ($butiran_institusi_id && $tab1) {
-        $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran);   
+    if ($butiran_institusi_id && !empty($tab1->penubuhan_pendaftaran_verfikasi)) {
+        $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran_verfikasi);   
     } else {
         $penubuhan_pendaftaran = null;
     }
+        $penubuhan_pendaftaran = null;
 
 ?>
 @php
@@ -117,7 +118,7 @@ $options = [
         /* word-wrap: break-word; */
     }
 </style>
-<form id="penubuhan_pendaftaran">
+<form id="penubuhan_pendaftaranv">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem1">
             <thead>
@@ -148,15 +149,17 @@ $options = [
                     <td colspan="8">Penubuhan & Pendaftaran</td>
                 </tr>
                 @foreach ($pendaftarans as $index => $pendaftaran)
- 
+                <?php
+                    $keyval = '';
+                    $keyval = $index.'_verfikasi';
+                ?>
                     <tr>
                         <td colspan="2"> {{ $pendaftaran }}</td>
 
                         @foreach ($options[$index] as $key => $option)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index == $key) checked @endif>
-                                     
+                                     <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index.'_verfikasi' == $key) checked @endif>
                                 </div>
                                 <br>
 
@@ -172,19 +175,19 @@ $options = [
     
     <hr>
 
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
-    </div>
  
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right verify" onclick="submitform1v()">Simpan</button>
+    </div>
 
 </form>
 
 <script>
-    function submitform1() {
-        var formData = new FormData(document.getElementById('penubuhan_pendaftaran'));
+    function submitform1v() {
+        var formData = new FormData(document.getElementById('penubuhan_pendaftaranv'));
         var error = false;
 
-         $('form#penubuhan_pendaftaran').find('radio, input, checkbox').each(function() {
+         $('form#penubuhan_pendaftaranv').find('radio, input, checkbox').each(function() {
             if(this.required && this.type == 'checkbox' && !this.checked) {
                 error = true;
             }

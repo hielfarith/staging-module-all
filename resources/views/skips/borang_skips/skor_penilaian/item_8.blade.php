@@ -9,7 +9,7 @@ $piawaians = [
     'penyelenggaraan_tandas' => '8.6 Penyelenggaraan Tandas',
 ];
 
-$butiran_institusi_id = Request::segment(2);
+$butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $piawaianData = json_decode($tab1->piawaian);   

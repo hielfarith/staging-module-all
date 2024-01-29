@@ -1,15 +1,17 @@
 <form id="displin">
 <?php 
-    $butiran_institusi_id = Request::segment(2);
+    $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $disiplin = json_decode($tab1->displin);   
     } else {
         $disiplin = null;
     }
+
+ 
 ?>
 @php
-$butiran_institusi_id = Request::segment(2);
+$butiran_institusi_id = Request::segment(3);
 $displins = [
     'peraturan_disiplin' => '7.1 Peraturan Disiplin',
     'rekod_disiplin' => '7.2 Rekod Disiplin',
@@ -63,8 +65,8 @@ $option_displins = [
         /* word-wrap: break-word; */
     }
 </style>
-
-  <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
+    <input type="hidden" name="usertype" value="{{$type}}">
+    <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem7">
             <thead>
@@ -110,8 +112,13 @@ $option_displins = [
         </table>
     </div>
 
-    <hr>
-    @if(!empty($butiran_institusi_id))
+        <hr>
+    @if(!empty($butiran_institusi_id) && $type == 'borang' && $tab_name == 'item_tab')
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right" onclick="submitform7()">Simpan</button>
+    </div>
+    @endif
+    @if(!empty($butiran_institusi_id) && $type == 'verfikasi' && $tab_name == 'item_verfikasi')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform7()">Simpan</button>
     </div>

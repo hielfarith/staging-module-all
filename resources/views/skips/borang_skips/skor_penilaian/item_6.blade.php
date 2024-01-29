@@ -5,7 +5,7 @@ $pembangunan_gurus = [
     'kelayakan_akademik_guru' => '6.2 Kelayakan Akademik Guru',
     'kelayakan_ikhtisas_guru' => '6.3 Kelayakan Ikhtisas Guru',
 ];
- $butiran_institusi_id = Request::segment(2);
+ $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru);   

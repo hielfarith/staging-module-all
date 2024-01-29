@@ -23,8 +23,6 @@ $configData = Helper::applClasses();
         </ul>
     </div>
 
-    {{-- <div class="shadow-bottom"></div> --}}
-
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
@@ -107,13 +105,13 @@ $configData = Helper::applClasses();
                         </a>
 
                         <ul class="nav">
-                            <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                           <!--  <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
                                 <a href="{{ route('skips.skips_baru') }}" class="d-flex align-items-center">
                                     <span class="menu-title text-truncate text-wrap">
                                         Pengisian SKIPS
                                     </span>
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.ringkasan_skips']) ? 'active' : '' }}">
                                 <a href="{{ route('skips.ringkasan_skips') }}" class="d-flex align-items-center">
@@ -275,55 +273,69 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <!-- <li class="nav-item ">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
                         </a>
-                    </li>
-
-                    <li class="nav-item ">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Verifikasi Data Instrumen</span>
+                    </li> -->
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.skips_baru') }}" class="d-flex align-items-center">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <!-- <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Verifikasi Data Instrumen</span>
+                        </a>
+                    </li> -->
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips') }}" class="d-flex align-items-center">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi Pendidikan</span>
                         </a>
@@ -336,7 +348,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Notifikasi</span>
                         </a>

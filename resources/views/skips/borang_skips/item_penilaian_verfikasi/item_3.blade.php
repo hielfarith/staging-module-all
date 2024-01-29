@@ -1,4 +1,4 @@
-<form id="pengurusan_kurikulum">
+<form id="pengurusan_kurikulumv">
 <?php 
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
@@ -7,7 +7,14 @@
     } else {
         $pengurusan_kurikulum = null;
     }
- 
+
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->pengurusan_kurikulum_verfikasi)) {
+            $pengurusan_kurikulum = json_decode($tab1->pengurusan_kurikulum_verfikasi);  
+        } else {
+            $pengurusan_kurikulum = null;
+        }
+    }
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -147,19 +154,19 @@ $option_kurikulums = [
 
        <hr>
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitform3()">Simpan</button>
+        <button type="button" class="btn btn-primary float-right" onclick="submitform3v()">Simpan</button>
     </div>
-   
+    
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
-   function submitform3() {
-        var formData = new FormData(document.getElementById('pengurusan_kurikulum'));
+   function submitform3v() {
+        var formData = new FormData(document.getElementById('pengurusan_kurikulumv'));
         var error = false;
 
-        $('form#pengurusan_kurikulum').find('radio, input').each(function() {
+        $('form#pengurusan_kurikulumv').find('radio, input').each(function() {
             var value = $("input[name='"+this.name+"']:checked").val();
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;

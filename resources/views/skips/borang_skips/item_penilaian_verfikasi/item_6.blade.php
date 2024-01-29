@@ -1,4 +1,4 @@
-<form id="pengurusan_pembangunan_guru">
+<form id="pengurusan_pembangunan_guruv">
 <?php 
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
@@ -8,7 +8,13 @@
         $pengurusan_pembangunan_guru = null;
     }
 
-  
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->pengurusan_pembangunan_guru_verfikasi)) {
+            $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru_verfikasi);  
+        } else {
+            $pengurusan_pembangunan_guru = null;
+        }
+    } 
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -113,27 +119,20 @@ $option_pembangunan_gurus = [
     </div>
 
        <hr>
-    @if(!empty($butiran_institusi_id) && $type == 'borang' && $tab_name == 'item_tab')
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitform6()">Simpan</button>
+        <button type="button" class="btn btn-primary float-right" onclick="submitform6v()">Simpan</button>
     </div>
-    @endif
-    @if(!empty($butiran_institusi_id) && $type == 'verfikasi' && $tab_name == 'item_verfikasi')
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitform6()">Simpan</button>
-    </div>
-    @endif
-</form>
+    </form>
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
-   function submitform6() {
-        var formData = new FormData(document.getElementById('pengurusan_pembangunan_guru'));
+   function submitform6v() {
+        var formData = new FormData(document.getElementById('pengurusan_pembangunan_guruv'));
         var error = false;
 
-        $('form#pengurusan_pembangunan_guru').find('radio, input').each(function() {
+        $('form#pengurusan_pembangunan_guruv').find('radio, input').each(function() {
             var value = $("input[name='"+this.name+"']:checked").val();
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;

@@ -5,7 +5,7 @@ $kebersihans = [
     'bilik_darjah_bilik_khas' => '9.2 Bilik Darjah / Bilik Khas',
 ];
 
-$butiran_institusi_id = Request::segment(2);
+$butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $kebersihanData = json_decode($tab1->kebersihan);   
