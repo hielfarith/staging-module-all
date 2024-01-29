@@ -8,10 +8,11 @@ use App\Models\Master\MasterState;
 use App\Models\ButiranPemeriksaanSkips;
 use App\Models\ButiranInstitusiSkips;
 use App\Models\ItemStandardQualitySkips;
-
+use App\Models\PengerusiPengetuaGuru;
 use App\Helpers\FMF;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class PengurusanSkipsController extends Controller
 {
@@ -112,4 +113,53 @@ class PengurusanSkipsController extends Controller
         return view('skips.list');
     }
 
+    public function kemaskiniProfil(Request $request){
+        if($request->ajax()) {
+
+            $pengetuaList = PengerusiPengetuaGuru::where('id', '!=', 0);
+           if ($request->has('nama_pengguna') && !empty($request->input('nama_pengguna'))) {
+               $pengetuaList->where('nama', 'like','%'. $request->input('nama_pengguna'). '%');
+           }
+           if ($request->has('no_kad') && !empty($request->input('no_kad'))) {
+               $pengetuaList->where('no_kp', $request->input('no_kad'));
+           }
+           if ($request->has('email_peribadi') && !empty($request->input('email_peribadi'))) {
+               $pengetuaList->where('email', $request->input('email_peribadi'));
+           }
+
+           return Datatables::of($pengetuaList)
+               ->editColumn('nama_pengguna', function ($pengetuaList) {
+                   return $pengetuaList->nama;
+               })
+               ->editColumn('no_kad', function ($pengetuaList) {
+                   return $pengetuaList->no_kp;
+               })
+               ->editColumn('email_peribadi', function ($pengetuaList) {
+                   return $pengetuaList->email;
+               })
+               ->editColumn('no_tel', function ($pengetuaList) {
+                   return $pengetuaList->no_tel;
+               })
+                ->editColumn('institusi', function ($pengetuaList) {
+                   return $pengetuaList->institusi;
+               })
+               ->editColumn('action', function ($pengetuaList) {
+                   $button = "";
+                   $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                   $button .= '<a onclick="maklumatpengetua(' . $pengetuaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+                    $button .= '<a onclick="maklumatpengetuaEdit(' . $pengetuaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+
+                   $button .= "</div>";
+
+                   return $button;
+               })
+               ->rawColumns(['action'])
+               ->make(true);
+       }
+
+       return view('pengurusan.pengetua.list');
+    }
 }

@@ -329,8 +329,9 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item ">
-                        <a href="" class="nav-link">
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['skips.kemaskini-profil'])? 'active': '' }}">
+                        <a href="{{ route('skips.kemaskini-profil') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
                         </a>
                     </li>
