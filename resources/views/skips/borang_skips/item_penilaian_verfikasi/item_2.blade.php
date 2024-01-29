@@ -2,11 +2,7 @@
 <?php 
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
-    if ($butiran_institusi_id && $tab1) {
-        $pengurusan_institusi = json_decode($tab1->pengurusan_institusi);   
-    } else {
-        $pengurusan_institusi = null;
-    }
+   
     if ($type == 'verfikasi' ) {
         if (!empty($tab1->pengurusan_institusi_verfikasi)) {
             $pengurusan_institusi = json_decode($tab1->pengurusan_institusi_verfikasi);  
@@ -302,7 +298,7 @@ $option_institusis = [
                             <td>
                                 @if(count($option_institusis[$index]) > 1) 
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$index == $key) checked @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$index.'_verfikasi' == $key) checked @endif>
                                 </div>
                                 @endif
                                 <br>

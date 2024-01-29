@@ -139,7 +139,7 @@ $option_kurikulums = [
                         @foreach ($option_kurikulums[$index] as $key => $option_kurikulum)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" @if($pengurusan_kurikulum && $pengurusan_kurikulum->$index == $key) checked @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" @if($pengurusan_kurikulum && $pengurusan_kurikulum->$index.'_verfikasi' == $key) checked @endif>
                                 </div>
                                 <br>
 
