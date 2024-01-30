@@ -2,9 +2,9 @@
     $id = Request::segment(3);
     $ulasan =  App\Models\UlasanKeseluruhanPemeriksaanSkips::where('butiran_institusi_id',$id)->first();
     // $item = 
-     $itemStandardQualitySkips = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+     $itemStandardQualitySkips = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $id)->first();
     $showHantarulasan = false;
-    if ($butiran_institusi_id) {
+    if ($id) {
         if (!empty($itemStandardQualitySkips->penubuhan_pendaftaran_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_institusi_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_kurikulum_verfikasi) && !empty($itemStandardQualitySkips->pengajaran_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_penilaian_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_pembangunan_guru_verfikasi) && !empty($itemStandardQualitySkips->displin_verfikasi) && !empty($itemStandardQualitySkips->piawaian_verfikasi) && !empty($itemStandardQualitySkips->kebersihan_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_pelajar_antarabangsa_verfikasi)) {
             $showHantarulasan = true;
         }
