@@ -125,7 +125,7 @@ $configData = Helper::applClasses();
                 </ul>
             </li>
 
-            <li class="navigation-header">
+            <!-- <li class="navigation-header">
                 <span> Pengurusan Instrumen</span>
             </li>
             <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
@@ -133,7 +133,7 @@ $configData = Helper::applClasses();
                     <i data-feather="folder"></i>
                     <span class="menu-title text-truncate text-wrap"> Instrumen </span>
                 </a>
-                <ul class="nav">
+                <ul class="nav"> -->
 
                     <!--  <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
@@ -147,7 +147,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li> -->
 
-
+<!-- 
                     <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-sub-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-sub-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Sub Aspek</span>
@@ -184,7 +184,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
 
             <!-- <li class="navigation-header">
                 <span> SKIPS</span>
