@@ -44,6 +44,12 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap">Dashboard I-KePS</span>
                 </a>
             </li>
+            <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
+                <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
+                    {{-- <i data-feather="home"></i> --}}
+                    <span class="menu-title text-truncate text-wrap">Dashboard SKIPS</span>
+                </a>
+            </li>
 
             @hasanyrole('superadmin|admin')
             <li class="navigation-header">

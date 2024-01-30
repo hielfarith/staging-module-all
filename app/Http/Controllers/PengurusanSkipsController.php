@@ -271,7 +271,7 @@ class PengurusanSkipsController extends Controller
 			if (array_key_exists('pengetua_id', $input)) {
             	$institusi = SkipsInstitusiPendidikan::where('id', $input['institusi_id'])->first();
             	unset($input['institusi_id']);
-				
+
             	$institusi->update($input);
             } else {
             	$institusi = new SkipsInstitusiPendidikan;
@@ -285,5 +285,9 @@ class PengurusanSkipsController extends Controller
             DB::rollback();
             return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
         }
+    }
+
+    public function DashboardSkips(Request $request){
+        return view ('dashboard.dashboard_skips');
     }
 }

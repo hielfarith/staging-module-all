@@ -19,6 +19,8 @@
     <script src="{{asset('vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
     <script src="{{asset('vendors/js/forms/select/select2.full.min.js')}}"></script>
     <script src="{{asset('vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
+    <script src="{{ asset(mix('vendors/js/charts/apexcharts.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/charts/chart.min.js')) }}"></script>
 
 @if ($configData['blankPage'] === false)
     <script src="{{ asset(mix('js/scripts/customizer.js')) }}"></script>
@@ -26,6 +28,8 @@
 
 @yield('page-script')
     <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/charts/chart-chartjs.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/charts/chart-apex.js')) }}"></script>
     {{-- <script src="{{asset('js/scripts/pages/app-invoice.js')}}"></script> --}}
 
 @yield('developer-script')
@@ -421,7 +425,7 @@
             success: function(data) {
                 event.preventDefault();
                 console.log(data)
-               
+
                 if (message != null) {
                     if (message != 'false') {
                         swalSuccessAfterSubmit('Makluman', message)
@@ -558,7 +562,7 @@
             initializeFlatpickr();
         });
     }
-    
+
 function changenegeri(negeri){
     var negerivalue = negeri.value;
     var url = "{{ route('admin.internal.checkdaerah') }}"
@@ -577,5 +581,5 @@ function changenegeri(negeri){
         }
     });
 }
-    
+
 </script>

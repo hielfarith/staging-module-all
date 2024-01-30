@@ -16,5 +16,6 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
         Route::get('institusi-baru', 'InstitusiBaru')->name('institusi_baru');
         Route::post('save-institusi', 'saveInstitusi')->name('save-institusi');
 
+        Route::get('dashboard', 'DashboardSkips')->name('dashboard_skips');
     });
 });

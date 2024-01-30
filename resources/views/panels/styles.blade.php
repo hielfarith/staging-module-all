@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/themes/bordered-layout.css')) }}" />
     <link rel="stylesheet" href="{{ asset(mix('css/base/themes/semi-dark-layout.css')) }}" />
     <link rel="stylesheet" href="{{asset('vendors/css/pickers/flatpickr/flatpickr.min.css')}}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/charts/apexcharts.css')) }}">
 
 @php $configData = Helper::applClasses(); @endphp
 
@@ -30,6 +31,7 @@
 <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
 <link rel="stylesheet" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
 <link rel="stylesheet" href="{{asset('css/base/pages/app-invoice.css')}}">
+<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/charts/chart-apex.css')) }}">
 
     <style>
         .table .header_uppercase .table-bordered .table-hovered{
