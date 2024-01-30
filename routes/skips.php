@@ -10,11 +10,16 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
         Route::post('update-status', 'updateStatus')->name('instrumen-update');
         Route::get('ringkasan-pengisian','RingkasanSkips')->name('ringkasan_skips');
         Route::get('senarai-skips','SenaraiSkips')->name('senarai-skips');
-        Route::get('kemaskini-profil', 'kemaskiniProfil')->name('kemaskini-profil');
+
+        Route::get('validasi', 'SenaraiSkips')->name('validasi');
+
+        Route::get('pelaporan-penarafan', 'SenaraiSkips')->name('pelaporan-penarafan');
 
         Route::get('senarai-institusi', 'SenaraiInstitusi')->name('senarai_institusi');
         Route::get('institusi-baru', 'InstitusiBaru')->name('institusi_baru');
         Route::post('save-institusi', 'saveInstitusi')->name('save-institusi');
+
+        Route::get('kemaskini-profil', 'kemaskiniProfil')->name('kemaskini-profil');
 
         Route::get('dashboard', 'DashboardSkips')->name('dashboard_skips');
     });

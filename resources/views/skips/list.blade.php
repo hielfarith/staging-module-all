@@ -20,6 +20,11 @@ Instrumen
     <div class="card-header">
         <h4 class="card-title fw-bolder"> Senarai Instrumen </h4>
 
+        <div class="d-flex justify-content-end align-items-center">
+            <a href="{{ asset('template/BORANG DEMOGRAFI SKIPS.pdf') }}" class="btn btn-primary float-right" download>
+                <i class="fa-solid fa-file"></i> Muat Turun Dokumen
+            </a>
+        </div>
     </div>
 
     <hr>
@@ -31,8 +36,12 @@ Instrumen
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
-                        <th>Nama Instrumen</th>
+                        <th>Kod Sekolah</th>
+                        <th>Nama Institusi</th>
+                        <th>Jenis Institusi</th>
                         <th>Nama Pengetua</th>
+                        <th>PPD</th>
+                        <th>Negeri</th>
                         <th>Status</th>
                         <th width="5%">Tindakan</th>
                     </tr>
