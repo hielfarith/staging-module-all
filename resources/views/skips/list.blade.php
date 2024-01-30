@@ -96,8 +96,24 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                 {
-                    data: "nama_instrumen",
-                    name: "nama_instrumen",
+                    data: "kod_sekolah",
+                    name: "kod_sekolah",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "nama_institusi",
+                    name: "nama_institusi",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "jenis_institusi",
+                    name: "jenis_institusi",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
@@ -106,6 +122,22 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
                 {
                     data: "nama_pengetua",
                     name: "nama_pengetua",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "ppd",
+                    name: "ppd",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "negeri",
+                    name: "negeri",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
