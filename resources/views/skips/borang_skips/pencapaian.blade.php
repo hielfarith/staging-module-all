@@ -83,7 +83,7 @@
         &nbsp;
     </div>
 
-    <div class="col-md-4 mb-1">
+    <div class="col-md-4">
         <div class="card bg-light-primary align-content-middle">
             <div class="card-header">
                 <h4 class="fw-bolder">Gred Penilaian Keseluruhan</h4>

@@ -14,6 +14,7 @@
             <input type="text" class="form-control" name="nama_instrumen" required
                 onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
         </div>
+        
         <div class="col-md-6 mb-1">
             <label class="fw-bold form-label"> Tujuan Instrumen
                 <span class="text-danger">*</span>

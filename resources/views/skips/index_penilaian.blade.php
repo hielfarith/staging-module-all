@@ -1,4 +1,4 @@
-<ul class="nav nav-pills justify-content-center nav-pill-info my-2" role="tablist">
+<ul class="nav nav-pills justify-content-center" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="text-wrap nav-link fw-bolder active" id="skor-1-tab" data-bs-toggle="tab" href="#skor-1" aria-controls="skor-1" role="tab" aria-selected="true">
             PENUBUHAN & PENDAFTARAN
@@ -96,7 +96,7 @@
 <hr>
 @if(!$showHantar)
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitCompleteForm(1)">Hantar</button>        
+        <button type="button" class="btn btn-primary float-right" onclick="submitCompleteForm(1)">Hantar</button>
     </div>
 @endif
 

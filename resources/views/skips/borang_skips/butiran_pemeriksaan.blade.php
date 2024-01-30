@@ -6,53 +6,55 @@ $pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $instru
 <form id="butiran_pemeriksaan">
     <input type="hidden" name="instrumen_id" value="{{$instrumen_id}}">
 <div class="row">
-    <div class="col-md-6 mb-1">
+    <div class="col-md-4 mb-1">
+        <label class="form-label fw-bold">Kod Sekolah
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" name="kod_sekohla" class="form-control" required value={{$pemeriskan?->kod_sekohla}}>
+    </div>
+
+    <div class="col-md-4 mb-1">
         <label class="form-label fw-bold">Tarikh Pemeriksaan & Masa Lawatan
             <span class="text-danger">*</span>
         </label>
         <input type="text" id="fp-date-time" name="tarikh_pemeriksaan" class="form-control flatpickr" placeholder="d/m/Y" required/>
     </div>
 
-    <div class="col-md-6 mb-1">
-        <label class="form-label fw-bold text-titlecase">No Pasukan Pemeriksa
+    <div class="col-md-4 mb-1">
+        <label class="form-label fw-bold">No Pasukan Pemeriksa
             <span class="text-danger">*</span>
         </label>
         <input type="text" name="no_pasukan_pemeriksa" class="form-control" required value={{$pemeriskan?->no_pasukan_pemeriksa}}>
     </div>
 
-    <div class="col-md-4 mb-1">
-        <label class="form-label fw-bold text-titlecase"> Pemeriksa 1
+    <div class="col-md-12 mb-1">
+        <label class="form-label fw-bold"> Pemeriksa 1
             <span class="text-danger">*</span>
         </label>
         <input type="text" name="pemeriksa_1" class="form-control" required value={{$pemeriskan?->pemeriksa_1}}>
     </div>
 
-    <div class="col-md-4 mb-1">
-        <label class="form-label fw-bold text-titlecase"> Pemeriksa 2
+    <div class="col-md-12 mb-1">
+        <label class="form-label fw-bold"> Pemeriksa 2
             <span class="text-danger">*</span>
         </label>
         <input type="text" name="pemeriksa_2" class="form-control" required value={{$pemeriskan?->pemeriksa_2}}>
     </div>
 
-    <div class="col-md-4 mb-1">
-        <label class="form-label fw-bold text-titlecase"> Pemeriksa 3
+    <div class="col-md-12 mb-1">
+        <label class="form-label fw-bold"> Pemeriksa 3
             <span class="text-danger">*</span>
         </label>
         <input type="text" name="pemeriksa_3" class="form-control" required value={{$pemeriskan?->pemeriksa_3}}>
     </div>
-     <div class="col-md-4 mb-1">
-        <label class="form-label fw-bold text-titlecase">Ketua Pemeriksa
+     <div class="col-md-12 mb-1">
+        <label class="form-label fw-bold">Ketua Pemeriksa
             <span class="text-danger">*</span>
         </label>
         <input type="text" name="ketua_pemeriksa" class="form-control" required value={{$pemeriskan?->ketua_pemeriksa}}>
     </div>
 
-    <div class="col-md-4 mb-1">
-        <label class="form-label fw-bold text-titlecase">Kod Sekohla
-            <span class="text-danger">*</span>
-        </label>
-        <input type="text" name="kod_sekohla" class="form-control" required value={{$pemeriskan?->kod_sekohla}}>
-    </div>
+
 </div>
   <hr>
     <div class="d-flex justify-content-end align-items-center mt-1">
@@ -61,7 +63,7 @@ $pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $instru
 </form>
 @section('script')
 <script>
-    
+
     function submitformPemeriksan() {
         var formData = new FormData(document.getElementById('butiran_pemeriksaan'));
         var error = false;
@@ -74,7 +76,7 @@ $pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $instru
                 error = true;
             }
         });
- 
+
         if (error) {
              Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
