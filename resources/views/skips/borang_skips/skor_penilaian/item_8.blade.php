@@ -13,7 +13,7 @@ $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $piawaianData = json_decode($tab1->piawaian); 
-        $piawaianData_verfikasi = $tab1->piawaianData_verfikasi ? json_decode($tab1->piawaianData_verfikasi) : null;   
+        $piawaianData_verfikasi = $tab1->piawaian_verfikasi ? json_decode($tab1->piawaian_verfikasi) : null;   
   
     } else {
         $piawaianData =$piawaianData =  null;

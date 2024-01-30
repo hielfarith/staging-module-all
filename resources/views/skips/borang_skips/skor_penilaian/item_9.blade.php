@@ -9,7 +9,7 @@ $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $kebersihanData = json_decode($tab1->kebersihan);   
-        $kebersihanData_verfikasi = $tab1->kebersihanData_verfikasi ? json_decode($tab1->kebersihanData_verfikasi) : null;   
+        $kebersihanData_verfikasi = $tab1->kebersihan_verfikasi ? json_decode($tab1->kebersihan_verfikasi) : null;   
 
     } else {
         $kebersihanData = $kebersihanData_verfikasi =  null;

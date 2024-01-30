@@ -10,7 +10,7 @@ $displins = [
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $disiplin = json_decode($tab1->displin);  
-        $disiplin_verfikasi = $tab1->disiplin_verfikasi ? json_decode($tab1->disiplin_verfikasi) : null;   
+        $disiplin_verfikasi = $tab1->displin_verfikasi ? json_decode($tab1->displin_verfikasi) : null;   
  
     } else {
         $disiplin = $disiplin_verfikasi = null;
