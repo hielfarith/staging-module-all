@@ -1,5 +1,10 @@
+<?php
+$instrumen_id = Request::segment(3);
+$pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $instrumen_id)->first();
+
+?>
 <form id="butiran_pemeriksaan">
-    
+    <input type="hidden" name="instrumen_id" value="{{$instrumen_id}}">
 <div class="row">
     <div class="col-md-6 mb-1">
         <label class="form-label fw-bold">Tarikh Pemeriksaan & Masa Lawatan
@@ -12,34 +17,41 @@
         <label class="form-label fw-bold text-titlecase">No Pasukan Pemeriksa
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="no_pasukan_pemeriksa" class="form-control" required>
+        <input type="text" name="no_pasukan_pemeriksa" class="form-control" required value={{$pemeriskan?->no_pasukan_pemeriksa}}>
     </div>
 
     <div class="col-md-4 mb-1">
         <label class="form-label fw-bold text-titlecase"> Pemeriksa 1
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="pemeriksa_1" class="form-control" required>
+        <input type="text" name="pemeriksa_1" class="form-control" required value={{$pemeriskan?->pemeriksa_1}}>
     </div>
 
     <div class="col-md-4 mb-1">
         <label class="form-label fw-bold text-titlecase"> Pemeriksa 2
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="pemeriksa_2" class="form-control" required>
+        <input type="text" name="pemeriksa_2" class="form-control" required value={{$pemeriskan?->pemeriksa_2}}>
     </div>
 
     <div class="col-md-4 mb-1">
         <label class="form-label fw-bold text-titlecase"> Pemeriksa 3
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="pemeriksa_3" class="form-control" required>
+        <input type="text" name="pemeriksa_3" class="form-control" required value={{$pemeriskan?->pemeriksa_3}}>
     </div>
      <div class="col-md-4 mb-1">
         <label class="form-label fw-bold text-titlecase">Ketua Pemeriksa
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="ketua_pemeriksa" class="form-control" required>
+        <input type="text" name="ketua_pemeriksa" class="form-control" required value={{$pemeriskan?->ketua_pemeriksa}}>
+    </div>
+
+    <div class="col-md-4 mb-1">
+        <label class="form-label fw-bold text-titlecase">Kod Sekohla
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text" name="kod_sekohla" class="form-control" required value={{$pemeriskan?->kod_sekohla}}>
     </div>
 </div>
   <hr>

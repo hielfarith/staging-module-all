@@ -44,9 +44,20 @@ class PengurusanSkipsController extends Controller
         DB::beginTransaction();
         try {
             if ($tab == 'butiran_pemeriksaan') {
-                $butiran = new ButiranPemeriksaanSkips;
-                $butiran = $butiran->create($input);
-
+                if (isset($input['instrumen_id']) && !empty($input['instrumen_id'])) {
+                    $butiran = ButiranPemeriksaanSkips::where('instrumen_id', $input['instrumen_id'])->first();
+                    if (empty($butiran)) {
+                        $butiran = new ButiranPemeriksaanSkips;
+                        $butiran = $butiran->create($input);
+                    } else {
+                        $butiran->update($input);
+                    }
+                } else {
+                    $butiran = new ButiranPemeriksaanSkips;
+                    $butiran = $butiran->create($input);
+                }
+                DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
             } elseif($tab == 'butiran_institusi') {
                 if (isset($input['butiranInstitusi_id']) && !empty($input['butiranInstitusi_id'])) {
                     $butiran = ButiranInstitusiSkips::where('id', $input['butiranInstitusi_id'])->first();
@@ -56,7 +67,6 @@ class PengurusanSkipsController extends Controller
                     $butiran = new ButiranInstitusiSkips;
                     $butiran = $butiran->create($input);
                 }
-                
             DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
 

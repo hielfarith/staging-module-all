@@ -18,7 +18,8 @@ class ButiranPemeriksaanSkips extends Model
         'pemeriksa_3',
         'kod_sekolah',
         'ketua_pemeriksa',
-        'status'
+        'status',
+        'instrumen_id'
 
     ];
 }
