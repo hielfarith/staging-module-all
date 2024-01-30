@@ -105,12 +105,12 @@
         <div class="modal login fade right" id="loginDemo" tabindex="-1" aria-labelledby="loginDemo"
             data-bs-backdrop="false" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content" style="margin-top: 65%">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Pengguna Demo untuk SPPIP®</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body login" style="height:10%; ">
+                    <div class="modal-body login" style="height:10%;">
                         <div class="list-group">
                             <a href="javascript:demoLogin(0)" class="list-group-item list-group-item-action">
                                 Superadmin
@@ -120,6 +120,27 @@
                             </a>
                             <a href="javascript:demoLogin(2)" class="list-group-item list-group-item-action">
                                 Pengguna Luar
+                            </a>
+                            <a href="javascript:demoLogin(3)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Pengguna
+                            </a>
+                            <a href="javascript:demoLogin(4)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Pentadbir
+                            </a>
+                            <a href="javascript:demoLogin(5)" class="list-group-item list-group-item-action">
+                                [User SPPIP] SU Sukan
+                            </a>
+                            <a href="javascript:demoLogin(6)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Guru Besar
+                            </a>
+                            <a href="javascript:demoLogin(7)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Pengetua
+                            </a>
+                            <a href="javascript:demoLogin(8)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Penolong Kanan
+                            </a>
+                            <a href="javascript:demoLogin(9)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Ketua Sukan
                             </a>
                         </div>
                     </div>
@@ -147,6 +168,34 @@
                     },
                     {
                         email: 'siti_ahmad@yopmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'pengguna1@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'pentadbir@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'setiausaha@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'gurusekolah@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'pengetua@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'penolong@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'ketuasukan@gmail.com',
                         password: 'password',
                     }
                 ];

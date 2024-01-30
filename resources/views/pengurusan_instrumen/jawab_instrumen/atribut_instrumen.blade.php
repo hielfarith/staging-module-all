@@ -22,7 +22,6 @@
                                         <i data-feather="hash"></i>
                                     </div>
 
-
                                     <input type="text" class="form-control invoice-edit-input" value="{{$data->id_instrumen}}" disabled>
                                 </div>
                             </div>
@@ -37,6 +36,7 @@
                         </div>
                     </div>
                 </div>
+                <hr>
 
                 @if($insertone)
                     @if( in_array($array['type'], ['text', 'number','date','time','email']))
@@ -51,13 +51,38 @@
                         <x-input-file-field name="{{$array['name']}}" label="{{$array['label']}}" accept=".pdf,.doc,.docx" :required="$array['required']" placeholder="{{$array['placeholder']}}">
                         </x-input-file-field>
                     @elseif($array['type'] == 'segment')
-                        <div class="row" id="div_{{$array['name']}}" style="text-align: center;">
+                        {{-- <div class="row" id="div_{{$array['name']}}" style="text-align: center;">
                             <div class="col-md-8 alert alert-info" role="alert">
                                 <p class="fw-bolder">{{$array['label']}}</p>
                             </div>
+                        </div> --}}
+
+                        <?php
+                            $i = 0;
+                        ?>
+
+                        <ul class="nav nav-pills nav-justified" role="tablist">
+                            @foreach($array['type'] as $segement)
+                                <li class="nav-item" role="presentation">
+                                    <a class="text-uppercase nav-link fw-bolder {{ $i == 0 ? 'active' : '' }}" id="{{ $i++ }}-tab" data-bs-toggle="tab" href="#{{ $i++ }}" aria-controls="{{ $i++ }}" role="tab" aria-selected="true">
+                                        {{ $array['label'] }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        <div class="tab-content">
+                            @foreach($array['type'] as $segement)
+                                <div class="tab-pane fade {{ $i == 0 ? 'show active' : '' }}" id="{{ $i++ }}" role="tabpanel" aria-labelledby="{{ $i++ }}-tab">
+                                    <div class="row">
+                                        {{ empty($array['options']) ? '' : $array['options'] }}
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
+
                     @elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
-                        <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']"
+                        {{-- <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']"
                         label="{{$array['label']}}" placeholder="{{$array['placeholder']}}">
                             @foreach($array['slot'] as $option)
                             <label class="form-check-label">
@@ -70,6 +95,19 @@
                             </label>
                             @endforeach
                             <input type="hidden" label="{{$array['label']}}" class="form-check-input" checktype="{{$array['type']}}" name="{{$array['name']}}" value="{{json_encode($array['slot'])}}" id="{{$array['name']}}">
+                        </x-input-radio-field> --}}
+
+                        <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']" label="{{$array['label']}}" placeholder="{{$array['placeholder']}}">
+                            <div class="col-md-12 mb-1">
+                                <div class="demo-inline-spacing">
+                                    @foreach($array['slot'] as $option)
+                                        <div class="form-check form-check-inline">
+                                            <input type="hidden" label="{{$array['label']}}" class="form-check-input" checktype="{{$array['type']}}" name="{{$array['name']}}" value="{{json_encode($array['slot'])}}" id="{{$array['name']}}">
+                                            <label class="form-check-label">{{$option}}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </x-input-radio-field>
                     @endif
                 @else
@@ -85,6 +123,36 @@
                             <label class="fw-bolder">Kategori Instrumen</label>
                             <input class="form-control" type="text" name="category_name" id="category_name" value="{{ $category }}" readonly>
                         </div>
+                        <hr>
+
+                        <?php
+                            $i = 0;
+                        ?>
+
+                        <ul class="nav nav-pills nav-justified" role="tablist">
+                            @foreach($arrays as $key => $array)
+                                @if($array['type'] == 'segment')
+                                    <li class="nav-item" role="presentation">
+                                        <a class="text-uppercase nav-link fw-bolder {{ $key == 0 ? 'active' : '' }}" id="{{ $key++ }}-tab" data-bs-toggle="tab" href="#{{ $key++ }}" aria-controls="{{ $key++ }}" role="tab" aria-selected="true">
+                                            {{ $array['label'] }}
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+
+                        <div class="tab-content">
+                            @foreach($arrays as $array)
+                                @if($array['type'] == 'segment')
+                                    <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}" id="{{ $key++ }}" role="tabpanel" aria-labelledby="{{ $key++ }}-tab">
+                                        <div class="row">
+                                            {{ empty($array['options']) ? '' : $array['options'] }}
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+
                         @foreach($arrays as $array)
                             @if( in_array($array['type'], ['text', 'number', 'date','time','email']))
                                 @if(in_array($array['name'], ['form_name','category_name']))
@@ -109,26 +177,43 @@
                                         <option value="{{ $option }}">{{ $option }}</option>
                                     @endforeach
                                 </x-input-select-field>
-                            @elseif($array['type'] == 'segment')
+                            {{-- @elseif($array['type'] == 'segment')
                                 <div class="row" role="alert">
                                     <div class="col-xl-8 col-md-8 alert alert-info">
                                         <p class="fw-bolder">{{$array['label']}}</p>
                                     <span>{{ empty($array['options']) ? '' : $array['options'] }}</span>
                                     </div>
-                                </div>
+                                </div> --}}
                             @elseif($array['type'] == 'radio' || $array['type'] == 'checkbox' )
-                            <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']" label="{{$array['label']}}">
-                            <?php
-                                $options = json_decode($array['options'], true);
-                                $name = $array['name'].'[]';
-                            ?>
-                            @foreach($options as $option)
-                            <label class="form-check-label">
-                                <input type="{{$array['type']}}" class="form-check-input"  name="{{$name}}" value="{{$option}}">
-                                {{$option}}
-                            </label>
-                            @endforeach
-                        </x-input-radio-field>
+                                {{-- <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']" label="{{$array['label']}}">
+                                <?php
+                                    $options = json_decode($array['options'], true);
+                                    $name = $array['name'].'[]';
+                                ?>
+                                @foreach($options as $option)
+                                <label class="form-check-label">
+                                    <input type="{{$array['type']}}" class="form-check-input"  name="{{$name}}" value="{{$option}}">
+                                    {{$option}}
+                                </label>
+                                @endforeach
+                            </x-input-radio-field> --}}
+
+                                <x-input-radio-field name="{{$array['name']}}" value="" :required="$array['required']" label="{{$array['label']}}">
+                                    <?php
+                                        $options = json_decode($array['options'], true);
+                                        $values = $data[$array['name']];
+                                    ?>
+                                    <div class="col-md-12 mb-1">
+                                        <div class="demo-inline-spacing">
+                                            @foreach($options as $option)
+                                            <div class="form-check form-check-inline">
+                                                <input type="{{$array['type']}}" class="form-check-input"  name="{{$name}}" value="{{$option}}">
+                                                <label class="form-check-label">{{$option}}</label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </x-input-radio-field>
                             @endif
                         @endforeach
 
