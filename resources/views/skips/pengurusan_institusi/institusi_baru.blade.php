@@ -39,7 +39,13 @@ Pengurusan Institusi
                     <label class="fw-bold form-label">Jenis Pusat
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="jenis" id="jenis" required>
+                    <select class="form-control select2" name="jenis" id="jenis" required>
+                        <option value="" hidden>Status</option>
+                        <option value="pusat_bahasa">Pusat Bahasa</option>
+                        <option value="pusat_latihan_kemahiran">Pusat Latihan / Kemahiran</option>
+                        <option value="pusat_perkembangan_minda">Pusat Perkembangan Minda</option>
+                        <option value="pusat_tuisyen">Pusat Tuisyen</option>
+                    </select>
                 </div>
 
                 <div class="col-md-4 mb-1">
@@ -53,7 +59,7 @@ Pengurusan Institusi
                     <label class="fw-bold form-label">Status Pusat
                         <span class="text-danger">*</span>
                     </label>
-                    <select name="status" id="status" class="form-select select2">
+                    <select name="status" id="status" class="form-select select2" required>
                         <option value="" hidden>Status</option>
                         <option value="beroperasi">Beroperasi</option>
                         <option value="tidak_beroperasi">Tidak Beroperasi</option>

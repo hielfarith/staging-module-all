@@ -78,8 +78,9 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                     </label>
                     <select class="form-control select2" name="jawatan" id="jawatan" required>
                             <option value="" hidden>Jawatan</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            <option value="pengerusi">Pengerusi</option>
+                            <option value="pengetua">Pengetua</option>
+                            <option value="guru_besar">Guru Besar</option>
                     </select>
                 </div>
 
@@ -89,8 +90,9 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                     </label>
                     <select class="form-control select2" name="institusi" id="institusi" required>
                             <option value="" hidden>Institusi</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            @foreach($institusis as $institusi)
+                            <option value="{{ $institusi->id }}">{{ $institusi->nama }}</option>
+                            @endforeach
                     </select>
                 </div>
 

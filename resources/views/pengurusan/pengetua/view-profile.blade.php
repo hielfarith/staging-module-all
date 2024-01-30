@@ -112,8 +112,9 @@
             </label>
             <select class="form-control select2" name="jawatan" id="jawatan" required>
                 <option value="" hidden>Jawatan</option>
-                <option value="1" @if($pengetua->jawatan == '1') selected @endif>1</option>
-                <option value="2" @if($pengetua->jawatan == '2') selected @endif>2</option>
+                <option value="pengerusi" @if($pengetua->jawatan == 'pengerusi') selected @endif>Pengerusi</option>
+                <option value="pengetua" @if($pengetua->jawatan == 'pengetua') selected @endif>Pengetua</option>
+                <option value="guru_besar" @if($pengetua->jawatan == 'guru_besar') selected @endif>Guru Besar</option>
             </select>
         </div>
 
@@ -123,8 +124,9 @@
             </label>
             <select class="form-control select2" name="institusi" id="institusi" required>
                 <option value="" hidden>Institusi</option>
-                <option value="1" @if($pengetua->jawatan == '1') selected @endif>1</option>
-                <option value="2" @if($pengetua->jawatan == '2') selected @endif>2</option>
+                @foreach($institusis as $institusi)
+                <option value="{{ $institusi->id }}" @if($pengetua->jawatan == $institusi->id) selected @endif>{{ $institusi->nama }}</option>
+                @endforeach
             </select>
         </div>
 

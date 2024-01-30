@@ -68,7 +68,8 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                         <th>No. Kad Pengenalan/ Pasport</th>
                         <th>Email Peribadi</th>
                         <th>Jenis</th>
-                        <th>Tarikh Penubuhan</th>
+                        {{-- <th>Tarikh Penubuhan</th> --}}
+                        <th>Institusi</th>
                         <th>Status</th>
                         <th width="5%">Tindakan</th>
                     </tr>

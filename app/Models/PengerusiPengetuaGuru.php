@@ -14,15 +14,20 @@ class PengerusiPengetuaGuru extends Model
      * @var array
      */
     protected $fillable = [
-                    'nama',
-                    'no_kp',
-                    'no_tel',
-                    'email',
-                    'jawatan',
-                    'negeri',
-                    'institusi',
-                    'sebab_pertukaran',
-                    'sebab_pertukaran_lain',
-                    'status',
-                ];
+        'nama',
+        'no_kp',
+        'no_tel',
+        'email',
+        'jawatan',
+        'negeri',
+        'institusi',
+        'sebab_pertukaran',
+        'sebab_pertukaran_lain',
+        'status',
+    ];
+
+    public function institusiSkips()
+    {
+        return $this->belongsTo('App\Models\SkipsInstitusiPendidikan', 'institusi', 'id');
+    }
 }

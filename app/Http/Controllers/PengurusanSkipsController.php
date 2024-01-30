@@ -163,7 +163,7 @@ class PengurusanSkipsController extends Controller
                    return $pengetuaList->no_tel;
                })
                 ->editColumn('institusi', function ($pengetuaList) {
-                   return $pengetuaList->institusi;
+                   return $pengetuaList->institusiSkips->nama;
                })
                ->editColumn('status', function ($pengetuaList) {
                 if($pengetuaList->status == 'Menunggu Verifikasi'){
