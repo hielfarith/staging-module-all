@@ -11,5 +11,9 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
         Route::get('ringkasan-pengisian','RingkasanSkips')->name('ringkasan_skips');
         Route::get('senarai-skips','SenaraiSkips')->name('senarai-skips');
         Route::get('kemaskini-profil', 'kemaskiniProfil')->name('kemaskini-profil');
+
+        Route::get('senarai-institusi', 'SenaraiInstitusi')->name('senarai_institusi');
+        Route::get('institusi-baru', 'InstitusiBaru')->name('institusi_baru');
+
     });
 });

@@ -230,7 +230,7 @@ $configData = Helper::applClasses();
 
                     <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skips'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap"> Senarai Skips </span>
+                            <span class="menu-title text-truncate text-wrap"> Senarai SKIPS </span>
                         </a>
                     </li>
 
@@ -263,7 +263,7 @@ $configData = Helper::applClasses();
              <li class="nav-item ">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate text-wrap"> Skips </span>
+                    <span class="menu-title text-truncate text-wrap"> SKIPS </span>
                 </a>
                 <ul class="nav">
 
@@ -335,8 +335,8 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['skips.senarai_institusi'])? 'active': '' }}">
+                        <a href="{{ route('skips.senarai_institusi') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi Pendidikan</span>
                         </a>
                     </li>
