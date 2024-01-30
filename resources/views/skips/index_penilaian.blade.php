@@ -94,7 +94,7 @@
     }
 ?>
 <hr>
-@if(!$showHantar)
+@if($showHantar && $type != 'verfikasi')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitCompleteForm(1)">Hantar</button>
     </div>

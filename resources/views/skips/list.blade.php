@@ -33,7 +33,7 @@ Instrumen
                         <th width="5%">No.</th>
                         <th>Nama Instrumen</th>
                         <th>Nama Pengetua</th>
-                        <th>Negeri</th>
+                        <th>Status</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -103,8 +103,8 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
                     }
                 },
                 {
-                    data: "negeri",
-                    name: "negeri",
+                    data: "status",
+                    name: "status",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();

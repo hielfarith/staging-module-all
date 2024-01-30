@@ -10,14 +10,14 @@ $pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $instru
         <label class="form-label fw-bold">Kod Sekolah
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="kod_sekohla" class="form-control" required value={{$pemeriskan?->kod_sekohla}}>
+        <input type="text" name="kod_sekolah" class="form-control" required value={{$pemeriskan?->kod_sekolah}}>
     </div>
 
     <div class="col-md-4 mb-1">
         <label class="form-label fw-bold">Tarikh Pemeriksaan & Masa Lawatan
             <span class="text-danger">*</span>
         </label>
-        <input type="text" id="fp-date-time" name="tarikh_pemeriksaan" class="form-control flatpickr" placeholder="d/m/Y" required/>
+        <input type="text" id="fp-date-time" name="tarikh_pemeriksaan" class="form-control flatpickr" placeholder="d/m/Y" required value={{$pemeriskan?->tarikh_pemeriksaan}}>
     </div>
 
     <div class="col-md-4 mb-1">

@@ -121,7 +121,7 @@ class PengurusanSkipsController extends Controller
     public function SenaraiSkips(Request $request){
 
         if($request->ajax()) {
-            $instrumentListings = ButiranInstitusiSkips::select(['butiran_institusi_id','item_standard_quality_skips.id as item_id', 'butiran_institusi_skips.id as id', 'butiran_institusi_skips.nama_institusi', 'butiran_institusi_skips.nama_pengetua','butiran_institusi_skips.negeri'])->join('item_standard_quality_skips','item_standard_quality_skips.butiran_institusi_id','=','butiran_institusi_skips.id')
+            $instrumentListings = ButiranInstitusiSkips::select(['butiran_institusi_id','item_standard_quality_skips.id as item_id', 'butiran_institusi_skips.id as id', 'butiran_institusi_skips.nama_institusi', 'butiran_institusi_skips.nama_pengetua','butiran_institusi_skips.negeri','item_standard_quality_skips.status'])->join('item_standard_quality_skips','item_standard_quality_skips.butiran_institusi_id','=','butiran_institusi_skips.id')
                 ->whereIn('item_standard_quality_skips.status', [1, 2]);
 
             return Datatables::of($instrumentListings)
@@ -131,8 +131,15 @@ class PengurusanSkipsController extends Controller
                 ->editColumn('nama_pengetua', function ($instrument) {
                     return $instrument->nama_pengetua;
                 })
-                ->editColumn('negeri', function ($instrument) {
-                    return $instrument->negeri;
+                ->editColumn('status', function ($instrument) {
+                    if ($instrument->status == 1) {
+                        return 'Telah dihantar';
+                    } elseif ($instrument->status == 2) {
+                        return 'Menunggu Validasi';
+                    } elseif ($instrument->status == 3) {
+                        return 'Menunggu Validasi';
+                    }
+                    return $instrument->status;
                 })
                 ->addColumn('DT_RowIndex', function ($instrument) {
                     static $index = 1;
@@ -142,7 +149,7 @@ class PengurusanSkipsController extends Controller
                     $button = "";
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
-                    $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
 
                     $button .= "</div>";
 

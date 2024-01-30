@@ -47,7 +47,19 @@
                         '8.0' => 'ITEM 8: PIAWAIAN',
                         '9.0' => 'ITEM 9: KEBERSIHAN DAN KECERIAAN',
                         '10.0' => 'ITEM 10: PENGURUSAN PELAJAR ANTARABANGSA',
-                    ]
+                    ];
+                    $wajran = [ 
+                        '1.0' => '12.0', 
+                        '2.0' => '7.0',
+                        '3.0' => '12.0',
+                        '4.0' =>  '12.0',
+                        '5.0' => '10.0',
+                        '6.0' => '7.0',
+                        '7.0' => '5.0',
+                        '8.0' => '13.0',
+                        '9.0' => '7.0',
+                        '10.0' => '15.0'
+                        ];
                 @endphp
 
                 <tbody>
@@ -60,7 +72,7 @@
                             <td>
                                 <a class="text-success">auto-calculated</a>
                             </td>
-                            <td>{{ $itemKey }}</td>
+                            <td>{{ $wajran[$itemKey] }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -83,7 +95,7 @@
         &nbsp;
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 mb-1">
         <div class="card bg-light-primary align-content-middle">
             <div class="card-header">
                 <h4 class="fw-bolder">Gred Penilaian Keseluruhan</h4>

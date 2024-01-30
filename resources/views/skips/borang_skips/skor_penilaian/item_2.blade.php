@@ -31,10 +31,12 @@ $institusis = [
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengurusan_institusi = json_decode($tab1->pengurusan_institusi);   
+        $pengurusan_institusi_verfikasi = $tab1->pengurusan_institusi_verfikasi ? json_decode($tab1->pengurusan_institusi_verfikasi) : null;   
     } else {
-        $pengurusan_institusi = null;
+        $pengurusan_institusi = $pengurusan_institusi_verfikasi = null;
     }
     $total = $score = 0;
+    $totalv = $scorev = 0;
 
 ?>
 
@@ -45,6 +47,9 @@ $institusis = [
                 <th width="5%">2.0.</th>
                 <th> PENUBUHAN INSTITUSI </th>
                 <th width="10%">SKOR</th>
+                @if($type == 'verfikasi')
+                    <th width="10%">SKOR VERFIKASI</th>
+                @endif
             </tr>
         </thead>
 
@@ -70,6 +75,23 @@ $institusis = [
                     ?>
                         <a class="text-success">{{$score}}</a>
                     </td>
+                     @if($type == 'verfikasi')
+                        <td>
+                        <?php
+                            if($pengurusan_institusi_verfikasi) {
+                                $keyval = '';
+                                $keyval = $key.'_verfikasi';
+                                if (isset($pengurusan_institusi_verfikasi->$keyval)){
+                                    $scorev = $pengurusan_institusi_verfikasi->$keyval;
+                                } else {
+                                    $scorev = 0;
+                                }
+                                $totalv = $totalv+$scorev;
+                            }
+                        ?>
+                        <a class="text-success">{{$scorev}}</a>
+                    </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
@@ -78,8 +100,8 @@ $institusis = [
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
                 
-                <td>
-                    <a class="text-success">{{$total}}</a>
+                <td colspan="2" style="text-align: center;">
+                    <a class="text-success">{{$total + $totalv}}</a>
                 </td>
             </tr>
             <tr>
