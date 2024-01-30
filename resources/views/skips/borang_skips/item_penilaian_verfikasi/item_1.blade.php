@@ -6,8 +6,6 @@
     } else {
         $penubuhan_pendaftaran = null;
     }
-        $penubuhan_pendaftaran = null;
-
 ?>
 @php
 $pendaftarans = [
@@ -159,7 +157,7 @@ $options = [
                         @foreach ($options[$index] as $key => $option)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                     <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index.'_verfikasi' == $key) checked @endif>
+                                     <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$keyval == $key) checked @endif>
                                 </div>
                                 <br>
 

@@ -7,13 +7,7 @@
     } else {
         $pengajaran = null;
     }
-   if ($type == 'verfikasi' ) {
-        if (!empty($tab1->pengajaran_verfikasi)) {
-            $pengajaran = json_decode($tab1->pengajaran_verfikasi);
-        } else {
-            $pengajaran = null;
-        }
-    }
+   
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -112,12 +106,16 @@ $option_pdps = [
                     <td colspan="8" class="bg-light-primary fw-bolder">Pengajaran & Pembelajaran</td>
                 </tr>
                 @foreach ($pdps as $index => $pdp)
+                <?php
+                    $keyval = '';
+                    $keyval = $index.'_verfikasi';
+                ?>
                     <tr>
                         <td colspan="2"> {{ $pdp }}</td>
                         @foreach ($option_pdps[$index] as $key => $option_pdp)
                         <td>
                             <div class="form-check form-check-inline mb-1">
-                                <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{$index}}" value="{{$key}}" required @if($pengajaran && $pengajaran->$index.'_verfikasi' == $key) checked @endif>
+                                <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{$index}}" value="{{$key}}" required @if($pengajaran && $pengajaran->$keyval == $key) checked @endif>
                             </div>
                             <br>
 

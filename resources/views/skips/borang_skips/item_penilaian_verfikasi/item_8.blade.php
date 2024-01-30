@@ -8,13 +8,6 @@
         $piawaianData = null;
     }
 
-    if ($type == 'verfikasi' ) {
-        if (!empty($tab1->piawaian_verfikasi)) {
-            $piawaianData = json_decode($tab1->piawaian_verfikasi);
-        } else {
-            $piawaianData = null;
-        }
-    }
     ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -132,12 +125,16 @@ $option_piawaians = [
                     <td colspan="8" class="bg-light-primary fw-bolder">Piawaian</td>
                 </tr>
                 @foreach ($piawaians as $index => $piawaian)
+                <?php
+                    $keyval = '';
+                    $keyval = $index.'_verfikasi';
+                ?>
                     <tr>
                         <td colspan="2"> {{ $piawaian }}</td>
                         @foreach ($option_piawaians[$index] as $key => $option_piawaian)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required @if($piawaianData && $piawaianData->$index.'_verfikasi' == $key) checked @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required @if($piawaianData && $piawaianData->$keyval == $key) checked @endif>
                                 </div>
                                 <br>
                                 {!! $option_piawaian !!}

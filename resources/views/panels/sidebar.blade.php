@@ -293,7 +293,7 @@ $configData = Helper::applClasses();
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.senarai-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
-                                Modul Pengisian Data Instrumen
+                                Modul Verifikasi Data Instrumen
                             </span>
                         </a>
                     </li>

@@ -3,13 +3,7 @@
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
 
-    if ($type == 'verfikasi' ) {
-        if (!empty($tab1->pengurusan_institusi_verfikasi)) {
-            $pengurusan_institusi = json_decode($tab1->pengurusan_institusi_verfikasi);
-        } else {
-            $pengurusan_institusi = null;
-        }
-    }
+   
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -292,13 +286,17 @@ $option_institusis = [
                     <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Institusi</td>
                 </tr>
                 @foreach ($institusis as $index => $institusi)
+                <?php
+                    $keyval = '';
+                    $keyval = $index.'_verfikasi';
+                ?>
                     <tr>
                         <td colspan="2"> {{ $institusi }}</td>
                         @foreach ($option_institusis[$index] as $key => $option_institusi)
                             <td>
                                 @if(count($option_institusis[$index]) > 1)
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$index.'_verfikasi' == $key) checked @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$keyval == $key) checked @endif>
                                 </div>
                                 @endif
                                 <br>

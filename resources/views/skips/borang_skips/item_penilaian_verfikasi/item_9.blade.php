@@ -8,14 +8,6 @@
         $kebersihanData = null;
     }
 
-    if ($type == 'verfikasi' ) {
-        if (!empty($tab1->kebersihan_verfikasi)) {
-            $kebersihanData = json_decode($tab1->kebersihan_verfikasi);
-        } else {
-            $kebersihanData = null;
-        }
-    }
-
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -95,12 +87,16 @@ $option_kebersihans = [
                     <td colspan="8" class="bg-light-primary fw-bolder">Kebersihan dan Keceriaan</td>
                 </tr>
                 @foreach ($kebersihans as $index => $kebersihan)
+                <?php
+                    $keyval = '';
+                    $keyval = $index.'_verfikasi';
+                ?>
                     <tr>
                         <td colspan="2"> {{ $kebersihan }}</td>
                         @foreach ($option_kebersihans[$index] as $key => $option_kebersihan)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required @if($kebersihanData && $kebersihanData->$index.'_verfikasi' == $key) checked @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required @if($kebersihanData && $kebersihanData->$keyval == $key) checked @endif>
                                 </div>
                                 <br>
                                 {!! $option_kebersihan !!}

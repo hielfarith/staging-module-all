@@ -10,6 +10,8 @@ use App\Models\ButiranInstitusiSkips;
 use App\Models\ItemStandardQualitySkips;
 use App\Models\PengerusiPengetuaGuru;
 use App\Models\SkipsInstitusiPendidikan;
+use App\Models\UlasanKeseluruhanPemeriksaanSkips;
+
 use App\Helpers\FMF;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -78,6 +80,7 @@ class PengurusanSkipsController extends Controller
                     if($input['usertype'] == 'verfikasi') {
                         unset($input['usertype']);
                         unset($data[$tab]);
+                        $data['status'] = 2;
                         $data[$tab.'_verfikasi'] = json_encode($input);
                     }
                     $data['butiran_institusi_id'] = $input['butiran_institusi_id'];
@@ -90,6 +93,26 @@ class PengurusanSkipsController extends Controller
                 }
                 DB::commit();
                 return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $item]);
+            } elseif ($tab = 'ulasan') {
+                if (isset($input['butiran_institusi_id']) && !empty($input['butiran_institusi_id'])) {
+                    $ulasan = UlasanKeseluruhanPemeriksaanSkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
+                    if(!empty($ulasan)) {
+                        $ulasan->update($input);
+                    } else {
+                        $ulasan = new UlasanKeseluruhanPemeriksaanSkips;
+                        $ulasan = $ulasan->create($input);
+
+                        $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
+                        $item->status = 3;
+                        $item->save();
+
+                    }
+                } else {
+                    $ulasan = new UlasanKeseluruhanPemeriksaanSkips;
+                    $ulasan = $ulasan->update($input);
+                }
+                 DB::commit();
+                return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $ulasan]);
             }
         } catch (\Throwable $e) {
             DB::rollback();
@@ -102,7 +125,7 @@ class PengurusanSkipsController extends Controller
 
         if($request->ajax()) {
             $instrumentListings = ButiranInstitusiSkips::select(['butiran_institusi_id','item_standard_quality_skips.id as item_id', 'butiran_institusi_skips.id as id', 'butiran_institusi_skips.nama_institusi', 'butiran_institusi_skips.nama_pengetua','butiran_institusi_skips.negeri'])->join('item_standard_quality_skips','item_standard_quality_skips.butiran_institusi_id','=','butiran_institusi_skips.id')
-                ->where('item_standard_quality_skips.status',1);
+                ->whereIn('item_standard_quality_skips.status', [1, 2]);
 
             return Datatables::of($instrumentListings)
                 ->editColumn('nama_institusi', function ($instrument) {

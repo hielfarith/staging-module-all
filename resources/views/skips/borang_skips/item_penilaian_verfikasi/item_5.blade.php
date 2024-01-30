@@ -7,14 +7,7 @@
     } else {
         $pengurusan_penilaian = null;
     }
-
-    if ($type == 'verfikasi' ) {
-        if (!empty($tab1->pengurusan_penilaian_verfikasi)) {
-            $pengurusan_penilaian = json_decode($tab1->pengurusan_penilaian_verfikasi);
-        } else {
-            $pengurusan_penilaian = null;
-        }
-    }
+ 
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -104,12 +97,16 @@ $option_peperiksaans = [
                     <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Penilaian/ Peperiksaan</td>
                 </tr>
                 @foreach ($peperiksaans as $index => $peperiksaan)
+                <?php
+                    $keyval = '';
+                    $keyval = $index.'_verfikasi';
+                ?>
                     <tr>
                         <td colspan="2"> {{ $peperiksaan }}</td>
                         @foreach ($option_peperiksaans[$index] as $key => $option_peperiksaan)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{$index}}" value="{{$key}}" required @if($pengurusan_penilaian && $pengurusan_penilaian->$index.'_verfikasi' == $key) checked @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{$index}}" value="{{$key}}" required @if($pengurusan_penilaian && $pengurusan_penilaian->$keyval == $key) checked @endif>
                                 </div>
                                 <br>
 
