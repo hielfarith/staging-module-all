@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\formPdfController;
+
 use App\Http\Controllers\PengurusanInstrumenController;
+
 
 Route::controller(PengurusanInstrumenController::class)->group(function () {
     Route::prefix('pengurusan_instrumen')->group(function() {
@@ -25,4 +28,8 @@ Route::controller(PengurusanInstrumenController::class)->group(function () {
         Route::post('simpan_instrumen_dijawab','SimpanInstrumenTelahDijawab')->name('simpan_instrumen_dijawab');
         Route::get('muat_turun/{id}/{name}','MuatTurunFailDalamInstrumen')->name('muat_turun');
     });
+
+    Route::get('/generate-pdf', [formPdfController::class, 'generatePDF'])->name('generatePDF');
+    Route::get('/generate-pdf2', [formPdfController::class, 'generatePDF2'])->name('generatePDF2');
+
 });
