@@ -43,7 +43,6 @@ class PengurusanSkipsController extends Controller
 
     public function store(Request $request, $tab) {
         $input = $request->input();
-
         DB::beginTransaction();
         try {
             if ($tab == 'butiran_pemeriksaan') {
@@ -93,7 +92,7 @@ class PengurusanSkipsController extends Controller
                 }
                 DB::commit();
                 return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $item]);
-            } elseif ($tab = 'ulasan') {
+            } elseif ($tab == 'ulasan') {
                 if (isset($input['butiran_institusi_id']) && !empty($input['butiran_institusi_id'])) {
                     $ulasan = UlasanKeseluruhanPemeriksaanSkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
                     if(!empty($ulasan)) {
@@ -101,17 +100,15 @@ class PengurusanSkipsController extends Controller
                     } else {
                         $ulasan = new UlasanKeseluruhanPemeriksaanSkips;
                         $ulasan = $ulasan->create($input);
-
-                        $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
-                        $item->status = 3;
-                        $item->save();
-
                     }
                 } else {
                     $ulasan = new UlasanKeseluruhanPemeriksaanSkips;
-                    $ulasan = $ulasan->update($input);
+                    $ulasan = $ulasan->create($input);
                 }
-                 DB::commit();
+                $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
+                $item->status = 3;
+                $item->save();
+                DB::commit();
                 return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $ulasan]);
             }
         } catch (\Throwable $e) {

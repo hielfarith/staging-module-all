@@ -1,10 +1,10 @@
 <?php
     $id = Request::segment(3);
     $ulasan =  App\Models\UlasanKeseluruhanPemeriksaanSkips::where('butiran_institusi_id',$id)->first();
-    
+
 ?>
-<form id="ulasan">
-<input type="hidden" name="butiran_institusi_id" value="{{$ulasan?->butiran_institusi_id}}">
+<form id="ulasan-form">
+<input type="hidden" name="butiran_institusi_id" value="{{$id}}">
 <div class="row">
     <div class="col-md-12 mb-1">
         <label class="fw-bold form-label">Ulasan Ketua Pasukan Pemeriksa :
@@ -40,13 +40,12 @@
         <button type="button" class="btn btn-primary float-right" onclick="submitformulasan()">Hantar</button>
     </div>
 </form>
-
 <script type="text/javascript">
     function submitformulasan() { 
-    var formData = new FormData(document.getElementById('butiran_institusi'));
+    var formData = new FormData(document.getElementById('ulasan-form'));
 
     var error = false;
-    $('form#butiran_institusi').find('select, textarea, input, checkbox').each(function() {
+    $('form#ulasan-form').find('select, textarea, input, checkbox').each(function() {
         if(this.required && this.type == 'checkbox' && !this.checked) {
             error = true;
         }
@@ -70,8 +69,8 @@
         success: function(response) {
            if (response.status) {
                 Swal.fire('Success', 'Berjaya', 'success');
-                var id = response.data.id;
-                location = "{{route('skips.senarai_institusi')}}";
+                var location = "{{route('skips.senarai_institusi')}}";
+                console.log(location)
                 window.location.href = location;
            }
         }
