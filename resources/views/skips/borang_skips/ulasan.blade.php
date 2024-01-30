@@ -47,7 +47,7 @@
      <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitformulasan()">Hantar</button>
     </div>
-    @endf
+    @endif
 </form>
 <script type="text/javascript">
     function submitformulasan() { 
