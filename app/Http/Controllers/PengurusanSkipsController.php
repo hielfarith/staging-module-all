@@ -9,6 +9,7 @@ use App\Models\ButiranPemeriksaanSkips;
 use App\Models\ButiranInstitusiSkips;
 use App\Models\ItemStandardQualitySkips;
 use App\Models\PengerusiPengetuaGuru;
+use App\Models\SkipsInstitusiPendidikan;
 use App\Helpers\FMF;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -164,6 +165,14 @@ class PengurusanSkipsController extends Controller
                 ->editColumn('institusi', function ($pengetuaList) {
                    return $pengetuaList->institusi;
                })
+               ->editColumn('status', function ($pengetuaList) {
+                if($pengetuaList->status == 'Menunggu Verifikasi'){
+                    $status = '<div class="alert alert-warning" role="alert">'.$pengetuaList->status.'</div>';
+                } else {
+                    $status = '<div class="alert alert-info" role="alert">'.$pengetuaList->status.'</div>';
+                }
+                return $status;
+                })
                ->editColumn('action', function ($pengetuaList) {
                    $button = "";
                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
@@ -196,11 +205,80 @@ class PengurusanSkipsController extends Controller
     }
 
     // Modul tambah/kemaskini institusi
-    public function SenaraiInstitusi(){
+    public function SenaraiInstitusi(Request $request){
+
+        if($request->ajax()) {
+
+            $institusi = SkipsInstitusiPendidikan::where('id', '!=', 0);
+
+           return Datatables::of($institusi)
+               ->editColumn('no_perakuan', function ($institusi) {
+                   return $institusi->no_perakuan;
+               })
+               ->editColumn('nama', function ($institusi) {
+                   return $institusi->nama;
+               })
+               ->editColumn('alamat', function ($institusi) {
+                   return $institusi->alamat;
+               })
+               ->editColumn('jenis', function ($institusi) {
+                   return $institusi->jenis;
+               })
+               ->editColumn('status', function ($institusi) {
+                if($institusi->status == 'beroperasi'){
+                    $status = '<div class="alert alert-success" role="alert">Beroperasi</div>';
+                } else if($institusi->status == 'tidak_beroperasi'){
+                    $status = '<div class="alert alert-warning" role="alert">Tidak Beroperasi</div>';
+                } else {
+                    $status = '<div class="alert alert-warning" role="alert">Tutup</div>';
+                }
+                return $status;
+                })
+               ->editColumn('action', function ($institusi) {
+                   $button = "";
+                   $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                   $button .= '<a onclick="maklumatInstitusi(' . $institusi->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+                    $button .= '<a onclick="maklumatmaklumatInstitusiEdit(' . $institusi->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+
+                   $button .= "</div>";
+
+                   return $button;
+               })
+               ->rawColumns(['action'])
+               ->make(true);
+       }
+
         return view('skips.pengurusan_institusi.senarai_institusi');
     }
 
     public function InstitusiBaru(){
         return view('skips.pengurusan_institusi.institusi_baru');
+    }
+
+    public function saveInstitusi(Request $request){
+        DB::beginTransaction();
+        try {
+
+            $input = $request->input();
+			if (array_key_exists('pengetua_id', $input)) {
+            	$institusi = SkipsInstitusiPendidikan::where('id', $input['institusi_id'])->first();
+            	unset($input['institusi_id']);
+				
+            	$institusi->update($input);
+            } else {
+            	$institusi = new SkipsInstitusiPendidikan;
+        		$institusi->create($input);
+            }
+
+          DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
     }
 }

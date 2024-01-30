@@ -14,6 +14,7 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
 
         Route::get('senarai-institusi', 'SenaraiInstitusi')->name('senarai_institusi');
         Route::get('institusi-baru', 'InstitusiBaru')->name('institusi_baru');
+        Route::post('save-institusi', 'saveInstitusi')->name('save-institusi');
 
     });
 });

@@ -22,6 +22,7 @@ class PengerusiPengetuaGuru extends Model
                     'negeri',
                     'institusi',
                     'sebab_pertukaran',
-                    'sebab_pertukaran_lain'
+                    'sebab_pertukaran_lain',
+                    'status',
                 ];
 }

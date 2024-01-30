@@ -217,7 +217,8 @@ $('#formpengetua').submit(function(event) {
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.internal.pengetualist')}}"
+                    //var location = "{{route('admin.internal.pengetualist')}}"
+                    var location = "{{route('skips.kemaskini-profil')}}"
                     window.location.href = location;
                }
             }

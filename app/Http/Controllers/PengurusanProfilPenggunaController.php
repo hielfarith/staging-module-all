@@ -561,9 +561,12 @@ class PengurusanProfilPenggunaController extends Controller
 			if (array_key_exists('pengetua_id', $input)) {
             	$PengerusiPengetuaGuru = PengerusiPengetuaGuru::where('id', $input['pengetua_id'])->first();
             	unset($input['pengetua_id']);
+				
+				$input['status'] = 'Menunggu Verifikasi';
             	$PengerusiPengetuaGuru->update($input);
             } else {
             	$PengerusiPengetuaGuru = new PengerusiPengetuaGuru;
+				$input['status'] = 'Telah Disahkan';
         		$PengerusiPengetuaGuru->create($input);
             }
 

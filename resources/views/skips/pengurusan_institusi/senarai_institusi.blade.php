@@ -119,11 +119,66 @@ $(document).ready(function() {
             colReorder: false,
             pageLength: 10,
             processing: true,
+            searching: false,
             serverSide: true, //enable if data is large (more than 50,000)
             ajax: {
                 url: "{{ fullUrl() }}",
                 cache: false,
             },
+            columns: [{
+                    data: "id",
+                    name: "id",
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "no_perakuan",
+                    name: "no_perakuan",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "nama",
+                    name: "nama",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "alamat",
+                    name: "alamat",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "jenis",
+                    name: "jenis",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "status",
+                    name: "status",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: true,
+                    searchable: true
+                },
+            ],
         });
     });
 });

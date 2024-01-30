@@ -69,7 +69,7 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                     <label class="fw-bold form-label">Emel
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="no_tel" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                    <input type="email" class="form-control" name="email" required>
                 </div>
 
                 <div class="col-md-4 mb-1">
@@ -106,7 +106,7 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                     </select>
                 </div>
 
-                <div class="col-md-12 mb-1">
+                {{-- <div class="col-md-12 mb-1">
                     <label class="fw-bold form-label">Sebab Pertukaran
                         <span class="text-danger">*</span>
                     </label>
@@ -121,7 +121,7 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
 
                 <div class="col-md-12 mb-1">
                     <input type="text" name="sebab_pertukaran_lain" placeholder="Sila nyatakan." id="sebab_pertukaran_lain" class="form-control" style="display: none;">
-                </div>
+                </div> --}}
             </div>
 
             <hr>
@@ -262,7 +262,8 @@ $('#formpengetua').submit(function(event) {
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.internal.pengetualist')}}"
+                    //var location = "{{route('admin.internal.pengetualist')}}"
+                    var location = "{{route('skips.kemaskini-profil')}}"
                     window.location.href = location;
                }
             }
