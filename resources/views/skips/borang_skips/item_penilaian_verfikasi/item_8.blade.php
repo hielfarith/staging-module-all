@@ -8,6 +8,13 @@
         $piawaianData = null;
     }
 
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->piawaian_verfikasi)) {
+            $piawaianData = json_decode($tab1->piawaian_verfikasi);
+        } else {
+            $piawaianData = null;
+        }
+    }
     ?>
 @php
 $butiran_institusi_id = Request::segment(3);

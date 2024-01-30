@@ -7,7 +7,14 @@
     } else {
         $pengurusan_penilaian = null;
     }
- 
+
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->pengurusan_penilaian_verfikasi)) {
+            $pengurusan_penilaian = json_decode($tab1->pengurusan_penilaian_verfikasi);
+        } else {
+            $pengurusan_penilaian = null;
+        }
+    }
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);

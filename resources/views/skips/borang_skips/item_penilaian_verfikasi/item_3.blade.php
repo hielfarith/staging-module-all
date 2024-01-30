@@ -7,7 +7,14 @@
     } else {
         $pengurusan_kurikulum = null;
     }
- 
+
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->pengurusan_kurikulum_verfikasi)) {
+            $pengurusan_kurikulum = json_decode($tab1->pengurusan_kurikulum_verfikasi);
+        } else {
+            $pengurusan_kurikulum = null;
+        }
+    }
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);

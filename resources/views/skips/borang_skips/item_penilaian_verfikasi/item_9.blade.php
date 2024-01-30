@@ -8,6 +8,14 @@
         $kebersihanData = null;
     }
 
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->kebersihan_verfikasi)) {
+            $kebersihanData = json_decode($tab1->kebersihan_verfikasi);
+        } else {
+            $kebersihanData = null;
+        }
+    }
+
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);

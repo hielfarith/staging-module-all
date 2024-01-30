@@ -7,7 +7,13 @@
     } else {
         $pengajaran = null;
     }
-   
+   if ($type == 'verfikasi' ) {
+        if (!empty($tab1->pengajaran_verfikasi)) {
+            $pengajaran = json_decode($tab1->pengajaran_verfikasi);
+        } else {
+            $pengajaran = null;
+        }
+    }
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);

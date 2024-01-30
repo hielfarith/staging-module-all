@@ -7,7 +7,14 @@
     } else {
         $disiplin = null;
     }
- 
+
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->displin_verfikasi)) {
+            $disiplin = json_decode($tab1->displin_verfikasi);
+        } else {
+            $disiplin = null;
+        }
+    }
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);

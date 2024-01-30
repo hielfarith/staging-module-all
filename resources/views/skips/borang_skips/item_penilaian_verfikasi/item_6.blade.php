@@ -7,7 +7,14 @@
     } else {
         $pengurusan_pembangunan_guru = null;
     }
- 
+
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->pengurusan_pembangunan_guru_verfikasi)) {
+            $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru_verfikasi);
+        } else {
+            $pengurusan_pembangunan_guru = null;
+        }
+    }
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);

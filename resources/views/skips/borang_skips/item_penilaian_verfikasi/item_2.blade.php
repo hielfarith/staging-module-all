@@ -3,7 +3,13 @@
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
 
-   
+    if ($type == 'verfikasi' ) {
+        if (!empty($tab1->pengurusan_institusi_verfikasi)) {
+            $pengurusan_institusi = json_decode($tab1->pengurusan_institusi_verfikasi);
+        } else {
+            $pengurusan_institusi = null;
+        }
+    }
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
