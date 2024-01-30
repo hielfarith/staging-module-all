@@ -5,7 +5,7 @@
     } else {
         $butiranInstitusi = null;
     }
-    if ($type == 'verfikasi') {
+    if (isset($type) && $type == 'verfikasi') {
         $disabled = 'disabled';
     } else {
         $disabled = '';
