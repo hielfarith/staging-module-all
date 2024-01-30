@@ -1,21 +1,21 @@
 <form id="kebersihanv">
-<?php 
+<?php
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
-        $kebersihanData = json_decode($tab1->kebersihan);   
+        $kebersihanData = json_decode($tab1->kebersihan);
     } else {
         $kebersihanData = null;
     }
 
     if ($type == 'verfikasi' ) {
         if (!empty($tab1->kebersihan_verfikasi)) {
-            $kebersihanData = json_decode($tab1->kebersihan_verfikasi);  
+            $kebersihanData = json_decode($tab1->kebersihan_verfikasi);
         } else {
             $kebersihanData = null;
         }
-    } 
-    
+    }
+
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -92,7 +92,7 @@ $option_kebersihans = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8">Kebersihan dan Keceriaan</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Kebersihan dan Keceriaan</td>
                 </tr>
                 @foreach ($kebersihans as $index => $kebersihan)
                     <tr>
@@ -131,7 +131,7 @@ $option_kebersihans = [
                 error = true;
             }
         });
- 
+
         if (error) {
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;

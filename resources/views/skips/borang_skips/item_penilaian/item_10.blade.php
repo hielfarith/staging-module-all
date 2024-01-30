@@ -205,7 +205,7 @@ $option_antarabangsas = [
         </thead>
         <tbody>
             <tr>
-                <td colspan="8">Pengurusan Pelajar Antarabangsa</td>
+                <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Pelajar Antarabangsa</td>
             </tr>
              @foreach ($pelajar_antarabangsas as $index => $antarabangsa)
                 <tr>

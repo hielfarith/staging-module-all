@@ -1,4 +1,4 @@
-<ul class="nav nav-pills justify-content-center nav-pill-info my-2" role="tablist">
+<ul class="nav nav-pills justify-content-center" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="text-wrap nav-link fw-bolder active" id="item-verfikasi-1-tab" data-bs-toggle="tab" href="#item-verfikasi-1" aria-controls="item-verfikasi-1" role="tab" aria-selected="true">
             PENUBUHAN & PENDAFTARAN

@@ -1,14 +1,14 @@
 <form id="piawaian">
-<?php 
+<?php
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
-        $piawaianData = json_decode($tab1->piawaian);   
+        $piawaianData = json_decode($tab1->piawaian);
     } else {
         $piawaianData = null;
     }
 
- 
+
     ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -123,7 +123,7 @@ $option_piawaians = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8">Piawaian</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Piawaian</td>
                 </tr>
                 @foreach ($piawaians as $index => $piawaian)
                     <tr>
@@ -169,7 +169,7 @@ $option_piawaians = [
                 error = true;
             }
         });
- 
+
         if (error) {
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;

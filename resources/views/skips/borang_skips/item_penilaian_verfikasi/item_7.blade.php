@@ -1,20 +1,20 @@
 <form id="displinv">
-<?php 
+<?php
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
-        $disiplin = json_decode($tab1->displin);   
+        $disiplin = json_decode($tab1->displin);
     } else {
         $disiplin = null;
     }
 
     if ($type == 'verfikasi' ) {
         if (!empty($tab1->displin_verfikasi)) {
-            $disiplin = json_decode($tab1->displin_verfikasi);  
+            $disiplin = json_decode($tab1->displin_verfikasi);
         } else {
             $disiplin = null;
         }
-    } 
+    }
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -98,7 +98,7 @@ $option_displins = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8">Disiplin</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Disiplin</td>
                 </tr>
                 @foreach ($displins as $index => $displin)
                     <tr>
@@ -122,7 +122,7 @@ $option_displins = [
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform7v()">Simpan</button>
     </div>
-    
+
 </form>
 
 
@@ -139,7 +139,7 @@ $option_displins = [
                 error = true;
             }
         });
- 
+
         if (error) {
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;

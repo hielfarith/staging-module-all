@@ -1,14 +1,14 @@
 <form id="pengurusan_pembangunan_guru">
-<?php 
+<?php
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
-        $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru);   
+        $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru);
     } else {
         $pengurusan_pembangunan_guru = null;
     }
 
-  
+
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -91,7 +91,7 @@ $option_pembangunan_gurus = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8">Pengurusan & Pembangunan Guru</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan & Pembangunan Guru</td>
                 </tr>
                 @foreach ($pembangunan_gurus as $index => $pembangunan_guru)
                     <tr>
@@ -139,7 +139,7 @@ $option_pembangunan_gurus = [
                 error = true;
             }
         });
- 
+
         if (error) {
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;

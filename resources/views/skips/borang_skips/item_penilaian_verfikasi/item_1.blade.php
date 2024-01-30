@@ -1,8 +1,8 @@
-<?php 
+<?php
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && !empty($tab1->penubuhan_pendaftaran_verfikasi)) {
-        $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran_verfikasi);   
+        $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran_verfikasi);
     } else {
         $penubuhan_pendaftaran = null;
     }
@@ -146,7 +146,7 @@ $options = [
                 <input type="hidden" name="usertype" value="{{$type}}">
                 <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
                 <tr>
-                    <td colspan="8">Penubuhan & Pendaftaran</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Penubuhan & Pendaftaran</td>
                 </tr>
                 @foreach ($pendaftarans as $index => $pendaftaran)
                 <?php
@@ -172,10 +172,10 @@ $options = [
             </tbody>
         </table>
     </div>
-    
+
     <hr>
 
- 
+
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right verify" onclick="submitform1v()">Simpan</button>
     </div>
@@ -195,7 +195,7 @@ $options = [
                 error = true;
             }
         });
- 
+
         if (error) {
              Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;

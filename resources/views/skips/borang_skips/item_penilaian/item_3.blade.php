@@ -1,13 +1,13 @@
 <form id="pengurusan_kurikulum">
-<?php 
+<?php
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
-        $pengurusan_kurikulum = json_decode($tab1->pengurusan_kurikulum);   
+        $pengurusan_kurikulum = json_decode($tab1->pengurusan_kurikulum);
     } else {
         $pengurusan_kurikulum = null;
     }
- 
+
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -96,7 +96,7 @@ $option_kurikulums = [
         /* word-wrap: break-word; */
     }
 </style>
- 
+
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem3">
             <thead>
@@ -124,7 +124,7 @@ $option_kurikulums = [
                 <input type="hidden" name="usertype" value="{{$type}}">
                 <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
                 <tr>
-                    <td colspan="8">Pengurusan Kurikulum</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Kurikulum</td>
                 </tr>
                 @foreach ($kurikulums as $index => $kurikulum)
                     <tr>
@@ -149,7 +149,7 @@ $option_kurikulums = [
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform3()">Simpan</button>
     </div>
-   
+
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -165,7 +165,7 @@ $option_kurikulums = [
                 error = true;
             }
         });
- 
+
         if (error) {
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;

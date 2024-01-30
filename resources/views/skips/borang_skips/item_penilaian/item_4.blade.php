@@ -1,13 +1,13 @@
 <form id="pengajaran">
-<?php 
+<?php
     $butiran_institusi_id = Request::segment(3);
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
-        $pengajaran = json_decode($tab1->pengajaran);   
+        $pengajaran = json_decode($tab1->pengajaran);
     } else {
         $pengajaran = null;
     }
-   
+
 ?>
 @php
 $butiran_institusi_id = Request::segment(3);
@@ -103,7 +103,7 @@ $option_pdps = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8">Pengajaran & Pembelajaran</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Pengajaran & Pembelajaran</td>
                 </tr>
                 @foreach ($pdps as $index => $pdp)
                     <tr>
@@ -128,7 +128,7 @@ $option_pdps = [
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform4()">Simpan</button>
     </div>
- 
+
 
 </form>
 
@@ -145,7 +145,7 @@ $option_pdps = [
                 error = true;
             }
         });
- 
+
         if (error) {
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
