@@ -498,30 +498,12 @@ $configData = Helper::applClasses();
             </li>
  -->
             <li class="navigation-header">
-                <span> System Settings </span>
+                <span> Pengurusan Sistem</span>
             </li>
-            <li class="nav-item nav-tour system-management {{ request()->is('admin/settings*') || request()->is('admin/log*') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link">
-                    <i data-feather="settings"></i>
-                    <span class="menu-title text-truncate text-wrap"> Pengurusan Sistem </span>
+            <li class="nav-item {{ in_array(request()->route()->getName(),['module.index'])? 'active': '' }}">
+                <a href="{{ route('module.index') }}" class="nav-link">
+                    <span class="menu-title text-truncate text-wrap"> Module Configuration </span>
                 </a>
-                <ul class="nav">
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['module.index'])? 'active': '' }}">
-                        <a href="{{ route('module.index') }}" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap"> Module Configuration </span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['settings.index'])? 'active': '' }}">
-                        <a href="{{ route('settings.index') }}" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap"> {{ __('msg.system_config') }} </span>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin-log-index'])? 'active': '' }}">
-                        <a href="{{ route('admin-log-index') }}" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap"> Audit Log </span>
-                        </a>
-                    </li>
-                </ul>
             </li>
             @endhasanyrole
 

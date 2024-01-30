@@ -151,19 +151,24 @@ class PengurusanSkipsController extends Controller
 
            return Datatables::of($pengetuaList)
                ->editColumn('nama_pengguna', function ($pengetuaList) {
-                   return $pengetuaList->nama;
+                    return $pengetuaList->nama;
                })
                ->editColumn('no_kad', function ($pengetuaList) {
-                   return $pengetuaList->no_kp;
+                    return $pengetuaList->no_kp;
                })
                ->editColumn('email_peribadi', function ($pengetuaList) {
-                   return $pengetuaList->email;
+                    return $pengetuaList->email;
                })
                ->editColumn('no_tel', function ($pengetuaList) {
-                   return $pengetuaList->no_tel;
+                    return $pengetuaList->no_tel;
                })
                 ->editColumn('institusi', function ($pengetuaList) {
-                   return $pengetuaList->institusiSkips->nama;
+                    if($pengetuaList->institusiSkips){
+                        $institusi_skips = $pengetuaList->institusiSkips->nama;
+                    } else {
+                        $institusi_skips = null;
+                    }
+                    return $institusi_skips;
                })
                ->editColumn('status', function ($pengetuaList) {
                 if($pengetuaList->status == 'Menunggu Verifikasi'){
@@ -171,7 +176,7 @@ class PengurusanSkipsController extends Controller
                 } else {
                     $status = '<div class="alert alert-info" role="alert">'.$pengetuaList->status.'</div>';
                 }
-                return $status;
+                    return $status;
                 })
                ->editColumn('action', function ($pengetuaList) {
                    $button = "";
