@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('pengerusi_pengetua_gurus', function (Blueprint $table) {
-            $table->string('sebab_pertukaran')->nullable()->change();
+            $table->string('sebab_pertukaran')->nullable(false)->change();
             $table->dropColumn('status');
         });
     }
