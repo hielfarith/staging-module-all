@@ -208,12 +208,12 @@
             <input type="text" id="" name="tarikh_lapor" class="form-control flatpickr" required {{$disabled}} value="{{$butiranInstitusi?->tarikh_lapor}}">
         </div>
     </div>
-    @if($type != 'verfikasi')
+    
         <hr>
         <div class="d-flex justify-content-end align-items-center mt-1">
             <button type="submit" class="btn btn-primary float-right">Simpan</button>
         </div>
-    @endif
+    
 </form>
 
 <script type="text/javascript">
