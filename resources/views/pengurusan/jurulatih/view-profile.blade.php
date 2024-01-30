@@ -1,5 +1,5 @@
 <form id="formjurulaith" novalidate="novalidate">
-    <input type="hidden" name="jurulatih_id" value="{{$jurulatih->id}}"> 
+    <input type="hidden" name="jurulatih_id" value="{{$jurulatih->id}}">
 <div class="row">
     <h5 class="mb-2 fw-bold">
         <span class="badge rounded-pill badge-light-primary">
@@ -138,7 +138,7 @@
         <input type="text" class="form-control" name="penerima_bayaran" required {{$readonly}} value="{{$jurulatih->penerima_bayaran}}">
     </div>
 
-    <div class="col-md-12 mb-1">
+    <div class="col-md-4 mb-1">
         <label class="fw-bold form-label">Jurulatih Sukan
             <span class="text-danger">*</span>
         </label>
@@ -207,27 +207,26 @@
     </div>
 
     <hr>
-    <h5 class="mb-2 fw-bold">
-        <span class="badge rounded-pill badge-light-primary">
-            Maklumat Kesihatan
-        </span>
-    </h5>
+    <div class="col-md-6 mb-1">
+        <h5 class="mb-2 fw-bold">
+            <span class="badge rounded-pill badge-light-primary">
+                Maklumat Kesihatan
+            </span>
+        </h5>
 
-    <div class="col-md-12 mb-1">
         <label class="fw-bold form-label">Maklumat Kesihatan
             <span class="text-danger">*</span>
         </label>
         <textarea class="form-control" name="maklumat_kesihatan" id="" rows="4" required {{$disabled}}>{{$jurulatih->maklumat_kesihatan}}</textarea>
     </div>
 
-    <hr>
-    <h5 class="mb-2 fw-bold">
-        <span class="badge rounded-pill badge-light-primary">
-            Maklumat Sekolah
-        </span>
-    </h5>
+    <div class="col-md-6 mb-1">
+        <h5 class="mb-2 fw-bold">
+            <span class="badge rounded-pill badge-light-primary">
+                Maklumat Sekolah
+            </span>
+        </h5>
 
-    <div class="col-md-12 mb-1">
         <label class="fw-bold form-label">Maklumat Sekolah
             <span class="text-danger">*</span>
         </label>
@@ -243,38 +242,41 @@
         </span>
     </h5>
 
-    <div class="col-md-4 mb-1">
+    <div class="col-md-5 mb-1">
         <label class="fw-bold form-label">Persijilan
             <span class="text-danger">*</span>
         </label>
         <input type="text" class="form-control" name="persijilan" required {{$readonly}} value="{{$jurulatih->persijilan}}">
     </div>
 
-    <div class="col-md-4 mb-1">
+    <div class="col-md-2 mb-1">
         <label class="fw-bold form-label">Tahap/Gred
             <span class="text-danger">*</span>
         </label>
         <input type="text" class="form-control" name="tahap_gred" required {{$readonly}} value="{{$jurulatih->tahap_gred}}">
     </div>
 
-    <div class="col-md-4 mb-1">
+    <div class="col-md-2 mb-1">
         <label class="fw-bold form-label">Tarikh Pensijilan
             <span class="text-danger">*</span>
         </label>
         <input type="text" id="" name="tarikh_pensijilan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required {{$readonly}} value="{{$jurulatih->tarikh_pensijilan}}">
     </div>
 
-    <div class="col-md-12 mb-1">
-        <label class="fw-bold form-label">Muat Naik Sijil
-            <span class="text-danger">*</span>
-        </label>
+    <div class="col-md-3 mb-1">
         <?php
             $url = route('jurulatih-download',['id' => $jurulatih->id,'name' => 'sijil_path']);
         ?>
         @if (!empty($jurulatih->sijil_path))
-            <a href="{{$url}}" class="btn btn-primary">Download File</a>
+            <label class="fw-bold form-label">Muat Turun Sijil </label>
+            <br>
+            <a href="{{$url}}" class="btn btn-primary btn-sm">Muat Turun</a>
+        @else
+            <label class="fw-bold form-label">Muat Naik Sijil
+                <span class="text-danger">*</span>
+            </label>
+            <input type="file" class="form-control" name="sijil_path" {{$disabled}}>
         @endif
-        <input type="file" class="form-control" name="sijil_path" {{$disabled}}>
     </div>
 
     <hr>
@@ -284,7 +286,7 @@
         </span>
     </h5>
 
-    <div class="col-md-3 mb-1">
+    <div class="col-md-5 mb-1">
         <label class="fw-bold form-label">Persijilan
             <span class="text-danger">*</span>
         </label>
@@ -298,18 +300,20 @@
         <input type="text" id="" name="sains_sukan_tarikh_pensijilan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required {{$readonly}} value="{{$jurulatih->sains_sukan_tarikh_pensijilan}}">
     </div>
 
-    <div class="col-md-12 mb-1">
-        <label class="fw-bold form-label">Muat Naik Sijil
-            <span class="text-danger">*</span>
-        </label>
+    <div class="col-md-4 mb-1">
         <?php
             $url = route('jurulatih-download',['id' => $jurulatih->id,'name' => 'sains_sukan_sijil_path']);
         ?>
         @if (!empty($jurulatih->sains_sukan_sijil_path))
-            <a href="{{$url}}" class="btn btn-primary">Download File</a>
+            <label class="fw-bold form-label">Muat Turun Sijil </label>
+            <br>
+            <a href="{{$url}}" class="btn btn-primary btn-sm">Muat Turun</a>
+        @else
+            <label class="fw-bold form-label">Muat Naik Sijil
+                <span class="text-danger">*</span>
+            </label>
+            <input type="file" class="form-control" name="sains_sukan_sijil_path" {{$disabled}}>
         @endif
-
-        <input type="file" class="form-control" name="sains_sukan_sijil_path" {{$disabled}}>
     </div>
 
     <hr>
@@ -319,7 +323,7 @@
         </span>
     </h5>
 
-    <div class="col-md-3 mb-1">
+    <div class="col-md-5 mb-1">
         <label class="fw-bold form-label">Persijilan
             <span class="text-danger">*</span>
         </label>
@@ -333,18 +337,20 @@
         <input type="text" id="" name="spkk_tarikh_pensijilan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required {{$readonly}} value="{{$jurulatih->spkk_tarikh_pensijilan}}">
     </div>
 
-    <div class="col-md-12 mb-1">
-        <label class="fw-bold form-label">Muat Naik Sijil
-            <span class="text-danger">*</span>
-        </label>
+    <div class="col-md-4 mb-1">
         <?php
             $url = route('jurulatih-download',['id' => $jurulatih->id,'name' => 'spkk_sijil_path']);
         ?>
         @if (!empty($jurulatih->spkk_sijil_path))
-            <a href="{{$url}}" class="btn btn-primary">Download File</a>
+            <label class="fw-bold form-label">Muat Turun Sijil </label>
+            <br>
+            <a href="{{$url}}" class="btn btn-primary btn-sm">Muat Turun</a>
+        @else
+            <label class="fw-bold form-label">Muat Naik Sijil
+                <span class="text-danger">*</span>
+            </label>
+            <input type="file" class="form-control" name="spkk_sijil_path" {{$disabled}}>
         @endif
-
-        <input type="file" class="form-control" name="spkk_sijil_path" {{$disabled}}>
     </div>
 
     <hr>
@@ -389,14 +395,14 @@
         </span>
     </h5>
 
-    <div class="col-md-3 mb-1">
+    <div class="col-md-5 mb-1">
         <label class="fw-bold form-label">Anugerah
             <span class="text-danger">*</span>
         </label>
         <input type="text" class="form-control" name="anugerah" required {{$readonly}} value="{{$jurulatih->anugerah}}">
     </div>
 
-    <div class="col-md-3 mb-1">
+    <div class="col-md-2 mb-1">
         <label class="fw-bold form-label">Tahun
             <span class="text-danger">*</span>
         </label>
@@ -411,7 +417,7 @@
 @endif
 </form>
 
- 
+
 <script type="text/javascript">
 $('#formjurulaith').submit(function(event) {
         event.preventDefault();

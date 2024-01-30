@@ -67,7 +67,7 @@ class PengurusanSkipsController extends Controller
                     $butiran = new ButiranInstitusiSkips;
                     $butiran = $butiran->create($input);
                 }
-            DB::commit();
+
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
 
             } elseif(in_array($tab, ['pengurusan_institusi', 'penubuhan_pendaftaran', 'pengurusan_kurikulum', 'pengajaran','pengurusan_penilaian', 'pengurusan_pembangunan_guru','displin', 'piawaian', 'kebersihan'])) {
@@ -86,7 +86,7 @@ class PengurusanSkipsController extends Controller
                         $item = new ItemStandardQualitySkips;
                         $item = $item->create($data);
                     }
-                } 
+                }
                 DB::commit();
                 return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $item]);
             }
@@ -193,5 +193,14 @@ class PengurusanSkipsController extends Controller
             $item->save();
         }
         return ['status' => true, 'data' => $item ];
+    }
+
+    // Modul tambah/kemaskini institusi
+    public function SenaraiInstitusi(){
+        return view('skips.pengurusan_institusi.senarai_institusi');
+    }
+
+    public function InstitusiBaru(){
+        return view('skips.pengurusan_institusi.institusi_baru');
     }
 }

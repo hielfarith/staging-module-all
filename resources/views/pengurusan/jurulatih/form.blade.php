@@ -174,7 +174,7 @@ Pengurusan Jurulatih
                     <input type="text" class="form-control" name="penerima_bayaran" required>
                 </div>
 
-                <div class="col-md-12 mb-1">
+                <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Jurulatih Sukan
                         <span class="text-danger">*</span>
                     </label>
@@ -239,31 +239,30 @@ Pengurusan Jurulatih
                 </div>
 
                 <hr>
-                <h5 class="mb-2 fw-bold">
-                    <span class="badge rounded-pill badge-light-primary">
-                        Maklumat Kesihatan
-                    </span>
-                </h5>
+                <div class="col-md-6 mb-1">
+                    <h5 class="mb-2 fw-bold">
+                        <span class="badge rounded-pill badge-light-primary">
+                            Maklumat Kesihatan
+                        </span>
+                    </h5>
 
-                <div class="col-md-12 mb-1">
                     <label class="fw-bold form-label">Maklumat Kesihatan
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea class="form-control" name="maklumat_kesihatan" id="" rows="4" required></textarea>
+                    <textarea class="form-control" name="maklumat_kesihatan" id="" rows="2" required></textarea>
                 </div>
 
-                <hr>
-                <h5 class="mb-2 fw-bold">
-                    <span class="badge rounded-pill badge-light-primary">
-                        Maklumat Sekolah
-                    </span>
-                </h5>
+                <div class="col-md-6 mb-1">
+                    <h5 class="mb-2 fw-bold">
+                        <span class="badge rounded-pill badge-light-primary">
+                            Maklumat Sekolah
+                        </span>
+                    </h5>
 
-                <div class="col-md-12 mb-1">
                     <label class="fw-bold form-label">Maklumat Sekolah
                         <span class="text-danger">*</span>
                     </label>
-                    <textarea class="form-control" name="maklumat_sekolah" id="" rows="4" required></textarea>
+                    <textarea class="form-control" name="maklumat_sekolah" id="" rows="2" required></textarea>
                 </div>
 
                 <hr>
@@ -273,28 +272,28 @@ Pengurusan Jurulatih
                     </span>
                 </h5>
 
-                <div class="col-md-4 mb-1">
+                <div class="col-md-5 mb-1">
                     <label class="fw-bold form-label">Persijilan
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control" name="persijilan" required>
                 </div>
 
-                <div class="col-md-4 mb-1">
+                <div class="col-md-2 mb-1">
                     <label class="fw-bold form-label">Tahap/Gred
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control" name="tahap_gred" required>
                 </div>
 
-                <div class="col-md-4 mb-1">
+                <div class="col-md-2 mb-1">
                     <label class="fw-bold form-label">Tarikh Pensijilan
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" id="" name="tarikh_pensijilan" required class="form-control flatpickr-basic" placeholder="YYYY-MM-DD">
                 </div>
 
-                <div class="col-md-12 mb-1">
+                <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Muat Naik Sijil
                         <span class="text-danger">*</span>
                     </label>
@@ -308,7 +307,7 @@ Pengurusan Jurulatih
                     </span>
                 </h5>
 
-                <div class="col-md-3 mb-1">
+                <div class="col-md-5 mb-1">
                     <label class="fw-bold form-label">Persijilan
                         <span class="text-danger">*</span>
                     </label>
@@ -322,7 +321,7 @@ Pengurusan Jurulatih
                     <input type="text" id="" name="sains_sukan_tarikh_pensijilan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" required>
                 </div>
 
-                <div class="col-md-12 mb-1">
+                <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Muat Naik Sijil
                         <span class="text-danger">*</span>
                     </label>
@@ -336,7 +335,7 @@ Pengurusan Jurulatih
                     </span>
                 </h5>
 
-                <div class="col-md-3 mb-1">
+                <div class="col-md-5 mb-1">
                     <label class="fw-bold form-label">Persijilan
                         <span class="text-danger">*</span>
                     </label>
@@ -350,7 +349,7 @@ Pengurusan Jurulatih
                     <input type="text" id="" name="spkk_tarikh_pensijilan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD">
                 </div>
 
-                <div class="col-md-12 mb-1">
+                <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Muat Naik Sijil
                         <span class="text-danger">*</span>
                     </label>
@@ -399,14 +398,14 @@ Pengurusan Jurulatih
                     </span>
                 </h5>
 
-                <div class="col-md-3 mb-1">
+                <div class="col-md-5 mb-1">
                     <label class="fw-bold form-label">Anugerah
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control" name="anugerah">
                 </div>
 
-                <div class="col-md-3 mb-1">
+                <div class="col-md-2 mb-1">
                     <label class="fw-bold form-label">Tahun
                         <span class="text-danger">*</span>
                     </label>
