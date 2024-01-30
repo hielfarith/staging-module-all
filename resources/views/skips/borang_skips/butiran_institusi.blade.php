@@ -246,7 +246,7 @@
            if (response.status) {
                 Swal.fire('Success', 'Berjaya', 'success');
                 var id = response.data.id;
-                location = "{{route('skips.skips_baru', ['id' => ':id'])}}";
+                var location = "{{route('skips.skips_baru', ['id' => ':id'])}}";
                 var location = location.replace(':id', id);
                 window.location.href = location;
            }

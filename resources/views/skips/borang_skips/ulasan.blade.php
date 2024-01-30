@@ -1,7 +1,14 @@
 <?php
     $id = Request::segment(3);
     $ulasan =  App\Models\UlasanKeseluruhanPemeriksaanSkips::where('butiran_institusi_id',$id)->first();
-
+    // $item = 
+     $itemStandardQualitySkips = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    $showHantarulasan = false;
+    if ($butiran_institusi_id) {
+        if (!empty($itemStandardQualitySkips->penubuhan_pendaftaran_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_institusi_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_kurikulum_verfikasi) && !empty($itemStandardQualitySkips->pengajaran_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_penilaian_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_pembangunan_guru_verfikasi) && !empty($itemStandardQualitySkips->displin_verfikasi) && !empty($itemStandardQualitySkips->piawaian_verfikasi) && !empty($itemStandardQualitySkips->kebersihan_verfikasi) && !empty($itemStandardQualitySkips->pengurusan_pelajar_antarabangsa_verfikasi)) {
+            $showHantarulasan = true;
+        }
+    }
 ?>
 <form id="ulasan-form">
 <input type="hidden" name="butiran_institusi_id" value="{{$id}}">
@@ -36,9 +43,11 @@
     </div>
 </div>
  <hr>
+    @if($showHantarulasan)
      <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitformulasan()">Hantar</button>
     </div>
+    @endf
 </form>
 <script type="text/javascript">
     function submitformulasan() { 
@@ -69,7 +78,7 @@
         success: function(response) {
            if (response.status) {
                 Swal.fire('Success', 'Berjaya', 'success');
-                var location = "{{route('skips.senarai_institusi')}}";
+                var location = "{{route('skips.senarai-skips')}}";
                 console.log(location)
                 window.location.href = location;
            }
