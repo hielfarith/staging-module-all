@@ -90,9 +90,14 @@
             $total = $total + $totalv
             $percentage = ($total/45);
             $percentage = $percentage*100;
+             if($type == 'verfikasi') {
+                 $col = 2;
+             } else {
+                 $col =1;
+             }
             ?>
             <tr>
-                <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
+                <td colspan="{{$col}}" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
                     <a class="text-success">{{ number_format($percentage,2)}}</a>
                 </td>
