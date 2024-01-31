@@ -78,15 +78,7 @@
 
             @endforeach
         </tbody>
-
-        <tfoot>
-            <tr>
-                <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td colspan="2" style="text-align: center;">
-                    <a class="text-success">{{$total + $totalv}}</a>
-                </td>
-            </tr>
-            <?php
+         <?php
             $total = $total + $totalv;
             $percentage = ($total/90);
             $percentage = $percentage*100;
@@ -96,10 +88,18 @@
                  $col =1;
              }
             ?>
+        <tfoot>
             <tr>
-                <td colspan="{{$col}}" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
-                <td>
-                    <a class="text-success">{{ number_format($percentage,2)}}</a>
+                <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
+                <td colspan="{{$col}}" style="text-align: center;">
+                    <a class="text-success">{{$total}}</a>
+                </td>
+            </tr>
+           
+            <tr>
+                <td colspan="2" style="text-align: center;" class="fw-bolder text-uppercase bg-light-primary">%</td>
+                <td colspan="{{$col}}" style="text-align: center;">
+                    <a class="text-success">{{ number_format($percentage,0)}}</a>
                 </td>
             </tr>
         </tfoot>

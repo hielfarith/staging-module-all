@@ -73,7 +73,7 @@ $butiran_institusi_id = Request::segment(3);
                 </tr>
             @endforeach
         </tbody>
-<?php
+            <?php
             $total = $total + $totalv;
             $percentage = ($total/30);
             $percentage = $percentage*100;
@@ -93,7 +93,7 @@ $butiran_institusi_id = Request::segment(3);
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{$percentage}}</a>
+                    <a class="text-success">{{ number_format($percentage,0) }}</a>
                 </td>
             </tr>
         </tfoot>

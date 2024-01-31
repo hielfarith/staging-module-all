@@ -94,7 +94,7 @@ $total = $score = 0;
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}">
-                    <a class="text-success">{{ $percentage }}</a>
+                    <a class="text-success">{{ number_format($percentage,0) }}</a>
                 </td>
             </tr>
         </tfoot>
