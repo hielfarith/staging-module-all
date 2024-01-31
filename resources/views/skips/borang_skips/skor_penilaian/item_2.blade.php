@@ -96,7 +96,7 @@ $institusis = [
             @endforeach
         </tbody>
          <?php
-            $total = $total + $totalv
+            $total = $total + $totalv;
             $percentage = ($total/210);
             $percentage = $percentage*100;
              if($type == 'verfikasi') {
