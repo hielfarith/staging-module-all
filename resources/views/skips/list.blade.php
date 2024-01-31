@@ -20,6 +20,11 @@ Instrumen
     <div class="card-header">
         <h4 class="card-title fw-bolder"> Senarai Instrumen </h4>
 
+        <div class="d-flex justify-content-end align-items-center">
+            <a href="{{ asset('template/BORANG DEMOGRAFI SKIPS.pdf') }}" class="btn btn-primary float-right" download>
+                <i class="fa-solid fa-file"></i> Muat Turun Dokumen
+            </a>
+        </div>
     </div>
 
     <hr>
@@ -31,8 +36,12 @@ Instrumen
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
-                        <th>Nama Instrumen</th>
+                        <th>Kod Sekolah</th>
+                        <th>Nama Institusi</th>
+                        <th>Jenis Institusi</th>
                         <th>Nama Pengetua</th>
+                        <th>PPD</th>
+                        <th>Negeri</th>
                         <th>Status</th>
                         <th width="5%">Tindakan</th>
                     </tr>
@@ -87,8 +96,24 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                 {
-                    data: "nama_instrumen",
-                    name: "nama_instrumen",
+                    data: "kod_sekolah",
+                    name: "kod_sekolah",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "nama_institusi",
+                    name: "nama_institusi",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "jenis_institusi",
+                    name: "jenis_institusi",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();
@@ -97,6 +122,22 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
                 {
                     data: "nama_pengetua",
                     name: "nama_pengetua",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "ppd",
+                    name: "ppd",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "negeri",
+                    name: "negeri",
                     searchable: true,
                     render: function(data, type, row) {
                         return $("<div/>").html(data).text();

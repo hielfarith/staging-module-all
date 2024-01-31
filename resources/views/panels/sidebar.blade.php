@@ -298,11 +298,11 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    {{-- <li class="nav-item">
-                        <a href="" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.validasi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.validasi') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
                         </a>
-                    </li> --}}
+                    </li> 
 
                     {{-- <li class="nav-item">
                         <a href="" class="nav-link">
