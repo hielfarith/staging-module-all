@@ -21,7 +21,25 @@ class formPdfController extends Controller
     public function generatePDF2()
     {
         //$dataFromDatabase = User::all();
+        
+        //  return view ('pdf.sijil');
+         $pdf = PDF::loadView('pdf.sijil');
+         return $pdf->stream('sijil.pdf');
+    }
+    public function generatePDF3()
+    {
+        //$dataFromDatabase = User::all();
     
-         return view ('pdf.sijil');
+        //  return view ('pdf.borang');
+         $pdf = PDF::loadView('pdf.borang');
+         return $pdf->stream('borang.pdf');
+    }
+    public function generatePDF4()
+    {
+        //$dataFromDatabase = User::all();
+    
+        //  return view ('pdf.borang');
+         $pdf = PDF::loadView('pdf.borangInstrumen');
+         return $pdf->stream('borangInstrumen.pdf');
     }
 }
