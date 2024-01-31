@@ -1,6 +1,6 @@
 <form id="piawaianv">
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $piawaianData = json_decode($tab1->piawaian);
@@ -17,7 +17,7 @@
     }
     ?>
 @php
-$butiran_institusi_id = Request::segment(3);
+$butiran_institusi_id = $butiran_id;;
 
 $piawaians = [
     'pelan_lantai_premis' => '8.1 Pelan Lantai Premis',

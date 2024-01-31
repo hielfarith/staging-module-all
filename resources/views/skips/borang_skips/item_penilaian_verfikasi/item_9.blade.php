@@ -1,6 +1,6 @@
 <form id="kebersihanv">
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $kebersihanData = json_decode($tab1->kebersihan);
@@ -18,7 +18,7 @@
 
 ?>
 @php
-$butiran_institusi_id = Request::segment(3);
+$butiran_institusi_id = $butiran_id;;
 
 $kebersihans = [
     'persekitaran_kawasan_penyambut_tetamu' => '9.1 Persekitaran Kawasan Penyambut Tetamu',

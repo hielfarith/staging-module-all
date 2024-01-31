@@ -84,7 +84,7 @@
     </div>
 </div>
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;
     $itemStandardQualitySkips = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     $showHantar = false;
     if ($butiran_institusi_id) {

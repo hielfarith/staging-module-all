@@ -1,6 +1,6 @@
 <form id="pengurusan_institusiv">
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
 
     if ($type == 'verfikasi' ) {
@@ -12,7 +12,7 @@
     }
 ?>
 @php
-$butiran_institusi_id = Request::segment(3);
+$butiran_institusi_id = $butiran_id;;
 $institusis = [
     'piagam_pelanggan' => '2.1. Piagam Pelanggan',
     'visi_dan_misi' => '2.2. Visi dan Misi',

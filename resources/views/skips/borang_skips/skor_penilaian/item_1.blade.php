@@ -12,7 +12,7 @@
         'surat_surat_sokongan_agensi' => '1.9 Surat-surat Sokongan Agensi',
     ];
 
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran);

@@ -1,6 +1,6 @@
 <form id="pengurusan_kurikulumv">
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengurusan_kurikulum = json_decode($tab1->pengurusan_kurikulum);
@@ -17,7 +17,7 @@
     }
 ?>
 @php
-$butiran_institusi_id = Request::segment(3);
+$butiran_institusi_id = $butiran_id;;
 $kurikulums = [
     'sukatan_pelajaran' => '3.1 Sukatan Pelajaran',
     'dokumen_rekod_mengajar' => '3.2 Dokumen Rekod Mengajar',

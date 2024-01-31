@@ -1,6 +1,6 @@
 <form id="pengajaran">
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengajaran = json_decode($tab1->pengajaran);
@@ -10,7 +10,7 @@
 
 ?>
 @php
-$butiran_institusi_id = Request::segment(3);
+$butiran_institusi_id = $butiran_id;
 $pdps = [
     'pengajaran_dan_pembelajaran' => '4.1 Pengajaran Dan Pembelajaran',
     'kaedah_metodologi_pengajaran' => '4.2 Kaedah / Metodologi Pengajaran',

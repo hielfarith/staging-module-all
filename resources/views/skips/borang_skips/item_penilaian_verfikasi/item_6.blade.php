@@ -1,6 +1,6 @@
 <form id="pengurusan_pembangunan_guruv">
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru);
@@ -17,7 +17,7 @@
     }
 ?>
 @php
-$butiran_institusi_id = Request::segment(3);
+$butiran_institusi_id = $butiran_id;;
 $pembangunan_gurus = [
     'program_pembangunan_guru' => '6.1 Program Pembangunan Guru',
     'kelayakan_akademik_guru' => '6.2 Kelayakan Akademik Guru',
