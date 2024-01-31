@@ -107,7 +107,7 @@
             </div>
 
             <div class="card-body">
-                A - 100%
+                <span id="set_gred"></span>
             </div>
         </div>
     </div>
@@ -124,6 +124,24 @@
        $('#set_percentage_'+i+'_0').text($('#tab'+i+'_percentage').val());
        if (i == 10) {
             $('#set_total_skor').text(totalskor);
+            var gred = '-';
+            // =IF(O328>94,"CEMERLANG",IF(O328>80,"BAIK", IF(O328>70,"HARAPAN",IF(O328>60,"SEDERHANA",IF(O328>50,"LEMAH", IF(O328>0,"SANGAT LEMAH"," "))))))
+            if (totalskor > 94) {
+                gred = 'CEMERLANG';
+            } else if (totalskor > 80) {
+                gred = 'BAIK';
+            } else if (totalskor > 80) {
+                gred = 'BAIK';
+            } else if (totalskor > 70) {
+                gred = 'HARAPAN';
+            } else if (totalskor > 60) {
+                gred = 'SEDERHANA';
+            } else if (totalskor > 50) {
+                gred = 'LEMAH';
+            } else if (totalskor > 0 && totalskor < 50) {
+                gred = 'SANGAT LEMAH';
+            }
+            $('#set_gred').text(gred);
        }
     }
 
