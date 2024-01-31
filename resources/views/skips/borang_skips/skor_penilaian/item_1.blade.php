@@ -86,10 +86,14 @@
                     <a class="text-success">{{$total + $totalv}}</a>
                 </td>
             </tr>
+            <?php
+            $percentage = ($score/45);
+            $percentage = $percentage*100;
+            ?>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
-                    <a class="text-success">-</a>
+                    <a class="text-success">{{ number_format($percentage,2)}}</a>
                 </td>
             </tr>
         </tfoot>
