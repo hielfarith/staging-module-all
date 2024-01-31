@@ -110,7 +110,7 @@ $institusis = [
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
                 
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{$total + $totalv}}</a>
+                    <a class="text-success">{{$total}}</a>
                 </td>
             </tr>
             <tr>
