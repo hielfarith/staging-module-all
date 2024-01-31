@@ -87,7 +87,8 @@
                 </td>
             </tr>
             <?php
-            $percentage = ($score/45);
+            $total = $total + $totalv
+            $percentage = ($total/45);
             $percentage = $percentage*100;
             ?>
             <tr>
