@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-12 mb-1">
+   <!--  <div class="col-md-12 mb-1">
         <label class="form-label fw-bold text-titlecase">Nama Institusi
             <span class="text-danger">*</span>
         </label>
@@ -23,7 +23,7 @@
                     <option value="{{$negeri->name}}">{{$negeri->name}}</option>
                 @endforeach
         </select>
-    </div>
+    </div> -->
 
     <div class="table-responsive mb-2">
         <table class="table header_uppercase table-bordered table-hovered" id="">
@@ -37,17 +37,29 @@
 
                 @php
                     $item_pencapaians = [
-                        '12.0' => 'ITEM 1: PENUBUHAN & PENDAFTARAN',
-                        '7.0' => 'ITEM 2: PENGURUSAN INSTITUSI',
-                        '12.0' => 'ITEM 3: PENGURUSAN KURIKULUM',
-                        '12.0' => 'ITEM 4: PENGAJARAN DAN PEMBELAJARAN',
-                        '10.0' => 'ITEM 5: PENGURUSAN PENILAIAN / PEPERIKSAAN',
-                        '7.0' => 'ITEM 6: PENGURUSAN DAN PEMBANGUNAN GURU',
-                        '5.0' => 'ITEM 7: DISIPLIN',
-                        '13.0' => 'ITEM 8: PIAWAIAN',
-                        '7.0' => 'ITEM 9: KEBERSIHAN DAN KECERIAAN',
-                        '15.0' => 'ITEM 10: PENGURUSAN PELAJAR ANTARABANGSA',
-                    ]
+                        '1.0' => 'ITEM 1: PENUBUHAN & PENDAFTARAN',
+                        '2.0' => 'ITEM 2: PENGURUSAN INSTITUSI',
+                        '3.0' => 'ITEM 3: PENGURUSAN KURIKULUM',
+                        '4.0' => 'ITEM 4: PENGAJARAN DAN PEMBELAJARAN',
+                        '5.0' => 'ITEM 5: PENGURUSAN PENILAIAN / PEPERIKSAAN',
+                        '6.0' => 'ITEM 6: PENGURUSAN DAN PEMBANGUNAN GURU',
+                        '7.0' => 'ITEM 7: DISIPLIN',
+                        '8.0' => 'ITEM 8: PIAWAIAN',
+                        '9.0' => 'ITEM 9: KEBERSIHAN DAN KECERIAAN',
+                        '10.0' => 'ITEM 10: PENGURUSAN PELAJAR ANTARABANGSA',
+                    ];
+                    $wajran = [ 
+                        '1.0' => '12.0', 
+                        '2.0' => '7.0',
+                        '3.0' => '12.0',
+                        '4.0' =>  '12.0',
+                        '5.0' => '10.0',
+                        '6.0' => '7.0',
+                        '7.0' => '5.0',
+                        '8.0' => '13.0',
+                        '9.0' => '7.0',
+                        '10.0' => '15.0'
+                        ];
                 @endphp
 
                 <tbody>
@@ -60,7 +72,7 @@
                             <td>
                                 <a class="text-success">auto-calculated</a>
                             </td>
-                            <td>{{ $itemKey }}</td>
+                            <td>{{ $wajran[$itemKey] }}</td>
                         </tr>
                     @endforeach
                 </tbody>

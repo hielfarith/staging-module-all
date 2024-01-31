@@ -1,7 +1,7 @@
 <?php
     $instrumenid = Request::segment(4);
     if (!empty($instrumenid)) {
-        $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->first();
+        $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->where('type','SKPAK')->first();
     } else {
         $instrumenData = null;
     }

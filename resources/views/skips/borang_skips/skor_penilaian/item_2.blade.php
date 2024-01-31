@@ -27,6 +27,17 @@ $institusis = [
     'pengurusan_aduan' => '2.10 Pengurusan Aduan',
 ];
 
+    $butiran_institusi_id = Request::segment(3);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengurusan_institusi = json_decode($tab1->pengurusan_institusi);   
+        $pengurusan_institusi_verfikasi = $tab1->pengurusan_institusi_verfikasi ? json_decode($tab1->pengurusan_institusi_verfikasi) : null;   
+    } else {
+        $pengurusan_institusi = $pengurusan_institusi_verfikasi = null;
+    }
+    $total = $score = 0;
+    $totalv = $scorev = 0;
+
 ?>
 
 <div class="table-responsive">
@@ -36,6 +47,9 @@ $institusis = [
                 <th width="5%">2.0.</th>
                 <th> PENUBUHAN INSTITUSI </th>
                 <th width="10%">SKOR</th>
+                @if($type == 'verfikasi')
+                    <th width="10%">SKOR VERFIKASI</th>
+                @endif
             </tr>
         </thead>
 
@@ -43,14 +57,41 @@ $institusis = [
             <tr>
                 <td rowspan="25"></td>
             </tr>
-            @foreach ($institusis as $institusi)
+            @foreach ($institusis as $key => $institusi)
                 <tr>
                     <td>
                         {{ $institusi }}
                     </td>
                     <td>
-                        <a class="text-success">Auto Calculated</a>
+                    <?php
+                        if($pengurusan_institusi) {
+                            if (isset($pengurusan_institusi->$key)){
+                                $score = $pengurusan_institusi->$key;
+                            } else {
+                                $score = 0;
+                            }
+                            $total = $total+$score;
+                        }
+                    ?>
+                        <a class="text-success">{{$score}}</a>
                     </td>
+                     @if($type == 'verfikasi')
+                        <td>
+                        <?php
+                            if($pengurusan_institusi_verfikasi) {
+                                $keyval = '';
+                                $keyval = $key.'_verfikasi';
+                                if (isset($pengurusan_institusi_verfikasi->$keyval)){
+                                    $scorev = $pengurusan_institusi_verfikasi->$keyval;
+                                } else {
+                                    $scorev = 0;
+                                }
+                                $totalv = $totalv+$scorev;
+                            }
+                        ?>
+                        <a class="text-success">{{$scorev}}</a>
+                    </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
@@ -58,14 +99,15 @@ $institusis = [
         <tfoot>
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td>
-                    <a class="text-success">Auto Calculated</a>
+                
+                <td colspan="2" style="text-align: center;">
+                    <a class="text-success">{{$total + $totalv}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">-</a>
                 </td>
             </tr>
         </tfoot>

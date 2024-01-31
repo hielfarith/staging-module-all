@@ -14,10 +14,11 @@ use App\Models\Master\MasterState;
 use App\Models\MasterDaerah;
 use App\Models\AhliJawatankuasaKerja;
 use App\Models\AhliJawatankuasaTertinggi;
+use App\Models\ButiranInstitusiSkips;
 use App\Models\Master\MasterCountry;
 use App\Models\PengerusiPengetuaGuru;
 use App\Models\Jurulatih;
-
+use App\Models\SkipsInstitusiPendidikan;
 use Illuminate\Support\Facades\Storage;
 
 class PengurusanProfilPenggunaController extends Controller
@@ -540,12 +541,13 @@ class PengurusanProfilPenggunaController extends Controller
 
     // PengerusiPengetuaGuru //
 
-       public function viewFormPengetua(Request $request)
+	public function viewFormPengetua(Request $request)
 	{
 		$states = MasterState::all();
-		$dearhs = MasterDaerah::all();
+		$daerahs = MasterDaerah::all();
+		$institusis = SkipsInstitusiPendidikan::all();
 
-		return view('pengurusan.pengetua.form', compact('states','dearhs'));
+		return view('pengurusan.pengetua.form', compact('states','daerahs', 'institusis'));
 	}
 
 	public function savePengetua(Request $request)
@@ -561,9 +563,12 @@ class PengurusanProfilPenggunaController extends Controller
 			if (array_key_exists('pengetua_id', $input)) {
             	$PengerusiPengetuaGuru = PengerusiPengetuaGuru::where('id', $input['pengetua_id'])->first();
             	unset($input['pengetua_id']);
+				
+				$input['status'] = 'Menunggu Verifikasi';
             	$PengerusiPengetuaGuru->update($input);
             } else {
             	$PengerusiPengetuaGuru = new PengerusiPengetuaGuru;
+				$input['status'] = 'Telah Disahkan';
         		$PengerusiPengetuaGuru->create($input);
             }
 
@@ -631,7 +636,8 @@ class PengurusanProfilPenggunaController extends Controller
     {
     	$pengetua = PengerusiPengetuaGuru::where('id', $request->id)->first();
     	$states = MasterState::all();
-    	$dearhs = MasterDaerah::all();
+    	$daerahs = MasterDaerah::all();
+		$institusis = SkipsInstitusiPendidikan::all();
     	if ($request->type == 'view') {
     		$readonly = 'readonly';
     		$disabled = 'disabled';
@@ -639,7 +645,7 @@ class PengurusanProfilPenggunaController extends Controller
     		$disabled = '';
     		$readonly = '';
     	}
-    	return view('pengurusan.pengetua.view-profile', compact('pengetua', 'states','dearhs', 'disabled', 'readonly'));
+    	return view('pengurusan.pengetua.view-profile', compact('pengetua', 'states','daerahs', 'institusis', 'disabled', 'readonly'));
     }
 
     public function checkDaerah(Request $request)

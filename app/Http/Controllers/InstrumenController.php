@@ -11,6 +11,8 @@ use App\Models\TetapanAspek;
 use App\Models\InstrumenSkpakSpksIkeps;
 use App\Models\TetapanItem;
 use App\Models\TetapanTarikhInstrumen;
+use App\Models\Master\MasterState;
+
 use Illuminate\Support\Facades\Auth;
 
 class InstrumenController extends Controller
@@ -43,11 +45,13 @@ class InstrumenController extends Controller
             return view('instrumen_update.tetapan-item.form');
         } elseif ($request->type == 'sedia-ada') {
             return view('instrumen_update.sedia-ada.form');
+        } elseif ($request->type == 'skips') {
+            return view('instrumen_update.skips.form');
         }
     }
 
     public function saveSkpak(Request $request) {
-         DB::beginTransaction();
+        DB::beginTransaction();
         try {
 
             $input = $request->input();
@@ -56,12 +60,12 @@ class InstrumenController extends Controller
                 $input['type'] = 'SKPAK';
             }
             if (array_key_exists('instrumen_id', $input) && $input['instrumen_id'] != 0) {
-                $InstrumenSkpakSpksIkeps = InstrumenSkpakSpksIkeps::where('id', $input['instrumen_id'])->first();
+                $instrumenSkpakSpksIkeps = InstrumenSkpakSpksIkeps::where('id', $input['instrumen_id'])->first();
                 unset($input['instrumen_id']);
-                $instrumenSkpakSpksIkeps = $InstrumenSkpakSpksIkeps->update($input);
+                $instrumenSkpakSpksIkeps = $instrumenSkpakSpksIkeps->update($input);
             } else {
-                $InstrumenSkpakSpksIkeps = new InstrumenSkpakSpksIkeps;
-                $instrumenSkpakSpksIkeps = $InstrumenSkpakSpksIkeps->create($input);
+                $instrumenSkpakSpksIkeps = new InstrumenSkpakSpksIkeps;
+                $instrumenSkpakSpksIkeps = $instrumenSkpakSpksIkeps->create($input);
             }
 
         } catch (\Throwable $e) {
@@ -474,4 +478,86 @@ class InstrumenController extends Controller
 
         return view('instrumen_update.sedia-ada.list');
     }
+
+    public function tambahSkips(Request $request) {
+        $negeris = MasterState::all();
+        $type = 'borang';
+        return view ('instrumen_update.skips.form', compact('negeris', 'type'));
+    }
+
+    public function saveSkips(Request $request) {
+        DB::beginTransaction();
+        try {
+
+            $input = $request->input();
+            $input['status'] = 1;
+            if (!isset($input['type'])) {
+                $input['type'] = 'SKIPS';
+            }
+            if (array_key_exists('instrumen_id', $input) && $input['instrumen_id'] != 0) {
+                $instrumenSkpakSpksIkeps = InstrumenSkpakSpksIkeps::where('id', $input['instrumen_id'])->first();
+                unset($input['instrumen_id']);
+                $instrumenSkpakSpksIkeps = $instrumenSkpakSpksIkeps->update($input);
+            } else {
+                $instrumenSkpakSpksIkeps = new InstrumenSkpakSpksIkeps;
+                $instrumenSkpakSpksIkeps = $instrumenSkpakSpksIkeps->create($input);
+            }
+
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+
+        DB::commit();
+
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'redirectRoute' => route('admin.internal.penggunalist'), 'data' => $instrumenSkpakSpksIkeps]);
+    }
+
+     public function listSkips(Request $request)
+    {
+
+        if($request->ajax()) {
+            $instrumenList = InstrumenSkpakSpksIkeps::where('id', '!=', 0)->where('type', 'SKIPS');;
+            if ($request->has('nama_instrumen') && !empty($request->input('nama_instrumen'))) {
+                $instrumenList->where('nama_instrumen', 'LIKE' ,'%'.$request->input('nama_instrumen').'%');
+            }
+            if ($request->has('tujuan_instrumen') && !empty($request->input('tujuan_instrumen'))) {
+                $instrumenList->where('tujuan_instrumen','LIKE' ,'%'.$request->input('tujuan_instrumen').'%');
+            }
+            if ($request->has('pengguna_instrumen') && !empty($request->input('pengguna_instrumen'))) {
+                $instrumenList->where('pengguna_instrumen','LIKE' ,'%'.$request->input('pengguna_instrumen').'%');
+            }
+            return Datatables::of($instrumenList)
+                ->addIndexColumn()
+                ->editColumn('nama_instrumen', function ($instrumenList) {
+                    return $instrumenList->nama_instrumen;
+                })
+                ->editColumn('tujuan_instrumen', function ($instrumenList) {
+                    return $instrumenList->tujuan_instrumen;
+                })
+                ->editColumn('pengguna_instrumen', function ($instrumenList) {
+                    return $instrumenList->pengguna_instrumen;
+                })
+                ->editColumn('tarikh_kuatkuasa', function ($instrumenList) {
+                    return $instrumenList->tarikh_kuatkuasa;
+                })
+                ->editColumn('action', function ($instrumenList) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatSkips('.$instrumenList->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSkipsEdit('.$instrumenList->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('instrumen_update.skips.list');
+    }
+
 }

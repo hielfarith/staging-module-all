@@ -1,4 +1,4 @@
-<ul class="nav nav-pills justify-content-center nav-pill-info my-2" role="tablist">
+<ul class="nav nav-pills justify-content-center" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="text-wrap nav-link fw-bolder active" id="item-1-tab" data-bs-toggle="tab" href="#item-1" aria-controls="item-1" role="tab" aria-selected="true">
             PENUBUHAN & PENDAFTARAN
@@ -53,33 +53,43 @@
 
 <div class="tab-content">
     <div class="tab-pane fade show active" id="item-1" role="tabpanel" aria-labelledby="item-1-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_1')
     </div>
     <div class="tab-pane fade" id="item-2" role="tabpanel" aria-labelledby="item-2-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_2')
     </div>
     <div class="tab-pane fade" id="item-3" role="tabpanel" aria-labelledby="item-3-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_3')
     </div>
     <div class="tab-pane fade" id="item-4" role="tabpanel" aria-labelledby="item-4-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_4')
     </div>
     <div class="tab-pane fade" id="item-5" role="tabpanel" aria-labelledby="item-5-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_5')
     </div>
     <div class="tab-pane fade" id="item-6" role="tabpanel" aria-labelledby="item-6-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_6')
     </div>
     <div class="tab-pane fade" id="item-7" role="tabpanel" aria-labelledby="item-7-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_7')
     </div>
     <div class="tab-pane fade" id="item-8" role="tabpanel" aria-labelledby="item-8-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_8')
     </div>
     <div class="tab-pane fade" id="item-9" role="tabpanel" aria-labelledby="item-9-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_9')
     </div>
     <div class="tab-pane fade" id="item-10" role="tabpanel" aria-labelledby="item-10-tab">
+        <hr>
         @include('skips.borang_skips.item_penilaian.item_10')
     </div>
 </div>

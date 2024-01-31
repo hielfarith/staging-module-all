@@ -247,8 +247,10 @@
                     var type = $('#type').val();
                     if (type == 'SKPAK') {
                         var location = "{{route('admin.instrumen.instrumenskpak-list')}}"
-                    } else {
+                    } else if(type == 'SEDIA') {
                         var location = "{{route('admin.instrumen.senarai-sedia-ada')}}"
+                    } else if(type == 'SKIPS') {
+                        var location = "{{route('admin.instrumen.senarai-skips')}}"
                     }
                     window.location.href = location;
                }

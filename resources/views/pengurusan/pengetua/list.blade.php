@@ -68,7 +68,9 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                         <th>No. Kad Pengenalan/ Pasport</th>
                         <th>Email Peribadi</th>
                         <th>Jenis</th>
-                        <th>Tarikh Penubuhan</th>
+                        {{-- <th>Tarikh Penubuhan</th> --}}
+                        <th>Institusi</th>
+                        <th>Status</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -166,7 +168,14 @@ $(document).ready(function() {
                         return $("<div/>").html(data).text();
                     }
                 },
-
+                {
+                    data: "status",
+                    name: "status",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
                 {
                     data: 'action',
                     name: 'action',

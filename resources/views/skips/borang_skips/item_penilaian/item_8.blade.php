@@ -1,4 +1,17 @@
+<form id="piawaian">
+<?php
+    $butiran_institusi_id = Request::segment(3);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $piawaianData = json_decode($tab1->piawaian);
+    } else {
+        $piawaianData = null;
+    }
+
+
+    ?>
 @php
+$butiran_institusi_id = Request::segment(3);
 
 $piawaians = [
     'pelan_lantai_premis' => '8.1 Pelan Lantai Premis',
@@ -83,8 +96,8 @@ $option_piawaians = [
         /* word-wrap: break-word; */
     }
 </style>
-
-<form action="">
+<input type="hidden" name="usertype" value="{{$type}}">
+<input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem8">
             <thead>
@@ -110,15 +123,15 @@ $option_piawaians = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8">Piawaian</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Piawaian</td>
                 </tr>
                 @foreach ($piawaians as $index => $piawaian)
                     <tr>
                         <td colspan="2"> {{ $piawaian }}</td>
-                        @foreach ($option_piawaians[$index] as $option_piawaian)
+                        @foreach ($option_piawaians[$index] as $key => $option_piawaian)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $piawaian }}" id="" value="">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($piawaianData && $piawaianData->$index == $key) checked @endif>
                                 </div>
                                 <br>
                                 {!! $option_piawaian !!}
@@ -130,8 +143,49 @@ $option_piawaians = [
         </table>
     </div>
 
-    <hr>
+       <hr>
+    @if(!empty($butiran_institusi_id) && $type == 'borang' && $tab_name == 'item_tab')
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+        <button type="button" class="btn btn-primary float-right" onclick="submitform8()">Simpan</button>
     </div>
+    @endif
+    @if(!empty($butiran_institusi_id) && $type == 'verfikasi' && $tab_name == 'item_verfikasi')
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right" onclick="submitform8()">Simpan</button>
+    </div>
+    @endif
 </form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+   function submitform8() {
+        var formData = new FormData(document.getElementById('piawaian'));
+        var error = false;
+
+        $('form#piawaian').find('radio, input').each(function() {
+            var value = $("input[name='"+this.name+"']:checked").val();
+            if (typeof value == 'undefined' && this.type == 'radio') {
+                error = true;
+            }
+        });
+
+        if (error) {
+            Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skips.instrumen-submit', ['tab' => 'piawaian']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+   }
+</script>

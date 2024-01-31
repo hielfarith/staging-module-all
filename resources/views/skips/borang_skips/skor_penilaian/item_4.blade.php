@@ -7,6 +7,16 @@ $pdps = [
     'penggunaan_bahan_bantu_mengajar' => '4.4 Penggunaan Bahan Bantu Mengajar',
 ];
 
+    $butiran_institusi_id = Request::segment(3);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengajaran = json_decode($tab1->pengajaran);  
+        $pengajaran_verfikasi = $tab1->pengajaran_verfikasi ? json_decode($tab1->pengajaran_verfikasi) : null;   
+
+    } else {
+        $pengajaran = $pengajaran_verfikasi =  null;
+    }
+$total = $score = 0;    $totalv = $scorev = 0;
 ?>
 
 <div class="table-responsive">
@@ -16,6 +26,9 @@ $pdps = [
                 <th width="5%">4.0</th>
                 <th> PENGAJARAN DAN PEMBELAJARAN </th>
                 <th width="10%">SKOR</th>
+                 @if($type == 'verfikasi')
+                    <th width="10%">SKOR VERFIKASI</th>
+                @endif
             </tr>
         </thead>
 
@@ -23,14 +36,38 @@ $pdps = [
             <tr>
                 <td rowspan="24"></td>
             </tr>
-            @foreach ($pdps as $pdp)
+            @foreach ($pdps as $key =>  $pdp)
                 <tr>
                     <td>
                         {{ $pdp }}
                     </td>
                     <td>
-                        <a class="text-success">Auto Calculated</a>
+                    <?php
+                        if($pengajaran) {
+                            if (isset($pengajaran->$key)){
+                                $score = $pengajaran->$key;
+                            } else {
+                                $score = 0;
+                            }
+                            $total = $total+$score;
+                        }
+                    ?>
+
+                        <a class="text-success">{{$score}}</a>
                     </td>
+                     @if($type == 'verfikasi')
+                        <td>
+                        <?php
+                            if($pengajaran_verfikasi) {
+                                $keyval = '';
+                                $keyval = $key.'_verfikasi';
+                                $scorev = $pengajaran_verfikasi->$keyval;
+                                $totalv = $totalv+$scorev;
+                            }
+                        ?>
+                        <a class="text-success">{{$scorev}}</a>
+                    </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
@@ -38,14 +75,14 @@ $pdps = [
         <tfoot>
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td>
-                    <a class="text-success">Auto Calculated</a>
+                <td colspan="2" style="text-align: center;">
+                    <a class="text-success">{{$total + $totalv}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">-</a>
                 </td>
             </tr>
         </tfoot>

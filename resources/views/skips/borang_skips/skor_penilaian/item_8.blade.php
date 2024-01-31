@@ -9,6 +9,16 @@ $piawaians = [
     'penyelenggaraan_tandas' => '8.6 Penyelenggaraan Tandas',
 ];
 
+$butiran_institusi_id = Request::segment(3);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $piawaianData = json_decode($tab1->piawaian); 
+        $piawaianData_verfikasi = $tab1->piawaian_verfikasi ? json_decode($tab1->piawaian_verfikasi) : null;   
+  
+    } else {
+        $piawaianData =$piawaianData =  null;
+    }
+    $score = $total = 0;    $totalv = $scorev = 0;
 ?>
 
 <div class="table-responsive">
@@ -18,6 +28,9 @@ $piawaians = [
                 <th width="5%">8.0</th>
                 <th> PIAWAIAN </th>
                 <th width="10%">SKOR</th>
+                @if($type == 'verfikasi')
+                    <th width="10%">SKOR VERFIKASI</th>
+                @endif
             </tr>
         </thead>
 
@@ -25,14 +38,38 @@ $piawaians = [
             <tr>
                 <td rowspan="24"></td>
             </tr>
-            @foreach ($piawaians as $piawaian)
+            @foreach ($piawaians as $key => $piawaian)
                 <tr>
                     <td>
                         {{ $piawaian }}
                     </td>
                     <td>
-                        <a class="text-success">Auto Calculated</a>
+                    <?php
+                        if($piawaianData) {
+                            if (isset($piawaianData->$key)){
+                                $score = $piawaianData->$key;
+                            } else {
+                                $score = 0;
+                            }
+                            $total = $total+$score;
+                        }
+                    ?>
+
+                        <a class="text-success">{{$score}}</a>
                     </td>
+                     @if($type == 'verfikasi')
+                        <td>
+                        <?php
+                            if($piawaianData_verfikasi) {
+                                $keyval = '';
+                                $keyval = $key.'_verfikasi';
+                                $scorev = $piawaianData_verfikasi->$keyval;
+                                $totalv = $totalv+$scorev;
+                            }
+                        ?>
+                        <a class="text-success">{{$scorev}}</a>
+                    </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
@@ -40,14 +77,14 @@ $piawaians = [
         <tfoot>
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td>
-                    <a class="text-success">Auto Calculated</a>
+                <td colspan="2" style="text-align: center;">
+                    <a class="text-success">{{$total + $totalv}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">-</a>
                 </td>
             </tr>
         </tfoot>

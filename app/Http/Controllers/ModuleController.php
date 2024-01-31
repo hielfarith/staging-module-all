@@ -550,8 +550,10 @@ class ModuleController extends Controller
         $type = $request->module_type ;
         if ($type == 'NewForm') {
             $formData = NewForm::all();
-        } else {
-            $formData = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->get();
+        } elseif($type == 'SEDIA') {
+            $formData = InstrumenSkpakSpksIkeps::whereIn('type', ['SEDIA', 'SKIPS'])->get();
+        } elseif($type == 'SKIPS') {
+            $formData = InstrumenSkpakSpksIkeps::where('type', 'SKIPS')->get();
         }
         return ['formdata' => $formData];
 

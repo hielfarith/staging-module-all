@@ -6,6 +6,16 @@ $peperiksaans = [
     'akreditasi_sijil_oleh_badan_antarabangsa' => '5.3 Akreditasi Sijil oleh Badan Antarabangsa',
 ];
 
+    $butiran_institusi_id = Request::segment(3);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengurusan_penilaian = json_decode($tab1->pengurusan_penilaian);
+        $pengurusan_penilaian_verfikasi = $tab1->pengurusan_penilaian_verfikasi ? json_decode($tab1->pengurusan_penilaian_verfikasi) : null;   
+
+    } else {
+        $pengurusan_penilaian = $pengurusan_penilaian_verfikasi = null;
+    }
+    $total = $score = 0;    $totalv = $scorev = 0;
 ?>
 
 <div class="table-responsive">
@@ -15,6 +25,9 @@ $peperiksaans = [
                 <th width="5%">5.0</th>
                 <th> PENGURUSAN PENILAIAN/PEPERIKSAAN </th>
                 <th width="10%">SKOR</th>
+                 @if($type == 'verfikasi')
+                    <th width="10%">SKOR VERFIKASI</th>
+                @endif
             </tr>
         </thead>
 
@@ -22,14 +35,38 @@ $peperiksaans = [
             <tr>
                 <td rowspan="24"></td>
             </tr>
-            @foreach ($peperiksaans as $peperiksaan)
+            @foreach ($peperiksaans as $key =>  $peperiksaan)
                 <tr>
                     <td>
                         {{ $peperiksaan }}
                     </td>
                     <td>
-                        <a class="text-success">Auto Calculated</a>
+                    <?php
+                        if($pengurusan_penilaian) {
+                            if (isset($pengurusan_penilaian->$key)){
+                                $score = $pengurusan_penilaian->$key;
+                            } else {
+                                $score = 0;
+                            }
+                            $total = $total+$score;
+                        }
+                    ?>
+
+                        <a class="text-success">{{$score}}</a>
                     </td>
+                    @if($type == 'verfikasi')
+                        <td>
+                        <?php
+                            if($pengurusan_penilaian_verfikasi) {
+                                $keyval = '';
+                                $keyval = $key.'_verfikasi';
+                                $scorev = $pengurusan_penilaian_verfikasi->$keyval;
+                                $totalv = $totalv+$scorev;
+                            }
+                        ?>
+                        <a class="text-success">{{$scorev}}</a>
+                    </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
@@ -37,14 +74,14 @@ $peperiksaans = [
         <tfoot>
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td>
-                    <a class="text-success">Auto Calculated</a>
+                <td colspan="2" style="text-align: center;">
+                    <a class="text-success">{{$total+$totalv}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">-</a>
                 </td>
             </tr>
         </tfoot>

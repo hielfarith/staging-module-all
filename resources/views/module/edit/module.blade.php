@@ -14,6 +14,7 @@
                                     <select id="module_type" name="module_type" class="form-control select2" placeholder="Name of Module" required onchange="typechange(this)">
                                             <option value="">Sila Pilih</option>
                                             <option value="SEDIA" @if($module?->module_type == 'SEDIA') selected @endif>SEDIA</option>
+                                            <!-- <option value="SKIPS" @if($module?->module_type == 'SKIPS') selected @endif>SKIPS</option> -->
                                             <option value="NewForm" @if($module?->module_type == 'NewForm') selected @endif>Dynamic Form</option>
                                         </select>
                                     
@@ -31,17 +32,17 @@
                                         </select>
                                     @else
                                         <?php
-                                            if ($module->module_type == 'SEDIA') {
-                                                $formData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $module->module_name)->first();
-                                            } else {
+                                            if ($module->module_type == 'NewForm') {
                                                 $formData = \App\Models\NewForm::where('id', $module->module_name)->first();
+                                            }  else {
+                                                $formData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $module->module_name)->first();
                                             }
                                         ?>
                                         <input type="hidden" id="module_name" name="module_name" value="{{ $module->module_name ?? null }}" class="form-control" placeholder="Name of Module" required>
-                                        @if($module->module_type == 'SEDIA') 
-                                            <input type="text" id="module_show" name="module_show" value="{{$formData->nama_instrumen}}" class="form-control" placeholder="Name of Module" readonly>
-                                        @else
+                                        @if($module->module_type == 'NewForm') 
                                             <input type="text" id="module_show" name="module_show" value="{{$formData->form_name}}" class="form-control" placeholder="Name of Module" readonly>
+                                        @else
+                                            <input type="text" id="module_show" name="module_show" value="{{$formData->nama_instrumen}}" class="form-control" placeholder="Name of Module" readonly>
                                         @endif
                                     @endif
                                 </div>

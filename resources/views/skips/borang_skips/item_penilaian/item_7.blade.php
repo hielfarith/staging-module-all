@@ -1,5 +1,17 @@
-@php
+<form id="displin">
+<?php
+    $butiran_institusi_id = Request::segment(3);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $disiplin = json_decode($tab1->displin);
+    } else {
+        $disiplin = null;
+    }
 
+
+?>
+@php
+$butiran_institusi_id = Request::segment(3);
 $displins = [
     'peraturan_disiplin' => '7.1 Peraturan Disiplin',
     'rekod_disiplin' => '7.2 Rekod Disiplin',
@@ -53,8 +65,8 @@ $option_displins = [
         /* word-wrap: break-word; */
     }
 </style>
-
-<form action="">
+    <input type="hidden" name="usertype" value="{{$type}}">
+    <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem7">
             <thead>
@@ -80,15 +92,15 @@ $option_displins = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8">Disiplin</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Disiplin</td>
                 </tr>
                 @foreach ($displins as $index => $displin)
                     <tr>
                         <td colspan="2"> {{ $displin }}</td>
-                        @foreach ($option_displins[$index] as $option_displin)
+                        @foreach ($option_displins[$index] as $key => $option_displin)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $displin }}" id="" value="">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($disiplin && $disiplin->$index == $key) checked @endif>
                                 </div>
                                 <br>
                                 {!! $option_displin !!}
@@ -100,8 +112,50 @@ $option_displins = [
         </table>
     </div>
 
-    <hr>
+        <hr>
+    @if(!empty($butiran_institusi_id) && $type == 'borang' && $tab_name == 'item_tab')
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+        <button type="button" class="btn btn-primary float-right" onclick="submitform7()">Simpan</button>
     </div>
+    @endif
+    @if(!empty($butiran_institusi_id) && $type == 'verfikasi' && $tab_name == 'item_verfikasi')
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right" onclick="submitform7()">Simpan</button>
+    </div>
+    @endif
 </form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+   function submitform7() {
+        var formData = new FormData(document.getElementById('displin'));
+        var error = false;
+
+        $('form#displin').find('radio, input').each(function() {
+            var value = $("input[name='"+this.name+"']:checked").val();
+            if (typeof value == 'undefined' && this.type == 'radio') {
+                error = true;
+            }
+        });
+
+        if (error) {
+            Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skips.instrumen-submit', ['tab' => 'displin']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+   }
+</script>

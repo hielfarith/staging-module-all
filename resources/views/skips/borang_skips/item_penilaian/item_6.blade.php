@@ -1,5 +1,17 @@
-@php
+<form id="pengurusan_pembangunan_guru">
+<?php
+    $butiran_institusi_id = Request::segment(3);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru);
+    } else {
+        $pengurusan_pembangunan_guru = null;
+    }
 
+
+?>
+@php
+$butiran_institusi_id = Request::segment(3);
 $pembangunan_gurus = [
     'program_pembangunan_guru' => '6.1 Program Pembangunan Guru',
     'kelayakan_akademik_guru' => '6.2 Kelayakan Akademik Guru',
@@ -52,8 +64,8 @@ $option_pembangunan_gurus = [
         /* word-wrap: break-word; */
     }
 </style>
-
-<form action="">
+<input type="hidden" name="usertype" value="{{$type}}">
+<input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem6">
             <thead>
@@ -79,15 +91,15 @@ $option_pembangunan_gurus = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8">Pengurusan & Pembangunan Guru</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan & Pembangunan Guru</td>
                 </tr>
                 @foreach ($pembangunan_gurus as $index => $pembangunan_guru)
                     <tr>
                         <td colspan="2"> {{ $pembangunan_guru }}</td>
-                        @foreach ($option_pembangunan_gurus[$index] as $option_pembangunan_guru)
+                        @foreach ($option_pembangunan_gurus[$index] as $key => $option_pembangunan_guru)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $pembangunan_guru }}" id="" value="">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengurusan_pembangunan_guru && $pengurusan_pembangunan_guru->$index == $key) checked @endif>
                                 </div>
                                 <br>
 
@@ -100,8 +112,50 @@ $option_pembangunan_gurus = [
         </table>
     </div>
 
-    <hr>
+       <hr>
+    @if(!empty($butiran_institusi_id) && $type == 'borang' && $tab_name == 'item_tab')
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+        <button type="button" class="btn btn-primary float-right" onclick="submitform6()">Simpan</button>
     </div>
+    @endif
+    @if(!empty($butiran_institusi_id) && $type == 'verfikasi' && $tab_name == 'item_verfikasi')
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right" onclick="submitform6()">Simpan</button>
+    </div>
+    @endif
 </form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+   function submitform6() {
+        var formData = new FormData(document.getElementById('pengurusan_pembangunan_guru'));
+        var error = false;
+
+        $('form#pengurusan_pembangunan_guru').find('radio, input').each(function() {
+            var value = $("input[name='"+this.name+"']:checked").val();
+            if (typeof value == 'undefined' && this.type == 'radio') {
+                error = true;
+            }
+        });
+
+        if (error) {
+            Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengurusan_pembangunan_guru']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+   }
+</script>

@@ -1,3 +1,13 @@
+<?php
+    $butiran_institusi_id = Request::segment(3);
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran);
+    } else {
+        $penubuhan_pendaftaran = null;
+    }
+
+?>
 @php
 $pendaftarans = [
     'kelulusan_penubuhan' => '1.1 Surat Kelulusan Penubuhan',
@@ -107,9 +117,7 @@ $options = [
         /* word-wrap: break-word; */
     }
 </style>
-
-
-<form>
+<form id="penubuhan_pendaftaran">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem1">
             <thead>
@@ -134,17 +142,21 @@ $options = [
                 </tr>
             </thead>
             <tbody>
+                <input type="hidden" name="usertype" value="{{$type}}">
+                <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
                 <tr>
-                    <td colspan="8">Penubuhan & Pendaftaran</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder">Penubuhan & Pendaftaran</td>
                 </tr>
                 @foreach ($pendaftarans as $index => $pendaftaran)
+
                     <tr>
                         <td colspan="2"> {{ $pendaftaran }}</td>
 
-                        @foreach ($options[$index] as $option)
+                        @foreach ($options[$index] as $key => $option)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $pendaftaran }}" id="" value="">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index == $key) checked @endif>
+
                                 </div>
                                 <br>
 
@@ -153,12 +165,51 @@ $options = [
                         @endforeach
                     </tr>
                 @endforeach
+
             </tbody>
         </table>
     </div>
 
     <hr>
+
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+        <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
     </div>
+
+
 </form>
+
+<script>
+    function submitform1() {
+        var formData = new FormData(document.getElementById('penubuhan_pendaftaran'));
+        var error = false;
+
+         $('form#penubuhan_pendaftaran').find('radio, input, checkbox').each(function() {
+            if(this.required && this.type == 'checkbox' && !this.checked) {
+                error = true;
+            }
+            if (this.required && this.value == '') {
+                error = true;
+            }
+        });
+
+        if (error) {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skips.instrumen-submit', ['tab' => 'penubuhan_pendaftaran']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+
+    };
+</script>

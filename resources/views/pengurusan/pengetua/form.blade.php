@@ -69,7 +69,7 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                     <label class="fw-bold form-label">Emel
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="no_tel" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                    <input type="email" class="form-control" name="email" required>
                 </div>
 
                 <div class="col-md-4 mb-1">
@@ -78,8 +78,9 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                     </label>
                     <select class="form-control select2" name="jawatan" id="jawatan" required>
                             <option value="" hidden>Jawatan</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            <option value="pengerusi">Pengerusi</option>
+                            <option value="pengetua">Pengetua</option>
+                            <option value="guru_besar">Guru Besar</option>
                     </select>
                 </div>
 
@@ -89,8 +90,9 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                     </label>
                     <select class="form-control select2" name="institusi" id="institusi" required>
                             <option value="" hidden>Institusi</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            @foreach($institusis as $institusi)
+                            <option value="{{ $institusi->id }}">{{ $institusi->nama }}</option>
+                            @endforeach
                     </select>
                 </div>
 
@@ -106,7 +108,7 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
                     </select>
                 </div>
 
-                <div class="col-md-12 mb-1">
+                {{-- <div class="col-md-12 mb-1">
                     <label class="fw-bold form-label">Sebab Pertukaran
                         <span class="text-danger">*</span>
                     </label>
@@ -121,7 +123,7 @@ Pengurusan Pengerusi/ Pengetua/ Guru Besar
 
                 <div class="col-md-12 mb-1">
                     <input type="text" name="sebab_pertukaran_lain" placeholder="Sila nyatakan." id="sebab_pertukaran_lain" class="form-control" style="display: none;">
-                </div>
+                </div> --}}
             </div>
 
             <hr>
@@ -262,7 +264,8 @@ $('#formpengetua').submit(function(event) {
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.internal.pengetualist')}}"
+                    //var location = "{{route('admin.internal.pengetualist')}}"
+                    var location = "{{route('skips.kemaskini-profil')}}"
                     window.location.href = location;
                }
             }

@@ -9,6 +9,18 @@ $kurikulums = [
     'rekod_pencerapan' => '3.6 Rekod Pencerapan',
 ];
 
+ $butiran_institusi_id = Request::segment(3);
+$tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengurusan_kurikulum = json_decode($tab1->pengurusan_kurikulum);   
+        $pengurusan_kurikulum_verfikasi = $tab1->pengurusan_kurikulum_verfikasi ? json_decode($tab1->pengurusan_kurikulum_verfikasi) : null;   
+    } else {
+        $pengurusan_kurikulum = $pengurusan_kurikulum_verfikasi = null;
+    }
+
+$total = $score = 0;
+    $totalv = $scorev = 0;
+
 ?>
 
 <div class="table-responsive">
@@ -18,6 +30,9 @@ $kurikulums = [
                 <th width="5%">3.0</th>
                 <th> PENUBUHAN KURIKULUM </th>
                 <th width="10%">SKOR</th>
+                 @if($type == 'verfikasi')
+                    <th width="10%">SKOR VERFIKASI</th>
+                @endif
             </tr>
         </thead>
 
@@ -25,14 +40,37 @@ $kurikulums = [
             <tr>
                 <td rowspan="24"></td>
             </tr>
-            @foreach ($kurikulums as $kurikulum)
+            @foreach ($kurikulums as $key =>  $kurikulum)
                 <tr>
                     <td>
                         {{ $kurikulum }}
                     </td>
                     <td>
-                        <a class="text-success">Auto Calculated</a>
+                    <?php
+                        if($pengurusan_kurikulum) {
+                            if (isset($pengurusan_kurikulum->$key)){
+                                $score = $pengurusan_kurikulum->$key;
+                            } else {
+                                $score = 0;
+                            }
+                            $total = $total+$score;
+                        }
+                    ?>
+                        <a class="text-success">{{$score}}</a>
                     </td>
+                      @if($type == 'verfikasi')
+                        <td>
+                        <?php
+                            if($pengurusan_kurikulum_verfikasi) {
+                                $keyval = '';
+                                $keyval = $key.'_verfikasi';
+                                $scorev = $pengurusan_kurikulum_verfikasi->$keyval;
+                                $totalv = $totalv+$scorev;
+                            }
+                        ?>
+                        <a class="text-success">{{$scorev}}</a>
+                    </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
@@ -40,14 +78,14 @@ $kurikulums = [
         <tfoot>
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td>
-                    <a class="text-success">Auto Calculated</a>
+                <td colspan="2" style="text-align:center;">
+                    <a class="text-success">{{$total+$totalv}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td>
-                    <a class="text-success">Auto Calculated</a>
+                    <a class="text-success">-</a>
                 </td>
             </tr>
         </tfoot>
