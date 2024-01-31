@@ -88,7 +88,7 @@
             </tr>
             <?php
             $total = $total + $totalv;
-            $percentage = ($total/45);
+            $percentage = ($total/90);
             $percentage = $percentage*100;
              if($type == 'verfikasi') {
                  $col = 2;
