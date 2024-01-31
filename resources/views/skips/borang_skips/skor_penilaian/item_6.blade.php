@@ -96,3 +96,6 @@ $pembangunan_gurus = [
         </tfoot>
     </table>
 </div>
+
+<input type="hidden" value="{{$total}}" name="tab6_skor" id="tab6_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab6_percentage" id="tab6_percentage">

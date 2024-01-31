@@ -105,3 +105,5 @@
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab1_skor" id="tab1_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab1_percentage" id="tab1_percentage">

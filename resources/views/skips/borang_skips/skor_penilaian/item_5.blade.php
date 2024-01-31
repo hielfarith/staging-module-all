@@ -95,3 +95,5 @@ $peperiksaans = [
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab5_skor" id="tab5_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab5_percentage" id="tab5_percentage">

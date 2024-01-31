@@ -4,7 +4,7 @@ $kurikulums = [
     'sukatan_pelajaran' => '3.1 Sukatan Pelajaran',
     'dokumen_rekod_mengajar' => '3.2 Dokumen Rekod Mengajar',
     'mesyuarat_kurikulum' => '3.3 Mesyuarat Kurikulum',
-    'mata_pelajaran_yang diajar' => '3.4 Mata Pelajaran Yang Diajar',
+    'mata_pelajaran_yang_diajar' => '3.4 Mata Pelajaran Yang Diajar',
     'bahan_bantu_mengajar' => '3.5 Bahan Bantu Mengajar',
     'rekod_pencerapan' => '3.6 Rekod Pencerapan',
 ];
@@ -64,7 +64,7 @@ $total = $score = 0;
                             if($pengurusan_kurikulum_verfikasi) {
                                 $keyval = '';
                                 $keyval = $key.'_verfikasi';
-                                $scorev = $pengurusan_kurikulum_verfikasi->$keyval;
+                                $scorev = $pengurusan_kurikulum_verfikasi?->$keyval;
                                 $totalv = $totalv+$scorev;
                             }
                         ?>
@@ -93,10 +93,12 @@ $total = $score = 0;
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
-                <td colspan="{{$col}}">
+                <td colspan="{{$col}}" style="text-align: center;">
                     <a class="text-success">{{ number_format($percentage,0) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab3_skor" id="tab3_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab3_percentage" id="tab3_percentage">

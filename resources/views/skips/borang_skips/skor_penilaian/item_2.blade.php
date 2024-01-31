@@ -122,3 +122,5 @@ $institusis = [
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab2_skor" id="tab2_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab2_percentage" id="tab2_percentage">

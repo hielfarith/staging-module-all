@@ -96,3 +96,5 @@ $displins = [
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab7_skor" id="tab7_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab7_percentage" id="tab7_percentage">

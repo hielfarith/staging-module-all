@@ -95,3 +95,5 @@ $score = $total = 0;    $totalv = $scorev = 0;
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab9_skor" id="tab9_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab9_percentage" id="tab9_percentage">

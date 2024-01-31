@@ -72,7 +72,7 @@ class PengurusanSkipsController extends Controller
 
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
 
-            } elseif(in_array($tab, ['pengurusan_institusi', 'penubuhan_pendaftaran', 'pengurusan_kurikulum', 'pengajaran','pengurusan_penilaian', 'pengurusan_pembangunan_guru','displin', 'piawaian', 'kebersihan'])) {
+            } elseif(in_array($tab, ['pengurusan_institusi', 'penubuhan_pendaftaran', 'pengurusan_kurikulum', 'pengajaran','pengurusan_penilaian', 'pengurusan_pembangunan_guru','displin', 'piawaian', 'kebersihan', 'pengurusan_pelajar_antarabangsa'])) {
                 if (isset($input['butiran_institusi_id']) && !empty($input['butiran_institusi_id'])) {
                     $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
                     $data[$tab] = json_encode($input);

@@ -99,3 +99,5 @@ $butiran_institusi_id = Request::segment(3);
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab8_skor" id="tab8_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab8_percentage" id="tab8_percentage">
