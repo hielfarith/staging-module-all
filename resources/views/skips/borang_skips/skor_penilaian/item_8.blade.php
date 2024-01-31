@@ -73,18 +73,27 @@ $butiran_institusi_id = Request::segment(3);
                 </tr>
             @endforeach
         </tbody>
-
+<?php
+            $total = $total + $totalv;
+            $percentage = ($total/30);
+            $percentage = $percentage*100;
+             if($type == 'verfikasi') {
+                 $col = 2;
+             } else {
+                 $col =1;
+             }
+            ?>
         <tfoot>
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td colspan="2" style="text-align: center;">
-                    <a class="text-success">{{$total + $totalv}}</a>
+                <td colspan="{{$col}}" style="text-align: center;">
+                    <a class="text-success">{{$total}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
-                <td>
-                    <a class="text-success">-</a>
+                <td colspan="{{$col}}" style="text-align: center;">
+                    <a class="text-success">{{$percentage}}</a>
                 </td>
             </tr>
         </tfoot>
