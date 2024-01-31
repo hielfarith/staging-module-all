@@ -87,7 +87,7 @@
                 </td>
             </tr>
             <?php
-            $total = $total + $totalv
+            $total = $total + $totalv;
             $percentage = ($total/45);
             $percentage = $percentage*100;
              if($type == 'verfikasi') {
