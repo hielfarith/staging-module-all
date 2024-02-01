@@ -482,7 +482,8 @@ class InstrumenController extends Controller
     public function tambahSkips(Request $request) {
         $negeris = MasterState::all();
         $type = 'borang';
-        return view ('instrumen_update.skips.form', compact('negeris', 'type'));
+        $butiran_id = null;
+        return view ('instrumen_update.skips.form', compact('negeris', 'type', 'butiran_id'));
     }
 
     public function saveSkips(Request $request) {

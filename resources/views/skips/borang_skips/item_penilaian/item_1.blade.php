@@ -155,9 +155,8 @@ $options = [
                         @foreach ($options[$index] as $key => $option)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index == $key) checked @endif>
-
-                                </div>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                              </div>
                                 <br>
 
                                 {!! $option !!}
@@ -171,11 +170,11 @@ $options = [
     </div>
 
     <hr>
-
+    @if(!empty($butiran_id) && $type == 'borang')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
     </div>
-
+    @endif
 
 </form>
 

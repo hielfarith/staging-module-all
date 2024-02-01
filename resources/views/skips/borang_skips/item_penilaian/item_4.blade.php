@@ -111,7 +111,7 @@ $option_pdps = [
                         @foreach ($option_pdps[$index] as $key => $option_pdp)
                         <td>
                             <div class="form-check form-check-inline mb-1">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengajaran && $pengajaran->$index == $key) checked @endif>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengajaran && $pengajaran->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
                             </div>
                             <br>
 
@@ -124,12 +124,12 @@ $option_pdps = [
         </table>
     </div>
 
-     <hr>
+    <hr>
+    @if(!empty($butiran_id) && $type == 'borang')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform4()">Simpan</button>
     </div>
-
-
+    @endif
 </form>
 
 

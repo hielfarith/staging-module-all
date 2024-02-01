@@ -325,7 +325,7 @@
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.instrumen.tambah-skips')}}";
+                    var location = "{{route('admin.instrumen.senarai-skips')}}";
                     window.location.href = location;
                }
             }
