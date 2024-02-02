@@ -47,7 +47,7 @@
             <label class="fw-bold form-label">Negeri
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-control select2" name="negeri" id="">
+            <select class="form-control select2" name="negeri" {{$disabled}}>
                 <option value="" hidden>Negeri</option>
                 @foreach($negeris as $negeri)
                     <option value="{{$negeri->name}}" @if($butiranInstitusi?->negeri == $negeri->name) selected @endif>{{$negeri->name}}</option>
@@ -209,7 +209,7 @@
             <input type="text" id="" name="tarikh_lapor" class="form-control flatpickr" required {{$disabled}} value="{{$butiranInstitusi?->tarikh_lapor}}">
         </div>
     </div>
-        @if($checkforTambah != 'tambah-skips')
+        @if($checkforTambah == 'borang')
         <hr>
         <div class="d-flex justify-content-end align-items-center mt-1">
             <button type="submit" class="btn btn-primary float-right">Simpan</button>

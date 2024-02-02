@@ -78,7 +78,7 @@
         success: function(response) {
            if (response.status) {
                 Swal.fire('Success', 'Berjaya', 'success');
-                var location = "{{route('skips.senarai-skips')}}";
+                var location = "{{route('skips.verfikasi-skips')}}";
                 console.log(location)
                 window.location.href = location;
            }

@@ -119,10 +119,15 @@ class PengurusanSkipsController extends Controller
 
     // View Senarai Borang Instrumen Telah Dijawab
     public function SenaraiSkips(Request $request){
-
+        if ($request->segment('2') == 'verfikasi-skips') {
+            $status = [1,2];
+        } elseif ($request->segment('2') == 'validasi-skips') {
+            $status = [3];
+        }
         if($request->ajax()) {
+           
             $instrumentListings = ButiranInstitusiSkips::select(['butiran_institusi_id','item_standard_quality_skips.id as item_id', 'butiran_institusi_skips.id as id', 'butiran_institusi_skips.nama_institusi', 'butiran_institusi_skips.nama_pengetua','butiran_institusi_skips.negeri','item_standard_quality_skips.status'])->join('item_standard_quality_skips','item_standard_quality_skips.butiran_institusi_id','=','butiran_institusi_skips.id')
-                ->whereIn('item_standard_quality_skips.status', [1, 2]);
+                ->whereIn('item_standard_quality_skips.status', $status);
 
             return Datatables::of($instrumentListings)
                 ->editColumn('nama_institusi', function ($instrument) {

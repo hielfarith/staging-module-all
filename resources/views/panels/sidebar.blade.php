@@ -289,16 +289,16 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate text-wrap">Modul Verifikasi Data Instrumen</span>
                         </a>
                     </li> -->
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips']) ? 'active' : '' }}">
-                        <a href="{{ route('skips.senarai-skips') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Verifikasi Data Instrumen
                             </span>
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.validasi']) ? 'active' : '' }}">
-                        <a href="{{ route('skips.validasi') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.validasi-skips']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.validasi-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
                         </a>
                     </li>
