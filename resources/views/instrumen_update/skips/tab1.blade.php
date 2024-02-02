@@ -101,15 +101,20 @@
                     <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="tempoh_pengisian_lain" required
+                    <!-- <input type="text" class="form-control" name="tempoh_pengisian_lain" required
                         onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                        value="{{$instrumenData?->tempoh_pengisian_lain}}">
+                        value="{{$instrumenData?->tempoh_pengisian_lain}}"> -->
+                    <input type="text" class="form-control" name="tempoh_pengisian_lain" required readonly
+                        onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                        value="3">
                     <span class="input-group-text">
-                        <select class="form-control select2" name="tempoh_pengisian" required>
-                            <option value="">Sila Pilih</option>
+                        <select class="form-control select2" name="tempoh_pengisian" required readonly>
+                            <!-- <option value="">Sila Pilih</option>
                             <option value="Bulan" @if($instrumenData?->tempoh_pengisian == 'Bulan') selected @endif>Bulan
                             </option>
                             <option value="Minggu" @if($instrumenData?->tempoh_pengisian == 'Minggu') selected @endif>Minggu
+                            </option> -->
+                            <option value="Minggu" selected>Minggu
                             </option>
                         </select>
                     </span>
@@ -179,16 +184,21 @@
                     <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
+                    <!-- <input type="text" class="form-control" name="tempoh_verifikasi_lain" required
+                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                    value="{{$instrumenData?->tempoh_verifikasi_lain}}"> -->
                     <input type="text" class="form-control" name="tempoh_verifikasi_lain" required
                     onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                    value="{{$instrumenData?->tempoh_verifikasi_lain}}">
+                    value="2">
                     <span class="input-group-text">
-                        <select class="form-control select2" name="tempoh_verifikasi" required>
-                            <option value="">Sila Pilih</option>
+                        <select class="form-control select2" name="tempoh_verifikasi" required readonly>
+                            <!-- <option value="">Sila Pilih</option>
                             <option value="Bulan" @if($instrumenData?->tempoh_verifikasi_lain == 'Bulan') selected @endif>Bulan
                             </option>
                             <option value="Minggu" @if($instrumenData?->tempoh_verifikasi_lain == 'Minggu') selected
-                                @endif>Minggu</option>
+                                @endif>Minggu</option> -->
+                            <option value="Bulan" selected>Bulan
+                            </option>
                         </select>
                     </span>
                 </div>
@@ -219,15 +229,20 @@
                     <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
+                    <!-- <input type="text" class="form-control" name="tempoh_validasi_lain" required
+                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                    value="{{$instrumenData?->tempoh_validasi_lain}}"> -->
                     <input type="text" class="form-control" name="tempoh_validasi_lain" required
                     onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                    value="{{$instrumenData?->tempoh_validasi_lain}}">
+                    value="3">
                     <span class="input-group-text">
                         <select class="form-control select2" name="tempoh_validasi" required>
-                            <option value="">Sila Pilih</option>
+                            <!-- <option value="">Sila Pilih</option>
                             <option value="Bulan" @if($instrumenData?->tempoh_validasi == 'Bulan') selected @endif>Bulan
                             </option>
                             <option value="Minggu" @if($instrumenData?->tempoh_validasi == 'Minggu') selected @endif>Minggu
+                            </option> -->
+                            <option value="Bulan" selected>Bulan
                             </option>
                         </select>
                     </span>

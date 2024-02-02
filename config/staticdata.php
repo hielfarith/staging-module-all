@@ -17,6 +17,35 @@ return [
         '12' => 'Disember',
     ],
 
+    'role' => [
+        'modul' => [
+            1 => 'SKPAK',
+            2 => 'SPKS',
+            3 => 'SKIPS',
+            4 => 'iKEPS',
+            5 => 'Admin',
+        ],
+        'pilihan_proses' => [
+            1 => 'Pengurusan Pengguna',
+            2 => 'Pentadbiran Sistem Dan Pengurusan Instrumen Peperiksaan Dan Pengisian',
+            3 => 'Pengisian Data Pemeriksaan Dan Penilaian',
+            4 => 'Modul Verifikasi Dan Validasi Data Pemeriksaan Dan Penilaian',
+            5 => 'Laporan Penarafan / Muat Turun',
+            6 => 'Analisa & Dashboard',
+        ],
+        'had_capaian' => [
+            1 => 'Tambah Data',
+            2 => 'Kemaskini Data',
+            3 => 'Delete Data',
+            4 => 'Lihat Sahaja',
+        ],
+        'jenis_peranan' => [
+            1 => 'PPD',
+            2 => 'JPN',
+            3 => 'etc',
+        ],
+    ],
+
     'ikeps' => [
         'ada_tiada' => [
             1 => 'Ada',

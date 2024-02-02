@@ -52,13 +52,13 @@
                         </div>
 
                          <div class="form-group row">
-                            <div class="col-sm-10">
-                            <label for="inputDescription" class="col-sm-2 col-form-label">
+                            <div class="col-md-12 col-12">
+                            <label for="inputDescription" class="col-form-label">
                                 <input type="checkbox" name="dynamic" class="form-check-input" value="1"> 
                                 Dynamic form</label>
                             </div>
                         </div>
-                        <div class="col-md-12 col-12">
+                        {{-- <div class="col-md-12 col-12">
                             <div class="form-group">
                                 <label class="form-label fw-bolder" for="role_description">Permissions <span
                                         class="text text-danger">*</span> </label>
@@ -75,6 +75,55 @@
                                         </div>
                                     @endforeach
                                 </div>
+                            </div>
+                        </div> --}}
+                        <hr>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-label fw-bolder" for="modul">Modul<span
+                                        class="text text-danger">*</span> </label>
+                                <select id="modul" class="form-control select2" name="modul" required>
+                                    <option value="" hidden></option>
+                                    @foreach(config('staticdata.role.modul') as $key => $modul)
+                                    <option value="{{ $key }}">{{ $modul }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-label fw-bolder" for="proses">Pilihan Proses<span
+                                        class="text text-danger">*</span> </label>
+                                <select id="proses" class="form-control select2" name="proses" required>
+                                    <option value="" hidden></option>
+                                    @foreach(config('staticdata.role.pilihan_proses') as $key => $proses)
+                                    <option value="{{ $key }}">{{ $proses }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-label fw-bolder" for="capaian">Had Capaian<span
+                                        class="text text-danger">*</span> </label>
+                                <select id="capaian" class="form-control select2" name="capaian" required>
+                                    <option value="" hidden></option>
+                                    @foreach(config('staticdata.role.had_capaian') as $key => $capaian)
+                                    <option value="{{ $key }}">{{ $capaian }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-label fw-bolder" for="jenis">Jenis Peranan<span
+                                        class="text text-danger">*</span> </label>
+                                <select id="jenis" class="form-control select2" name="jenis" required>
+                                    <option value="" hidden></option>
+                                    @foreach(config('staticdata.role.jenis_peranan') as $key => $jenis)
+                                    <option value="{{ $key }}">{{ $jenis }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
