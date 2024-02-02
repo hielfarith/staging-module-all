@@ -159,6 +159,7 @@ Route::prefix('dynamic')->middleware(['web'])->group(function () {
 include 'sppip.php';
 include 'ikeps.php';
 include 'skips.php';
+include 'skpak.php';
 
 Route::controller(ModuleController::class)->prefix('module')->middleware(['web'])->group(function () {
 
