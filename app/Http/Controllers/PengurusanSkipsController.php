@@ -199,9 +199,9 @@ class PengurusanSkipsController extends Controller
                })
                ->editColumn('status', function ($pengetuaList) {
                 if($pengetuaList->status == 'Menunggu Verifikasi'){
-                    $status = '<div class="alert alert-warning" role="alert">'.$pengetuaList->status.'</div>';
+                    $status = '<span class="badge rounded-pill badge-light-info"> '.$pengetuaList->status.' </span>';
                 } else {
-                    $status = '<div class="alert alert-info" role="alert">'.$pengetuaList->status.'</div>';
+                    $status = '<span class="badge rounded-pill badge-light-primary"> '.$pengetuaList->status.' </span>';
                 }
                     return $status;
                 })
@@ -251,18 +251,24 @@ class PengurusanSkipsController extends Controller
                    return $institusi->nama;
                })
                ->editColumn('alamat', function ($institusi) {
-                   return $institusi->alamat;
+                    $alamats = '';
+                    $alamats .= '<p>'. $institusi->alamat .'</p>';
+                    $alamats .= '<p>'. $institusi->alamat_2 .'</p>';
+                    $alamats .= '<p>'. $institusi->alamat_3 .'</p>';
+                    $alamats .= '<p>'. $institusi->poskod . ', ' . $institusi->daerah .  ', ' . $institusi->negeri . '</p>';
+
+                    return $alamats;
                })
                ->editColumn('jenis', function ($institusi) {
                    return $institusi->jenis;
                })
                ->editColumn('status', function ($institusi) {
                 if($institusi->status == 'beroperasi'){
-                    $status = '<div class="alert alert-success" role="alert">Beroperasi</div>';
+                    $status = '<span class="badge rounded-pill badge-light-primary"> Beroperasi </span>';
                 } else if($institusi->status == 'tidak_beroperasi'){
-                    $status = '<div class="alert alert-warning" role="alert">Tidak Beroperasi</div>';
+                    $status = '<span class="badge rounded-pill badge-light-warning"> Tidak Beroperasi </span>';
                 } else {
-                    $status = '<div class="alert alert-warning" role="alert">Tutup</div>';
+                    $status = '<span class="badge rounded-pill badge-light-danger"> Tutup </span>';
                 }
                 return $status;
                 })
