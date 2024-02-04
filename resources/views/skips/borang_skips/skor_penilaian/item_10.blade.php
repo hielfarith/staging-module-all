@@ -61,8 +61,11 @@ $pelajar_antarabangsas = [
                     <td>
                          <?php
                             if($pengurusan_pelajar_antarabangsa) {
-                                $score = $penubuhan_pendaftaran->$key;
-                                $total = $total+$score;
+                                if (isset($pengurusan_pelajar_antarabangsa->$key)){
+                                    $score = $pengurusan_pelajar_antarabangsa->$key;
+                                } else {
+                                    $score = 0;
+                                }
                             }
                         ?>
                         <a class="text-success">{{$score}}</a>
