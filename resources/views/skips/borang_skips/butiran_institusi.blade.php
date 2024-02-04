@@ -12,6 +12,7 @@
     } else {
         $disabled = '';
     }
+    $readonly = '';
     if ($type == 'borang') {
         $readonly = 'readonly';
     }
@@ -42,7 +43,7 @@
             <label class="form-label fw-bold text-titlecase">Nama Pengetua
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" name="nama_pengetua" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->nama_pengetua}}">
+            <input type="text" name="nama_pengetua" id="nama_pengetua" class="form-control" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->nama_pengetua}}">
         </div>
 
         <div class="col-md-4 mb-1">
@@ -327,6 +328,12 @@ function updateInstitusi(institusi) {
                     } else {
                         $('#negeri').removeAttr('readonly')
                     }
+                    if (institutedata.nama_pengetua_gurubesar) {
+                        $('#nama_pengetua').val(institutedata.nama_pengetua_gurubesar);
+                    } else {
+                        $('#nama_pengetua').removeAttr('readonly')
+                    }
+                    
                     $('#alamat2').val(institutedata.alamat_2);
                     $('#alamat3').val(institutedata.alamat_3);
                     $('#poskod').val(institutedata.poskod);

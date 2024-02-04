@@ -58,7 +58,7 @@ $checkforTambah = Request::segment(2);
     @if($checkforTambah != 'tambah-skips')
     <hr>
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitformPemeriksan()">Simpan</button>
+        <button type="button" class="btn btn-primary float-right" onclick="submitformPemeriksan()">Hantar</button>
     </div>
     @endif
 </form>

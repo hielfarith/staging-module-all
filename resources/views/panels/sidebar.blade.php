@@ -303,27 +303,27 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    {{-- <li class="nav-item">
+              <!--       {{-- <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
                         </a>
                     </li> --}}
-
+ -->
                     <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
                         </a>
                     </li>
 
-                    {{-- <li class="nav-item">
+                <!--     {{-- <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
                         </a>
                     </li> --}}
-
+ -->
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
-                            {{-- <i data-feather="home"></i> --}}
+                            <!-- {{-- <i data-feather="home"></i> --}} -->
                             <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
                         </a>
                     </li>
@@ -347,11 +347,11 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    {{-- <li class="nav-item">
+                 <!--    {{-- <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Notifikasi</span>
                         </a>
-                    </li> --}}
+                    </li> --}} -->
 
                 </ul>
             </li>

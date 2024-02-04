@@ -57,6 +57,10 @@ class PengurusanSkipsController extends Controller
             if ($tab == 'butiran_pemeriksaan') {
                 if (isset($input['instrumen_id']) && !empty($input['instrumen_id'])) {
                     $butiran = ButiranPemeriksaanSkips::where('instrumen_id', $input['instrumen_id'])->first();
+                    $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['instrumen_id'])->first();
+                    $item->status = 3;
+                    $item->save();
+
                     if (empty($butiran)) {
                         $butiran = new ButiranPemeriksaanSkips;
                         $butiran = $butiran->create($input);
@@ -98,6 +102,7 @@ class PengurusanSkipsController extends Controller
                         $data[$tab.'_verfikasi'] = json_encode($input);
                     }
                     $data['butiran_institusi_id'] = $input['butiran_institusi_id'];
+
                     if (!empty($item)) {
                         $itemupdate = $item->update($data);
                     } else {

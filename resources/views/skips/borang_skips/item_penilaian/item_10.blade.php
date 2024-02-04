@@ -227,7 +227,7 @@ $option_antarabangsas = [
                             <td>
                                 @if(count($option_antarabangsas[$index]) > 1)
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required  @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required  @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
                                 </div>
                                 @endif
                                 <br>
@@ -258,6 +258,7 @@ $option_antarabangsas = [
 
         $('form#pengurusan_pelajar_antarabangsa').find('radio, input').each(function() {
             var value = $("input[name='"+this.name+"']:checked").val();
+            console.log(value)
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;
             }
