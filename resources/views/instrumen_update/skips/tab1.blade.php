@@ -290,6 +290,24 @@
                 </div>
             </div>
         </div>
+        <!-- // add status -->
+       <div class="row">
+            <div class="col-md-3">
+                <label class="fw-bold form-label"> Status
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                    <select class="form-control select2" name="status" required>
+                        <option value="">Sila Pilih</option>
+                        <option value="1" @if($instrumenData?->status == '1') selected @endif>Active
+                        </option>
+                        <option value="2" @if($instrumenData?->status == '2') selected @endif>InActive
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br>
     </div>
 
     <div class="card-footer">

@@ -11,6 +11,7 @@ use App\Models\ItemStandardQualitySkips;
 use App\Models\PengerusiPengetuaGuru;
 use App\Models\SkipsInstitusiPendidikan;
 use App\Models\UlasanKeseluruhanPemeriksaanSkips;
+use App\Models\InstrumenSkpakSpksIkeps;
 
 use App\Helpers\FMF;
 use Illuminate\Support\Facades\Storage;
@@ -69,15 +70,21 @@ class PengurusanSkipsController extends Controller
                 DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
             } elseif($tab == 'butiran_institusi') {
+                // update the configiuration instrumen id
+                //get active configuration id
+                $instrumentId = InstrumenSkpakSpksIkeps::where('type', 'SKIPS')->where('status',1)->first();
+                if ($instrumentId) {
+                    $input['instrumen_skips_id'] = $instrumentId->id;
+                }
                 if (isset($input['butiranInstitusi_id']) && !empty($input['butiranInstitusi_id'])) {
                     $butiran = ButiranInstitusiSkips::where('id', $input['butiranInstitusi_id'])->first();
                     unset($input['butiranInstitusi_id']);
-                    $butiran = $butiran->update($input);
+                    $butiranupdate = $butiran->update($input);
                 } else {
                     $butiran = new ButiranInstitusiSkips;
                     $butiran = $butiran->create($input);
                 }
-
+            DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
 
             } elseif(in_array($tab, ['pengurusan_institusi', 'penubuhan_pendaftaran', 'pengurusan_kurikulum', 'pengajaran','pengurusan_penilaian', 'pengurusan_pembangunan_guru','displin', 'piawaian', 'kebersihan', 'pengurusan_pelajar_antarabangsa'])) {
@@ -92,7 +99,7 @@ class PengurusanSkipsController extends Controller
                     }
                     $data['butiran_institusi_id'] = $input['butiran_institusi_id'];
                     if (!empty($item)) {
-                        $item = $item->update($data);
+                        $itemupdate = $item->update($data);
                     } else {
                         $item = new ItemStandardQualitySkips;
                         $item = $item->create($data);
@@ -104,7 +111,7 @@ class PengurusanSkipsController extends Controller
                 if (isset($input['butiran_institusi_id']) && !empty($input['butiran_institusi_id'])) {
                     $ulasan = UlasanKeseluruhanPemeriksaanSkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
                     if(!empty($ulasan)) {
-                        $ulasan->update($input);
+                        $uslasanUpdate = $ulasan->update($input);
                     } else {
                         $ulasan = new UlasanKeseluruhanPemeriksaanSkips;
                         $ulasan = $ulasan->create($input);

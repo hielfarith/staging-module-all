@@ -12,6 +12,7 @@ use App\Models\InstrumenSkpakSpksIkeps;
 use App\Models\TetapanItem;
 use App\Models\TetapanTarikhInstrumen;
 use App\Models\Master\MasterState;
+use App\Models\SkipsInstitusiPendidikan;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -481,9 +482,11 @@ class InstrumenController extends Controller
 
     public function tambahSkips(Request $request) {
         $negeris = MasterState::all();
+        $allInstitutes = SkipsInstitusiPendidikan::pluck('nama','id');
+
         $type = 'borang';
         $butiran_id = null;
-        return view ('instrumen_update.skips.form', compact('negeris', 'type', 'butiran_id'));
+        return view ('instrumen_update.skips.form', compact('negeris', 'type', 'butiran_id', 'allInstitutes'));
     }
 
     public function saveSkips(Request $request) {
@@ -517,7 +520,6 @@ class InstrumenController extends Controller
 
      public function listSkips(Request $request)
     {
-
         if($request->ajax()) {
             $instrumenList = InstrumenSkpakSpksIkeps::where('id', '!=', 0)->where('type', 'SKIPS');;
             if ($request->has('nama_instrumen') && !empty($request->input('nama_instrumen'))) {

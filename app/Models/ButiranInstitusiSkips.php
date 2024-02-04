@@ -37,6 +37,7 @@ class ButiranInstitusiSkips extends Model
         'pecahan_antarabangsa',
         'tarikh_audit',
         'tarikh_lapor',
-        'institusi_id'
+        'institusi_id',
+        'instrumen_skips_id'
     ];
 }

@@ -7,10 +7,13 @@
     } else {
         $butiranInstitusi = null;
     }
-    if (isset($type) && $type == 'verfikasi') {
+    if (isset($type) && ($type == 'verfikasi' || $type == 'validasi')) {
         $disabled = 'disabled';
     } else {
         $disabled = '';
+    }
+    if ($type == 'borang') {
+        $readonly = 'readonly';
     }
 ?>
 <form id="butiran_institusi" novalidate="novalidate">
@@ -27,10 +30,10 @@
             <label class="form-label fw-bold text-titlecase">Nama Institusi
                 <span class="text-danger">*</span>
             </label>
-            <select name="institusi_id" class="form-control select2" required {{$disabled}} onchange="updateInstitusi(this)">
+            <select name="institusi_id" id="institusi_id" class="form-control select2" required {{$disabled}} onchange="updateInstitusi(this)">
                 <option value="">Sila Pilih</option>
                 @foreach($allInstitutes as $id => $nama)
-                <option value="{{$id}}" @if($id == $butiranInstitusi?->institusi_id) selected @endif>{{$nama}}</option>
+                    <option value="{{$id}}" @if($id == $butiranInstitusi?->institusi_id) selected @endif>{{$nama}}</option>
                 @endforeach
             </select>
         </div>
@@ -42,30 +45,48 @@
             <input type="text" name="nama_pengetua" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->nama_pengetua}}">
         </div>
 
-        <div class="col-md-10 mb-1">
+        <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Alamat
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" class="form-control" required {{$disabled}} name="alamat" value="{{$butiranInstitusi?->alamat}}">
+            <input type="text" class="form-control" required {{$disabled}} name="alamat" {{$readonly}}  value="{{$butiranInstitusi?->alamat}}">
         </div>
 
-        <div class="col-md-2 mb-1">
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Alamat2
+            </label>
+            <input type="text" class="form-control" required {{$disabled}} id="alamat2" {{$readonly}} value="">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Alamat3
+            </label>
+            <input type="text" class="form-control" required {{$disabled}} id="alamat3" {{$readonly}} value="">
+        </div>
+        <div class="col-md-3 mb-1">
             <label class="fw-bold form-label">Negeri
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-control select2" name="negeri" {{$disabled}}>
-                <option value="" hidden>Negeri</option>
-                @foreach($negeris as $negeri)
-                    <option value="{{$negeri->name}}" @if($butiranInstitusi?->negeri == $negeri->name) selected @endif>{{$negeri->name}}</option>
-                @endforeach
-            </select>
+            <input type="text" class="form-control" name="negeri" id="negeri" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->negeri}}">
         </div>
 
+        <div class="col-md-3 mb-1">
+            <label class="form-label fw-bold text-titlecase">Daerah
+            </label>
+            <input type="text" class="form-control" id="daerah" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->no_telephone}}">
+        </div>
+
+        <div class="col-md-3 mb-1">
+            <label class="form-label fw-bold text-titlecase">Poskod
+            </label>
+            <input type="text" class="form-control" id="poskod" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->no_telephone}}">
+        </div>
+        
         <div class="col-md-3 mb-1">
             <label class="form-label fw-bold text-titlecase">No. Telefon
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" name="no_telephone" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->no_telephone}}">
+            <input type="text" name="no_telephone" id="no_telephone" class="form-control" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->no_telephone}}">
         </div>
 
         <div class="col-md-3 mb-1">
@@ -77,7 +98,7 @@
             <label class="form-label fw-bold text-titlecase"> Alamat Emel
                 <span class="text-danger">*</span>
             </label>
-            <input type="email" name="email" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->email}}">
+            <input type="email" name="email" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->email}}" {{$readonly}}>
         </div>
 
         <div class="col-md-3 mb-1">
@@ -222,8 +243,15 @@
         </div>
         @endif
 </form>
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+    $("#institusi_id").trigger('change');
     document.getElementById("butiran_institusi").addEventListener("submit", function(event) {
     event.preventDefault();
     var formData = new FormData(document.getElementById('butiran_institusi'));
@@ -256,6 +284,7 @@
                 var id = response.data.id;
                 var location = "{{route('skips.skips_baru', ['id' => ':id'])}}";
                 var location = location.replace(':id', id);
+                console.log(location)
                 window.location.href = location;
            }
         }
@@ -264,7 +293,7 @@
 
 function updateInstitusi(institusi) {
     id = institusi.value;
-      var url = "{{ route('skips.choose-institute-details') }}"
+      var url = "{{ route('skips.choose-institute-details') }}";
     $.ajax({
         url: url,
         method: 'POST',
@@ -275,8 +304,35 @@ function updateInstitusi(institusi) {
            if (response.success) {
                var institutedata = response.data;
                if (institutedata) {
-                $('#nama_institusi').val(institutedata.nama);
-               }
+                    $('#nama_institusi').val(institutedata.nama);
+                    if (institutedata.no_tel) {
+                        $('#no_telephone').val(institutedata.no_tel);
+                    } else {
+                        $('#no_telephone').removeAttr('readonly')
+                    }
+                    if (institutedata.email) {
+                        $('#email').val(institutedata.email);
+                    } else {
+                        $('#email').removeAttr('readonly')
+                    }
+
+                    if (institutedata.alamat) {
+                        $('#alamat').val(institutedata.alamat);
+                    } else {
+                        $('#alamat').removeAttr('readonly')
+                    }
+
+                    if (institutedata.negeri) {
+                        $('#negeri').val(institutedata.negeri);
+                    } else {
+                        $('#negeri').removeAttr('readonly')
+                    }
+                    $('#alamat2').val(institutedata.alamat_2);
+                    $('#alamat3').val(institutedata.alamat_3);
+                    $('#poskod').val(institutedata.poskod);
+                    $('#daerah').val(institutedata.daerah);
+
+                }
            }
         }
     });
