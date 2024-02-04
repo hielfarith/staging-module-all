@@ -26,6 +26,7 @@ class PengurusanSkipsController extends Controller
 
     public function BorangSkipsBaru(Request $request, $id = null){
         $negeris = MasterState::all();
+        $allInstitutes = SkipsInstitusiPendidikan::pluck('nama','id');
         $butiran_id = $id;
         if (!empty($butiran_id)) {
             $butiranInstitusi = ButiranInstitusiSkips::where('id', $butiran_id)->first();
@@ -34,7 +35,14 @@ class PengurusanSkipsController extends Controller
             }
         }
         $type = $request->segment(2);
-        return view ('skips.index', compact('negeris', 'butiran_id', 'type'));
+        return view ('skips.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes'));
+    }
+
+    public function chooseInstituteDetails(Request $request)
+    {
+        $id = $request->id;
+        $institute = SkipsInstitusiPendidikan::where('id', $id)->first();
+        return ['success' => true, 'data' => $institute];
     }
 
     public function RingkasanSkips(Request $request){

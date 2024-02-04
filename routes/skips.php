@@ -12,6 +12,7 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
         Route::get('verfikasi','SenaraiSkips')->name('verfikasi-skips');
         Route::get('validasi','SenaraiSkips')->name('validasi-skips');
         Route::get('validasi/{id}', 'BorangSkipsBaru')->name('validasi-view');
+        Route::post('choose-institute-details', 'chooseInstituteDetails')->name('choose-institute-details');
 
         Route::get('pelaporan-penarafan', 'SenaraiSkips')->name('pelaporan-penarafan');
 

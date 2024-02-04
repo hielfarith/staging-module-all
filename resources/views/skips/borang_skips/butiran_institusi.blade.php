@@ -15,6 +15,7 @@
 ?>
 <form id="butiran_institusi" novalidate="novalidate">
     <input type="hidden" name="butiranInstitusi_id" value="{{$butiranInstitusi?->id}}">
+    <input type="hidden" name="nama_institusi" id="nama_institusi" value="{{$butiranInstitusi?->nama_institusi}}">
     <div class="row">
         <h5 class="mb-2 mt-1 fw-bold">
             <span class="badge rounded-pill badge-light-primary">
@@ -26,7 +27,12 @@
             <label class="form-label fw-bold text-titlecase">Nama Institusi
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" name="nama_institusi" class="form-control" required value="{{$butiranInstitusi?->nama_institusi}}" {{$disabled}}>
+            <select name="institusi_id" class="form-control select2" required {{$disabled}} onchange="updateInstitusi(this)">
+                <option value="">Sila Pilih</option>
+                @foreach($allInstitutes as $id => $nama)
+                <option value="{{$id}}" @if($id == $butiranInstitusi?->institusi_id) selected @endif>{{$nama}}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="col-md-4 mb-1">
@@ -255,5 +261,25 @@
         }
     });
 });
+
+function updateInstitusi(institusi) {
+    id = institusi.value;
+      var url = "{{ route('skips.choose-institute-details') }}"
+    $.ajax({
+        url: url,
+        method: 'POST',
+        data: {
+            id: id
+        },
+        success: function(response) {
+           if (response.success) {
+               var institutedata = response.data;
+               if (institutedata) {
+                $('#nama_institusi').val(institutedata.nama);
+               }
+           }
+        }
+    });
+}
 
 </script>
