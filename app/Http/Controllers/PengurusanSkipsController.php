@@ -119,9 +119,9 @@ class PengurusanSkipsController extends Controller
 
     // View Senarai Borang Instrumen Telah Dijawab
     public function SenaraiSkips(Request $request){
-        if ($request->segment('2') == 'verfikasi-skips') {
+        if ($request->segment('2') == 'verfikasi') {
             $status = [1,2];
-        } elseif ($request->segment('2') == 'validasi-skips') {
+        } elseif ($request->segment('2') == 'validasi') {
             $status = [3];
         }
         if($request->ajax()) {
@@ -326,34 +326,6 @@ class PengurusanSkipsController extends Controller
     }
 
     public function DashboardSkips(Request $request){
-        // $tables = ButiranInstitusiSkips::get()->groupBy('negeri');
-
-        // $data = [];
-
-        // foreach($tables as $key => $table){
-        //     foreach($table as $list){
-        //         return $list;
-        //     }
-        // }
-        // if($request->type){
-        //     if ($request->ajax()) {
-        //         if($request->type == 1) {
-        //             $table = ButiranInstitusiSkips::groupBy('negeri');
-        //         } else if($request->type == 2) {
-        //             $table = ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id);
-        //         } else if($request->type == 3) {
-        //             // $table = ;
-        //         }
-
-        //         return Datatables::of($table)
-        //             ->editColumn('negeri', function ($table) {
-        //                 return $negeri->nama_institusi;
-        //             })
-        //             ->rawColumns(['action'])
-        //             ->make(true);
-        //     }
-        // }
-        
         return view ('dashboard.dashboard_skips');
     }
 }
