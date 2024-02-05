@@ -285,7 +285,6 @@
                 var id = response.data.id;
                 var location = "{{route('skips.skips_baru', ['id' => ':id'])}}";
                 var location = location.replace(':id', id);
-                console.log(location)
                 window.location.href = location;
            }
         }

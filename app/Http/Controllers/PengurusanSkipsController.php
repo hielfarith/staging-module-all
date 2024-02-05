@@ -12,6 +12,9 @@ use App\Models\PengerusiPengetuaGuru;
 use App\Models\SkipsInstitusiPendidikan;
 use App\Models\UlasanKeseluruhanPemeriksaanSkips;
 use App\Models\InstrumenSkpakSpksIkeps;
+use App\Models\Module;
+use App\Models\MasterAction;
+use App\Models\ModuleStatus;
 
 use App\Helpers\FMF;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +28,7 @@ class PengurusanSkipsController extends Controller
         $this->middleware('auth');
     }
 
-    public function BorangSkipsBaru(Request $request, $id = null){
+    public function BorangSkipsBaru(Request $request, $id = null) {
         $negeris = MasterState::all();
         $allInstitutes = SkipsInstitusiPendidikan::pluck('nama','id');
         $butiran_id = $id;
@@ -34,11 +37,50 @@ class PengurusanSkipsController extends Controller
             if (empty($butiranInstitusi)) {
                 return redirect()->route('skips.skips_baru');
             }
+
         }
         $type = $request->segment(2);
         return view ('skips.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes'));
     }
 
+     public function FmfView(Request $request, $id = null){
+        $negeris = MasterState::all();
+        $allInstitutes = SkipsInstitusiPendidikan::pluck('nama','id');
+        $butiran_id = $id;
+        if (!empty($butiran_id)) {
+            $butiranInstitusi = ButiranInstitusiSkips::where('id', $butiran_id)->first();
+            if (empty($butiranInstitusi)) {
+                return redirect()->route('skips.skips_baru');
+            }
+            $item = ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_id)->first();
+        }
+
+        // get it from the fmf
+        // // get skips instrumen configuration id
+        $DynamicFormData = InstrumenSkpakSpksIkeps::where('type','skips')->where('status',1)->first();
+        $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
+
+        $dynamicModuleId = $moduleId->id;
+        $canView = FMF::checkPermission($dynamicModuleId, $item->status, 'view');
+        $canVerify = FMF::checkPermission($dynamicModuleId, $item->status, 'verify');
+
+        $canApprove = FMF::checkPermission($dynamicModuleId, $item->status, 'approve');
+        $canQuery = FMF::checkPermission($dynamicModuleId, $item->status, 'query');
+        $canReject = FMF::checkPermission($dynamicModuleId, $item->status, 'reject');
+        $status = $item->statuses->status_description;
+        if ($status == 'Telah dihantar') {
+            $type = 'verfikasi';
+        }
+        if ($status == 'Menunggu Validasi') {
+            $type = 'validasi';
+        }
+        if ($status == 'done') {
+            $type = '-';
+        }
+        return view ('skips.fmf.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes', 'status', 'canView','canVerify', 'canApprove'));
+    }
+
+    
     public function chooseInstituteDetails(Request $request)
     {
         $id = $request->id;
@@ -58,7 +100,12 @@ class PengurusanSkipsController extends Controller
                 if (isset($input['instrumen_id']) && !empty($input['instrumen_id'])) {
                     $butiran = ButiranPemeriksaanSkips::where('instrumen_id', $input['instrumen_id'])->first();
                     $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['instrumen_id'])->first();
-                    $item->status = 3;
+                    // get next status from the module->status
+                    $butiranInstitusi = ButiranInstitusiSkips::where('id',$input['instrumen_id'])->first();
+                    $moduleId = Module::where('module_name', $butiranInstitusi->instrumen_skips_id)->first();
+                    $nextStatus = FMF::getNextStatus($moduleId->id, $item->status, 'success');
+
+                    $item->status = $nextStatus;
                     $item->save();
 
                     if (empty($butiran)) {
@@ -75,7 +122,7 @@ class PengurusanSkipsController extends Controller
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
             } elseif($tab == 'butiran_institusi') {
                 // update the configiuration instrumen id
-                //get active configuration id
+                // get active configuration id
                 $instrumentId = InstrumenSkpakSpksIkeps::where('type', 'SKIPS')->where('status',1)->first();
                 if ($instrumentId) {
                     $input['instrumen_skips_id'] = $instrumentId->id;
@@ -87,6 +134,13 @@ class PengurusanSkipsController extends Controller
                 } else {
                     $butiran = new ButiranInstitusiSkips;
                     $butiran = $butiran->create($input);
+                    $item = new ItemStandardQualitySkips;
+                    // get next status
+                    // get next status from the module->status
+                    $moduleId = Module::where('module_name', $instrumentId->id)->first();
+                    $moduleStatus  = ModuleStatus::where('status_index', 1)->where('module_id', $moduleId->id)->first();
+                    $item->status = $moduleStatus->id;
+                    $item->save();
                 }
             DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
@@ -98,9 +152,28 @@ class PengurusanSkipsController extends Controller
                     if($input['usertype'] == 'verfikasi') {
                         unset($input['usertype']);
                         unset($data[$tab]);
-                        $data['status'] = 2;
+                        // $data['status'] = 2;
                         $data[$tab.'_verfikasi'] = json_encode($input);
+
+                        $butiranInstitusi = ButiranInstitusiSkips::where('id', $input['butiran_institusi_id'])->first();
+                        $moduleId = Module::where('module_name', $butiranInstitusi->instrumen_skips_id)->first();
+                        $nextStatus = FMF::getNextStatus($moduleId->id, $item->status, 'success');
+
+                        $data['status'] = $nextStatus;
                     }
+
+                    if($input['usertype'] == 'borang') {
+                        unset($input['usertype']);
+                        unset($data[$tab]);
+                        // getnext status
+
+                        $butiranInstitusi = ButiranInstitusiSkips::where('id', $input['butiran_institusi_id'])->first();
+                        $moduleId = Module::where('module_name', $butiranInstitusi->instrumen_skips_id)->first();
+                        $nextStatus = FMF::getNextStatus($moduleId->id, $item->status, 'success');
+
+                        $data['status'] = $nextStatus;
+                    }
+
                     $data['butiran_institusi_id'] = $input['butiran_institusi_id'];
 
                     if (!empty($item)) {
@@ -126,8 +199,14 @@ class PengurusanSkipsController extends Controller
                     $ulasan = $ulasan->create($input);
                 }
                 $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
-                $item->status = 3;
+                 // get next status from the module->status
+                $butiranInstitusi = ButiranInstitusiSkips::where('id',$input['butiran_institusi_id'])->first();
+                $moduleId = Module::where('module_name', $butiranInstitusi->instrumen_skips_id)->first();
+                $nextStatus = FMF::getNextStatus($moduleId->id, $item->status, 'success');
+
+                $item->status = $nextStatus;
                 $item->save();
+
                 DB::commit();
                 return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $ulasan]);
             }
@@ -139,8 +218,9 @@ class PengurusanSkipsController extends Controller
 
     // View Senarai Borang Instrumen Telah Dijawab
     public function SenaraiSkips(Request $request){
+        $DynamicFormData = InstrumenSkpakSpksIkeps::where('type','skips')->where('status',1)->first();
         if ($request->segment('2') == 'verfikasi') {
-            $status = [1,2];
+            $status = [1,2];            
         } elseif ($request->segment('2') == 'validasi') {
             $status = [3];
         }
@@ -157,14 +237,8 @@ class PengurusanSkipsController extends Controller
                     return $instrument->nama_pengetua;
                 })
                 ->editColumn('status', function ($instrument) {
-                    if ($instrument->status == 1) {
-                        return 'Telah dihantar';
-                    } elseif ($instrument->status == 2) {
-                        return 'Menunggu Validasi';
-                    } elseif ($instrument->status == 3) {
-                        return 'Menunggu Validasi';
-                    }
-                    return $instrument->status;
+                    $item = ItemStandardQualitySkips::where('butiran_institusi_id', $instrument->id)->first();
+                    return $item->statuses->status_description;
                 })
                 ->addColumn('DT_RowIndex', function ($instrument) {
                     static $index = 1;
@@ -347,5 +421,43 @@ class PengurusanSkipsController extends Controller
 
     public function DashboardSkips(Request $request){
         return view ('dashboard.dashboard_skips');
+    }
+
+    public function SenaraiSkipsInstitusi(Request $request) {
+        // link fmf
+        if($request->ajax()) {
+           
+            $instrumentListings = ButiranInstitusiSkips::select(['butiran_institusi_id','item_standard_quality_skips.id as item_id', 'butiran_institusi_skips.id as id', 'butiran_institusi_skips.nama_institusi', 'butiran_institusi_skips.nama_pengetua','butiran_institusi_skips.negeri','item_standard_quality_skips.status'])->join('item_standard_quality_skips','item_standard_quality_skips.butiran_institusi_id','=','butiran_institusi_skips.id');
+
+            return Datatables::of($instrumentListings)
+                ->editColumn('nama_institusi', function ($instrument) {
+                    return $instrument->nama_institusi;
+                })
+                ->editColumn('nama_pengetua', function ($instrument) {
+                    return $instrument->nama_pengetua;
+                })
+                ->editColumn('status', function ($instrument) {
+                    $item = ItemStandardQualitySkips::where('id', $instrument->item_id)->first();
+                    return $item->statuses?->status_description;
+                })
+                ->addColumn('DT_RowIndex', function ($instrument) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('action', function ($instrument) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('skips.pengurusan_institusi.senarai_skips_institusi');
     }
 }

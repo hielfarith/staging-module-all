@@ -55,7 +55,7 @@
                             <div class="col-md-12 col-12">
                             <label for="inputDescription" class="col-form-label">
                                 <input type="checkbox" name="dynamic" class="form-check-input" value="1"> 
-                                Dynamic form</label>
+                                FMF</label>
                             </div>
                         </div>
                         {{-- <div class="col-md-12 col-12">

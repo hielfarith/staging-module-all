@@ -40,4 +40,5 @@ class InstrumenSkpakSpksIkeps extends Model
             'tempoh_perakuan_lain',
             'type'
         ];
+
 }

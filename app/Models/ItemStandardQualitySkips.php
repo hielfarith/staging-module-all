@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\ModuleStatus;
 
 class ItemStandardQualitySkips extends Model
 {
@@ -34,4 +36,9 @@ class ItemStandardQualitySkips extends Model
         'butiran_institusi_id',
         'status'
     ];
+
+    public function statuses(): BelongsTo
+    {
+        return $this->belongsTo(ModuleStatus::class, 'status', 'id');
+    }
 }

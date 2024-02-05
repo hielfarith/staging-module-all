@@ -43,7 +43,7 @@
     </div>
 </div>
  <hr>
-    @if($showHantarulasan)
+    @if($showHantarulasan && $canApprove)
      <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitformulasan()">Hantar</button>
     </div>
@@ -78,8 +78,7 @@
         success: function(response) {
            if (response.status) {
                 Swal.fire('Success', 'Berjaya', 'success');
-                var location = "{{route('skips.verfikasi-skips')}}";
-                console.log(location)
+                location = "{{route('skips.senarai-skips-institusi')}}"
                 window.location.href = location;
            }
         }

@@ -42,7 +42,7 @@ return [
         'jenis_peranan' => [
             1 => 'PPD',
             2 => 'JPN',
-            3 => 'etc',
+            3 => 'BPSwasta',
         ],
     ],
 

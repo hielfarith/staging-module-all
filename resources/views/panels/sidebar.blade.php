@@ -271,6 +271,9 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
+
+                    
+
                     <!-- <li class="nav-item ">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
@@ -284,12 +287,23 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
+                    <!--  -->
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Skips
+                            </span>
+                        </a>
+                    </li>
+
+<!-- senarai-skips-institusi -->
                     <!-- <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Verifikasi Data Instrumen</span>
                         </a>
                     </li> -->
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
+                    <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Verifikasi Data Instrumen
@@ -301,7 +315,7 @@ $configData = Helper::applClasses();
                         <a href="{{ route('skips.validasi-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
                         </a>
-                    </li>
+                    </li> -->
 
               <!--       {{-- <li class="nav-item">
                         <a href="" class="nav-link">
@@ -456,7 +470,7 @@ $configData = Helper::applClasses();
 
 
                 </ul>
-            </li> -->
+            </li> 
 
             <!-- --end new menu-->
             <!-- // pengguna menu // -->
@@ -588,7 +602,6 @@ $configData = Helper::applClasses();
             @endhasanyrole
 
             @hasanyrole('jabatan_pendidikan_negeri')
-
 
                 <li class="navigation-header">
                 <span> Pengurusan Pengguna</span>
