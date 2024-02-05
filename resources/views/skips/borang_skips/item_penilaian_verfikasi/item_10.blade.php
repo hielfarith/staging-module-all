@@ -188,10 +188,10 @@ $option_antarabangsas = [
         /* word-wrap: break-word; */
     }
 </style>
-<form id="pengurusan_pelajar_antarabangsa_v"> 
+<form id="pengurusan_pelajar_antarabangsa_v">
 <input type="hidden" name="usertype" value="{{$type}}">
 <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
-               
+
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem10">
         <thead>
@@ -246,7 +246,12 @@ $option_antarabangsas = [
     </table>
 </div>
 
-    <hr>
+<hr>
+
+<div class="col-md-12">
+    <label class="fw-bolder">Ulasan</label>
+    <textarea name="" id="" rows="3" class="form-control"></textarea>
+</div>
 
 
     <div class="d-flex justify-content-end align-items-center mt-1">

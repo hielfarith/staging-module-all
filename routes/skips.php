@@ -27,5 +27,6 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
         Route::get('kemaskini-profil', 'kemaskiniProfil')->name('kemaskini-profil');
 
         Route::get('dashboard', 'DashboardSkips')->name('dashboard_skips');
+        Route::get('dashboard/view/{instrumen_id}', 'dashboardInstrumen')->name('dashboard.instrumen');
     });
 });

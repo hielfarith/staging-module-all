@@ -64,25 +64,25 @@
             </label>
             <input type="text" class="form-control" required {{$disabled}} id="alamat3" {{$readonly}} value="">
         </div>
-        <div class="col-md-3 mb-1">
+        <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Negeri
                 <span class="text-danger">*</span>
             </label>
             <input type="text" class="form-control" name="negeri" id="negeri" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->negeri}}">
         </div>
 
-        <div class="col-md-3 mb-1">
+        <div class="col-md-4 mb-1">
             <label class="form-label fw-bold text-titlecase">Daerah
             </label>
             <input type="text" class="form-control" id="daerah" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->no_telephone}}">
         </div>
 
-        <div class="col-md-3 mb-1">
+        <div class="col-md-4 mb-1">
             <label class="form-label fw-bold text-titlecase">Poskod
             </label>
             <input type="text" class="form-control" id="poskod" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->no_telephone}}">
         </div>
-        
+
         <div class="col-md-3 mb-1">
             <label class="form-label fw-bold text-titlecase">No. Telefon
                 <span class="text-danger">*</span>
@@ -332,7 +332,7 @@ function updateInstitusi(institusi) {
                     } else {
                         $('#nama_pengetua').removeAttr('readonly')
                     }
-                    
+
                     $('#alamat2').val(institutedata.alamat_2);
                     $('#alamat3').val(institutedata.alamat_3);
                     $('#poskod').val(institutedata.poskod);

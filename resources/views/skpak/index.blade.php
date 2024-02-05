@@ -42,6 +42,11 @@ SKPAK
             STANDARD <br> PENILAIAN 6
         </a>
     </li>
+    <li class="nav-item" role="presentation">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-tab" data-bs-toggle="tab" href="#jumlah" aria-controls="jumlah" role="tab" aria-selected="false">
+            JUMLAH
+        </a>
+    </li>
 </ul>
 
 <div class="card">
@@ -64,6 +69,9 @@ SKPAK
             </div>
             <div class="tab-pane fade" id="item-6" role="tabpanel" aria-labelledby="item-6-tab">
                 @include('skpak.borang_skpak.item_6')
+            </div>
+            <div class="tab-pane fade" id="jumlah" role="tabpanel" aria-labelledby="jumlah-tab">
+                @include('skpak.borang_skpak.jumlah')
             </div>
         </div>
     </div>

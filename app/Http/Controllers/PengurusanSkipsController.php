@@ -420,6 +420,33 @@ class PengurusanSkipsController extends Controller
     }
 
     public function DashboardSkips(Request $request){
+
+        if($request->ajax()) {
+           
+            $instrumentListings = InstrumenSkpakSpksIkeps::where('type', 'SKIPS');
+
+            return Datatables::of($instrumentListings)
+                ->editColumn('nama_instrumen', function ($instrument) {
+                    return $instrument->nama_instrumen;
+                })
+                ->addColumn('DT_RowIndex', function ($instrument) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('action', function ($instrument) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatDashboard(' . $instrument->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
         return view ('dashboard.dashboard_skips');
     }
 
@@ -459,5 +486,120 @@ class PengurusanSkipsController extends Controller
         }
 
         return view('skips.pengurusan_institusi.senarai_skips_institusi');
+    public function dashboardInstrumen(Request $request){
+
+        //return ButiranInstitusiSkips::peratusanBintang($request->instrumen_id);
+
+        if($request->ajax()){
+            if($request->table == '1'){
+                $states = MasterState::whereNot('code', '00')->get();
+
+                $dataNegeri = [];
+                
+                foreach($states as $state){
+                    if($state->name == 'Wilayah Persekutuan Kuala Lumpur' || $state->name == 'Wilayah Persekutuan Labuan' || $state->name == 'Wilayah Persekutuan Putrajaya'){
+                        $negeri = strtoupper(str_replace('Wilayah Persekutuan', 'WP', $state->name));
+                    }  else {
+                        $negeri = strtoupper($state->name);
+                    }
+
+                    $bilInstitusi = count(SkipsInstitusiPendidikan::where('negeri', $negeri)->get());
+
+                    $dataNegeri[$negeri] = [
+                        'negeri' => $state->name,
+                        'bil_institusi' => $bilInstitusi,
+                    ];
+                }
+
+                return Datatables::of($dataNegeri)
+                ->addColumn('DT_RowIndex', function ($dataNegeri) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('negeri', function ($dataNegeri) {
+                    return $dataNegeri['negeri'];
+                })
+                ->editColumn('bil_institusi', function ($dataNegeri) {
+                    return $dataNegeri['bil_institusi'];
+                })
+                ->make(true);
+            }
+            if($request->table == '2'){
+                $instrumen = ButiranInstitusiSkips::with([
+                    'itemStandardKualiti' => function ($query) {
+                        $query->whereNotNull('status');
+                    },
+                    'institusiPendidikan'
+                ])
+                ->where('instrumen_skips_id', $request->instrumen_id)
+                ->get()
+                ->filter(function ($item) {
+                    // Check if itemStandardKualiti relationship exists and is not empty
+                    return optional($item->itemStandardKualiti)->count() > 0;
+                })
+                ->groupBy(function ($item) {
+                    return $item->institusiPendidikan->negeri;
+                });
+
+                $states = MasterState::whereNot('code', '00')->get();
+
+                $dataNegeri = [];
+                $negeri = null;
+                foreach($states as $state){
+                    if($state->name == 'Wilayah Persekutuan Kuala Lumpur' || $state->name == 'Wilayah Persekutuan Labuan' || $state->name == 'Wilayah Persekutuan Putrajaya'){
+                        $negeri = strtoupper(str_replace('Wilayah Persekutuan', 'WP', $state->name));
+                    }  else {
+                        $negeri = strtoupper($state->name);
+                    }
+
+                    $bilInstitusi = count(SkipsInstitusiPendidikan::where('negeri', $negeri)->get());
+
+                    if(array_key_exists($negeri, $instrumen->toArray())){
+                        $bilHantar = count($instrumen[$negeri]);
+                        $bilVerifikasi = 0;
+                        foreach($instrumen[$negeri] as $instrumenNegeri){
+                            if($instrumenNegeri->itemStandardKualiti->status != 1){
+                                $bilVerifikasi++;
+                            }
+                        }
+                    } else {
+                        $bilHantar = 0;
+                        $bilVerifikasi = 0;
+                    }
+
+                    $dataNegeri[$negeri] = [
+                        'negeri' => $state->name,
+                        'bil_institusi' => $bilInstitusi,
+                        'bil_hantar' => $bilHantar,
+                        'bil_belum_hantar' => $bilInstitusi - $bilHantar,
+                        'bil_verifikasi' => $bilVerifikasi,
+                    ];
+                }
+
+                return Datatables::of($dataNegeri)
+                ->addColumn('DT_RowIndex', function ($dataNegeri) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('negeri', function ($dataNegeri) {
+                    return $dataNegeri['negeri'];
+                })
+                ->editColumn('bil_institusi', function ($dataNegeri) {
+                    return $dataNegeri['bil_institusi'];
+                })
+                ->editColumn('bil_hantar', function ($dataNegeri) {
+                    return $dataNegeri['bil_hantar'];
+                })
+                ->editColumn('bil_belum_hantar', function ($dataNegeri) {
+                    return $dataNegeri['bil_belum_hantar'];
+                })
+                ->editColumn('bil_verifikasi', function ($dataNegeri) {
+                    return $dataNegeri['bil_verifikasi'];
+                })
+                ->make(true);
+            }
+        }
+
+        return view ('dashboard.dashboard_instrumen');
     }
 }
