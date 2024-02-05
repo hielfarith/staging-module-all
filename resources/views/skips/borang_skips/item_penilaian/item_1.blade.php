@@ -1,5 +1,5 @@
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran);
@@ -25,101 +25,102 @@ $options = [
     'kelulusan_penubuhan' => [
         0 => '',
         1 => '',
-        2 => '<i>Ada</i>',
-        3 => '<i>Ada, Lengkap</i>',
-        4 => '<i>Ada, Lengkap, Difailkan</i>',
-        5 => '<i>Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
+        2 => '<i style="font-size:12px;">Ada</i>',
+        3 => '<i style="font-size:12px;">Ada, Lengkap</i>',
+        4 => '<i style="font-size:12px;">Ada, Lengkap, Difailkan</i>',
+        5 => '<i style="font-size:12px;">Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
     ],
     'perakuan_pendaftaran' => [
         0 => '',
-        1 => '<i> Ada</i>',
-        2 => '<i> Ada, Lengkap</i>',
-        3 => '<i> Ada, Lengkap, Dipamerkan</i>',
-        4 => '<i> Ada, Lengkap, Dipamerkan, Strategik</i>',
-        5 => '<i> Ada, Lengkap, Dipamerkan, Strategik, Kemas</i>',
+        1 => '<i style="font-size:12px;"> Ada</i>',
+        2 => '<i style="font-size:12px;"> Ada, Lengkap</i>',
+        3 => '<i style="font-size:12px;"> Ada, Lengkap, Dipamerkan</i>',
+        4 => '<i style="font-size:12px;"> Ada, Lengkap, Dipamerkan, Strategik</i>',
+        5 => '<i style="font-size:12px;"> Ada, Lengkap, Dipamerkan, Strategik, Kemas</i>',
     ],
 
     'permit_pengelola' => [
         0 => '',
-        1 => '<i> Ada</i>',
-        2 => '<i> Ada, Terkini</i>',
-        3 => '<i> Ada, Terkini, Mecukupi</i>',
-        4 => '<i> Ada, Terkini, Mecukupi, Difailkan</i>',
-        5 => '<i> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
+        1 => '<i style="font-size:12px;"> Ada</i>',
+        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+        3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
+        4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
+        5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
     ],
     'permit_pekerja' => [
         0 => '',
-        1 => '<i> Ada</i>',
-        2 => '<i> Ada, Terkini</i>',
-        3 => '<i> Ada, Terkini, Mecukupi</i>',
-        4 => '<i> Ada, Terkini, Mecukupi, Difailkan</i>',
-        5 => '<i> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
+        1 => '<i style="font-size:12px;"> Ada</i>',
+        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+        3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
+        4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
+        5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
     ],
 
     'kelulusan_pengetua' => [
         0 => '',
-        1 => '<i> Ada</i>',
-        2 => '<i> Ada, Terkini</i>',
-        3 => '<i> Ada, Terkini, Difailkan</i>',
-        4 => '<i> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
-        5 => '<i> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
+        1 => '<i style="font-size:12px;"> Ada</i>',
+        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+        3 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan</i>',
+        4 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
     ],
     'permit_guru' => [
         0 => '',
-        1 => '<i> Ada</i>',
-        2 => '<i> Ada, Terkini</i>',
-        3 => '<i> Ada, Terkini, Mecukupi</i>',
-        4 => '<i> Ada, Terkini, Mecukupi, Difailkan</i>',
-        5 => '<i> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
+        1 => '<i style="font-size:12px;"> Ada</i>',
+        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+        3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
+        4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
+        5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
     ],
     'suratcara_pengelola' => [
         0 => '',
-        1 => '<i> Ada</i>',
-        2 => '<i> Ada, Terkini</i>',
-        3 => '<i> Ada, Terkini, Mecukupi</i>',
-        4 => '<i> Ada, Terkini, Mecukupi, Difailkan</i>',
-        5 => '<i> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
+        1 => '<i style="font-size:12px;"> Ada</i>',
+        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+        3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
+        4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
+        5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
     ],
 
     'yuran_dan_bayaran_lain' => [
         0 => '',
-        1 => '<i> Ada</i>',
-        2 => '<i> Ada, Lengkap</i>',
-        3 => '<i> Ada, Lengkap, Difailkan</i>',
-        4 => '<i> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
-        5 => '<i> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
+        1 => '<i style="font-size:12px;"> Ada</i>',
+        2 => '<i style="font-size:12px;"> Ada, Lengkap</i>',
+        3 => '<i style="font-size:12px;"> Ada, Lengkap, Difailkan</i>',
+        4 => '<i style="font-size:12px;"> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px;"> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
     ],
     'surat_surat_sokongan_agensi' => [
         0 => '',
-        1 => '<i> Ada</i>',
-        2 => '<i> Ada, Terkini</i>',
-        3 => '<i> Ada, Terkini, Difailkan</i>',
-        4 => '<i> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
-        5 => '<i> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
+        1 => '<i style="font-size:12px;"> Ada</i>',
+        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+        3 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan</i>',
+        4 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
     ],
 
 ];
+
+$count = 1.1;
 @endphp
 
 <style>
-    #NilaiItem1 thead th {
+    #SkipsNilai1 thead th {
         vertical-align: middle;
         text-align: center;
     }
 
-    #NilaiItem1 tbody {
+    #SkipsNilai1 tbody {
         vertical-align: middle;
-        text-align: center;
     }
 
-    #NilaiItem1 table {
+    #SkipsNilai1 table {
         width: 100% !important;
         /* word-wrap: break-word; */
     }
 </style>
 <form id="penubuhan_pendaftaran">
     <div class="table-responsive">
-        <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem1">
+        <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai1">
             <thead>
                 <tr>
                     <th rowspan="2" width="5%">No.</th>
@@ -145,37 +146,51 @@ $options = [
                 <input type="hidden" name="usertype" value="{{$type}}">
                 <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Penubuhan & Pendaftaran</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Penubuhan & Pendaftaran</td>
                 </tr>
                 @foreach ($pendaftarans as $index => $pendaftaran)
+                    @php
+                        $numeric = preg_replace('/[^0-9.]/', '', $pendaftaran);
+                        $text = trim(preg_replace('/[0-9.]/', '', $pendaftaran), '.');
+
+                        $excludeNumber = strpos($pendaftaran, 'text-primary') !== false;
+                    @endphp
 
                     <tr>
-                        <td colspan="2"> {{ $pendaftaran }}</td>
+                        @if (!$excludeNumber)
+                            <td> {{ $numeric }} </td>
+                        @endif
+
+                        @if(!$excludeNumber)
+                            <td> {!! $text !!} </td>
+                        @else
+                            <td class="bg-light-primary" colspan="8"> {!! $text !!} </td>
+                        @endif
 
                         @foreach ($options[$index] as $key => $option)
                             <td>
-                                <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index == $key) checked @endif>
-
+                                <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
                                 </div>
                                 <br>
 
-                                {!! $option !!}
+                                <div class="d-flex justify-content-center align-items-center">
+                                    {!! $option !!}
+                                </div>
                             </td>
                         @endforeach
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
     </div>
 
     <hr>
-
+    @if(!empty($butiran_id) && $type == 'borang')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
     </div>
-
+    @endif
 
 </form>
 

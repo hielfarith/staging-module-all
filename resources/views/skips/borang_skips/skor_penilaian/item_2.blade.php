@@ -27,7 +27,7 @@ $institusis = [
     'pengurusan_aduan' => '2.10 Pengurusan Aduan',
 ];
 
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengurusan_institusi = json_decode($tab1->pengurusan_institusi);   
@@ -116,9 +116,11 @@ $institusis = [
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{$percentage}}</a>
+                    <a class="text-success">{{number_format($percentage,0)}}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab2_skor" id="tab2_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab2_percentage" id="tab2_percentage">

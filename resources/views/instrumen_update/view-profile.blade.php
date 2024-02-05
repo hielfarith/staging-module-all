@@ -184,14 +184,30 @@
                     </label>
                     <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" value="{{$instrumen->tarikh_kuatkuasa}}" {{$readonly}} required>
                 </div>
-
-                <div class="col-md-4 mb-1">
-                    <label class="fw-bold form-label">Tetapan Keperluan Pengemaskinian Data Terkini
+                  <!-- // add status -->
+                <div class="col-md-3">
+                    <label class="fw-bold form-label"> Status
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="checkbox" class="form-check-input" name="tetapan_keperluan_pengemaskinian_data_terkini" required value="1" @if(isset($instrumen->tetapan_keperluan_pengemaskinian_data_terkini)) checked @endif {{$disabled}}>
+                    <div class="input-group">
+                        <select class="form-control select2" name="status" required>
+                            <option value="">Sila Pilih</option>
+                            <option value="1" @if($instrumen?->status == '1') selected @endif>Active
+                            </option>
+                            <option value="2" @if($instrumen?->status == '2') selected @endif>InActive
+                            </option>
+                        </select>
+                    </div>
                 </div>
-                @if($readonly != 'readonly')
+
+                <div class="col-md-4 mb-1">
+                    <label class="fw-bold form-label">
+                    </label>
+                    <input type="checkbox" class="form-check-input" name="tetapan_keperluan_pengemaskinian_data_terkini" required value="1" @if(isset($instrumen->tetapan_keperluan_pengemaskinian_data_terkini)) checked @endif {{$disabled}}>
+                    Tetapan Keperluan Pengemaskinian Data Terkini
+                        <span class="text-danger">*</span>
+                </div>
+                               @if($readonly != 'readonly')
                 <div class="d-flex justify-content-end align-items-center my-1">
                     <button type="submit" class="btn btn-primary float-right">Hantar</button>
                  </div>

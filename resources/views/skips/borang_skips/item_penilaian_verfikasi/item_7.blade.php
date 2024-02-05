@@ -1,6 +1,6 @@
 <form id="displinv">
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $disiplin = json_decode($tab1->displin);
@@ -17,7 +17,7 @@
     }
 ?>
 @php
-$butiran_institusi_id = Request::segment(3);
+$butiran_institusi_id = $butiran_id;;
 $displins = [
     'peraturan_disiplin' => '7.1 Peraturan Disiplin',
     'rekod_disiplin' => '7.2 Rekod Disiplin',

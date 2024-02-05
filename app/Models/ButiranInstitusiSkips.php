@@ -36,6 +36,44 @@ class ButiranInstitusiSkips extends Model
         'pecahan_temparan',
         'pecahan_antarabangsa',
         'tarikh_audit',
-        'tarikh_lapor'
+        'tarikh_lapor',
+        'institusi_id',
+        'instrumen_skips_id'
     ];
+
+    public function institusiPendidikan()
+    {
+        return $this->belongsTo('App\Models\SkipsInstitusiPendidikan', 'institusi_id', 'id');
+    }
+
+    public function itemStandardKualiti(){
+        return $this->hasOne('App\Models\ItemStandardQualitySkips', 'butiran_institusi_id', 'id');
+    }
+
+    public static function peratusanBintang($instrumen_id, $butiranInstitusiId = null){
+        //$items = ItemStandardQualitySkips::where('butiran_institusi_id', $butiranInstitusiId);
+        $items = ButiranInstitusiSkips::with([
+            'itemStandardKualiti' => function ($query) {
+                $query->whereNotNull('status');
+            }
+        ])
+        ->where('instrumen_skips_id', $instrumen_id)
+        ->get()
+        ->filter(function ($item) {
+            // Check if itemStandardKualiti relationship exists and is not empty
+            return optional($item->itemStandardKualiti)->count() > 0;
+        });
+
+        $total = $score = 0;
+
+        $tab1 = json_decode($items->penubuhan_pendaftaran);
+        $penubuhanPendaftaran = config('staticdata.skips.penubuhan_pendaftaran');
+
+        foreach($penubuhanPendaftaran as $key => $pendaftaran){
+            $score = $tab1->$key;
+            $total = $total + $score;
+        }
+
+        
+    }
 }

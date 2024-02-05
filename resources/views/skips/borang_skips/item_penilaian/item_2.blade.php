@@ -1,6 +1,6 @@
 <form id="pengurusan_institusi">
 <?php
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengurusan_institusi = json_decode($tab1->pengurusan_institusi);
@@ -10,7 +10,7 @@
 
 ?>
 @php
-$butiran_institusi_id = Request::segment(3);
+$butiran_institusi_id = $butiran_id;
 $institusis = [
     'piagam_pelanggan' => '2.1. Piagam Pelanggan',
     'visi_dan_misi' => '2.2. Visi dan Misi',
@@ -296,7 +296,7 @@ $option_institusis = [
                             <td>
                                 @if(count($option_institusis[$index]) > 1)
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$index == $key) checked @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
                                 </div>
                                 @endif
                                 <br>
@@ -311,10 +311,11 @@ $option_institusis = [
     </div>
 
      <hr>
+    @if(!empty($butiran_id) && $type == 'borang')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform2()">Simpan</button>
     </div>
-
+    @endif
 </form>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 

@@ -17,11 +17,7 @@ SKIPS
             Instrumen
         </a>
     </li>
-    <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="butiran-pemeriksaan-tab" data-bs-toggle="tab" href="#butiran-pemeriksaan" aria-controls="butiran-pemeriksaan" role="tab" aria-selected="true">
-            BUTIRAN PEMERIKSAAN
-        </a>
-    </li>
+   
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="butiran-institusi-tab" data-bs-toggle="tab" href="#butiran-institusi" aria-controls="butiran-institusi" role="tab" aria-selected="true">
             BUTIRAN INSTITUSI
@@ -40,6 +36,11 @@ SKIPS
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="pencapaian-tab" data-bs-toggle="tab" href="#pencapaian" aria-controls="pencapaian" role="tab" aria-selected="true">
             PENCAPAIAN KESELURUHAN
+        </a>
+    </li>
+     <li class="nav-item" role="presentation">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="butiran-pemeriksaan-tab" data-bs-toggle="tab" href="#butiran-pemeriksaan" aria-controls="butiran-pemeriksaan" role="tab" aria-selected="true">
+            BUTIRAN PEMERIKSAAN
         </a>
     </li>
     <li class="nav-item" role="presentation">

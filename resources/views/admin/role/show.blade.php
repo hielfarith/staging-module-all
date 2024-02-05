@@ -29,12 +29,18 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Display Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="name" value="{{ $role->display_name }}" class="form-control" id="inputName" placeholder="Name" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-10">
                             <input type="text" name="description" value="{{ $role->description }}" class="form-control" id="inputDescription" placeholder="Description" disabled>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="inputDescription" class="col-sm-2 col-form-label">Permissions</label>
                         <div class="col-sm-10 d-flex flex-row flex-wrap mt-1">
                         @foreach($permissions as $permission)
@@ -45,6 +51,50 @@
                             </div>
                         </div>
                         @endforeach
+                        </div>
+                    </div> --}}
+                    <div class="form-group row">
+                        <label for="inputDescription" class="col-sm-2 col-form-label">Modul</label>
+                        <div class="col-sm-10">
+                            <select id="modul" class="form-control select2" name="modul" disabled>
+                                <option value="" hidden></option>
+                                @foreach(config('staticdata.role.modul') as $key => $modul)
+                                <option value="{{ $key }}" @if($role->access) @if($key == $role->access->modul) selected @endif @endif>{{ $modul }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputDescription" class="col-sm-2 col-form-label">Pilihan Proses</label>
+                        <div class="col-sm-10">
+                            <select id="proses" class="form-control select2" name="proses" disabled>
+                                <option value="" hidden></option>
+                                @foreach(config('staticdata.role.pilihan_proses') as $key => $proses)
+                                <option value="{{ $key }}" @if($role->access) @if($key == $role->access->proses) selected @endif @endif>{{ $proses }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputDescription" class="col-sm-2 col-form-label">Had Capaian</label>
+                        <div class="col-sm-10">
+                            <select id="capaian" class="form-control select2" name="capaian" disabled>
+                                <option value="" hidden></option>
+                                @foreach(config('staticdata.role.had_capaian') as $key => $capaian)
+                                <option value="{{ $key }}" @if($role->access) @if($key == $role->access->capaian) selected @endif @endif>{{ $capaian }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputDescription" class="col-sm-2 col-form-label">Jenis Peranan</label>
+                        <div class="col-sm-10">
+                            <select id="jenis" class="form-control select2" name="jenis" disabled>
+                                <option value="" hidden></option>
+                                @foreach(config('staticdata.role.jenis_peranan') as $key => $jenis)
+                                <option value="{{ $key }}" @if($role->access) @if($key == $role->access->jenis) selected @endif @endif>{{ $jenis }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

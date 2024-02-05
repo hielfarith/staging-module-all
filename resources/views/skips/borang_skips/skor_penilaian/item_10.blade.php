@@ -1,3 +1,18 @@
+ <?php
+
+    $butiran_institusi_id = $butiran_id;;
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengurusan_pelajar_antarabangsa = json_decode($tab1->pengurusan_pelajar_antarabangsa);
+        $pengurusan_pelajar_antarabangsa_verfikasi = $tab1->pengurusan_pelajar_antarabangsa_verfikasi ? json_decode($tab1->pengurusan_pelajar_antarabangsa_verfikasi) : null;
+    } else {
+        $pengurusan_pelajar_antarabangsa = $pengurusan_pelajar_antarabangsa_verfikasi = null;
+    }
+
+    $total = $score = 0;
+    $totalv = $scorev = 0;
+
+?>
 @php
 
 $pelajar_antarabangsas = [
@@ -28,6 +43,9 @@ $pelajar_antarabangsas = [
                 <th width="5%">8.0</th>
                 <th> PIAWAIAN </th>
                 <th width="10%">SKOR</th>
+                @if($type == 'verfikasi')
+                    <th width="10%">SKOR VERFIKASI</th>
+                @endif
             </tr>
         </thead>
 
@@ -41,25 +59,62 @@ $pelajar_antarabangsas = [
                         {{ $pelajar_antarabangsa }}
                     </td>
                     <td>
-                        <a class="text-success">0</a>
+                         <?php
+                            if($pengurusan_pelajar_antarabangsa) {
+                                if (isset($pengurusan_pelajar_antarabangsa->$key)){
+                                    $score = $pengurusan_pelajar_antarabangsa->$key;
+                                } else {
+                                    $score = 0;
+                                }
+                            }
+                        ?>
+                        <a class="text-success">{{$score}}</a>
                     </td>
+                     @if($type == 'verfikasi')
+                        <td>
+                        <?php
+                            if($pengurusan_pelajar_antarabangsa_verfikasi) {
+                                $keyval = '';
+                                $keyval = $key.'_verfikasi';
+                                if (isset($pengurusan_pelajar_antarabangsa_verfikasi->$keyval)){
+                                    $scorev = $pengurusan_pelajar_antarabangsa_verfikasi->$keyval;
+                                } else {
+                                    $scorev = 0;
+                                }
+                                $totalv = $totalv+$scorev;
+                            }
+                        ?>
+                        <a class="text-success">{{$scorev}}</a>
+                    </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
-
+          <?php
+            $total = $total + $totalv;
+            $percentage = ($total/140);
+            $percentage = $percentage*100;
+             if($type == 'verfikasi') {
+                 $col = 2;
+             } else {
+                 $col =1;
+             }
+            ?>
         <tfoot>
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td>
-                    <a class="text-success">0</a>
+                <td colspan="{{$col}}" style="text-align: center;">
+                    <a class="text-success">{{$total}}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
-                <td>
-                    <a class="text-success">-</a>
+                <td colspan="{{$col}}" style="text-align: center;">
+                    <a class="text-success">{{ number_format($percentage,0) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab10_skor" id="tab10_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab10_percentage" id="tab10_percentage">

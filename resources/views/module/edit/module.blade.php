@@ -13,9 +13,9 @@
                                 <div >
                                     <select id="module_type" name="module_type" class="form-control select2" placeholder="Name of Module" required onchange="typechange(this)">
                                             <option value="">Sila Pilih</option>
-                                            <option value="SEDIA" @if($module?->module_type == 'SEDIA') selected @endif>SEDIA</option>
+                                            <option value="SEDIA" @if($module?->module_type == 'SEDIA') selected @endif>Static</option>
                                             <!-- <option value="SKIPS" @if($module?->module_type == 'SKIPS') selected @endif>SKIPS</option> -->
-                                            <option value="NewForm" @if($module?->module_type == 'NewForm') selected @endif>Dynamic Form</option>
+                                            <option value="NewForm" @if($module?->module_type == 'NewForm') selected @endif>Dynamic</option>
                                         </select>
                                     
                                 </div>

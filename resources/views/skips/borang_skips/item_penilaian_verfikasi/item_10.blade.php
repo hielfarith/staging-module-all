@@ -1,3 +1,12 @@
+<?php
+    $butiran_institusi_id = $butiran_id;;
+    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && !empty($tab1->pengurusan_pelajar_antarabangsa_verfikasi)) {
+        $pengurusan_pelajar_antarabangsa = json_decode($tab1->pengurusan_pelajar_antarabangsa_verfikasi);
+    } else {
+        $pengurusan_pelajar_antarabangsa = null;
+    }
+?>
 @php
 
 $pelajar_antarabangsas = [
@@ -179,7 +188,10 @@ $option_antarabangsas = [
         /* word-wrap: break-word; */
     }
 </style>
-
+<form id="pengurusan_pelajar_antarabangsa_v"> 
+<input type="hidden" name="usertype" value="{{$type}}">
+<input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
+               
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem10">
         <thead>
@@ -208,14 +220,21 @@ $option_antarabangsas = [
                 <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Pelajar Antarabangsa</td>
             </tr>
              @foreach ($pelajar_antarabangsas as $index => $antarabangsa)
+             <?php
+                    $keyval = '';
+                    $keyval = $index.'_verfikasi';
+                ?>
                 <tr>
                     <td colspan="2"> {{ $antarabangsa }}</td>
                     @if(isset($option_antarabangsas[$index]))
                         @foreach ($option_antarabangsas[$index] as $key => $option_antarabangsa)
                             <td>
+
+                                @if(count($option_antarabangsas[$index]) > 1)
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required  @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$keyval == $key) checked @endif>
                                 </div>
+                                @endif
                                 <br>
                                 {!! $option_antarabangsa !!}
                             </td>
@@ -226,3 +245,45 @@ $option_antarabangsas = [
         </tbody>
     </table>
 </div>
+
+    <hr>
+
+
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right verify" onclick="submitform10v()">Simpan</button>
+    </div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+   function submitform10v() {
+        var formData = new FormData(document.getElementById('pengurusan_pelajar_antarabangsa_v'));
+        var error = false;
+
+        $('form#pengurusan_pelajar_antarabangsa_v').find('radio, input').each(function() {
+            var value = $("input[name='"+this.name+"']:checked").val();
+            if (typeof value == 'undefined' && this.type == 'radio') {
+                error = true;
+            }
+        });
+
+        if (error) {
+            Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengurusan_pelajar_antarabangsa']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+                    window.location.reload();
+               }
+            }
+        });
+   }
+</script>

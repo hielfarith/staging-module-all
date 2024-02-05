@@ -12,7 +12,7 @@
         'surat_surat_sokongan_agensi' => '1.9 Surat-surat Sokongan Agensi',
     ];
 
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran);
@@ -78,15 +78,7 @@
 
             @endforeach
         </tbody>
-
-        <tfoot>
-            <tr>
-                <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td colspan="2" style="text-align: center;">
-                    <a class="text-success">{{$total + $totalv}}</a>
-                </td>
-            </tr>
-            <?php
+         <?php
             $total = $total + $totalv;
             $percentage = ($total/90);
             $percentage = $percentage*100;
@@ -96,12 +88,22 @@
                  $col =1;
              }
             ?>
+        <tfoot>
             <tr>
-                <td colspan="{{$col}}" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
-                <td>
-                    <a class="text-success">{{ number_format($percentage,2)}}</a>
+                <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
+                <td colspan="{{$col}}" style="text-align: center;">
+                    <a class="text-success">{{$total}}</a>
+                </td>
+            </tr>
+           
+            <tr>
+                <td colspan="2" style="text-align: center;" class="fw-bolder text-uppercase bg-light-primary">%</td>
+                <td colspan="{{$col}}" style="text-align: center;">
+                    <a class="text-success">{{ number_format($percentage,0)}}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab1_skor" id="tab1_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab1_percentage" id="tab1_percentage">

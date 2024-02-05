@@ -11,6 +11,7 @@ use App\Models\ItemStandardQualitySkips;
 use App\Models\PengerusiPengetuaGuru;
 use App\Models\SkipsInstitusiPendidikan;
 use App\Models\UlasanKeseluruhanPemeriksaanSkips;
+use App\Models\InstrumenSkpakSpksIkeps;
 
 use App\Helpers\FMF;
 use Illuminate\Support\Facades\Storage;
@@ -26,6 +27,7 @@ class PengurusanSkipsController extends Controller
 
     public function BorangSkipsBaru(Request $request, $id = null){
         $negeris = MasterState::all();
+        $allInstitutes = SkipsInstitusiPendidikan::pluck('nama','id');
         $butiran_id = $id;
         if (!empty($butiran_id)) {
             $butiranInstitusi = ButiranInstitusiSkips::where('id', $butiran_id)->first();
@@ -34,7 +36,14 @@ class PengurusanSkipsController extends Controller
             }
         }
         $type = $request->segment(2);
-        return view ('skips.index', compact('negeris', 'butiran_id', 'type'));
+        return view ('skips.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes'));
+    }
+
+    public function chooseInstituteDetails(Request $request)
+    {
+        $id = $request->id;
+        $institute = SkipsInstitusiPendidikan::where('id', $id)->first();
+        return ['success' => true, 'data' => $institute];
     }
 
     public function RingkasanSkips(Request $request){
@@ -48,6 +57,10 @@ class PengurusanSkipsController extends Controller
             if ($tab == 'butiran_pemeriksaan') {
                 if (isset($input['instrumen_id']) && !empty($input['instrumen_id'])) {
                     $butiran = ButiranPemeriksaanSkips::where('instrumen_id', $input['instrumen_id'])->first();
+                    $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['instrumen_id'])->first();
+                    $item->status = 3;
+                    $item->save();
+
                     if (empty($butiran)) {
                         $butiran = new ButiranPemeriksaanSkips;
                         $butiran = $butiran->create($input);
@@ -61,18 +74,24 @@ class PengurusanSkipsController extends Controller
                 DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
             } elseif($tab == 'butiran_institusi') {
+                // update the configiuration instrumen id
+                //get active configuration id
+                $instrumentId = InstrumenSkpakSpksIkeps::where('type', 'SKIPS')->where('status',1)->first();
+                if ($instrumentId) {
+                    $input['instrumen_skips_id'] = $instrumentId->id;
+                }
                 if (isset($input['butiranInstitusi_id']) && !empty($input['butiranInstitusi_id'])) {
                     $butiran = ButiranInstitusiSkips::where('id', $input['butiranInstitusi_id'])->first();
                     unset($input['butiranInstitusi_id']);
-                    $butiran = $butiran->update($input);
+                    $butiranupdate = $butiran->update($input);
                 } else {
                     $butiran = new ButiranInstitusiSkips;
                     $butiran = $butiran->create($input);
                 }
-
+            DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $butiran]);
 
-            } elseif(in_array($tab, ['pengurusan_institusi', 'penubuhan_pendaftaran', 'pengurusan_kurikulum', 'pengajaran','pengurusan_penilaian', 'pengurusan_pembangunan_guru','displin', 'piawaian', 'kebersihan'])) {
+            } elseif(in_array($tab, ['pengurusan_institusi', 'penubuhan_pendaftaran', 'pengurusan_kurikulum', 'pengajaran','pengurusan_penilaian', 'pengurusan_pembangunan_guru','displin', 'piawaian', 'kebersihan', 'pengurusan_pelajar_antarabangsa'])) {
                 if (isset($input['butiran_institusi_id']) && !empty($input['butiran_institusi_id'])) {
                     $item = ItemStandardQualitySkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
                     $data[$tab] = json_encode($input);
@@ -83,8 +102,9 @@ class PengurusanSkipsController extends Controller
                         $data[$tab.'_verfikasi'] = json_encode($input);
                     }
                     $data['butiran_institusi_id'] = $input['butiran_institusi_id'];
+
                     if (!empty($item)) {
-                        $item = $item->update($data);
+                        $itemupdate = $item->update($data);
                     } else {
                         $item = new ItemStandardQualitySkips;
                         $item = $item->create($data);
@@ -96,7 +116,7 @@ class PengurusanSkipsController extends Controller
                 if (isset($input['butiran_institusi_id']) && !empty($input['butiran_institusi_id'])) {
                     $ulasan = UlasanKeseluruhanPemeriksaanSkips::where('butiran_institusi_id', $input['butiran_institusi_id'])->first();
                     if(!empty($ulasan)) {
-                        $ulasan->update($input);
+                        $uslasanUpdate = $ulasan->update($input);
                     } else {
                         $ulasan = new UlasanKeseluruhanPemeriksaanSkips;
                         $ulasan = $ulasan->create($input);
@@ -119,10 +139,15 @@ class PengurusanSkipsController extends Controller
 
     // View Senarai Borang Instrumen Telah Dijawab
     public function SenaraiSkips(Request $request){
-
+        if ($request->segment('2') == 'verfikasi') {
+            $status = [1,2];
+        } elseif ($request->segment('2') == 'validasi') {
+            $status = [3];
+        }
         if($request->ajax()) {
+           
             $instrumentListings = ButiranInstitusiSkips::select(['butiran_institusi_id','item_standard_quality_skips.id as item_id', 'butiran_institusi_skips.id as id', 'butiran_institusi_skips.nama_institusi', 'butiran_institusi_skips.nama_pengetua','butiran_institusi_skips.negeri','item_standard_quality_skips.status'])->join('item_standard_quality_skips','item_standard_quality_skips.butiran_institusi_id','=','butiran_institusi_skips.id')
-                ->whereIn('item_standard_quality_skips.status', [1, 2]);
+                ->whereIn('item_standard_quality_skips.status', $status);
 
             return Datatables::of($instrumentListings)
                 ->editColumn('nama_institusi', function ($instrument) {
@@ -199,9 +224,9 @@ class PengurusanSkipsController extends Controller
                })
                ->editColumn('status', function ($pengetuaList) {
                 if($pengetuaList->status == 'Menunggu Verifikasi'){
-                    $status = '<div class="alert alert-warning" role="alert">'.$pengetuaList->status.'</div>';
+                    $status = '<span class="badge rounded-pill badge-light-info"> '.$pengetuaList->status.' </span>';
                 } else {
-                    $status = '<div class="alert alert-info" role="alert">'.$pengetuaList->status.'</div>';
+                    $status = '<span class="badge rounded-pill badge-light-primary"> '.$pengetuaList->status.' </span>';
                 }
                     return $status;
                 })
@@ -251,18 +276,24 @@ class PengurusanSkipsController extends Controller
                    return $institusi->nama;
                })
                ->editColumn('alamat', function ($institusi) {
-                   return $institusi->alamat;
+                    $alamats = '';
+                    $alamats .= '<p>'. $institusi->alamat .'</p>';
+                    $alamats .= '<p>'. $institusi->alamat_2 .'</p>';
+                    $alamats .= '<p>'. $institusi->alamat_3 .'</p>';
+                    $alamats .= '<p>'. $institusi->poskod . ', ' . $institusi->daerah .  ', ' . $institusi->negeri . '</p>';
+
+                    return $alamats;
                })
                ->editColumn('jenis', function ($institusi) {
                    return $institusi->jenis;
                })
                ->editColumn('status', function ($institusi) {
                 if($institusi->status == 'beroperasi'){
-                    $status = '<div class="alert alert-success" role="alert">Beroperasi</div>';
+                    $status = '<span class="badge rounded-pill badge-light-primary"> Beroperasi </span>';
                 } else if($institusi->status == 'tidak_beroperasi'){
-                    $status = '<div class="alert alert-warning" role="alert">Tidak Beroperasi</div>';
+                    $status = '<span class="badge rounded-pill badge-light-warning"> Tidak Beroperasi </span>';
                 } else {
-                    $status = '<div class="alert alert-warning" role="alert">Tutup</div>';
+                    $status = '<span class="badge rounded-pill badge-light-danger"> Tutup </span>';
                 }
                 return $status;
                 })
@@ -315,6 +346,150 @@ class PengurusanSkipsController extends Controller
     }
 
     public function DashboardSkips(Request $request){
+
+        if($request->ajax()) {
+           
+            $instrumentListings = InstrumenSkpakSpksIkeps::where('type', 'SKIPS');
+
+            return Datatables::of($instrumentListings)
+                ->editColumn('nama_instrumen', function ($instrument) {
+                    return $instrument->nama_instrumen;
+                })
+                ->addColumn('DT_RowIndex', function ($instrument) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('action', function ($instrument) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatDashboard(' . $instrument->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
         return view ('dashboard.dashboard_skips');
+    }
+
+    public function dashboardInstrumen(Request $request){
+
+        //return ButiranInstitusiSkips::peratusanBintang($request->instrumen_id);
+
+        if($request->ajax()){
+            if($request->table == '1'){
+                $states = MasterState::whereNot('code', '00')->get();
+
+                $dataNegeri = [];
+                
+                foreach($states as $state){
+                    if($state->name == 'Wilayah Persekutuan Kuala Lumpur' || $state->name == 'Wilayah Persekutuan Labuan' || $state->name == 'Wilayah Persekutuan Putrajaya'){
+                        $negeri = strtoupper(str_replace('Wilayah Persekutuan', 'WP', $state->name));
+                    }  else {
+                        $negeri = strtoupper($state->name);
+                    }
+
+                    $bilInstitusi = count(SkipsInstitusiPendidikan::where('negeri', $negeri)->get());
+
+                    $dataNegeri[$negeri] = [
+                        'negeri' => $state->name,
+                        'bil_institusi' => $bilInstitusi,
+                    ];
+                }
+
+                return Datatables::of($dataNegeri)
+                ->addColumn('DT_RowIndex', function ($dataNegeri) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('negeri', function ($dataNegeri) {
+                    return $dataNegeri['negeri'];
+                })
+                ->editColumn('bil_institusi', function ($dataNegeri) {
+                    return $dataNegeri['bil_institusi'];
+                })
+                ->make(true);
+            }
+            if($request->table == '2'){
+                $instrumen = ButiranInstitusiSkips::with([
+                    'itemStandardKualiti' => function ($query) {
+                        $query->whereNotNull('status');
+                    },
+                    'institusiPendidikan'
+                ])
+                ->where('instrumen_skips_id', $request->instrumen_id)
+                ->get()
+                ->filter(function ($item) {
+                    // Check if itemStandardKualiti relationship exists and is not empty
+                    return optional($item->itemStandardKualiti)->count() > 0;
+                })
+                ->groupBy(function ($item) {
+                    return $item->institusiPendidikan->negeri;
+                });
+
+                $states = MasterState::whereNot('code', '00')->get();
+
+                $dataNegeri = [];
+                $negeri = null;
+                foreach($states as $state){
+                    if($state->name == 'Wilayah Persekutuan Kuala Lumpur' || $state->name == 'Wilayah Persekutuan Labuan' || $state->name == 'Wilayah Persekutuan Putrajaya'){
+                        $negeri = strtoupper(str_replace('Wilayah Persekutuan', 'WP', $state->name));
+                    }  else {
+                        $negeri = strtoupper($state->name);
+                    }
+
+                    $bilInstitusi = count(SkipsInstitusiPendidikan::where('negeri', $negeri)->get());
+
+                    if(array_key_exists($negeri, $instrumen->toArray())){
+                        $bilHantar = count($instrumen[$negeri]);
+                        $bilVerifikasi = 0;
+                        foreach($instrumen[$negeri] as $instrumenNegeri){
+                            if($instrumenNegeri->itemStandardKualiti->status != 1){
+                                $bilVerifikasi++;
+                            }
+                        }
+                    } else {
+                        $bilHantar = 0;
+                        $bilVerifikasi = 0;
+                    }
+
+                    $dataNegeri[$negeri] = [
+                        'negeri' => $state->name,
+                        'bil_institusi' => $bilInstitusi,
+                        'bil_hantar' => $bilHantar,
+                        'bil_belum_hantar' => $bilInstitusi - $bilHantar,
+                        'bil_verifikasi' => $bilVerifikasi,
+                    ];
+                }
+
+                return Datatables::of($dataNegeri)
+                ->addColumn('DT_RowIndex', function ($dataNegeri) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('negeri', function ($dataNegeri) {
+                    return $dataNegeri['negeri'];
+                })
+                ->editColumn('bil_institusi', function ($dataNegeri) {
+                    return $dataNegeri['bil_institusi'];
+                })
+                ->editColumn('bil_hantar', function ($dataNegeri) {
+                    return $dataNegeri['bil_hantar'];
+                })
+                ->editColumn('bil_belum_hantar', function ($dataNegeri) {
+                    return $dataNegeri['bil_belum_hantar'];
+                })
+                ->editColumn('bil_verifikasi', function ($dataNegeri) {
+                    return $dataNegeri['bil_verifikasi'];
+                })
+                ->make(true);
+            }
+        }
+
+        return view ('dashboard.dashboard_instrumen');
     }
 }

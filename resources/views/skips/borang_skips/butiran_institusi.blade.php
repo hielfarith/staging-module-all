@@ -1,18 +1,25 @@
 <?php
-    $id = Request::segment(3);
+    $id = $butiran_id;
+    $checkforTambah = Request::segment(2);
+
     if(!empty($id)) {
         $butiranInstitusi = \App\Models\ButiranInstitusiSkips::where('id', $id)->first();
     } else {
         $butiranInstitusi = null;
     }
-    if (isset($type) && $type == 'verfikasi') {
+    if (isset($type) && ($type == 'verfikasi' || $type == 'validasi')) {
         $disabled = 'disabled';
     } else {
         $disabled = '';
     }
+    $readonly = '';
+    if ($type == 'borang') {
+        $readonly = 'readonly';
+    }
 ?>
 <form id="butiran_institusi" novalidate="novalidate">
     <input type="hidden" name="butiranInstitusi_id" value="{{$butiranInstitusi?->id}}">
+    <input type="hidden" name="nama_institusi" id="nama_institusi" value="{{$butiranInstitusi?->nama_institusi}}">
     <div class="row">
         <h5 class="mb-2 mt-1 fw-bold">
             <span class="badge rounded-pill badge-light-primary">
@@ -24,40 +31,63 @@
             <label class="form-label fw-bold text-titlecase">Nama Institusi
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" name="nama_institusi" class="form-control" required value="{{$butiranInstitusi?->nama_institusi}}" {{$disabled}}>
+            <select name="institusi_id" id="institusi_id" class="form-control select2" required {{$disabled}} onchange="updateInstitusi(this)">
+                <option value="">Sila Pilih</option>
+                @foreach($allInstitutes as $id => $nama)
+                    <option value="{{$id}}" @if($id == $butiranInstitusi?->institusi_id) selected @endif>{{$nama}}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="col-md-4 mb-1">
             <label class="form-label fw-bold text-titlecase">Nama Pengetua
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" name="nama_pengetua" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->nama_pengetua}}">
+            <input type="text" name="nama_pengetua" id="nama_pengetua" class="form-control" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->nama_pengetua}}">
         </div>
 
-        <div class="col-md-10 mb-1">
+        <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Alamat
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" class="form-control" required {{$disabled}} name="alamat" value="{{$butiranInstitusi?->alamat}}">
+            <input type="text" class="form-control" required {{$disabled}} name="alamat" {{$readonly}}  value="{{$butiranInstitusi?->alamat}}">
         </div>
 
-        <div class="col-md-2 mb-1">
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Alamat2
+            </label>
+            <input type="text" class="form-control" required {{$disabled}} id="alamat2" {{$readonly}} value="">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Alamat3
+            </label>
+            <input type="text" class="form-control" required {{$disabled}} id="alamat3" {{$readonly}} value="">
+        </div>
+        <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Negeri
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-control select2" name="negeri" id="">
-                <option value="" hidden>Negeri</option>
-                @foreach($negeris as $negeri)
-                    <option value="{{$negeri->name}}" @if($butiranInstitusi?->negeri == $negeri->name) selected @endif>{{$negeri->name}}</option>
-                @endforeach
-            </select>
+            <input type="text" class="form-control" name="negeri" id="negeri" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->negeri}}">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase">Daerah
+            </label>
+            <input type="text" class="form-control" id="daerah" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->no_telephone}}">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase">Poskod
+            </label>
+            <input type="text" class="form-control" id="poskod" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->no_telephone}}">
         </div>
 
         <div class="col-md-3 mb-1">
             <label class="form-label fw-bold text-titlecase">No. Telefon
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" name="no_telephone" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->no_telephone}}">
+            <input type="text" name="no_telephone" id="no_telephone" class="form-control" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->no_telephone}}">
         </div>
 
         <div class="col-md-3 mb-1">
@@ -69,7 +99,7 @@
             <label class="form-label fw-bold text-titlecase"> Alamat Emel
                 <span class="text-danger">*</span>
             </label>
-            <input type="email" name="email" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->email}}">
+            <input type="email" name="email" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->email}}" {{$readonly}}>
         </div>
 
         <div class="col-md-3 mb-1">
@@ -207,15 +237,22 @@
             <input type="text" id="" name="tarikh_lapor" class="form-control flatpickr" required {{$disabled}} value="{{$butiranInstitusi?->tarikh_lapor}}">
         </div>
     </div>
-
+        @if($checkforTambah == 'borang')
         <hr>
         <div class="d-flex justify-content-end align-items-center mt-1">
             <button type="submit" class="btn btn-primary float-right">Simpan</button>
         </div>
-
+        @endif
 </form>
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+    $("#institusi_id").trigger('change');
     document.getElementById("butiran_institusi").addEventListener("submit", function(event) {
     event.preventDefault();
     var formData = new FormData(document.getElementById('butiran_institusi'));
@@ -248,10 +285,64 @@
                 var id = response.data.id;
                 var location = "{{route('skips.skips_baru', ['id' => ':id'])}}";
                 var location = location.replace(':id', id);
+                console.log(location)
                 window.location.href = location;
            }
         }
     });
 });
+
+function updateInstitusi(institusi) {
+    id = institusi.value;
+      var url = "{{ route('skips.choose-institute-details') }}";
+    $.ajax({
+        url: url,
+        method: 'POST',
+        data: {
+            id: id
+        },
+        success: function(response) {
+           if (response.success) {
+               var institutedata = response.data;
+               if (institutedata) {
+                    $('#nama_institusi').val(institutedata.nama);
+                    if (institutedata.no_tel) {
+                        $('#no_telephone').val(institutedata.no_tel);
+                    } else {
+                        $('#no_telephone').removeAttr('readonly')
+                    }
+                    if (institutedata.email) {
+                        $('#email').val(institutedata.email);
+                    } else {
+                        $('#email').removeAttr('readonly')
+                    }
+
+                    if (institutedata.alamat) {
+                        $('#alamat').val(institutedata.alamat);
+                    } else {
+                        $('#alamat').removeAttr('readonly')
+                    }
+
+                    if (institutedata.negeri) {
+                        $('#negeri').val(institutedata.negeri);
+                    } else {
+                        $('#negeri').removeAttr('readonly')
+                    }
+                    if (institutedata.nama_pengetua_gurubesar) {
+                        $('#nama_pengetua').val(institutedata.nama_pengetua_gurubesar);
+                    } else {
+                        $('#nama_pengetua').removeAttr('readonly')
+                    }
+
+                    $('#alamat2').val(institutedata.alamat_2);
+                    $('#alamat3').val(institutedata.alamat_3);
+                    $('#poskod').val(institutedata.poskod);
+                    $('#daerah').val(institutedata.daerah);
+
+                }
+           }
+        }
+    });
+}
 
 </script>

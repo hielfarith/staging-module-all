@@ -5,7 +5,7 @@ $pembangunan_gurus = [
     'kelayakan_akademik_guru' => '6.2 Kelayakan Akademik Guru',
     'kelayakan_ikhtisas_guru' => '6.3 Kelayakan Ikhtisas Guru',
 ];
- $butiran_institusi_id = Request::segment(3);
+ $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru);  
@@ -90,9 +90,12 @@ $pembangunan_gurus = [
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{$percentage}}</a>
+                    <a class="text-success">{{ number_format($percentage,0) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
+
+<input type="hidden" value="{{$total}}" name="tab6_skor" id="tab6_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab6_percentage" id="tab6_percentage">

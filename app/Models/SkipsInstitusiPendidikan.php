@@ -10,11 +10,16 @@ class SkipsInstitusiPendidikan extends Model
     use HasFactory;
 
     protected $table = 'skips_institusi_pendidikan';
-    
+
     protected $fillable = [
         'jenis',
         'nama',
         'alamat',
+        'alamat_2',
+        'alamat_3',
+        'poskod',
+        'daerah',
+        'negeri',
         'no_perakuan',
         'no_tel',
         'email',

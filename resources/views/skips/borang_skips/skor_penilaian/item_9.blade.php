@@ -5,7 +5,7 @@ $kebersihans = [
     'bilik_darjah_bilik_khas' => '9.2 Bilik Darjah / Bilik Khas',
 ];
 
-$butiran_institusi_id = Request::segment(3);
+$butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $kebersihanData = json_decode($tab1->kebersihan);   
@@ -89,9 +89,11 @@ $score = $total = 0;    $totalv = $scorev = 0;
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{$percentage}}</a>
+                    <a class="text-success">{{ number_format($percentage,0) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab9_skor" id="tab9_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab9_percentage" id="tab9_percentage">

@@ -59,7 +59,8 @@
                         '8.0' => '13.0',
                         '9.0' => '7.0',
                         '10.0' => '15.0'
-                        ];
+                    ];
+
                 @endphp
 
                 <tbody>
@@ -67,10 +68,14 @@
                         <tr>
                             <td>{{ $item }}</td>
                             <td>
-                                <a class="text-success">auto-calculated</a>
+                                <!-- <a class="text-success">auto-calculated</a> -->
+                                <?php
+                                    $id = str_replace(".", "_", $itemKey);
+                                ?>  
+                                <span id="set_percentage_{{$id}}"></span>
                             </td>
                             <td>
-                                <a class="text-success">auto-calculated</a>
+                                <span id="set_skor_{{$id}}"></span>
                             </td>
                             <td>{{ $wajran[$itemKey] }}</td>
                         </tr>
@@ -81,7 +86,7 @@
                     <tr class="bg-light-primary">
                         <td colspan="2"> Jumlah Skor Keseluruhan </td>
                         <td colspan="2">
-                            <a class="text-success">auto-calculated</a>
+                            <span id="set_total_skor"></span>
                         </td>
                     </tr>
                 </tfoot>
@@ -102,7 +107,7 @@
             </div>
 
             <div class="card-body">
-                A - 100%
+                <span id="set_gred"></span>
             </div>
         </div>
     </div>
@@ -111,3 +116,33 @@
         &nbsp;
     </div>
 </div>
+<script type="text/javascript">
+    var totalskor = 0;
+    for (var i = 1; i <= 10; i++) {
+        totalskor = parseInt(totalskor) +  parseInt($('#tab'+i+'_skor').val());
+       $('#set_skor_'+i+'_0').text($('#tab'+i+'_skor').val());
+       $('#set_percentage_'+i+'_0').text($('#tab'+i+'_percentage').val());
+       if (i == 10) {
+            $('#set_total_skor').text(totalskor);
+            var gred = '-';
+            // =IF(O328>94,"CEMERLANG",IF(O328>80,"BAIK", IF(O328>70,"HARAPAN",IF(O328>60,"SEDERHANA",IF(O328>50,"LEMAH", IF(O328>0,"SANGAT LEMAH"," "))))))
+            if (totalskor > 94) {
+                gred = 'CEMERLANG';
+            } else if (totalskor > 80) {
+                gred = 'BAIK';
+            } else if (totalskor > 80) {
+                gred = 'BAIK';
+            } else if (totalskor > 70) {
+                gred = 'HARAPAN';
+            } else if (totalskor > 60) {
+                gred = 'SEDERHANA';
+            } else if (totalskor > 50) {
+                gred = 'LEMAH';
+            } else if (totalskor > 0 && totalskor < 50) {
+                gred = 'SANGAT LEMAH';
+            }
+            $('#set_gred').text(gred);
+       }
+    }
+
+</script>

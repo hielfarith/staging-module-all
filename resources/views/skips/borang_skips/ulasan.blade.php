@@ -1,5 +1,5 @@
 <?php
-    $id = Request::segment(3);
+    $id = $butiran_id;
     $ulasan =  App\Models\UlasanKeseluruhanPemeriksaanSkips::where('butiran_institusi_id',$id)->first();
     // $item = 
      $itemStandardQualitySkips = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $id)->first();
@@ -78,7 +78,7 @@
         success: function(response) {
            if (response.status) {
                 Swal.fire('Success', 'Berjaya', 'success');
-                var location = "{{route('skips.senarai-skips')}}";
+                var location = "{{route('skips.verfikasi-skips')}}";
                 console.log(location)
                 window.location.href = location;
            }

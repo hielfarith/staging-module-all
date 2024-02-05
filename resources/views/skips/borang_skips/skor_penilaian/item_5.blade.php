@@ -6,7 +6,7 @@ $peperiksaans = [
     'akreditasi_sijil_oleh_badan_antarabangsa' => '5.3 Akreditasi Sijil oleh Badan Antarabangsa',
 ];
 
-    $butiran_institusi_id = Request::segment(3);
+    $butiran_institusi_id = $butiran_id;;
     $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
         $pengurusan_penilaian = json_decode($tab1->pengurusan_penilaian);
@@ -89,9 +89,11 @@ $peperiksaans = [
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{$percentage}}</a>
+                    <a class="text-success">{{number_format($percentage,0)}}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
+<input type="hidden" value="{{$total}}" name="tab5_skor" id="tab5_skor">
+<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab5_percentage" id="tab5_percentage">

@@ -1,0 +1,146 @@
+<style>
+    #NilaiItem5 thead th {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    #NilaiItem5 tbody {
+        vertical-align: middle;
+        /* text-align: center; */
+    }
+
+    #NilaiItem5 table {
+        width: 100% !important;
+        /* word-wrap: break-word; */
+    }
+
+</style>
+
+@php
+$items_5 = [
+    [
+    'section' => 'Ruang Pembelajaran',
+        'subSections' => [
+            'Ruang manipulatif yang disediakan membolehkan kanak-kanak meneroka bahan pembelajaran.',
+            'Ruang bacaan mengandungi bahan bacaan yang sesuai untuk semua peringkat umur.',
+            'Ruang seni dan kreativiti membolehkan kanak-kanak mereka cipta.',
+            'Ruang main peranan membolehkan kanak-kanak meluahkan perasaan (main olok- olok).',
+            'Ruang teknologi membolehkan kanak-kanak mendapat maklumat.',
+            'Susun atur peralatan dan perabot bersesuaian dengan kebolehan dan peringkat umur bayi/kanak-kanak.',
+            'Ruang yang disediakan adalah selamat bagi mengelakkan pertembungan antara kanak-kanak semasa aktiviti diadakan.',
+            'Terdapat beberapa ruang untuk seorang atau dua orang kanak-kanak bermain/bersendirian tanpa gangguan.',
+            '"Semua peralatan pembelajaran dan perabot mudah diakses oleh kanak-kanak (rak yang rendah, rak yang terbuka, rak tidak terlalu penuh dengan barang permainan)."',
+            '"Semua rak dan sekatan mempunyai saiz yang bersesuaian dengan ketinggian kanak-kanak bagi memudahkan pemantauan pergerakan kanak-kanak."',
+            '"Ruang pembelajaran perkembangan Sahsiah, Sosio-Emosi & Kerohanian dilengkapi dengan pelbagai bahan yang membolehkan kanak-kanak melahirkan perasaan berinteraksi dan mengamalkan nilai-nilai murni."',
+            '"Ruang pembelajaran perkembangan Bahasa, Komunikasi dan Literasi Awal dilengkapi dengan pelbagai bahan yang membolehkan kanak-kanak berkomunikasi, meningkat kemahiran literasi dan minat membaca bayi dan kanak- kanak."',
+            'Ruang pembelajaran perkembangan Awal Matematik dilengkapi dengan pelbagai bahan yang membolehkan kanak-kanak menguasai kemahiran konsep awal matematik bayi dan kanak-kanak.',
+            '"Ruang pembelajaran perkembangan Sensori dan Dunia Persekitaran dilengkapi dengan pelbagai bahan yang membolehkan kanak-kanak menguasai kemahiran pemahaman deria dan persekitaran bayi dan kanak-kanak."',
+            '"Ruang pembelajaran perkembangan Fizikal dilengkapi dengan pelbagai bahan yang membolehkan kanak-kanak meningkatkan kemahiran motor kasar dan motor halus bayi dan kanak-kanak."',
+            '"Ruang pembelajaran perkembangan Daya Kreativiti dan Estetika dilengkapi dengan pelbagai bahan yang membolehkan kanak- kanak melahirkan kreativiti, menghasilkan rekacipta dan menghargai hasil ciptaan mereka."',
+            'Ruang aktiviti fizikal di luar TASKA disediakan untuk bayi dan kanak-kanak.',
+            'Terdapat kawasan untuk kanak-kanak berkebun di luar TASKA.',
+            'Terdapat peralatan main air untuk kanak-kanak.',
+            'Terdapat peralatan main pasir untuk kanak-kanak.',
+            'Pondok permainan disediakan untuk aktiviti main peranan dan aktiviti bercerita.',
+            'Setiap ruang pembelajaran dijaga dengan bersih dan disusun dengan kemas.',
+            'Setiap ruang pembelajaran memberi peluang kanak-kanak untuk meneroka bahan dan bereksperimen.',
+            'Pendidik/pengasuh menyediakan ruang persekitaran “print rich” untuk bayi dan kanak- kanak.',
+            'Setiap ruang “print rich” adalah mengikut tema atau projek.',
+            'Setiap hasil kerja kanak-kanak dilabel.',
+            'Setiap hasil kerja kanak-kanak digantung dan dipamerkan.',
+        ],
+    ],
+    [
+    'section' => 'Peralatan dan Sumber Pembelajaran',
+        'subSections' => [
+            'Peralatan pembelajaran sesuai dengan umur kanak-kanak',
+            'Peralatan pembelajaran mencukupi untuk digunakan oleh setiap kanak-kanak.',
+            'Peralatan pembelajaran berada dalam keadaan baik dan boleh digunakan.',
+            'Peralatan pembelajaran diasingkan mengikut jenis.',
+            'Peralatan pembelajaran dilabel.',
+            'Peralatan pembelajaran diletak dalam bekas atau rak yang sesuai dan mudah dicapai oleh kanak-kanak.',
+        ],
+    ],
+    [
+    'section' => 'Penyediaan Ruang Sokongan',
+        'subSections' => [
+            'TASKA menyediakan ruang pejabat.',
+            'TASKA menyediakan dapur yang selamat di TASKA.',
+            'TASKA menyediakan bilik air/tandas yang sesuai untuk kanak-kanak perempuan.',
+            'TASKA menyediakan bilik air/tandas yang sesuai untuk kanak-kanak lelaki.',
+            'TASKA menyediakan tandas untuk orang dewasa.',
+            'TASKA menyediakan bilik stor untuk menyimpan barang.',
+        ],
+    ],
+    [
+    'section' => 'Bahan Pembelajaran',
+        'subSections' => [
+            'Bahan Pembelajaran TASKA menyediakan bahan pembelajaran mengikut bidang pembelajaran',
+            'Bahan pembelajaran adalah bersesuaian dengan umur kanak-kanak',
+            'Bahan pembelajaran adalah cukup untuk setiap kanak-kanak.',
+            'Bahan pembelajaran adalah mengikut tema dan aktiviti yang dijalankan',
+            'Pendidik/pengasuh menggunakan bahan semula jadi semasa aktiviti pembelajaran dan pengajaran',
+            'Pendidik/pengasuh menggunakan bahan tempatan semasa aktiviti pembelajaran dan pengajaran',
+            'Pendidik/pengasuh menggunakan bahan kitar semula semasa aktiviti pembelajaran dan pengajaran',
+            'TASKA menyediakan peralatan permainan luar seperti gelongsor, jongkang jongkit, buaian, trek basikal, merry go-round, climbing bar, balancing beam dan terowong. (TASKA hendaklah mempunyai sekurang-kurangnya tiga item di atas).',
+        ],
+    ],
+];
+@endphp
+
+<h5 class="card-title fw-bolder">
+    PERSEKITARAN FIZIKAL DAN SUMBER PEMBELAJARAN
+</h5>
+
+<hr>
+
+<div class="table-responsive">
+    <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem5">
+        <thead>
+            <tr>
+                <th>Perincian Item</th>
+                <th>Ya</th>
+                <th>Tidak</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($items_5 as $index => $item_5)
+                <tr>
+                    <td colspan="3" class="bg-light-primary text-uppercase">
+                        {{ $item_5['section'] }}
+                    </td>
+                </tr>
+                @foreach ($item_5['subSections'] as $subsection_item5)
+                    <tr>
+                        <td>{{ $subsection_item5 }}</td>
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input class="form-check-input" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input class="form-check-input" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK">
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            @endforeach
+        </tbody>
+        <tfoot>
+            <tr class="bg-light-danger">
+                <td class="text-end">
+                    Jumlah
+                </td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<hr>
+
+<div class="d-flex justify-content-end align-items-center mt-1">
+    <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
+</div>
