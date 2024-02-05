@@ -20,7 +20,7 @@ class FMF
      */
     static function checkPermission($module_id, $status_id, $permission_input){
         $module = Module::where('id',$module_id)->with(['permissions','roles','statuses'])->first();
-
+        
         if(!$module)
             return false;
 
@@ -36,7 +36,7 @@ class FMF
             return false;
 
         $moduleRoleID = $module->roles->whereIn('role_id',$listOfUserRole)->pluck('id')->toArray();
-
+        
         $queryCheck->whereIn('module_role_id',$moduleRoleID);
 
         //Find matching permission inside module
@@ -54,6 +54,8 @@ class FMF
         $moduleStatus = $module->statuses->where('id',$status_id)->first();
         if(!$moduleStatus)
             return false;
+
+
 
         $queryCheck->where('module_status_id',$moduleStatus->id);
 

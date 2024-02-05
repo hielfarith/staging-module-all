@@ -1,6 +1,7 @@
 @php
 $configData = Helper::applClasses();
 @endphp
+
 <div class="main-menu menu-fixed {{ $configData['theme'] === 'dark' || $configData['theme'] === 'semi-dark' ? 'menu-dark' : 'menu-light' }} menu-accordion menu-shadow"
     data-scroll-to-active="true">
     <div class="navbar-header">
@@ -297,12 +298,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-<!-- senarai-skips-institusi -->
-                    <!-- <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Verifikasi Data Instrumen</span>
-                        </a>
-                    </li> -->
+
                     <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -317,24 +313,13 @@ $configData = Helper::applClasses();
                         </a>
                     </li> -->
 
-              <!--       {{-- <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
-                        </a>
-                    </li> --}}
- -->
                     <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
                         </a>
                     </li>
 
-                <!--     {{-- <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
-                        </a>
-                    </li> --}}
- -->
+ 
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
                             <!-- {{-- <i data-feather="home"></i> --}} -->
@@ -858,6 +843,66 @@ $configData = Helper::applClasses();
                             </span>
                         </a>
                     </li>
+                </ul>
+            </li>
+            @endhasanyrole
+             <!-- pentadbir role start -->
+            @hasanyrole('pengerusi_pengetua_guru_besar_pengurus')
+
+            <li class="navigation-header">
+                <span>  SKIPS </span>
+            </li>
+             <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> SKIPS </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="nav-item ">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Pengumuman</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.skips_baru') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endhasanyrole
+
+            @hasanyrole('jabata_skips|bahagian_pendidikan_swasta')
+            <li class="navigation-header">
+                <span>  SKIPS </span>
+            </li>
+             <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> SKIPS </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="nav-item ">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Pengumuman</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Skips
+                            </span>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
             @endhasanyrole

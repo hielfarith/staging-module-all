@@ -126,7 +126,7 @@ $option_displins = [
 
     <div class="col-md-12">
         <label class="fw-bolder">Ulasan</label>
-        <textarea name="" id="" rows="3" class="form-control"></textarea>
+        <textarea name="ulasan_verfikasi" id="" rows="3" class="form-control">{{$disiplin?->ulasan_verfikasi}}</textarea>
     </div>
 
     <div class="d-flex justify-content-end align-items-center mt-1">

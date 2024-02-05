@@ -30,11 +30,11 @@ Instrumen
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
-                        <th>Kod Sekolah</th>
+                        <!-- <th>Kod Sekolah</th> -->
                         <th>Nama Institusi</th>
-                        <th>Jenis Institusi</th>
+                        <!-- <th>Jenis Institusi</th> -->
                         <th>Nama Pengetua</th>
-                        <th>PPD</th>
+                        <!-- <th>PPD</th> -->
                         <th>Negeri</th>
                         <th>Status</th>
                         <th width="5%">Tindakan</th>

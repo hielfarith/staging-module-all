@@ -143,13 +143,8 @@
     </div>
 
     <hr>
-
-     <div class="col-md-12">
-        <label class="fw-bolder">Ulasan</label>
-        <textarea name="" id="" rows="3" class="form-control"></textarea>
-    </div>
     
-    @if(!empty($butiran_id) && $type == 'borang')
+    @if(!empty($butiran_id) && $type == 'borang' && $canFill)
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform4()">Simpan</button>
     </div>

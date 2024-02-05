@@ -36,7 +36,7 @@ SKIPS
             SKOR ITEM STANDARD KUALITI
         </a>
     </li>
-    @if($type == 'verfikasi')
+    @if($type == 'verfikasi' || $type == 'validasi' || $type == 'done')
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="pencapaian-tab" data-bs-toggle="tab" href="#pencapaian" aria-controls="pencapaian" role="tab" aria-selected="true" onclick="tabclicked('#pencapaian')">
             PENCAPAIAN KESELURUHAN
@@ -48,7 +48,7 @@ SKIPS
         </a>
     </li>
     @endif
-    @if($type == 'validasi')
+    @if(($type == 'validasi' || $type == 'done'))
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="ulasan-tab" data-bs-toggle="tab" href="#ulasan" aria-controls="ulasan" role="tab" aria-selected="true" onclick="tabclicked('#ulasan')">
             ULASAN KESELURUHAN PEMERIKSAAN
