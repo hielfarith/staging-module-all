@@ -97,7 +97,6 @@ class PengurusanSkipsController extends Controller
         }else{
             $type = 'verfikasi';
         }
-
         if ($status == 'done') {
             $type = 'done';
         }

@@ -71,7 +71,7 @@ SKIPS
                 @include('skips.index_penilaian')
             </div>
             <div class="tab-pane fade" id="item-verifikasi" role="tabpanel" aria-labelledby="item-verifikasi-tab">
-                @include('skips.index_item_verfikasi',['type' => 'verfikasi', 'tab_name' => 'item_verfikasi'])
+                @include('skips.index_item_verfikasi',['type' => $type, 'tab_name' => 'item_verfikasi'])
             </div>
             <div class="tab-pane fade" id="pencapaian" role="tabpanel" aria-labelledby="pencapaian-tab">
                 @include('skips.borang_skips.pencapaian')

@@ -141,7 +141,7 @@ $option_piawaians = [
                         @foreach ($option_piawaians[$index] as $key => $option_piawaian)
                             <td>
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required @if($piawaianData && $piawaianData->$keyval == $key) checked @endif @if($type == 'validasi') disabled @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required @if($piawaianData && $piawaianData->$keyval == $key) checked @endif @if($type == 'validasi' || $type == 'done') disabled @endif>
                                 </div>
                                 <br>
                                 {!! $option_piawaian !!}
