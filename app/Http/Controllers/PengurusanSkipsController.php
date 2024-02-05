@@ -97,7 +97,7 @@ class PengurusanSkipsController extends Controller
         }else{
             $type = 'verfikasi';
         }
-        
+
         if ($status == 'done') {
             $type = 'done';
         }
@@ -516,7 +516,11 @@ class PengurusanSkipsController extends Controller
                 })
                 ->editColumn('status', function ($instrument) {
                     $item = ItemStandardQualitySkips::where('id', $instrument->item_id)->first();
-                    return $item->statuses?->status_description;
+                    if ($item->statuses?->status_description == 'done') {
+                        return 'Selesai';
+                    } else {
+                        return $item->statuses?->status_description;
+                    }
                 })
                 ->addColumn('DT_RowIndex', function ($instrument) {
                     static $index = 1;
