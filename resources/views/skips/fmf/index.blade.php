@@ -48,7 +48,7 @@ SKIPS
         </a>
     </li>
     @endif
-    @if(($type == 'validasi' || $type == 'done'))
+    @if(($type == 'validasi' || $type == 'done') && $type != 'verfikasi')
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="ulasan-tab" data-bs-toggle="tab" href="#ulasan" aria-controls="ulasan" role="tab" aria-selected="true" onclick="tabclicked('#ulasan')">
             ULASAN KESELURUHAN PEMERIKSAAN
