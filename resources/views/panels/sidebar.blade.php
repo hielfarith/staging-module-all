@@ -33,18 +33,18 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap">{{ __('msg.home') }} </span>
                 </a>
             </li>
-            <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
+            <!-- <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
                 <a href="#" class="nav-link">
                     {{-- <i data-feather="home"></i> --}}
                     <span class="menu-title text-truncate text-wrap">Announcement</span>
                 </a>
-            </li>
-            <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.dashboard_ikeps']) ? 'active' : '' }}">
+            </li> -->
+           <!--  <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.dashboard_ikeps']) ? 'active' : '' }}">
                 <a href="{{ route('ikeps.dashboard_ikeps') }}" class="nav-link">
                     {{-- <i data-feather="home"></i> --}}
                     <span class="menu-title text-truncate text-wrap">Dashboard I-KePS</span>
                 </a>
-            </li>
+            </li> -->
             {{-- <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
                 <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
                     <span class="menu-title text-truncate text-wrap">Dashboard SKIPS</span>
