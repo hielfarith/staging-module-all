@@ -121,7 +121,7 @@ $items_2 = [
         <tbody>
             @foreach ($items_2 as $index => $item_2)
                 <tr>
-                    <td colspan="3" class="bg-light-primary fw-bolder text-uppercase">
+                    <td colspan="3" class="bg-light-primary text-uppercase">
                         {{ $item_2['section'] }}
                     </td>
                 </tr>
@@ -130,18 +130,27 @@ $items_2 = [
                         <td>{{ $subsection_item2 }}</td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA">
+                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA">
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK">
+                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK">
                             </div>
                         </td>
                     </tr>
                 @endforeach
             @endforeach
         </tbody>
+        <tfoot>
+            <tr class="bg-light-danger">
+                <td class="text-end">
+                    Jumlah
+                </td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
@@ -150,3 +159,4 @@ $items_2 = [
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
 </div>
+

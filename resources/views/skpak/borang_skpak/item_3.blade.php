@@ -98,7 +98,7 @@ $items_3 = [
         <tbody>
             @foreach ($items_3 as $index => $item_3)
                 <tr>
-                    <td colspan="3" class="bg-light-primary fw-bolder text-uppercase">
+                    <td colspan="3" class="bg-light-primary text-uppercase">
                         {{ $item_3['section'] }}
                     </td>
                 </tr>
@@ -119,6 +119,15 @@ $items_3 = [
                 @endforeach
             @endforeach
         </tbody>
+        <tfoot>
+            <tr class="bg-light-danger">
+                <td class="text-end">
+                    Jumlah
+                </td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
@@ -127,3 +136,4 @@ $items_3 = [
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
 </div>
+
