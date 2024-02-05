@@ -296,7 +296,7 @@ $option_institusis = [
                             <td>
                                 @if(count($option_institusis[$index]) > 1)
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'done') disabled @endif>
                                 </div>
                                 @endif
                                 <br>

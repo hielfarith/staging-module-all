@@ -230,7 +230,7 @@
                                 <td>
                                     @if(count($option_antarabangsas[$index]) > 1)
                                         <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                                            <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'done') disabled @endif>
                                         </div>
                                     @endif
                                     <br>
