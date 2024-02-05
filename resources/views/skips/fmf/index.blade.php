@@ -24,7 +24,7 @@ SKIPS
             ITEM STANDARD KUALITI
         </a>
     </li>
-    @if($type == 'verfikasi')
+    @if($type == 'verfikasi' || $type == 'validasi' || $type == 'done')
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder" id="item-verifikasi-tab" data-bs-toggle="tab" href="#item-verifikasi" aria-controls="item-verifikasi" role="tab" aria-selected="true" onclick="tabclicked('#item-verifikasi')">
                 ITEM STANDARD KUALITI (Verfikasi)

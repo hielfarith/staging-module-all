@@ -232,7 +232,7 @@ $option_antarabangsas = [
 
                                 @if(count($option_antarabangsas[$index]) > 1)
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required  @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$keyval == $key) checked @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required  @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$keyval == $key) checked @endif @if($type == 'validasi') disabled @endif>
                                 </div>
                                 @endif
                                 <br>
@@ -252,11 +252,13 @@ $option_antarabangsas = [
     <label class="fw-bolder">Ulasan</label>
     <textarea name="ulasan_verfikasi" id="" rows="3" class="form-control">{{$pengurusan_pelajar_antarabangsa?->ulasan_verfikasi}}</textarea>
 </div>
+@if($canVerify)
 
 
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right verify" onclick="submitform10v()">Simpan</button>
     </div>
+    @endif
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

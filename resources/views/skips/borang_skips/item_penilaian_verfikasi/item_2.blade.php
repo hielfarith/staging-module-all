@@ -302,7 +302,7 @@ $option_institusis = [
                             <td>
                                 @if(count($option_institusis[$index]) > 1)
                                 <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$keyval == $key) checked @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{ $index }}" value="{{$key}}" required @if($pengurusan_institusi && $pengurusan_institusi->$keyval == $key) checked @endif @if($type == 'validasi') disabled @endif>
                                 </div>
                                 @endif
                                 <br>
@@ -322,10 +322,12 @@ $option_institusis = [
         <label class="fw-bolder">Ulasan</label>
         <textarea name="ulasan_verfikasi" id="" rows="3" class="form-control">{{$pengurusan_institusi?->ulasan_verfikasi}}</textarea>
     </div>
+@if($canVerify)
 
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform2v()">Simpan</button>
     </div>
+    @endif
 </form>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
