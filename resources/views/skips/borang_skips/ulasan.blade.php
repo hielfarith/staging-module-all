@@ -9,6 +9,12 @@
             $showHantarulasan = true;
         }
     }
+
+    if ($type == 'done') {
+        $disabled = 'disabled';
+    } else {
+        $disabled = '';
+    }
 ?>
 <form id="ulasan-form">
 <input type="hidden" name="butiran_institusi_id" value="{{$id}}">
@@ -17,16 +23,16 @@
         <label class="fw-bold form-label">Ulasan Ketua Pasukan Pemeriksa :
             <span class="text-danger">*</span>
         </label>
-        <textarea name="ulasan_ketua_pasukan_pemeriksa" id="" cols="30" rows="10" class="form-control">{{$ulasan?->ulasan_ketua_pasukan_pemeriksa}}</textarea>
+        <textarea name="ulasan_ketua_pasukan_pemeriksa" id="" cols="30" rows="10" class="form-control" {{$disabled}}>{{$ulasan?->ulasan_ketua_pasukan_pemeriksa}}</textarea>
     </div>
 
     <div class="col-md-5">
         <label class="fw-bold form-label">Disediakan Oleh:
             <span class="text-danger">*</span>
         </label>
-        <input type="text" class="form-control" name="disediakan_oleh" id="" value="{{$ulasan?->disediakan_oleh}}">
+        <input type="text" class="form-control" name="disediakan_oleh" id=""  {{$disabled}} value="{{$ulasan?->disediakan_oleh}}">
 
-        <input type="text" id="" name="disediakan_oleh_tarikh" class="form-control flatpickr-basic mt-1" placeholder="YYYY-MM-DD" value="{{$ulasan?->disediakan_oleh_tarikh}}">
+        <input type="text" id="" name="disediakan_oleh_tarikh" class="form-control flatpickr-basic mt-1" {{$disabled}} placeholder="YYYY-MM-DD" value="{{$ulasan?->disediakan_oleh_tarikh}}">
     </div>
 
     <div class="col-md-2">
@@ -37,9 +43,9 @@
         <label class="fw-bold form-label">Disemak Oleh:
             <span class="text-danger">*</span>
         </label>
-        <input type="text" class="form-control" name="disemak_oleh" value="{{$ulasan?->disemak_oleh}}">
+        <input type="text" class="form-control" name="disemak_oleh" value="{{$ulasan?->disemak_oleh}}" {{$disabled}}>
 
-        <input type="text" id="" name="disemak_oleh_tarikh" class="form-control flatpickr-basic mt-1" placeholder="YYYY-MM-DD" value="{{$ulasan?->disemak_oleh_tarikh}}">
+        <input type="text" id="" name="disemak_oleh_tarikh" class="form-control flatpickr-basic mt-1" {{$disabled}} placeholder="YYYY-MM-DD" value="{{$ulasan?->disemak_oleh_tarikh}}">
     </div>
 </div>
  <hr>

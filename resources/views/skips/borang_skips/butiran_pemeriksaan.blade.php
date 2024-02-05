@@ -2,7 +2,11 @@
 $instrumen_id = Request::segment(3);
 $pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $instrumen_id)->first();
 $checkforTambah = Request::segment(2);
-
+if ($type == 'done' || $type == 'validasi') {
+    $disabled = 'disabled';
+} else {
+    $disabled = '';
+}
 ?>
 <form id="butiran_pemeriksaan">
     <input type="hidden" name="instrumen_id" value="{{$instrumen_id}}">
@@ -11,21 +15,21 @@ $checkforTambah = Request::segment(2);
         <label class="form-label fw-bold">Kod Sekolah
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="kod_sekolah" class="form-control" required value={{$pemeriskan?->kod_sekolah}}>
+        <input type="text" name="kod_sekolah" class="form-control" required value={{$pemeriskan?->kod_sekolah}} {{$disabled}}>
     </div>
 
     <div class="col-md-4 mb-1">
         <label class="form-label fw-bold">Tarikh Pemeriksaan & Masa Lawatan
             <span class="text-danger">*</span>
         </label>
-        <input type="text" id="fp-date-time" name="tarikh_pemeriksaan" class="form-control flatpickr" placeholder="d/m/Y" required value={{$pemeriskan?->tarikh_pemeriksaan}}>
+        <input type="text" id="fp-date-time" name="tarikh_pemeriksaan" class="form-control flatpickr" {{$disabled}} placeholder="d/m/Y" required value={{$pemeriskan?->tarikh_pemeriksaan}}>
     </div>
 
     <div class="col-md-4 mb-1">
         <label class="form-label fw-bold">No Pasukan Pemeriksa
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="no_pasukan_pemeriksa" class="form-control" required value={{$pemeriskan?->no_pasukan_pemeriksa}}>
+        <input type="text" name="no_pasukan_pemeriksa" class="form-control" {{$disabled}} required value={{$pemeriskan?->no_pasukan_pemeriksa}}>
     </div>
 
     <div class="col-md-12 mb-1">
@@ -33,7 +37,7 @@ $checkforTambah = Request::segment(2);
             <span class="text-danger">*</span>
         </label>
         <!-- <input type="text" name="pemeriksa_1" class="form-control" required value={{$pemeriskan?->pemeriksa_1}}> -->
-        <select class="form-control select2" name="pemeriksa_1" id="pemeriksa_1" required>
+        <select class="form-control select2" name="pemeriksa_1" id="pemeriksa_1" {{$disabled}} required>
             <option value="" hidden>Sila Pilij</option>
             <option value="User 1" @if($pemeriskan?->pemeriksa_1 == 'User 1') selected @endif>User 1</option>
             <option value="User 2" @if($pemeriskan?->pemeriksa_1 == 'User 2') selected @endif>User 2</option>
@@ -46,7 +50,7 @@ $checkforTambah = Request::segment(2);
             <span class="text-danger">*</span>
         </label>
         <!-- <input type="text" name="pemeriksa_2" class="form-control" required value={{$pemeriskan?->pemeriksa_2}}> -->
-        <select class="form-control select2" name="pemeriksa_2" id="pemeriksa_2" required>
+        <select class="form-control select2" name="pemeriksa_2" id="pemeriksa_2" {{$disabled}} required>
             <option value="" hidden>Sila Pilij</option>
             <option value="User 1" @if($pemeriskan?->pemeriksa_2 == 'User 1') selected @endif>User 1</option>
             <option value="User 2" @if($pemeriskan?->pemeriksa_2 == 'User 2') selected @endif>User 2</option>
@@ -59,7 +63,7 @@ $checkforTambah = Request::segment(2);
             <span class="text-danger">*</span>
         </label>
         <!-- <input type="text" name="pemeriksa_3" class="form-control" required value={{$pemeriskan?->pemeriksa_3}}> -->
-         <select class="form-control select2" name="pemeriksa_3" id="pemeriksa_3" required>
+         <select class="form-control select2" name="pemeriksa_3" id="pemeriksa_3" {{$disabled}} required>
             <option value="" hidden>Sila Pilij</option>
             <option value="User 1" @if($pemeriskan?->pemeriksa_3 == 'User 1') selected @endif>User 1</option>
             <option value="User 2" @if($pemeriskan?->pemeriksa_3 == 'User 2') selected @endif>User 2</option>
@@ -70,7 +74,7 @@ $checkforTambah = Request::segment(2);
         <label class="form-label fw-bold">Ketua Pemeriksa
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="ketua_pemeriksa" class="form-control" required value={{$pemeriskan?->ketua_pemeriksa}}>
+        <input type="text" name="ketua_pemeriksa" class="form-control" required {{$disabled}} value={{$pemeriskan?->ketua_pemeriksa}}>
     </div>
 </div>
 @if($checkforTambah != 'tambah-skips' && $canVerify )

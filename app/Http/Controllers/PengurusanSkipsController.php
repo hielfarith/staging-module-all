@@ -529,8 +529,13 @@ class PengurusanSkipsController extends Controller
                 ->editColumn('action', function ($instrument) {
                     $button = "";
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
-
-                    $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $item = ItemStandardQualitySkips::where('id', $instrument->item_id)->first();
+                    if ($item->statuses?->status_description == 'done') {
+                        $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-search text-primary"></i></a>';
+                    } else {
+                        $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    }
+                   
 
                     $button .= "</div>";
 
