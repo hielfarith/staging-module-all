@@ -110,8 +110,8 @@ $checkforTambah = Request::segment(2);
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    location = "{{route('skips.senarai-skips-institusi')}}"
-                    window.location.href = location;
+                    url = "{{route('skips.senarai-skips-institusi')}}"
+                    window.location.href = url;
                }
             }
         });
