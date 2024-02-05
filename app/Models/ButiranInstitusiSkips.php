@@ -62,6 +62,7 @@ class ButiranInstitusiSkips extends Model
             return optional($item->itemStandardKualiti)->count() > 0;
         });
 
+        $institutions = $institutions->values();
 
         $skipTabs = config('staticdata.skips');
         unset($skipTabs['name']);
