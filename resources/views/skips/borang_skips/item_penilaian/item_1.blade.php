@@ -186,6 +186,12 @@ $count = 1.1;
     </div>
 
     <hr>
+
+    <div class="col-md-12">
+        <label class="fw-bolder">Ulasan</label>
+        <textarea name="" id="" rows="3" class="form-control"></textarea>
+    </div>
+    
     @if(!empty($butiran_id) && $type == 'borang')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>

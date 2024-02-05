@@ -77,7 +77,7 @@
 
     <input type="hidden" name="usertype" value="{{$type}}">
     <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
-    
+
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai4">
             <thead>
@@ -143,6 +143,12 @@
     </div>
 
     <hr>
+
+     <div class="col-md-12">
+        <label class="fw-bolder">Ulasan</label>
+        <textarea name="" id="" rows="3" class="form-control"></textarea>
+    </div>
+    
     @if(!empty($butiran_id) && $type == 'borang')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform4()">Simpan</button>

@@ -11,7 +11,7 @@
 
     @php
         $butiran_institusi_id = $butiran_id;
-        
+
         $pembangunan_gurus = [
             'program_pembangunan_guru' => '<a> 6.1 Program Pembangunan Guru </a>',
             'kelayakan_akademik_guru' => '<a> 6.2 Kelayakan Akademik Guru </a>',
@@ -133,6 +133,12 @@
     </div>
 
     <hr>
+
+     <div class="col-md-12">
+        <label class="fw-bolder">Ulasan</label>
+        <textarea name="" id="" rows="3" class="form-control"></textarea>
+    </div>
+
     @if(!empty($butiran_institusi_id) && $type == 'borang')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform6()">Simpan</button>
