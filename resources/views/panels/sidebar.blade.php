@@ -865,11 +865,18 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
                         <a href="{{ route('skips.skips_baru') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Skips
                             </span>
                         </a>
                     </li>
