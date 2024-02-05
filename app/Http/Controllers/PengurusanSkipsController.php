@@ -92,9 +92,12 @@ class PengurusanSkipsController extends Controller
         if ($status == 'Telah dihantar') {
             $type = 'verfikasi';
         }
-        if ($status == 'Menunggu Validasi') {
+        if ($status == 'Menunggu Validasi' && $canApprove) {
             $type = 'validasi';
+        }else{
+            $type = 'verfikasi';
         }
+        
         if ($status == 'done') {
             $type = 'done';
         }
