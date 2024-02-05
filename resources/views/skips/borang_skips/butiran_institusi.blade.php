@@ -7,7 +7,7 @@
     } else {
         $butiranInstitusi = null;
     }
-    if (isset($type) && ($type == 'verfikasi' || $type == 'validasi')) {
+    if (isset($type) && ($type == 'verfikasi' || $type == 'validasi') || $type == 'done') {
         $disabled = 'disabled';
     } else {
         $disabled = '';
