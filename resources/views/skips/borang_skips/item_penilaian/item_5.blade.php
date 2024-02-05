@@ -1,5 +1,5 @@
 <form id="pengurusan_penilaian">
-<?php
+    <?php
     $butiran_institusi_id = $butiran_id;
    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     if ($butiran_institusi_id && $tab1) {
@@ -10,68 +10,70 @@
 
 
 ?>
-@php
-$butiran_institusi_id = $butiran_id;
+    @php
+    $butiran_institusi_id = $butiran_id;
 
-$peperiksaans = [
-    'pelaksanaan_penilaian_peperiksaan' => '5.1 Pelaksanaan Penilaian / Peperiksaan',
-    'rekod_penilaian_peperiksaan' => '5.2 Rekod Penilaian / Peperiksaan',
-    'akreditasi_sijil_oleh_badan_antarabangsa' => '5.3 Akreditasi Sijil oleh Badan Antarabangsa',
-];
+    $peperiksaans = [
+        'pelaksanaan_penilaian_peperiksaan' => '<a> 5.1 Pelaksanaan Penilaian / Peperiksaan </a>',
+        'rekod_penilaian_peperiksaan' => '<a> 5.2 Rekod Penilaian / Peperiksaan </a>',
+        'akreditasi_sijil_oleh_badan_antarabangsa' => '<a> 5.3 Akreditasi Sijil oleh Badan Antarabangsa </a>',
+    ];
 
-$option_peperiksaans = [
-    'pelaksanaan_penilaian_peperiksaan' => [
-        0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Urus Setia</i>',
-        3 => '<i>Ada, Urus Setia, Jadual</i>',
-        4 => '<i>Ada, Urus Setia, Jadual, Peraturan Peperiksaan</i>',
-        5 => '<i>Ada, Urus Setia, Jadual, Peraturan Peperiksaan, Dokumentasi</i>',
-    ],
+    $option_peperiksaans = [
+        'pelaksanaan_penilaian_peperiksaan' => [
+            0 => '',
+            1 => '<i style="font-size:12px;">Ada</i>',
+            2 => '<i style="font-size:12px;">Ada, Urus Setia</i>',
+            3 => '<i style="font-size:12px;">Ada, Urus Setia, Jadual</i>',
+            4 => '<i style="font-size:12px;">Ada, Urus Setia, Jadual, Peraturan Peperiksaan</i>',
+            5 => '<i style="font-size:12px;">Ada, Urus Setia, Jadual, Peraturan Peperiksaan, Dokumentasi</i>',
+        ],
 
-    'rekod_penilaian_peperiksaan' => [
-        0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Difailkan</i>',
-        3 => '<i>Ada, Difailkan, Kemaskini</i>',
-        4 => '<i>Ada, Difailkan, Kemaskini, Dimaklumkan</i>',
-        5 => '<i>Ada, Difailkan, Kemaskini, Dimaklumkan, Dipamerkan</i>',
-    ],
+        'rekod_penilaian_peperiksaan' => [
+            0 => '',
+            1 => '<i style="font-size:12px;">Ada</i>',
+            2 => '<i style="font-size:12px;">Ada, Difailkan</i>',
+            3 => '<i style="font-size:12px;">Ada, Difailkan, Kemaskini</i>',
+            4 => '<i style="font-size:12px;">Ada, Difailkan, Kemaskini, Dimaklumkan</i>',
+            5 => '<i style="font-size:12px;">Ada, Difailkan, Kemaskini, Dimaklumkan, Dipamerkan</i>',
+        ],
 
-    'akreditasi_sijil_oleh_badan_antarabangsa' => [
-        0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Surat Perjanjian</i>',
-        3 => '<i>Ada, Surat Perjanjian, Surat Kebenaran</i>',
-        4 => '<i>Ada, Surat Perjanjian, Surat Kebenaran, Terkini</i>',
-        5 => '<i>Ada, Surat Perjanjian, Surat Kebenaran, Terkini, Difailkan</i>',
-    ],
+        'akreditasi_sijil_oleh_badan_antarabangsa' => [
+            0 => '',
+            1 => '<i style="font-size:12px;">Ada</i>',
+            2 => '<i style="font-size:12px;">Ada, Surat Perjanjian</i>',
+            3 => '<i style="font-size:12px;">Ada, Surat Perjanjian, Surat Kebenaran</i>',
+            4 => '<i style="font-size:12px;">Ada, Surat Perjanjian, Surat Kebenaran, Terkini</i>',
+            5 => '<i style="font-size:12px;">Ada, Surat Perjanjian, Surat Kebenaran, Terkini, Difailkan</i>',
+        ],
+    ];
 
-];
-
-@endphp
+    @endphp
 
 
-<style>
-    #NilaiItem5 thead th {
-        vertical-align: middle;
-        text-align: center;
-    }
+    <style>
+        #SkipsNilai5 thead th {
+            vertical-align: middle;
+            text-align: center;
+        }
 
-    #NilaiItem5 tbody {
-        vertical-align: middle;
-        text-align: center;
-    }
+        #SkipsNilai5 tbody {
+            vertical-align: middle;
+            /* text-align: center; */
+        }
 
-    #NilaiItem5 table {
-        width: 100% !important;
-        /* word-wrap: break-word; */
-    }
-</style>
-<input type="hidden" name="usertype" value="{{$type}}">
-<input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
+        #SkipsNilai5 table {
+            width: 100% !important;
+            /* word-wrap: break-word; */
+        }
+
+    </style>
+
+    <input type="hidden" name="usertype" value="{{$type}}">
+    <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
+    
     <div class="table-responsive">
-        <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem5">
+        <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai5">
             <thead>
                 <tr>
                     <th rowspan="2" width="5%">No.</th>
@@ -98,26 +100,44 @@ $option_peperiksaans = [
                     <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Penilaian/ Peperiksaan</td>
                 </tr>
                 @foreach ($peperiksaans as $index => $peperiksaan)
-                    <tr>
-                        <td colspan="2"> {{ $peperiksaan }}</td>
-                        @foreach ($option_peperiksaans[$index] as $key => $option_peperiksaan)
-                            <td>
-                                <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengurusan_penilaian && $pengurusan_penilaian->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
-                                </div>
-                                <br>
+                    @php
+                        $numeric = preg_replace('/[^0-9.]/', '', $peperiksaan);
+                        $text = trim(preg_replace('/[0-9.]/', '', $peperiksaan), '.');
 
-                                {!! $option_peperiksaan !!}
-                            </td>
-                        @endforeach
-                    </tr>
+                        $excludeNumber = strpos($peperiksaan, 'text-primary') !== false;
+                    @endphp
+
+                    <tr>
+                        @if (!$excludeNumber)
+                            <td> {{ $numeric }} </td>
+                        @endif
+
+                        @if(!$excludeNumber)
+                            <td> {!! $text !!} </td>
+                        @else
+                            <td class="bg-light-primary" colspan="8"> {!! $text !!} </td>
+                        @endif
+
+                    @foreach ($option_peperiksaans[$index] as $key => $option_peperiksaan)
+                    <td>
+                        <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
+                            <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengurusan_penilaian && $pengurusan_penilaian->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                        </div>
+                        <br>
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            {!! $option_peperiksaan !!}
+                        </div>
+                    </td>
+                    @endforeach
+                </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 
     <hr>
-        @if(!empty($butiran_id) && $type == 'borang')
+    @if(!empty($butiran_id) && $type == 'borang')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform5()">Simpan</button>
     </div>
@@ -128,7 +148,7 @@ $option_peperiksaans = [
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
-   function submitform5() {
+    function submitform5() {
         var formData = new FormData(document.getElementById('pengurusan_penilaian'));
         var error = false;
 
