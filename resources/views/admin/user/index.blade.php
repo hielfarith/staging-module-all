@@ -158,9 +158,7 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    // console.log(data);
                     id_used = data.detail.id;
-                    // console.log(id_used);
                     url2 = "{{route('user.update',':replaceThis')}}"
                     url2 = url2.replace(':replaceThis',id_used);
                     $('#userFormModal input[name="full_name"]').val(data.detail.name);

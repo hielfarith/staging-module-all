@@ -148,6 +148,11 @@ $option_antarabangsas = [
 
     'pegawai_hep_antarabangsa' => [
         0 => '',
+        1 => '<i>Ada rekod kehadiran</i>',
+        2 => '<i>Ada rekod kehadiran, Ada surat amaran</i>',
+        3 => '<i>Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis</i>',
+        4 => '<i>Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo</i>',
+        5 => '<i>Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo, Bukti Penghantaran Pulang</i>',
     ],
 
     'pengurusan_disiplin_pelajar_antarabangsa' => [

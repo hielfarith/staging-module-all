@@ -77,7 +77,7 @@
                             <td>
                                 <span id="set_skor_{{$id}}"></span>
                             </td>
-                            <td>{{ $wajran[$itemKey] }}</td>
+                            <td><span id="wajaran_{{$id}}">{{ $wajran[$itemKey] }}</span></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -119,17 +119,16 @@
 <script type="text/javascript">
     var totalskor = 0;
     for (var i = 1; i <= 10; i++) {
-        totalskor = parseInt(totalskor) +  parseInt($('#tab'+i+'_skor').val());
-       $('#set_skor_'+i+'_0').text($('#tab'+i+'_skor').val());
        $('#set_percentage_'+i+'_0').text($('#tab'+i+'_percentage').val());
+       var skor = parseFloat(($('#tab'+i+'_percentage').val()/100)*($('#wajaran_'+i+'_0').text()));
+       $('#set_skor_'+i+'_0').text(skor.toFixed(2));
+        totalskor = parseFloat(totalskor) +  parseFloat($('#set_skor_'+i+'_0').text());
        if (i == 10) {
-            $('#set_total_skor').text(totalskor);
+            $('#set_total_skor').text(totalskor.toFixed(2));
             var gred = '-';
             // =IF(O328>94,"CEMERLANG",IF(O328>80,"BAIK", IF(O328>70,"HARAPAN",IF(O328>60,"SEDERHANA",IF(O328>50,"LEMAH", IF(O328>0,"SANGAT LEMAH"," "))))))
             if (totalskor > 94) {
                 gred = 'CEMERLANG';
-            } else if (totalskor > 80) {
-                gred = 'BAIK';
             } else if (totalskor > 80) {
                 gred = 'BAIK';
             } else if (totalskor > 70) {

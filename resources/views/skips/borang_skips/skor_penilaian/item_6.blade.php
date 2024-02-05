@@ -72,7 +72,7 @@ $pembangunan_gurus = [
         </tbody>
           <?php
             $total = $total + $totalv;
-            $percentage = ($total/15);
+            $percentage = ($total/30);
             $percentage = $percentage*100;
              if($type == 'verfikasi') {
                  $col = 2;
@@ -90,7 +90,7 @@ $pembangunan_gurus = [
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{ number_format($percentage,0) }}</a>
+                    <a class="text-success">{{ number_format($percentage,2) }}</a>
                 </td>
             </tr>
         </tfoot>
@@ -98,4 +98,4 @@ $pembangunan_gurus = [
 </div>
 
 <input type="hidden" value="{{$total}}" name="tab6_skor" id="tab6_skor">
-<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab6_percentage" id="tab6_percentage">
+<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab6_percentage" id="tab6_percentage">

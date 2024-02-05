@@ -74,7 +74,6 @@
             if (typeof element.attr('disabled') == 'undefined') {
 
                 if (!selectedValues || selectedValues === '') {
-                    console.log(fieldName);
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
                     error = true;
                     return false; // Stop the loop if an error is found

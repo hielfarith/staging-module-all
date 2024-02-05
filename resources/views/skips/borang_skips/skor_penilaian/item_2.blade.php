@@ -116,11 +116,11 @@ $institusis = [
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{number_format($percentage,0)}}</a>
+                    <a class="text-success">{{number_format($percentage,2)}}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
 <input type="hidden" value="{{$total}}" name="tab2_skor" id="tab2_skor">
-<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab2_percentage" id="tab2_percentage">
+<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab2_percentage" id="tab2_percentage">

@@ -24,7 +24,7 @@
         'salinan_visa_pelajar' => '<a> 10.2.5 Salinan Visa Pelajar </a>',
         'surat_sokongan_emgs' => '<a> 10.2.6 Surat Sokongan EMGS </a>',
         'salinan_pasport' => '<a> 10.2.7 Salinan Pasport </a>',
-        'pegawai_hep_antarabangsa' => '<a class="text-primary"> 10.3 Pegawai HEP Antarabangsa </a>',
+        'pegawai_hep_antarabangsa' => '<a> 10.3 Pegawai HEP Antarabangsa </a>',
         'pengurusan_disiplin_pelajar_antarabangsa' => '<a> 10.4 Pengurusan Disiplin Pelajar Antarabangsa </a>',
         'kelulusan_kementerian_dalam_negeri' => '<a> 10.5 Kelulusan Kementerian Dalam Negeri </a>',
     ];
@@ -136,6 +136,15 @@
             3 => '<i style="font-size: 12px;">Ada, Difailkan, Dikemaskini</i>',
             4 => '<i style="font-size: 12px;">Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
             5 => '<i style="font-size: 12px;">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+        ],
+
+        'pegawai_hep_antarabangsa' => [
+            0 => '',
+            1 => '<i style="font-size: 12px;">Ada rekod kehadiran</i>',
+            2 => '<i style="font-size: 12px;">Ada rekod kehadiran, Ada surat amaran</i>',
+            3 => '<i style="font-size: 12px;">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis</i>',
+            4 => '<i style="font-size: 12px;">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo</i>',
+            5 => '<i style="font-size: 12px;">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo, Bukti Penghantaran Pulang</i>',
         ],
 
         'pengurusan_disiplin_pelajar_antarabangsa' => [
@@ -264,7 +273,6 @@
 
         $('form#pengurusan_pelajar_antarabangsa').find('radio, input').each(function() {
             var value = $("input[name='"+this.name+"']:checked").val();
-            console.log(value)
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;
             }

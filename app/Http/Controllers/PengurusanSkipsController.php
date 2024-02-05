@@ -549,7 +549,8 @@ class PengurusanSkipsController extends Controller
 
     public function dashboardInstrumen(Request $request){
 
-        //return ButiranInstitusiSkips::peratusanBintang($request->instrumen_id);
+        $star = ButiranInstitusiSkips::peratusanBintang($request->instrumen_id);
+        $kriteria = ButiranInstitusiSkips::peratusanKriteria($request->instrumen_id);
 
         if($request->ajax()){
             if($request->table == '1'){
@@ -659,8 +660,33 @@ class PengurusanSkipsController extends Controller
                 })
                 ->make(true);
             }
+            if($request->table == '4'){
+                $tabs = config('staticdata.skips.name');
+                // $test = 'kelulusan_penubuhan';
+                // return config('staticdata.skips.name.penubuhan_pendaftaran');
+                //unset($tab['name']);
+                $dataTab = [];
+                for($i=0;$i<count($tabs);$i++){
+                    $dataTab[$i] = [
+                        'name' => $tabs[$i]
+                    ];
+                }
+                return Datatables::of($dataTab)
+                ->addColumn('DT_RowIndex', function ($tab) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('name', function ($dataTab) {
+                    return $dataTab['name'];
+                })
+                ->editColumn('percentage', function ($dataTab) use ($kriteria) {
+                    static $index = 1;
+                    return $kriteria[$index++];
+                })
+                ->make(true);
+            }
         }
 
-        return view ('dashboard.dashboard_instrumen');
+        return view ('dashboard.dashboard_instrumen', compact('star', 'kriteria'));
     }
 }

@@ -24,6 +24,7 @@ $pelajar_antarabangsas = [
     'tempoh_pengajaran_min_20_jam_seminggu' => '10.1.5 Tempoh Pengajaran Min 20 Jam Seminggu',
     'dokumen_pelajar_antarabangsa' => '10.2 Dokumen Pelajar Antrarabangsa',
     'surat_tawaran_oleh_pusat_bahasa_kemahiran' => '10.2.1 Surat Tawaran Oleh Pusat Bahasa/Kemahiran',
+    'resit_pembayaran_oleh_pusat_bahasa' => '10.2.2 Resit Pembayaran oleh Pusat Bahasa',
     'buku_peraturan_refund_policy' => '10.2.3 Buku Peraturan/Refund Policy',
     'surat_kelulusan_jabatan_imigresen' => '10.2.4 Surat Kelulusan Jabatan Imigresen',
     'salinan_visa_pelajar' => '10.2.5 Salinan Visa Pelajar',
@@ -66,6 +67,7 @@ $pelajar_antarabangsas = [
                                 } else {
                                     $score = 0;
                                 }
+                                $total = $total+$score;
                             }
                         ?>
                         <a class="text-success">{{$score}}</a>
@@ -92,7 +94,7 @@ $pelajar_antarabangsas = [
         </tbody>
           <?php
             $total = $total + $totalv;
-            $percentage = ($total/140);
+            $percentage = ($total/150);
             $percentage = $percentage*100;
              if($type == 'verfikasi') {
                  $col = 2;
@@ -110,11 +112,11 @@ $pelajar_antarabangsas = [
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{ number_format($percentage,0) }}</a>
+                    <a class="text-success">{{ number_format($percentage,2) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
 <input type="hidden" value="{{$total}}" name="tab10_skor" id="tab10_skor">
-<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab10_percentage" id="tab10_percentage">
+<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab10_percentage" id="tab10_percentage">
