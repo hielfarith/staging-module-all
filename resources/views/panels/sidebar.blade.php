@@ -273,7 +273,7 @@ $configData = Helper::applClasses();
                     </li>
 
 
-                    
+
 
                     <!-- <li class="nav-item ">
                         <a href="" class="nav-link">
@@ -319,7 +319,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
- 
+
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
                             <!-- {{-- <i data-feather="home"></i> --}} -->
@@ -386,8 +386,8 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.validasi_skpak']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.validasi_skpak') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
                         </a>
                     </li>
@@ -455,7 +455,7 @@ $configData = Helper::applClasses();
 
 
                 </ul>
-            </li> 
+            </li>
 
             <!-- --end new menu-->
             <!-- // pengguna menu // -->
@@ -936,7 +936,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
- 
+
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
                             <!-- {{-- <i data-feather="home"></i> --}} -->

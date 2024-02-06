@@ -18,4 +18,8 @@ class PengurusanSkpakController extends Controller
     public function RingkasanSkpak(Request $request){
         // return view ('skpak.ringkasan_skips');
     }
+
+    public function ValidasiSkpak (Request $request){
+        return view('skpak.index_validasi');
+    }
 }
