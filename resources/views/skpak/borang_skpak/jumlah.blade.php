@@ -13,6 +13,7 @@
         width: 100% !important;
         /* word-wrap: break-word; */
     }
+
 </style>
 
 <h5 class="card-title fw-bolder">
@@ -22,14 +23,14 @@
 <hr>
 
 @php
-    $penilaians = [
-        'Etika Dan Profesionalisme',
-        'Keselamatan, Kesihatan Dan Kebersihan Persekitaran Fizikal Serta Kualiti Pemakanan Bayi Dan Kanak-Kanak',
-        'Pengurusan Aspek Asuhan Bayi Dan Kanak-Kanak',
-        'Pengalaman Pembelajaran, Interaksi Dan Penaksiran',
-        'Persekitaran Fizikal Dan Sumber Pembelajaran',
-        'Pengurusan Taska, Sumber Manusia Dan Kolaborasi Dengan Ibu Bapa Dan Komuniti',
-    ];
+$penilaians = [
+'Etika Dan Profesionalisme',
+'Keselamatan, Kesihatan Dan Kebersihan Persekitaran Fizikal Serta Kualiti Pemakanan Bayi Dan Kanak-Kanak',
+'Pengurusan Aspek Asuhan Bayi Dan Kanak-Kanak',
+'Pengalaman Pembelajaran, Interaksi Dan Penaksiran',
+'Persekitaran Fizikal Dan Sumber Pembelajaran',
+'Pengurusan Taska, Sumber Manusia Dan Kolaborasi Dengan Ibu Bapa Dan Komuniti',
+];
 @endphp
 
 <div class="table-responsive">
@@ -44,11 +45,11 @@
 
         <tbody>
             @foreach ($penilaians as $penilaian)
-                <tr>
-                    <td>{{ $penilaian }}</td>
-                    <td class="text-center">auto-calculated</td>
-                    <td class="text-center">auto-calculated</td>
-                </tr>
+            <tr>
+                <td>{{ $penilaian }}</td>
+                <td class="text-center">auto-calculated</td>
+                <td class="text-center">auto-calculated</td>
+            </tr>
             @endforeach
         </tbody>
 
