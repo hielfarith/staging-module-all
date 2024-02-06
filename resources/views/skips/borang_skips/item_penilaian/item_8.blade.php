@@ -123,7 +123,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Piawaian</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Piawaian</td>
                 </tr>
                 @foreach ($piawaians as $index => $piawaian)
                     @php

@@ -93,7 +93,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan & Pembangunan Guru</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan & Pembangunan Guru</td>
                 </tr>
                 @foreach ($pembangunan_gurus as $index => $pembangunan_guru)
                     @php

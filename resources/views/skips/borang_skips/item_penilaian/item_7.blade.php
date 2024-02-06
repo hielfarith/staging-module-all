@@ -92,7 +92,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Disiplin</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Disiplin</td>
                 </tr>
 
                 @foreach ($displins as $index => $displin)
@@ -133,7 +133,7 @@
     </div>
 
     <hr>
-    
+
     @if(!empty($butiran_institusi_id) && $type == 'borang' && $canFill)
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform7()">Simpan</button>

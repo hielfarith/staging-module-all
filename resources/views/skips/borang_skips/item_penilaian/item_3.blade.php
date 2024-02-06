@@ -127,7 +127,7 @@
                 <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
 
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Kurikulum</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Kurikulum</td>
                 </tr>
 
                 @foreach ($kurikulums as $index => $kurikulum)

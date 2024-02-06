@@ -84,7 +84,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Kebersihan dan Keceriaan</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Kebersihan dan Keceriaan</td>
                 </tr>
 
                 @foreach ($kebersihans as $index => $kebersihan)

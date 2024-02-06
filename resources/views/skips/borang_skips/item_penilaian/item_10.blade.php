@@ -212,7 +212,7 @@
                 <input type="hidden" name="usertype" value="{{$type}}">
                 <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Pelajar Antarabangsa</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Pelajar Antarabangsa</td>
                 </tr>
 
                 @foreach ($pelajar_antarabangsas as $index => $antarabangsa)
@@ -256,7 +256,7 @@
     </div>
 
     <hr>
-    
+
     @if(!empty($butiran_id) && $type == 'borang' && $canFill)
 
     <div class="d-flex justify-content-end align-items-center mt-1">

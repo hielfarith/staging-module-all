@@ -97,7 +97,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Penilaian/ Peperiksaan</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Penilaian/ Peperiksaan</td>
                 </tr>
                 @foreach ($peperiksaans as $index => $peperiksaan)
                     @php
@@ -137,7 +137,7 @@
     </div>
 
     <hr>
-    
+
     @if(!empty($butiran_id) && $type == 'borang' && $canFill)
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform5()">Simpan</button>
