@@ -43,7 +43,7 @@
 <hr>
 
 <div class="table-responsive">
-    <table class="table header_uppercase table-bordered table-hovered" id="jumlah-cq-1">
+    <table class="table header_uppercase table-bordered table-hovered" id="jumlah-cq-4">
         <thead>
             <tr>
                 <th>Kriteria</th>
