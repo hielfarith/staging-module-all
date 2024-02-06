@@ -86,7 +86,7 @@
         </thead>
         <tbody>
             <tr class="bg-light-primary fw-bolder">
-                <td>SQ2.3</td>
+                <td>SQ2.4</td>
                 <td colspan="6">Sumber Pembelajaran (ABM)</td>
             </tr>
             @foreach ($items_2_4 as $index => $item_2_4)

@@ -65,7 +65,7 @@
         </thead>
         <tbody>
             <tr class="bg-light-primary fw-bolder">
-                <td>SQ2.3</td>
+                <td>SQ2.5</td>
                 <td colspan="6">Tingkah Laku Kanak-kanak (Memerlukan Bimbingan)</td>
             </tr>
             @foreach ($items_2_5 as $index => $item_2_5)
