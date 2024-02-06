@@ -18,47 +18,47 @@
 @php
 $butiran_institusi_id = $butiran_id;;
 $pdps = [
-    'pengajaran_dan_pembelajaran' => '4.1 Pengajaran Dan Pembelajaran',
-    'kaedah_metodologi_pengajaran' => '4.2 Kaedah / Metodologi Pengajaran',
-    'latihan' => '4.3 Latihan',
-    'penggunaan_bahan_bantu_mengajar' => '4.4 Penggunaan Bahan Bantu Mengajar',
+    'pengajaran_dan_pembelajaran' => '<a> 4.1 Pengajaran Dan Pembelajaran </a>',
+    'kaedah_metodologi_pengajaran' => '<a> 4.2 Kaedah / Metodologi Pengajaran </a>',
+    'latihan' => '<a> 4.3 Latihan </a>',
+    'penggunaan_bahan_bantu_mengajar' => '<a> 4.4 Penggunaan Bahan Bantu Mengajar </a>',
 ];
 
 $option_pdps = [
     'pengajaran_dan_pembelajaran' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Kelas Bersedia</i>',
-        3 => '<i>Ada, Kelas Bersedia, Guru Bersedia</i>',
-        4 => '<i>Ada, Kelas Bersedia, Guru Bersedia, Pelajar Bersedia</i>',
-        5 => '<i>Ada, Kelas Bersedia, Guru Bersedia, Pelajar Bersedia, P&P Berlaku</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Kelas Bersedia</i>',
+        3 => '<i style="font-size:12px">Ada, Kelas Bersedia, Guru Bersedia</i>',
+        4 => '<i style="font-size:12px">Ada, Kelas Bersedia, Guru Bersedia, Pelajar Bersedia</i>',
+        5 => '<i style="font-size:12px">Ada, Kelas Bersedia, Guru Bersedia, Pelajar Bersedia, P&P Berlaku</i>',
     ],
 
     'kaedah_metodologi_pengajaran' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Sesuai</i>',
-        3 => '<i>Ada, Sesuai, Masa Mencukupi</i>',
-        4 => '<i>Ada, Sesuai, Masa Mencukupi, Melibatkan Semua Pelajar</i>',
-        5 => '<i>Ada, Sesuai, Masa Mencukupi, Melibatkan Semua Pelajar, Berkesan</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Sesuai</i>',
+        3 => '<i style="font-size:12px">Ada, Sesuai, Masa Mencukupi</i>',
+        4 => '<i style="font-size:12px">Ada, Sesuai, Masa Mencukupi, Melibatkan Semua Pelajar</i>',
+        5 => '<i style="font-size:12px">Ada, Sesuai, Masa Mencukupi, Melibatkan Semua Pelajar, Berkesan</i>',
     ],
 
     'latihan' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Sesuai</i>',
-        3 => '<i>Ada, Sesuai, Mencukupi</i>',
-        4 => '<i>Ada, Sesuai, Mencukupi, Disemak</i>',
-        5 => '<i>Ada, Sesuai, Mencukupi, Disemak, Terdapat Pembetulan</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Sesuai</i>',
+        3 => '<i style="font-size:12px">Ada, Sesuai, Mencukupi</i>',
+        4 => '<i style="font-size:12px">Ada, Sesuai, Mencukupi, Disemak</i>',
+        5 => '<i style="font-size:12px">Ada, Sesuai, Mencukupi, Disemak, Terdapat Pembetulan</i>',
     ],
 
     'penggunaan_bahan_bantu_mengajar' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Sesuai</i>',
-        3 => '<i>Ada, Sesuai, Masa Mencukupi</i>',
-        4 => '<i>Ada, Sesuai, Masa Mencukupi, Melibatkan Semua Pelajar</i>',
-        5 => '<i>Ada, Sesuai, Masa Mencukupi, Melibatkan Semua Pelajar, Berkesan</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Sesuai</i>',
+        3 => '<i style="font-size:12px">Ada, Sesuai, Masa Mencukupi</i>',
+        4 => '<i style="font-size:12px">Ada, Sesuai, Masa Mencukupi, Melibatkan Semua Pelajar</i>',
+        5 => '<i style="font-size:12px">Ada, Sesuai, Masa Mencukupi, Melibatkan Semua Pelajar, Berkesan</i>',
     ],
 
 ];
@@ -74,7 +74,7 @@ $option_pdps = [
 
     #NilaiItem4 tbody {
         vertical-align: middle;
-        text-align: center;
+        /* text-align: center; */
     }
 
     #NilaiItem4 table {
@@ -109,23 +109,39 @@ $option_pdps = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengajaran & Pembelajaran</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengajaran & Pembelajaran</td>
                 </tr>
                 @foreach ($pdps as $index => $pdp)
                 <?php
                     $keyval = '';
                     $keyval = $index.'_verfikasi';
+
+                    $numeric = preg_replace('/[^0-9.]/', '', $pdp);
+                    $text = trim(preg_replace('/[0-9.]/', '', $pdp), '.');
+
+                    $excludeNumber = strpos($pdp, 'text-primary') !== false;
                 ?>
                     <tr>
-                        <td colspan="2"> {{ $pdp }}</td>
+                        @if (!$excludeNumber)
+                            <td> {{ $numeric }} </td>
+                        @endif
+
+                        @if(!$excludeNumber)
+                            <td> {!! $text !!} </td>
+                        @else
+                            <td class="bg-light-primary" colspan="8"> {!! $text !!} </td>
+                        @endif
+
                         @foreach ($option_pdps[$index] as $key => $option_pdp)
                         <td>
-                            <div class="form-check form-check-inline mb-1">
+                            <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
                                 <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{$index}}" value="{{$key}}" required @if($pengajaran && $pengajaran->$keyval == $key) checked @endif @if($type == 'validasi' || $status == 'done') disabled @endif>
                             </div>
                             <br>
 
-                            {!! $option_pdp !!}
+                            <div class="d-flex justify-content-center align-items-center">
+                                {!! $option_pdp !!}
+                            </div>
                         </td>
                         @endforeach
                     </tr>

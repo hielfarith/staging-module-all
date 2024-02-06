@@ -285,7 +285,7 @@ $option_institusis = [
                 <input type="hidden" name="usertype" value="{{$type}}">
                 <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Institusi</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Institusi</td>
                 </tr>
                 @foreach ($institusis as $index => $institusi)
                 <?php
