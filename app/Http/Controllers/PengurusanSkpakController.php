@@ -78,6 +78,7 @@ class PengurusanSkpakController extends Controller
     {
         $id = $request->id;
         $array = [];
+        $skpak = null;
         if ($id) {
             $skpak = SkpakStandardPenilaian::where('id', $id)->first();
             for ($i=1; $i < 7; $i++) { 
@@ -105,7 +106,7 @@ class PengurusanSkpakController extends Controller
             }
         }
 
-        return view('skpak.borang_skpak.jumlah', compact('array', 'totalya', 'totaltidak'));
+        return view('skpak.borang_skpak.jumlah', compact('array', 'totalya', 'totaltidak', 'skpak'));
     }
     public function SubmitSpkak(Request $request)
     {
