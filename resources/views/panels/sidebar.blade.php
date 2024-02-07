@@ -216,8 +216,8 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenikeps-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
                         </a>
                     </li>
@@ -422,8 +422,8 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skips'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skpak'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-skpak') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
                         </a>
                     </li>
@@ -696,8 +696,8 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenikeps-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Konfigurasi Instrumen Baru</span>
                         </a>
                     </li>
@@ -743,8 +743,8 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenikeps-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
                         </a>
                     </li>

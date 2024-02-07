@@ -207,7 +207,24 @@
                     Tetapan Keperluan Pengemaskinian Data Terkini
                         <span class="text-danger">*</span>
                 </div>
-                               @if($readonly != 'readonly')
+                   <!-- // add status -->
+                   <div class="row">
+                        <div class="col-md-3">
+                            <label class="fw-bold form-label"> Status
+                                <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group">
+                                <select class="form-control select2" name="status" required {{$disabled}}>
+                                    <option value="">Sila Pilih</option>
+                                    <option value="1" @if($instrumen?->status == '1') selected @endif>Active
+                                    </option>
+                                    <option value="2" @if($instrumen?->status == '2') selected @endif>InActive
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                @if($readonly != 'readonly')
                 <div class="d-flex justify-content-end align-items-center my-1">
                     <button type="submit" class="btn btn-primary float-right">Hantar</button>
                  </div>
@@ -250,7 +267,7 @@
         if (error) {
             return false;
         }
-        var url = "{{ route('admin.instrumen.instrumenskpak-submit') }}"
+        var url = "{{ route('admin.instrumen.instrumenikeps-submit') }}"
         $.ajax({
             url: url,
             type: 'POST',
@@ -261,12 +278,14 @@
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
                     var type = $('#type').val();
-                    if (type == 'SKPAK') {
-                        var location = "{{route('admin.instrumen.instrumenskpak-list')}}"
+                    if (type == 'IKEPS') {
+                        var location = "{{route('admin.instrumen.instrumenikeps-list')}}"
                     } else if(type == 'SEDIA') {
                         var location = "{{route('admin.instrumen.senarai-sedia-ada')}}"
                     } else if(type == 'SKIPS') {
                         var location = "{{route('admin.instrumen.senarai-skips')}}"
+                    } else if(type == 'SKPAK') {
+                        var location = "{{route('admin.instrumen.senarai-skpak')}}"
                     }
                     window.location.href = location;
                }

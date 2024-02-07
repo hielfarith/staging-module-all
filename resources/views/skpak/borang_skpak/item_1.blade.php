@@ -47,13 +47,20 @@
 ];
 
 @endphp
-
+<?php
+    if ($skpak) {
+        $penilaian1 = json_decode($skpak->penilaian1, true);
+    } else {
+        $penilaian1 = null;
+    }
+?>
 <h5 class="card-title fw-bolder">
     ETIKA DAN PROFESIONALISME
 </h5>
 
 <hr>
-
+<form id="penilaian1">
+<input type="hidden" name="skpak_id" value="{{$skpak?->id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem1">
         <thead>
@@ -71,16 +78,19 @@
                     </td>
                 </tr>
                 @foreach ($item_1['subSections'] as $subsection_item1)
+                    <?php 
+                        $name = $index.'_'.$loop->index;
+                    ?>
                     <tr>
                         <td>{{ $subsection_item1 }}</td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-1" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA">
+                                <input class="form-check-input radio-input-1" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" required @if($penilaian1 && $penilaian1[$name] == 'YA') checked @endif>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-1" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK">
+                                <input class="form-check-input radio-input-1" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" required @if($penilaian1 && $penilaian1[$name] == 'TIDAK') checked @endif>
                             </div>
                         </td>
                     </tr>
@@ -102,5 +112,46 @@
 <hr>
 
 <div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right" onclick="submitform1()">Simpan</button>
+    <button type="button" class="btn btn-primary float-right" onclick="submitpenilaian1()">Simpan</button>
 </div>
+</form>
+
+<script>
+    function submitpenilaian1() {
+        var formData = new FormData(document.getElementById('penilaian1'));
+        var error = false;
+
+         $('form#penilaian1').find('radio, input, checkbox').each(function() {
+            if(this.required && this.type == 'radio' && !this.checked) {
+                var val = $("input[type='radio'][name="+this.name+"]:checked", '#penilaian1').val();
+                if (typeof val == 'undefined') {
+                    error = true;
+                }
+            }
+        });
+
+        if (error) {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skpak.save-skpak', ['tab' => 'penilaian1']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+                    var id = response.data.id;
+                    console.log(response.data)
+                    var location = "{{route('skpak.skpak_baru', ['id' => ':id'])}}";
+                    var location = location.replace(':id', id);
+                    window.location.href = location;
+               }
+            }
+        });
+
+    };
+</script>

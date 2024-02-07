@@ -10,7 +10,7 @@ Instrumen
 </li>
 
 <li class="breadcrumb-item">
-    <a href="#"> Instrumen </a>
+    <a href="#"> Skpak </a>
 </li>
 
 @endsection
@@ -18,11 +18,11 @@ Instrumen
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title fw-bolder"> Senarai Instrumen </h4>
+        <h4 class="card-title fw-bolder"> Senarai Skpak </h4>
 
         <div class="d-flex justify-content-end align-items-center">
-            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.form', ['type' => 'instrumen']) }}">
-                <i class="fa-solid fa-add"></i> Tambah Instrumen
+            <a type="button" class="btn btn-primary float-right" href="{{ route('admin.instrumen.tambah-skpak') }}">
+                <i class="fa-solid fa-add"></i> Tambah Skpak
             </a>
         </div>
     </div>
@@ -175,7 +175,7 @@ $.ajaxSetup({
         }
 })
 
-function maklumatInstrumen(id){
+function maklumatSkpak(id){
     var url = "{{ route('admin.instrumen.instrumenikeps-view',['id'=> ':id', 'type' => 'view']) }}";
     var url = url.replace(':id', id);
 
@@ -183,7 +183,7 @@ function maklumatInstrumen(id){
         url: url, // Route URL
         type: 'POST', // Request type (GET, POST, etc.)
             data: {
-            id: id
+                id: id
             },
         success: function(response) {
             $('#modal-instrumen-diisi').modal("show");
@@ -193,7 +193,7 @@ function maklumatInstrumen(id){
     });
 }
 
-function maklumatInstrumenEdit(id) {
+function maklumatSkpakEdit(id) {
     var url = "{{ route('admin.instrumen.instrumenikeps-view',['id'=> ':id', 'type' => 'edit']) }}";
     var url = url.replace(':id', id);
 
@@ -201,7 +201,7 @@ function maklumatInstrumenEdit(id) {
         url: url, // Route URL
         type: 'POST', // Request type (GET, POST, etc.)
             data: {
-            id: id
+                id: id
             },
         success: function(response) {
             $('#modal-instrumen-diisi').modal("show");

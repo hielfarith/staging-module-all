@@ -1,7 +1,7 @@
 <?php
     $instrumenid = Request::segment(4);
     if (!empty($instrumenid)) {
-        $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->where('type','SKPAK')->first();
+        $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->where('type','IKEPS')->first();
     } else {
         $instrumenData = null;
     }
@@ -282,7 +282,7 @@
              Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('admin.instrumen.instrumenskpak-submit') }}"
+        var url = "{{ route('admin.instrumen.instrumenikeps-submit') }}"
         $.ajax({
             url: url,
             type: 'POST',

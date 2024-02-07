@@ -1,19 +1,24 @@
 @extends('layouts.app')
 
 @section('header')
-SKPAK
+SKIPS
 @endsection
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('msg.home') }}</a></li>
 <li class="breadcrumb-item"><a href="#"> Instumen/ Modul </a></li>
-<li class="breadcrumb-item"><a href="#"> Jaminan Kualiti Pendidikan Awal Kanak-Kanak </a></li>
+<li class="breadcrumb-item"><a href="#"> Standard Kualiti Institusi Pendidikan Swasta </a></li>
 @endsection
-<input type="hidden" name="skpak_id" id="skpak_id" value="{{$skpak?->id}}">
+
 @section('content')
 <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder active" id="item-1-tab" data-bs-toggle="tab" href="#item-1" aria-controls="item-1" role="tab" aria-selected="true">
+        <a class="text-uppercase text-wrap nav-link fw-bolder active" id="instrumen-skips-tab" data-bs-toggle="tab" href="#instrumen-skips-panel" role="tab" aria-controls="instrumen-skips-panel" aria-selected="true">
+            Instrumen
+        </a>
+    </li>
+   <li class="nav-item" role="presentation">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="item-1-tab" data-bs-toggle="tab" href="#item-1" aria-controls="item-1" role="tab" aria-selected="true">
             STANDARD <br> PENILAIAN 1
         </a>
     </li>
@@ -43,7 +48,7 @@ SKPAK
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-tab" data-bs-toggle="tab" href="#jumlah" aria-controls="jumlah" role="tab" aria-selected="false" onclick="jumlah()">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-tab" data-bs-toggle="tab" href="#jumlah" aria-controls="jumlah" role="tab" aria-selected="false">
             JUMLAH
         </a>
     </li>
@@ -52,7 +57,10 @@ SKPAK
 <div class="card">
     <div class="card-body">
         <div class="tab-content">
-            <div class="tab-pane active" id="item-1" role="tabpanel" aria-labelledby="item-1-tab">
+            <div class="tab-pane fade show active" id="instrumen-skips-panel" role="tabpanel" aria-labelledby="instrumen-skips-tab">
+                @include('instrumen_update.skpak.tab1')
+            </div>
+            <div class="tab-pane" id="item-1" role="tabpanel" aria-labelledby="item-1-tab">
                 @include('skpak.borang_skpak.item_1')
             </div>
             <div class="tab-pane fade" id="item-2" role="tabpanel" aria-labelledby="item-2-tab">
@@ -71,31 +79,16 @@ SKPAK
                 @include('skpak.borang_skpak.item_6')
             </div>
             <div class="tab-pane fade" id="jumlah" role="tabpanel" aria-labelledby="jumlah-tab">
-                
+                @include('skpak.borang_skpak.jumlah')
             </div>
+
         </div>
     </div>
 </div>
 @endsection
 
-<script type="text/javascript">
-var fragmentIdentifier = window.location.hash;
-function tabclicked(argument) {
-    console.log(argument)
-}
-function jumlah() {
-    var id = $('#skpak_id').val();
-    var url = "{{ route('skpak.get-jumlah') }}"
-    $.ajax({
-        url: url,
-        method: 'POST',
-        data: {
-            id:id
-        },
-        success: function(response) {
-            $('#jumlah').empty();
-            $('#jumlah').append(response)
-        }
-    });
-}
+@section('script')
+<script>
+
 </script>
+@endsection
