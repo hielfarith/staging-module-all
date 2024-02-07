@@ -141,7 +141,7 @@ $penyelarasan_penilaians = [
 ];
 @endphp
 
-<table class="table header_uppercase table-bordered table-hovered" id="penyelarasan_penilaian">
+<table class="table header_uppercase table-bordered table-hovered" id="permarkahan">
     <thead>
         <tr>
             <th colspan="2">Kualiti Standard</th>

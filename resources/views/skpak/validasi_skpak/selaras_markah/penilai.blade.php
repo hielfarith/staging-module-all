@@ -142,7 +142,7 @@ $penyelarasan_penilaians = [
 @endphp
 
 <div class="table-responsive">
-  <table class="table header_uppercase table-bordered table-hovered" id="penyelarasan_penilaian">
+  <table class="table header_uppercase table-bordered table-hovered" id="penilai">
     <thead>
         <tr>
             <th style="width: 10%" colspan="2">Kualiti Standard</th>
@@ -196,7 +196,7 @@ $penyelarasan_penilaians = [
 						@if (!$row)
 							<td rowspan="{{ $subsubsectionCount }}">{{ $text }}</td>
 						@endif
-						
+
 						<td>{{ $subsubsection }}</td>
 						<td>Skor P1</td>
 						<td>Catatan P1</td>
