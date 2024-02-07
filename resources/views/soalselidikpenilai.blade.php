@@ -177,7 +177,7 @@ Pengurusan Ketua Taska
                     <tbody>
                         @foreach ($items_1 as $index => $item_1)
                         <tr>
-                            <td colspan="3" class="bg-light-primary text-uppercase">
+                            <td colspan="6" class="bg-light-primary text-uppercase">
                                 {{ $item_1['section'] }}
                             </td>
                         </tr>
@@ -223,10 +223,26 @@ Pengurusan Ketua Taska
                         @endforeach
                         @endforeach
                     </tbody>
-                  
+
                 </table>
             </div>
 
+            <hr>
+
+            <h5 class="mb-2 fw-bold">
+                <span class="badge rounded-pill badge-light-primary">
+                    BAHAGIAN D : CADANGAN PENAMBAHBAIKAN
+                </span>
+            </h5>
+            <label class="form-label fw-bolder">Berdasarkan pengalaman anda berurusan dengan KPM, sila kemukakan cadangan untuk penambahbaikan kualiti perkhidmatan yang diberi oleh KPM.
+            <span style="color: red;">*</span>
+            </label>
+            <textarea class="form-control" rows="5" id="keteranganInstrumenInput"></textarea>
+
+            <hr>
+
+            <label class="form-label mt-1">Sekian terima kasih. Kesudian anda untuk menjawab dan memulangkan soal selidik ini akan membantu kami meningkatkan lagi kecekapan & keberkesanan perkhidmatan kami.
+                </label>
         </div>
     </div>
     <div class="card-footer">
