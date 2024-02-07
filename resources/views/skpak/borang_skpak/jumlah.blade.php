@@ -92,7 +92,7 @@ $penilaians = [
             },
             success: function(response) {
                 Swal.fire('Success', 'Berjaya', 'success');
-                var location = "{{route('/')}}";
+                var location = "{{route('home')}}";
                 window.location.href = location;
             }
         });
