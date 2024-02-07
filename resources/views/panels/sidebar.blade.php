@@ -378,6 +378,12 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pengesahan Pengisian Data Instrumen</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -452,17 +458,17 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap"> SPKS </span>
                 </a>
                 <ul class="nav">
-                    <li class="nav-item ">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Pengumuman</span>
-                        </a>
-                    </li>
-
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Pengisian Data Instrumen
                             </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pengesahan Pengisian Data Instrumen</span>
                         </a>
                     </li>
 
@@ -475,20 +481,20 @@ $configData = Helper::applClasses();
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
                         <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Instrumen</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
                         </a>
                     </li>
 
@@ -506,7 +512,7 @@ $configData = Helper::applClasses();
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Sistem</span>
                         </a>
                     </li>
 
@@ -515,21 +521,6 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi Pendidikan</span>
                         </a>
                     </li>
-
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Notifikasi</span>
-                        </a>
-                    </li>
-
-
                 </ul>
             </li>
 
