@@ -244,11 +244,13 @@ $penyelarasan_penilaians = [
         <tr class="bg-light-danger">
             <td colspan="3" class="text-end">Jumlah Skor</td>
             <td colspan="3" class="text-start"></td>
+            <td colspan="5" class="text-start"></td>
         </tr>
 
         <tr class="bg-light-danger">
             <td colspan="3" class="text-end">Peratus Keseluruhan</td>
             <td colspan="3" class="text-start"></td>
+            <td colspan="5" class="text-start"></td>
         </tr>
     </tfoot>
   </table>
