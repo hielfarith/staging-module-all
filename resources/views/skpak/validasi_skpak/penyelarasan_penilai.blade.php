@@ -29,12 +29,12 @@ $penyelarasan_penilaians = [
                 '1.2.3 Sikap dan sokongan terhadap organisasi',
             ],
             '1.3 HUBUNGAN DENGAN KELUARGA' => [
-                '1.2.1 Tanggungjawab terhadap organisasi',
-                '1.2.2 Interaksi dan komunikasi',
-                '1.2.3 Sikap dan sokongan terhadap organisasi',
-                '1.3.1 Interaksi dan komunikasi',
-                '1.3.2 Tanggungjawab',
-                '1.3.3 Kebajikan',
+                '1.3.1 Tanggungjawab terhadap organisasi',
+                '1.3.2 Interaksi dan komunikasi',
+                '1.3.3 Sikap dan sokongan terhadap organisasi',
+                '1.3.4 Interaksi dan komunikasi',
+                '1.3.5 Tanggungjawab',
+                '1.3.6 Kebajikan',
             ],
         ],
         'CQ2 PENGASUHAN DAN PEMBELAJARAN' => [
@@ -161,20 +161,42 @@ $penyelarasan_penilaians = [
             <tr>
                 <td colspan="6" class="bg-light-primary">{{ $section }}</td>
             </tr>
+            @php
+                $totalRow = 0;
+            @endphp
             @foreach ($subsections as $subsection => $subsubsections)
+                @foreach ($subsubsections as $subsubsection)
+                    @php
+                        $totalRow++;
+                    @endphp
+                @endforeach
+            @endforeach
+            @foreach ($subsections as $subsection => $subsubsections)
+                @php
+                    $row = 0;
+                @endphp
                 @foreach ($subsubsections as $subsubsection)
                     @php
                         $numeric = preg_replace('/[^0-9.]/', '', $subsection);
                         $text = trim(preg_replace('/[0-9.]/', '', $subsection), '.');
+
+                        $subsubsectionCount = count($subsubsections);
                     @endphp
                     <tr>
-                        <td>SQ{{ $numeric }}</td>
-                        <td>{{ $text }}</td>
+                        @if (!$row)
+                        <td rowspan="{{ $subsubsectionCount }}">SQ{{ $numeric }}</td>
+                        @endif
+                        @if (!$row)
+                        <td rowspan="{{ $subsubsectionCount }}">{{ $text }}</td>
+                        @endif
                         <td>{{ $subsubsection }}</td>
-                        <td>Skor</td>
+                        <td>Skor Penilai</td>
                         <td>Catatan Penilai</td>
                         <td>Catatan Penyelaras</td>
                     </tr>
+                    @php
+                        $row++;
+                    @endphp
                 @endforeach
             @endforeach
 

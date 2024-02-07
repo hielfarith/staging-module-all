@@ -48,6 +48,11 @@ SKPAK
         </a>
     </li>
     <li class="nav-item" role="presentation">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="penyelarasan-pemarkahan-tab" data-bs-toggle="tab" href="#penyelarasan-pemarkahan" aria-controls="penyelarasan-pemarkahan" role="tab" aria-selected="false">
+            SELARAS <br> MARKAH
+        </a>
+    </li>
+    <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="selaras-nilai-tab" data-bs-toggle="tab" href="#selaras-nilai" aria-controls="selaras-nilai" role="tab" aria-selected="false">
             PENYELARASAN <br> PENILAI
         </a>
@@ -77,6 +82,9 @@ SKPAK
             </div>
             <div class="tab-pane fade" id="pemarkahan" role="tabpanel" aria-labelledby="pemarkahan-tab">
                 @include('skpak.validasi_skpak.permarkahan')
+            </div>
+            <div class="tab-pane fade" id="penyelarasan-pemarkahan" role="tabpanel" aria-labelledby="penyelarasan-pemarkahan-tab">
+                @include('skpak.validasi_skpak.selaras_markah.index')
             </div>
             <div class="tab-pane fade" id="selaras-nilai" role="tabpanel" aria-labelledby="selaras-nilai-tab">
                 @include('skpak.validasi_skpak.penyelarasan_penilai')
