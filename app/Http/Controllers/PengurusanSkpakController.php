@@ -22,4 +22,8 @@ class PengurusanSkpakController extends Controller
     public function ValidasiSkpak (Request $request){
         return view('skpak.index_validasi');
     }
+
+    public function SoalSelidikPenilai (Request $request){
+        return view('soalselidikpenilai');
+    }
 }

@@ -8,5 +8,6 @@ Route::controller(PengurusanSkpakController::class)->group(function () {
         Route::get('ringkasan-pengisian','RingkasanSkpak')->name('ringkasan_skpak');
 
         Route::get('validasi-pengisian','ValidasiSkpak')->name('validasi_skpak');
+        Route::get('soal-selidik','SoalSelidikPenilai')->name('soalselidik_penilai');
     });
 });

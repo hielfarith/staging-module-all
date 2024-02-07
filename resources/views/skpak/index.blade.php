@@ -18,7 +18,7 @@ SKPAK
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="item-2-tab" data-bs-toggle="tab" href="#item-2" aria-controls="item-2" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap naav-link fw-bolder" id="item-2-tab" data-bs-toggle="tab" href="#item-2" aria-controls="item-2" role="tab" aria-selected="false">
             STANDARD <br> PENILAIAN 2
         </a>
     </li>
