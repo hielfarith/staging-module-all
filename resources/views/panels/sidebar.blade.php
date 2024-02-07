@@ -452,6 +452,82 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap"> SPKS </span>
                 </a>
                 <ul class="nav">
+                    <li class="nav-item ">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Pengumuman</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Verifikasi Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi Pendidikan</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Notifikasi</span>
+                        </a>
+                    </li>
 
 
                 </ul>
