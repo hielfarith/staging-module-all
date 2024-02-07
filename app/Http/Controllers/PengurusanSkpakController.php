@@ -118,38 +118,38 @@ class PengurusanSkpakController extends Controller
     }
     public function SenaraiSkpak(Request $request)
     {
-         if($request->ajax()) {
+        //  if($request->ajax()) {
            
-            $skpak = SkpakStandardPenilaian::all()
+        //     $skpak = SkpakStandardPenilaian::all()
 
-            return Datatables::of($skpak)
-                ->editColumn('nama_institusi', function ($skpak) {
-                    return $skpak->nama_institusi;
-                })
-                ->editColumn('nama_pengetua', function ($skpak) {
-                    return $skpak->nama_pengetua;
-                })
-                ->editColumn('status', function ($skpak) {
-                    $item = ItemStandardQualitySkips::where('butiran_institusi_id', $skpak->id)->first();
-                    return $item->statuses->status_description;
-                })
-                ->addColumn('DT_RowIndex', function ($skpak) {
-                    static $index = 1;
-                    return $index++;
-                })
-                ->editColumn('action', function ($skpak) {
-                    $button = "";
-                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+        //     return Datatables::of($skpak)
+        //         ->editColumn('nama_institusi', function ($skpak) {
+        //             return $skpak->nama_institusi;
+        //         })
+        //         ->editColumn('nama_pengetua', function ($skpak) {
+        //             return $skpak->nama_pengetua;
+        //         })
+        //         ->editColumn('status', function ($skpak) {
+        //             $item = ItemStandardQualitySkips::where('butiran_institusi_id', $skpak->id)->first();
+        //             return $item->statuses->status_description;
+        //         })
+        //         ->addColumn('DT_RowIndex', function ($skpak) {
+        //             static $index = 1;
+        //             return $index++;
+        //         })
+        //         ->editColumn('action', function ($skpak) {
+        //             $button = "";
+        //             $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
-                    $button .= '<a onclick="maklumatInstrumen(' . $skpak->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+        //             $button .= '<a onclick="maklumatInstrumen(' . $skpak->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
 
-                    $button .= "</div>";
+        //             $button .= "</div>";
 
-                    return $button;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
+        //             return $button;
+        //         })
+        //         ->rawColumns(['action'])
+        //         ->make(true);
+        // }
 
         return view('skpak.list');
     }
