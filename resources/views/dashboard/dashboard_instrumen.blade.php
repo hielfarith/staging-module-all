@@ -381,7 +381,7 @@ Dashboard SKIPS
         </div>
     </div>
 
-    <div class="col-md-12">
+    {{-- <div class="col-md-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title fw-bolder"> Analisis Pencapaian Penilaian Kendiri</h4>
@@ -467,26 +467,26 @@ Dashboard SKIPS
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title fw-bolder"> Peratusan Keseluruhan berdasarkan Kriteria </h4>
 
-                <div class="btn-group mt-md-0 mt-1" role="group">
+                {{-- <div class="btn-group mt-md-0 mt-1" role="group">
                     <input type="radio" class="btn-check" name="" id="" autocomplete="off" checked />
                     <label class="btn btn-outline-primary">Turutan Peratusan Tertinggi</label>
 
                     <input type="radio" class="btn-check" name="" id="" autocomplete="off" />
                     <label class="btn btn-outline-primary">Turutan Peratusan Terendah</label>
-                </div>
+                </div> --}}
             </div>
 
             <hr>
 
             <div class="card-body">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-8 mb-1">
                         <label class="fw-bolder">Pilih Institusi:</label>
                         <select name="" id="" class="form-select select2" multiple>
@@ -537,7 +537,7 @@ Dashboard SKIPS
 
                 </style>
 
-                <hr>
+                <hr> --}}
 
                 <div class="table-responsive mt-2">
                     <table class="table table-bordered table-hovered text-wrap" id="analisis_pencapaian">
@@ -566,7 +566,7 @@ Dashboard SKIPS
             <hr>
 
             <div class="card-body">
-                <div class="d-flex justify-content-end">
+                {{-- <div class="d-flex justify-content-end">
                     <div class="btn-group" role="group" aria-label="Role Action">
                         <a href="#" class="btn btn-outline-success waves-effect">
                             <i class="fa-solid fa-file-image text-success"></i>JPG
@@ -577,9 +577,9 @@ Dashboard SKIPS
                     </div>
                 </div>
 
-                <hr>
+                <hr> --}}
 
-                <canvas class="horizontal-bar-chart-ex chartjs" data-height="400"></canvas>
+                <canvas class="peratusan-kriteria-chart chartjs" data-height="400"></canvas>
             </div>
         </div>
     </div>
@@ -683,6 +683,38 @@ Dashboard SKIPS
                     },
                 ],
             });
+
+            var tableAnalisisPencapaian = $('#analisis_pencapaian').DataTable({
+                orderCellsTop: true,
+                colReorder: false,
+                pageLength: 20,
+                processing: true,
+                searching: false,
+                serverSide: true, //enable if data is large (more than 50,000)
+                ajax: {
+                    url: "{{ fullUrl().'?table=4' }}",
+                    cache: false,
+                },
+                columns: [
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                    {
+                        data: "name",
+                        name: "name",
+                        searchable: true,
+                        render: function(data, type, row) {
+                            return $("<div/>").html(data).text();
+                        }
+                    },
+                    {
+                        data: "percentage",
+                        name: "percentage",
+                        searchable: true,
+                        render: function(data, type, row) {
+                            return $("<div/>").html(data).text();
+                        }
+                    },
+                ],
+            });
         });
 
         $('#searchNegeri').show();
@@ -712,6 +744,7 @@ Dashboard SKIPS
 
     $(window).on('load', function () {
         var peratusanBintang = $('.peratusan-bintang-chart');
+        var peratusanKriteria = $('.peratusan-kriteria-chart');
         
         if (peratusanBintang.length) {
             var peratusanBintangChart = new Chart(peratusanBintang, {
@@ -764,9 +797,9 @@ Dashboard SKIPS
                         zeroLineColor: 'rgba(200, 200, 200, 0.2)'
                     },
                     ticks: {
-                        stepSize: 50,
+                        stepSize: 5,
                         min: 0,
-                        max: 500,
+                        max: 50,
                         fontColor: '#6e6b7b'
                     }
                     }
@@ -774,10 +807,90 @@ Dashboard SKIPS
                 }
             },
             data: {
-                labels: ['5', '4', '3', '2'],
+                labels: ['5', '4', '3', '2', '1', '0'],
                 datasets: [
                 {
-                    data: [0, 0, 0, 0],
+                    data: ["{{ $star['five_star']['total'] }}", "{{ $star['four_star']['total'] }}", "{{ $star['three_star']['total'] }}", "{{ $star['two_star']['total'] }}", "{{ $star['one_star']['total'] }}", "{{ $star['zero_star']['total'] }}"],
+                    barThickness: 30,
+                    backgroundColor: '#28dac6',
+                    borderColor: 'transparent'
+                }
+                ]
+            }
+            });
+        }
+
+        if (peratusanKriteria.length) {
+            var peratusanKriteria = new Chart(peratusanKriteria, {
+            type: 'bar',
+            options: {
+                elements: {
+                rectangle: {
+                    borderWidth: 2,
+                    borderSkipped: 'bottom'
+                }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                responsiveAnimationDuration: 500,
+                legend: {
+                display: false
+                },
+                tooltips: {
+                // Updated default tooltip UI
+                shadowOffsetX: 1,
+                shadowOffsetY: 1,
+                shadowBlur: 8,
+                shadowColor: 'rgba(0, 0, 0, 0.25)',
+                backgroundColor: window.colors.solid.white,
+                titleFontColor: window.colors.solid.black,
+                bodyFontColor: window.colors.solid.black
+                },
+                scales: {
+                xAxes: [
+                    {
+                    display: true,
+                    gridLines: {
+                        display: true,
+                        color: 'rgba(200, 200, 200, 0.2)',
+                        zeroLineColor: 'rgba(200, 200, 200, 0.2)'
+                    },
+                    scaleLabel: {
+                        display: false
+                    },
+                    ticks: {
+                        fontColor: '#6e6b7b'
+                    }
+                    }
+                ],
+                yAxes: [
+                    {
+                    display: true,
+                    gridLines: {
+                        color: 'rgba(200, 200, 200, 0.2)',
+                        zeroLineColor: 'rgba(200, 200, 200, 0.2)'
+                    },
+                    ticks: {
+                        stepSize: 10,
+                        min: 0,
+                        max: 100,
+                        fontColor: '#6e6b7b'
+                    }
+                    }
+                ]
+                }
+            },
+            data: {
+                labels: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10'],
+                datasets: [
+                {
+                    data: [
+                        <?php
+                        foreach($kriteria as $data){
+                        echo $data.',';
+                        }
+                        ?>
+                    ],
                     barThickness: 30,
                     backgroundColor: '#28dac6',
                     borderColor: 'transparent'

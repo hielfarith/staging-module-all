@@ -24,6 +24,7 @@
                                     <select name="perm_name" id="perm_name" class="select2 form-select form-control" required>
                                         <option value="" hidden> Pilih Role</option>
                                             <option value="view form">View Form</option>
+                                            <option value="fill form">Fill Form</option>
                                             <option value="verify form">Verify Form</option>
                                             <option value="approve form">Approve Form</option>
                                             <option value="query">Query</option>

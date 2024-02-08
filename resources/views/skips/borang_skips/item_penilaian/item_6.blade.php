@@ -11,7 +11,7 @@
 
     @php
         $butiran_institusi_id = $butiran_id;
-        
+
         $pembangunan_gurus = [
             'program_pembangunan_guru' => '<a> 6.1 Program Pembangunan Guru </a>',
             'kelayakan_akademik_guru' => '<a> 6.2 Kelayakan Akademik Guru </a>',
@@ -93,7 +93,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan & Pembangunan Guru</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan & Pembangunan Guru</td>
                 </tr>
                 @foreach ($pembangunan_gurus as $index => $pembangunan_guru)
                     @php
@@ -117,7 +117,7 @@
                         @foreach ($option_pembangunan_gurus[$index] as $key => $option_pembangunan_guru)
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengurusan_pembangunan_guru && $pengurusan_pembangunan_guru->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengurusan_pembangunan_guru && $pengurusan_pembangunan_guru->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'done') disabled @endif>
                             </div>
                             <br>
 
@@ -133,7 +133,8 @@
     </div>
 
     <hr>
-    @if(!empty($butiran_institusi_id) && $type == 'borang')
+
+    @if(!empty($butiran_institusi_id) && $type == 'borang' && $canFill)
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform6()">Simpan</button>
     </div>

@@ -180,8 +180,6 @@
                         contentType: false,
                         processData: false,
                         success: function(data) {
-                            console.log(data);
-
                             $('#statusForm input[name="status_index"]').closest('.col-12').show();
                             $('#statusForm input[name="status_index"]').val(data.detail.status_index);
                             $('#statusForm input[name="status_name"]').val(data.detail.status_name);
@@ -227,8 +225,6 @@
                         contentType: false,
                         processData: false,
                         success: function(data) {
-                            // console.log(data);
-
                             $('#permissionFormModal input[name="perm_name"]').val(data.detail.perm_name);
                             $('#permissionFormModal textarea[name="perm_description"]').val(data.detail.perm_description);
                             $('#permissionFormModal input[name="module_permission_id"]').val(data.detail.id);

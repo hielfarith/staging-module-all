@@ -436,9 +436,7 @@
                         contentType: false,
                         processData: false,
                         success: function(data) {
-                            // console.log(data);
                             id_used = data.detail.id;
-                            // console.log(id_used);
                             url2 = "{{ route('role.edit', ':replaceThis') }}"
                             url2 = url2.replace(':replaceThis', id_used);
 

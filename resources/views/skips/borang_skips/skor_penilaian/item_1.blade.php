@@ -99,11 +99,11 @@
             <tr>
                 <td colspan="2" style="text-align: center;" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{ number_format($percentage,0)}}</a>
+                    <a class="text-success">{{ number_format($percentage,2)}}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
 <input type="hidden" value="{{$total}}" name="tab1_skor" id="tab1_skor">
-<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab1_percentage" id="tab1_percentage">
+<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab1_percentage" id="tab1_percentage">

@@ -10,28 +10,28 @@
 @php
 
 $pelajar_antarabangsas = [
-    'kawalan_dasar' => '10.1 Kawalan Dasar',
-    'dokumentasi' => '10.1.1 Dokumentasi',
-    'tidak_melebihi_kapasiti_max_lampiran_b' => '10.1.2 Tidak Melebihi Kapasiti Max Seperti Di Dalam Lampiran B',
-    'tidak_melebihi_80_percent_kapasiti_max' => '10.1.3 Tidak Melebihi 80% Kapasiti Max',
-    'mematuhi_kuota_pelajar_20_percent' => '10.1.4 Mematuhi Kuota Pelajar 20%',
-    'tempoh_pengajaran_min_20_jam_seminggu' => '10.1.5 Tempoh Pengajaran Min 20 Jam Seminggu',
-    'dokumen_pelajar_antarabangsa' => '10.2 Dokumen Pelajar Antrarabangsa',
-    'surat_tawaran_oleh_pusat_bahasa_kemahiran' => '10.2.1 Surat Tawaran Oleh Pusat Bahasa/Kemahiran',
-    'resit_pembayaran_oleh_pusat_bahasa' => '10.2.2 Resit Pembayaran oleh Pusat Bahasa',
-    'buku_peraturan_refund_policy' => '10.2.3 Buku Peraturan/Refund Policy',
-    'surat_kelulusan_jabatan_imigresen' => '10.2.4 Surat Kelulusan Jabatan Imigresen',
-    'salinan_visa_pelajar' => '10.2.5 Salinan Visa Pelajar',
-    'surat_sokongan_emgs' => '10.2.6 Surat Sokongan EMGS',
-    'salinan_pasport' => '10.2.7 Salinan Pasport',
-    'pegawai_hep_antarabangsa' => '10.3 Pegawai HEP Antarabangsa',
-    'pengurusan_disiplin_pelajar_antarabangsa' => '10.4 Pengurusan Disiplin Pelajar Antarabangsa',
-    'kelulusan_kementerian_dalam_negeri' => '10.5 Kelulusan Kementerian Dalam Negeri',
+    'kawalan_dasar' => '<a class="text-primary"> 10.1 Kawalan Dasar </a>',
+        'dokumentasi' => '<a> 10.1.1 Dokumentasi </a>',
+        'tidak_melebihi_kapasiti_max_lampiran_b' => '<a> 10.1.2 Tidak Melebihi Kapasiti Max Seperti Di Dalam Lampiran B </a>',
+        'tidak_melebihi_80_percent_kapasiti_max' => '<a> 10.1.3 Tidak Melebihi [Lapan Puluh] Peratus Kapasiti Max </a>',
+        'mematuhi_kuota_pelajar_20_percent' => '<a> 10.1.4 Mematuhi Kuota Pelajar [Dua Puluh] Peratus </a>',
+        'tempoh_pengajaran_min_20_jam_seminggu' => '<a> 10.1.5 Tempoh Pengajaran Min [Dua Puluh] Jam Seminggu </a>',
+        'dokumen_pelajar_antarabangsa' => '<a class="text-primary"> 10.2 Dokumen Pelajar Antrarabangsa </a>',
+        'surat_tawaran_oleh_pusat_bahasa_kemahiran' => '<a> 10.2.1 Surat Tawaran Oleh Pusat Bahasa/Kemahiran </a>',
+        'resit_pembayaran_oleh_pusat_bahasa' => '<a> 10.2.2 Resit Pembayaran oleh Pusat Bahasa </a>',
+        'buku_peraturan_refund_policy' => '<a> 10.2.3 Buku Peraturan/Refund Policy </a>',
+        'surat_kelulusan_jabatan_imigresen' => '<a> 10.2.4 Surat Kelulusan Jabatan Imigresen </a>',
+        'salinan_visa_pelajar' => '<a> 10.2.5 Salinan Visa Pelajar </a>',
+        'surat_sokongan_emgs' => '<a> 10.2.6 Surat Sokongan EMGS </a>',
+        'salinan_pasport' => '<a> 10.2.7 Salinan Pasport </a>',
+        'pegawai_hep_antarabangsa' => '<a> 10.3 Pegawai HEP Antarabangsa </a>',
+        'pengurusan_disiplin_pelajar_antarabangsa' => '<a> 10.4 Pengurusan Disiplin Pelajar Antarabangsa </a>',
+        'kelulusan_kementerian_dalam_negeri' => '<a> 10.5 Kelulusan Kementerian Dalam Negeri </a>',
 ];
 
 $option_antarabangsas = [
     'kawalan_dasar' => [
-        0 => '',
+        // 0 => '',
     ],
 
     'tidak_melebihi_kapasiti_max_lampiran_b' => [
@@ -40,7 +40,7 @@ $option_antarabangsas = [
         2 => '',
         3 => '',
         4 => '',
-        5 => '<i>Mematuhi</i>',
+        5 => '<i style="font-size:12px">Mematuhi</i>',
     ],
 
     'tidak_melebihi_80_percent_kapasiti_max' => [
@@ -49,7 +49,7 @@ $option_antarabangsas = [
         2 => '',
         3 => '',
         4 => '',
-        5 => '<i>Mematuhi</i>',
+        5 => '<i style="font-size:12px">Mematuhi</i>',
     ],
 
     'mematuhi_kuota_pelajar_20_percent' => [
@@ -58,7 +58,7 @@ $option_antarabangsas = [
         2 => '',
         3 => '',
         4 => '',
-        5 => '<i>Mematuhi</i>',
+        5 => '<i style="font-size:12px">Mematuhi</i>',
     ],
 
     'tempoh_pengajaran_min_20_jam_seminggu' => [
@@ -67,105 +67,110 @@ $option_antarabangsas = [
         2 => '',
         3 => '',
         4 => '',
-        5 => '<i>Mematuhi</i>',
+        5 => '<i style="font-size:12px">Mematuhi</i>',
     ],
 
     'dokumentasi' => [
-        0 => '<i></i>',
-        1 => '<i>Mempunyai sekurang-kurangnya satu (1) kriteria dasar seperti yang disenaraikan</i>',
-        2 => '<i>Mempunyai sekurang-kurangnya satu (2) kriteria dasar seperti yang disenaraikan</i>',
-        3 => '<i>Mempunyai sekurang-kurangnya satu (3) kriteria dasar seperti yang disenaraikan</i>',
-        4 => '<i>Mempunyai sekurang-kurangnya satu (4) kriteria dasar seperti yang disenaraikan</i>',
-        5 => '<i>Mempunyai sekurang-kurangnya satu (5) kriteria dasar seperti yang disenaraikan</i>',
+        0 => '<i style="font-size:12px"></i>',
+        1 => '<i style="font-size:12px">Mempunyai sekurang-kurangnya satu (1) kriteria dasar seperti yang disenaraikan</i>',
+        2 => '<i style="font-size:12px">Mempunyai sekurang-kurangnya satu (2) kriteria dasar seperti yang disenaraikan</i>',
+        3 => '<i style="font-size:12px">Mempunyai sekurang-kurangnya satu (3) kriteria dasar seperti yang disenaraikan</i>',
+        4 => '<i style="font-size:12px">Mempunyai sekurang-kurangnya satu (4) kriteria dasar seperti yang disenaraikan</i>',
+        5 => '<i style="font-size:12px">Mempunyai sekurang-kurangnya satu (5) kriteria dasar seperti yang disenaraikan</i>',
     ],
 
     'dokumen_pelajar_antarabangsa' => [
-        0 => '',
+        // 0 => '',
     ],
 
     'surat_tawaran_oleh_pusat_bahasa_kemahiran' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Difailkan</i>',
-        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
-        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
-        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Difailkan</i>',
+        3 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
     ],
 
     'resit_pembayaran_oleh_pusat_bahasa' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Difailkan</i>',
-        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
-        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
-        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Difailkan</i>',
+        3 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
     ],
 
     'buku_peraturan_refund_policy' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Difailkan</i>',
-        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
-        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
-        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Difailkan</i>',
+        3 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
     ],
 
     'surat_kelulusan_jabatan_imigresen' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Difailkan</i>',
-        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
-        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
-        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Difailkan</i>',
+        3 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
     ],
 
     'salinan_visa_pelajar' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Difailkan</i>',
-        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
-        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
-        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Difailkan</i>',
+        3 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
     ],
 
     'surat_sokongan_emgs' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Difailkan</i>',
-        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
-        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
-        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Difailkan</i>',
+        3 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
     ],
 
     'salinan_pasport' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Difailkan</i>',
-        3 => '<i>Ada, Difailkan, Dikemaskini</i>',
-        4 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
-        5 => '<i>Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Difailkan</i>',
+        3 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini</i>',
+        4 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian</i>',
+        5 => '<i style="font-size:12px">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
     ],
 
     'pegawai_hep_antarabangsa' => [
         0 => '',
+        1 => '<i style="font-size:12px">Ada rekod kehadiran</i>',
+        2 => '<i style="font-size:12px">Ada rekod kehadiran, Ada surat amaran</i>',
+        3 => '<i style="font-size:12px">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis</i>',
+        4 => '<i style="font-size:12px">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo</i>',
+        5 => '<i style="font-size:12px">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo, Bukti Penghantaran Pulang</i>',
     ],
 
     'pengurusan_disiplin_pelajar_antarabangsa' => [
         0 => '',
-        1 => '<i>Ada rekod kehadiran</i>',
-        2 => '<i>Ada rekod kehadiran, Ada surat amaran</i>',
-        3 => '<i>Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis</i>',
-        4 => '<i>Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo</i>',
-        5 => '<i>Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo, Bukti Penghantaran Pulang</i>',
+        1 => '<i style="font-size:12px">Ada rekod kehadiran</i>',
+        2 => '<i style="font-size:12px">Ada rekod kehadiran, Ada surat amaran</i>',
+        3 => '<i style="font-size:12px">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis</i>',
+        4 => '<i style="font-size:12px">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo</i>',
+        5 => '<i style="font-size:12px">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo, Bukti Penghantaran Pulang</i>',
     ],
 
     'kelulusan_kementerian_dalam_negeri' => [
         0 => '',
-        1 => '<i>Ada</i>',
-        2 => '<i>Ada, Terkini</i>',
-        3 => '<i>Ada, Terkini, Kebolehcapaian</i>',
-        4 => '<i>Ada, Terkini, Kebolehcapaian, Dipamerkan</i>',
-        5 => '<i>Ada, Terkini, Kebolehcapaian, Dipamerkan, Kemas / Kreatif</i>',
+        1 => '<i style="font-size:12px">Ada</i>',
+        2 => '<i style="font-size:12px">Ada, Terkini</i>',
+        3 => '<i style="font-size:12px">Ada, Terkini, Kebolehcapaian</i>',
+        4 => '<i style="font-size:12px">Ada, Terkini, Kebolehcapaian, Dipamerkan</i>',
+        5 => '<i style="font-size:12px">Ada, Terkini, Kebolehcapaian, Dipamerkan, Kemas / Kreatif</i>',
     ],
 ];
 
@@ -180,7 +185,7 @@ $option_antarabangsas = [
 
     #NilaiItem10 tbody {
         vertical-align: middle;
-        text-align: center;
+        /* text-align: center; */
     }
 
     #NilaiItem10 table {
@@ -188,10 +193,10 @@ $option_antarabangsas = [
         /* word-wrap: break-word; */
     }
 </style>
-<form id="pengurusan_pelajar_antarabangsa_v"> 
+<form id="pengurusan_pelajar_antarabangsa_v">
 <input type="hidden" name="usertype" value="{{$type}}">
 <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
-               
+
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem10">
         <thead>
@@ -217,26 +222,43 @@ $option_antarabangsas = [
         </thead>
         <tbody>
             <tr>
-                <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Pelajar Antarabangsa</td>
+                <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Pelajar Antarabangsa</td>
             </tr>
              @foreach ($pelajar_antarabangsas as $index => $antarabangsa)
              <?php
                     $keyval = '';
                     $keyval = $index.'_verfikasi';
+
+                    $numeric = preg_replace('/[^0-9.]/', '', $antarabangsa);
+                    $text = trim(preg_replace('/[0-9.]/', '', $antarabangsa), '.');
+
+                    $excludeNumber = strpos($antarabangsa, 'text-primary') !== false;
                 ?>
                 <tr>
-                    <td colspan="2"> {{ $antarabangsa }}</td>
+                    @if (!$excludeNumber)
+                        <td> {{ $numeric }} </td>
+                    @endif
+
+                    @if(!$excludeNumber)
+                        <td> {!! $text !!} </td>
+                    @else
+                        <td class="bg-light-primary" colspan="8"> {!! $text !!} </td>
+                    @endif
+
                     @if(isset($option_antarabangsas[$index]))
                         @foreach ($option_antarabangsas[$index] as $key => $option_antarabangsa)
                             <td>
 
                                 @if(count($option_antarabangsas[$index]) > 1)
-                                <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required  @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$keyval == $key) checked @endif>
+                                <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required  @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$keyval == $key) checked @endif @if($type == 'validasi'  || $status == 'done') disabled @endif>
                                 </div>
                                 @endif
                                 <br>
-                                {!! $option_antarabangsa !!}
+
+                                <div class="d-flex justify-content-center align-items-center">
+                                    {!! $option_antarabangsa !!}
+                                </div>
                             </td>
                         @endforeach
                     @endif
@@ -246,12 +268,19 @@ $option_antarabangsas = [
     </table>
 </div>
 
-    <hr>
+<hr>
+
+<div class="col-md-12">
+    <label class="fw-bolder">Ulasan</label>
+    <textarea name="ulasan_verfikasi" id="" rows="3" class="form-control">{{$pengurusan_pelajar_antarabangsa?->ulasan_verfikasi}}</textarea>
+</div>
+@if($canVerify)
 
 
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right verify" onclick="submitform10v()">Simpan</button>
     </div>
+    @endif
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

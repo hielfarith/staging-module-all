@@ -298,7 +298,7 @@
         if (error) {
             return false;
         }
-        var url = "{{ route('admin.instrumen.instrumenskpak-submit') }}"
+        var url = "{{ route('admin.instrumen.instrumenikeps-submit') }}"
         $.ajax({
             url: url,
             type: 'POST',

@@ -176,7 +176,7 @@ $.ajaxSetup({
 })
 
 function maklumatInstrumen(id){
-    var url = "{{ route('admin.instrumen.instrumenskpak-view',['id'=> ':id', 'type' => 'view']) }}";
+    var url = "{{ route('admin.instrumen.instrumenikeps-view',['id'=> ':id', 'type' => 'view']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({
@@ -194,7 +194,7 @@ function maklumatInstrumen(id){
 }
 
 function maklumatInstrumenEdit(id) {
-    var url = "{{ route('admin.instrumen.instrumenskpak-view',['id'=> ':id', 'type' => 'edit']) }}";
+    var url = "{{ route('admin.instrumen.instrumenikeps-view',['id'=> ':id', 'type' => 'edit']) }}";
     var url = url.replace(':id', id);
 
     $.ajax({

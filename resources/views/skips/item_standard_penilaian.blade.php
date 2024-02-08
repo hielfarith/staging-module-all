@@ -100,6 +100,7 @@ $pelajar_antarabangsas = [
     ],
     'dokumen_pelajar_antarabangsa' => [
         'surat_tawaran_oleh_pusat_bahasa_kemahiran' => '10.2.1 Surat Tawaran Oleh Pusat Bahasa/Kemahiran',
+        'resit_pembayaran_oleh_pusat_bahasa' => '10.2.2 Resit Pembayaran oleh Pusat Bahasa',
         'buku_peraturan_refund_policy' => '10.2.3 Buku Peraturan/Refund Policy',
         'surat_kelulusan_jabatan_imigresen' => '10.2.4 Surat Kelulusan Jabatan Imigresen',
         'salinan_visa_pelajar' => '10.2.5 Salinan Visa Pelajar',

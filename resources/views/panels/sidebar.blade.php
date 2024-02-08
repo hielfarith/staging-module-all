@@ -1,6 +1,7 @@
 @php
 $configData = Helper::applClasses();
 @endphp
+
 <div class="main-menu menu-fixed {{ $configData['theme'] === 'dark' || $configData['theme'] === 'semi-dark' ? 'menu-dark' : 'menu-light' }} menu-accordion menu-shadow"
     data-scroll-to-active="true">
     <div class="navbar-header">
@@ -32,18 +33,18 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap">{{ __('msg.home') }} </span>
                 </a>
             </li>
-            <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
+            <!-- <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
                 <a href="#" class="nav-link">
                     {{-- <i data-feather="home"></i> --}}
                     <span class="menu-title text-truncate text-wrap">Announcement</span>
                 </a>
-            </li>
-            <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.dashboard_ikeps']) ? 'active' : '' }}">
+            </li> -->
+           <!--  <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.dashboard_ikeps']) ? 'active' : '' }}">
                 <a href="{{ route('ikeps.dashboard_ikeps') }}" class="nav-link">
                     {{-- <i data-feather="home"></i> --}}
                     <span class="menu-title text-truncate text-wrap">Dashboard I-KePS</span>
                 </a>
-            </li>
+            </li> -->
             {{-- <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
                 <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
                     <span class="menu-title text-truncate text-wrap">Dashboard SKIPS</span>
@@ -206,17 +207,17 @@ $configData = Helper::applClasses();
             </li> -->
 
             <li class="navigation-header">
-                <span>  Modul I-KePS </span>
+                <span>  Modul Pengurusan Instrumen </span>
             </li>
              <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate text-wrap"> Pengurusan Instrumen I-keps </span>
+                    <span class="menu-title text-truncate text-wrap"> Pengurusan Instrumen </span>
                 </a>
                 <ul class="nav">
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenikeps-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
                         </a>
                     </li>
@@ -250,8 +251,70 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate text-wrap"> Pengurusan Tarikh Instrumen </span>
                         </a>
                     </li> -->
+                </ul>
+            </li>
+
+            <li class="navigation-header">
+                <span>  I-KePS </span>
+            </li>
+             <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> I-KePS </span>
+                </a>
+                <ul class="nav">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('ikeps.ikeps_baru') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Verifikasi Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Sistem</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Instrumen</span>
+                        </a>
+                    </li>
 
 
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -265,14 +328,14 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    <li class="nav-item ">
-                        <a href="" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Pengumuman</span>
                         </a>
                     </li>
 
-                    <!-- <li class="nav-item ">
-                        <a href="" class="nav-link">
+                    <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
                         </a>
                     </li> -->
@@ -284,12 +347,18 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <!-- <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Verifikasi Data Instrumen</span>
+                    <!--  -->
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Skips
+                            </span>
                         </a>
-                    </li> -->
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
+                    </li>
+
+
+                    <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Verifikasi Data Instrumen
@@ -301,26 +370,15 @@ $configData = Helper::applClasses();
                         <a href="{{ route('skips.validasi-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
                         </a>
-                    </li>
+                    </li> -->
 
-              <!--       {{-- <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
-                        </a>
-                    </li> --}}
- -->
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
                         </a>
                     </li>
 
-                <!--     {{-- <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
-                        </a>
-                    </li> --}}
- -->
+
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
                             <!-- {{-- <i data-feather="home"></i> --}} -->
@@ -365,8 +423,8 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap"> SKPAK </span>
                 </a>
                 <ul class="nav">
-                    <li class="nav-item ">
-                        <a href="" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Pengumuman</span>
                         </a>
                     </li>
@@ -381,44 +439,50 @@ $configData = Helper::applClasses();
 
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pengesahan Pengisian Data Instrumen</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Verifikasi Data Instrumen
                             </span>
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.validasi_skpak']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.validasi_skpak') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
                         </a>
                     </li>
 
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.dashboard']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.dashboard') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skips'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skpak'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-skpak') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
                         </a>
                     </li>
@@ -435,12 +499,6 @@ $configData = Helper::applClasses();
                             <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Notifikasi</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
 
@@ -453,10 +511,65 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap"> SPKS </span>
                 </a>
                 <ul class="nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Verifikasi Data Instrumen
+                            </span>
+                        </a>
+                    </li>
 
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Instrumen</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Sistem</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi Pendidikan</span>
+                        </a>
+                    </li>
                 </ul>
-            </li> -->
+            </li>
 
             <!-- --end new menu-->
             <!-- // pengguna menu // -->
@@ -589,7 +702,6 @@ $configData = Helper::applClasses();
 
             @hasanyrole('jabatan_pendidikan_negeri')
 
-
                 <li class="navigation-header">
                 <span> Pengurusan Pengguna</span>
             </li>
@@ -631,8 +743,8 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenikeps-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Konfigurasi Instrumen Baru</span>
                         </a>
                     </li>
@@ -678,8 +790,8 @@ $configData = Helper::applClasses();
                 </a>
                 <ul class="nav">
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenskpak-list'])? 'active': '' }}">
-                        <a href="{{ route('admin.instrumen.instrumenskpak-list') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenikeps-list'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
                         </a>
                     </li>
@@ -845,6 +957,135 @@ $configData = Helper::applClasses();
                             </span>
                         </a>
                     </li>
+                </ul>
+            </li>
+            @endhasanyrole
+             <!-- pentadbir role start -->
+            @hasanyrole('pengerusi_pengetua_guru_besar_pengurus')
+
+            <li class="navigation-header">
+                <span>  SKIPS </span>
+            </li>
+             <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> SKIPS </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Pengumuman</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.skips_baru') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Skips
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endhasanyrole
+
+            @hasanyrole('jabata_skips')
+            <li class="navigation-header">
+                <span>  SKIPS </span>
+            </li>
+             <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> SKIPS </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Pengumuman</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Skips
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            @endhasanyrole
+
+            @hasanyrole('bahagian_pendidikan_swasta')
+            <li class="navigation-header">
+                <span>  SKIPS </span>
+            </li>
+             <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> SKIPS </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Pengumuman</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
+                            <!-- {{-- <i data-feather="home"></i> --}} -->
+                            <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-skips'])? 'active': '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['skips.senarai_institusi'])? 'active': '' }}">
+                        <a href="{{ route('skips.senarai_institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi Pendidikan</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['skips.kemaskini-profil'])? 'active': '' }}">
+                        <a href="{{ route('skips.kemaskini-profil') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Skips
+                            </span>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
             @endhasanyrole

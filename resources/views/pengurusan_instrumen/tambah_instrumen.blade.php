@@ -417,8 +417,6 @@ Pengurusan Instrumen
         let i = 0;
          formData.forEach(function(value, name) {
             var inputElement = $('#'+name);
-            console.log(name)
-            console.log(inputElement)
             var inputType = inputElement.attr('type');
             var name = inputElement.attr('name');
             var labelElement = $('label[for="' + inputElement.attr('id') + '"]');

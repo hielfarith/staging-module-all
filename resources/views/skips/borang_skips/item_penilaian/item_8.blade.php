@@ -123,7 +123,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Piawaian</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Piawaian</td>
                 </tr>
                 @foreach ($piawaians as $index => $piawaian)
                     @php
@@ -147,7 +147,7 @@
                         @foreach ($option_piawaians[$index] as $key => $option_piawaian)
                             <td>
                                 <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($piawaianData && $piawaianData->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($piawaianData && $piawaianData->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'done') disabled @endif>
                                 </div>
                                 <br>
 
@@ -163,7 +163,7 @@
     </div>
 
     <hr>
-    @if(!empty($butiran_institusi_id) && $type == 'borang' )
+    @if(!empty($butiran_institusi_id) && $type == 'borang' && $canFill)
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform8()">Simpan</button>
     </div>

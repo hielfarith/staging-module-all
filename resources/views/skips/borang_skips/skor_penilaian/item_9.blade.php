@@ -71,7 +71,7 @@ $score = $total = 0;    $totalv = $scorev = 0;
         </tbody>
      <?php
             $total = $total + $totalv;
-            $percentage = ($total/10);
+            $percentage = ($total/20);
             $percentage = $percentage*100;
              if($type == 'verfikasi') {
                  $col = 2;
@@ -89,11 +89,11 @@ $score = $total = 0;    $totalv = $scorev = 0;
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{ number_format($percentage,0) }}</a>
+                    <a class="text-success">{{ number_format($percentage,2) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
 <input type="hidden" value="{{$total}}" name="tab9_skor" id="tab9_skor">
-<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab9_percentage" id="tab9_percentage">
+<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab9_percentage" id="tab9_percentage">

@@ -116,7 +116,6 @@
     $.ajaxSetup({
         error: function(data) {
             var data = data.responseJSON;
-            // console.log(data);
             if (data.errors === undefined) {
                 Swal.fire(data.title, data.detail, 'error');
             } else {
@@ -404,7 +403,6 @@
 
     //To use this, please refer Report Example or Module blade page
     generalFormSubmit = function(elem) {
-        console.log(elem);
         const event = new Event("event");
         var form = $(elem).closest('form');
         var refreshFunctionName = form.attr('data-refreshFunctionName');
@@ -424,7 +422,6 @@
             processData: false,
             success: function(data) {
                 event.preventDefault();
-                console.log(data)
 
                 if (message != null) {
                     if (message != 'false') {

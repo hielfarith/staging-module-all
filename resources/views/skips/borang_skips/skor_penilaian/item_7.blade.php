@@ -72,7 +72,7 @@ $displins = [
         </tbody>
 <?php
             $total = $total + $totalv;
-            $percentage = ($total/15);
+            $percentage = ($total/30);
             $percentage = $percentage*100;
              if($type == 'verfikasi') {
                  $col = 2;
@@ -90,11 +90,11 @@ $displins = [
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{ number_format($percentage,0) }}</a>
+                    <a class="text-success">{{ number_format($percentage,2) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
 <input type="hidden" value="{{$total}}" name="tab7_skor" id="tab7_skor">
-<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab7_percentage" id="tab7_percentage">
+<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab7_percentage" id="tab7_percentage">

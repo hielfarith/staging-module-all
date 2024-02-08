@@ -24,7 +24,7 @@
         'salinan_visa_pelajar' => '<a> 10.2.5 Salinan Visa Pelajar </a>',
         'surat_sokongan_emgs' => '<a> 10.2.6 Surat Sokongan EMGS </a>',
         'salinan_pasport' => '<a> 10.2.7 Salinan Pasport </a>',
-        'pegawai_hep_antarabangsa' => '<a class="text-primary"> 10.3 Pegawai HEP Antarabangsa </a>',
+        'pegawai_hep_antarabangsa' => '<a> 10.3 Pegawai HEP Antarabangsa </a>',
         'pengurusan_disiplin_pelajar_antarabangsa' => '<a> 10.4 Pengurusan Disiplin Pelajar Antarabangsa </a>',
         'kelulusan_kementerian_dalam_negeri' => '<a> 10.5 Kelulusan Kementerian Dalam Negeri </a>',
     ];
@@ -138,6 +138,15 @@
             5 => '<i style="font-size: 12px;">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
         ],
 
+        'pegawai_hep_antarabangsa' => [
+            0 => '',
+            1 => '<i style="font-size: 12px;">Ada rekod kehadiran</i>',
+            2 => '<i style="font-size: 12px;">Ada rekod kehadiran, Ada surat amaran</i>',
+            3 => '<i style="font-size: 12px;">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis</i>',
+            4 => '<i style="font-size: 12px;">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo</i>',
+            5 => '<i style="font-size: 12px;">Ada rekod kehadiran, Ada surat amaran, Ada Laporan Polis, Checkout Memo, Bukti Penghantaran Pulang</i>',
+        ],
+
         'pengurusan_disiplin_pelajar_antarabangsa' => [
             0 => '',
             1 => '<i style="font-size: 12px;">Ada rekod kehadiran</i>',
@@ -203,7 +212,7 @@
                 <input type="hidden" name="usertype" value="{{$type}}">
                 <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Pelajar Antarabangsa</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Pelajar Antarabangsa</td>
                 </tr>
 
                 @foreach ($pelajar_antarabangsas as $index => $antarabangsa)
@@ -230,7 +239,7 @@
                                 <td>
                                     @if(count($option_antarabangsas[$index]) > 1)
                                         <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                                            <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'done') disabled @endif>
                                         </div>
                                     @endif
                                     <br>
@@ -247,7 +256,8 @@
     </div>
 
     <hr>
-    @if(!empty($butiran_id) && $type == 'borang')
+
+    @if(!empty($butiran_id) && $type == 'borang' && $canFill)
 
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right formdd" onclick="submitform10()">Simpan</button>
@@ -263,7 +273,6 @@
 
         $('form#pengurusan_pelajar_antarabangsa').find('radio, input').each(function() {
             var value = $("input[name='"+this.name+"']:checked").val();
-            console.log(value)
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;
             }

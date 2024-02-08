@@ -127,7 +127,7 @@
                 <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
 
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Kurikulum</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Kurikulum</td>
                 </tr>
 
                 @foreach ($kurikulums as $index => $kurikulum)
@@ -152,7 +152,7 @@
                         @foreach ($option_kurikulums[$index] as $key => $option_kurikulum)
                             <td>
                                 <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" @if($pengurusan_kurikulum && $pengurusan_kurikulum->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" @if($pengurusan_kurikulum && $pengurusan_kurikulum->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'done') disabled @endif>
                                 </div>
                                 <br>
 
@@ -168,7 +168,8 @@
     </div>
 
     <hr>
-    @if(!empty($butiran_id) && $type == 'borang')
+
+    @if(!empty($butiran_id) && $type == 'borang' && $canFill)
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform3()">Simpan</button>
     </div>

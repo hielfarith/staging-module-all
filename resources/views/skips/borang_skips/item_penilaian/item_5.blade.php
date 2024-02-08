@@ -71,7 +71,7 @@
 
     <input type="hidden" name="usertype" value="{{$type}}">
     <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
-    
+
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai5">
             <thead>
@@ -97,7 +97,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan Penilaian/ Peperiksaan</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Penilaian/ Peperiksaan</td>
                 </tr>
                 @foreach ($peperiksaans as $index => $peperiksaan)
                     @php
@@ -121,7 +121,7 @@
                     @foreach ($option_peperiksaans[$index] as $key => $option_peperiksaan)
                     <td>
                         <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                            <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengurusan_penilaian && $pengurusan_penilaian->$index == $key) checked @endif @if($type == 'verfikasi') disabled @endif>
+                            <input class="form-check-input" type="radio" name="{{ $index }}" id="{{$index}}" value="{{$key}}" required @if($pengurusan_penilaian && $pengurusan_penilaian->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'done') disabled @endif>
                         </div>
                         <br>
 
@@ -137,7 +137,8 @@
     </div>
 
     <hr>
-    @if(!empty($butiran_id) && $type == 'borang')
+
+    @if(!empty($butiran_id) && $type == 'borang' && $canFill)
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform5()">Simpan</button>
     </div>

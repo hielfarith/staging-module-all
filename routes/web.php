@@ -246,9 +246,9 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
  //pengurusan controller
 Route::controller(InstrumenController::class)->prefix('instrumen')->middleware(['web'])->group(function () {
     Route::get('tambha/{type}/{model?}','viewForm')->name('admin.instrumen.form');
-    Route::post('instrumenskpak-submit','saveSkpak')->name('admin.instrumen.instrumenskpak-submit');
-    Route::get('instrumenskpak-list','listInstrumenSkpak')->name('admin.instrumen.instrumenskpak-list');
-    Route::post('instrumenskpak-view/{id}/{type}','viewInstrumenSkpak')->name('admin.instrumen.instrumenskpak-view');
+    Route::post('instrumenikeps-submit','saveIkeps')->name('admin.instrumen.instrumenikeps-submit');
+    Route::get('instrumenikeps-list','listInstrumenIkeps')->name('admin.instrumen.instrumenikeps-list');
+    Route::post('instrumenikeps-view/{id}/{type}','viewInstrumenIkeps')->name('admin.instrumen.instrumenikeps-view');
 
     Route::post('tetapan-aspek-submit','saveAspek')->name('admin.instrumen.tetapan-aspek-submit');
     Route::post('tetapan-aspek-view/{id}/{type}','viewTetapanAspek')->name('admin.instrumen.tetapan-aspek-view');
@@ -265,6 +265,10 @@ Route::controller(InstrumenController::class)->prefix('instrumen')->middleware([
     Route::get('tambah-skips','tambahSkips')->name('admin.instrumen.tambah-skips');
     Route::get('senarai-skips','listSkips')->name('admin.instrumen.senarai-skips');
     Route::post('instrumenskips-submit','saveSkips')->name('admin.instrumen.instrumenskips-submit');
+    //skap
+    Route::get('tambah-skpak','tambahSkpak')->name('admin.instrumen.tambah-skpak');
+    Route::get('senarai-skpak','listSkpak')->name('admin.instrumen.senarai-skpak');
+    Route::post('instrumenskpak-submit','saveSkpak')->name('admin.instrumen.instrumenskpak-submit');
 
 });
 

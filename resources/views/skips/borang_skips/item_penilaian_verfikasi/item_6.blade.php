@@ -19,35 +19,35 @@
 @php
 $butiran_institusi_id = $butiran_id;;
 $pembangunan_gurus = [
-    'program_pembangunan_guru' => '6.1 Program Pembangunan Guru',
-    'kelayakan_akademik_guru' => '6.2 Kelayakan Akademik Guru',
-    'kelayakan_ikhtisas_guru' => '6.3 Kelayakan Ikhtisas Guru',
+    'program_pembangunan_guru' => '<a> 6.1 Program Pembangunan Guru </a>',
+    'kelayakan_akademik_guru' => '<a> 6.2 Kelayakan Akademik Guru </a>',
+    'kelayakan_ikhtisas_guru' => '<a> 6.3 Kelayakan Ikhtisas Guru </a>',
 ];
 
 $option_pembangunan_gurus = [
     'program_pembangunan_guru' => [
-        0 => '<i></i>',
-        1 => '<i>Ada Perancangan</i>',
-        2 => '<i>Ada Perancangan, Program Secara Dalaman</i>',
-        3 => '<i>Ada Perancangan, Program Secara Dalaman, Program dengan Pihak Luar</i>',
-        4 => '<i>Ada Perancangan, Program Secara Dalaman, Program dengan Pihak Luar, Lebih 50% Penyertaan Guru</i>',
-        5 => '<i>Ada Perancangan, Program Secara Dalaman, Program dengan Pihak Luar, Lebih 50% Penyertaan Guru, Kajian Keperluan Latihan</i>',
+        0 => '<i style="font-size:12px"></i>',
+        1 => '<i style="font-size:12px">Ada Perancangan</i>',
+        2 => '<i style="font-size:12px">Ada Perancangan, Program Secara Dalaman</i>',
+        3 => '<i style="font-size:12px">Ada Perancangan, Program Secara Dalaman, Program dengan Pihak Luar</i>',
+        4 => '<i style="font-size:12px">Ada Perancangan, Program Secara Dalaman, Program dengan Pihak Luar, Lebih 50% Penyertaan Guru</i>',
+        5 => '<i style="font-size:12px">Ada Perancangan, Program Secara Dalaman, Program dengan Pihak Luar, Lebih 50% Penyertaan Guru, Kajian Keperluan Latihan</i>',
     ],
     'kelayakan_akademik_guru' => [
-        0 => '<i></i>',
-        1 => '<i>Sekurang-kurangnya 20%</i>',
-        2 => '<i>Sekurang-kurangnya 40%</i>',
-        3 => '<i>Sekurang-kurangnya 60%</i>',
-        4 => '<i>Sekurang-kurangnya 80%</i>',
-        5 => '<i>100% Guru Mempunyai Kelayakan Ijazah dan Ke Atas</i>',
+        0 => '<i style="font-size:12px"></i>',
+        1 => '<i style="font-size:12px">Sekurang-kurangnya 20%</i>',
+        2 => '<i style="font-size:12px">Sekurang-kurangnya 40%</i>',
+        3 => '<i style="font-size:12px">Sekurang-kurangnya 60%</i>',
+        4 => '<i style="font-size:12px">Sekurang-kurangnya 80%</i>',
+        5 => '<i style="font-size:12px">100% Guru Mempunyai Kelayakan Ijazah dan Ke Atas</i>',
     ],
     'kelayakan_ikhtisas_guru' => [
-        0 => '<i></i>',
-        1 => '<i>Sekurang-kurangnya 20%</i>',
-        2 => '<i>Sekurang-kurangnya 40%</i>',
-        3 => '<i>Sekurang-kurangnya 60%</i>',
-        4 => '<i>Sekurang-kurangnya 80%</i>',
-        5 => '<i>100% Guru Mempunyai Kelayakan Ikhtisas</i>',
+        0 => '<i style="font-size:12px"></i>',
+        1 => '<i style="font-size:12px">Sekurang-kurangnya 20%</i>',
+        2 => '<i style="font-size:12px">Sekurang-kurangnya 40%</i>',
+        3 => '<i style="font-size:12px">Sekurang-kurangnya 60%</i>',
+        4 => '<i style="font-size:12px">Sekurang-kurangnya 80%</i>',
+        5 => '<i style="font-size:12px">100% Guru Mempunyai Kelayakan Ikhtisas</i>',
     ],
 ];
 
@@ -62,7 +62,7 @@ $option_pembangunan_gurus = [
 
     #NilaiItem6 tbody {
         vertical-align: middle;
-        text-align: center;
+        /* text-align: center; */
     }
 
     #NilaiItem6 table {
@@ -97,23 +97,39 @@ $option_pembangunan_gurus = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Pengurusan & Pembangunan Guru</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan & Pembangunan Guru</td>
                 </tr>
                 @foreach ($pembangunan_gurus as $index => $pembangunan_guru)
                 <?php
                     $keyval = '';
                     $keyval = $index.'_verfikasi';
+
+                    $numeric = preg_replace('/[^0-9.]/', '', $pembangunan_guru);
+                    $text = trim(preg_replace('/[0-9.]/', '', $pembangunan_guru), '.');
+
+                    $excludeNumber = strpos($pembangunan_guru, 'text-primary') !== false;
                 ?>
                     <tr>
-                        <td colspan="2"> {{ $pembangunan_guru }}</td>
+                        @if (!$excludeNumber)
+                            <td> {{ $numeric }} </td>
+                        @endif
+
+                        @if(!$excludeNumber)
+                            <td> {!! $text !!} </td>
+                        @else
+                            <td class="bg-light-primary" colspan="8"> {!! $text !!} </td>
+                        @endif
+
                         @foreach ($option_pembangunan_gurus[$index] as $key => $option_pembangunan_guru)
                             <td>
-                                <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{$index}}" value="{{$key}}" required @if($pengurusan_pembangunan_guru && $pengurusan_pembangunan_guru->$keyval == $key) checked @endif>
+                                <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="{{$index}}" value="{{$key}}" required @if($pengurusan_pembangunan_guru && $pengurusan_pembangunan_guru->$keyval == $key) checked @endif @if($type == 'validasi'  || $status == 'done') disabled @endif>
                                 </div>
                                 <br>
 
-                                {!! $option_pembangunan_guru !!}
+                                <div class="d-flex justify-content-center align-items-center">
+                                    {!! $option_pembangunan_guru !!}
+                                </div>
                             </td>
                         @endforeach
                     </tr>
@@ -122,10 +138,18 @@ $option_pembangunan_gurus = [
         </table>
     </div>
 
-       <hr>
+    <hr>
+
+    <div class="col-md-12">
+        <label class="fw-bolder">Ulasan</label>
+        <textarea name="ulasan_verfikasi" id="" rows="3" class="form-control">{{$pengurusan_pembangunan_guru?->ulasan_verfikasi}}</textarea>
+    </div>
+@if($canVerify)
+
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform6v()">Simpan</button>
     </div>
+    @endif
     </form>
 
 

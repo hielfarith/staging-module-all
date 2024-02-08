@@ -21,27 +21,27 @@
 $butiran_institusi_id = $butiran_id;;
 
 $kebersihans = [
-    'persekitaran_kawasan_penyambut_tetamu' => '9.1 Persekitaran Kawasan Penyambut Tetamu',
-    'bilik_darjah_bilik_khas' => '9.2 Bilik Darjah / Bilik Khas',
+    'persekitaran_kawasan_penyambut_tetamu' => '<a> 9.1 Persekitaran Kawasan Penyambut Tetamu </a>',
+    'bilik_darjah_bilik_khas' => '<a> 9.2 Bilik Darjah / Bilik Khas </a>',
 ];
 
 $option_kebersihans = [
     'persekitaran_kawasan_penyambut_tetamu' => [
-        0 => '<i></i>',
-        1 => '<i>Mempunyai mana-mana satu (1) kriteria</i>',
-        2 => '<i>Mempunyai mana-mana dua (2) kriteria</i>',
-        3 => '<i>Mempunyai mana-mana tiga (3) kriteria</i>',
-        4 => '<i>Mempunyai mana-mana empat (4) kriteria</i>',
-        5 => '<i>Mempunyai mana-mana lima (5) kriteria</i>',
+        0 => '<i style="font-size:12px"></i>',
+        1 => '<i style="font-size:12px">Mempunyai mana-mana satu (1) kriteria</i>',
+        2 => '<i style="font-size:12px">Mempunyai mana-mana dua (2) kriteria</i>',
+        3 => '<i style="font-size:12px">Mempunyai mana-mana tiga (3) kriteria</i>',
+        4 => '<i style="font-size:12px">Mempunyai mana-mana empat (4) kriteria</i>',
+        5 => '<i style="font-size:12px">Mempunyai mana-mana lima (5) kriteria</i>',
     ],
 
     'bilik_darjah_bilik_khas' => [
-        0 => '<i></i>',
-        1 => '<i>Mempunyai mana-mana satu (1) kriteria</i>',
-        2 => '<i>Mempunyai mana-mana dua (2) kriteria</i>',
-        3 => '<i>Mempunyai mana-mana tiga (3) kriteria</i>',
-        4 => '<i>Mempunyai mana-mana empat (4) kriteria</i>',
-        5 => '<i>Mempunyai mana-mana lima (5) kriteria</i>',
+        0 => '<i style="font-size:12px"></i>',
+        1 => '<i style="font-size:12px">Mempunyai mana-mana satu (1) kriteria</i>',
+        2 => '<i style="font-size:12px">Mempunyai mana-mana dua (2) kriteria</i>',
+        3 => '<i style="font-size:12px">Mempunyai mana-mana tiga (3) kriteria</i>',
+        4 => '<i style="font-size:12px">Mempunyai mana-mana empat (4) kriteria</i>',
+        5 => '<i style="font-size:12px">Mempunyai mana-mana lima (5) kriteria</i>',
     ],
 ];
 
@@ -56,7 +56,7 @@ $option_kebersihans = [
 
     #NilaiItem9 tbody {
         vertical-align: middle;
-        text-align: center;
+        /* text-align: center; */
     }
 
     #NilaiItem9 table {
@@ -92,22 +92,39 @@ $option_kebersihans = [
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder">Kebersihan dan Keceriaan</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Kebersihan dan Keceriaan</td>
                 </tr>
                 @foreach ($kebersihans as $index => $kebersihan)
                 <?php
                     $keyval = '';
                     $keyval = $index.'_verfikasi';
+
+                    $numeric = preg_replace('/[^0-9.]/', '', $kebersihan);
+                    $text = trim(preg_replace('/[0-9.]/', '', $kebersihan), '.');
+
+                    $excludeNumber = strpos($kebersihan, 'text-primary') !== false;
                 ?>
                     <tr>
-                        <td colspan="2"> {{ $kebersihan }}</td>
+                        @if (!$excludeNumber)
+                            <td> {{ $numeric }} </td>
+                        @endif
+
+                        @if(!$excludeNumber)
+                            <td> {!! $text !!} </td>
+                        @else
+                            <td class="bg-light-primary" colspan="8"> {!! $text !!} </td>
+                        @endif
+
                         @foreach ($option_kebersihans[$index] as $key => $option_kebersihan)
                             <td>
-                                <div class="form-check form-check-inline mb-1">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required @if($kebersihanData && $kebersihanData->$keyval == $key) checked @endif>
+                                <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}_verfikasi" id="" value="{{$key}}" required @if($kebersihanData && $kebersihanData->$keyval == $key) checked @endif @if($type == 'validasi' || $status == 'done') disabled @endif>
                                 </div>
                                 <br>
-                                {!! $option_kebersihan !!}
+
+                                <div class="d-flex justify-content-center align-items-center">
+                                    {!! $option_kebersihan !!}
+                                </div>
                             </td>
                         @endforeach
                     </tr>
@@ -116,10 +133,18 @@ $option_kebersihans = [
         </table>
     </div>
 
-      <hr>
+    <hr>
+
+    <div class="col-md-12">
+        <label class="fw-bolder">Ulasan</label>
+        <textarea name="ulasan_verfikasi" id="" rows="3" class="form-control">{{$kebersihanData?->ulasan_verfikasi}}</textarea>
+    </div>
+@if($canVerify)
+
      <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform9v()">Simpan</button>
     </div>
+    @endif
 </form>
 
 

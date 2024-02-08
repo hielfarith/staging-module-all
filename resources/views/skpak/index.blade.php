@@ -9,7 +9,7 @@ SKPAK
 <li class="breadcrumb-item"><a href="#"> Instumen/ Modul </a></li>
 <li class="breadcrumb-item"><a href="#"> Jaminan Kualiti Pendidikan Awal Kanak-Kanak </a></li>
 @endsection
-
+<input type="hidden" name="skpak_id" id="skpak_id" value="{{$skpak?->id}}">
 @section('content')
 <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
@@ -43,7 +43,7 @@ SKPAK
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-tab" data-bs-toggle="tab" href="#jumlah" aria-controls="jumlah" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-tab" data-bs-toggle="tab" href="#jumlah" aria-controls="jumlah" role="tab" aria-selected="false" onclick="jumlah()">
             JUMLAH
         </a>
     </li>
@@ -71,7 +71,7 @@ SKPAK
                 @include('skpak.borang_skpak.item_6')
             </div>
             <div class="tab-pane fade" id="jumlah" role="tabpanel" aria-labelledby="jumlah-tab">
-                @include('skpak.borang_skpak.jumlah')
+                
             </div>
         </div>
     </div>
@@ -82,5 +82,20 @@ SKPAK
 var fragmentIdentifier = window.location.hash;
 function tabclicked(argument) {
     console.log(argument)
- }
+}
+function jumlah() {
+    var id = $('#skpak_id').val();
+    var url = "{{ route('skpak.get-jumlah') }}"
+    $.ajax({
+        url: url,
+        method: 'POST',
+        data: {
+            id:id
+        },
+        success: function(response) {
+            $('#jumlah').empty();
+            $('#jumlah').append(response)
+        }
+    });
+}
 </script>

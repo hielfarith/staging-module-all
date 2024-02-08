@@ -7,14 +7,15 @@
     } else {
         $butiranInstitusi = null;
     }
-    if (isset($type) && ($type == 'verfikasi' || $type == 'validasi')) {
+    if (isset($type) && ($type == 'verfikasi' || $type == 'validasi') || $type == 'done') {
         $disabled = 'disabled';
     } else {
         $disabled = '';
     }
-    $readonly = '';
+    $readonly = $name = '';
     if ($type == 'borang') {
         $readonly = 'readonly';
+        $name = \Auth::user()->name;
     }
 ?>
 <form id="butiran_institusi" novalidate="novalidate">
@@ -43,14 +44,14 @@
             <label class="form-label fw-bold text-titlecase">Nama Pengetua
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" name="nama_pengetua" id="nama_pengetua" class="form-control" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->nama_pengetua}}">
+            <input type="text" name="nama_pengetua" id="nama_pengetua" class="form-control" required {{$disabled}} {{$readonly}} value="{{$butiranInstitusi?->nama_pengetua ?? $name}}">
         </div>
 
         <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Alamat
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" class="form-control" required {{$disabled}} name="alamat" {{$readonly}}  value="{{$butiranInstitusi?->alamat}}">
+            <input type="text" class="form-control" required {{$disabled}} name="alamat" id="alamat" {{$readonly}}  value="{{$butiranInstitusi?->alamat}}">
         </div>
 
         <div class="col-md-4 mb-1">
@@ -91,7 +92,9 @@
         </div>
 
         <div class="col-md-3 mb-1">
-            <label class="form-label fw-bold text-titlecase"> No. Faks </label>
+            <label class="form-label fw-bold text-titlecase"> No. Faks 
+                <span class="text-danger">*</span>
+            </label>
             <input type="text" name="fax" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->fax}}">
         </div>
 
@@ -99,7 +102,7 @@
             <label class="form-label fw-bold text-titlecase"> Alamat Emel
                 <span class="text-danger">*</span>
             </label>
-            <input type="email" name="email" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->email}}" {{$readonly}}>
+            <input type="email" name="email" id="email" class="form-control" required {{$disabled}} value="{{$butiranInstitusi?->email}}" {{$readonly}}>
         </div>
 
         <div class="col-md-3 mb-1">
@@ -237,7 +240,7 @@
             <input type="text" id="" name="tarikh_lapor" class="form-control flatpickr" required {{$disabled}} value="{{$butiranInstitusi?->tarikh_lapor}}">
         </div>
     </div>
-        @if($checkforTambah == 'borang')
+        @if($checkforTambah == 'borang' && $canFill)
         <hr>
         <div class="d-flex justify-content-end align-items-center mt-1">
             <button type="submit" class="btn btn-primary float-right">Simpan</button>
@@ -285,7 +288,6 @@
                 var id = response.data.id;
                 var location = "{{route('skips.skips_baru', ['id' => ':id'])}}";
                 var location = location.replace(':id', id);
-                console.log(location)
                 window.location.href = location;
            }
         }
@@ -331,7 +333,7 @@ function updateInstitusi(institusi) {
                     if (institutedata.nama_pengetua_gurubesar) {
                         $('#nama_pengetua').val(institutedata.nama_pengetua_gurubesar);
                     } else {
-                        $('#nama_pengetua').removeAttr('readonly')
+                        // $('#nama_pengetua').removeAttr('readonly')
                     }
 
                     $('#alamat2').val(institutedata.alamat_2);

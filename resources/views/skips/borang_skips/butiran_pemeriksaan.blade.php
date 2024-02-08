@@ -2,7 +2,11 @@
 $instrumen_id = Request::segment(3);
 $pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $instrumen_id)->first();
 $checkforTambah = Request::segment(2);
-
+if ($type == 'done' || $type == 'validasi') {
+    $disabled = 'disabled';
+} else {
+    $disabled = '';
+}
 ?>
 <form id="butiran_pemeriksaan">
     <input type="hidden" name="instrumen_id" value="{{$instrumen_id}}">
@@ -11,56 +15,74 @@ $checkforTambah = Request::segment(2);
         <label class="form-label fw-bold">Kod Sekolah
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="kod_sekolah" class="form-control" required value={{$pemeriskan?->kod_sekolah}}>
+        <input type="text" name="kod_sekolah" class="form-control" required value={{$pemeriskan?->kod_sekolah}} {{$disabled}}>
     </div>
 
     <div class="col-md-4 mb-1">
         <label class="form-label fw-bold">Tarikh Pemeriksaan & Masa Lawatan
             <span class="text-danger">*</span>
         </label>
-        <input type="text" id="fp-date-time" name="tarikh_pemeriksaan" class="form-control flatpickr" placeholder="d/m/Y" required value={{$pemeriskan?->tarikh_pemeriksaan}}>
+        <input type="text" id="fp-date-time" name="tarikh_pemeriksaan" class="form-control flatpickr" {{$disabled}} placeholder="d/m/Y" required value={{$pemeriskan?->tarikh_pemeriksaan}}>
     </div>
 
     <div class="col-md-4 mb-1">
         <label class="form-label fw-bold">No Pasukan Pemeriksa
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="no_pasukan_pemeriksa" class="form-control" required value={{$pemeriskan?->no_pasukan_pemeriksa}}>
+        <input type="text" name="no_pasukan_pemeriksa" class="form-control" {{$disabled}} required value={{$pemeriskan?->no_pasukan_pemeriksa}}>
     </div>
 
     <div class="col-md-12 mb-1">
         <label class="form-label fw-bold"> Pemeriksa 1
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="pemeriksa_1" class="form-control" required value={{$pemeriskan?->pemeriksa_1}}>
+        <!-- <input type="text" name="pemeriksa_1" class="form-control" required value={{$pemeriskan?->pemeriksa_1}}> -->
+        <select class="form-control select2" name="pemeriksa_1" id="pemeriksa_1" {{$disabled}} required>
+            <option value="" hidden>Sila Pilij</option>
+            <option value="User 1" @if($pemeriskan?->pemeriksa_1 == 'User 1') selected @endif>User 1</option>
+            <option value="User 2" @if($pemeriskan?->pemeriksa_1 == 'User 2') selected @endif>User 2</option>
+            <option value="User 3" @if($pemeriskan?->pemeriksa_1 == 'User 3') selected @endif>User 3</option>
+        </select>
     </div>
 
     <div class="col-md-12 mb-1">
         <label class="form-label fw-bold"> Pemeriksa 2
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="pemeriksa_2" class="form-control" required value={{$pemeriskan?->pemeriksa_2}}>
+        <!-- <input type="text" name="pemeriksa_2" class="form-control" required value={{$pemeriskan?->pemeriksa_2}}> -->
+        <select class="form-control select2" name="pemeriksa_2" id="pemeriksa_2" {{$disabled}} required>
+            <option value="" hidden>Sila Pilij</option>
+            <option value="User 1" @if($pemeriskan?->pemeriksa_2 == 'User 1') selected @endif>User 1</option>
+            <option value="User 2" @if($pemeriskan?->pemeriksa_2 == 'User 2') selected @endif>User 2</option>
+            <option value="User 3" @if($pemeriskan?->pemeriksa_2 == 'User 3') selected @endif>User 3</option>
+        </select>
     </div>
 
     <div class="col-md-12 mb-1">
         <label class="form-label fw-bold"> Pemeriksa 3
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="pemeriksa_3" class="form-control" required value={{$pemeriskan?->pemeriksa_3}}>
+        <!-- <input type="text" name="pemeriksa_3" class="form-control" required value={{$pemeriskan?->pemeriksa_3}}> -->
+         <select class="form-control select2" name="pemeriksa_3" id="pemeriksa_3" {{$disabled}} required>
+            <option value="" hidden>Sila Pilij</option>
+            <option value="User 1" @if($pemeriskan?->pemeriksa_3 == 'User 1') selected @endif>User 1</option>
+            <option value="User 2" @if($pemeriskan?->pemeriksa_3 == 'User 2') selected @endif>User 2</option>
+            <option value="User 3" @if($pemeriskan?->pemeriksa_3 == 'User 3') selected @endif>User 3</option>
+        </select>
     </div>
      <div class="col-md-12 mb-1">
         <label class="form-label fw-bold">Ketua Pemeriksa
             <span class="text-danger">*</span>
         </label>
-        <input type="text" name="ketua_pemeriksa" class="form-control" required value={{$pemeriskan?->ketua_pemeriksa}}>
+        <input type="text" name="ketua_pemeriksa" class="form-control" required {{$disabled}} value={{$pemeriskan?->ketua_pemeriksa}}>
     </div>
 </div>
-    @if($checkforTambah != 'tambah-skips')
-    <hr>
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right" onclick="submitformPemeriksan()">Hantar</button>
-    </div>
-    @endif
+@if($checkforTambah != 'tambah-skips' && $canVerify )
+<hr>
+<div class="d-flex justify-content-end align-items-center mt-1">
+    <button type="button" class="btn btn-primary float-right" onclick="submitformPemeriksan()">Hantar</button>
+</div>
+@endif
 </form>
 @section('script')
 <script>
@@ -92,6 +114,8 @@ $checkforTambah = Request::segment(2);
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    url = "{{route('skips.senarai-skips-institusi')}}"
+                    window.location.href = url;
                }
             }
         });

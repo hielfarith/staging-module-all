@@ -71,7 +71,7 @@ $peperiksaans = [
             @endforeach
         <?php
             $total = $total + $totalv;
-            $percentage = ($total/15);
+            $percentage = ($total/30);
             $percentage = $percentage*100;
              if($type == 'verfikasi') {
                  $col = 2;
@@ -89,11 +89,11 @@ $peperiksaans = [
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{number_format($percentage,0)}}</a>
+                    <a class="text-success">{{number_format($percentage,2)}}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
 <input type="hidden" value="{{$total}}" name="tab5_skor" id="tab5_skor">
-<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab5_percentage" id="tab5_percentage">
+<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab5_percentage" id="tab5_percentage">

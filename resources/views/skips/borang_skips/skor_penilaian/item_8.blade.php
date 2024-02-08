@@ -75,7 +75,7 @@ $butiran_institusi_id = $butiran_id;;
         </tbody>
             <?php
             $total = $total + $totalv;
-            $percentage = ($total/30);
+            $percentage = ($total/60);
             $percentage = $percentage*100;
              if($type == 'verfikasi') {
                  $col = 2;
@@ -93,11 +93,11 @@ $butiran_institusi_id = $butiran_id;;
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{ number_format($percentage,0) }}</a>
+                    <a class="text-success">{{ number_format($percentage,2) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
 <input type="hidden" value="{{$total}}" name="tab8_skor" id="tab8_skor">
-<input type="hidden" value="{{ number_format($percentage,0) }}" name="tab8_percentage" id="tab8_percentage">
+<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab8_percentage" id="tab8_percentage">
