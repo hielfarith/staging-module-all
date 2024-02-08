@@ -21,12 +21,13 @@
 </h5>
 
 <?php
+    $show = false;
     if ($skpak) {
         if (!empty($skpak->penilaian1) && !empty($skpak->penilaian2) && !empty($skpak->penilaian3) && !empty($skpak->penilaian4) && !empty($skpak->penilaian5) && !empty($skpak->penilaian6)) {
             $show = true;
         }
     } else {
-            $show = false;
+        $
         $penilaian1 = null;
     }
 ?>
