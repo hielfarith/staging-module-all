@@ -13,5 +13,7 @@ Route::controller(PengurusanSkpakController::class)->group(function () {
         Route::post('get-jumlah','GetJumlah')->name('get-jumlah');
         Route::post('submit-spkak','SubmitSpkak')->name('submit-spkak');
 
+        Route::get('dashboard','DashboardSkpak')->name('dashboard');
+
     });
 });

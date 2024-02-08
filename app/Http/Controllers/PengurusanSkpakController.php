@@ -154,4 +154,8 @@ class PengurusanSkpakController extends Controller
 
         return view('skpak.list');
     }
+
+    public function DashboardSkpak (Request $request){
+        return view('dashboard.dashboard_skpak');
+    }
 }
