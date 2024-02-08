@@ -10,6 +10,8 @@ use App\Models\MasterAction;
 use App\Models\ModuleStatus;
 
 use App\Helpers\FMF;
+use App\Models\Master\MasterState;
+use App\Models\MasterDaerah;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -41,7 +43,7 @@ class PengurusanSkpakController extends Controller
         $input = $request->input();
         $tabsarray = ['penilaian1','penilaian2','penilaian3','penilaian4','penilaian5','penilaian6'];
         $instrument = InstrumenSkpakSpksIkeps::where('type', 'SKPAK')->where('status',1)->first();
-        
+
         DB::beginTransaction();
         try {
             $input[$tab] = json_encode($input);
@@ -81,7 +83,7 @@ class PengurusanSkpakController extends Controller
         $skpak = null;
         if ($id) {
             $skpak = SkpakStandardPenilaian::where('id', $id)->first();
-            for ($i=1; $i < 7; $i++) { 
+            for ($i=1; $i < 7; $i++) {
                 $name = 'penilaian'.$i;
                 if (isset($skpak->$name)) {
                     $val = json_decode($skpak->$name, true);
@@ -89,13 +91,13 @@ class PengurusanSkpakController extends Controller
                     foreach ($val as $key => $value) {
                         if ($value == 'YA') {
                             $array[$name]['YA'] = ++$ya;
-                        } 
+                        }
                         if ($value == 'TIDAK') {
                             $array[$name]['TIDAK'] = ++$tidak;
                         }
                     }
                 }
-                
+
             }
         }
         $totalya = $totaltidak = 0 ;
@@ -120,7 +122,7 @@ class PengurusanSkpakController extends Controller
     public function SenaraiSkpak(Request $request)
     {
         //  if($request->ajax()) {
-           
+
         //     $skpak = SkpakStandardPenilaian::all()
 
         //     return Datatables::of($skpak)
@@ -156,6 +158,47 @@ class PengurusanSkpakController extends Controller
     }
 
     public function DashboardSkpak (Request $request){
-        return view('dashboard.dashboard_skpak');
+
+        $states = MasterState::all();
+        $daerahs = MasterDaerah::all();
+
+        // if($request->ajax()) {
+
+        //     $skpak = SkpakStandardPenilaian::all()
+
+        //     return Datatables::of($skpak)
+        //         ->editColumn('nama_institusi', function ($skpak) {
+        //             $alamats = '';
+        //             $alamats .= '<p class="fw-bolder>'. $skpak->nama_taska .'</p>';
+        //             $alamats .= '<p>'. $skpak->alamat_1 .'</p>';
+        //             $alamats .= '<p>'. $skpak->alamat_2 .'</p>';
+        //             $alamats .= '<p>'. $skpak->alamat_3 .'</p>';
+        //             $alamats .= '<p>'. $skpak->poskod . ', ' . $skpak->daerah .  ', ' . $skpak->negeri . '</p>';
+
+        //             return $alamats;
+        //         })
+        //         ->editColumn('star_rating', function ($skpak) {
+        //             $stars = '';
+        //             $stars .= '<div class="d-flex justify-content-center align-items-center">';
+
+        //             // Looping star starts here
+        //             $stars .= '<i class="fa fa-star text-primary" aria-hidden="true"></i>';
+        //             // Ends here
+
+        //             $stars .= '</div>';
+
+        //             return $stars;
+        //         })
+        //         ->editColumn('tarikh_luput', function ($skpak) {
+        //             return $skpak->tarikh_luput;
+        //         })
+        //         ->editColumn('status', function ($skpak) {
+        //             return $skpak->status;
+        //         })
+        //         ->rawColumns(['action'])
+        //         ->make(true);
+        // }
+
+        return view('dashboard.dashboard_skpak', compact('states','daerahs'));
     }
 }
