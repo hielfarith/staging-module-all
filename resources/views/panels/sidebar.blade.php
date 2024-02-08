@@ -475,8 +475,8 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.dashboard']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.dashboard') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
                         </a>
                     </li>
