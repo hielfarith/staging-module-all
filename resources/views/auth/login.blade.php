@@ -142,6 +142,18 @@
                             <a href="javascript:demoLogin(9)" class="list-group-item list-group-item-action">
                                 [User SPPIP] Ketua Sukan
                             </a>
+                            <a href="javascript:demoLogin(10)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Institusi
+                            </a>
+                            <a href="javascript:demoLogin(11)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Bahagian Pendidikan Swasta
+                            </a>
+                            <a href="javascript:demoLogin(12)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Jabatan Pendidikan Negeri
+                            </a>
+                            <a href="javascript:demoLogin(13)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Jabatan SKIPS
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -196,6 +208,22 @@
                     },
                     {
                         email: 'ketuasukan@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'userinstitute@yopmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'bahagian@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'jabatan_negeri@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'jabat_skips@gmail.com',
                         password: 'password',
                     }
                 ];
