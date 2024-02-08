@@ -46,8 +46,7 @@ Dashboard SKPAK
                 <div class="row">
                     <div class="col-md-3 mb-1">
                         <label class="fw-bold form-label">Negeri</label>
-                        <select class="form-control select2" name="negeri" id="negeri" required
-                            onchange="handleNegeri(this)">
+                        <select class="form-control select2" name="negeri" id="negeri" multiple onchange="handleNegeri(this)">
                             <option value="" hidden>Negeri</option>
                             @foreach($states as $state)
                             <option value="{{$state->name}}">{{$state->name}}</option>
@@ -57,7 +56,7 @@ Dashboard SKPAK
 
                     <div class="col-md-3 mb-1">
                         <label class="fw-bold form-label">Daerah</label>
-                        <select class="form-control select2" name="daerah" required id="daerah">
+                        <select class="form-control select2" name="daerah" multiple id="daerah">
                             <!-- add -->
                         </select>
                     </div>
@@ -191,8 +190,7 @@ Dashboard SKPAK
                 <div class="row">
                     <div class="col-md-3 mb-1">
                         <label class="fw-bold form-label">Negeri</label>
-                        <select class="form-control select2" name="negeri" id="negeri" required
-                            onchange="handleNegeri(this)">
+                        <select class="form-control select2" name="negeri" id="negeri" multiple onchange="handleNegeri(this)">
                             <option value="" hidden>Negeri</option>
                             @foreach($states as $state)
                             <option value="{{$state->name}}">{{$state->name}}</option>
@@ -202,14 +200,14 @@ Dashboard SKPAK
 
                     <div class="col-md-3 mb-1">
                         <label class="fw-bold form-label">Daerah</label>
-                        <select class="form-control select2" name="daerah" required id="daerah">
+                        <select class="form-control select2" name="daerah" multiple id="daerah">
                             <!-- add -->
                         </select>
                     </div>
 
                     <div class="col-md-6 mb-1">
                         <label class="fw-bold form-label">Nama Taska</label>
-                        <select name="" id="" class="form-control select2" multiple>
+                        <select name="" id="" class="form-control select2">
                             <option value="" hidden>Nama Taska</option>
                             <option value="0">Semua Taska</option>
                             <option value="1">Taska Permata 1</option>
