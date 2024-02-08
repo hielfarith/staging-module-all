@@ -48,11 +48,22 @@
 
 @endphp
 <?php
+    $ya = $tidak = 0;
     if ($skpak) {
         $penilaian1 = json_decode($skpak->penilaian1, true);
+        foreach ($penilaian1 as $key => $value) {
+            if ($value == 'YA') {
+                $ya = ++$ya;
+            }
+            if ($value == 'TIDAK') {
+                $tidak = ++$tidak;
+            }
+        }
+        $namataska = $skpak->nama_taska;
     } else {
-        $penilaian1 = null;
+        $penilaian1 = $namataska = null;
     }
+    $ketuaTaska = \App\Models\ProfilPengguna::pluck('nama_taska','id');
 ?>
 <h5 class="card-title fw-bolder">
     ETIKA DAN PROFESIONALISME
@@ -61,6 +72,20 @@
 <hr>
 <form id="penilaian1">
 <input type="hidden" name="skpak_id" value="{{$skpak?->id}}">
+<div class="row">
+    <div class="col-md-4">
+        <label class="fw-bold form-label">Nama Taska
+            <span class="text-danger">*</span>
+        </label>
+        <select name="nama_taska" required class="form-control" {{$disabled}}>
+            <option>Sila Pilih</option>
+            @foreach($ketuaTaska as $key => $taska)
+            <option value="{{$key}}" @if($namataska == $key) selected @endif>{{$taska}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<br>
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="NilaiItem1">
         <thead>
@@ -85,12 +110,12 @@
                         <td>{{ $subsection_item1 }}</td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-1" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" required @if($penilaian1 && $penilaian1[$name] == 'YA') checked @endif>
+                                <input class="form-check-input radio-input-1" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" required @if($penilaian1 && $penilaian1[$name] == 'YA') checked @endif {{$disabled}}>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-1" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" required @if($penilaian1 && $penilaian1[$name] == 'TIDAK') checked @endif>
+                                <input class="form-check-input radio-input-1" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" required @if($penilaian1 && $penilaian1[$name] == 'TIDAK') checked @endif {{$disabled}}>
                             </div>
                         </td>
                     </tr>
@@ -102,18 +127,19 @@
                 <td class="text-end">
                     Jumlah
                 </td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
+                <td class="text-center" id="YA">{{$ya}}</td>
+                <td class="text-center" id="TIDAK">{{$tidak}}</td>
             </tr>
         </tfoot>
     </table>
 </div>
 
 <hr>
-
+@if(empty($disabled))
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="submitpenilaian1()">Simpan</button>
 </div>
+@endif
 </form>
 
 <script>
@@ -145,7 +171,6 @@
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
                     var id = response.data.id;
-                    console.log(response.data)
                     var location = "{{route('skpak.skpak_baru', ['id' => ':id'])}}";
                     var location = location.replace(':id', id);
                     window.location.href = location;

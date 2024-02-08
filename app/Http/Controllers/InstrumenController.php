@@ -568,7 +568,8 @@ class InstrumenController extends Controller
         $skpak = null;
         $totalya = 0;
         $totaltidak=0;
-        return view ('instrumen_update.skpak.form', compact('negeris','skpak','totalya','totaltidak'));
+        $disabled = '';
+        return view ('instrumen_update.skpak.form', compact('negeris','skpak','totalya','totaltidak', 'disabled'));
     }
 
     public function saveSkpak(Request $request) {

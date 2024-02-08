@@ -18,6 +18,7 @@ class SkpakStandardPenilaian extends Model
             'penilaian6',
             'status',
             'instrument_id',
-            'jumlah'
+            'jumlah',
+            'nama_taska'
         ];
 }

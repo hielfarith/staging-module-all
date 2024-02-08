@@ -42,6 +42,7 @@ class ProfilPengguna extends Model
                             'jumla_staf_sokogan',
                             'jenisbanugunan',
                             'no_tel_pejabat',
-                            'no_tel_peribadi'
+                            'no_tel_peribadi',
+                            'nama_taska'
                         ];
 }

@@ -74,7 +74,7 @@ $penilaians = [
         </tfoot>
     </table>
 </div>
-@if($show)
+@if($show && empty($disabled))
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="hantar()">Simpan</button>
 </div>
@@ -92,7 +92,7 @@ $penilaians = [
             },
             success: function(response) {
                 Swal.fire('Success', 'Berjaya', 'success');
-                var location = "{{route('home')}}";
+                var location = "{{route('skpak.senarai-skpak')}}";
                 window.location.href = location;
             }
         });

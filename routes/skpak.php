@@ -9,9 +9,13 @@ Route::controller(PengurusanSkpakController::class)->group(function () {
         Route::post('save-skpak/{tab}','saveSkpak')->name('save-skpak');
 
         Route::get('validasi-pengisian','ValidasiSkpak')->name('validasi_skpak');
+        Route::get('verfikasi-senarai','verfikasiSkpakSenarai')->name('verfikasi_senarai');
+        Route::get('verfikasi-pengisian/{id}','verfikasiSkpak')->name('verfikasi_skpak');
         Route::get('senarai-skpak','SenaraiSkpak')->name('senarai-skpak');
         Route::post('get-jumlah','GetJumlah')->name('get-jumlah');
         Route::post('submit-spkak','SubmitSpkak')->name('submit-spkak');
+        Route::post('save-spkak-verfikasi/{tab}','saveVerfiksai')->name('save-verfikasi');
+        Route::get('borang/{id}/{type}','borangView')->name('borang-view');
 
         Route::get('dashboard','DashboardSkpak')->name('dashboard');
 

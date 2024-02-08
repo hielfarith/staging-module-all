@@ -96,8 +96,17 @@ $items_6 = [
 ];
 @endphp
 <?php
+    $ya = $tidak = 0;
     if ($skpak) {
         $penilaian6 = json_decode($skpak->penilaian6, true);
+        foreach ($penilaian6 as $key => $value) {
+            if ($value == 'YA') {
+                $ya = ++$ya;
+            }
+            if ($value == 'TIDAK') {
+                $tidak = ++$tidak;
+            }
+        }
     } else {
         $penilaian6 = null;
     }
@@ -133,12 +142,12 @@ $items_6 = [
                         <td>{{ $subsection_item6 }}</td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" @if($penilaian6 && $penilaian6[$name] == 'YA') checked @endif>
+                                <input class="form-check-input" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" @if($penilaian6 && $penilaian6[$name] == 'YA') checked @endif {{$disabled}}>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" @if($penilaian6 && $penilaian6[$name] == 'TIDAK') checked @endif>
+                                <input class="form-check-input" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" @if($penilaian6 && $penilaian6[$name] == 'TIDAK') checked @endif {{$disabled}}>
                             </div>
                         </td>
                     </tr>
@@ -150,18 +159,19 @@ $items_6 = [
                 <td class="text-end">
                     Jumlah
                 </td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
+                <td class="text-center" id="YA">{{$ya}}</td>
+                <td class="text-center" id="TIDAK">{{$tidak}}</td>
             </tr>
         </tfoot>
     </table>
 </div>
 
 <hr>
-
+@if(empty($disabled))
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right formdd" onclick="submitp6()">Simpan</button>
 </div>
+@endif
 </form>
 
 <script>
@@ -193,10 +203,9 @@ $items_6 = [
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
                     var id = response.data.id;
-                    console.log(response.data)
-                    var location = "{{route('skpak.skpak_baru', ['id' => ':id'])}}";
-                    var location = location.replace(':id', id);
-                    window.location.href = location;
+                    // var location = "{{route('skpak.skpak_baru', ['id' => ':id'])}}";
+                    // var location = location.replace(':id', id);
+                    // window.location.href = location;
                }
             }
         });

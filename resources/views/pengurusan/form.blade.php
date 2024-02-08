@@ -250,7 +250,15 @@ Pengurusan Ketua Taska
                     <input type="text" class="form-control" name="jumla_staf_sokogan" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-md-5">
+                    <label class="fw-bold form-label">Nama Taska
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="nama_taska" required>
+                </div>
+            </div>
+ 
             <hr>
             <div class="d-flex justify-content-end align-items-center mt-1">
                 <button type="submit" class="btn btn-primary float-right">Simpan</button>
@@ -416,6 +424,10 @@ Pengurusan Ketua Taska
                 <input type="text" class="form-control" name="no_tel_peribadi" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength=12>
             </div>
 
+            <div>
+                <label class="fw-bold"> Nama Taska<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" name="nama_taska" required>
+            </div>
 
             <div class="d-flex justify-content-end align-items-center my-1">
                 <button type="submit" class="btn btn-primary float-right">Hantar</button>
@@ -428,7 +440,7 @@ Pengurusan Ketua Taska
 
 @section('script')
 <script type="text/javascript">
-function changenegeri(negeri){
+function changenegeri(negeri) {
     var negerivalue = negeri.value;
     var url = "{{ route('admin.internal.checkdaerah') }}"
     $.ajax({
@@ -475,7 +487,6 @@ $('#formpengunna').submit(function(event) {
             var selectedValues = element.val();
             var fieldName = element.attr('name');
             if (typeof element.attr('disabled') == 'undefined') {
-
                 if (!selectedValues || selectedValues === '') {
                     Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
                     return false; // Stop the loop if an error is found

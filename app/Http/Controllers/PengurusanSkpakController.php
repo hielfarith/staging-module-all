@@ -8,6 +8,8 @@ use App\Models\InstrumenSkpakSpksIkeps;
 use App\Models\Module;
 use App\Models\MasterAction;
 use App\Models\ModuleStatus;
+use App\Models\ProfilPengguna;
+use App\Models\SkpakVerfikasiValidasi;
 
 use App\Helpers\FMF;
 use App\Models\Master\MasterState;
@@ -29,7 +31,21 @@ class PengurusanSkpakController extends Controller
         } else {
             $skpak = null;
         }
-        return view ('skpak.index', compact('skpak'));
+        $disabled = '';
+        return view ('skpak.index', compact('skpak', 'disabled'));
+    }
+    public function borangView(Request $request, $id, $type){
+        if (!empty($id)) {
+            $skpak = SkpakStandardPenilaian::where('id', $id)->first();
+        } else {
+            $skpak = null;
+        }
+        if ($type == 'kemaskini') {
+            $disabled = '';
+        } else {
+            $disabled = 'disabled';
+        }
+        return view ('skpak.index', compact('skpak', 'disabled'));
     }
 
     public function RingkasanSkpak(Request $request){
@@ -113,50 +129,94 @@ class PengurusanSkpakController extends Controller
     public function SubmitSpkak(Request $request)
     {
         if ($request->id) {
-            $skpak = SkpakStandardPenilaian::where('id', $id)->first();
+            $skpak = SkpakStandardPenilaian::where('id', $request->id)->first();
             $skpak->status = 2;
             $skpak->save();
         }
         return ['success' => true];
     }
+
+    
+
     public function SenaraiSkpak(Request $request)
     {
-        //  if($request->ajax()) {
+         if($request->ajax()) {
 
-        //     $skpak = SkpakStandardPenilaian::all()
+            $skpak = SkpakStandardPenilaian::select(['profil_pengguna.nama_taska','profil_pengguna.nama_pengguna','skpak_standard_penilaians.status','skpak_standard_penilaians.id as skpak_id'])->join('profil_pengguna','profil_pengguna.id','=','skpak_standard_penilaians.nama_taska');
 
-        //     return Datatables::of($skpak)
-        //         ->editColumn('nama_institusi', function ($skpak) {
-        //             return $skpak->nama_institusi;
-        //         })
-        //         ->editColumn('nama_pengetua', function ($skpak) {
-        //             return $skpak->nama_pengetua;
-        //         })
-        //         ->editColumn('status', function ($skpak) {
-        //             $item = ItemStandardQualitySkips::where('butiran_institusi_id', $skpak->id)->first();
-        //             return $item->statuses->status_description;
-        //         })
-        //         ->addColumn('DT_RowIndex', function ($skpak) {
-        //             static $index = 1;
-        //             return $index++;
-        //         })
-        //         ->editColumn('action', function ($skpak) {
-        //             $button = "";
-        //             $button .= '<div class="btn-group " role="group" aria-label="Action">';
+            return Datatables::of($skpak)
+                ->editColumn('nama_taska', function ($skpak) {
+                    return $skpak->nama_taska;
+                })
+                ->editColumn('nama_pengguna', function ($skpak) {
+                    return $skpak->nama_pengguna;
+                })
+                ->editColumn('status', function ($skpak) {
+                    return $skpak->status;
+                })
+                ->addColumn('DT_RowIndex', function ($skpak) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('action', function ($skpak) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
-        //             $button .= '<a onclick="maklumatInstrumen(' . $skpak->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSkpak(' . $skpak->skpak_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSkpakEdit(' . $skpak->skpak_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
 
-        //             $button .= "</div>";
+                    $button .= "</div>";
 
-        //             return $button;
-        //         })
-        //         ->rawColumns(['action'])
-        //         ->make(true);
-        // }
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
 
         return view('skpak.list');
     }
 
+    public function verfikasiSkpakSenarai(Request $request)
+    {
+         if($request->ajax()) {
+
+            $skpak = SkpakStandardPenilaian::select(['profil_pengguna.nama_taska','profil_pengguna.nama_pengguna','skpak_standard_penilaians.status','skpak_standard_penilaians.id as skpak_id'])->join('profil_pengguna','profil_pengguna.id','=','skpak_standard_penilaians.nama_taska')->where('skpak_standard_penilaians.status','=',2);
+
+            return Datatables::of($skpak)
+                ->editColumn('nama_taska', function ($skpak) {
+                    return $skpak->nama_taska;
+                })
+                ->editColumn('nama_pengguna', function ($skpak) {
+                    return $skpak->nama_pengguna;
+                })
+                ->editColumn('status', function ($skpak) {
+                    return $skpak->status;
+                })
+                ->addColumn('DT_RowIndex', function ($skpak) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('action', function ($skpak) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatSkpak(' . $skpak->skpak_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSkpakverfikasi(' . $skpak->skpak_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('skpak.list');
+    }
+
+     public function VerfikasiSkpak (Request $request, $id) {
+        return view('skpak.index_verfikasi', compact('id'));
+    }
     public function DashboardSkpak (Request $request){
 
         $states = MasterState::all();
@@ -200,5 +260,36 @@ class PengurusanSkpakController extends Controller
         // }
 
         return view('dashboard.dashboard_skpak', compact('states','daerahs'));
+    }
+
+    public function saveVerfiksai(Request $request, $tab)
+    {
+        $tabdata = explode("_", $tab);
+        $tabname = $tabdata[0];
+        $tabtype = $tabdata[1];
+        $input = $request->input();
+        $data['skpak_standard_penilaian_id'] = $input['skpak_standard_penilaian_id'];
+        unset($input['skpak_standard_penilaian_id']);
+        $savedData = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $data['skpak_standard_penilaian_id'])->first();
+        if ($savedData) {
+            $tabData = $savedData->$tabname;
+            $array = [];
+            $array[$tabtype] = $input;
+            $data[$tabname] = json_encode($array);
+            if ($tabData) {
+                $existingJson = json_decode($tabData, true);
+                $updayedDaata = array_merge($existingJson, $array);
+                $data[$tabname] = json_encode($updayedDaata);
+            } 
+            $verfikasi = $savedData->update($data);
+        } else {
+            $array = [];
+            $array[$tabtype] = $input;
+            $data[$tabname] = json_encode($array);
+             
+            $verfikasi = new SkpakVerfikasiValidasi;
+            $verfikasi = $verfikasi->create($data);
+        }
+        return ['success' => true ,'data' => $verfikasi];
     }
 }

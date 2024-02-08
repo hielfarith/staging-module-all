@@ -215,6 +215,14 @@
             <input type="text" class="form-control" name="jumla_staf_sokogan" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' {{$readonly}} value="{{$pengguna->jumla_staf_sokogan}}">
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-5">
+            <label class="fw-bold form-label">Nama Taska
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" class="form-control" name="nama_taska" required {{$readonly}} value="{{$pengguna->nama_taska}}">
+        </div>
+    </div>
 
     @if($readonly != 'readonly')
     <hr>

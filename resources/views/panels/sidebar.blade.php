@@ -443,8 +443,8 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.verfikasi_senarai']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.verfikasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Verifikasi Data Instrumen
                             </span>
@@ -496,8 +496,39 @@ $configData = Helper::applClasses();
 
                     <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
                         <a href="#" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
+                        <i data-feather="folder"></i>
+                            <span class="menu-title text-truncate text-wrap"> Modul Kemaskini Profil Pengguna </span>
                         </a>
+                        <ul class="nav">
+                             <li class="nav-item {{ in_array(request()->route()->getName(),['admin.internal.penggunalist'])? 'active': '' }}">
+                            <a href="{{ route('admin.internal.penggunalist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Ketua Taska </span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ in_array(request()->route()->getName(),['admin.internal.penilailist'])? 'active': '' }}">
+                                <a href="{{ route('admin.internal.penilailist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Panel Penilai </span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ in_array(request()->route()->getName(),['admin.internal.agensilist'])? 'active': '' }}">
+                                <a href="{{ route('admin.internal.agensilist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Ketua Agensi </span>
+                                </a>
+                            </li>
+
+                             <li class="nav-item {{ in_array(request()->route()->getName(),['admin.internal.jawatankuasalist'])? 'active': '' }}">
+                                <a href="{{ route('admin.internal.jawatankuasalist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Ahli Jawatan Kerja </span>
+                                </a>
+                            </li>
+                             <li class="nav-item {{ in_array(request()->route()->getName(),['admin.internal.jawatankuasatertinggilist'])? 'active': '' }}">
+                                <a href="{{ route('admin.internal.jawatankuasatertinggilist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Ahli Jawatan Tertinggi </span>
+                                </a>
+                            </li>
+                        </ul> 
                     </li>
                 </ul>
             </li>
