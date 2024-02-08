@@ -565,8 +565,8 @@ class InstrumenController extends Controller
 
     public function tambahSkpak(Request $request) {
         $negeris = MasterState::all();
-
-        return view ('instrumen_update.skpak.form', compact('negeris'));
+        $skpak = null;
+        return view ('instrumen_update.skpak.form', compact('negeris','skpak'));
     }
 
     public function saveSkpak(Request $request) {
