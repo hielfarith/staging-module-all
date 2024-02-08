@@ -27,7 +27,6 @@
             $show = true;
         }
     } else {
-        $
         $penilaian1 = null;
     }
 ?>
