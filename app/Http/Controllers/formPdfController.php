@@ -30,7 +30,7 @@ class formPdfController extends Controller
     {
         //$dataFromDatabase = User::all();
 
-        //  return view ('pdf.borang');
+        //  return view ('pdf.borangDemografi');
          $pdf = PDF::loadView('pdf.borang');
          return $pdf->stream('borang.pdf');
     }
@@ -38,8 +38,16 @@ class formPdfController extends Controller
     {
         //$dataFromDatabase = User::all();
 
-        //  return view ('pdf.borang');
+        //  return view ('pdf.borangInstrumen');
          $pdf = PDF::loadView('pdf.borangInstrumen');
          return $pdf->stream('borangInstrumen.pdf');
+    }
+    public function generatePDF5()
+    {
+        //$dataFromDatabase = User::all();
+
+        //  return view ('pdf.dashboardSKIPS');
+         $pdf = PDF::loadView('pdf.dashboardSKIPS');
+         return $pdf->stream('dashboardSKIPS.pdf');
     }
 }

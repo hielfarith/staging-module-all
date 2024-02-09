@@ -33,6 +33,7 @@ Route::controller(PengurusanInstrumenController::class)->group(function () {
     Route::get('/generate-pdf2', [formPdfController::class, 'generatePDF2'])->name('generatePDF2');
     Route::get('/generate-pdf3', [formPdfController::class, 'generatePDF3'])->name('generatePDF3');
     Route::get('/generate-pdf4', [formPdfController::class, 'generatePDF4'])->name('generatePDF4');
+    Route::get('/generate-pdf5', [formPdfController::class, 'generatePDF5'])->name('generatePDF5');
 
 
 });
