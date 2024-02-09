@@ -139,7 +139,7 @@
             contentType: false,
             processData: false,
             success: function(response) {
-               if (response.status) {
+               if (response.success) {
                     Swal.fire('Success', 'Berjaya', 'success');
                }
             }
