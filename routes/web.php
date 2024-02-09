@@ -160,6 +160,7 @@ include 'sppip.php';
 include 'ikeps.php';
 include 'skips.php';
 include 'skpak.php';
+include 'spks.php';
 
 Route::controller(ModuleController::class)->prefix('module')->middleware(['web'])->group(function () {
 

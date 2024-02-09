@@ -542,8 +542,8 @@ $configData = Helper::applClasses();
                     <span class="menu-title text-truncate text-wrap"> SPKS </span>
                 </a>
                 <ul class="nav">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.spks_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.spks_baru') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Pengisian Data Instrumen
                             </span>
