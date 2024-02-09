@@ -206,7 +206,7 @@ $configData = Helper::applClasses();
                 </ul>
             </li> -->
 
-            <li class="navigation-header">
+            <li class="navigation-header text-wrap">
                 <span>  Modul Pengurusan Instrumen </span>
             </li>
              <li class="nav-item">
@@ -528,7 +528,7 @@ $configData = Helper::applClasses();
                                     <span class="menu-title text-truncate text-wrap"> Ahli Jawatan Tertinggi </span>
                                 </a>
                             </li>
-                        </ul> 
+                        </ul>
                     </li>
                 </ul>
             </li>
