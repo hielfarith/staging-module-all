@@ -245,7 +245,7 @@ Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-d
 
  //pengurusan controller
 Route::controller(InstrumenController::class)->prefix('instrumen')->middleware(['web'])->group(function () {
-    Route::get('tambha/{type}/{model?}','viewForm')->name('admin.instrumen.form');
+    Route::get('tambah/{type}/{model?}','viewForm')->name('admin.instrumen.form');
     Route::post('instrumenikeps-submit','saveIkeps')->name('admin.instrumen.instrumenikeps-submit');
     Route::get('instrumenikeps-list','listInstrumenIkeps')->name('admin.instrumen.instrumenikeps-list');
     Route::post('instrumenikeps-view/{id}/{type}','viewInstrumenIkeps')->name('admin.instrumen.instrumenikeps-view');
