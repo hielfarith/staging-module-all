@@ -51,6 +51,13 @@
 <hr>
 <?php
     $id = Request::segment(3);
+    $itemcq1 = $item = null;
+    if ($skpakfilleddata){
+        $itemcq1 = json_decode($skpakfilleddata->itemcq1, true);
+    }  
+    if ($itemcq1 && isset($itemcq1['sq1.2'])) {
+        $item = $itemcq1['sq1.2'];
+    }
 ?>
 <form id="cq1_sq2">
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
@@ -77,10 +84,27 @@
                     <td> {{ $index }} </td>
                     <td> {{ $item_1_2 }} </td>
 
+                    <?php
+                        $keyString = str_replace(".","_",$index);
+                        $catatanData = '';
+                        if($item) {
+                            $catatanData = $item['catatan_'.$keyString];
+                            $keyValue = $item[$keyString];
+                        }
+                    ?>
+
                     @foreach ($options[$index] as $key => $option)
+                    <?php
+                       $checked = '';
+                       if ($item) {
+                            if ($keyValue == $key+1) {
+                                $checked = 'checked';
+                            }
+                        }
+                    ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}}>
                             </div>
                             <br>
 
@@ -96,7 +120,7 @@
                 <tr class="bg-light-success">
                     <td colspan="6">
                         <label class="fw-bolder">Catatan: </label>
-                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control"></textarea>
+                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control">{{$catatanData}}</textarea>
                     </td>
                     <td class="bg-dark"></td>
                 </tr>

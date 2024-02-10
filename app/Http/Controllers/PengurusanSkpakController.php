@@ -215,7 +215,8 @@ class PengurusanSkpakController extends Controller
     }
 
      public function VerfikasiSkpak (Request $request, $id) {
-        return view('skpak.index_verfikasi', compact('id'));
+        $skpakfilleddata = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id',$id)->first();
+        return view('skpak.index_verfikasi', compact('id','skpakfilleddata'));
     }
     public function DashboardSkpak (Request $request){
 
@@ -264,6 +265,7 @@ class PengurusanSkpakController extends Controller
 
     public function saveVerfiksai(Request $request, $tab)
     {
+
         $tabdata = explode("_", $tab);
         $tabname = $tabdata[0];
         $tabtype = $tabdata[1];
@@ -278,8 +280,8 @@ class PengurusanSkpakController extends Controller
             $data[$tabname] = json_encode($array);
             if ($tabData) {
                 $existingJson = json_decode($tabData, true);
-                $updayedDaata = array_merge($existingJson, $array);
-                $data[$tabname] = json_encode($updayedDaata);
+                $updatedDaata = array_merge($existingJson, $array);
+                $data[$tabname] = json_encode($updatedDaata);
             } 
             $verfikasi = $savedData->update($data);
         } else {

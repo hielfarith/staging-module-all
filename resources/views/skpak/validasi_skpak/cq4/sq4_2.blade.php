@@ -42,7 +42,18 @@
 </h5>
 
 <hr>
-
+<?php
+    $id = Request::segment(3);
+    $itemcq4 = $item = null;
+    if ($skpakfilleddata){
+        $itemcq4 = json_decode($skpakfilleddata->itemcq4, true);
+    }  
+    if ($itemcq4 && isset($itemcq4['sq4.2'])) {
+        $item = $itemcq4['sq4.2'];
+    }
+?>
+<form id="cq4_sq2">
+<input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="verifikasi-sq4-2">
         <thead>
@@ -66,10 +77,27 @@
                     <td> {{ $index }} </td>
                     <td> {{ $item_4_2 }} </td>
 
+                   <?php
+                        $keyString = str_replace(".","_",$index);
+                        $catatanData = '';
+                        if($item) {
+                            $catatanData = $item['catatan_'.$keyString];
+                            $keyValue = $item[$keyString];
+                        }
+                    ?>
                     @foreach ($options[$index] as $key => $option)
+                       <?php
+                        $key = $key+1;
+                           $checked = '';
+                           if ($item) {
+                                if ($keyValue == $key) {
+                                    $checked = 'checked';
+                                }
+                            }
+                        ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$checked}}>
                             </div>
                             <br>
 
@@ -85,7 +113,7 @@
                 <tr class="bg-light-success">
                     <td colspan="6">
                         <label class="fw-bolder">Catatan: </label>
-                        <textarea name="" id="" rows="2" class="form-control"></textarea>
+                    <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control">{{ $catatanData }}</textarea>
                     </td>
                     <td class="bg-dark"></td>
                 </tr>
@@ -105,5 +133,41 @@
 <hr>
 
 <div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right" onclick="submitform1()">Simpan</button>
+    <button type="button" class="btn btn-primary float-right" onclick="submitcq4sq2()">Simpan</button>
 </div>
+</form>
+
+<script>
+    function submitcq4sq2() {
+        var formData = new FormData(document.getElementById('cq4_sq2'));
+        var error = false;
+
+         $('form#cq4_sq2').find('radio, input, checkbox').each(function() {
+            if(this.required && this.type == 'radio' && !this.checked) {
+                var val = $("input[type='radio'][name='"+this.name+"']:checked", '#cq4_sq2').val();
+                if (typeof val == 'undefined') {
+                    error = true;
+                }
+            }
+        });
+
+        if (error) {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'itemcq4_sq4.2']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.success) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+
+    };
+</script>

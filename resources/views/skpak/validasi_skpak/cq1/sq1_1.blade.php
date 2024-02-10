@@ -44,6 +44,13 @@
 <hr>
 <?php
     $id = Request::segment(3);
+    $itemcq1 = $item = null;
+    if ($skpakfilleddata){
+        $itemcq1 = json_decode($skpakfilleddata->itemcq1, true);
+    }  
+    if ($itemcq1 && isset($itemcq1['sq1.1'])) {
+        $item = $itemcq1['sq1.1'];
+    }
 ?>
 <form id="cq1_sq1">
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
@@ -70,10 +77,26 @@
                     <td> {{ $index }} </td>
                     <td> {{ $item_1_1 }} </td>
 
+                    <?php
+                        $keyString = str_replace(".","_",$index);
+                        $catatanData = '';
+                        if($item) {
+                            $catatanData = $item['catatan_'.$keyString];
+                            $keyValue = $item[$keyString];
+                        }
+                    ?>
                     @foreach ($options[$index] as $key => $option)
+                       <?php
+                           $checked = '';
+                           if ($item) {
+                                if ($keyValue == $key+1) {
+                                    $checked = 'checked';
+                                }
+                            }
+                        ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}}>
                             </div>
                             <br>
 
@@ -85,11 +108,17 @@
 
                     <td>Auto-selected</td>
                 </tr>
-
+                <tr class="bg-light-primary">
+                    <td colspan="6">
+                        <label class="fw-bolder">Upload: </label>
+                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple>
+                        <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
+                    </td>
+                </tr>
                 <tr class="bg-light-success">
                     <td colspan="6">
                         <label class="fw-bolder">Catatan: </label>
-                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control"></textarea>
+                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control">{{$catatanData}}</textarea>
                     </td>
                     <td class="bg-dark"></td>
                 </tr>
@@ -146,4 +175,15 @@
         });
 
     };
+
+    document.getElementById('uploadfile_1_1_1').addEventListener('change', function(e) {
+      var list = document.getElementById('filelist_1_1_1');
+      list.innerHTML = '';
+      for (var i = 0; i < this.files.length; i++) {
+        list.innerHTML += (i + 1) + '. ' + this.files[i].name + '\n';
+      }
+      if (list.innerHTML == '') list.style.display = 'none';
+      else list.style.display = 'block';
+    });
+
 </script>
