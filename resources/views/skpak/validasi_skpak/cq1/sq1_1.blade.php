@@ -103,7 +103,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}}>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}} onchange='assignmandatory("{{$keyString}}",  this)'>
                             </div>
                             <br>
 
@@ -118,7 +118,7 @@
                 <tr class="bg-light-primary">
                     <td colspan="6">
                         <label class="fw-bolder">Upload: </label>
-                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple>
+                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)'>
                         <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
                     </td>
                 </tr>
@@ -160,10 +160,15 @@
         var formData = new FormData(document.getElementById('cq1_sq1'));
         var error = false;
 
-         $('form#cq1_sq1').find('radio, input, checkbox').each(function() {
+         $('form#cq1_sq1').find('radio, input, checkbox, file').each(function() {
             if(this.required && this.type == 'radio' && !this.checked) {
                 var val = $("input[type='radio'][name='"+this.name+"']:checked", '#cq1_sq1').val();
                 if (typeof val == 'undefined') {
+                    error = true;
+                }
+            }
+            if (this.required && this.type == 'file') {
+                if($('#'+this.id)[0].files.length === 0){
                     error = true;
                 }
             }
@@ -189,14 +194,23 @@
 
     };
 
-    document.getElementById('uploadfile_1_1_1').addEventListener('change', function(e) {
-      var list = document.getElementById('filelist_1_1_1');
-      list.innerHTML = '';
-      for (var i = 0; i < this.files.length; i++) {
-        list.innerHTML += (i + 1) + '. ' + this.files[i].name + '\n';
-      }
-      if (list.innerHTML == '') list.style.display = 'none';
-      else list.style.display = 'block';
-    });
+    function filechange(id, file, event){
+          var list = document.getElementById(file);
+          list.innerHTML = '';
+          for (var i = 0; i < event.files.length; i++) {
+            list.innerHTML += (i + 1) + '. ' + event.files[i].name + '\n';
+          }
+          if (list.innerHTML == '') list.style.display = 'none';
+          else list.style.display = 'block';
+    }
 
+    function assignmandatory(id, event) {
+
+            var idval = 'uploadfile_'+id;
+        if (event.value != 4) {
+            $('#'+idval).prop('required', true);   
+        } else {
+            $('#'+idval).prop('required', false);   
+        }
+    }
 </script>

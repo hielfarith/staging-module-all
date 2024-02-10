@@ -104,7 +104,7 @@
                     ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}}>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}} onchange='assignmandatory("{{$keyString}}",  this)'>
                             </div>
                             <br>
 
@@ -115,6 +115,13 @@
                     @endforeach
 
                     <td>Auto-selected</td>
+                </tr>
+                <tr class="bg-light-primary">
+                    <td colspan="6">
+                        <label class="fw-bolder">Upload: </label>
+                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)'>
+                        <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
+                    </td>
                 </tr>
 
                 <tr class="bg-light-success">
@@ -178,4 +185,22 @@
         });
 
     };
+      function filechange(id, file, event){
+          var list = document.getElementById(file);
+          list.innerHTML = '';
+          for (var i = 0; i < event.files.length; i++) {
+            list.innerHTML += (i + 1) + '. ' + event.files[i].name + '\n';
+          }
+          if (list.innerHTML == '') list.style.display = 'none';
+          else list.style.display = 'block';
+    }
+
+    function assignmandatory(id, event) {
+            var idval = 'uploadfile_'+id;
+        if (event.value != 4) {
+            $('#'+idval).prop('required', true);   
+        } else {
+            $('#'+idval).prop('required', false);   
+        }
+    }
 </script>

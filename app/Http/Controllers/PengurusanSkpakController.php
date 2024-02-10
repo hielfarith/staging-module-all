@@ -270,6 +270,20 @@ class PengurusanSkpakController extends Controller
         $tabname = $tabdata[0];
         $tabtype = $tabdata[1];
         $input = $request->input();
+        $path = [];
+        if ($request->file()) {
+            foreach ($request->file() as $key1 => $files) {
+                foreach ($files as $key => $value) {
+                    $filenameWithExt = $value->getClientOriginalName();
+                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                    $extension = $value->getClientOriginalExtension();
+                    $fileNameToStore = $filename.'.'.$extension;
+                    $path[$key] = $value->storeAs('public/uploads/'.$key1.'/'.$input['skpak_standard_penilaian_id'],$fileNameToStore);
+                }
+                $input[$key1] = $path;
+            }
+        }
+
         $data['skpak_standard_penilaian_id'] = $input['skpak_standard_penilaian_id'];
         unset($input['skpak_standard_penilaian_id']);
         $savedData = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $data['skpak_standard_penilaian_id'])->first();
@@ -279,6 +293,7 @@ class PengurusanSkpakController extends Controller
             $array[$tabtype] = $input;
             $data[$tabname] = json_encode($array);
             if ($tabData) {
+
                 $existingJson = json_decode($tabData, true);
                 $updatedDaata = array_merge($existingJson, $array);
                 $data[$tabname] = json_encode($updatedDaata);
