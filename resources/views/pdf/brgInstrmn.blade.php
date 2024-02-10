@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    {{-- <title> {{ $Returns_declaration_details->rdd_declaration_no }} </title> --}}
+    <title> {{ $Returns_declaration_details->rdd_declaration_no }} </title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 </head>
 
@@ -144,7 +144,7 @@
                     <span class="bold">
                         DST-02 No.:
                     </span>
-                    {{-- {{ $Returns_declaration_details->rdd_declaration_no }} --}}
+                    {{ $Returns_declaration_details->rdd_declaration_no }}
                 </td>
             </tr>
         </table>
@@ -153,9 +153,9 @@
             <tr>
                 <td style="border: 1px solid #000000; text-align: center;" width="50px">
                     <span style="font-size: 30px;">
-                        {{-- @if($Returns_declaration_details->rdd_parent_no)
-                        <i class="fa fa-check blue-color"></i>
-                        @endif --}}
+                        @if($Returns_declaration_details->rdd_parent_no)
+                            <i class="fa fa-check blue-color"></i>
+                        @endif
                     </span>
                 </td>
                 <td style="padding: 10px;">
@@ -238,9 +238,7 @@
                                 3) Address of Business*
                             </td>
                             <td style="width: 70%; padding-left:5px">
-                                {{-- <input
-                                    value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businessregaddress1) }}"
-                                    type="text" style="width: 100%"> --}}
+                                <input value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businessregaddress1) }}" type="text" style="width: 100%">
                             </td>
                         </tr>
 
@@ -249,9 +247,7 @@
                                 &nbsp;
                             </td>
                             <td style="width: 70%; padding-left:5px">
-                                {{-- <input
-                                    value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businessregaddress2) }}"
-                                    type="text" style="width: 100%"> --}}
+                                <input value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businessregaddress2) }}" type="text" style="width: 100%">
                             </td>
                         </tr>
 
@@ -264,9 +260,7 @@
                                     <tr>
                                         <td style="width: 30%">City</td>
                                         <td style="width: 70%; padding-left:5px">
-                                            {{-- <input
-                                                value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businessregtown) }}"
-                                                type="text" style="width: 100%"> --}}
+                                            <input value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businessregtown) }}" type="text" style="width: 100%">
                                         </td>
                                     </tr>
                                 </table>
@@ -282,18 +276,14 @@
                                     <tr>
                                         <td style="width: 30%">Postcode</td>
                                         <td style="width: 20%; padding-left:5px">
-                                            {{-- <input
-                                                value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businessregpostcode) }}"
-                                                type="text" style="width: 100%"> --}}
+                                            <input value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businessregpostcode) }}" type="text" style="width: 100%">
                                         </td>
 
                                         <td
                                             style="width: 20%; padding-left: 10px; padding-right: 10px; text-align: center;">
                                             Country</td>
                                         <td style="width: 30%; padding-left:5px">
-                                            {{-- <input
-                                                value="{{ mb_strtoupper(optional($UserBusinessRegisteration->business_country)->name) }}"
-                                                type="text" style="width: 100%"> --}}
+                                            <input value="{{ mb_strtoupper(optional($UserBusinessRegisteration->business_country)->name) }}" type="text" style="width: 100%">
                                         </td>
                                     </tr>
                                 </table>
@@ -311,9 +301,7 @@
                                 </span>
                             </td>
                             <td style="width: 70%; padding-left:5px">
-                                {{-- <input
-                                    value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businesscorresaddress1) }}"
-                                    type="text" style="width: 100%"> --}}
+                                <input value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businesscorresaddress1) }}" type="text" style="width: 100%">
                             </td>
                         </tr>
 
@@ -322,9 +310,7 @@
                                 &nbsp;
                             </td>
                             <td style="width: 70%; padding-left:5px">
-                                {{-- <input
-                                    value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businesscorresaddress2) }}"
-                                    type="text" style="width: 100%"> --}}
+                                <input value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businesscorresaddress2) }}" type="text" style="width: 100%">
                             </td>
                         </tr>
 
@@ -337,9 +323,7 @@
                                     <tr>
                                         <td style="width: 30%">City</td>
                                         <td style="width: 70%; padding-left:5px">
-                                            {{-- <input
-                                                value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businesscorrestown) }}"
-                                                type="text" style="width: 100%"> --}}
+                                            <input value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businesscorrestown) }}" type="text" style="width: 100%">
                                         </td>
                                     </tr>
                                 </table>
@@ -355,18 +339,15 @@
                                     <tr>
                                         <td style="width: 30%">Postcode</td>
                                         <td style="width: 20%; padding-left:5px">
-                                            {{-- <input
-                                                value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businesscorrespostcode) }}"
-                                                type="text" style="width: 100%"> --}}
+                                            <input value="{{ mb_strtoupper($UserBusinessRegisteration->usbu_businesscorrespostcode) }}" type="text" style="width: 100%">
                                         </td>
 
                                         <td
                                             style="width: 20%; padding-left: 10px; padding-right: 10px; text-align: center;">
                                             Country</td>
                                         <td style="width: 30%; padding-left:5px">
-                                            {{-- <input
-                                                value="{{ mb_strtoupper(optional($UserBusinessRegisteration->business_corres_country)->name) }}"
-                                                type=" text" style="width: 100%"> --}}
+                                            <input value="{{ mb_strtoupper(optional($UserBusinessRegisteration->business_corres_country)->name) }}"
+                                                type=" text" style="width: 100%">
                                         </td>
                                     </tr>
                                 </table>
@@ -379,8 +360,7 @@
                                 5) Telephone No.*
                             </td>
                             <td style="width: 70%; padding-left:5px">
-                                {{-- <input value="{{ $UserBusinessRegisteration->usbu_phoneno }}" type="text"
-                                    style="width: 100%"> --}}
+                                <input value="{{ $UserBusinessRegisteration->usbu_phoneno }}" type="text" style="width: 100%">
                             </td>
                         </tr>
 
@@ -389,8 +369,7 @@
                                 6) Business Email Address*
                             </td>
                             <td style="width: 70%; padding-left:5px">
-                                {{-- <input value="{{ $UserBusinessRegisteration->usbu_email }}" type="text"
-                                    style="width: 100%"> --}}
+                                <input value="{{ $UserBusinessRegisteration->usbu_email }}" type="text" style="width: 100%">
                             </td>
                         </tr>
                     </table>
@@ -426,30 +405,37 @@
                             <td width="10%" style="width:10%; vertical-align: baseline; text-align: center;">
                                 <b> from </b>
                             </td>
-                            {{-- <td style="width: 40%;">
+                            <td style="width: 40%;">
 
                                 @php
-                                $d = date('d/m/Y',strtotime($Returns_taxperiod->rttp_taxstartdate));
-                                $r = array();
+                                    $d = date('d/m/Y',strtotime($Returns_taxperiod->rttp_taxstartdate));
+                                    $r = array();
 
-                                for ($i = 0; $i < strlen($d); $i++) { $r[]=substr($d, $i, 1); }
-                                    $de=date('d/m/Y',strtotime($Returns_taxperiod->rttp_taxenddate));
+                                    for ($i = 0; $i < strlen($d); $i++) {
+                                        $r[] = substr($d, $i, 1);
+                                    }
+
+                                    $de = date('d/m/Y',strtotime($Returns_taxperiod->rttp_taxenddate));
                                     $re = array();
 
-                                    for ($i = 0; $i < strlen($de); $i++) { $re[]=substr($de, $i, 1); } @endphp <span
-                                        style="border: 1px solid #000; padding: 5px">{{ $r[0] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px">{{ $r[1] }}</span> /
-                                        <span style="border: 1px solid #000; padding: 5px">{{ $r[3] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px">{{ $r[4] }}</span> /
-                                        <span style="border: 1px solid #000; padding: 5px">{{ $r[6] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px">{{ $r[7] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px">{{ $r[8] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px">{{ $r[9] }}</span>
-                            </td> --}}
+                                    for ($i = 0; $i < strlen($de); $i++) {
+                                        $re[] = substr($de, $i, 1);
+                                    }
+                                @endphp
+
+                                <span style="border: 1px solid #000; padding: 5px">{{ $r[0] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px">{{ $r[1] }}</span> /
+                                <span style="border: 1px solid #000; padding: 5px">{{ $r[3] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px">{{ $r[4] }}</span> /
+                                <span style="border: 1px solid #000; padding: 5px">{{ $r[6] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px">{{ $r[7] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px">{{ $r[8] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px">{{ $r[9] }}</span>
+                            </td>
                             <td width="10%" style="width:10%; vertical-align: baseline; text-align: center;">
                                 <b> &nbsp;&nbsp;&nbsp; to </b>
                             </td>
-                            {{-- <td style="width: 40%;">
+                            <td style="width: 40%;">
                                 <span style="border: 1px solid #000; padding: 5px">{{ $re[0] }}</span>
                                 <span style="border: 1px solid #000; padding: 5px">{{ $re[1] }}</span> /
                                 <span style="border: 1px solid #000; padding: 5px">{{ $re[3] }}</span>
@@ -458,7 +444,7 @@
                                 <span style="border: 1px solid #000; padding: 5px">{{ $re[7] }}</span>
                                 <span style="border: 1px solid #000; padding: 5px">{{ $re[8] }}</span>
                                 <span style="border: 1px solid #000; padding: 5px">{{ $re[9] }}</span>
-                            </td> --}}
+                            </td>
                         </tr>
                         <tr style="text-align: right;">
                             <td colspan="2">
@@ -502,59 +488,58 @@
                             </tr>
                         </thead>
 
-                        {{-- <tbody>
+                        <tbody>
                             @php
-                            $rd_value_service_total = 0;
-                            $rd_amount_total = 0;
+                                $rd_value_service_total = 0;
+                                $rd_amount_total = 0;
                             @endphp
                             @foreach($Returns_declaration as $k => $Returns_declarations)
-                            @php
-                            $rd_value_service_total = $rd_value_service_total + $Returns_declarations->rd_value_service;
-                            $rd_amount_total = $rd_amount_total + $Returns_declarations->rd_amount;
-                            @endphp
-
-                            <tr>
-                                <td style="text-align: center;">
-                                    {{ $k + 1 }}
-                                </td>
-
                                 @php
-                                $Service = \App\MasterModel\MasterParameterList::where('group_code',
-                                'SERVICE_TY')->where('code', $Returns_declarations->rd_serviceid)->first();
-                                $Service->name;
-                                $other = $usbu_id ?? $Returns_taxperiod->rttp_usersbusinessid;
+                                    $rd_value_service_total = $rd_value_service_total + $Returns_declarations->rd_value_service;
+                                    $rd_amount_total = $rd_amount_total + $Returns_declarations->rd_amount;
                                 @endphp
 
-                                <td style="padding-left:5px">
-                                    @if( $Returns_declarations->rd_serviceid == 8) {{ $Service->description }}
-                                    @else {{ $Service->name }}
-                                    @endif
-                                </td>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        {{ $k + 1 }}
+                                    </td>
 
-                                <td style="text-align: end">
-                                    {{ number_format($Returns_declarations->rd_value_service, 2) }}
-                                </td>
+                                    @php
+                                        $Service = \App\MasterModel\MasterParameterList::where('group_code', 'SERVICE_TY')->where('code', $Returns_declarations->rd_serviceid)->first();
+                                        $Service->name;
+                                        $other = $usbu_id ?? $Returns_taxperiod->rttp_usersbusinessid;
+                                    @endphp
 
-                                <td style="text-align: end">
-                                    {{ $Returns_declarations->rd_tax_rate * 100 }}
-                                </td>
+                                    <td style="padding-left:5px">
+                                        @if( $Returns_declarations->rd_serviceid == 8) {{ $Service->description }}
+                                        @else {{ $Service->name }}
+                                        @endif
+                                    </td>
 
-                                <td style="text-align: end">
-                                    {{ number_format($Returns_declarations->rd_amount, 2) }}
-                                </td>
-                            </tr>
+                                    <td style="text-align: end">
+                                        {{ number_format($Returns_declarations->rd_value_service, 2) }}
+                                    </td>
+
+                                    <td style="text-align: end">
+                                        {{ $Returns_declarations->rd_tax_rate * 100 }}
+                                    </td>
+
+                                    <td style="text-align: end">
+                                        {{ number_format($Returns_declarations->rd_amount, 2) }}
+                                    </td>
+                                </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
 
                         <tfoot>
                             <tr>
                                 <td style="text-align: center; font-weight: bold" colspan="2">Subtotal*</td>
                                 <td style="text-align: end">
-                                    {{-- {{ number_format($rd_value_service_total, 2) }} --}}
+                                    {{ number_format($rd_value_service_total, 2) }}
                                 </td>
                                 <td style="background-color: black"></td>
                                 <td style="text-align: end">
-                                    {{-- {{ number_format($rd_amount_total, 2) }} --}}
+                                    {{ number_format($rd_amount_total, 2) }}
                                 </td>
                             </tr>
                         </tfoot>
@@ -570,14 +555,18 @@
                     <span style="width: 3%; font-weight: bold; padding-right: 5px;">
                         MYR
                     </span>
-                    {{-- <input value="{{ number_format($Returns_declaration_details->rdd_credit_note, 2) }}"
-                        type="text" style="width: 85%"> --}}
+                    <input value="{{ number_format($Returns_declaration_details->rdd_credit_note, 2) }}" type="text" style="width: 85%">
                 </td>
             </tr>
 
-            {{-- @php
-            $tax = $rd_amount_total - $Returns_declaration_details->rdd_credit_note;
-            if ($tax < 0) { $tax=0; } @endphp <tr class="spaceUnder">
+            @php
+                $tax = $rd_amount_total - $Returns_declaration_details->rdd_credit_note;
+                if ($tax < 0) {
+                    $tax = 0;
+                }
+            @endphp
+
+            <tr class="spaceUnder">
                 <td colspan="2" style="width: 60%">
                     10) Total Amount of Service Tax Payable (Total of item 8(e) &ndash; item 9)**
                     <br>
@@ -591,120 +580,119 @@
                     </span>
                     <input value="{{ number_format($tax, 2) }}" type="text" style="width: 85%">
                 </td>
-                </tr> --}}
-                {{-- End of Part B --}}
+            </tr>
+            {{-- End of Part B --}}
 
-                {{-- Start of Part C --}}
-                <tr sty>
-                    <td colspan="3">
-                        <div class="div1" style="margin-bottom:30px">
-                            <b>
-                                PART C: DECLARATIONS
-                            </b>
-                        </div>
-                    </td>
-                </tr>
+            {{-- Start of Part C --}}
+            <tr sty>
+                <td colspan="3">
+                    <div class="div1" style="margin-bottom:30px">
+                        <b>
+                            PART C: DECLARATIONS
+                        </b>
+                    </div>
+                </td>
+            </tr>
 
-                <tr class="spaceUnder">
-                    <td colspan="3">
-                        11) (a) I hereby declare that the information stated in this form and any supporting documents
-                        furnished are true and complete; and <br>
-                        <span style="margin-left: 3%">
-                            (b) I agree for any notice to be served to me through electronic service or electronic
-                            means.*
-                        </span>
-                    </td>
-                </tr>
+            <tr class="spaceUnder">
+                <td colspan="3">
+                    11) (a) I hereby declare that the information stated in this form and any supporting documents
+                    furnished are true and complete; and <br>
+                    <span style="margin-left: 3%">
+                        (b) I agree for any notice to be served to me through electronic service or electronic means.*
+                    </span>
+                </td>
+            </tr>
 
-                <tr class="spaceUnder">
-                    <td colspan="2">
-                        Date*
-                        <table style="width: 100%; margin-top: 8px;">
-                            <tr>
-                                <td width="40%">
-                                    {{-- @php
+            <tr class="spaceUnder">
+                <td colspan="2">
+                    Date*
+                    <table style="width: 100%; margin-top: 8px;">
+                        <tr>
+                            <td width="40%">
+                                @php
                                     $d = date('d/m/Y', strtotime($Returns_user_declaration->rud_updatedat));
                                     $r = array();
 
-                                    for ($i = 0; $i < strlen($d); $i++) { $r[]=substr($d, $i, 1); } @endphp <span
-                                        style="border: 1px solid #000; padding: 5px;">{{ $r[0] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px;">{{ $r[1] }}</span>
-                                        &nbsp; / &nbsp;
+                                    for ($i = 0; $i < strlen($d); $i++) {
+                                        $r[] = substr($d, $i, 1);
+                                    }
+                                @endphp
 
-                                        <span style="border: 1px solid #000; padding: 5px;">{{ $r[3] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px;">{{ $r[4] }}</span>
-                                        &nbsp; / &nbsp;
+                                <span style="border: 1px solid #000; padding: 5px;">{{ $r[0] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px;">{{ $r[1] }}</span>
+                                &nbsp; / &nbsp;
 
-                                        <span style="border: 1px solid #000; padding: 5px;">{{ $r[6] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px;">{{ $r[7] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px;">{{ $r[8] }}</span>
-                                        <span style="border: 1px solid #000; padding: 5px;">{{ $r[9] }}</span>
-                                        <br> --}}
+                                <span style="border: 1px solid #000; padding: 5px;">{{ $r[3] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px;">{{ $r[4] }}</span>
+                                &nbsp; / &nbsp;
 
-                                        <p style="margin-top: 5px;">
-                                            (day) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            (month) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            (year)
-                                        </p>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td style="vertical-align: middle;text-align: center;">
-                        &nbsp; &nbsp;
-                        <table style="width: 100%; text-align: center;">
-                            <tr>
-                                <td>-------------------------------------------------------------</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; font-weight: bold;">
-                                    <i>Signature*</i>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+                                <span style="border: 1px solid #000; padding: 5px;">{{ $r[6] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px;">{{ $r[7] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px;">{{ $r[8] }}</span>
+                                <span style="border: 1px solid #000; padding: 5px;">{{ $r[9] }}</span>
+                                <br>
 
-                <tr class="spaceUnder">
-                    <td colspan="2" style="width: 60%">
-                        12) Name of Declarant*
-                    </td>
-                    <td style="width: 40%; padding-left:5px">
-                        {{-- <input value="{{ $Returns_user_declaration->rud_applicantname }}" type="text"
-                            style="width: 100%"> --}}
-                    </td>
-                </tr>
+                                <p style="margin-top: 5px;">
+                                    (day) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    (month) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    (year)
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="vertical-align: middle;text-align: center;">
+                    &nbsp; &nbsp;
+                    <table style="width: 100%; text-align: center;">
+                        <tr>
+                            <td>-------------------------------------------------------------</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold;">
+                                <i>Signature*</i>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
 
-                <tr class="spaceUnder">
-                    <td colspan="2" style="width: 60%">
-                        13) Passport No. / Identification No.*
-                    </td>
-                    <td style="width: 40%; padding-left:5px">
-                        {{-- <input value="{{ $Returns_user_declaration->rud_applicantidentityno }}" type="text"
-                            style="width: 100%"> --}}
-                    </td>
-                </tr>
+            <tr class="spaceUnder">
+                <td colspan="2" style="width: 60%">
+                    12) Name of Declarant*
+                </td>
+                <td style="width: 40%; padding-left:5px">
+                    <input value="{{ $Returns_user_declaration->rud_applicantname }}" type="text" style="width: 100%">
+                </td>
+            </tr>
 
-                <tr class="spaceUnder">
-                    <td colspan="2" style="width: 60%">
-                        14) Designation*
-                    </td>
-                    <td style="width: 40%; padding-left:5px">
-                        {{-- <input value="{{ mb_strtoupper($Returns_user_declaration->rud_applicantdesignation) }}"
-                            type="text" style="width: 100%"> --}}
-                    </td>
-                </tr>
+            <tr class="spaceUnder">
+                <td colspan="2" style="width: 60%">
+                    13) Passport No. / Identification No.*
+                </td>
+                <td style="width: 40%; padding-left:5px">
+                    <input value="{{ $Returns_user_declaration->rud_applicantidentityno }}" type="text" style="width: 100%">
+                </td>
+            </tr>
 
-                <tr class="spaceUnder">
-                    <td colspan="2" style="width: 60%">
-                        15) Telephone No.*
-                    </td>
-                    <td style="width: 40%; padding-left:5px">
-                        {{-- <input value="{{ $Returns_user_declaration->rud_applicantphoneno }}" type="text"
-                            style="width: 100%"> --}}
-                    </td>
-                </tr>
-                {{-- End of Part C --}}
+            <tr class="spaceUnder">
+                <td colspan="2" style="width: 60%">
+                    14) Designation*
+                </td>
+                <td style="width: 40%; padding-left:5px">
+                    <input value="{{ mb_strtoupper($Returns_user_declaration->rud_applicantdesignation) }}" type="text" style="width: 100%">
+                </td>
+            </tr>
+
+            <tr class="spaceUnder">
+                <td colspan="2" style="width: 60%">
+                    15) Telephone No.*
+                </td>
+                <td style="width: 40%; padding-left:5px">
+                    <input value="{{ $Returns_user_declaration->rud_applicantphoneno }}" type="text" style="width: 100%">
+                </td>
+            </tr>
+            {{-- End of Part C --}}
         </table>
     </div>
 </body>

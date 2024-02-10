@@ -69,6 +69,11 @@ Instrumen
                         <th>Tujuan Instrumen</th>
                         <th>Pengguna Instrumen</th>
                         <th>Tarikh Kuatkuasa</th>
+                        <th>Pengisian Oleh</th>
+                        <th>Pengisian Oleh</th>
+                        <th>Verifikasi Oleh</th>
+                        <th>Validasi Oleh</th>
+                        <th>Perakuan Oleh</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -98,14 +103,13 @@ Instrumen
 <script>
 $(document).ready(function() {
 
-$('#modal-instrumen-diisi').on('shown.bs.modal', function () {
-    $('.select2').select2({
+    $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
+        $('.select2').select2({
+        });
+        flatpickr(".flatpickr", {
+            dateFormat: "d/m/Y"
+        });
     });
-    flatpickr(".flatpickr", {
-        dateFormat: "d/m/Y"
-    });
-
-});
 
     $(function() {
         var table = $('#TableSenaraiInstrumen').DataTable({
@@ -159,6 +163,46 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
                     }
                 },
                 {
+                    data: "pengisian_oleh",
+                    name: "pengisian_oleh",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "pengesahan_ole",
+                    name: "pengesahan_ole",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "verifikasi_oleh",
+                    name: "verifikasi_oleh",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "validasi_oleh",
+                    name: "validasi_oleh",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
+                    data: "perakuan_oleh",
+                    name: "perakuan_oleh",
+                    searchable: true,
+                    render: function(data, type, row) {
+                        return $("<div/>").html(data).text();
+                    }
+                },
+                {
                     data: 'action',
                     name: 'action',
                     orderable: true,
@@ -170,9 +214,9 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
 });
 
 $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
 })
 
 function maklumatSkips(id){
