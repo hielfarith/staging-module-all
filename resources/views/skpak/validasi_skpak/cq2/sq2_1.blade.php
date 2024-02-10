@@ -68,7 +68,7 @@
     $itemcq2 = $item = null;
     if ($skpakfilleddata){
         $itemcq2 = json_decode($skpakfilleddata->itemcq2, true);
-    }  
+    }
     if ($itemcq2 && isset($itemcq2['sq2.1'])) {
         $item = $itemcq2['sq2.1'];
     }
@@ -89,6 +89,12 @@
             </tr>
         </thead>
         <tbody>
+            <tr class="bg-light-danger">
+                <td class="text-end" colspan="6">
+                    Jumlah
+                </td>
+                <td class="text-center">Auto-calculated</td>
+            </tr>
             <tr class="bg-light-primary fw-bolder">
                 <td>SQ2.1</td>
                 <td colspan="6">Perlaksanaan Aktiviti Rutin</td>
@@ -140,22 +146,26 @@
                 </tr>
             @endforeach
         </tbody>
-        <tfoot>
+        {{-- <tfoot>
             <tr class="bg-light-danger">
                 <td class="text-end" colspan="6">
                     Jumlah
                 </td>
                 <td class="text-center">Auto-calculated</td>
             </tr>
-        </tfoot>
+        </tfoot> --}}
     </table>
 </div>
 
 <hr>
-
-<div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right" onclick="submitcq2sq1()">Simpan</button>
+<div class="buy-now">
+    <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="submitcq2sq1()">
+        Simpan
+    </button>
 </div>
+{{-- <div class="d-flex justify-content-end align-items-center mt-1">
+    <button type="button" class="btn btn-primary float-right" onclick="submitcq2sq1()">Simpan</button>
+</div> --}}
 </form>
 <script>
     function submitcq2sq1() {

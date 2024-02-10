@@ -37,17 +37,30 @@
     ];
 @endphp
 
-<h5 class="card-title fw-bolder text-uppercase">
-    Hubungan dan Interaksi
-</h5>
+<div class="card-header">
 
-<hr>
+    <h5 class="card-title fw-bolder text-uppercase">
+        Hubungan dan Interaksi
+    </h5>
+
+
+</div>
+<div style="padding-left:2%;width:17%"><select class="form-control select2 mt-1" name="">
+        <option value="" hidden>Jenis Instrumen</option>
+        <option value="Scoring">Scoring</option>
+        <option value="Observation">Observation</option>
+        <option value="Interview">Interview</option>
+        <option value="Rakaman">Rakaman</option>
+        <option value="Catatan">Catatan</option>
+    </select></div>
+
+
 <?php
     $id = Request::segment(3);
     $itemcq1 = $item = null;
     if ($skpakfilleddata){
         $itemcq1 = json_decode($skpakfilleddata->itemcq1, true);
-    }  
+    }
     if ($itemcq1 && isset($itemcq1['sq1.1'])) {
         $item = $itemcq1['sq1.1'];
     }

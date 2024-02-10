@@ -75,6 +75,12 @@
             </tr>
         </thead>
         <tbody>
+            <tr class="bg-light-danger">
+                <td class="text-end" colspan="6">
+                    Jumlah
+                </td>
+                <td class="text-center">Auto-calculated</td>
+            </tr>
             <tr class="bg-light-primary fw-bolder">
                 <td>SQ1.3</td>
                 <td colspan="6">Hubungan dengan Keluarga </td>
@@ -126,22 +132,26 @@
                 </tr>
             @endforeach
         </tbody>
-        <tfoot>
+        {{-- <tfoot>
             <tr class="bg-light-danger">
                 <td class="text-end" colspan="6">
                     Jumlah
                 </td>
                 <td class="text-center">Auto-calculated</td>
             </tr>
-        </tfoot>
+        </tfoot> --}}
     </table>
 </div>
 
 <hr>
-
-<div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right" onclick="submitcq1sq3()">Simpan</button>
+<div class="buy-now">
+    <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="submitcq1sq3()">
+        Simpan
+    </button>
 </div>
+{{-- <div class="d-flex justify-content-end align-items-center mt-1">
+    <button type="button" class="btn btn-primary float-right" onclick="submitcq1sq3()">Simpan</button>
+</div> --}}
 </form>
 <script>
     function submitcq1sq3() {
