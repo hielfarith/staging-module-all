@@ -139,7 +139,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$checked}}>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$checked}} onchange='assignmandatory("{{$keyString}}",  this)'>
                             </div>
                             <br>
 
@@ -151,7 +151,13 @@
 
                     <td>Auto-selected</td>
                 </tr>
-
+                <tr class="bg-light-primary">
+                    <td colspan="6">
+                        <label class="fw-bolder">Upload: </label>
+                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)'>
+                        <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
+                    </td>
+                </tr>
                 <tr class="bg-light-success">
                     <td colspan="6">
                         <label class="fw-bolder">Catatan: </label>
@@ -189,6 +195,12 @@
             if(this.required && this.type == 'radio' && !this.checked) {
                 var val = $("input[type='radio'][name='"+this.name+"']:checked", '#cq5_sq1').val();
                 if (typeof val == 'undefined') {
+                    error = true;
+                }
+            }
+
+             if (this.required && this.type == 'file') {
+                if($('#'+this.id)[0].files.length === 0){
                     error = true;
                 }
             }

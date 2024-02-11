@@ -41,7 +41,18 @@ $ruang_luars = [
 @endphp
 
 <hr>
-
+<?php
+    $id = Request::segment(3);
+    $itemcq5 = $item = null;
+    if ($skpakfilleddata){
+        $itemcq5 = json_decode($skpakfilleddata->itemcq5, true);
+    }  
+    if ($itemcq5 && isset($itemcq5['sq5.1'])) {
+        $item = $itemcq5['sq5.1'];
+    }
+?>
+<form id="ruang_luar_form">
+<input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="ruang_luar">
         <thead>
@@ -60,17 +71,17 @@ $ruang_luars = [
                     <td>{{ $ruang_luar }}</td>
                     <td>
                         <div class="d-flex justify-content-center align-items-center">
-                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA">
+                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" required>
                         </div>
                     </td>
                     <td>
                         <div class="d-flex justify-content-center align-items-center">
-                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK">
+                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" required>
                         </div>
                     </td>
                     <td>
                         <div class="d-flex justify-content-center align-items-center">
-                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_berkenaan_{{ $index }}_{{ $loop->index }}" value="TIDAK BERKENAAN">
+                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_berkenaan_{{ $index }}_{{ $loop->index }}" value="TIDAK BERKENAAN" required>
                         </div>
                     </td>
                 </tr>
@@ -105,10 +116,45 @@ $ruang_luars = [
 
 <div class="col-md-12 mb-1 mt-1">
     <label class="fw-bolder">Ulasan</label>
-    <textarea name="" id="" rows="3" class="form-control"></textarea>
+    <textarea name="ulasan_{{$index}}" id="" rows="3" class="form-control"></textarea>
 </div>
 
 <hr>
 <div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
+    <button type="button" class="btn btn-primary float-right formdd" onclick="submitrluar()">Simpan</button>
 </div>
+</form>
+<script>
+    function submitrluar() {
+        var formData = new FormData(document.getElementById('ruang_luar_form'));
+        var error = false;
+
+         $('form#ruang_luar_form').find('radio, input, checkbox').each(function() {
+            if(this.required && this.type == 'radio' && !this.checked) {
+                var val = $("input[type='radio'][name='"+this.name+"']:checked", '#ruang_luar_form').val();
+                if (typeof val == 'undefined') {
+                    error = true;
+                }
+            }
+        });
+
+        if (error) {
+            Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'senaraisemak_ruangluar']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.success) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+
+    };
+</script>

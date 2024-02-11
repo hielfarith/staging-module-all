@@ -270,6 +270,7 @@ class PengurusanSkpakController extends Controller
         $tabname = $tabdata[0];
         $tabtype = $tabdata[1];
         $input = $request->input();
+
         $path = [];
         if ($request->file()) {
             foreach ($request->file() as $key1 => $files) {

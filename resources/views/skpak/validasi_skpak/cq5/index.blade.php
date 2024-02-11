@@ -27,3 +27,24 @@
         @include('skpak.validasi_skpak.cq5.jumlah')
     </div>
 </div>
+<script type="text/javascript">
+     function filechange(id, file, event){
+          var list = document.getElementById(file);
+          list.innerHTML = '';
+          for (var i = 0; i < event.files.length; i++) {
+            list.innerHTML += (i + 1) + '. ' + event.files[i].name + '\n';
+          }
+          if (list.innerHTML == '') list.style.display = 'none';
+          else list.style.display = 'block';
+    }
+
+    function assignmandatory(id, event) {
+
+            var idval = 'uploadfile_'+id;
+        if (event.value != 4) {
+            $('#'+idval).prop('required', true);   
+        } else {
+            $('#'+idval).prop('required', false);   
+        }
+    }
+</script>

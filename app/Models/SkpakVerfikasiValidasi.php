@@ -18,6 +18,7 @@ class SkpakVerfikasiValidasi extends Model
         'senarai_semak',
         'status',
         'skpak_standard_penilaian_id',
-        'jumlah'
+        'jumlah',
+        'senaraisemak'
     ];
 }
