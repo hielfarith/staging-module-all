@@ -308,10 +308,62 @@ class PengurusanSkpakController extends Controller
             $verfikasi = new SkpakVerfikasiValidasi;
             $verfikasi = $verfikasi->create($data);
         }
+        $senaraisemak = [];
         if ($tab == 'senaraisemak_ruangluar' || $tab == 'senaraisemak_ruangdalam') {
-            $tabData = $verfikasi->senaraisemak;            
+            $tabData = json_decode($verfikasi->senaraisemak, true);
+            $countYa = $countTidak = $countTidakberkenaan = 0;
+            foreach ($tabData as $key => $value) {
+                if ($key == 'ruangluar' && $tab == 'senaraisemak_ruangluar') {
+                    foreach ($value as $key1 => $subvalue) {
+                        if ($subvalue == 'YA') {
+                            $countYa += 1;
+                        } elseif ($subvalue == 'TIDAK') {
+                            $countTidak += 1;
+                        } elseif ($subvalue == 'TIDAK BERKENAAN') {
+                            $countTidakberkenaan +=1;
+                        }
+                   }
+                }
+
+                if ($key == 'ruangdalam' && $tab == 'senaraisemak_ruangdalam') {
+                    foreach ($value as $key1 => $subvalue) {
+                        if ($subvalue == 'YA') {
+                            $countYa += 1;
+                        } elseif ($subvalue == 'TIDAK') {
+                            $countTidak += 1;
+                        } elseif ($subvalue == 'TIDAK BERKENAAN') {
+                            $countTidakberkenaan +=1;
+                        }
+                   }
+                }
+
+                $total = $countYa+$countTidak;
+                $percentage = round($countYa / $total *100);
+
+                if ($percentage <= 0) {
+                    $rubik = 0;
+                } elseif($percentage > 0 && $percentage <= 40) {
+                    $rubik = 1;
+                 } elseif($percentage > 40 && $percentage <= 80) {
+                    $rubik = 2;
+                } elseif($percentage > 80 && $percentage <= 99) {
+                    $rubik = 3;
+                } elseif($percentage > 99) {
+                    $rubik = 4;
+                } else {
+                    $rubik = '-';
+                }
+                $senaraisemak = [
+                    'countYa' => $countYa,
+                    'countTidak' => $countTidak,
+                    'countTidakberkenaan' => $countTidakberkenaan,
+                    'rubik' => $rubik,
+                    'percentage' => $percentage
+                ];     
+             } 
+
         }
-        return ['success' => true ,'data' => $verfikasi];
+        return ['success' => true ,'data' => $verfikasi, 'senaraisemak' => $senaraisemak];
     }
 
     public function GetTabJumlahVerfikasi(Request $request)

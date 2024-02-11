@@ -79,7 +79,7 @@ $ruang_luars = [
                         } else {
                             $data = '';
                         }
-                         if ($data == 'YA') {
+                    if ($data == 'YA') {
                         $countYa += 1;
                     } elseif ($data == 'TIDAK') {
                         $countTidak += 1;
@@ -110,9 +110,9 @@ $ruang_luars = [
                 <td colspan="2" class="text-end">
                     Jumlah
                 </td>
-                 <td class="text-center">{{$countYa}}</td>
-                <td class="text-center">{{$countTidak}}</td>
-                <td class="text-center">{{$countTidakberkenaan}}</td>
+                <td class="text-center" id="countYaL">{{$countYa}}</td>
+                <td class="text-center" id="countTidakL">{{$countTidak}}</td>
+                <td class="text-center" id="countTidakberkenaanL">{{$countTidakberkenaan}}</td>
             </tr>
 
             <tr class="bg-light-danger">
@@ -136,14 +136,14 @@ $ruang_luars = [
                     $rubik = '-';
                 }       
                 ?>
-                <td colspan="3" class="text-center">{{$percentage}}%</td>
+                <td colspan="3" class="text-center" id="percentageL">{{$percentage}} %</td>
             </tr>
 
             <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Skor Rubrik
                 </td>
-                <td colspan="3" class="text-center"></td>
+                <td colspan="3" class="text-center"id="rubikL">{{$rubik}}</td>
             </tr>
         </tfoot>
     </table>
@@ -189,6 +189,12 @@ $ruang_luars = [
             success: function(response) {
                if (response.success) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    var data = response.senaraisemak;
+                    $('#countYaL').text(data.countYa);
+                    $('#countTidakL').text(data.countTidak);
+                    $('#countTidakberkenaanL').text(data.countTidakberkenaan);
+                    $('#percentageL').text(data.percentage+' '+'%');
+                    $('#rubikL').text(data.rubik);
                }
             }
         });

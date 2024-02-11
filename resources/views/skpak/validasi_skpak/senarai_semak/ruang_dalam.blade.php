@@ -143,9 +143,9 @@ $ruang_dalams = [
                 <td colspan="2" class="text-end">
                     Jumlah
                 </td>
-                <td class="text-center">{{$countYa}}</td>
-                <td class="text-center">{{$countTidak}}</td>
-                <td class="text-center">{{$countTidakberkenaan}}</td>
+                <td class="text-center" id="countYaD">{{$countYa}}</td>
+                <td class="text-center" id="countTidakD">{{$countTidak}}</td>
+                <td class="text-center" id="countTidakberkenaanD">{{$countTidakberkenaan}}</td>
             </tr>
 
             <tr class="bg-light-danger">
@@ -169,14 +169,14 @@ $ruang_dalams = [
                     $rubik = '-';
                 }       
                 ?>
-                <td colspan="3" class="text-center">{{$percentage}}%</td>
+                <td colspan="3" class="text-center" id="percentageD">{{$percentage}} %</td>
             </tr>
 
             <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Skor Rubrik
                 </td>
-                <td colspan="3" class="text-center">{{$rubik}}</td>
+                <td colspan="3" class="text-center" id="rubikD">{{$rubik}}</td>
             </tr>
         </tfoot>
     </table>
@@ -223,6 +223,12 @@ $ruang_dalams = [
             success: function(response) {
                if (response.success) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    var data = response.senaraisemak;
+                    $('#countYaD').text(data.countYa);
+                    $('#countTidakD').text(data.countTidak);
+                    $('#countTidakberkenaanD').text(data.countTidakberkenaan);
+                    $('#percentageD').text(data.percentage+' '+'%');
+                    $('#rubikD').text(data.rubik);
                }
             }
         });
