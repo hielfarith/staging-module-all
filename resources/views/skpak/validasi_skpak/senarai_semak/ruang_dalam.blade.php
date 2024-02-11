@@ -70,6 +70,7 @@ $ruang_dalams = [
     if ($ruangdalam && isset($ruangdalam['ruangdalam'])) {
         $item = $ruangdalam['ruangdalam'];
     }
+    $countYa = $countTidak = $countTidakberkenaan = 0;
 ?>
 <form id="ruang_dalam_form">
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
@@ -95,6 +96,13 @@ $ruang_dalams = [
                         $data = $item[$keyValue];
                     } else {
                         $data = '';
+                    }
+                    if ($data == 'YA') {
+                        $countYa += 1;
+                    } elseif ($data == 'TIDAK') {
+                        $countTidak += 1;
+                    } elseif ($data == 'TIDAK BERKENAAN') {
+                        $countTidakberkenaan +=1;
                     }
                     ?>
                     @if($index <= 5)
@@ -135,23 +143,40 @@ $ruang_dalams = [
                 <td colspan="2" class="text-end">
                     Jumlah
                 </td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
+                <td class="text-center">{{$countYa}}</td>
+                <td class="text-center">{{$countTidak}}</td>
+                <td class="text-center">{{$countTidakberkenaan}}</td>
             </tr>
 
             <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Jumlah Skor
                 </td>
-                <td colspan="3" class="text-center"></td>
+                <?php
+                $total = $countYa+$countTidak;
+                $percentage = round($countYa / $total *100);
+                if ($percentage <= 0) {
+                    $rubik = 0;
+                } elseif($percentage > 0 && $percentage <= 40) {
+                     $rubik = 1;
+                 } elseif($percentage > 40 && $percentage <= 80) {
+                     $rubik = 2;
+                } elseif($percentage > 80 && $percentage <= 99) {
+                     $rubik = 3;
+                } elseif($percentage > 99) {
+                     $rubik = 4;
+                } else {
+                    $rubik = '-';
+                }       
+                ?>
+                <td colspan="3" class="text-center">{{$percentage}}%</td>
             </tr>
 
             <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Skor Rubrik
                 </td>
-                <td colspan="3" class="text-center"></td>
+                <td colspan="3" class="text-center">{{$rubik}}</td>
             </tr>
         </tfoot>
     </table>

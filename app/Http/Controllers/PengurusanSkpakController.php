@@ -265,7 +265,6 @@ class PengurusanSkpakController extends Controller
 
     public function saveVerfiksai(Request $request, $tab)
     {
-
         $tabdata = explode("_", $tab);
         $tabname = $tabdata[0];
         $tabtype = $tabdata[1];
@@ -300,6 +299,7 @@ class PengurusanSkpakController extends Controller
                 $data[$tabname] = json_encode($updatedDaata);
             } 
             $verfikasi = $savedData->update($data);
+            $verfikasi = $savedData;
         } else {
             $array = [];
             $array[$tabtype] = $input;
@@ -307,6 +307,9 @@ class PengurusanSkpakController extends Controller
              
             $verfikasi = new SkpakVerfikasiValidasi;
             $verfikasi = $verfikasi->create($data);
+        }
+        if ($tab == 'senaraisemak_ruangluar' || $tab == 'senaraisemak_ruangdalam') {
+            $tabData = $verfikasi->senaraisemak;            
         }
         return ['success' => true ,'data' => $verfikasi];
     }
@@ -336,7 +339,6 @@ class PengurusanSkpakController extends Controller
                 }
             }
         }
-
         
         if ($tabname == 'itemcq1') {
             return view('skpak.validasi_skpak.cq1.jumlah', compact('array', 'tabData', 'totalValue'));
