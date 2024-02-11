@@ -15,7 +15,7 @@
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-sq1-tab" data-bs-toggle="tab" href="#jumlah-sq1" aria-controls="jumlah-sq1" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-sq1-tab" data-bs-toggle="tab" href="#jumlah-sq1" aria-controls="jumlah-sq1" role="tab" aria-selected="false" onclick="updateJumlah('itemcq1',{{$id}})">
             JUMLAH CQ1
         </a>
     </li>
@@ -32,12 +32,12 @@
         @include('skpak.validasi_skpak.cq1.sq1_3')
     </div>
     <div class="tab-pane fade" id="jumlah-sq1" role="tabpanel" aria-labelledby="jumlah-sq1-tab">
-        @include('skpak.validasi_skpak.cq1.jumlah')
+        
     </div>
 </div>
 
 <script type="text/javascript">
-     function filechange(id, file, event){
+     function filechange1(id, file, event){
           var list = document.getElementById(file);
           list.innerHTML = '';
           for (var i = 0; i < event.files.length; i++) {
@@ -47,13 +47,31 @@
           else list.style.display = 'block';
     }
 
-    function assignmandatory(id, event) {
+    function assignmandatory1(id, event) {
+        var idval = 'uploadfile_'+id;
+        var jumlahval = 'jumlah_'+id;
+        $('#'+jumlahval).text(event.value);
 
-            var idval = 'uploadfile_'+id;
         if (event.value != 4) {
             $('#'+idval).prop('required', true);   
         } else {
             $('#'+idval).prop('required', false);   
         }
+    }
+    
+    function  updateJumlah(tabname, id) {
+        var url = "{{ route('skpak.get-verfikasi-jumlah') }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                id:id,
+                tabname: tabname
+            },
+            success: function(response) {
+                $('#jumlah-sq1').empty();
+                $('#jumlah-sq1').append(response)
+            }
+        });
     }
 </script>

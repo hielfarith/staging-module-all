@@ -43,14 +43,16 @@ $ruang_luars = [
 <hr>
 <?php
     $id = Request::segment(3);
-    $itemcq5 = $item = null;
+    $ruangluar = $item = null;
     if ($skpakfilleddata){
-        $itemcq5 = json_decode($skpakfilleddata->itemcq5, true);
+        $ruangluar = json_decode($skpakfilleddata->senaraisemak, true);
     }  
-    if ($itemcq5 && isset($itemcq5['sq5.1'])) {
-        $item = $itemcq5['sq5.1'];
+    if ($ruangluar && isset($ruangluar['ruangluar'])) {
+        $item = $ruangluar['ruangluar'];
     }
 ?>
+
+
 <form id="ruang_luar_form">
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
 <div class="table-responsive">
@@ -69,19 +71,27 @@ $ruang_luars = [
                 <tr>
                     <td>{{ $index }}</td>
                     <td>{{ $ruang_luar }}</td>
+                    <?php
+                        if (isset($item)) {
+                            $keyValue = $index.'_'.$loop->index;
+                            $data = $item[$keyValue];
+                        } else {
+                            $data = '';
+                        }
+                    ?>
                     <td>
                         <div class="d-flex justify-content-center align-items-center">
-                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" required>
+                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" required @if($data == 'YA') checked @endif>
                         </div>
                     </td>
                     <td>
                         <div class="d-flex justify-content-center align-items-center">
-                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" required>
+                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" required @if($data == 'TIDAK') checked @endif>
                         </div>
                     </td>
                     <td>
                         <div class="d-flex justify-content-center align-items-center">
-                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_berkenaan_{{ $index }}_{{ $loop->index }}" value="TIDAK BERKENAAN" required>
+                            <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_berkenaan_{{ $index }}_{{ $loop->index }}" value="TIDAK BERKENAAN" required @if($data == 'TIDAK BERKENAAN') checked @endif>
                         </div>
                     </td>
                 </tr>
@@ -116,7 +126,9 @@ $ruang_luars = [
 
 <div class="col-md-12 mb-1 mt-1">
     <label class="fw-bolder">Ulasan</label>
-    <textarea name="ulasan_{{$index}}" id="" rows="3" class="form-control"></textarea>
+    <textarea name="ulasan" id="" rows="3" class="form-control">
+    @if($item && isset($item['ulasan'])) {{$item['ulasan']}}  @endif
+    </textarea>
 </div>
 
 <hr>

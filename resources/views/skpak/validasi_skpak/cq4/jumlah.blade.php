@@ -34,6 +34,25 @@
             ]
         ],
     ];
+
+    $subtab = [
+        '0' => 'sq4.1',
+        '1' => 'sq4.2'
+    ];
+
+    $subtabdata = [
+        'sq4.1' => [
+            '0' => '4_1_1',
+            '1' => '4_1_2',
+            '2' => '4_1_3',
+            '3' => '4_1_4',
+        ],
+        'sq4.2' => [
+            '0' => '4_2_1',
+            '1' => '4_2_2'
+        ]
+    ];
+
 @endphp
 
 <h5 class="card-title fw-bolder text-uppercase">
@@ -57,10 +76,18 @@
                         {{ $jumlah_sq4['section'] }}
                     </td>
                 </tr>
-                @foreach ($jumlah_sq4['subSections'] as $subsection_sq4)
+                @foreach ($jumlah_sq4['subSections'] as $key => $subsection_sq4)
                     <tr>
                         <td>{{ $subsection_sq4 }}</td>
-                        <td>Auto-calculated</td>
+                          <?php
+                        if (isset($tabData) && isset($tabData[$subtab[$index]])) {
+                            $value = $tabData[$subtab[$index]][$subtabdata[$subtab[$index]][$key]];
+                        }  else {
+                            $value = '-';
+                        }
+
+                        ?>
+                        <td> {{$value}} </td> 
                     </tr>
                 @endforeach
             @endforeach
@@ -68,7 +95,7 @@
         <tfoot>
             <tr class="bg-light-primary">
                 <td class="text-end">Jumlah</td>
-                <td>Auto-calculated</td>
+                <td>{{$totalValue}}</td>
             </tr>
         </tfoot>
     </table>

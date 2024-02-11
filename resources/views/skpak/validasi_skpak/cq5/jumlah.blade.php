@@ -41,6 +41,31 @@
             ]
         ],
     ];
+
+     $subtab = [
+        '0' => 'sq5.1',
+        '1' => 'sq5.2'
+    ];
+
+    $subtabdata = [
+        'sq5.1' => [
+            '0' => '5_1_1',
+            '1' => '5_1_2',
+            '2' => '5_1_3',
+            '3' => '5_1_4',
+            '4' => '5_1_5',
+            '5' => '5_1_6',
+            '6' => '5_1_7',
+            '7' => '5_1_8'
+        ],
+        'sq5.2' => [
+            '0' => '5_2_1',
+            '1' => '5_2_2',
+            '2' => '5_2_3',
+            '3' => '5_2_4',
+            '4' => '5_2_5'
+        ]
+    ];
 @endphp
 
 <h5 class="card-title fw-bolder text-uppercase">
@@ -64,10 +89,18 @@
                         {{ $jumlah_sq5['section'] }}
                     </td>
                 </tr>
-                @foreach ($jumlah_sq5['subSections'] as $subsection_sq5)
+                @foreach ($jumlah_sq5['subSections'] as $key => $subsection_sq5)
                     <tr>
                         <td>{{ $subsection_sq5 }}</td>
-                        <td>Auto-calculated</td>
+                           <?php
+                        if (isset($tabData) && isset($tabData[$subtab[$index]])) {
+                            $value = $tabData[$subtab[$index]][$subtabdata[$subtab[$index]][$key]];
+                        }  else {
+                            $value = '-';
+                        }
+
+                        ?>
+                        <td> {{$value}} </td> 
                     </tr>
                 @endforeach
             @endforeach
@@ -75,7 +108,7 @@
         <tfoot>
             <tr class="bg-light-primary">
                 <td class="text-end">Jumlah</td>
-                <td>Auto-calculated</td>
+                <td>{{$totalValue}}</td>
             </tr>
         </tfoot>
     </table>

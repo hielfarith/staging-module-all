@@ -51,6 +51,7 @@
     if ($itemcq1 && isset($itemcq1['sq1.1'])) {
         $item = $itemcq1['sq1.1'];
     }
+    $keyValue = $totalvalue = 0;
 ?>
 <form id="cq1_sq1">
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
@@ -90,6 +91,7 @@
                         if($item) {
                             $catatanData = $item['catatan_'.$keyString];
                             $keyValue = $item[$keyString];
+                            $totalvalue += $keyValue; 
                         }
                     ?>
                     @foreach ($options[$index] as $key => $option)
@@ -103,7 +105,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}} onchange='assignmandatory("{{$keyString}}",  this)'>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}} onchange='assignmandatory1("{{$keyString}}",  this)'>
                             </div>
                             <br>
 
@@ -113,12 +115,12 @@
                         </td>
                     @endforeach
 
-                    <td>Auto-selected</td>
+                    <td id="jumlah_{{$keyString}}">{{$keyValue}}</td>
                 </tr>
                 <tr class="bg-light-primary">
                     <td colspan="6">
                         <label class="fw-bolder">Upload: </label>
-                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)'>
+                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange1("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)'>
                         <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
                     </td>
                 </tr>
@@ -136,7 +138,7 @@
                 <td class="text-end" colspan="6">
                     Jumlah
                 </td>
-                <td class="text-center">Auto-calculated</td>
+                <td class="text-center">{{$totalvalue}}</td>
             </tr>
         </tfoot> --}}
     </table>

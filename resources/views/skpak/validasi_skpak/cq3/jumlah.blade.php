@@ -56,6 +56,41 @@
             ]
         ],
     ];
+    $subtab = [
+        '0' => 'sq3.1',
+        '1' => 'sq3.2',
+        '2' => 'sq3.3',
+        '3' => 'sq3.4'
+    ];
+
+    $subtabdata = [
+        'sq3.1' => [
+            '0' => '3_1_1',
+            '1' => '3_1_2',
+            '2' => '3_1_3'
+        ],
+        'sq3.2' => [
+            '0' => '3_2_1',
+            '1' => '3_2_2',
+            '2' => '3_2_3',
+            '3' => '3_2_4',
+            '4' => '3_2_5',
+            '5' => '3_2_6'
+        ],
+        'sq3.3' => [
+            '0' => '3_3_1',
+            '1' => '3_3_2',
+            '2' => '3_3_3',
+            '3' => '3_3_4',
+            '4' => '3_3_5'
+        ],
+        'sq3.4' => [
+            '0' => '3_4_1',
+            '1' => '3_4_2',
+            '2' => '3_4_3',
+            '3' => '3_4_4'
+        ]
+    ];
 @endphp
 
 <h5 class="card-title fw-bolder text-uppercase">
@@ -79,10 +114,18 @@
                         {{ $jumlah_sq3['section'] }}
                     </td>
                 </tr>
-                @foreach ($jumlah_sq3['subSections'] as $subsection_sq3)
+                @foreach ($jumlah_sq3['subSections'] as $key => $subsection_sq3)
                     <tr>
                         <td>{{ $subsection_sq3 }}</td>
-                        <td>Auto-calculated</td>
+                         <?php
+                        if (isset($tabData) && isset($tabData[$subtab[$index]])) {
+                            $value = $tabData[$subtab[$index]][$subtabdata[$subtab[$index]][$key]];
+                        }  else {
+                            $value = '-';
+                        }
+
+                        ?>
+                        <td> {{$value}} </td> 
                     </tr>
                 @endforeach
             @endforeach
@@ -90,7 +133,7 @@
         <tfoot>
             <tr class="bg-light-primary">
                 <td class="text-end">Jumlah</td>
-                <td>Auto-calculated</td>
+                <td>{{$totalValue}}</td>
             </tr>
         </tfoot>
     </table>

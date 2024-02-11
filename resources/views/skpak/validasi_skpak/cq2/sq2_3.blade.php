@@ -58,6 +58,7 @@
     if ($itemcq2 && isset($itemcq2['sq2.3'])) {
         $item = $itemcq2['sq2.3'];
     }
+    $keyValue = $totalvalue = 0;
 ?>
 
 <form id="cq2_sq3">
@@ -91,6 +92,7 @@
                         if($item) {
                             $catatanData = $item['catatan_'.$keyString];
                             $keyValue = $item[$keyString];
+                            $totalvalue += $keyValue;
                         }
                     ?>
                     @foreach ($options[$index] as $key => $option)
@@ -115,7 +117,7 @@
                         </td>
                     @endforeach
 
-                    <td>Auto-selected</td>
+                    <td id="jumlah_{{$keyString}}">{{ $keyValue }}</td>
                 </tr>
                 <tr class="bg-light-primary">
                     <td colspan="6">
@@ -138,7 +140,7 @@
                 <td class="text-end" colspan="6">
                     Jumlah
                 </td>
-                <td class="text-center">Auto-calculated</td>
+                <td class="text-center">{{$totalvalue}}</td>
             </tr>
         </tfoot>
     </table>

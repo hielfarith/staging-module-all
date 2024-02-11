@@ -310,4 +310,44 @@ class PengurusanSkpakController extends Controller
         }
         return ['success' => true ,'data' => $verfikasi];
     }
+
+    public function GetTabJumlahVerfikasi(Request $request)
+    {
+        $verficationData = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $request->id)->first();
+        $tabname = $request->tabname;
+        $array = [];
+        $totalValue = 0;
+        if ($verficationData) {
+            $tabData = $verficationData->$tabname;
+            if ($tabData) {
+                $tabData = json_decode($tabData, true);
+                foreach ($tabData as $key1 => $value) {
+                    $array[$key1] = 0;
+                    foreach ($value as $key => $subtab) {
+                        if (str_contains($key, 'upload') || str_contains($key, 'catatan')) { 
+                            continue;
+                        }
+                        $array[$key1] += $subtab;
+                    }
+                }
+
+                foreach ($array as $key => $value) {
+                    $totalValue += $value;
+                }
+            }
+        }
+
+        
+        if ($tabname == 'itemcq1') {
+            return view('skpak.validasi_skpak.cq1.jumlah', compact('array', 'tabData', 'totalValue'));
+        } elseif ($tabname == 'itemcq2') {
+            return view('skpak.validasi_skpak.cq2.jumlah', compact('array', 'tabData', 'totalValue'));
+        } elseif ($tabname == 'itemcq3') {
+            return view('skpak.validasi_skpak.cq3.jumlah', compact('array', 'tabData', 'totalValue'));
+        } elseif ($tabname == 'itemcq4') {
+            return view('skpak.validasi_skpak.cq4.jumlah', compact('array', 'tabData', 'totalValue'));
+        } elseif ($tabname == 'itemcq5') {
+            return view('skpak.validasi_skpak.cq5.jumlah', compact('array', 'tabData', 'totalValue'));
+        } 
+     }
 }

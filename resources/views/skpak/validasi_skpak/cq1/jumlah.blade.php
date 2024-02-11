@@ -41,14 +41,36 @@
             ]
         ],
     ];
+
+    $subtab = [
+        '0' => 'sq1.1',
+        '1' => 'sq1.2',
+        '2' => 'sq1.3'
+    ];
+
+    $subtabdata = [
+        'sq1.1' => [
+            '0' => '1_1_1',
+            '1' => '1_1_2'
+        ],
+        'sq1.2' => [
+            '0' => '1_2_1',
+            '1' => '1_2_2',
+            '2' => '1_2_3',
+        ],
+        'sq1.3' => [
+            '0' => '1_3_1',
+            '1' => '1_3_2',
+            '2' => '1_3_3'
+        ]
+    ];
 @endphp
 
-<h5 class="card-title fw-bolder text-uppercase">
+<!-- <h5 class="card-title fw-bolder text-uppercase">
     Hubungan dan Interaksi
 </h5>
-
+ -->
 <hr>
-
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="jumlah-cq-1">
         <thead>
@@ -64,10 +86,18 @@
                         {{ $jumlah_sq1['section'] }}
                     </td>
                 </tr>
-                @foreach ($jumlah_sq1['subSections'] as $subsection_sq1)
+                @foreach ($jumlah_sq1['subSections'] as $key => $subsection_sq1)
                     <tr>
                         <td>{{ $subsection_sq1 }}</td>
-                        <td>Auto-calculated</td>
+                        <?php
+                        if (isset($tabData) && isset($tabData[$subtab[$index]])) {
+                            $value = $tabData[$subtab[$index]][$subtabdata[$subtab[$index]][$key]];
+                        }  else {
+                            $value = '-';
+                        }
+
+                        ?>
+                        <td> {{$value}} </td>
                     </tr>
                 @endforeach
             @endforeach
@@ -75,19 +105,62 @@
         <tfoot>
             <tr class="bg-light-primary">
                 <td class="text-end">Jumlah</td>
-                <td>Auto-calculated</td>
+                <td>{{$totalValue}}</td>
             </tr>
         </tfoot>
     </table>
 
     <div class="col-md-12 mt-2">
         <label class="fw-bolder">Ulasan</label>
-        <textarea name="" id="" rows="3" class="form-control"></textarea>
+        <textarea name="ulasan" id="" rows="3" class="form-control"></textarea>
     </div>
 </div>
 
 <hr>
 
 <div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right" onclick="submitform1()">Simpan</button>
+    <button type="button" class="btn btn-primary float-right" onclick="submitcq1jumlah()">Simpan</button>
 </div>
+
+</form>
+
+<script>
+    function submitcq1jumlah() {
+        var formData = new FormData(document.getElementById('cq1_sq1'));
+        var error = false;
+
+         $('form#cq1_sq1').find('radio, input, checkbox, file').each(function() {
+            if(this.required && this.type == 'radio' && !this.checked) {
+                var val = $("input[type='radio'][name='"+this.name+"']:checked", '#cq1_sq1').val();
+                if (typeof val == 'undefined') {
+                    error = true;
+                }
+            }
+            if (this.required && this.type == 'file') {
+                if($('#'+this.id)[0].files.length === 0){
+                    error = true;
+                }
+            }
+        });
+
+        if (error) {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'itemcq1_sq1.1']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.success) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+
+    };
+
+</script>
