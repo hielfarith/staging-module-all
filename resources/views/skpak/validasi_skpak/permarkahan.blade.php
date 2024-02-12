@@ -243,7 +243,7 @@ $penyelarasan_penilaians = [
 
         <tr class="bg-light-danger">
             <td colspan="3" class="text-end">Peratus Keseluruhan</td>
-            <td colspan="3" class="text-start"></td>
+            <td colspan="3" class="text-start">{{$percentage}}</td>
         </tr>
     </tfoot>
 </table>

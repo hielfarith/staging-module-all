@@ -464,6 +464,7 @@ class PengurusanSkpakController extends Controller
         foreach ($totalSkor as $key => $value) {
             $finalskore += $value;
         }
-        return view('skpak.validasi_skpak.permarkahan', compact('array', 'totalSkor', 'finalskore'));
+        $percentage = round($finalskore / 296 *100);
+        return view('skpak.validasi_skpak.permarkahan', compact('array', 'totalSkor', 'finalskore', 'percentage'));
     }
 }
