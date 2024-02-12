@@ -312,31 +312,39 @@ class PengurusanSkpakController extends Controller
             $tabData = json_decode($verfikasi->senaraisemak, true);
             $countYa = $countTidak = $countTidakberkenaan = 0;
             foreach ($tabData as $key => $value) {
-                if ($key == 'ruangluar' && $tab == 'senaraisemak_ruangluar') {
-                    foreach ($value as $key1 => $subvalue) {
-                        if ($subvalue == 'YA') {
-                            $countYa += 1;
-                        } elseif ($subvalue == 'TIDAK') {
-                            $countTidak += 1;
-                        } elseif ($subvalue == 'TIDAK BERKENAAN') {
-                            $countTidakberkenaan +=1;
-                        }
-                   }
-                }
-
-                if ($key == 'ruangdalam' && $tab == 'senaraisemak_ruangdalam') {
-                    foreach ($value as $key1 => $subvalue) {
-                        if ($subvalue == 'YA') {
-                            $countYa += 1;
-                        } elseif ($subvalue == 'TIDAK') {
-                            $countTidak += 1;
-                        } elseif ($subvalue == 'TIDAK BERKENAAN') {
-                            $countTidakberkenaan +=1;
-                        }
+                if ($tab == 'senaraisemak_ruangluar') {
+                    if ($key == 'ruangluar') {
+                        foreach ($value as $key1 => $subvalue) {
+                            if ($subvalue == 'YA') {
+                                $countYa += 1;
+                            } elseif ($subvalue == 'TIDAK') {
+                                $countTidak += 1;
+                            } elseif ($subvalue == 'TIDAK BERKENAAN') {
+                                $countTidakberkenaan +=1;
+                            }
+                       }
+                    } else {
+                        continue;
+                    }
+                } 
+                if ($tab == 'senaraisemak_ruangdalam') {
+                    if ($key == 'ruangdalam') {
+                         foreach ($value as $key1 => $subvalue) {
+                            if ($subvalue == 'YA') {
+                                $countYa += 1;
+                            } elseif ($subvalue == 'TIDAK') {
+                                $countTidak += 1;
+                            } elseif ($subvalue == 'TIDAK BERKENAAN') {
+                                $countTidakberkenaan +=1;
+                            }
+                       }
+                   } else {
+                    continue;
                    }
                 }
 
                 $total = $countYa+$countTidak;
+
                 $percentage = round($countYa / $total *100);
 
                 if ($percentage <= 0) {
@@ -406,5 +414,32 @@ class PengurusanSkpakController extends Controller
         } elseif ($tabname == 'itemcq5') {
             return view('skpak.validasi_skpak.cq5.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
         } 
-     }
+    }
+
+    public function GetJumlahSkor(Request $request)
+    {
+        $id = $request->id;
+        $array = [];
+        $skpak = null;
+        $tabs = ['itemcq1', 'itemcq2', 'itemcq3', 'itemcq4', 'itemcq5'];
+        if ($id) {
+            $skpak = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $request->id)->first();
+            if (!empty($skpak)) {
+                foreach ($tabs as $key1 => $value1) {
+                    if ($skpak->$value1) {
+                        $tabData = json_decode($skpak->$value1, true);
+                        foreach ($tabData as $key => $value) {
+                            if (str_contains($key, 'upload') || str_contains($key, 'catatan') || str_contains($key, 'ulasan') || str_contains($key, 'jumlah')) { 
+                                continue;
+                            }
+                            $array[$value1][$key] = '';
+
+                        }
+                    }
+                }
+            }
+        }
+        dd($array);
+        return view('skpak.validasi_skpak.permarkahan', compact('skpak'));
+    }
 }

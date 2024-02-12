@@ -14,6 +14,7 @@ Route::controller(PengurusanSkpakController::class)->group(function () {
         Route::get('senarai-skpak','SenaraiSkpak')->name('senarai-skpak');
         Route::post('get-jumlah','GetJumlah')->name('get-jumlah');
         Route::post('get-verfikasi-jumlah','GetTabJumlahVerfikasi')->name('get-verfikasi-jumlah');
+        Route::post('get-jumlah-skor','GetJumlahSkor')->name('get-jumlah-skor');
 
         Route::post('submit-spkak','SubmitSpkak')->name('submit-spkak');
         Route::post('save-spkak-verfikasi/{tab}','saveVerfiksai')->name('save-verfikasi');

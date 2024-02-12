@@ -53,7 +53,7 @@ SKPAK
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="selaras-nilai-tab" data-bs-toggle="tab" href="#selaras-nilai" aria-controls="selaras-nilai" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="selaras-nilai-tab" data-bs-toggle="tab" href="#selaras-nilai" aria-controls="selaras-nilai" role="tab" aria-selected="false" onclick="getJumlah()">
             PENYELARASAN <br> PENILAI
         </a>
     </li>
@@ -87,7 +87,7 @@ SKPAK
                 @include('skpak.validasi_skpak.selaras_markah.index')
             </div>
             <div class="tab-pane fade" id="selaras-nilai" role="tabpanel" aria-labelledby="selaras-nilai-tab">
-                @include('skpak.validasi_skpak.penyelarasan_penilai')
+
             </div>
         </div>
     </div>

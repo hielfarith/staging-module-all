@@ -20,7 +20,6 @@ return new class extends Migration
             $table->longText('itemcq3')->nullable();
             $table->longText('itemcq4')->nullable();
             $table->longText('itemcq5')->nullable();
-            $table->longText('senarai_semak')->nullable();
             $table->tinyInteger('status')->nullable();;
             $table->integer('skpak_standard_penilaian_id');
             $table->text('jumlah')->nullable();
