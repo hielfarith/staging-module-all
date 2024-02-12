@@ -243,7 +243,40 @@ $penyelarasan_penilaians = [
 
         <tr class="bg-light-danger">
             <td colspan="3" class="text-end">Peratus Keseluruhan</td>
-            <td colspan="3" class="text-start">{{$percentage}}</td>
+            <td colspan="3" class="text-start">{{$percentage}} %</td>
         </tr>
     </tfoot>
 </table>
+<input type="hidden" name="skpak_standard_penilaian_id" id="skpak_standard_penilaian_id_permarkahan" value="{{$skpak_standard_penilaian_id}}">
+
+<hr>
+
+<div class="d-flex justify-content-end align-items-center mt-1">
+    <button type="button" class="btn {{$color}} float-right" onclick="submitcpermarkahan()">Hantar</button>
+</div>
+</form>
+
+<script>
+    function submitcpermarkahan() {
+    var skpak_standard_penilaian_id = $('#skpak_standard_penilaian_id_permarkahan').val();
+      if (ulasan == '') {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'itemcq5_jumlah']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                skpak_standard_penilaian_id: skpak_standard_penilaian_id
+            },
+            success: function(response) {
+               if (response.success) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+
+    };
+
+</script>

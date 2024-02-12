@@ -421,13 +421,12 @@ class PengurusanSkpakController extends Controller
         $array = [];
         $skpak = null;
         $tabs = ['itemcq1', 'itemcq2', 'itemcq3', 'itemcq4', 'itemcq5'];
+        $skpak_standard_penilaian_id = $request->id;
         if ($id) {
             $skpak = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $request->id)->first();
             if (!empty($skpak)) {
                 foreach ($tabs as  $tab) {
-                    
-                    if ($skpak->$tab) {
-                    
+                    if ($skpak->$tab) {                    
                         $tabData = json_decode($skpak->$tab, true);
                         foreach ($tabData as $key => $value) {
                             if (str_contains($key, 'jumlah') ) {
@@ -465,6 +464,43 @@ class PengurusanSkpakController extends Controller
             $finalskore += $value;
         }
         $percentage = round($finalskore / 296 *100);
-        return view('skpak.validasi_skpak.permarkahan', compact('array', 'totalSkor', 'finalskore', 'percentage'));
+        $penilai = SkpakStandardPenilaian::where('id', $request->id)->first();
+        $getConfiguration = InstrumenSkpakSpksIkeps::where('id', $penilai->instrument_id)->first();
+        
+        $startDate = $getConfiguration->tarikh_kuatkuasa;
+        $startDate = str_replace('/', '-', $startDate);
+        
+        $addpengisian = $getConfiguration->tempoh_pengisian_lain;
+        if ($getConfiguration->tempoh_pengisian == 'Bulan') {
+            //add weeks
+            $verficationStartDate = date('Y-m-d', strtotime('+'.$addpengisian.' week', strtotime($startDate)));
+        } else {
+            $verficationStartDate = date('Y-m-d', strtotime('+'.$addpengisian.' month', strtotime($startDate)));
+        }        
+
+        $addpengeshan = $getConfiguration->tempoh_pengisian_lain;
+        if ($getConfiguration->tempoh_pengeshan == 'Bulan') {
+            //add weeks
+            $verficationStartDate = date('Y-m-d', strtotime('+'.$addpengeshan.' week', strtotime($verficationStartDate)));
+        } else {
+            $verficationStartDate = date('Y-m-d', strtotime('+'.$addpengeshan.' month', strtotime($verficationStartDate)));
+        }    
+        //add 2 weeks 
+        $verficationdateAfter2weeks = date('Y-m-d', strtotime('+2 weeks', strtotime($verficationStartDate)));
+        //add 4 weeks 
+        $verficationdateAfter4weeks = date('Y-m-d', strtotime('+4 weeks', strtotime($verficationStartDate)));
+       $currentdate = strtotime(date('Y-m-d'));
+       $color = 'btn-success';
+       if ($currentdate >= strtotime($verficationStartDate) && $currentdate <= $verficationdateAfter2weeks) {
+            $color = 'btn-success';
+       }
+       if ($currentdate > $verficationdateAfter2weeks && $currentdate < $verficationdateAfter4weeks) {
+            $color = 'btn-warning';
+       }
+       if ($currentdate > $verficationdateAfter4weeks) {
+            $color = 'btn-danger';
+       }
+
+        return view('skpak.validasi_skpak.permarkahan', compact('array', 'totalSkor', 'finalskore', 'percentage', 'skpak_standard_penilaian_id', 'color'));
     }
 }
