@@ -424,21 +424,46 @@ class PengurusanSkpakController extends Controller
         if ($id) {
             $skpak = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $request->id)->first();
             if (!empty($skpak)) {
-                foreach ($tabs as $key1 => $value1) {
-                    if ($skpak->$value1) {
-                        $tabData = json_decode($skpak->$value1, true);
+                foreach ($tabs as  $tab) {
+                    
+                    if ($skpak->$tab) {
+                    
+                        $tabData = json_decode($skpak->$tab, true);
                         foreach ($tabData as $key => $value) {
-                            if (str_contains($key, 'upload') || str_contains($key, 'catatan') || str_contains($key, 'ulasan') || str_contains($key, 'jumlah')) { 
+                            if (str_contains($key, 'jumlah') ) {
                                 continue;
                             }
-                            $array[$value1][$key] = '';
-
+                            $val = 0;
+                            foreach ($value as $key1 => $sq) {
+                                if (str_contains($key1, 'upload') || str_contains($key1, 'catatan') || str_contains($key1, 'jumlah')){ 
+                                    continue;
+                                }
+                                $array[$tab][$key] = $val+$sq;
+                                $val = $array[$tab][$key] ;
+                            }
                         }
+                    } else {
+                        $array[$tab] = null;
                     }
                 }
             }
         }
-        dd($array);
-        return view('skpak.validasi_skpak.permarkahan', compact('skpak'));
+        $totalSkor = [];
+        foreach ($array as $key2 => $value) {
+            $val = 0;
+            if (is_array($value)) {
+                foreach ($value as $key => $data) {
+                    $totalSkor[$key2] = $val+$data;
+                    $val =  $totalSkor[$key2];                   
+                }
+            } else {
+                $totalSkor[$key2] =  0;
+            }
+        }
+        $finalskore = 0;
+        foreach ($totalSkor as $key => $value) {
+            $finalskore += $value;
+        }
+        return view('skpak.validasi_skpak.permarkahan', compact('array', 'totalSkor', 'finalskore'));
     }
 }

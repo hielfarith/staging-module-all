@@ -17,6 +17,14 @@
 </style>
 
 @php
+$itemArray = [
+    'CQ1 HUBUNGAN DAN INTERAKSI' => 'itemcq1',
+    'CQ2 PENGASUHAN DAN PEMBELAJARAN' => 'itemcq2',
+    'CQ3 KESELAMATAN, KESIHATAN, KEBERSIHAN & PEMAKANAN' => 'itemcq3',
+    'CQ4 KOLABORASI KELUARGA & KOMUNITI' => 'itemcq4',
+    'CQ5 PENTADBIRAN & PENGURUSAN' => 'itemcq5'
+];
+
 $penyelarasan_penilaians = [
     'sections' => [
         'CQ1 HUBUNGAN DAN INTERAKSI' => [
@@ -192,7 +200,16 @@ $penyelarasan_penilaians = [
                         @endif
                         <td>{{ $subsubsection }}</td>
                         @if (!$row)
-                            <td rowspan="{{ $subsubsectionCount }}">Skor</td>
+                            <?php
+                                 
+                                $keystring = 'sq'.$numeric;
+                                if (is_array($array[$itemArray[$section]]) && isset($array[$itemArray[$section]][$keystring])){
+                                    $subdata = $array[$itemArray[$section]][$keystring];
+                                } else {
+                                    $subdata = 0;
+                                }
+                           ?>
+                            <td rowspan="{{ $subsubsectionCount }}">{{$subdata}}</td>
                         @endif
                         @if (!$row && $loop->parent->first)
                             <td rowspan="{{ $totalRow }}">Peratus</td>
@@ -208,7 +225,10 @@ $penyelarasan_penilaians = [
             @endforeach
 
             <tr class="bg-light-success">
-                <td colspan="3" class="text-end">Jumlah Skor</td>
+                <?php
+                    $skore = $totalSkor[$itemArray[$section]];
+                ?>
+                <td colspan="3" class="text-end">{{$skore}}</td>
                 <td colspan="3" class="text-start"></td>
             </tr>
         @endforeach
@@ -218,7 +238,7 @@ $penyelarasan_penilaians = [
     <tfoot>
         <tr class="bg-light-danger">
             <td colspan="3" class="text-end">Jumlah Skor</td>
-            <td colspan="3" class="text-start"></td>
+            <td colspan="3" class="text-start">{{$finalskore}}</td>
         </tr>
 
         <tr class="bg-light-danger">
