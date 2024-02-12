@@ -379,14 +379,13 @@ class PengurusanSkpakController extends Controller
         $tabname = $request->tabname;
         $array = [];
         $totalValue = 0;
+        $ulasan = '';
         if ($verficationData) {
             $tabData = $verficationData->$tabname;
             if ($tabData) {
                 $tabData = json_decode($tabData, true);
                 if (array_key_exists('jumlah', $tabData)) {
                     $ulasan = $tabData['jumlah']['ulasan'];
-                } else {
-                    $ulasan = '';
                 }
                 foreach ($tabData as $key1 => $value) {
                     $array[$key1] = 0;
