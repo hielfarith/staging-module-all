@@ -159,10 +159,10 @@
 </div>
 
 <hr>
-
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="submitcq3sq3()">Simpan</button>
 </div>
+</form>
 <script>
     function submitcq3sq3() {
         var formData = new FormData(document.getElementById('cq3_sq3'));

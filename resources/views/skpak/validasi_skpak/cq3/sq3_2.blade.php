@@ -171,7 +171,7 @@
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="submitcq3sq2()">Simpan</button>
 </div>
-
+</form>
 <script>
     function submitcq3sq2() {
         var formData = new FormData(document.getElementById('cq3_sq2'));

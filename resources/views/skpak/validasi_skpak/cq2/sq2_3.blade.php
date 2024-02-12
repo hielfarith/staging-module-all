@@ -161,6 +161,7 @@
             if(this.required && this.type == 'radio' && !this.checked) {
                 var val = $("input[type='radio'][name='"+this.name+"']:checked", '#cq2_sq3').val();
                 if (typeof val == 'undefined') {
+                    console.log(this.name)
                     error = true;
                 }
             }

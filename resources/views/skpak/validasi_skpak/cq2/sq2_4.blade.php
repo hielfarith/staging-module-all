@@ -81,7 +81,7 @@
     }
     $keyValue = $totalvalue = 0;
 ?>
-<form id="cq2_sq3">
+<form id="cq2_sq4">
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="verifikasi-sq2-4">

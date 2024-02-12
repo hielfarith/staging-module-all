@@ -17,6 +17,7 @@
 </style>
 
 @php
+$showHantar = true;
 $itemArray = [
     'CQ1 HUBUNGAN DAN INTERAKSI' => 'itemcq1',
     'CQ2 PENGASUHAN DAN PEMBELAJARAN' => 'itemcq2',
@@ -207,6 +208,7 @@ $penyelarasan_penilaians = [
                                     $subdata = $array[$itemArray[$section]][$keystring];
                                 } else {
                                     $subdata = 0;
+                                    $showHantar = false;
                                 }
                            ?>
                             <td rowspan="{{ $subsubsectionCount }}">{{$subdata}}</td>
@@ -250,10 +252,11 @@ $penyelarasan_penilaians = [
 <input type="hidden" name="skpak_standard_penilaian_id" id="skpak_standard_penilaian_id_permarkahan" value="{{$skpak_standard_penilaian_id}}">
 
 <hr>
-
+@if($showHantar)
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn {{$color}} float-right" onclick="submitcpermarkahan()">Hantar</button>
 </div>
+@endif
 </form>
 
 <script>
