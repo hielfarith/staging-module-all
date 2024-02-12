@@ -269,7 +269,6 @@ class PengurusanSkpakController extends Controller
         $tabname = $tabdata[0];
         $tabtype = $tabdata[1];
         $input = $request->input();
-
         $path = [];
         if ($request->file()) {
             foreach ($request->file() as $key1 => $files) {
@@ -376,32 +375,36 @@ class PengurusanSkpakController extends Controller
             $tabData = $verficationData->$tabname;
             if ($tabData) {
                 $tabData = json_decode($tabData, true);
+                if (array_key_exists('jumlah', $tabData)) {
+                    $ulasan = $tabData['jumlah']['ulasan'];
+                } else {
+                    $ulasan = '';
+                }
                 foreach ($tabData as $key1 => $value) {
                     $array[$key1] = 0;
                     foreach ($value as $key => $subtab) {
-                        if (str_contains($key, 'upload') || str_contains($key, 'catatan')) { 
+                        if (str_contains($key, 'upload') || str_contains($key, 'catatan') || str_contains($key, 'ulasan')) { 
                             continue;
                         }
                         $array[$key1] += $subtab;
                     }
                 }
-
                 foreach ($array as $key => $value) {
                     $totalValue += $value;
                 }
             }
         }
-        
+        $id = $request->id;
         if ($tabname == 'itemcq1') {
-            return view('skpak.validasi_skpak.cq1.jumlah', compact('array', 'tabData', 'totalValue'));
+            return view('skpak.validasi_skpak.cq1.jumlah', compact('array', 'tabData', 'totalValue', 'id', 'ulasan'));
         } elseif ($tabname == 'itemcq2') {
-            return view('skpak.validasi_skpak.cq2.jumlah', compact('array', 'tabData', 'totalValue'));
+            return view('skpak.validasi_skpak.cq2.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
         } elseif ($tabname == 'itemcq3') {
-            return view('skpak.validasi_skpak.cq3.jumlah', compact('array', 'tabData', 'totalValue'));
+            return view('skpak.validasi_skpak.cq3.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
         } elseif ($tabname == 'itemcq4') {
-            return view('skpak.validasi_skpak.cq4.jumlah', compact('array', 'tabData', 'totalValue'));
+            return view('skpak.validasi_skpak.cq4.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
         } elseif ($tabname == 'itemcq5') {
-            return view('skpak.validasi_skpak.cq5.jumlah', compact('array', 'tabData', 'totalValue'));
+            return view('skpak.validasi_skpak.cq5.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
         } 
      }
 }

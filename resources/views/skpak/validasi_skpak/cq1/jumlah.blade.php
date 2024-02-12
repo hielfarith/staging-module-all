@@ -109,10 +109,11 @@
             </tr>
         </tfoot>
     </table>
-
+<form>
+    <input type="hidden" name="skpak_standard_penilaian_id" id="skpak_standard_penilaian_id" value="{{$id}}">
     <div class="col-md-12 mt-2">
         <label class="fw-bolder">Ulasan</label>
-        <textarea name="ulasan" id="" rows="3" class="form-control"></textarea>
+        <textarea name="ulasan" id="ulasanc1" rows="3" class="form-control">{{$ulasan}}</textarea>
     </div>
 </div>
 
@@ -126,34 +127,20 @@
 
 <script>
     function submitcq1jumlah() {
-        var formData = new FormData(document.getElementById('cq1_sq1'));
-        var error = false;
-
-         $('form#cq1_sq1').find('radio, input, checkbox, file').each(function() {
-            if(this.required && this.type == 'radio' && !this.checked) {
-                var val = $("input[type='radio'][name='"+this.name+"']:checked", '#cq1_sq1').val();
-                if (typeof val == 'undefined') {
-                    error = true;
-                }
-            }
-            if (this.required && this.type == 'file') {
-                if($('#'+this.id)[0].files.length === 0){
-                    error = true;
-                }
-            }
-        });
-
-        if (error) {
+    var ulasan = $('#ulasanc1').val();
+    var skpak_standard_penilaian_id = $('#skpak_standard_penilaian_id').val();
+      if (ulasan == '') {
              Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'itemcq1_sq1.1']) }}"
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'itemcq1_jumlah']) }}"
         $.ajax({
             url: url,
             method: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
+            data: {
+                ulasan : ulasan,
+                skpak_standard_penilaian_id: $('#skpak_standard_penilaian_id').val()
+            },
             success: function(response) {
                if (response.success) {
                     Swal.fire('Success', 'Berjaya', 'success');

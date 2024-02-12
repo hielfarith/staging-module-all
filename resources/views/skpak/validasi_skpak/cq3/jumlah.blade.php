@@ -138,14 +138,43 @@
         </tfoot>
     </table>
 
+   <form>
+    <input type="hidden" name="skpak_standard_penilaian_id" id="skpak_standard_penilaian_id3" value="{{$id}}">
     <div class="col-md-12 mt-2">
         <label class="fw-bolder">Ulasan</label>
-        <textarea name="" id="" rows="3" class="form-control"></textarea>
+        <textarea name="ulasan" id="ulasanc3" rows="3" class="form-control">{{$ulasan}}</textarea>
     </div>
 </div>
-
 <hr>
-
 <div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right" onclick="submitform1()">Simpan</button>
+    <button type="button" class="btn btn-primary float-right" onclick="submitcq3jumlah()">Simpan</button>
 </div>
+
+</form>
+
+<script>
+    function submitcq3jumlah() {
+    var ulasan = $('#ulasanc3').val();
+    var skpak_standard_penilaian_id = $('#skpak_standard_penilaian_id3').val();
+      if (ulasan == '') {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'itemcq3_jumlah']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                ulasan : ulasan,
+                skpak_standard_penilaian_id: skpak_standard_penilaian_id
+            },
+            success: function(response) {
+               if (response.success) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+
+    };
+
+</script>
