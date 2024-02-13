@@ -18,78 +18,78 @@
 
 @php
 $aspeks_1 = [
-    [
-    'section' => 'Pengurusan Aktiviti Murid',
-        'subSections' => [
-            'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah',
-            'Arahan Keselamatan Murid Semasa Pengajaran & Pembelajaran Dan Waktu Rehat',
-            'Arahan Keselamatan Murid Semasa Aktiviti Kokurikulum, Sukan Dan Permainan',
-            'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan',
-            'Arahan Keselamatan Murid Di Asrama',
-        ]
-    ],
-    [
-    'section' => 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah',
-        'subSections' => [
-            'Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga,
-            Bot/Perahu,Kereta sendiri, Kereta api)',
-            'Menyedia dan mempamer tatacara keselamatan pergi dan balik sekolah.',
-            'pemeriksaan berkala ke atas kenderaan yang digunakan murid ke sekolah.(Basikal, Motosikal, Kereta)',
-            'Mematuhi prosedur dan peraturan berkaitan keselamatan daripada pihak berkuasa berkenaan. (Jaket keselamatan/topi
-            keledar/lesen memandu/cukai jalan dan lain-lain berkaitan)',
-            'Menetapkan laluan pejalan kaki, laluan dan parkir kenderaan yang digunakan oleh murid.',
-            'Menetapkan tempat menurunkan dan mengambil murid yang menggunakan bas dan yang dihantar oleh penjaga.',
-            'Kawal selia pengurusan sekolah sewaktu murid datang dan balik dari sekolah.',
-            'Ada arahan berkaitan keselamatan murid semasa berada di jeti / stesen bas/ stesen kereta api/ dan lain-lain.',
-        ]
-    ],
-    [
-    'section' => 'Arahan Keselamatan Murid Semasa Pengajaran & Pembelajaran Dan Waktu Rehat',
-        'subSections' => [
-            'Ada Arahan berkaitan keselamatan murid di bilik darjah, makmal. bengkel, lain-lain tempat amali dan bilik-bilik khas.',
-            'Pengawasan guru sebelum, semasa, dan selepas aktiviti dijalankan.',
-            'Memastikan kehadiran murid direkodkan.',
-            'Memastikan tatacara penggunaan peralatan dipatuhi.',
-            'Mematuhi peraturan berpakaian semasa melaksanakan aktiviti.',
-            'Ada arahan kepada murid tentang kawasan larangan sewaktu rehat.',
-            'Rekod keluar masuk dari kawasan sekolah semasa Pengajaran & Pembelajaran.',
-        ]
-    ],
-    [
-    'section' => 'Arahan Keselamatan Murid Semasa Aktiviti Kokurikulum, Sukan Dan Permainan',
-        'subSections' => [
-            'Ada arahan berkaitan keselamatan murid sebelum, semasa dan selepas aktiviti kokurikulum, sukan dan permainan.',
-            'Pengawasan guru sebelum, semasa dan selepas aktiviti dijalankan.',
-            'Memastikan kehadiran murid direkodkan.',
-            'Memastikan tatacara penggunaan peralatan dipatuhi.',
-            'Mematuhi peraturan berpakaian semasa melaksanakan aktiviti.',
-        ]
-    ],
-    [
-    'section' => 'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan',
-        'subSections' => [
-            'Ada arahan berkaitan keselamatan murid sebelum, semasa dan selepas aktiviti lawatan dan perkhemahan dilaksanakan',
-            'Pengawasan guru sebelum, semasa dan selepas aktiviti dijalankan.',
-            'Memastikan kehadiran murid direkodkan.',
-            'Memastikan tatacara penggunaan peralatan dipatuhi.',
-            'Mematuhi peraturan berpakaian semasa melaksanakan aktiviti.',
-            'Mematuhi prosedur dan peraturan berkaitan lawatan dan perkhemahan.(Surat kebenaran penjaga/perakuan kesihatan)',
-            'Memastikan kenderaan yang digunakan untuk membawa murid selamat digunakan.',
-        ]
-    ],
-    [
-    'section' => 'Arahan Keselamatan Murid Di Asrama',
-        'subSections' => [
-            'Mempunyai data dan rekod cara murid pergi dan balik asrama.',
-            'Menyedia dan mempamer tatacara keselamatan pergi dan balik asrama.',
-            'Pemeriksaan berkala ke atas penghuni asrama.',
-            'Penetapan kawasan larangan di asrama.',
-            'Jadual aktiviti harian asrama yang ditetapkan dan dipamerkan.',
-            'Kawal selia terhadap semua aktiviti murid di asrama.',
-            'Ada peraturan berkaitan dengan larangan-larangan lain di asrama.',
-            'Pencahayaan mencukupi dalam kawasan asrama.',
-        ]
-    ],
+[
+'section' => 'Pengurusan Aktiviti Murid',
+'subSections' => [
+'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah',
+'Arahan Keselamatan Murid Semasa Pengajaran & Pembelajaran Dan Waktu Rehat',
+'Arahan Keselamatan Murid Semasa Aktiviti Kokurikulum, Sukan Dan Permainan',
+'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan',
+'Arahan Keselamatan Murid Di Asrama',
+]
+],
+[
+'section' => 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah',
+'subSections' => [
+'Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga,
+Bot/Perahu,Kereta sendiri, Kereta api)',
+'Menyedia dan mempamer tatacara keselamatan pergi dan balik sekolah.',
+'pemeriksaan berkala ke atas kenderaan yang digunakan murid ke sekolah.(Basikal, Motosikal, Kereta)',
+'Mematuhi prosedur dan peraturan berkaitan keselamatan daripada pihak berkuasa berkenaan. (Jaket keselamatan/topi
+keledar/lesen memandu/cukai jalan dan lain-lain berkaitan)',
+'Menetapkan laluan pejalan kaki, laluan dan parkir kenderaan yang digunakan oleh murid.',
+'Menetapkan tempat menurunkan dan mengambil murid yang menggunakan bas dan yang dihantar oleh penjaga.',
+'Kawal selia pengurusan sekolah sewaktu murid datang dan balik dari sekolah.',
+'Ada arahan berkaitan keselamatan murid semasa berada di jeti / stesen bas/ stesen kereta api/ dan lain-lain.',
+]
+],
+[
+'section' => 'Arahan Keselamatan Murid Semasa Pengajaran & Pembelajaran Dan Waktu Rehat',
+'subSections' => [
+'Ada Arahan berkaitan keselamatan murid di bilik darjah, makmal. bengkel, lain-lain tempat amali dan bilik-bilik khas.',
+'Pengawasan guru sebelum, semasa, dan selepas aktiviti dijalankan.',
+'Memastikan kehadiran murid direkodkan.',
+'Memastikan tatacara penggunaan peralatan dipatuhi.',
+'Mematuhi peraturan berpakaian semasa melaksanakan aktiviti.',
+'Ada arahan kepada murid tentang kawasan larangan sewaktu rehat.',
+'Rekod keluar masuk dari kawasan sekolah semasa Pengajaran & Pembelajaran.',
+]
+],
+[
+'section' => 'Arahan Keselamatan Murid Semasa Aktiviti Kokurikulum, Sukan Dan Permainan',
+'subSections' => [
+'Ada arahan berkaitan keselamatan murid sebelum, semasa dan selepas aktiviti kokurikulum, sukan dan permainan.',
+'Pengawasan guru sebelum, semasa dan selepas aktiviti dijalankan.',
+'Memastikan kehadiran murid direkodkan.',
+'Memastikan tatacara penggunaan peralatan dipatuhi.',
+'Mematuhi peraturan berpakaian semasa melaksanakan aktiviti.',
+]
+],
+[
+'section' => 'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan',
+'subSections' => [
+'Ada arahan berkaitan keselamatan murid sebelum, semasa dan selepas aktiviti lawatan dan perkhemahan dilaksanakan',
+'Pengawasan guru sebelum, semasa dan selepas aktiviti dijalankan.',
+'Memastikan kehadiran murid direkodkan.',
+'Memastikan tatacara penggunaan peralatan dipatuhi.',
+'Mematuhi peraturan berpakaian semasa melaksanakan aktiviti.',
+'Mematuhi prosedur dan peraturan berkaitan lawatan dan perkhemahan.(Surat kebenaran penjaga/perakuan kesihatan)',
+'Memastikan kenderaan yang digunakan untuk membawa murid selamat digunakan.',
+]
+],
+[
+'section' => 'Arahan Keselamatan Murid Di Asrama',
+'subSections' => [
+'Mempunyai data dan rekod cara murid pergi dan balik asrama.',
+'Menyedia dan mempamer tatacara keselamatan pergi dan balik asrama.',
+'Pemeriksaan berkala ke atas penghuni asrama.',
+'Penetapan kawasan larangan di asrama.',
+'Jadual aktiviti harian asrama yang ditetapkan dan dipamerkan.',
+'Kawal selia terhadap semua aktiviti murid di asrama.',
+'Ada peraturan berkaitan dengan larangan-larangan lain di asrama.',
+'Pencahayaan mencukupi dalam kawasan asrama.',
+]
+],
 ];
 
 $number = 1;
@@ -135,27 +135,35 @@ $number = 1;
                 <td>{{ $subsection_aspek1 }}</td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
-                        <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled>
+                        <input class="form-check-input radio-input-2" type="radio"
+                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0"
+                            disabled>
                     </div>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
-                        <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" disabled>
+                        <input class="form-check-input radio-input-2" type="radio"
+                            name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1"
+                            disabled>
                     </div>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
-                        <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" disabled>
+                        <input class="form-check-input radio-input-2" type="radio"
+                            name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2"
+                            disabled>
                     </div>
                 </td>
                 @if($withTB)
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
-                        <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB" disabled>
+                        <input class="form-check-input radio-input-2" type="radio"
+                            name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB"
+                            disabled>
                     </div>
                 </td>
                 @else
-                <td class="bg-dark"></td>
+                <td class="bg-light-primary"></td>
                 @endif
             </tr>
 
@@ -163,10 +171,12 @@ $number = 1;
                 <td colspan="6" class="bg-light-warning">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Catatan" disabled>
-                        <button class="btn btn-success btn-sm" type="button" id="checkAspek1_{{ $index }}_{{ $loop->index }}">
+                        <button class="btn btn-success btn-sm" type="button"
+                            id="checkAspek1_{{ $index }}_{{ $loop->index }}">
                             <i class="fa fa-check" aria-hidden="true"></i>
                         </button>
-                        <button class="btn btn-danger btn-sm" type="button" id="rejectAspek1_{{ $index }}_{{ $loop->index }}">
+                        <button class="btn btn-danger btn-sm" type="button"
+                            id="rejectAspek1_{{ $index }}_{{ $loop->index }}">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -194,7 +204,7 @@ $number = 1;
                 <td class="text-center"></td>
             </tr>
             <tr class="bg-light-danger">
-                <td colspan="2"  class="text-end">
+                <td colspan="2" class="text-end">
                     Jumlah Skor
                 </td>
                 <td colspan="4" class="text-center"></td>
