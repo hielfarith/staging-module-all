@@ -42,10 +42,22 @@
     <h5 class="card-title fw-bolder text-uppercase">
         Hubungan dan Interaksi
     </h5>
+    <div class=" mb-1">
+        {{-- <label class="fw-bold form-label">Jumlah Skor SQ1.1
 
+        </label> --}}
+        {{-- <input type="text" class="form-control" disabled > --}}
+        <h3 class="mt-2 mb-2 fw-bold">
+            <span class="h5">Jumlah Skor SQ1.1 :</span>
+            <span class="badge rounded-pill badge-light-primary">
+                5
+            </span>
+        </h3>
+    </div>
 
 </div>
-<div style="padding-left:2%;width:17%"><select class="form-control select2 mt-1" name="">
+<hr>
+<div class="mb-2" style="width:17%"><select class="form-control select2 mt-1 mb-2" name="">
         <option value="" hidden>Jenis Instrumen</option>
         <option value="Scoring">Scoring</option>
         <option value="Observation">Observation</option>
@@ -58,9 +70,9 @@
 <?php
     $id = Request::segment(3);
     $itemcq1 = $item = null;
-    if ($skpakfilleddata){
-        $itemcq1 = json_decode($skpakfilleddata->itemcq1, true);
-    }
+    // if ($skpakfilleddata){
+    //     $itemcq1 = json_decode($skpakfilleddata->itemcq1, true);
+    // }
     if ($itemcq1 && isset($itemcq1['sq1.1'])) {
         $item = $itemcq1['sq1.1'];
     }
@@ -78,20 +90,15 @@
                 <th>2</th>
                 <th>3</th>
                 <th>4</th>
-                <th>Skor</th>
+
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-light-danger">
-                <td class="text-end" colspan="6">
-                    Jumlah
-                </td>
-                <td class="text-center">Auto-calculated</td>
-            </tr>
+
 
             <tr class="bg-light-primary fw-bolder">
                 <td>SQ1.1</td>
-                <td colspan="6">Hubungan dengan Kanak-Kanak</td>
+                <td colspan="5">Hubungan dengan Kanak-Kanak</td>
             </tr>
             @foreach ($items_1_1 as $index => $item_1_1)
                 <tr>
@@ -104,7 +111,7 @@
                         if($item) {
                             $catatanData = $item['catatan_'.$keyString];
                             $keyValue = $item[$keyString];
-                            $totalvalue += $keyValue; 
+                            $totalvalue += $keyValue;
                         }
                     ?>
                     @foreach ($options[$index] as $key => $option)
@@ -128,7 +135,7 @@
                         </td>
                     @endforeach
 
-                    <td id="jumlah_{{$keyString}}">{{$keyValue}}</td>
+                    {{-- <td id="jumlah_{{$keyString}}">{{$keyValue}}</td> --}}
                 </tr>
                 <tr class="bg-light-primary">
                     <td colspan="6">
@@ -142,7 +149,7 @@
                         <label class="fw-bolder">Catatan: </label>
                         <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control" {{$disabled}}>{{$catatanData}}</textarea>
                     </td>
-                    <td class="bg-dark"></td>
+
                 </tr>
             @endforeach
         </tbody>
@@ -157,7 +164,7 @@
     </table>
 </div>
 
-<hr>
+
 
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="submitcq1sq1()">

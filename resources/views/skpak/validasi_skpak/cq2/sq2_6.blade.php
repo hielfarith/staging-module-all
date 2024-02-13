@@ -66,9 +66,9 @@
 <?php
     $id = Request::segment(3);
     $itemcq2 = $item = null;
-    if ($skpakfilleddata){
-        $itemcq2 = json_decode($skpakfilleddata->itemcq2, true);
-    }  
+    // if ($skpakfilleddata){
+    //     $itemcq2 = json_decode($skpakfilleddata->itemcq2, true);
+    // }
     if ($itemcq2 && isset($itemcq2['sq2.6'])) {
         $item = $itemcq2['sq2.6'];
     }
@@ -120,7 +120,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$checked}} onchange='assignmandatory("{{$keyString}}",  this)'> 
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$checked}} onchange='assignmandatory("{{$keyString}}",  this)'>
                             </div>
                             <br>
 

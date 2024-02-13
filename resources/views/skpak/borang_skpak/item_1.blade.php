@@ -77,7 +77,7 @@
         <label class="fw-bold form-label">Nama Taska
             <span class="text-danger">*</span>
         </label>
-        <select name="nama_taska" required class="form-control" {{$disabled}}>
+        <select name="nama_taska" disabled class="form-control" {{$disabled}}>
             <option>Sila Pilih</option>
             @foreach($ketuaTaska as $key => $taska)
             <option value="{{$key}}" @if($namataska == $key) selected @endif>{{$taska}}</option>
@@ -103,7 +103,7 @@
                     </td>
                 </tr>
                 @foreach ($item_1['subSections'] as $subsection_item1)
-                    <?php 
+                    <?php
                         $name = $index.'_'.$loop->index;
                     ?>
                     <tr>

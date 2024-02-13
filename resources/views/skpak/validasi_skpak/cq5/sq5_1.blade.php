@@ -87,9 +87,9 @@
 <?php
     $id = Request::segment(3);
     $itemcq5 = $item = null;
-    if ($skpakfilleddata){
-        $itemcq5 = json_decode($skpakfilleddata->itemcq5, true);
-    }  
+    // if ($skpakfilleddata){
+    //     $itemcq5 = json_decode($skpakfilleddata->itemcq5, true);
+    // }
     if ($itemcq5 && isset($itemcq5['sq5.1'])) {
         $item = $itemcq5['sq5.1'];
     }

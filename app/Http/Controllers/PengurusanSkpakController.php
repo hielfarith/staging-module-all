@@ -347,14 +347,14 @@ class PengurusanSkpakController extends Controller
                 $existingJson = json_decode($tabData, true);
                 $updatedDaata = array_merge($existingJson, $array);
                 $data[$tabname] = json_encode($updatedDaata);
-            } 
+            }
             $verfikasi = $savedData->update($data);
             $verfikasi = $savedData;
         } else {
             $array = [];
             $array[$tabtype] = $input;
             $data[$tabname] = json_encode($array);
-             
+
             $verfikasi = new SkpakVerfikasiValidasi;
             $verfikasi = $verfikasi->create($data);
         }
@@ -377,7 +377,7 @@ class PengurusanSkpakController extends Controller
                     } else {
                         continue;
                     }
-                } 
+                }
                 if ($tab == 'senaraisemak_ruangdalam') {
                     if ($key == 'ruangdalam') {
                          foreach ($value as $key1 => $subvalue) {
@@ -417,8 +417,8 @@ class PengurusanSkpakController extends Controller
                     'countTidakberkenaan' => $countTidakberkenaan,
                     'rubik' => $rubik,
                     'percentage' => $percentage
-                ];     
-             } 
+                ];
+             }
 
         }
         return ['success' => true ,'data' => $verfikasi, 'senaraisemak' => $senaraisemak];
@@ -441,7 +441,7 @@ class PengurusanSkpakController extends Controller
                 foreach ($tabData as $key1 => $value) {
                     $array[$key1] = 0;
                     foreach ($value as $key => $subtab) {
-                        if (str_contains($key, 'upload') || str_contains($key, 'catatan') || str_contains($key, 'ulasan')) { 
+                        if (str_contains($key, 'upload') || str_contains($key, 'catatan') || str_contains($key, 'ulasan')) {
                             continue;
                         }
                         $array[$key1] += $subtab;
@@ -463,7 +463,7 @@ class PengurusanSkpakController extends Controller
             return view('skpak.validasi_skpak.cq4.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
         } elseif ($tabname == 'itemcq5') {
             return view('skpak.validasi_skpak.cq5.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
-        } 
+        }
     }
 
     public function GetJumlahSkor(Request $request)
@@ -483,7 +483,7 @@ class PengurusanSkpakController extends Controller
             $skpak = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $request->id)->first();
             if (!empty($skpak)) {
                 foreach ($tabs as  $tab) {
-                    if ($skpak->$tab) {                    
+                    if ($skpak->$tab) {
                         $tabData = json_decode($skpak->$tab, true);
                         foreach ($tabData as $key => $value) {
                             if (str_contains($key, 'jumlah') ) {
@@ -491,7 +491,7 @@ class PengurusanSkpakController extends Controller
                             }
                             $val = 0;
                             foreach ($value as $key1 => $sq) {
-                                if (str_contains($key1, 'upload') || str_contains($key1, 'catatan') || str_contains($key1, 'jumlah')){ 
+                                if (str_contains($key1, 'upload') || str_contains($key1, 'catatan') || str_contains($key1, 'jumlah')){
                                     continue;
                                 }
                                 $array[$tab][$key] = $val+$sq;
@@ -510,7 +510,7 @@ class PengurusanSkpakController extends Controller
             if (is_array($value)) {
                 foreach ($value as $key => $data) {
                     $totalSkor[$key2] = $val+$data;
-                    $val =  $totalSkor[$key2];                   
+                    $val =  $totalSkor[$key2];
                 }
             } else {
                 $totalSkor[$key2] =  0;
@@ -523,17 +523,17 @@ class PengurusanSkpakController extends Controller
         $percentage = round($finalskore / 296 *100);
         $penilai = SkpakStandardPenilaian::where('id', $request->id)->first();
         $getConfiguration = InstrumenSkpakSpksIkeps::where('id', $penilai->instrument_id)->first();
-        
+
         $startDate = $getConfiguration->tarikh_kuatkuasa;
         $startDate = str_replace('/', '-', $startDate);
-        
+
         $addpengisian = $getConfiguration->tempoh_pengisian_lain;
         if ($getConfiguration->tempoh_pengisian == 'Bulan') {
             //add weeks
             $verficationStartDate = date('Y-m-d', strtotime('+'.$addpengisian.' week', strtotime($startDate)));
         } else {
             $verficationStartDate = date('Y-m-d', strtotime('+'.$addpengisian.' month', strtotime($startDate)));
-        }        
+        }
 
         $addpengeshan = $getConfiguration->tempoh_pengisian_lain;
         if ($getConfiguration->tempoh_pengeshan == 'Bulan') {
@@ -541,10 +541,10 @@ class PengurusanSkpakController extends Controller
             $verficationStartDate = date('Y-m-d', strtotime('+'.$addpengeshan.' week', strtotime($verficationStartDate)));
         } else {
             $verficationStartDate = date('Y-m-d', strtotime('+'.$addpengeshan.' month', strtotime($verficationStartDate)));
-        }    
-        //add 2 weeks 
+        }
+        //add 2 weeks
         $verficationdateAfter2weeks = date('Y-m-d', strtotime('+2 weeks', strtotime($verficationStartDate)));
-        //add 4 weeks 
+        //add 4 weeks
         $verficationdateAfter4weeks = date('Y-m-d', strtotime('+4 weeks', strtotime($verficationStartDate)));
        $currentdate = strtotime(date('Y-m-d'));
        $color = 'btn-success';
@@ -559,5 +559,13 @@ class PengurusanSkpakController extends Controller
        }
 
         return view('skpak.validasi_skpak.permarkahan', compact('array', 'totalSkor', 'finalskore', 'percentage', 'skpak_standard_penilaian_id', 'color'));
+    }
+
+    public function senaraiPenetapan(Request $request){
+        return view("skpak.penetapan_penilai.senarai_penetapan");
+    }
+
+    public function penetapanBaru(Request $request){
+        return view("skpak.penetapan_penilai.penetapan_baru");
     }
 }

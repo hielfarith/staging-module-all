@@ -59,6 +59,11 @@ SKPAK
             PENYELARASAN <br> PENILAI
         </a>
     </li>
+    <li class="nav-item" role="presentation">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="kronologi-tab" data-bs-toggle="tab" href="#kronologi-tab" aria-controls="kronologi-tab" role="tab" aria-selected="false">
+            KRONOLOGI
+        </a>
+    </li>
 </ul>
 
 <div class="card">
@@ -89,6 +94,9 @@ SKPAK
             </div>
             <div class="tab-pane fade" id="selaras-nilai" role="tabpanel" aria-labelledby="selaras-nilai-tab">
 
+            </div>
+            <div class="tab-pane fade" id="kronologi-tab" role="tabpanel" aria-labelledby="kronologi-tab">
+                @include('skpak.kronologi')
             </div>
         </div>
     </div>

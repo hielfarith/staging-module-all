@@ -493,6 +493,12 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['skpak.senarai_penetapan'])? 'active': '' }}">
+                        <a href="{{ route('skpak.senarai_penetapan') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Penetapan Penilai</span>
+                        </a>
+                    </li>
+
 
                     <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
                         <a href="#" class="nav-link">

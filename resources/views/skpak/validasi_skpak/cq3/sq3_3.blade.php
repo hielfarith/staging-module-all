@@ -66,9 +66,9 @@
 <?php
     $id = Request::segment(3);
     $itemcq3 = $item = null;
-    if ($skpakfilleddata){
-        $itemcq3 = json_decode($skpakfilleddata->itemcq3, true);
-    }  
+    // if ($skpakfilleddata){
+    //     $itemcq3 = json_decode($skpakfilleddata->itemcq3, true);
+    // }
     if ($itemcq3 && isset($itemcq3['sq3.3'])) {
         $item = $itemcq3['sq3.3'];
     }

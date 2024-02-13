@@ -38,6 +38,9 @@ Skpak
                         <th width="5%">No.</th>
                         <th>Nama Taska</th>
                         <th>Nama Pengguna</th>
+                        <th>Tarikh Pengesahan</th>
+                        <th>Tarikh Verifikasi Instrumen 1</th>
+                        <th>Tarikh Verifikasi Instrumen 2</th>
                         <th>Status</th>
                         <th width="5%">Tindakan</th>
                     </tr>
@@ -78,7 +81,7 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
             },
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-           
+
                 {
                     data: "nama_taska",
                     name: "nama_taska",

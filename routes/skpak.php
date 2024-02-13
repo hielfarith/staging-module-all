@@ -24,5 +24,9 @@ Route::controller(PengurusanSkpakController::class)->group(function () {
 
         Route::get('dashboard','DashboardSkpak')->name('dashboard');
 
+        Route::get('senarai-penetapan','senaraiPenetapan')->name('senarai_penetapan');
+        Route::get('penetapan-baru','penetapanBaru')->name('penetapan_baru');
+
+
     });
 });
