@@ -119,9 +119,15 @@
 
 <hr>
 
-<div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right" onclick="submitcq1jumlah()">Simpan</button>
+<div class="buy-now">
+    <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="submitcq1jumlah()">
+        Simpan
+    </button>
 </div>
+
+{{-- <div class="d-flex justify-content-end align-items-center mt-1">
+    <button type="button" class="btn btn-primary float-right" onclick="submitcq1jumlah()">Simpan</button>
+</div> --}}
 
 </form>
 
