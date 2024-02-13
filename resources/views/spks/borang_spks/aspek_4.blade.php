@@ -33,6 +33,9 @@ $aspeks_4 = [
         ]
     ],
 ];
+
+$number = 1;
+
 @endphp
 
 <h5 class="card-title fw-bolder text-uppercase">
@@ -45,6 +48,7 @@ $aspeks_4 = [
     <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek4">
         <thead>
             <tr>
+                <th rowspan="2">No.</th>
                 <th rowspan="2">Item</th>
                 <th colspan="3">Skor Sekolah</th>
             </tr>
@@ -58,7 +62,7 @@ $aspeks_4 = [
         <tbody>
             @foreach ($aspeks_4 as $index => $aspek_4)
             <tr>
-                <td colspan="4" class="bg-light-primary text-uppercase">
+                <td colspan="5" class="bg-light-primary text-uppercase">
                     {{ $aspek_4['section'] }}
                 </td>
             </tr>
@@ -67,6 +71,7 @@ $aspeks_4 = [
                         $name = $index.'_'.$loop->index;
                     ?>
             <tr>
+                <td>{{ $number++ }}</td>
                 <td>{{ $subsection_aspek4 }}</td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
@@ -87,12 +92,18 @@ $aspeks_4 = [
                     </div>
                 </td>
             </tr>
+
+            <tr>
+                <td colspan="5" class="bg-light-success">
+                    <input type="text" class="form-control" placeholder="Catatan">
+                </td>
+            </tr>
             @endforeach
             @endforeach
         </tbody>
         <tfoot>
             <tr class="bg-light-danger">
-                <td class="text-end">
+                <td colspan="2" class="text-end">
                     Skor
                 </td>
                 <td class="text-center"></td>
@@ -100,7 +111,7 @@ $aspeks_4 = [
                 <td class="text-center"></td>
             </tr>
             <tr class="bg-light-danger">
-                <td class="text-end">
+                <td colspan="2" class="text-end">
                     Jumlah Skor
                 </td>
                 <td colspan="3" class="text-center"></td>

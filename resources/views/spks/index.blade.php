@@ -71,7 +71,7 @@ SPKS
                 @include('spks.borang_spks.aspek_6')
             </div>
             <div class="tab-pane fade" id="jumlah" role="tabpanel" aria-labelledby="jumlah-tab">
-
+                @include('spks.borang_spks.jumlah')
             </div>
         </div>
     </div>
