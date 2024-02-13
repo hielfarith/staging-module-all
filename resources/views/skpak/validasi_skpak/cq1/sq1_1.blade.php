@@ -70,9 +70,9 @@
 <?php
     $id = Request::segment(3);
     $itemcq1 = $item = null;
-    // if ($skpakfilleddata){
-    //     $itemcq1 = json_decode($skpakfilleddata->itemcq1, true);
-    // }
+    if ($skpakfilleddata){
+        $itemcq1 = json_decode($skpakfilleddata->itemcq1, true);
+    }
     if ($itemcq1 && isset($itemcq1['sq1.1'])) {
         $item = $itemcq1['sq1.1'];
     }
@@ -108,8 +108,10 @@
                     <?php
                         $keyString = str_replace(".","_",$index);
                         $catatanData = '';
+                        $uploadData = false;
                         if($item) {
                             $catatanData = $item['catatan_'.$keyString];
+                            $uploadData = isset($item['upload_'.$keyString]) ? $item['upload_'.$keyString] : false ;
                             $keyValue = $item[$keyString];
                             $totalvalue += $keyValue;
                         }
@@ -134,14 +136,21 @@
                             </div>
                         </td>
                     @endforeach
-
-                    {{-- <td id="jumlah_{{$keyString}}">{{$keyValue}}</td> --}}
                 </tr>
                 <tr class="bg-light-primary">
                     <td colspan="6">
                         <label class="fw-bolder">Upload: </label>
                         <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange1("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)' {{$disabled}}>
                         <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
+                        @if($uploadData)
+                            @foreach($uploadData as $val)
+                            <?php
+                                $val = str_replace('public/uploads/upload_'.$keyString.'/'.$id.'/', '', $val);
+                            ?>
+                            <pre class="uploadfile_{{$keyString}}_view">{{$val}}</pre>
+                            @endforeach
+                            <input type="hidden" name="uploadfile_{{$keyString}}_list" value="{{json_encode($item['upload_'.$keyString])}}" id="uploadfile_{{$keyString}}_list">
+                        @endif
                     </td>
                 </tr>
                 <tr class="bg-light-success">
@@ -165,13 +174,13 @@
 </div>
 
 
-
+@if($disabled != 'disabled')
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="submitcq1sq1()">
         Simpan
     </button>
 </div>
-
+@endif
 {{-- <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="submitcq1sq1()">Simpan</button>
 </div> --}}

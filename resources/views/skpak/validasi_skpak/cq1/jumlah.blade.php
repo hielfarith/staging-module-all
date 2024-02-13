@@ -113,18 +113,18 @@
     <input type="hidden" name="skpak_standard_penilaian_id" id="skpak_standard_penilaian_id" value="{{$id}}">
     <div class="col-md-12 mt-2">
         <label class="fw-bolder">Ulasan</label>
-        <textarea name="ulasan" id="ulasanc1" rows="3" class="form-control">{{$ulasan}}</textarea>
+        <textarea name="ulasan" id="ulasanc1" rows="3" class="form-control" {{$disabled}}>{{$ulasan}}</textarea>
     </div>
 </div>
 
 <hr>
-
+@if($disabled != 'disabled')
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="submitcq1jumlah()">
         Simpan
     </button>
 </div>
-
+@endif
 {{-- <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="submitcq1jumlah()">Simpan</button>
 </div> --}}

@@ -66,9 +66,9 @@
 <?php
     $id = Request::segment(3);
     $itemcq5 = $item = null;
-    // if ($skpakfilleddata){
-    //     $itemcq5 = json_decode($skpakfilleddata->itemcq5, true);
-    // }
+    if ($skpakfilleddata){
+        $itemcq5 = json_decode($skpakfilleddata->itemcq5, true);
+    }
     if ($itemcq5 && isset($itemcq5['sq5.2'])) {
         $item = $itemcq5['sq5.2'];
     }
@@ -102,8 +102,10 @@
                     <?php
                         $keyString = str_replace(".","_",$index);
                         $catatanData = '';
+                        $uploadData = false;
                         if($item) {
                             $catatanData = $item['catatan_'.$keyString];
+                            $uploadData = isset($item['upload_'.$keyString]) ? $item['upload_'.$keyString] : false ;
                             $keyValue = $item[$keyString];
                             $totalvalue += $keyValue;
                         }
@@ -137,6 +139,15 @@
                         <label class="fw-bolder">Upload: </label>
                         <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)'>
                         <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
+                         @if($uploadData)
+                            @foreach($uploadData as $val)
+                            <?php
+                                $val = str_replace('public/uploads/upload_'.$keyString.'/'.$id.'/', '', $val);
+                            ?>
+                            <pre class="uploadfile_{{$keyString}}_view">{{$val}}</pre>
+                            @endforeach
+                            <input type="hidden" name="uploadfile_{{$keyString}}_list" value="{{json_encode($item['upload_'.$keyString])}}" id="uploadfile_{{$keyString}}_list">
+                        @endif
                     </td>
                 </tr>
                 <tr class="bg-light-success">

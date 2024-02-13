@@ -45,6 +45,10 @@
 
 <script type="text/javascript">
      function filechange(id, file, event){
+        var updateid = id+'_view'; 
+        var inputname = id+'_list'; 
+        $('.'+updateid).css('display', 'none');
+        $('#'+inputname).val('');
           var list = document.getElementById(file);
           list.innerHTML = '';
           for (var i = 0; i < event.files.length; i++) {
@@ -66,17 +70,20 @@
         }
     }
     function  updateJumlah3(tabname, id) {
-        var url = "{{ route('skpak.get-verfikasi-jumlah') }}"
+        var url = "{{ route('skpak.get-verfikasi-jumlah') }}";
+        var data = '<?php echo Request::segment(2); ?>';
+        
         $.ajax({
             url: url,
             method: 'POST',
             data: {
                 id:id,
-                tabname: tabname
+                tabname: tabname,
+                type: data
             },
             success: function(response) {
-                $('#jumlah-sq3').empty();
-                $('#jumlah-sq3').append(response)
+                $('#jumlah-sq1').empty();
+                $('#jumlah-sq1').append(response)
             }
         });
     }
