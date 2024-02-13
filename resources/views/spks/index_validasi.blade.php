@@ -50,7 +50,7 @@ SPKS
 
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="catatan-validasi-tab" data-bs-toggle="tab" href="#catatan-validasi" aria-controls="catatan-validasi" role="tab" aria-selected="false" onclick="jumlah()">
-            CATATAN SEKOLAH
+            RINGKASAN CATATAN
         </a>
     </li>
 </ul>
