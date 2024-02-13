@@ -31,8 +31,8 @@ class formPdfController extends Controller
         //$dataFromDatabase = User::all();
 
         //  return view ('pdf.borangDemografi');
-         $pdf = PDF::loadView('pdf.borang');
-         return $pdf->stream('borang.pdf');
+         $pdf = PDF::loadView('pdf.borangDemografi');
+         return $pdf->stream('borangDemografi.pdf');
     }
     public function generatePDF4()
     {

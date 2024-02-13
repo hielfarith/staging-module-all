@@ -499,6 +499,12 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['skpak.borang_rentas'])? 'active': '' }}">
+                        <a href="{{ route('skpak.borang_rentas') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Rentas</span>
+                        </a>
+                    </li>
+
 
                     <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
                         <a href="#" class="nav-link">

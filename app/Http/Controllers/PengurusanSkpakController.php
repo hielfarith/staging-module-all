@@ -572,4 +572,8 @@ class PengurusanSkpakController extends Controller
     public function SoalSelidikPenilai (Request $request){
         return view('soalselidikpenilai');
     }
+
+    public function borangRentas(Request $request){
+        return view("skpak.rentas.borangRentas");
+    }
 }
