@@ -27,6 +27,7 @@ Route::controller(PengurusanSkpakController::class)->group(function () {
         Route::get('senarai-penetapan','senaraiPenetapan')->name('senarai_penetapan');
         Route::get('penetapan-baru','penetapanBaru')->name('penetapan_baru');
 
-
+        Route::get('validasi-pengisian','ValidasiSkpak')->name('validasi_skpak');
+        Route::get('soal-selidik','SoalSelidikPenilai')->name('soalselidik_penilai');
     });
 });
