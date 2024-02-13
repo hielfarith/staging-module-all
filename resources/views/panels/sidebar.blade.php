@@ -165,10 +165,10 @@ $configData = Helper::applClasses();
                 </ul>
             </li> -->
 
-            <li class="navigation-header text-wrap">
+            <!-- <li class="navigation-header text-wrap">
                 <span>  Modul Pengurusan Instrumen </span>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
                     <span class="menu-title text-truncate text-wrap"> Pengurusan Instrumen </span>
@@ -193,7 +193,7 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <!--    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.tetapan-aspek-list'])? 'active': '' }}">
                         <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
                         </a>
@@ -209,14 +209,14 @@ $configData = Helper::applClasses();
                         <a href="{{ route('admin.instrumen.tetapan-tarikh-list') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Pengurusan Tarikh Instrumen </span>
                         </a>
-                    </li> -->
+                    </li>
                 </ul>
-            </li>
+            </li> -->
 
             <li class="navigation-header">
                 <span>  I-KePS </span>
             </li>
-             <li class="nav-item ">
+            <li class="nav-item ">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
                     <span class="menu-title text-truncate text-wrap"> I-KePS </span>
@@ -307,7 +307,7 @@ $configData = Helper::applClasses();
             <li class="navigation-header">
                 <span>  SKIPS </span>
             </li>
-             <li class="nav-item ">
+            <li class="nav-item ">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
                     <span class="menu-title text-truncate text-wrap"> SKIPS </span>
@@ -403,7 +403,7 @@ $configData = Helper::applClasses();
             <li class="navigation-header">
                 <span>  SKPAK </span>
             </li>
-             <li class="nav-item ">
+            <li class="nav-item ">
                 <a href="#" class="nav-link">
                     <i data-feather="folder"></i>
                     <span class="menu-title text-truncate text-wrap"> SKPAK </span>
