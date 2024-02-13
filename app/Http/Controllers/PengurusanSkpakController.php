@@ -568,4 +568,8 @@ class PengurusanSkpakController extends Controller
     public function penetapanBaru(Request $request){
         return view("skpak.penetapan_penilai.penetapan_baru");
     }
+
+    public function SoalSelidikPenilai (Request $request){
+        return view('soalselidikpenilai');
+    }
 }
