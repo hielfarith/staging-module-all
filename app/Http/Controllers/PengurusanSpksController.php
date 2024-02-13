@@ -10,7 +10,12 @@ class PengurusanSpksController extends Controller
         return view('spks.index');
     }
 
-    public function VerifikasiSpksSenarai(Request $request){
+    public function ValidasiSpksSenarai(Request $request){
         return view('spks.list');
+    }
+
+    public function ValidasiSpks (Request $request) {
+        $disabled = '';
+        return view('spks.index_validasi', compact('disabled'));
     }
 }
