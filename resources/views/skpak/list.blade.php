@@ -136,7 +136,11 @@ function maklumatSkpakverfikasi(id){
     window.location.href = url;
 }
 
-
+function maklumatSkpakValidasi(id){
+    var url = "{{ route('skpak.validasi_skpak',['id'=> ':id']) }}";
+    var url = url.replace(':id', id);
+    window.location.href = url;
+}
 
 </script>
 @endsection

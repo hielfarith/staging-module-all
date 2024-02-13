@@ -252,7 +252,7 @@ $penyelarasan_penilaians = [
 <input type="hidden" name="skpak_standard_penilaian_id" id="skpak_standard_penilaian_id_permarkahan" value="{{$skpak_standard_penilaian_id}}">
 
 <hr>
-@if($showHantar)
+@if($showHantar && empty($disabled))
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn {{$color}} float-right" onclick="submitcpermarkahan()">Hantar</button>
 </div>
@@ -266,7 +266,7 @@ $penyelarasan_penilaians = [
              Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'itemcq5_jumlah']) }}"
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'permarkahan']) }}"
         $.ajax({
             url: url,
             method: 'POST',

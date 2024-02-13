@@ -105,7 +105,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}} onchange='assignmandatory1("{{$keyString}}",  this)'>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}} onchange='assignmandatory1("{{$keyString}}",  this)' {{$disabled}}>
                             </div>
                             <br>
 
@@ -120,14 +120,14 @@
                 <tr class="bg-light-primary">
                     <td colspan="6">
                         <label class="fw-bolder">Upload: </label>
-                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange1("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)'>
+                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange1("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)' {{$disabled}}>
                         <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
                     </td>
                 </tr>
                 <tr class="bg-light-success">
                     <td colspan="6">
                         <label class="fw-bolder">Catatan: </label>
-                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control">{{$catatanData}}</textarea>
+                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control" {{$disabled}}>{{$catatanData}}</textarea>
                     </td>
                     <td class="bg-dark"></td>
                 </tr>

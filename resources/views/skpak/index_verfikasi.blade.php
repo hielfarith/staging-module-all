@@ -92,7 +92,8 @@ function getjumlah() {
         url: url,
         method: 'POST',
         data: {
-            id:id
+            id:id,
+            type: 'verfikasi'
         },
         success: function(response) {
             $('#pemarkahan').empty();

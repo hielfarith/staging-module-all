@@ -52,8 +52,47 @@ class PengurusanSkpakController extends Controller
         // return view ('skpak.ringkasan_skips');
     }
 
-    public function ValidasiSkpak (Request $request) {
-        return view('skpak.index_validasi');
+     public function validasiSkpakSenarai(Request $request)
+    {
+         if($request->ajax()) {
+
+            $skpak = SkpakStandardPenilaian::select(['profil_pengguna.nama_taska','profil_pengguna.nama_pengguna','skpak_standard_penilaians.status','skpak_standard_penilaians.id as skpak_id'])->join('profil_pengguna','profil_pengguna.id','=','skpak_standard_penilaians.nama_taska')->where('skpak_standard_penilaians.status','=',3);
+
+            return Datatables::of($skpak)
+                ->editColumn('nama_taska', function ($skpak) {
+                    return $skpak->nama_taska;
+                })
+                ->editColumn('nama_pengguna', function ($skpak) {
+                    return $skpak->nama_pengguna;
+                })
+                ->editColumn('status', function ($skpak) {
+                    return $skpak->status;
+                })
+                ->addColumn('DT_RowIndex', function ($skpak) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('action', function ($skpak) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatSkpak(' . $skpak->skpak_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSkpakValidasi(' . $skpak->skpak_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('skpak.list');
+    }
+    public function ValidasiSkpak (Request $request, $id) {
+        $skpakfilleddata = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id',$id)->first();
+        $disabled = 'disabled';
+        return view('skpak.index_validasi', compact('id', 'skpakfilleddata', 'disabled'));
     }
     public function saveSkpak(Request $request, $tab) {
         $input = $request->input();
@@ -136,8 +175,6 @@ class PengurusanSkpakController extends Controller
         return ['success' => true];
     }
 
-    
-
     public function SenaraiSkpak(Request $request)
     {
          if($request->ajax()) {
@@ -216,7 +253,8 @@ class PengurusanSkpakController extends Controller
 
      public function VerfikasiSkpak (Request $request, $id) {
         $skpakfilleddata = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id',$id)->first();
-        return view('skpak.index_verfikasi', compact('id','skpakfilleddata'));
+        $disabled = '';
+        return view('skpak.index_verfikasi', compact('id','skpakfilleddata', 'disabled'));
     }
     public function DashboardSkpak (Request $request){
 
@@ -265,6 +303,19 @@ class PengurusanSkpakController extends Controller
 
     public function saveVerfiksai(Request $request, $tab)
     {
+        if ($tab == 'permarkahan') {
+            // update the status to validasi
+            $id = $request->skpak_standard_penilaian_id;
+            $verfikasi = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $id)->first();
+            $verfikasi->status = 2;
+            $verfikasi->save();
+            $SkpakStandardPenilaian = SkpakStandardPenilaian::where('id',$id)->first();
+            $SkpakStandardPenilaian->status = 3;
+            $SkpakStandardPenilaian->save();
+
+            return ['success' => true ,'data' => $verfikasi, 'message' => 'verfication done'];
+        }
+
         $tabdata = explode("_", $tab);
         $tabname = $tabdata[0];
         $tabtype = $tabdata[1];
@@ -418,6 +469,12 @@ class PengurusanSkpakController extends Controller
     public function GetJumlahSkor(Request $request)
     {
         $id = $request->id;
+        $type = $request->type;
+        if ($type == 'verfikasi') {
+            $disabled = '';
+        } else {
+            $disabled = 'disabled';
+        }
         $array = [];
         $skpak = null;
         $tabs = ['itemcq1', 'itemcq2', 'itemcq3', 'itemcq4', 'itemcq5'];
