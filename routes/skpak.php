@@ -29,5 +29,8 @@ Route::controller(PengurusanSkpakController::class)->group(function () {
 
         Route::get('validasi-pengisian','ValidasiSkpak')->name('validasi_skpak');
         Route::get('soal-selidik','SoalSelidikPenilai')->name('soalselidik_penilai');
+
+        Route::get('rentas-evaluation','borangRentas')->name('borang_rentas');
+
     });
 });
