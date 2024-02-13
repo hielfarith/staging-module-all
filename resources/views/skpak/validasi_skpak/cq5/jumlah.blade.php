@@ -116,15 +116,16 @@
     <input type="hidden" name="skpak_standard_penilaian_id" id="skpak_standard_penilaian_id5" value="{{$id}}">
     <div class="col-md-12 mt-2">
         <label class="fw-bolder">Ulasan</label>
-        <textarea name="ulasan" id="ulasanc5" rows="3" class="form-control">{{$ulasan}}</textarea>
+        <textarea name="ulasan" id="ulasanc5" rows="3" class="form-control" {{$disabled}}>{{$ulasan}}</textarea>
     </div>
 </div>
 
 <hr>
-
+@if($disabled != 'disabled')
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="submitcq5jumlah()">Simpan</button>
 </div>
+@endif
 </form>
 
 <script>
