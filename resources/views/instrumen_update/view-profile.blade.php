@@ -13,20 +13,20 @@
                     <label class="fw-bold form-label"> Nama Instrumen
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="nama_instrumen" value="{{$instrumen->nama_instrumen}}" $readonly required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
+                    <input type="text" class="form-control" name="nama_instrumen" value="{{$instrumen->nama_instrumen}}" {{$readonly}} {{$disabled}} required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
                 </div>
                  <div class="col-md-6 mb-1">
                     <label class="fw-bold form-label">  Tujuan Instrumen
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="tujuan_instrumen" value="{{$instrumen->tujuan_instrumen}}" $readonly required>
+                    <input type="text" class="form-control" name="tujuan_instrumen" value="{{$instrumen->tujuan_instrumen}}" {{$readonly}} required {{$disabled}}>
                 </div>
 
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Pengguna Instrumen
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="pengguna_instrumen" required>
+                    <select class="form-control select2" name="pengguna_instrumen" required {{$disabled}}>
                         <option value="">Sila Pilih</option>
                         <option value="PENTADBIR" @if($instrumen->pengguna_instrumen == 'PENTADBIR') selected @endif>PENTADBIR</option>
                         <option value="GURU INSTITUSI" @if($instrumen->pengguna_instrumen == 'GURU INSTITUSI') selected @endif>GURU INSTITUSI</option>
@@ -37,7 +37,7 @@
                     <label class="fw-bold form-label">Pengisian Oleh
                         <span class="text-danger">*</span>
                     </label>
-                    <select  class="form-control select2" name="pengisian_oleh" required>
+                    <select  class="form-control select2" name="pengisian_oleh" required {{$disabled}}>
                           <option value="">Sila Pilih</option>
                         <option value="PENGETUA" @if($instrumen->pengisian_oleh == 'PENGETUA') selected @endif>PENGETUA</option>
                         <option value="GURU BESAR INSTITUSI" @if($instrumen->pengisian_oleh == 'GURU BESAR INSTITUSI') selected @endif>GURU BESAR INSTITUSI</option>
@@ -50,13 +50,13 @@
                     </label>
                     <div class="input-group">
                         <span class="">
-                        <select class="form-control select2" name="tempoh_pengisian" required>
+                        <select class="form-control select2" name="tempoh_pengisian" required {{$disabled}}>
                             <option value="">Sila Pilih</option>
                             <option value="Bulan" @if($instrumen->tempoh_pengisian == 'Bulan') selected @endif>Bulan</option>
                             <option value="Minggu" @if($instrumen->tempoh_pengisian == 'Minggu') selected @endif>Minggu</option>
                         </select>
                         </span>
-                        <input type="text" class="form-control" name="tempoh_pengisian_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumen->tempoh_pengisian_lain}}">
+                        <input type="text" class="form-control" name="tempoh_pengisian_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumen->tempoh_pengisian_lain}}" {{$disabled}}>
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
                     <label class="fw-bold form-label">Pengesahan Oleh
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="pengesahan_ole" required >
+                    <select class="form-control select2" name="pengesahan_ole" required {{$disabled}}>
                           <option value="">Sila Pilih</option>
                         <option value="PPD"  @if($instrumen->pengesahan_ole == 'PPD') selected @endif>PPD </option>
                         <option value="JPN"  @if($instrumen->pengesahan_ole == 'JPN') selected @endif>JPN</option>
@@ -77,13 +77,13 @@
                     </label>
                     <div class="input-group">
                         <span class="">
-                        <select class="form-control select2" name="tempoh_pengeshan" required >
+                        <select class="form-control select2" name="tempoh_pengeshan" required {{$disabled}}>
                             <option value="">Sila Pilih</option>
                              <option value="Bulan" @if($instrumen->tempoh_pengeshan == 'Bulan') selected @endif>Bulan</option>
                             <option value="Minggu" @if($instrumen->tempoh_pengeshan == 'Minggu') selected @endif>Minggu</option>
                         </select>
                         </span>
-                        <input type="text" class="form-control" name="tempoh_pengeshan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'  value="{{$instrumen->tempoh_pengeshan_lain}}">
+                        <input type="text" class="form-control" name="tempoh_pengeshan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'  value="{{$instrumen->tempoh_pengeshan_lain}}" {{$disabled}}>
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@
                     <label class="fw-bold form-label">Verifikasi Oleh
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="verifikasi_oleh" required>
+                    <select class="form-control select2" name="verifikasi_oleh" required {{$disabled}}>
                       <option value="">Sila Pilih</option>
                         <option value="JPN" @if($instrumen->verifikasi_oleh == 'JPN') selected @endif>JPN</option>
                         <option value="KPM" @if($instrumen->verifikasi_oleh == 'KPM') selected @endif>KPM</option>
@@ -104,13 +104,13 @@
                     </label>
                     <div class="input-group">
                         <span class="">
-                        <select class="form-control select2" name="tempoh_verifikasi" required >
+                        <select class="form-control select2" name="tempoh_verifikasi" required {{$disabled}}>
                             <option value="">Sila Pilih</option>
                             <option value="Bulan" @if($instrumen->tempoh_verifikasi == 'Bulan') selected @endif>Bulan</option>
                             <option value="Minggu" @if($instrumen->tempoh_verifikasi == 'Minggu') selected @endif>Minggu</option>
                         </select>
                         </span>
-                        <input type="text" class="form-control" name="tempoh_verifikasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumen->tempoh_verifikasi_lain}}">
+                        <input type="text" class="form-control" name="tempoh_verifikasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumen->tempoh_verifikasi_lain}}" {{$disabled}}>
                     </div>
                 </div>
 
@@ -118,7 +118,7 @@
                     <label class="fw-bold form-label">Validasi Oleh
                         <span class="text-danger">*</span>
                     </label>
-                    <select class="form-control select2" name="validasi_oleh" required>
+                    <select class="form-control select2" name="validasi_oleh" required {{$disabled}}>
                         <option value="">Sila Pilih</option>
                         <option value="PPD" @if($instrumen->validasi_oleh == 'PPD') selected @endif>PPD</option>
                         <option value="JPN" @if($instrumen->validasi_oleh == 'JPN') selected @endif>JPN</option>
@@ -132,13 +132,13 @@
                     </label>
                     <div class="input-group">
                         <span class="">
-                        <select class="form-control select2" name="tempoh_validasi" required >
+                        <select class="form-control select2" name="tempoh_validasi" required {{$disabled}}>
                             <option value="">Sila Pilih</option>
                             <option value="Bulan" @if($instrumen->tempoh_validasi == 'Bulan') selected @endif>Bulan</option>
                             <option value="Minggu" @if($instrumen->tempoh_validasi == 'Minggu') selected @endif>Minggu</option>
                         </select>
                         </span>
-                    <input type="text" class="form-control" name="tempoh_validasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumen->tempoh_validasi_lain}}">
+                    <input type="text" class="form-control" name="tempoh_validasi_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumen->tempoh_validasi_lain}}" {{$disabled}}>
                     </div>
                 </div>
 
@@ -159,13 +159,13 @@
                     </label>
                     <div class="input-group">
                         <span class="">
-                            <select class="form-control select2" name="tempoh_perakuan" required >
+                            <select class="form-control select2" name="tempoh_perakuan" required {{$disabled}}>
                                 <option value="">Sila Pilih</option>
                                 <option value="Bulan" @if($instrumen->tempoh_perakuan == 'Bulan') selected @endif>Bulan</option>
                                 <option value="Minggu" @if($instrumen->tempoh_perakuan == 'Minggu') selected @endif>Minggu</option>
                             </select>
                         </span>
-                    <input type="text" class="form-control" name="tempoh_perakuan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$instrumen->tempoh_perakuan_lain}}">
+                    <input type="text" class="form-control" name="tempoh_perakuan_lain" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' {{$disabled}} value="{{$instrumen->tempoh_perakuan_lain}}">
                     </div>
                 </div>
 
@@ -175,17 +175,17 @@
                     <label class="fw-bold form-label">Instrumen perlu diisi
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="instrumen_perlu_diisi" value="{{$instrumen->instrumen_perlu_diisi}}" {{$readonly}} required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    <input type="text" class="form-control" name="instrumen_perlu_diisi" value="{{$instrumen->instrumen_perlu_diisi}}" {{$readonly}} {{$disabled}} required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                 </div>
 
                  <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Tarikh Kuatkuasa
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" value="{{$instrumen->tarikh_kuatkuasa}}" {{$readonly}} required>
+                    <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" value="{{$instrumen->tarikh_kuatkuasa}}" {{$readonly}} {{$disabled}} required>
                 </div>
                   <!-- // add status -->
-                <div class="col-md-3">
+              <!--   <div class="col-md-3">
                     <label class="fw-bold form-label"> Status
                         <span class="text-danger">*</span>
                     </label>
@@ -198,7 +198,7 @@
                             </option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">

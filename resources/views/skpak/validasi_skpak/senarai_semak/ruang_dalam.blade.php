@@ -61,7 +61,19 @@ $ruang_dalams = [
 @endphp
 
 <hr>
-
+<?php
+    $id = Request::segment(3);
+    $ruangdalam = $item = null;
+    if ($skpakfilleddata){
+        $ruangdalam = json_decode($skpakfilleddata->senaraisemak, true);
+    }  
+    if ($ruangdalam && isset($ruangdalam['ruangdalam'])) {
+        $item = $ruangdalam['ruangdalam'];
+    }
+    $countYa = $countTidak = $countTidakberkenaan = 0;
+?>
+<form id="ruang_dalam_form">
+<input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="ruang_dalam">
         <thead>
@@ -78,33 +90,47 @@ $ruang_dalams = [
                 <tr>
                     <td>{{ $index }}</td>
                     <td>{{ $ruang_dalam }}</td>
-
+                    <?php
+                    if (isset($item)) {
+                        $keyValue = $index.'_'.$loop->index;
+                        $data = $item[$keyValue];
+                    } else {
+                        $data = '';
+                    }
+                    if ($data == 'YA') {
+                        $countYa += 1;
+                    } elseif ($data == 'TIDAK') {
+                        $countTidak += 1;
+                    } elseif ($data == 'TIDAK BERKENAAN') {
+                        $countTidakberkenaan +=1;
+                    }
+                    ?>
                     @if($index <= 5)
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA">
+                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" required @if($data == 'YA') checked @endif>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK">
+                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" required @if($data == 'TIDAK') checked @endif>
                             </div>
                         </td>
                         <td class="bg-dark"></td>
                     @else
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA">
+                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="ya_{{ $index }}_{{ $loop->index }}" value="YA" required @if($data == 'YA') checked @endif>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK">
+                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_{{ $index }}_{{ $loop->index }}" value="TIDAK" required @if($data == 'TIDAK') checked @endif>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_berkenaan_{{ $index }}_{{ $loop->index }}" value="TIDAK BERKENAAN">
+                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="tidak_berkenaan_{{ $index }}_{{ $loop->index }}" value="TIDAK BERKENAAN" required @if($data == 'TIDAK BERKENAAN') checked @endif>
                             </div>
                         </td>
                     @endif
@@ -117,23 +143,40 @@ $ruang_dalams = [
                 <td colspan="2" class="text-end">
                     Jumlah
                 </td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
+                <td class="text-center" id="countYaD">{{$countYa}}</td>
+                <td class="text-center" id="countTidakD">{{$countTidak}}</td>
+                <td class="text-center" id="countTidakberkenaanD">{{$countTidakberkenaan}}</td>
             </tr>
 
             <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Jumlah Skor
                 </td>
-                <td colspan="3" class="text-center"></td>
+                <?php
+                $total = $countYa+$countTidak;
+                $percentage = round($countYa / $total *100);
+                if ($percentage <= 0) {
+                    $rubik = 0;
+                } elseif($percentage > 0 && $percentage <= 40) {
+                     $rubik = 1;
+                 } elseif($percentage > 40 && $percentage <= 80) {
+                     $rubik = 2;
+                } elseif($percentage > 80 && $percentage <= 99) {
+                     $rubik = 3;
+                } elseif($percentage > 99) {
+                     $rubik = 4;
+                } else {
+                    $rubik = '-';
+                }       
+                ?>
+                <td colspan="3" class="text-center" id="percentageD">{{$percentage}} %</td>
             </tr>
 
             <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Skor Rubrik
                 </td>
-                <td colspan="3" class="text-center"></td>
+                <td colspan="3" class="text-center" id="rubikD">{{$rubik}}</td>
             </tr>
         </tfoot>
     </table>
@@ -141,10 +184,54 @@ $ruang_dalams = [
 
 <div class="col-md-12 mb-1 mt-1">
     <label class="fw-bolder">Ulasan</label>
-    <textarea name="" id="" rows="3" class="form-control"></textarea>
+    <textarea name="ulasan" id="" rows="3" class="form-control" required>
+    @if($item && isset($item['ulasan'])) {{$item['ulasan']}}  @endif
+    </textarea>
 </div>
 
 <hr>
 <div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
+    <button type="button" class="btn btn-primary float-right formdd" onclick="submitrdalam()">Simpan</button>
 </div>
+</form>
+<script>
+    function submitrdalam() {
+        var formData = new FormData(document.getElementById('ruang_dalam_form'));
+        var error = false;
+
+         $('form#ruang_dalam_form').find('radio, input, checkbox').each(function() {
+            if(this.required && this.type == 'radio' && !this.checked) {
+                var val = $("input[type='radio'][name='"+this.name+"']:checked", '#ruang_dalam_form').val();
+                if (typeof val == 'undefined') {
+                    console.log(this.name)
+                    error = true;
+                }
+            }
+        });
+
+        if (error) {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'senaraisemak_ruangdalam']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.success) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+                    var data = response.senaraisemak;
+                    $('#countYaD').text(data.countYa);
+                    $('#countTidakD').text(data.countTidak);
+                    $('#countTidakberkenaanD').text(data.countTidakberkenaan);
+                    $('#percentageD').text(data.percentage+' '+'%');
+                    $('#rubikD').text(data.rubik);
+               }
+            }
+        });
+
+    };
+</script>

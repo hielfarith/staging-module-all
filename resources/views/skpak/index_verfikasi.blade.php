@@ -11,6 +11,7 @@ SKPAK
 @endsection
 
 @section('content')
+<input type="hidden" name="skpak_id" id="skpak_id" value="{{$id}}">
 <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder active" id="validasi-1-tab" data-bs-toggle="tab" href="#validasi-1" aria-controls="validasi-1" role="tab" aria-selected="true">
@@ -43,7 +44,7 @@ SKPAK
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="pemarkahan-tab" data-bs-toggle="tab" href="#pemarkahan" aria-controls="pemarkahan" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="pemarkahan-tab" data-bs-toggle="tab" href="#pemarkahan" aria-controls="pemarkahan" role="tab" aria-selected="false" onclick="getjumlah()">
             PEMARKAHAN
         </a>
     </li>
@@ -72,7 +73,6 @@ SKPAK
                 @include('skpak.validasi_skpak.senarai_semak.index')
             </div>
             <div class="tab-pane fade" id="pemarkahan" role="tabpanel" aria-labelledby="pemarkahan-tab">
-                @include('skpak.validasi_skpak.permarkahan')
             </div>
         </div>
     </div>
@@ -83,5 +83,22 @@ SKPAK
 var fragmentIdentifier = window.location.hash;
 function tabclicked(argument) {
     console.log(argument)
- }
+}
+
+function getjumlah() {
+    var id = $('#skpak_id').val();
+    var url = "{{ route('skpak.get-jumlah-skor') }}"
+    $.ajax({
+        url: url,
+        method: 'POST',
+        data: {
+            id:id,
+            type: 'verfikasi'
+        },
+        success: function(response) {
+            $('#pemarkahan').empty();
+            $('#pemarkahan').append(response)
+        }
+    });
+}
 </script>

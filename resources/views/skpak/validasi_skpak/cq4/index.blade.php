@@ -10,7 +10,7 @@
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-sq4-tab" data-bs-toggle="tab" href="#jumlah-sq4" aria-controls="jumlah-sq4" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-sq4-tab" data-bs-toggle="tab" href="#jumlah-sq4" aria-controls="jumlah-sq4" role="tab" aria-selected="false" onclick="updateJumlah4('itemcq4',{{$id}})">
             JUMLAH CQ4
         </a>
     </li>
@@ -24,6 +24,44 @@
         @include('skpak.validasi_skpak.cq4.sq4_2')
     </div>
     <div class="tab-pane fade" id="jumlah-sq4" role="tabpanel" aria-labelledby="jumlah-sq4-tab">
-        @include('skpak.validasi_skpak.cq4.jumlah')
     </div>
 </div>
+
+<script type="text/javascript">
+     function filechange(id, file, event){
+          var list = document.getElementById(file);
+          list.innerHTML = '';
+          for (var i = 0; i < event.files.length; i++) {
+            list.innerHTML += (i + 1) + '. ' + event.files[i].name + '\n';
+          }
+          if (list.innerHTML == '') list.style.display = 'none';
+          else list.style.display = 'block';
+    }
+
+    function assignmandatory(id, event) {
+
+            var idval = 'uploadfile_'+id;
+            var jumlahval = 'jumlah_'+id;
+        $('#'+jumlahval).text(event.value);
+        if (event.value != 4) {
+            $('#'+idval).prop('required', true);   
+        } else {
+            $('#'+idval).prop('required', false);   
+        }
+    }
+    function  updateJumlah4(tabname, id) {
+        var url = "{{ route('skpak.get-verfikasi-jumlah') }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                id:id,
+                tabname: tabname
+            },
+            success: function(response) {
+                $('#jumlah-sq4').empty();
+                $('#jumlah-sq4').append(response)
+            }
+        });
+    }
+</script>

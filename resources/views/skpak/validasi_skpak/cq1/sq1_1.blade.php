@@ -64,6 +64,7 @@
     if ($itemcq1 && isset($itemcq1['sq1.1'])) {
         $item = $itemcq1['sq1.1'];
     }
+    $keyValue = $totalvalue = 0;
 ?>
 <form id="cq1_sq1">
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
@@ -103,6 +104,7 @@
                         if($item) {
                             $catatanData = $item['catatan_'.$keyString];
                             $keyValue = $item[$keyString];
+                            $totalvalue += $keyValue; 
                         }
                     ?>
                     @foreach ($options[$index] as $key => $option)
@@ -116,7 +118,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}}>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key+1}}" required {{$checked}} onchange='assignmandatory1("{{$keyString}}",  this)' {{$disabled}}>
                             </div>
                             <br>
 
@@ -126,19 +128,19 @@
                         </td>
                     @endforeach
 
-                    <td>Auto-selected</td>
+                    <td id="jumlah_{{$keyString}}">{{$keyValue}}</td>
                 </tr>
                 <tr class="bg-light-primary">
                     <td colspan="6">
                         <label class="fw-bolder">Upload: </label>
-                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple>
+                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange1("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)' {{$disabled}}>
                         <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
                     </td>
                 </tr>
                 <tr class="bg-light-success">
                     <td colspan="6">
                         <label class="fw-bolder">Catatan: </label>
-                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control">{{$catatanData}}</textarea>
+                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control" {{$disabled}}>{{$catatanData}}</textarea>
                     </td>
                     <td class="bg-dark"></td>
                 </tr>
@@ -149,7 +151,7 @@
                 <td class="text-end" colspan="6">
                     Jumlah
                 </td>
-                <td class="text-center">Auto-calculated</td>
+                <td class="text-center">{{$totalvalue}}</td>
             </tr>
         </tfoot> --}}
     </table>
@@ -173,10 +175,15 @@
         var formData = new FormData(document.getElementById('cq1_sq1'));
         var error = false;
 
-         $('form#cq1_sq1').find('radio, input, checkbox').each(function() {
+         $('form#cq1_sq1').find('radio, input, checkbox, file').each(function() {
             if(this.required && this.type == 'radio' && !this.checked) {
                 var val = $("input[type='radio'][name='"+this.name+"']:checked", '#cq1_sq1').val();
                 if (typeof val == 'undefined') {
+                    error = true;
+                }
+            }
+            if (this.required && this.type == 'file') {
+                if($('#'+this.id)[0].files.length === 0){
                     error = true;
                 }
             }
@@ -201,15 +208,5 @@
         });
 
     };
-
-    document.getElementById('uploadfile_1_1_1').addEventListener('change', function(e) {
-      var list = document.getElementById('filelist_1_1_1');
-      list.innerHTML = '';
-      for (var i = 0; i < this.files.length; i++) {
-        list.innerHTML += (i + 1) + '. ' + this.files[i].name + '\n';
-      }
-      if (list.innerHTML == '') list.style.display = 'none';
-      else list.style.display = 'block';
-    });
 
 </script>

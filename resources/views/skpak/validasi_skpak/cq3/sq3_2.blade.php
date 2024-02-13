@@ -79,6 +79,7 @@
     if ($itemcq3 && isset($itemcq3['sq3.2'])) {
         $item = $itemcq3['sq3.2'];
     }
+    $keyValue = $totalvalue = 0;
 ?>
 <form id="cq3_sq2">
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
@@ -111,6 +112,7 @@
                         if($item) {
                             $catatanData = $item['catatan_'.$keyString];
                             $keyValue = $item[$keyString];
+                            $totalvalue += $keyValue;
                         }
                     ?>
                     @foreach ($options[$index] as $key => $option)
@@ -125,7 +127,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$checked}}>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$checked}} onchange='assignmandatory("{{$keyString}}",  this)'>
                             </div>
                             <br>
 
@@ -135,9 +137,15 @@
                         </td>
                     @endforeach
 
-                    <td>Auto-selected</td>
+                    <td id="jumlah_{{$keyString}}">{{ $keyValue }}</td>
                 </tr>
-
+                <tr class="bg-light-primary">
+                    <td colspan="6">
+                        <label class="fw-bolder">Upload: </label>
+                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)'>
+                        <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
+                    </td>
+                </tr>
                 <tr class="bg-light-success">
                     <td colspan="6">
                         <label class="fw-bolder">Catatan: </label>
@@ -152,7 +160,7 @@
                 <td class="text-end" colspan="6">
                     Jumlah
                 </td>
-                <td class="text-center">Auto-calculated</td>
+                <td class="text-center">{{$totalvalue}}</td>
             </tr>
         </tfoot>
     </table>
@@ -163,7 +171,7 @@
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="submitcq3sq2()">Simpan</button>
 </div>
-
+</form>
 <script>
     function submitcq3sq2() {
         var formData = new FormData(document.getElementById('cq3_sq2'));
@@ -173,6 +181,11 @@
             if(this.required && this.type == 'radio' && !this.checked) {
                 var val = $("input[type='radio'][name='"+this.name+"']:checked", '#cq3_sq2').val();
                 if (typeof val == 'undefined') {
+                    error = true;
+                }
+            }
+             if (this.required && this.type == 'file') {
+                if($('#'+this.id)[0].files.length === 0){
                     error = true;
                 }
             }

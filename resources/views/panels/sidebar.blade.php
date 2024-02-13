@@ -451,8 +451,8 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.validasi_skpak']) ? 'active' : '' }}">
-                        <a href="{{ route('skpak.validasi_skpak') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.validasi_senarai']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.validasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
                         </a>
                     </li>

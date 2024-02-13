@@ -17,6 +17,15 @@
 </style>
 
 @php
+$showHantar = true;
+$itemArray = [
+    'CQ1 HUBUNGAN DAN INTERAKSI' => 'itemcq1',
+    'CQ2 PENGASUHAN DAN PEMBELAJARAN' => 'itemcq2',
+    'CQ3 KESELAMATAN, KESIHATAN, KEBERSIHAN & PEMAKANAN' => 'itemcq3',
+    'CQ4 KOLABORASI KELUARGA & KOMUNITI' => 'itemcq4',
+    'CQ5 PENTADBIRAN & PENGURUSAN' => 'itemcq5'
+];
+
 $penyelarasan_penilaians = [
     'sections' => [
         'CQ1 HUBUNGAN DAN INTERAKSI' => [
@@ -192,7 +201,17 @@ $penyelarasan_penilaians = [
                         @endif
                         <td>{{ $subsubsection }}</td>
                         @if (!$row)
-                            <td rowspan="{{ $subsubsectionCount }}">Skor</td>
+                            <?php
+                                 
+                                $keystring = 'sq'.$numeric;
+                                if (is_array($array[$itemArray[$section]]) && isset($array[$itemArray[$section]][$keystring])){
+                                    $subdata = $array[$itemArray[$section]][$keystring];
+                                } else {
+                                    $subdata = 0;
+                                    $showHantar = false;
+                                }
+                           ?>
+                            <td rowspan="{{ $subsubsectionCount }}">{{$subdata}}</td>
                         @endif
                         @if (!$row && $loop->parent->first)
                             <td rowspan="{{ $totalRow }}">Peratus</td>
@@ -208,7 +227,10 @@ $penyelarasan_penilaians = [
             @endforeach
 
             <tr class="bg-light-success">
-                <td colspan="3" class="text-end">Jumlah Skor</td>
+                <?php
+                    $skore = $totalSkor[$itemArray[$section]];
+                ?>
+                <td colspan="3" class="text-end">{{$skore}}</td>
                 <td colspan="3" class="text-start"></td>
             </tr>
         @endforeach
@@ -218,12 +240,46 @@ $penyelarasan_penilaians = [
     <tfoot>
         <tr class="bg-light-danger">
             <td colspan="3" class="text-end">Jumlah Skor</td>
-            <td colspan="3" class="text-start"></td>
+            <td colspan="3" class="text-start">{{$finalskore}}</td>
         </tr>
 
         <tr class="bg-light-danger">
             <td colspan="3" class="text-end">Peratus Keseluruhan</td>
-            <td colspan="3" class="text-start"></td>
+            <td colspan="3" class="text-start">{{$percentage}} %</td>
         </tr>
     </tfoot>
 </table>
+<input type="hidden" name="skpak_standard_penilaian_id" id="skpak_standard_penilaian_id_permarkahan" value="{{$skpak_standard_penilaian_id}}">
+
+<hr>
+@if($showHantar && empty($disabled))
+<div class="d-flex justify-content-end align-items-center mt-1">
+    <button type="button" class="btn {{$color}} float-right" onclick="submitcpermarkahan()">Hantar</button>
+</div>
+@endif
+</form>
+
+<script>
+    function submitcpermarkahan() {
+    var skpak_standard_penilaian_id = $('#skpak_standard_penilaian_id_permarkahan').val();
+      if (ulasan == '') {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'permarkahan']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                skpak_standard_penilaian_id: skpak_standard_penilaian_id
+            },
+            success: function(response) {
+               if (response.success) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+
+    };
+
+</script>

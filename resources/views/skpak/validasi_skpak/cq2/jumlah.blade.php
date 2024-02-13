@@ -77,6 +77,59 @@
             ]
         ],
     ];
+
+     $subtab = [
+        '0' => 'sq2.1',
+        '1' => 'sq2.2',
+        '2' => 'sq2.3',
+        '3' => 'sq2.4',
+        '4' => 'sq2.5',
+        '5' => 'sq2.6',
+    ];
+
+    $subtabdata = [
+        'sq2.1' => [
+            '0' => '2_1_1',
+            '1' => '2_1_2',
+            '2' => '2_1_3',
+            '3' => '2_1_4',
+            '4' => '2_1_5',
+        ],
+        'sq2.2' => [
+            '0' => '2_2_1',
+            '1' => '2_2_2',
+            '2' => '2_2_3',
+            '3' => '2_2_4',
+            '4' => '2_2_5',
+            '5' => '2_2_6',
+            '6' => '2_2_7',
+        ],
+        'sq2.3' => [
+            '0' => '2_3_1',
+            '1' => '2_3_2',
+            '2' => '2_3_3'
+        ],
+        'sq2.4' => [
+            '0' => '2_4_1',
+            '1' => '2_4_2',
+            '2' => '2_4_3',
+            '3' => '2_4_4',
+            '4' => '2_4_5',
+            '5' => '2_4_6',
+        ],
+        'sq2.5' => [
+            '0' => '2_5_1',
+            '1' => '2_5_2',
+            '2' => '2_5_3'
+        ],
+        'sq2.6' => [
+            '0' => '2_6_1',
+            '1' => '2_6_2',
+            '2' => '2_6_3',
+            '3' => '2_6_4',
+            '4' => '2_6_5',
+        ]
+    ];
 @endphp
 
 <h5 class="card-title fw-bolder text-uppercase">
@@ -100,10 +153,18 @@
                         {{ $jumlah_sq2['section'] }}
                     </td>
                 </tr>
-                @foreach ($jumlah_sq2['subSections'] as $subsection_sq2)
+                @foreach ($jumlah_sq2['subSections'] as $key => $subsection_sq2)
                     <tr>
                         <td>{{ $subsection_sq2 }}</td>
-                        <td>Auto-calculated</td>
+                        <?php
+                        if (isset($tabData) && isset($tabData[$subtab[$index]])) {
+                            $value = $tabData[$subtab[$index]][$subtabdata[$subtab[$index]][$key]];
+                        }  else {
+                            $value = '-';
+                        }
+
+                        ?>
+                        <td> {{$value}} </td>
                     </tr>
                 @endforeach
             @endforeach
@@ -111,19 +172,49 @@
         <tfoot>
             <tr class="bg-light-primary">
                 <td class="text-end">Jumlah</td>
-                <td>Auto-calculated</td>
+                <td>{{$totalValue}}</td>
             </tr>
         </tfoot>
     </table>
-
+<form>
+    <input type="hidden" name="skpak_standard_penilaian_id" id="skpak_standard_penilaian_id2" value="{{$id}}">
     <div class="col-md-12 mt-2">
         <label class="fw-bolder">Ulasan</label>
-        <textarea name="" id="" rows="3" class="form-control"></textarea>
+        <textarea name="ulasan" id="ulasanc2" rows="3" class="form-control">{{$ulasan}}</textarea>
     </div>
 </div>
 
 <hr>
 
 <div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right" onclick="submitform1()">Simpan</button>
+    <button type="button" class="btn btn-primary float-right" onclick="submitcq2jumlah()">Simpan</button>
 </div>
+
+</form>
+
+<script>
+    function submitcq2jumlah() {
+    var ulasan = $('#ulasanc2').val();
+    var skpak_standard_penilaian_id = $('#skpak_standard_penilaian_id2').val();
+      if (ulasan == '') {
+             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+        var url = "{{ route('skpak.save-verfikasi', ['tab' => 'itemcq2_jumlah']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                ulasan : ulasan,
+                skpak_standard_penilaian_id: skpak_standard_penilaian_id
+            },
+            success: function(response) {
+               if (response.success) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+               }
+            }
+        });
+
+    };
+
+</script>
