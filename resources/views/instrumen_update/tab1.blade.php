@@ -10,11 +10,11 @@
     <div class="row">
         <h5 class="mb-2 fw-bold">
             <span class="badge rounded-pill badge-light-primary">
-                Maklumat MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKPAK, SPKS, IKEPS
+                Maklumat Instrumen
             </span>
         </h5>
 
-        <div class="col-md-3 mb-1">
+        <div class="col-md-3 mb-2">
             <label class="fw-bold form-label"> Nama Instrumen
                 <span class="text-danger">*</span>
             </label>
@@ -22,7 +22,7 @@
                 onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8"
                 value="{{$instrumenData?->nama_instrumen}}">
         </div>
-        <div class="col-md-6 mb-1">
+        <div class="col-md-3 mb-2">
             <label class="fw-bold form-label"> Tujuan Instrumen
                 <span class="text-danger">*</span>
             </label>
@@ -30,7 +30,7 @@
                 value="{{$instrumenData?->tujuan_instrumen}}">
         </div>
 
-        <div class="col-md-3 mb-1">
+        <div class="col-md-3 mb-2">
             <label class="fw-bold form-label">Pengguna Instrumen
                 <span class="text-danger">*</span>
             </label>
@@ -42,8 +42,56 @@
                     @endif>GURU INSTITUSI</option>
             </select>
         </div>
-
         <div class="col-md-3 mb-1">
+            <label class="fw-bold form-label">
+                <input type="checkbox" class="form-check-input" required
+                    name="tetapan_keperluan_pengemaskinian_data_terkini" value="1"
+                    @if($instrumenData?->tetapan_keperluan_pengemaskinian_data_terkini) checked @endif>
+                Tetapan Keperluan Pengemaskinian Data Terkini
+                <span class="text-danger">*</span>
+            </label>
+        </div>
+        {{-- <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Instrumen perlu diisi
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" class="form-control" name="instrumen_perlu_diisi" required
+                onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                value="{{$instrumenData?->instrumen_perlu_diisi}}">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Tarikh Kuatkuasa
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" required
+                value="{{$instrumenData?->tarikh_kuatkuasa}}">
+        </div>
+
+         --}}
+    </div>
+    <hr>
+    <div class="row ">
+
+        <h5 class="col-md-4 mb-2 fw-bold">
+            <span class="badge rounded-pill badge-light-primary">
+                Maklumat Pengisian
+            </span>
+        </h5>
+
+        <h5 class="col-md-4 mb-2 fw-bold">
+            <span class="badge rounded-pill badge-light-primary">
+                Maklumat Pengesahan
+            </span>
+        </h5>
+
+        <h5 class="col-md-4 mb-2 fw-bold">
+            <span class="badge rounded-pill badge-light-primary">
+                Maklumat Verifikasi
+            </span>
+        </h5>
+
+        <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Pengisian Oleh
                 <span class="text-danger">*</span>
             </label>
@@ -56,7 +104,29 @@
             </select>
         </div>
 
-        <div class="col-md-3 mb-1">
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Pengesahan Oleh :
+                <span class="text-danger">*</span>
+            </label>
+            <select class="form-control select2" name="pengesahan_ole" required>
+                <option value="">Sila Pilih</option>
+                <option value="PPD" @if($instrumenData?->pengesahan_ole == 'PPD') selected @endif>PPD </option>
+                <option value="JPN" @if($instrumenData?->pengesahan_ole == 'JPN') selected @endif>JPN</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label">Verifikasi Oleh :
+                <span class="text-danger">*</span>
+            </label>
+            <select class="form-control select2" name="verifikasi_oleh" required>
+                <option value="">Sila Pilih</option>
+                <option value="JPN" @if($instrumenData?->verifikasi_oleh == 'JPN') selected @endif>JPN</option>
+                <option value="KPM" @if($instrumenData?->verifikasi_oleh == 'KPM') selected @endif>KPM</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-1">
             <label class="fw-bold form-label"> Tempoh Pengisian Oleh
                 <span class="text-danger">*</span>
             </label>
@@ -74,19 +144,10 @@
             </div>
         </div>
 
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">Pengesahan Oleh :
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="pengesahan_ole" required>
-                <option value="">Sila Pilih</option>
-                <option value="PPD" @if($instrumenData?->pengesahan_ole == 'PPD') selected @endif>PPD </option>
-                <option value="JPN" @if($instrumenData?->pengesahan_ole == 'JPN') selected @endif>JPN</option>
-            </select>
-        </div>
 
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label"> Tempoh Pengeshan Oleh
+
+        <div class="col-md-4 mb-1">
+            <label class="fw-bold form-label"> Tempoh Pengesahan Oleh
                 <span class="text-danger">*</span>
             </label>
             <div class="input-group">
@@ -103,18 +164,9 @@
             </div>
         </div>
 
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">Verifikasi Oleh :
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-control select2" name="verifikasi_oleh" required>
-                <option value="">Sila Pilih</option>
-                <option value="JPN" @if($instrumenData?->verifikasi_oleh == 'JPN') selected @endif>JPN</option>
-                <option value="KPM" @if($instrumenData?->verifikasi_oleh == 'KPM') selected @endif>KPM</option>
-            </select>
-        </div>
 
-        <div class="col-md-3 mb-1">
+
+        <div class="col-md-4 mb-1">
             <label class="fw-bold form-label"> Tempoh Verifikasi Oleh
                 <span class="text-danger">*</span>
             </label>
@@ -133,7 +185,7 @@
         </div>
 
 
-        <div class="col-md-3 mb-1">
+        {{-- <div class="col-md-3 mb-1">
             <label class="fw-bold form-label">Validasi Oleh :
                 <span class="text-danger">*</span>
             </label>
@@ -192,34 +244,9 @@
                     onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                     value="{{$instrumenData?->tempoh_perakuan_lain}}">
             </div>
-        </div>
+        </div> --}}
 
-        <div class="col-md-4 mb-1">
-            <label class="fw-bold form-label">Instrumen perlu diisi
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" name="instrumen_perlu_diisi" required
-                onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                value="{{$instrumenData?->instrumen_perlu_diisi}}">
-        </div>
 
-        <div class="col-md-4 mb-1">
-            <label class="fw-bold form-label">Tarikh Kuatkuasa
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" required
-                value="{{$instrumenData?->tarikh_kuatkuasa}}">
-        </div>
-
-        <div class="col-md-4 mb-1">
-            <label class="fw-bold form-label">
-                <input type="checkbox" class="form-check-input" required
-                    name="tetapan_keperluan_pengemaskinian_data_terkini" value="1"
-                    @if($instrumenData?->tetapan_keperluan_pengemaskinian_data_terkini) checked @endif>
-                Tetapan Keperluan Pengemaskinian Data Terkini
-                <span class="text-danger">*</span>
-            </label>
-        </div>
         <div class="d-flex justify-content-end align-items-center my-1">
             <button type="submit" class="btn btn-primary float-right">Simpan</button>
         </div>
