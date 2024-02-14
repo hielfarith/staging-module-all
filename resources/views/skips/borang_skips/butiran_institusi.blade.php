@@ -283,12 +283,14 @@
         contentType: false,
         processData: false,
         success: function(response) {
-           if (response.status) {
+           if (response.status == 'success') {
                 Swal.fire('Success', 'Berjaya', 'success');
                 var id = response.data.id;
                 var location = "{{route('skips.skips_baru', ['id' => ':id'])}}";
                 var location = location.replace(':id', id);
                 window.location.href = location;
+           } else {
+                Swal.fire('Gagal', response.detail, 'error');
            }
         }
     });

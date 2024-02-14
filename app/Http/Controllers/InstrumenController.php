@@ -512,19 +512,25 @@ class InstrumenController extends Controller
         try {
 
             $input = $request->input();
-            $input['status'] = 1;
+            // $input['status'] = 1;
             if (!isset($input['type'])) {
                 $input['type'] = 'SKIPS';
             }
             if (array_key_exists('instrumen_id', $input) && $input['instrumen_id'] != 0) {
                 $instrumenSkpakSpksIkeps = InstrumenSkpakSpksIkeps::where('id', $input['instrumen_id'])->first();
+                $id = $input['instrumen_id'];
                 unset($input['instrumen_id']);
                 $instrumenSkpakSpksIkeps = $instrumenSkpakSpksIkeps->update($input);
             } else {
                 $instrumenSkpakSpksIkeps = new InstrumenSkpakSpksIkeps;
                 $instrumenSkpakSpksIkeps = $instrumenSkpakSpksIkeps->create($input);
-            }
+                $id = $instrumenSkpakSpksIkeps->id;
 
+            }
+            //update remaining records to 0
+            if ($input['status'] == '1') {
+                InstrumenSkpakSpksIkeps::where('id','!=', $id)->where('type','SKIPS')->update(['status' => '2']);
+            }
         } catch (\Throwable $e) {
 
             DB::rollback();
@@ -563,6 +569,7 @@ class InstrumenController extends Controller
                 ->editColumn('tarikh_kuatkuasa', function ($instrumenList) {
                     return $instrumenList->tarikh_kuatkuasa;
                 })
+               
                 ->editColumn('action', function ($instrumenList) {
                     $button = "";
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';

@@ -86,9 +86,16 @@
 <?php
     $butiran_institusi_id = $butiran_id;
     $itemStandardQualitySkips = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    //get instrumen details
+    $instrumen = \App\Models\ButiranInstitusiSkips::where('id', $butiran_id)->first();
+    if ($instrumen->jenis_ips == 'Pusat Perkembangan Minda' || $instrumen->jenis_ips == 'Pusat Tuisyen') {
+        $antarabangsa = true;
+    } else {
+        $antarabangsa = !empty($itemStandardQualitySkips->pengurusan_pelajar_antarabangsa) ? true : false;
+    }
     $showHantar = false;
     if ($butiran_institusi_id) {
-        if (!empty($itemStandardQualitySkips->penubuhan_pendaftaran) && !empty($itemStandardQualitySkips->pengurusan_institusi) && !empty($itemStandardQualitySkips->pengurusan_kurikulum) && !empty($itemStandardQualitySkips->pengajaran) && !empty($itemStandardQualitySkips->pengurusan_penilaian) && !empty($itemStandardQualitySkips->pengurusan_pembangunan_guru) && !empty($itemStandardQualitySkips->displin) && !empty($itemStandardQualitySkips->piawaian) && !empty($itemStandardQualitySkips->kebersihan) && !empty($itemStandardQualitySkips->pengurusan_pelajar_antarabangsa)) {
+        if (!empty($itemStandardQualitySkips->penubuhan_pendaftaran) && !empty($itemStandardQualitySkips->pengurusan_institusi) && !empty($itemStandardQualitySkips->pengurusan_kurikulum) && !empty($itemStandardQualitySkips->pengajaran) && !empty($itemStandardQualitySkips->pengurusan_penilaian) && !empty($itemStandardQualitySkips->pengurusan_pembangunan_guru) && !empty($itemStandardQualitySkips->displin) && !empty($itemStandardQualitySkips->piawaian) && !empty($itemStandardQualitySkips->kebersihan) && $antarabangsa ) {
             $showHantar = true;
         }
     }

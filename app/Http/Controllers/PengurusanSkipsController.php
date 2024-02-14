@@ -33,8 +33,15 @@ class PengurusanSkipsController extends Controller
         $allInstitutes = SkipsInstitusiPendidikan::pluck('nama','id');
         $butiran_id = $id;
         $canView = $canApprove = $canVerify = $canFill = false;
-        $DynamicFormData = InstrumenSkpakSpksIkeps::where('type','skips')->where('status',1)->first();
-        $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
+        // $DynamicFormData = InstrumenSkpakSpksIkeps::where('type','skips')->where('status',1)->first();
+        $instrument = InstrumenSkpakSpksIkeps::where('type', 'SKIPS')->where('status',1)->orderBy('id','desc')->get();
+        foreach ($instrument as $key => $value) {
+            $moduleId = Module::where('module_name', $value->id)->first();
+            if ($moduleId) {
+                break;
+            }
+        }
+        // $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
         $dynamicModuleId = $moduleId->id;
 
         if (!empty($butiran_id)) {
@@ -147,10 +154,18 @@ class PengurusanSkipsController extends Controller
             } elseif($tab == 'butiran_institusi') {
                 // update the configiuration instrumen id
                 // get active configuration id
-                $instrumentId = InstrumenSkpakSpksIkeps::where('type', 'SKIPS')->where('status',1)->first();
-                if ($instrumentId) {
-                    $input['instrumen_skips_id'] = $instrumentId->id;
+                $instrument = InstrumenSkpakSpksIkeps::where('type', 'SKIPS')->where('status',1)->orderBy('id','desc')->get();
+                foreach ($instrument as $key => $value) {
+                    $moduleId = Module::where('module_name', $value->id)->first();
+                    if ($moduleId) {
+                        $input['instrumen_skips_id'] = $value->id;
+                    }
                 }
+
+                if (!isset($input['instrumen_skips_id'])) {
+                    return response()->json(['title' => 'Gagal', 'status' => 'error', 'message' => "Aliran dinamik tidak ditakrifkan", 'detail' => "Aliran dinamik tidak ditakrifkan", 'data' => '']);
+                }
+
                 if (isset($input['butiranInstitusi_id']) && !empty($input['butiranInstitusi_id'])) {
                     $butiran = ButiranInstitusiSkips::where('id', $input['butiranInstitusi_id'])->first();
                     unset($input['butiranInstitusi_id']);
@@ -161,7 +176,7 @@ class PengurusanSkipsController extends Controller
                     $item = new ItemStandardQualitySkips;
                     // get next status
                     // get next status from the module->status
-                    $moduleId = Module::where('module_name', $instrumentId->id)->first();
+                    $moduleId = Module::where('module_name', $input['instrumen_skips_id'])->first();
                     $moduleStatus  = ModuleStatus::where('status_index', 1)->where('module_id', $moduleId->id)->first();
                     $item->status = $moduleStatus->id;
                     $item->butiran_institusi_id = $butiran->id;
@@ -192,6 +207,7 @@ class PengurusanSkipsController extends Controller
                                 }
                             }
                         }
+
                         if ($formfilled) {
                             $butiranInstitusi = ButiranInstitusiSkips::where('id', $input['butiran_institusi_id'])->first();
                             $moduleId = Module::where('module_name', $butiranInstitusi->instrumen_skips_id)->first();
@@ -204,7 +220,9 @@ class PengurusanSkipsController extends Controller
                     if(isset($input['usertype'] ) && $input['usertype'] == 'borang') {
                         unset($input['usertype']);
                         $formfilled = true;
+                        
                         // getnext status
+                        // we need to skips the antarbangsa if jenis_ips has selcted values
                         foreach ($tabsarray as $value) {
                             if ($value == $tab) {
                                 continue;
@@ -588,6 +606,11 @@ class PengurusanSkipsController extends Controller
                     static $index = 1;
                     return $index++;
                 })
+                 ->addColumn('document', function ($instrumenList) {
+                    $button = '<a onclick="#" class="btn btn-xs btn-default" title="">Document<i class="fas fa-download text-primary"></i></a>'; 
+
+                    return $button;
+                })
                 ->editColumn('action', function ($instrument) {
                     $button = "";
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
@@ -603,7 +626,7 @@ class PengurusanSkipsController extends Controller
 
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'document'])
                 ->make(true);
         }
 

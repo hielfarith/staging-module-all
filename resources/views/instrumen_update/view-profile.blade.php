@@ -57,7 +57,7 @@
                         <span class="text-danger">*</span>
                     </label>
                     <select class="form-control select2" name="jenis_ips" required id="jenis_ips" {{$disabled}}>
-                        <option value="">{{$instrumen->jenis_ips}}</option>
+                        <option value="{{$instrumen->jenis_ips}}">{{$instrumen->jenis_ips}}</option>
                     </select>
                 </div>
 
@@ -298,7 +298,12 @@
         if (error) {
             return false;
         }
+
+        var type = $('#type').val();
         var url = "{{ route('admin.instrumen.instrumenikeps-submit') }}"
+        if (type == 'SKIPS') {
+            var url = "{{ route('admin.instrumen.instrumenskips-submit') }}"
+        } 
         $.ajax({
             url: url,
             type: 'POST',
