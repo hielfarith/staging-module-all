@@ -99,7 +99,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$sukanKey }}" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputPrasarana('{{ $sukanKey }}', '{{ $id }}', true)" {{ $disabled }}>
+                            <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$sukanKey == $id) checked @endif name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputPrasarana('{{ $sukanKey }}', '{{ $id }}', true)" {{ $disabled }}>
                         </div>
                     </td>
                 @endforeach
@@ -112,7 +112,7 @@
                             ?>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$guna_sama }}" name="{{ $sukanKey.'_gunasama' }}" id="{{ $sukanKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
+                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$guna_sama == $id) checked @endif name="{{ $sukanKey.'_gunasama' }}" id="{{ $sukanKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
                                 </div>
                             </td>
                         @endforeach
@@ -126,7 +126,7 @@
                 $bilangan = $sukanKey.'_bilangan';
                 ?>
                 <td>
-                    <input type="text" class="form-control integerInput" @if($prasaranaSukan && $prasaranaSukan->$bilangan == $id) checked @endif id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
+                    <input type="text" class="form-control integerInput" value="{{ $prasaranaSukan?->$bilangan) }}"  id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
                 </td>
 
                 <td colspan="7" class="text-danger">
