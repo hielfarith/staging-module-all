@@ -22,6 +22,7 @@ Medan Data Tambah / Kemaskini Instrumen SKPAK, SPKS, IKEPS
 
 <?php
 $disabled = 'disabled';
+$checkReadOnly = true;
 ?>
 
 <ul class="nav nav-pills nav-justified" role="tablist">
