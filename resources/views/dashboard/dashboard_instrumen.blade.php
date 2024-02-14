@@ -770,7 +770,7 @@ Dashboard SKIPS
                 shadowColor: 'rgba(0, 0, 0, 0.25)',
                 backgroundColor: window.colors.solid.white,
                 titleFontColor: window.colors.solid.black,
-                bodyFontColor: window.colors.solid.black
+                bodyFontColor: window.colors.solid.black,
                 },
                 scales: {
                 xAxes: [
@@ -797,9 +797,6 @@ Dashboard SKIPS
                         zeroLineColor: 'rgba(200, 200, 200, 0.2)'
                     },
                     ticks: {
-                        stepSize: 5,
-                        min: 0,
-                        max: 50,
                         fontColor: '#6e6b7b'
                     }
                     }
@@ -816,7 +813,7 @@ Dashboard SKIPS
                     borderColor: 'transparent'
                 }
                 ]
-            }
+            },
             });
         }
 
@@ -844,7 +841,10 @@ Dashboard SKIPS
                 shadowColor: 'rgba(0, 0, 0, 0.25)',
                 backgroundColor: window.colors.solid.white,
                 titleFontColor: window.colors.solid.black,
-                bodyFontColor: window.colors.solid.black
+                bodyFontColor: window.colors.solid.black,
+                callbacks: {
+                    label: (tooltipItem, data) => data.datasets[0].data[tooltipItem.index] + '%'
+                    }
                 },
                 scales: {
                 xAxes: [
@@ -865,7 +865,7 @@ Dashboard SKIPS
                 ],
                 yAxes: [
                     {
-                    display: true,
+                    display: false,
                     gridLines: {
                         color: 'rgba(200, 200, 200, 0.2)',
                         zeroLineColor: 'rgba(200, 200, 200, 0.2)'

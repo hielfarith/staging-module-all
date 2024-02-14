@@ -54,6 +54,9 @@ class ButiranInstitusiSkips extends Model
         $institutions = ButiranInstitusiSkips::with([
             'itemStandardKualiti' => function ($query) {
                 $query->whereNotNull('status');
+                $query->whereHas('statuses', function ($query) {
+                    $query->where('status_name', 'done');
+                });
             }
         ])
         ->where('instrumen_skips_id', $instrumen_id)
