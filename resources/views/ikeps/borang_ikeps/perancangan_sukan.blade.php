@@ -44,10 +44,7 @@
                     'kepegawaian' => '6.3 Kursus Kepegawaian',
                     'sains_sukan' => '6.4 Kursus Sains Sukan'
                 ];
-                $ada_tiadas = [
-                    'ada' => 1,
-                    'tiada' => 0
-                ];
+                $ada_tiadas = config('staticdata.ikeps.ada_tiada');
             ?>
 
             @foreach($perancangans as $rancangKey => $perancangan)
@@ -56,7 +53,7 @@
                     @foreach ($ada_tiadas as $id => $ada_tiada)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$rancangKey == $id) checked @endif name="{{ $rancangKey }}" id="{{ $rancangKey.'_'.$id }}" value="{{ $ada_tiada }}">
+                                <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$rancangKey == $id) checked @endif name="{{ $rancangKey }}" id="{{ $rancangKey.'_'.$id }}" value="{{ $id }}">
                             </div>
                         </td>
                     @endforeach
@@ -103,7 +100,7 @@
                     @foreach ($ada_tiadas as $id => $ada_tiada)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$kursusKey == $id) checked @endif name="{{ $kursusKey }}" id="{{ $kursusKey.'_'.$id }}" value="{{ $ada_tiada }}">
+                                <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$kursusKey == $id) checked @endif name="{{ $kursusKey }}" id="{{ $kursusKey.'_'.$id }}" value="{{ $id }}">
                             </div>
                         </td>
                     @endforeach
