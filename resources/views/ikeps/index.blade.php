@@ -171,7 +171,7 @@ if($checkReadOnly){
             processData: false,
             success: function(data) {
                 toastr.success(data.title ?? "Berjaya Disimpan");
-                console.log(form);
+                
                 if(form == '#sediaOlehForm' || form == '#sahOlehForm'){
                     window.location.href="{{ route('ikeps.ringkasan_ikeps') }}";
                 }

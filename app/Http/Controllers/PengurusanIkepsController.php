@@ -95,7 +95,8 @@ class PengurusanIkepsController extends Controller
                     return view('ikeps.index', compact('tahun', 'ikeps', 'checkReadOnly', 'verifyStatus' , 'suSukan', 'guruBesar'));
                 } else {
                     $request->session()->flash('danger', 'Permission denied');
-                    return redirect()->route('ikeps.ringkasan_ikeps', ['tahun' => $tahun]);
+                    //return redirect()->route('ikeps.ringkasan_ikeps', ['tahun' => $tahun]);
+                    return redirect()->route('home');
                 }
             }
         }
