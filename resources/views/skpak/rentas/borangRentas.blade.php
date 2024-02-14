@@ -69,7 +69,7 @@ Pengurusan Borang Rentas
                 <label class="fw-bold form-label">Ulasan Tambahan
                     <span class="text-danger">*</span>
                 </label>
-                <input type="text" class="form-control" name="nama_taska" required>
+                <textarea class="form-control" name="nama_taska" required></textarea>
             </div>
             <div class="col-md-12 mb-1">
                 <label class="fw-bold form-label">Keputusan Penilai

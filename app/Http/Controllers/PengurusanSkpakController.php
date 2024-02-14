@@ -576,4 +576,17 @@ class PengurusanSkpakController extends Controller
     public function borangRentas(Request $request){
         return view("skpak.rentas.borangRentas");
     }
+
+    public function prosesPenarafan(Request $request){
+        return view("skpak.penarafan.menunggu_penarafan");
+    }
+    public function borangPenarafan(Request $request){
+        if (!empty($id)) {
+            $skpak = SkpakStandardPenilaian::where('id', $id)->first();
+        } else {
+            $skpak = null;
+        }
+        $disabled = '';
+        return view("skpak.penarafan.borang_penarafan", compact('skpak', 'disabled'));
+    }
 }

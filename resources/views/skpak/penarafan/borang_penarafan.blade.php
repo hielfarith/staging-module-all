@@ -9,7 +9,7 @@ SKPAK
 <li class="breadcrumb-item"><a href="#"> Instrumen/ Modul </a></li>
 <li class="breadcrumb-item"><a href="#"> Jaminan Kualiti Pendidikan Awal Kanak-Kanak </a></li>
 @endsection
-<input type="hidden" name="skpak_id" id="skpak_id" value="{{$skpak?->id}}">
+<input type="hidden" name="skpak_id" id="skpak_id" value="">
 @section('content')
 <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
@@ -53,7 +53,7 @@ SKPAK
     <div class="card-body">
         <div class="tab-content">
             <div class="tab-pane active" id="item-1" role="tabpanel" aria-labelledby="item-1-tab">
-                @include('skpak.borang_skpak.item_1')
+                @include('skpak.penarafan.sp1')
             </div>
             <div class="tab-pane fade" id="item-2" role="tabpanel" aria-labelledby="item-2-tab">
                 @include('skpak.borang_skpak.item_2')
