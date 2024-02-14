@@ -37,51 +37,60 @@
                 $i = 1;
                 $programs = config('staticdata.ikeps.program_sekolah');
                 $dilaksanakans = [
-                    'ya' => 1, 
-                    'tidak' => 0
+                    1 => 'ya',
+                    0 => 'tidak',
                 ];
             ?>
 
             @foreach($programs as $idProgram => $program)
                 <tr>
                     <td> {{ $i++ }} </td>
-                    <td> {{ $program }} @if($idProgram == 'lain') <input class="form-control" name="{{ $idProgram.'_butiran' }}" id="{{ $idProgram.'_butiran' }}"> @endif</td>
+                    <?php
+                    $butiran = $idProgram.'_butiran';
+                    ?>
+                    <td> {{ $program }} @if($idProgram == 'lain') <input class="form-control" value="{{ $programSekolah?->$butiran }}" name="{{ $idProgram.'_butiran' }}" id="{{ $idProgram.'_butiran' }}"> @endif</td>
 
                     @foreach ($dilaksanakans as $id => $dilaksanakan)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="{{ $idProgram }}" id="{{ $idProgram.'_'.$id }}" value="{{ $dilaksanakan }}">
+                                <input class="form-check-input" type="radio" @if($programSekolah && $programSekolah->$idProgram == $id) checked @endif name="{{ $idProgram }}" id="{{ $idProgram.'_'.$id }}" value="{{ $dilaksanakan }}">
                             </div>
                         </td>
                     @endforeach
 
+                    <?php
+                    $kekerapan = $idProgram.'_kekerapan';
+                    ?>
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $idProgram.'_kekerapan' }}" id="{{ $idProgram.'_kekerapan_1' }}" value="1">
+                            <input class="form-check-input" type="radio" @if($programSekolah && $programSekolah->$kekerapan == 1) checked @endif name="{{ $idProgram.'_kekerapan' }}" id="{{ $idProgram.'_kekerapan_1' }}" value="1">
                         </div>
                     </td>
 
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $idProgram.'_kekerapan' }}" id="{{ $idProgram.'_kekerapan_2' }}" value="2">
+                            <input class="form-check-input" type="radio" @if($programSekolah && $programSekolah->$kekerapan == 2) checked @endif name="{{ $idProgram.'_kekerapan' }}" id="{{ $idProgram.'_kekerapan_2' }}" value="2">
                         </div>
                     </td>
 
+                    <?php
+                    $perlaksanaan = $idProgram.'_perlaksanaan';
+                    ?>
                     <td>
                         <select name="{{ $idProgram.'_perlaksanaan' }}" id="{{ $idProgram.'_perlaksanaan' }}" class="form-control select2">
                             <option value="" hidden>Bulan</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Mac</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Jun</option>
-                            <option value="7">Julai</option>
-                            <option value="8">Ogos</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Disember</option>
+                            <option value="1" @if($programSekolah && $programSekolah->$perlaksanaan == 1) selected @endif>Januari</option>
+                            <option value="2" @if($programSekolah && $programSekolah->$perlaksanaan == 2) selected @endif>Februari</option>
+                            <option value="3" @if($programSekolah && $programSekolah->$perlaksanaan == 3) selected @endif>Mac</option>
+                            <option value="4" @if($programSekolah && $programSekolah->$perlaksanaan == 4) selected @endif>April</option>
+                            <option value="5" @if($programSekolah && $programSekolah->$perlaksanaan == 5) selected @endif>Mei</option>
+                            <option value="6" @if($programSekolah && $programSekolah->$perlaksanaan == 6) selected @endif>Jun</option>
+                            <option value="7" @if($programSekolah && $programSekolah->$perlaksanaan == 7) selected @endif>Julai</option>
+                            <option value="8" @if($programSekolah && $programSekolah->$perlaksanaan == 8) selected @endif>Ogos</option>
+                            <option value="9" @if($programSekolah && $programSekolah->$perlaksanaan == 9) selected @endif>September</option>
+                            <option value="10" @if($programSekolah && $programSekolah->$perlaksanaan == 10) selected @endif>Oktober</option>
+                            <option value="11" @if($programSekolah && $programSekolah->$perlaksanaan == 11) selected @endif>November</option>
+                            <option value="12" @if($programSekolah && $programSekolah->$perlaksanaan == 12) selected @endif>Disember</option>
                         </select>
                     </td>
                 </tr>
