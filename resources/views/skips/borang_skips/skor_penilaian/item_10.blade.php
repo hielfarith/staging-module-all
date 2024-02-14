@@ -44,7 +44,7 @@ $pelajar_antarabangsas = [
                 <th width="5%">8.0</th>
                 <th> PIAWAIAN </th>
                 <th width="10%">SKOR</th>
-                @if($type == 'verfikasi')
+                @if($type == 'verfikasi' || $type == 'done')
                     <th width="10%">SKOR VERFIKASI</th>
                 @endif
             </tr>
@@ -72,7 +72,7 @@ $pelajar_antarabangsas = [
                         ?>
                         <a class="text-success">{{$score}}</a>
                     </td>
-                     @if($type == 'verfikasi')
+                     @if($type == 'verfikasi' || $type == 'done')
                         <td>
                         <?php
                             if($pengurusan_pelajar_antarabangsa_verfikasi) {
@@ -96,7 +96,7 @@ $pelajar_antarabangsas = [
             $total = $total + $totalv;
             $percentage = ($total/150);
             $percentage = $percentage*100;
-             if($type == 'verfikasi') {
+             if($type == 'verfikasi' || $type == 'done') {
                  $col = 2;
              } else {
                  $col =1;
