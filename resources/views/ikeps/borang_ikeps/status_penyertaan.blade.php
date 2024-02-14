@@ -1,4 +1,4 @@
-<form id="staPenForm" action="{{ route('ikeps.store', 'status_pertanyaan') }}" method="POST">
+<form id="staPenForm" action="{{ route('ikeps.store', 'status_penyertaan') }}" method="POST">
 @csrf
 
 <div class="row">
@@ -66,12 +66,16 @@
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_kebangsaan' }}" id="{{ $id.'_kebangsaan' }}">
+                        <input type="text" class="form-control integerInput" name="{{ $id.'_kebangsaan' }}" id="{{ $id.'_kebangsaan' }}" onchange="showDetails(this, '{{ $id }}', 'kebangsaan')">
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_antarabangsa' }}" id="{{ $id.'_antarabangsa' }}">
+                        <input type="text" class="form-control integerInput" name="{{ $id.'_antarabangsa' }}" id="{{ $id.'_antarabangsa' }}" onchange="showDetails(this, '{{ $id }}', 'antarabangsa')">
                     </td>
+                </tr>
+                <tr id="tr_{{ $id }}" style="display:none">
+                    <td colspan="4" id="td_{{ $id }}_kebangsaan"></td>
+                    <td colspan="4" id="td_{{ $id }}_antarabangsa"></td>
                 </tr>
             @endforeach
         </tbody>
@@ -141,12 +145,16 @@
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_kebangsaan' }}" id="{{ $id.'_kebangsaan' }}">
+                        <input type="text" class="form-control integerInput" name="{{ $id.'_kebangsaan' }}" id="{{ $id.'_kebangsaan' }}" onchange="addDetails(this, '{{ $id }}', 'kebangsaan')">
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_antarabangsa' }}" id="{{ $id.'_antarabangsa' }}">
+                        <input type="text" class="form-control integerInput" name="{{ $id.'_antarabangsa' }}" id="{{ $id.'_antarabangsa' }}" onchange="addDetails(this, '{{ $id }}', 'antarabangsa')">
                     </td>
+                </tr>
+                <tr id="tr_{{ $id }}" style="display:none">
+                    <td colspan="4" id="td_{{ $id }}_kebangsaan"></td>
+                    <td colspan="4" id="td_{{ $id }}_antarabangsa"></td>
                 </tr>
             @endforeach
         </tbody>

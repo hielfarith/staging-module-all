@@ -6,6 +6,7 @@ Route::controller(PengurusanIkepsController::class)->group(function () {
     Route::prefix('ikeps')->name('ikeps.')->group(function() {
         Route::get('borang-pengisian/{tahun?}','BorangIkepsBaru')->name('ikeps_baru');
         Route::get('get-sub-details/{tab}/{type}', 'getSubDetails')->name('get_sub_details');
+        Route::get('get-status-penyertaan', 'getStatusPenyertaan')->name('get_status_penyertaan');
         Route::post('store/{tab}', 'store')->name('store');
         Route::get('ringkasan-pengisian/{tahun?}','RingkasanIkeps')->name('ringkasan_ikeps');
         Route::get('ringkasan-pengisian-fmf/{tahun?}','RingkasanIkepsFmf')->name('ringkasan_ikeps_fmf');
