@@ -12,7 +12,7 @@ use App\Models\IkepsStatusPenyertaan;
 use App\Models\IkepsStatusPenyertaanDetails;
 use App\Models\IkepsProgramSekolah;
 use App\Models\InstrumenSkpakSpksIkeps;
-
+use App\Models\User;
 use App\Models\Module;
 use App\Models\MasterAction;
 use App\Models\ModuleStatus;
@@ -20,6 +20,7 @@ use App\Helpers\FMF;
 use App\Models\Jurulatih;
 use Carbon;
 use PDO;
+use Yajra\DataTables\DataTables;
 
 class PengurusanIkepsController extends Controller
 {
@@ -35,20 +36,69 @@ class PengurusanIkepsController extends Controller
             return to_route('ikeps.ikeps_baru', ['tahun' => $tahun]);
         } else {
             $tahun = $request->tahun;
-            
-            $ikeps = Ikeps::firstOrCreate(
-                [
-                    'kod_sekolah' => 0,
-                    'tahun' => $tahun,
-                ],
-                [
-                    'created_by' => auth()->user()->id,
-                    'updated_by' => auth()->user()->id,
-                ]
-            );
-        }
 
-        return view('ikeps.index', compact('tahun', 'ikeps'));
+            $instrumen = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->where('status', 1)->orderBy('created_at', 'DESC')->first();
+            $tarikhKuatKuasa = Carbon::createFromFormat('d/m/Y', $instrumen->tarikh_kuatkuasa);
+            if($instrumen->tempoh_pengisian == 'Minggu'){
+                $tarikhTamatPengisian = $tarikhKuatKuasa->clone()->addWeeks($instrumen->tempoh_pengisian_lain)->format('Y-m-d');
+            } else {
+                $tarikhTamatPengisian = $tarikhKuatKuasa->clone()->addMonths($instrumen->tempoh_pengisian_lain)->format('Y-m-d');
+            }
+            $tarikhKuatKuasa = $tarikhKuatKuasa->format('Y-m-d');
+
+            if(Carbon::now()->format('Y-m-d') < $tarikhKuatKuasa) {
+                $request->session()->flash('success', 'Pengisian Belum Dibuka');
+                return redirect()->route('ikeps.ringkasan_ikeps', ['tahun' => $tahun]);
+            } else if (Carbon::now()->format('Y-m-d') > $tarikhTamatPengisian){
+                $request->session()->flash('danger', 'Tempoh Pengisian Telah Tamat');
+                return redirect()->route('ikeps.ringkasan_ikeps', ['tahun' => $tahun]);
+            } else {
+                $canView = $canFill = $canVerify = false;
+                $module = Module::where('module_name', $instrumen->id)->first();
+
+                $ikeps = Ikeps::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+
+                if(!$ikeps){
+                    $status = ModuleStatus::where('status_index', 1)->where('module_id', $module->id)->first()->id;
+                    Ikeps::create([
+                        'kod_sekolah' => 0,
+                        'tahun' => $tahun,
+                        'status' => $status
+                    ]);
+                } else {
+                    $status = $ikeps->status;
+                }
+                
+                $canView = FMF::checkPermission($module->id, $status, 'view form');
+                $canFill = FMF::checkPermission($module->id, $status, 'fill form');
+                $canVerify = FMF::checkPermission($module->id, $status, 'verify form');
+                
+                $suSukan = User::whereHas('roles', function ($query) {
+                    $query->where('name', 'setiausaha_sukan');
+                })->get();
+
+                $guruBesar = User::whereHas('roles', function ($query) {
+                    $query->where('name', 'pengetua_guru_besar');
+                })->get();
+
+                $checkReadOnly = true;
+                if($canFill){
+                    $checkReadOnly = false;
+                }
+
+                $verifyStatus = false;
+                if($canVerify) {
+                    $verifyStatus = true;
+                }
+               
+                if ($canFill || $canView) {
+                    return view('ikeps.index', compact('tahun', 'ikeps', 'checkReadOnly', 'verifyStatus' , 'suSukan', 'guruBesar'));
+                } else {
+                    $request->session()->flash('danger', 'Permission denied');
+                    return redirect()->route('ikeps.ringkasan_ikeps', ['tahun' => $tahun]);
+                }
+            }
+        }
     }
 
     public function getSubDetails(Request $request)
@@ -83,15 +133,15 @@ class PengurusanIkepsController extends Controller
         try {
 
             // get fmf first status
-            $staticForm = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->first();
-            $moduleId = Module::where('module_name',$staticForm->id)->where('active', 1)->first();
+            $staticForm = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->where('status', 1)->orderBy('created_at', 'DESC')->first();
+            $moduleId = Module::where('module_name', $staticForm->id)->where('active', 1)->first();
             if (empty($moduleId)) {
                 return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => "Flow Not defined"], 404);
             }
             $staticModuleId = $moduleId->id;
-            $moduleStatus = ModuleStatus::where('module_id', $staticModuleId)->where('status_index', 1)->first();
-
-            $status = FMF::getNextStatus($staticModuleId, $moduleStatus->id, 'submit');
+            //$moduleStatus = ModuleStatus::where('module_id', $staticModuleId)->where('status_index', 1)->first();
+            $ikeps = Ikeps::find($request->ikeps_id);
+            $status = FMF::getNextStatus($staticModuleId, $ikeps->status);
 
             if ($request->tab == 'prasarana_sukan') {
                 $dataValidation = [
@@ -1250,6 +1300,30 @@ class PengurusanIkepsController extends Controller
                 ]);
             }
 
+            if ($request->tab == 'disediakan_oleh'){
+                //$ikeps = Ikeps::find($request->ikeps_id);
+
+                //$nextStatus = FMF::getNextStatus($staticModuleId, $ikeps->status);
+
+                $ikeps->update([
+                    'disediakan_oleh' => isset($request->disediakan_oleh) ? $request->disediakan_oleh : auth()->user()->id,
+                    'tarikh_disediakan' => Carbon::now()->format('Y-m-d'),
+                    'status' => $status,
+                ]);
+            }
+
+            if ($request->tab == 'disahkan_oleh'){
+                //$ikeps = Ikeps::find($request->ikeps_id);
+
+                //$nextStatus = FMF::getNextStatus($staticModuleId, $ikeps->status);
+
+                $ikeps->update([
+                    'disahkan_oleh' => isset($request->disahkan_oleh) ? $request->disahkan_oleh : auth()->user()->id,
+                    'tarikh_disahkan' => Carbon::now()->format('Y-m-d'),
+                    'status' => $status,
+                ]);
+            }
+
             DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Data Disimpan", 'detail' => "berjaya"]);
 
@@ -1259,9 +1333,55 @@ class PengurusanIkepsController extends Controller
 
     }
 
+    public function listRingkasan(Request $request){
+        if($request->ajax()) {
+
+            $instrumen = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->where('status', 1)->orderBy('created_at', 'DESC')->first();
+            $module = Module::where('module_name', $instrumen->id)->where('active', 1)->first();
+            $moduleStatus = ModuleStatus::where('module_id', $module->id)->where('status_index', 3)->first();
+            $ikeps = Ikeps::where('status', $moduleStatus->id);
+
+            return Datatables::of($ikeps)
+                ->addColumn('DT_RowIndex', function ($institutions) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('kod_sekolah', function ($ikeps) {
+                    return $ikeps->kod_sekolah;
+                })
+                ->editColumn('nama_sekolah', function ($ikeps) {
+                    return '';
+                })
+                ->editColumn('tahun', function ($ikeps) {
+                    return $ikeps->tahun;
+                })
+                ->editColumn('status', function ($ikeps) use ($moduleStatus) {
+                    return $moduleStatus->status_name;
+                })
+                ->editColumn('action', function ($ikeps) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a href="'.route('ikeps.ringkasan_ikeps', ['kod_sekolah' => $ikeps->kod_sekolah, 'tahun' => $ikeps->tahun]).'" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view ('ikeps.list_ringkasan');
+    }
+
     public function RingkasanIkeps(Request $request)
     {
-
+        if(!isset($request->kod_sekolah)){
+            return to_route('ikeps.list_ringkasan');
+        } else {
+            $kod_sekolah = $request->kod_sekolah;
+        }
         if (!isset($request->tahun)) {
             $tahun = Carbon::now()->format('Y');
             return to_route('ikeps.ringkasan_ikeps', ['tahun' => $tahun]);
@@ -1269,13 +1389,30 @@ class PengurusanIkepsController extends Controller
             $tahun = $request->tahun;
         }
 
+        $ikeps = Ikeps::where('kod_sekolah', $request->kod_sekolah)->where('tahun', $request->tahun)->first();
+
         $prasaranaSukan = IkepsPrasaranaSukan::where('tahun', $tahun)->first();
         $kemudahanSukan = IkepsKemudahanSukan::where('tahun', $tahun)->first();
         $perancanganSukan = IkepsPerancanganSukan::where('tahun', $tahun)->first();
         $statusPenyertaan = IkepsStatusPenyertaan::where('tahun', $tahun)->first();
         $programSekolah = IkepsProgramSekolah::where('tahun', $tahun)->first();
 
-        return view('ikeps.ringkasan_ikeps', compact('tahun', 'prasaranaSukan', 'kemudahanSukan', 'perancanganSukan', 'statusPenyertaan', 'programSekolah'));
+        $instrumen = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->where('status', 1)->orderBy('created_at', 'DESC')->first();
+
+        $module = Module::where('module_name',$instrumen->id)->first();
+
+        if ($module) {
+            $canView = FMF::checkPermission($module->id, $ikeps->status, 'view form');
+            $canApprove = FMF::checkPermission($module->id, $ikeps->status, 'approve form');
+            $staticModuleId = $module->id;
+        } else {
+            $canView = $canApprove = false;
+            $staticModuleId = null;
+        }
+
+        $statusOfRecord = $ikeps?->statuses->status_description;
+
+        return view('ikeps.ringkasan_ikeps', compact('tahun', 'prasaranaSukan', 'kemudahanSukan', 'perancanganSukan', 'statusPenyertaan', 'programSekolah', 'statusOfRecord', 'staticModuleId', 'canApprove', 'ikeps'));
     }
 
     public function LaporanRingkasanIkeps(Request $request){
@@ -1333,7 +1470,7 @@ class PengurusanIkepsController extends Controller
     {
         $formStatus = $request->status;
         $id = $request->formid;
-        $data = IkepsPrasaranaSukan::where('id', $id)->first();
+        $data = Ikeps::find($id);
         $data->status = $formStatus;
         
         return ['success' => $data->save()];

@@ -846,7 +846,7 @@ $configData = Helper::applClasses();
             @endhasanyrole
 
             @hasanyrole('setiausaha_sukan|guru_sekolah')
-            <li class="navigation-header">
+            {{-- <li class="navigation-header">
                 <span> Pengurusan Instrumen</span>
             </li>
             <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
@@ -910,8 +910,100 @@ $configData = Helper::applClasses();
                         </ul>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
+            @endhasanyrole
 
+            @hasanyrole('setiausaha_sukan|pengetua_guru_besar|penolong_kanan_kokurikulum|kpp_pp_ppp')
+            <li class="navigation-header">
+                <span>  I-KePS </span>
+            </li>
+            <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> I-KePS </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Pengumuman
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('ikeps.ikeps_baru') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ringkasan_ikeps']) ? 'active' : '' }}">
+                        <a href="{{ route('ikeps.ringkasan_ikeps') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Verifikasi Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.laporan_ikeps']) ? 'active' : '' }}">
+                        <a href="{{ route('ikeps.laporan_ikeps') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Muat Turun Data Penilaian
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.pemantauan_ikeps']) ? 'active' : '' }}">
+                        <a href="{{ route('ikeps.pemantauan_ikeps') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                            Modul Dashboard
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['#'])? 'active': '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Sistem</span>
+                        </a>
+
+                        <ul class="nav">
+
+                            <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.senarai-sedia-ada'])? 'active': '' }}">
+                                <a href="{{ route('admin.instrumen.senarai-sedia-ada') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Senarai Instrumen Sedia Ada </span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ in_array(request()->route()->getName(),['show_all_forms'])? 'active': '' }}">
+                                <a href="{{ route('show_all_forms') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Senarai Instrumen Dinamik </span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ in_array(request()->route()->getName(),['admin.instrumen.instrumenikeps-list'])? 'active': '' }}">
+                                <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(),['admin.internal.jurulatihlist'])? 'active': '' }}">
+                        <a href="{{ route('admin.internal.jurulatihlist') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Modul Kemaskini Profil Pengguna </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             @endhasanyrole
 
             @hasanyrole('pengetua_guru_besar|penolong_kanan_kokurikulum|kpp_pp_ppp')
@@ -928,36 +1020,6 @@ $configData = Helper::applClasses();
                         <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Instrumen Dijawab </span>
                         </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="navigation-header">
-                <span> Pengurusan Modul </span>
-            </li>
-            <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link">
-                    <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate text-wrap"> Modul </span>
-                </a>
-                <ul class="nav">
-                    <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">
-                                Instrument I-KePS
-                            </span>
-                        </a>
-
-                        <ul class="nav">
-                            <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ringkasan_ikeps']) ? 'active' : '' }}">
-                                <a href="{{ route('ikeps.ringkasan_ikeps_fmf') }}" class="nav-link">
-                                    <span class="menu-title text-truncate text-wrap">
-                                        Ringkasan Maklumat
-                                    </span>
-                                </a>
-                            </li>
-
-                        </ul>
                     </li>
                 </ul>
             </li>

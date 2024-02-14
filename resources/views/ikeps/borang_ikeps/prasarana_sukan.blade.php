@@ -34,7 +34,7 @@
         <label class="form-label fw-bold">
             Adakah pihak sekolah telah membuat pemeriksaan keselamatan ke atas peralatan dan kemudahan sukan sekolah?
         </label>
-        <select name="pemeriksaan_keselamatan" id="pemeriksaan_keselamatan" class="form-control select2" onchange="HandlePemeriksaanKeselamatan()">
+        <select name="pemeriksaan_keselamatan" id="pemeriksaan_keselamatan" class="form-control select2" onchange="HandlePemeriksaanKeselamatan()" {{ $disabled }}>
             <option value="" hidden>Pemeriksaan Keselamatan</option>
             <option value="1">Ya</option>
             <option value="0">Tidak</option>
@@ -99,7 +99,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputPrasarana('{{ $sukanKey }}', '{{ $id }}', true)">
+                            <input class="form-check-input" type="radio" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputPrasarana('{{ $sukanKey }}', '{{ $id }}', true)" {{ $disabled }}>
                         </div>
                     </td>
                 @endforeach
@@ -252,9 +252,10 @@
 
 <br>
 <?php
-    $segment = Request::segment(3);
+    //$segment = Request::segment(3);
 ?>
-@if($segment != 'sedia-ada')
+{{-- @if($segment != 'sedia-ada') --}}
+@if(!$checkReadOnly)
 <div class="d-flex justify-content-center">
     <button type="button" class="btn btn-primary" onclick="submitTab('#praSukForm')">Simpan</button>
 </div>

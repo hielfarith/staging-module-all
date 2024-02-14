@@ -144,7 +144,9 @@ class FMF
             return $nextStatus;
 
         $moduleRoleID = $module->roles->whereIn('role_id',$listOfUserRole)->pluck('id')->toArray();
-        $flowManagement = $module->flowManagements->where('current_status',$moduleStatus->id)->whereIn('module_role_id',$moduleRoleID)->where('action',$action);
+        $flowManagement = $module->flowManagements->where('current_status',$moduleStatus->id)->whereIn('module_role_id',$moduleRoleID)->when($action !== null, function ($query) use ($action) {
+            $query->where('action', $action);
+        });
 
         if($flowManagement?->count() != 0)
             $nextStatus = $flowManagement->first()->next_status;

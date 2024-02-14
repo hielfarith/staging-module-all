@@ -12,6 +12,20 @@ I-KePS
 
 @section('content')
 
+<?php
+if($checkReadOnly){
+    $disabled = 'disabled';
+} else {
+    $disabled = '';
+}
+?>
+
+<style>
+    .flatpickr-basic:disabled {
+        background-color: #efefef;
+    }
+</style>
+
 <div class="card">
     <div class="card-header">
         <h4 class="card-title fw-bolder"> Instrumen Bancian Kemudahan Prasasarana dan Program Sukan Sekolah </h4>
@@ -157,6 +171,10 @@ I-KePS
             processData: false,
             success: function(data) {
                 toastr.success(data.title ?? "Berjaya Disimpan");
+                console.log(form);
+                if(form == '#sediaOlehForm' || form == '#sahOlehForm'){
+                    window.location.href="{{ route('ikeps.ringkasan_ikeps') }}";
+                }
             },
             error: function(data) {
                 var data = data.responseJSON;

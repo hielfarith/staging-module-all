@@ -14,7 +14,7 @@
             </span>
         </h5>
 
-        <div class="col-md-3 mb-2">
+        <div class="col-md-4 mb-2">
             <label class="fw-bold form-label"> Nama Instrumen
                 <span class="text-danger">*</span>
             </label>
@@ -22,7 +22,7 @@
                 onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8"
                 value="{{$instrumenData?->nama_instrumen}}">
         </div>
-        <div class="col-md-3 mb-2">
+        <div class="col-md-4 mb-2">
             <label class="fw-bold form-label"> Tujuan Instrumen
                 <span class="text-danger">*</span>
             </label>
@@ -30,7 +30,7 @@
                 value="{{$instrumenData?->tujuan_instrumen}}">
         </div>
 
-        <div class="col-md-3 mb-2">
+        <div class="col-md-4 mb-2">
             <label class="fw-bold form-label">Pengguna Instrumen
                 <span class="text-danger">*</span>
             </label>
@@ -42,16 +42,7 @@
                     @endif>GURU INSTITUSI</option>
             </select>
         </div>
-        <div class="col-md-3 mb-1">
-            <label class="fw-bold form-label">
-                <input type="checkbox" class="form-check-input" required
-                    name="tetapan_keperluan_pengemaskinian_data_terkini" value="1"
-                    @if($instrumenData?->tetapan_keperluan_pengemaskinian_data_terkini) checked @endif>
-                Tetapan Keperluan Pengemaskinian Data Terkini
-                <span class="text-danger">*</span>
-            </label>
-        </div>
-        {{-- <div class="col-md-4 mb-1">
+        <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Instrumen perlu diisi
                 <span class="text-danger">*</span>
             </label>
@@ -67,8 +58,15 @@
             <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" required
                 value="{{$instrumenData?->tarikh_kuatkuasa}}">
         </div>
-
-         --}}
+        <div class="col-md-3 mb-1">
+            <label class="fw-bold form-label">
+                <input type="checkbox" class="form-check-input" required
+                    name="tetapan_keperluan_pengemaskinian_data_terkini" value="1"
+                    @if($instrumenData?->tetapan_keperluan_pengemaskinian_data_terkini) checked @endif>
+                Tetapan Keperluan Pengemaskinian Data Terkini
+                <span class="text-danger">*</span>
+            </label>
+        </div>
     </div>
     <hr>
     <div class="row ">

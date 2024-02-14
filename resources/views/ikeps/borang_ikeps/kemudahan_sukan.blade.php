@@ -58,7 +58,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputKemudahan('{{ $sukanKey }}', '{{ $id }}', true)">
+                            <input class="form-check-input" type="radio" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputKemudahan('{{ $sukanKey }}', '{{ $id }}', true)" {{ $disabled }}>
                         </div>
                     </td>
                 @endforeach
@@ -123,9 +123,10 @@
 
 <br>
 <?php
-    $segment = Request::segment(3);
+    //$segment = Request::segment(3);
 ?>
-@if($segment != 'sedia-ada')
+{{-- @if($segment != 'sedia-ada') --}}
+@if(!$checkReadOnly)
 <div class="d-flex justify-content-center">
     <button type="button" class="btn btn-primary" onclick="submitTab('#kemSukForm')">Simpan</button>
 </div>

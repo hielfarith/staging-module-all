@@ -15,9 +15,14 @@ I-KePS
     <div class="card-header">
         <h4 class="card-title fw-bolder"> Instrumen Bancian Kemudahan Prasasarana dan Program Sukan Sekolah </h4>
 
-        <div class="d-flex justify-content-end align-items-center">
+        {{-- <div class="d-flex justify-content-end align-items-center">
             <a type="button" class="btn btn-primary float-right" href="{{ route('ikeps.ikeps_baru') }}">
                 Pengisian Baru
+            </a>
+        </div> --}}
+        <div class="d-flex justify-content-end align-items-center">
+            <a type="button" class="btn btn-primary float-right" href="#">
+                Status : {{$statusOfRecord}}
             </a>
         </div>
     </div>
@@ -484,4 +489,42 @@ I-KePS
         
     </div>
 </div>
+
+@if ($canApprove)
+
+@php
+    $status = \App\Helpers\FMF::getNextStatus($staticModuleId, $ikeps->status);
+@endphp
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" style="margin-right:10px;" onclick="formverifyIkeps('{{ $status }}','{{ $ikeps->id }}')">Approve</button>
+
+    {{-- <button type="button" class="btn btn-danger" style="margin-right:10px;" onclick="formverifyIkeps('{{$status}}','{{$ikeps->id}}')">Reject</button> --}}
+</div>
+<div>
+    &nbsp;
+</div>
+@endif
+
+@endsection
+
+@section('script')
+<script>
+    function  formverifyIkeps(status, formid) {
+        var url = "{{route('ikeps.verify-ikeps')}}";
+
+        $.ajax({
+            url: url, // Route URL
+            type: 'POST', // Request type (GET, POST, etc.)
+             data: {
+                status: status,
+                formid: formid
+             }, 
+            success: function(response) {
+                if (response.success) {
+                    window.location.reload();
+               } 
+            }
+        });
+    }
+</script>
 @endsection

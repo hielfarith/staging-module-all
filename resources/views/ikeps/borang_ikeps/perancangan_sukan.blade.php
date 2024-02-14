@@ -125,9 +125,10 @@
 
 <br>
 <?php
-    $segment = Request::segment(3);
+    //$segment = Request::segment(3);
 ?>
-@if($segment != 'sedia-ada')
+{{-- @if($segment != 'sedia-ada') --}}
+@if(!$checkReadOnly)
 <div class="d-flex justify-content-center">
     <button type="button" class="btn btn-primary" onclick="submitTab('#perSukForm')">Simpan</button>
 </div>
