@@ -126,7 +126,7 @@
                 $bilangan = $sukanKey.'_bilangan';
                 ?>
                 <td>
-                    <input type="text" class="form-control integerInput" @if($prasaranaSukan && $prasaranaSukan->$bilangan == $id) @endif id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
+                    <input type="text" class="form-control integerInput" @if($prasaranaSukan && $prasaranaSukan->$bilangan == $id) checked @endif id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -139,7 +139,7 @@
                             ?>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$guna_sama == $id) @endif name="{{ $sukanKey.'_gunasama' }}" id="{{ $sukanKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
+                                <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$guna_sama == $id) checked @endif name="{{ $sukanKey.'_gunasama' }}" id="{{ $sukanKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
                             </div>
                         </td>
                     @endforeach
@@ -157,7 +157,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$masihDigunakan == $id) @endif name="{{ $sukanKey.'_masih_digunakan' }}" id="{{ $sukanKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
+                                <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$masihDigunakan == $id) checked @endif name="{{ $sukanKey.'_masih_digunakan' }}" id="{{ $sukanKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
                             </div>
                         </td>
                     @endforeach
@@ -168,7 +168,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$statusFizikal == $id) @endif name="{{ $sukanKey.'_status_fizikal' }}" id="{{ $sukanKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
+                                <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$statusFizikal == $id) checked @endif name="{{ $sukanKey.'_status_fizikal' }}" id="{{ $sukanKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
                             </div>
                         </td>
                     @endforeach
@@ -212,7 +212,7 @@
                         @foreach ($ada_tiadas as $id => $ada_tiada)
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$subKey == $id) @endif name="{{ $subKey }}" id="{{ $subKey.'_'.$id }}" value="{{ $id }}" disabled onclick="checkInputPrasarana('{{ $subKey }}', '{{ $id }}', false)">
+                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$subKey == $id) checked @endif name="{{ $subKey }}" id="{{ $subKey.'_'.$id }}" value="{{ $id }}" disabled onclick="checkInputPrasarana('{{ $subKey }}', '{{ $id }}', false)">
                                 </div>
                             </td>
                         @endforeach
@@ -223,7 +223,7 @@
                             ?>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$guna_sama == $id) @endif name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
+                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$guna_sama == $id) checked @endif name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
                                 </div>
                             </td>
                         @endforeach
@@ -241,7 +241,7 @@
                             ?>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$masihDigunakan == $id) @endif name="{{ $subKey.'_masih_digunakan' }}" id="{{ $subKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
+                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$masihDigunakan == $id) checked @endif name="{{ $subKey.'_masih_digunakan' }}" id="{{ $subKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
                                 </div>
                             </td>
                         @endforeach
@@ -252,7 +252,7 @@
                             ?>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$statusFizikal == $id) @endif name="{{ $subKey.'_status_fizikal' }}" id="{{ $subKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
+                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$statusFizikal == $id) checked @endif name="{{ $subKey.'_status_fizikal' }}" id="{{ $subKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
                                 </div>
                             </td>
                         @endforeach
