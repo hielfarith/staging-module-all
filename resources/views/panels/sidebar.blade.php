@@ -52,7 +52,7 @@ $configData = Helper::applClasses();
             </li> --}}
 
             @hasanyrole('superadmin|admin')
-            <li class="navigation-header">
+            <!-- <li class="navigation-header">
                 <span> Pengurusan Modul </span>
             </li>
             <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
@@ -69,7 +69,7 @@ $configData = Helper::applClasses();
                             </span>
                         </a>
 
-                        <ul class="nav">
+                        <ul class="nav"> -->
                            <!--  <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
                                 <a href="{{ route('skips.skips_baru') }}" class="nav-link">
                                     <span class="menu-title text-truncate text-wrap">
@@ -78,7 +78,7 @@ $configData = Helper::applClasses();
                                 </a>
                             </li> -->
 
-                            <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.ringkasan_skips']) ? 'active' : '' }}">
+                      <!--       <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.ringkasan_skips']) ? 'active' : '' }}">
                                 <a href="{{ route('skips.ringkasan_skips') }}" class="nav-link">
                                     <span class="menu-title text-truncate text-wrap">
                                         Ringkasan Maklumat
@@ -88,7 +88,7 @@ $configData = Helper::applClasses();
                         </ul>
                     </li>
                 </ul>
-            </li>
+            </li> -->
 
             <!-- <li class="navigation-header">
                 <span> Pengurusan Instrumen</span>
