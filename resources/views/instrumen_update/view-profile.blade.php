@@ -33,6 +33,37 @@
                     </select>
                 </div>
 
+                <!-- -----start skips ------ -->
+
+                @if($instrumen->type == 'SKIPS')
+                <div class="col-md-2 mb-1">
+                    <label class="fw-bold form-label"> Kategori
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <input type="checkbox" class="form-check-input" name="kategori" value="Sekolah" @if($instrumen->kategori == 'Sekolah') checked  @endif onchange="changeKategori(this)" id="Sekolah" {{$disabled}}>
+                            <label>Sekolah</label>
+                        </span>                   
+                        <span class="input-group-text">
+                            <input type="checkbox" class="form-check-input" name="kategori" value="Pusat" @if($instrumen->kategori == 'Pusat') checked  @endif onchange="changeKategori(this)" id="Pusat" {{$disabled}}>
+                            <label>Pusat</label>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-1">
+                    <label class="fw-bold form-label">Jenis
+                        <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-control select2" name="jenis_ips" required id="jenis_ips" {{$disabled}}>
+                        <option value="">{{$instrumen->jenis_ips}}</option>
+                    </select>
+                </div>
+
+                @endif
+                <!-- ----end skips--- -->
+
                 <div class="col-md-3 mb-1">
                     <label class="fw-bold form-label">Pengisian Oleh
                         <span class="text-danger">*</span>
@@ -293,4 +324,38 @@
         });
 
     });
+
+function changeKategori(event) {
+    if (event.value == 'Sekolah') {
+        $('#Pusat').prop('checked', false);
+        var data = [ 'Sekolah Rendah Akademik Swasta',             
+            'Sekolah Menengah Akademik Swasta',                      
+            'Sekolah Rendah Agama Swasta',                     
+            'Sekolah Menengah Agama Swasta',                      
+            'Sekolah Antarabangsa',
+            'Sekolah Menengah Persendirian Cina',
+            'Sekolah Pendidikan Khas',
+            'Sekolah Ekspatriat'
+        ];
+    } else {
+        $('#Sekolah').prop('checked', false);
+        var data = [ 
+            'Pusat Bahasa',                      
+            'Pusat Latihan/ Kemahiran',                      
+            'Pusat Perkembangan Minda',
+            'Pusat Tuisyen'
+        ];
+    }
+
+    const el = document.getElementById(event.value);
+    if (el && el.type === "checkbox" && !el.checked) {
+        $('#jenis_ips').empty();
+        return false;
+    }
+     
+    $('#jenis_ips').empty();
+    for (var i = 0; i < data.length; i++) {
+        $('#jenis_ips').append('<option value="'+ data[i] +'">'+ data[i] +'</option>');
+    }
+}
 </script>
