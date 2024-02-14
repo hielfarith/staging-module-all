@@ -60,7 +60,7 @@ class PengurusanIkepsController extends Controller
 
                 if(!$ikeps){
                     $status = ModuleStatus::where('status_index', 1)->where('module_id', $module->id)->first()->id;
-                    Ikeps::create([
+                    $ikeps = Ikeps::create([
                         'kod_sekolah' => 0,
                         'tahun' => $tahun,
                         'status' => $status
@@ -68,6 +68,12 @@ class PengurusanIkepsController extends Controller
                 } else {
                     $status = $ikeps->status;
                 }
+
+                $prasaranaSukan = IkepsPrasaranaSukan::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+                $kemudahanSukan = IkepsKemudahanSukan::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+                $perancanganSukan = IkepsPerancanganSukan::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+                $statusPenyertaan = IkepsStatusPenyertaan::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+                $programSekolah = IkepsProgramSekolah::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
                 
                 $canView = FMF::checkPermission($module->id, $status, 'view form');
                 $canFill = FMF::checkPermission($module->id, $status, 'fill form');
@@ -92,7 +98,7 @@ class PengurusanIkepsController extends Controller
                 }
                
                 if ($canFill || $canView) {
-                    return view('ikeps.index', compact('tahun', 'ikeps', 'checkReadOnly', 'verifyStatus' , 'suSukan', 'guruBesar'));
+                    return view('ikeps.index', compact('tahun', 'ikeps', 'checkReadOnly', 'verifyStatus' , 'suSukan', 'guruBesar', 'prasaranaSukan', 'kemudahanSukan', 'perancanganSukan', 'statusPenyertaan', 'programSekolah'));
                 } else {
                     $request->session()->flash('danger', 'Permission denied');
                     //return redirect()->route('ikeps.ringkasan_ikeps', ['tahun' => $tahun]);

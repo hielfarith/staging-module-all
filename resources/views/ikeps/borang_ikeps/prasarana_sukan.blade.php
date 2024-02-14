@@ -36,8 +36,8 @@
         </label>
         <select name="pemeriksaan_keselamatan" id="pemeriksaan_keselamatan" class="form-control select2" onchange="HandlePemeriksaanKeselamatan()" {{ $disabled }}>
             <option value="" hidden>Pemeriksaan Keselamatan</option>
-            <option value="1">Ya</option>
-            <option value="0">Tidak</option>
+            <option value="1" @if($prasaranaSukan && $prasaranaSukan->pemeriksaan_keselamatan == 1) selected @endif>Ya</option>
+            <option value="0" @if($prasaranaSukan && $prasaranaSukan->pemeriksaan_keselamatan == 0) selected @endif>Tidak</option>
         </select>
     </div>
 
@@ -45,7 +45,7 @@
         <label class="form-label fw-bold">
             Tarikh Pemeriksaan
         </label>
-        <input type="text" id="tarikh_pemeriksaan" name="tarikh_pemeriksaan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD">
+        <input type="text" id="tarikh_pemeriksaan" name="tarikh_pemeriksaan" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" value="{{ $prasaranaSukan?->tarikh_pemeriksaan }}">
     </div>
 </div>
 
@@ -99,7 +99,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputPrasarana('{{ $sukanKey }}', '{{ $id }}', true)" {{ $disabled }}>
+                            <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$sukanKey }}" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputPrasarana('{{ $sukanKey }}', '{{ $id }}', true)" {{ $disabled }}>
                         </div>
                     </td>
                 @endforeach
@@ -107,9 +107,12 @@
                 @if(array_key_exists('sub', $sukan))
                     @if($sukanKey == 'padang_sekolah')
                         @foreach ($gunasamas as $id => $gunasama)
+                            <?php
+                            $guna_sama = $sukanKey.'_gunasama';
+                            ?>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="{{ $sukanKey.'_gunasama' }}" id="{{ $sukanKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
+                                    <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$guna_sama }}" name="{{ $sukanKey.'_gunasama' }}" id="{{ $sukanKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
                                 </div>
                             </td>
                         @endforeach
@@ -119,8 +122,11 @@
                 </td>
                     @endif
 
+                <?php
+                $bilangan = $sukanKey.'_bilangan';
+                ?>
                 <td>
-                    <input type="text" class="form-control integerInput" id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
+                    <input type="text" class="form-control integerInput" value="{{ $prasaranaSukan?->$bilangan }}" id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -128,29 +134,41 @@
                 </td>
                 @else
                     @foreach ($gunasamas as $id => $gunasama)
+                        <?php
+                            $guna_sama = $sukanKey.'_gunasama';
+                            ?>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="{{ $sukanKey.'_gunasama' }}" id="{{ $sukanKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
+                                <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$guna_sama }}" name="{{ $sukanKey.'_gunasama' }}" id="{{ $sukanKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
                             </div>
                         </td>
                     @endforeach
 
+                    <?php
+                    $bilangan = $sukanKey.'_bilangan';
+                    ?>
                     <td>
-                        <input type="text" class="form-control integerInput" id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
+                        <input type="text" class="form-control integerInput" value="{{ $prasaranaSukan?->$bilangan }}" id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
                     </td>
 
                     @foreach ($masih_digunakans as $id => $masih_digunakan)
+                        <?php
+                        $masihDigunakan = $sukanKey.'_masih_digunakan';
+                        ?>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="{{ $sukanKey.'_masih_digunakan' }}" id="{{ $sukanKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
+                                <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$masihDigunakan }}" name="{{ $sukanKey.'_masih_digunakan' }}" id="{{ $sukanKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
                             </div>
                         </td>
                     @endforeach
 
                     @foreach ($status_fizikals as $id => $status_fizikal)
+                        <?php
+                        $statusFizikal = $sukanKey.'_status_fizikal';
+                        ?>
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="{{ $sukanKey.'_status_fizikal' }}" id="{{ $sukanKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
+                                <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$statusFizikal }} name="{{ $sukanKey.'_status_fizikal' }}" id="{{ $sukanKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
                             </div>
                         </td>
                     @endforeach
@@ -168,7 +186,7 @@
                         $status_padang = config('staticdata.ikeps.prasarana_sukan.padang_sekolah.sub.status_padang');
                         foreach($status_padang as $statusKey => $status){
                         ?>
-                        <option value="{{ $statusKey }}">{{ $status }}</option>
+                        <option value="{{ $statusKey }}" @if($prasaranaSukan && $prasaranaSukan->status_padang == $statusKey) selected @endif>{{ $status }}</option>
                         <?php 
                         }
                         ?>
@@ -177,7 +195,7 @@
                 <td colspan="10">
                     <select name="status_padang_butiran" id="status_padang_butiran" class="form-control select2" disabled>
                         <option value="" hidden>- Pilih -</option>
-                        <option value="1">Sekolah A</option>
+                        <option value="1" @if($prasaranaSukan && $prasaranaSukan->status_padang_butiran == 1) selected @endif>Sekolah A</option>
                     </select>
                 </td>
             </tr>
@@ -187,39 +205,54 @@
                 @foreach($sukan['sub'] as $subKey => $sub)
                     @if($subKey != 'status_padang' && $subKey != 'gred_padang')
                     <tr>
-                        <td> {{ $sub }} @if($subKey == 'trek_lain') <input class="form-control" name="{{ $subKey.'_butiran' }}" id="{{ $subKey.'_butiran' }}" disabled> @endif</td>
+                        <?php
+                        $butiran = $subKey.'_butiran';
+                        ?>
+                        <td> {{ $sub }} @if($subKey == 'trek_lain') <input class="form-control" value="{{ $prasaranaSukan?->$butiran }}" name="{{ $subKey.'_butiran' }}" id="{{ $subKey.'_butiran' }}" disabled> @endif</td>
                         @foreach ($ada_tiadas as $id => $ada_tiada)
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="{{ $subKey }}" id="{{ $subKey.'_'.$id }}" value="{{ $id }}" disabled onclick="checkInputPrasarana('{{ $subKey }}', '{{ $id }}', false)">
+                                    <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$subKey }}" name="{{ $subKey }}" id="{{ $subKey.'_'.$id }}" value="{{ $id }}" disabled onclick="checkInputPrasarana('{{ $subKey }}', '{{ $id }}', false)">
                                 </div>
                             </td>
                         @endforeach
 
                         @foreach ($gunasamas as $id => $gunasama)
+                            <?php
+                            $guna_sama = $subKey.'_gunasama';
+                            ?>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
+                                    <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$guna_sama }}" name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
                                 </div>
                             </td>
                         @endforeach
 
+                        <?php
+                        $bilangan = $subKey.'_bilangan';
+                        ?>
                         <td>
-                            <input type="text" class="form-control integerInput" id="{{ $subKey.'_bilangan' }}" name="{{ $subKey.'_bilangan' }}" disabled>
+                            <input type="text" class="form-control integerInput" value="{{ $prasaranaSukan?->$bilangan }}" id="{{ $subKey.'_bilangan' }}" name="{{ $subKey.'_bilangan' }}" disabled>
                         </td>
 
                         @foreach ($masih_digunakans as $id => $masih_digunakan)
+                            <?php
+                            $masihDigunakan = $subKey.'_masih_digunakan';
+                            ?>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="{{ $subKey.'_masih_digunakan' }}" id="{{ $subKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
+                                    <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$masihDigunakan }}" name="{{ $subKey.'_masih_digunakan' }}" id="{{ $subKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
                                 </div>
                             </td>
                         @endforeach
 
                         @foreach ($status_fizikals as $id => $status_fizikal)
+                            <?php
+                            $statusFizikal = $subKey.'_status_fizikal';
+                            ?>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="{{ $subKey.'_status_fizikal' }}" id="{{ $subKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
+                                    <input class="form-check-input" type="radio" value="{{ $prasaranaSukan?->$statusFizikal }}" name="{{ $subKey.'_status_fizikal' }}" id="{{ $subKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
                                 </div>
                             </td>
                         @endforeach
@@ -234,7 +267,7 @@
                                 $gred_padang = config('staticdata.ikeps.prasarana_sukan.padang_sekolah.sub.gred_padang');
                                 foreach($gred_padang as $gredKey => $gred){
                                 ?>
-                                <option value="{{ $gredKey }}">{{ $gred }}</option>
+                                <option value="{{ $gredKey }}" @if($prasaranaSukan && $prasaranaSukan->gred_padang == $gredKey) selected @endif>{{ $gred }}</option>
                                 <?php 
                                 }
                                 ?>
