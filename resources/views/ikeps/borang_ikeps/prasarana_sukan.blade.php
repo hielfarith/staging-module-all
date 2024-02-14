@@ -126,7 +126,7 @@
                 $bilangan = $sukanKey.'_bilangan';
                 ?>
                 <td>
-                    <input type="text" class="form-control integerInput" value="{{ $prasaranaSukan?->$bilangan) }}"  id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
+                    <input type="text" class="form-control integerInput" value="{{ $prasaranaSukan?->$bilangan }}"  id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
                 </td>
 
                 <td colspan="7" class="text-danger">
