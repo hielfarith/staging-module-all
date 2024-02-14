@@ -66,7 +66,7 @@ class PengurusanSkipsController extends Controller
         }
     }
 
-     public function FmfView(Request $request, $id = null){
+    public function FmfView(Request $request, $id = null){
         $negeris = MasterState::all();
         $allInstitutes = SkipsInstitusiPendidikan::pluck('nama','id');
         $butiran_id = $id;
@@ -102,7 +102,6 @@ class PengurusanSkipsController extends Controller
         }
         return view ('skips.fmf.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes', 'status', 'canView','canVerify', 'canApprove'));
     }
-
     
     public function chooseInstituteDetails(Request $request)
     {
@@ -385,6 +384,70 @@ class PengurusanSkipsController extends Controller
         return ['status' => true, 'data' => $item ];
     }
 
+    public function laporanSkips(Request $request)
+    {
+        if($request->ajax()){
+            $institutions = ButiranInstitusiSkips::with([
+                'itemStandardKualiti' => function ($query) {
+                    $query->whereNotNull('status');
+                    $query->whereHas('statuses', function ($query) {
+                        $query->whereNotIn('status_name', ['draft', 'Telah dihantar']);
+                    });
+                },
+                'institusiPendidikan'
+            ])
+            ->get()
+            ->filter(function ($item) {
+                // Check if itemStandardKualiti relationship exists and is not empty
+                return optional($item->itemStandardKualiti)->count() > 0;
+            });
+
+            return Datatables::of($institutions)
+                ->addColumn('DT_RowIndex', function ($institutions) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('nama_institusi', function ($institutions) {
+                    return $institutions->institusiPendidikan->nama;
+                })
+                ->editColumn('nama_pengetua', function ($institutions) {
+                    return $institutions->institusiPendidikan->nama_pengetua_gurubesar;
+                })
+                ->editColumn('ppd', function ($institutions) {
+                    return $institutions->institusiPendidikan->ppd;
+                })
+                ->editColumn('status', function ($institutions) {
+                    return $institutions->itemStandardKualiti->statuses->status_description;
+                })
+                ->editColumn('action', function ($institutions) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="downloadDemografi(' . $institutions->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-file text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('skips.laporan');
+    }
+
+    public function downloadDemografi(Request $request)
+    {
+        $institusi = ButiranInstitusiSkips::with([
+            //'itemStandardKualiti',
+            'institusiPendidikan'
+        ])->find($request->institusi_id);
+
+        //$itemStandardKualiti = $institusi->itemStandardKualiti;
+        $institusiPendidikan = $institusi->institusiPendidikan;
+        return view('pdf.borang_demografi_skips', compact('institusi', 'institusiPendidikan'));
+    }
+
     // Modul tambah/kemaskini institusi
     public function SenaraiInstitusi(Request $request){
 
@@ -590,6 +653,9 @@ class PengurusanSkipsController extends Controller
                 $instrumen = ButiranInstitusiSkips::with([
                     'itemStandardKualiti' => function ($query) {
                         $query->whereNotNull('status');
+                        $query->whereHas('statuses', function ($query) {
+                            $query->whereNot('status_name', 'draft');
+                        });
                     },
                     'institusiPendidikan'
                 ])
@@ -620,7 +686,7 @@ class PengurusanSkipsController extends Controller
                         $bilHantar = count($instrumen[$negeri]);
                         $bilVerifikasi = 0;
                         foreach($instrumen[$negeri] as $instrumenNegeri){
-                            if($instrumenNegeri->itemStandardKualiti->status != 1){
+                            if($instrumenNegeri->itemStandardKualiti->statuses->status_name == 'done'){
                                 $bilVerifikasi++;
                             }
                         }
