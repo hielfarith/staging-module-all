@@ -223,7 +223,7 @@
                             ?>
                             <td>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$masihDigunakan == $id) @endif name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
+                                    <input class="form-check-input" type="radio" @if($prasaranaSukan && $prasaranaSukan->$guna_sama == $id) @endif name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
                                 </div>
                             </td>
                         @endforeach
