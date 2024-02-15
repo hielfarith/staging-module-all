@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('instrumen_skpak_spks_ikep', function (Blueprint $table) {
-            $table->string('kategori');
-            $table->string('jenis_ips');
+            $table->string('kategori')->nullable();
+            $table->string('jenis_ips')->nullable();
         });
     }
 
