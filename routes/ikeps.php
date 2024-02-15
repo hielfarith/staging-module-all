@@ -8,7 +8,8 @@ Route::controller(PengurusanIkepsController::class)->group(function () {
         Route::get('get-sub-details/{tab}/{type}', 'getSubDetails')->name('get_sub_details');
         Route::get('get-status-penyertaan', 'getStatusPenyertaan')->name('get_status_penyertaan');
         Route::post('store/{tab}', 'store')->name('store');
-        Route::get('ringkasan-pengisian/{tahun?}','RingkasanIkeps')->name('ringkasan_ikeps');
+        Route::get('list-ringkasan', 'listRingkasan')->name('list_ringkasan');
+        Route::get('ringkasan-pengisian/{kod_sekolah?}/{tahun?}','RingkasanIkeps')->name('ringkasan_ikeps');
         Route::get('ringkasan-pengisian-fmf/{tahun?}','RingkasanIkepsFmf')->name('ringkasan_ikeps_fmf');
 
         Route::get('laporan-pengisian','LaporanRingkasanIkeps')->name('laporan_ikeps');

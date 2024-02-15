@@ -8,6 +8,7 @@ use App\Models\SkipsInstitusiPendidikan;
 use App\Models\TetapanAspek;
 use App\Models\TetapanItem;
 use App\Models\TetapanTarikhInstrumen;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +44,15 @@ class InstrumenController extends Controller
         } elseif ($request->type == 'tetapan-item') {
             return view('instrumen_update.tetapan-item.form');
         } elseif ($request->type == 'sedia-ada') {
-            return view('instrumen_update.sedia-ada.form');
+            $suSukan = User::whereHas('roles', function ($query) {
+                $query->where('name', 'setiausaha_sukan');
+            })->get();
+
+            $guruBesar = User::whereHas('roles', function ($query) {
+                $query->where('name', 'pengetua_guru_besar');
+            })->get();
+
+            return view('instrumen_update.sedia-ada.form', compact('suSukan', 'guruBesar'));
         } elseif ($request->type == 'skips') {
             return view('instrumen_update.skips.form');
         }

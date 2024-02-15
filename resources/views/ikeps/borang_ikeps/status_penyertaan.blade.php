@@ -49,28 +49,36 @@
                     <td> {{ $i++ }} </td>
                     <td> {{ $sukan }} </td>
 
+                    <?php
+                    $zon = $id.'_zon';
+                    $daerah = $id.'_daerah';
+                    $bahagian = $id.'_bahagian';
+                    $negeri = $id.'_negeri';
+                    $kebangsaan = $id.'_kebangsaan';
+                    $antarabangsa = $id.'_antarabangsa';
+                    ?>
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_zon' }}" id="{{ $id.'_zon' }}">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$zon }}" name="{{ $id.'_zon' }}" id="{{ $id.'_zon' }}"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_daerah' }}" id="{{ $id.'_daerah' }}">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$daerah }}" name="{{ $id.'_daerah' }}" id="{{ $id.'_daerah' }}"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_bahagian' }}" id="{{ $id.'_bahagian' }}">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$bahagian }}" name="{{ $id.'_bahagian' }}" id="{{ $id.'_bahagian' }}"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_negeri' }}" id="{{ $id.'_negeri' }}">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$negeri }}" name="{{ $id.'_negeri' }}" id="{{ $id.'_negeri' }}"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_kebangsaan' }}" id="{{ $id.'_kebangsaan' }}" onchange="showDetails(this, '{{ $id }}', 'kebangsaan')">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$kebangsaan }}" name="{{ $id.'_kebangsaan' }}" id="{{ $id.'_kebangsaan' }}" onchange="showDetails(this, '{{ $id }}', 'kebangsaan')"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_antarabangsa' }}" id="{{ $id.'_antarabangsa' }}" onchange="showDetails(this, '{{ $id }}', 'antarabangsa')">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$antarabangsa }}" name="{{ $id.'_antarabangsa' }}" id="{{ $id.'_antarabangsa' }}" onchange="showDetails(this, '{{ $id }}', 'antarabangsa')"  {{ $disabled }}>
                     </td>
                 </tr>
                 <tr id="tr_{{ $id }}" style="display:none">
@@ -117,39 +125,50 @@
                     <td> {{ $j++ }} </td>
                     <td>
                         @if ($id == 'lain_1' || $id == 'lain_2' || $id == 'lain_3')
-                        <select class="form-control select2" name="{{ $id.'_butiran' }}" id="{{ $id.'_butiran' }}">
+                        <?php
+                        $butiran = $id.'_butiran';
+                        ?>
+                        <select class="form-control select2" name="{{ $id.'_butiran' }}" id="{{ $id.'_butiran' }}"  {{ $disabled }}>
                             <option value="" hidden>{{ $sukan }}</option>
-                            <option value="1">Dart</option>
-                            <option value="2">Dodgeball</option>
-                            <option value="3">Frisbee</option>
+                            <option value="1" @if($statusPenyertaan && $statusPenyertaan->$butiran == 1) selected @endif>Dart</option>
+                            <option value="2" @if($statusPenyertaan && $statusPenyertaan->$butiran == 2) selected @endif>Dodgeball</option>
+                            <option value="3" @if($statusPenyertaan && $statusPenyertaan->$butiran == 3) selected @endif>Frisbee</option>
                         </select>
                         @else
                         {{ $sukan }} 
                         @endif
                     </td>
 
+                    <?php
+                    $zon = $id.'_zon';
+                    $daerah = $id.'_daerah';
+                    $bahagian = $id.'_bahagian';
+                    $negeri = $id.'_negeri';
+                    $kebangsaan = $id.'_kebangsaan';
+                    $antarabangsa = $id.'_antarabangsa';
+                    ?>
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_zon' }}" id="{{ $id.'_zon' }}">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$zon }}" name="{{ $id.'_zon' }}" id="{{ $id.'_zon' }}"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_daerah' }}" id="{{ $id.'_daerah' }}">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$daerah }}" name="{{ $id.'_daerah' }}" id="{{ $id.'_daerah' }}"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_bahagian' }}" id="{{ $id.'_bahagian' }}">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$bahagian }}" name="{{ $id.'_bahagian' }}" id="{{ $id.'_bahagian' }}"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_negeri' }}" id="{{ $id.'_negeri' }}">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$negeri }}" name="{{ $id.'_negeri' }}" id="{{ $id.'_negeri' }}"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_kebangsaan' }}" id="{{ $id.'_kebangsaan' }}" onchange="addDetails(this, '{{ $id }}', 'kebangsaan')">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$kebangsaan }}" name="{{ $id.'_kebangsaan' }}" id="{{ $id.'_kebangsaan' }}" onchange="addDetails(this, '{{ $id }}', 'kebangsaan')"  {{ $disabled }}>
                     </td>
 
                     <td>
-                        <input type="text" class="form-control integerInput" name="{{ $id.'_antarabangsa' }}" id="{{ $id.'_antarabangsa' }}" onchange="addDetails(this, '{{ $id }}', 'antarabangsa')">
+                        <input type="text" class="form-control integerInput" value="{{ $statusPenyertaan?->$antarabangsa }}" name="{{ $id.'_antarabangsa' }}" id="{{ $id.'_antarabangsa' }}" onchange="addDetails(this, '{{ $id }}', 'antarabangsa')"  {{ $disabled }}>
                     </td>
                 </tr>
                 <tr id="tr_{{ $id }}" style="display:none">
@@ -163,9 +182,10 @@
 
 <br>
 <?php
-    $segment = Request::segment(3);
+    //$segment = Request::segment(3);
 ?>
-@if($segment != 'sedia-ada')
+{{-- @if($segment != 'sedia-ada') --}}
+@if(!$checkReadOnly)
 <div class="d-flex justify-content-center">
     <button type="button" class="btn btn-primary" onclick="submitTab('#staPenForm')">Simpan</button>
 </div>
