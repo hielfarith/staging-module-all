@@ -13,24 +13,24 @@
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
-           
+
         }
 
         /* .certificate-container{
          position:relative;
          top:0;
          left:0;
-         
+
 
         } */
 
 
         .inner-container {
-            
+
     margin-right: auto;
     margin-left: auto;
-    
-    
+
+
     padding: 20px;
     text-align: center;
     /* border: 4px solid #787878; */
@@ -54,8 +54,8 @@
         }
 
         .logo {
-            
-            
+
+
             align-items:center;
         }
 
@@ -108,15 +108,15 @@
         }
     </style>
 </head>
-<body >  
-    <img src="{{ public_path().'/images/certFrame (2).png' }}" style="z-index:1 !important; position:fixed; top:0;left:0;height:1300px;">
+<body >
+    <img src="{{ public_path().'/images/certFrame (2).png' }}" style="z-index:1 !important; position:fixed; top:0;left:0;height:111.5%;">
 
     <div class="certificate-container">
         <div class="inner-container">
-          
+
         <div class="logo"><img src="{{ public_path().'/images/Logo_Korporat_KPM.png' }}" alt="KPM Logo" >
         </div>
-                
+
             <span class="header-text">PENGIKTIRAFAN BINTANG</span>
             <br>
             <span class="header-text"> STANDARD KUALITI</span>
@@ -124,7 +124,7 @@
             <span class="header-text"> INSTITUSI PENDIDIKAN SWASTA (SKIPS)</span>
             <br>
             <p class="student-name"><b>SEKOLAH MENENGAH AGAMA SWASTA <p style="">TAHUN 2023</p> </b></p><br/><br/>
-            
+
             <span class="course-details">
                 <img src="{{ public_path().'/images/red-star.png' }}" alt="Star" class="star">
                 <img src="{{ public_path().'/images/red-star.png' }}" alt="Star" class="star">
@@ -132,22 +132,22 @@
                 <img src="{{ public_path().'/images/red-star.png' }}" alt="Star" class="star">
                 <img src="{{ public_path().'/images/red-star.png' }}" alt="Star" class="star">
             </span>
-        
+
             {{-- @if (pencapaian >=1)
-            tunjuk satu gamba bintang                
+            tunjuk satu gamba bintang
             @elseif(pencapaian == 2)
-            tunjuk dua bintang                
-            @endif 
-            
-            atau 
-            
-            
+            tunjuk dua bintang
+            @endif
+
+            atau
+
+
             ataupun bole guna @foreach--}}
-            
+
             <br><br><br>
-            <span class="student-name"><b>SEKOLAH MENENGAH AGAMA ABC</b></span>       
-            <br>    
-            <span class="student-name"><b>BEA1234</b></span>   
+            <span class="student-name"><b>SEKOLAH MENENGAH AGAMA ABC</b></span>
+            <br>
+            <span class="student-name"><b>BEA1234</b></span>
             <br><br><br>
             <table style="margin-top:3%;">
                 <tr>
@@ -163,14 +163,10 @@
                         <br>
                         <!-- <p style="text-align: left;color: #353935;font-size: 12px;padding-left:7px"><b>Tarikh:    <span style="padding-left:20px">Oktober 2023</span> </b></p> -->
                     </td>
-                    
+
                 </tr>
             </table>
         </div>
     </div>
 </body>
 </html>
-
-
-
-
