@@ -77,3 +77,45 @@ SPKS
     </div>
 </div>
 @endsection
+@section('script')
+<script type="text/javascript">
+    function formsubmit(type) {
+        var formData = new FormData(document.getElementById(type));
+        var error = false;
+
+         $('form#'+type).find('radio, input, checkbox').each(function() {
+            if(this.required && this.type == 'radio' && !this.checked) {
+                var val = $("input[type='radio'][name="+this.name+"]:checked", '#'+type).val();
+                if (typeof val == 'undefined') {
+                    error = true;
+                }
+            }
+        });
+
+        if (error) {
+            Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            return false;
+        }
+
+        var url = "{{ route('spks.save-spks', ['tab' => 'aspek1']) }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               if (response.status) {
+                    Swal.fire('Success', 'Berjaya', 'success');
+                    if (type == 'aspek1') {
+                        var id = response.data.id;
+                        var location = "{{route('spks.spks_baru', ['id' => ':id'])}}";
+                        var location = location.replace(':id', id);
+                        window.location.href = location;
+                    }
+               }
+            }
+        });
+    }
+</script>
+@endsection

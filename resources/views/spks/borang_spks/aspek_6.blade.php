@@ -52,6 +52,8 @@ $number = 1;
 
 <hr>
 
+<form id="aspek6">
+<input type="hidden" name="spks_id" value="{{$spks?->id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek6">
         <thead>
@@ -100,7 +102,7 @@ $number = 1;
 
                     <tr>
                         <td colspan="5" class="bg-light-success">
-                            <input type="text" class="form-control" placeholder="Catatan">
+                            <input type="text" name="catatan_{{$index}}" class="form-control" placeholder="Catatan">
                         </td>
                     </tr>
                 @endforeach
@@ -126,10 +128,13 @@ $number = 1;
 </div>
 
 <hr>
+
 @if($disabled != 'disabled')
 <div class="buy-now">
-    <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
+    <button class="btn btn-primary waves-effect waves-float waves-light" type="button" 
+    onclick="formsubmit('aspek6')">
         Simpan
     </button>
 </div>
 @endif
+</form>
