@@ -126,9 +126,10 @@ $number = 1;
 </div>
 
 <hr>
-
+@if($disabled != 'disabled')
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
         Simpan
     </button>
 </div>
+@endif

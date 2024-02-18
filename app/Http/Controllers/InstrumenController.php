@@ -682,4 +682,88 @@ class InstrumenController extends Controller
         return view('instrumen_update.skpak.list');
     }
 
+     public function listSpks(Request $request)
+    {
+        if ($request->ajax()) {
+            $instrumenList = InstrumenSkpakSpksIkeps::where('id', '!=', 0)->where('type', 'SPKS');
+            if ($request->has('nama_instrumen') && !empty($request->input('nama_instrumen'))) {
+                $instrumenList->where('nama_instrumen', 'LIKE', '%' . $request->input('nama_instrumen') . '%');
+            }
+            if ($request->has('tujuan_instrumen') && !empty($request->input('tujuan_instrumen'))) {
+                $instrumenList->where('tujuan_instrumen', 'LIKE', '%' . $request->input('tujuan_instrumen') . '%');
+            }
+            if ($request->has('pengguna_instrumen') && !empty($request->input('pengguna_instrumen'))) {
+                $instrumenList->where('pengguna_instrumen', 'LIKE', '%' . $request->input('pengguna_instrumen') . '%');
+            }
+            return Datatables::of($instrumenList)
+                ->addIndexColumn()
+                ->editColumn('nama_instrumen', function ($instrumenList) {
+                    return $instrumenList->nama_instrumen;
+                })
+                ->editColumn('tujuan_instrumen', function ($instrumenList) {
+                    return $instrumenList->tujuan_instrumen;
+                })
+                ->editColumn('pengguna_instrumen', function ($instrumenList) {
+                    return $instrumenList->pengguna_instrumen;
+                })
+                ->editColumn('tarikh_kuatkuasa', function ($instrumenList) {
+                    return $instrumenList->tarikh_kuatkuasa;
+                })
+                ->editColumn('action', function ($instrumenList) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatSpks(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSpksEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('instrumen_update.spks.list');
+    }
+
+    public function tambahSpks(Request $request)
+    {
+        $negeris = MasterState::all();
+        $spks = null;
+        $totalya = 0;
+        $totaltidak = 0; 
+        $disabled = 'disabled';
+        return view('instrumen_update.spks.form', compact('negeris', 'spks', 'totalya', 'totaltidak', 'disabled'));
+    }
+
+    public function saveSpks(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $input = $request->input();
+
+            if (!isset($input['type'])) {
+                $input['type'] = 'SPKS';
+            }
+            if (array_key_exists('instrumen_id', $input) && $input['instrumen_id'] != 0) {
+                $instrumenSkpakSpksIkeps = InstrumenSkpakSpksIkeps::where('id', $input['instrumen_id'])->first();
+                unset($input['instrumen_id']);
+                $InstrumenSkpakSpksIkeps = $instrumenSkpakSpksIkeps->update($input);
+            } else {
+                $instrumenSkpakSpksIkeps = new InstrumenSkpakSpksIkeps;
+                $instrumenSkpakSpksIkeps = $instrumenSkpakSpksIkeps->create($input);
+            }
+
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+
+        DB::commit();
+
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'redirectRoute' => route('admin.internal.penggunalist'), 'data' => $instrumenSkpakSpksIkeps]);
+    }
 }

@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class PengurusanSpksController extends Controller
 {
     public function BorangSpksBaru(Request $request){
-        return view('spks.index');
+        $disabled = '';
+        return view('spks.index', compact('disabled'));
     }
 
     public function ValidasiSpksSenarai(Request $request){

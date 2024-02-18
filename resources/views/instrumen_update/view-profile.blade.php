@@ -304,6 +304,9 @@
         if (type == 'SKIPS') {
             var url = "{{ route('admin.instrumen.instrumenskips-submit') }}"
         } 
+        if (type == 'SPKS') {
+            var url = "{{ route('admin.instrumen.instrumenspks-submit') }}"
+        }
         $.ajax({
             url: url,
             type: 'POST',
@@ -322,6 +325,8 @@
                         var location = "{{route('admin.instrumen.senarai-skips')}}"
                     } else if(type == 'SKPAK') {
                         var location = "{{route('admin.instrumen.senarai-skpak')}}"
+                    } else if(type == 'SPKS') {
+                        var location = "{{route('admin.instrumen.senarai-spks')}}"
                     }
                     window.location.href = location;
                }
