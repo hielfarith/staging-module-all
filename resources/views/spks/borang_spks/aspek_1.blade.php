@@ -105,7 +105,7 @@ $number = 1;
         $aspek1 = json_decode($spks->aspek1, true);
         
     } else {
-        $penilaian1 = $namataska = null;
+        $aspek1 = null;
     }
 ?>
 <form id="aspek1">
@@ -151,27 +151,27 @@ $number = 1;
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input required class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" @if (isset($aspek1) && $aspek1[$nameIndex] == "0") checked  @endif)
+                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" @if (isset($aspek1) && $aspek1[$nameIndex] == "0") checked  @endif {{$disabled}}
                             >
                     </div>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input required class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" @if (isset($aspek1) && $aspek1[$nameIndex] == "1") checked  @endif>
+                            name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" @if (isset($aspek1) && $aspek1[$nameIndex] == "1") checked  @endif {{$disabled}}>
                     </div>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input required class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" @if (isset($aspek1) && $aspek1[$nameIndex] == "2") checked  @endif>
+                            name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" @if (isset($aspek1) && $aspek1[$nameIndex] == "2") checked  @endif {{$disabled}}>
                     </div>
                 </td>
                 @if($withTB)
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input required class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB" @if (isset($aspek1) && $aspek1[$nameIndex] == "TB") checked  @endif>
+                            name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB" @if (isset($aspek1) && $aspek1[$nameIndex] == "TB") checked  @endif {{$disabled}}>
                     </div>
                 </td>
                 @else
@@ -181,7 +181,7 @@ $number = 1;
 
             <tr>
                 <td colspan="6" class="bg-light-success">
-                    <input required type="text" name="catatan_{{$index}}" class="form-control" placeholder="Catatan" value="{{ $catatan }}">
+                    <input required type="text" name="catatan_{{$index}}" class="form-control" placeholder="Catatan" value="{{ $catatan }}" {{$disabled}}>
                 </td>
             </tr>
             @endforeach

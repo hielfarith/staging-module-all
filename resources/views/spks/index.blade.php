@@ -11,6 +11,8 @@ SPKS
 @endsection
 
 @section('content')
+<input type="hidden" name="spks" id="spks" value="{{$spks?->id}}">
+<input type="hidden" name="type" id="type" value="{{$type}}">
 <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder active" id="aspek-1-tab" data-bs-toggle="tab" href="#aspek-1" aria-controls="aspek-1" role="tab" aria-selected="true">
@@ -43,7 +45,7 @@ SPKS
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-tab" data-bs-toggle="tab" href="#jumlah" aria-controls="jumlah" role="tab" aria-selected="false" onclick="jumlah()">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jumlah-tab" data-bs-toggle="tab" href="#jumlahspks" aria-controls="jumlah" role="tab" aria-selected="false" onclick="jumlahspks()">
             JUMLAH
         </a>
     </li>
@@ -70,8 +72,7 @@ SPKS
             <div class="tab-pane fade" id="aspek-6" role="tabpanel" aria-labelledby="aspek-6-tab">
                 @include('spks.borang_spks.aspek_6')
             </div>
-            <div class="tab-pane fade" id="jumlah" role="tabpanel" aria-labelledby="jumlah-tab">
-                @include('spks.borang_spks.jumlah')
+            <div class="tab-pane fade" id="jumlahspks" role="tabpanel" aria-labelledby="jumlah-tab">
             </div>
         </div>
     </div>
@@ -113,9 +114,29 @@ SPKS
                         var location = location.replace(':id', id);
                         window.location.href = location;
                     }
+
                }
             }
         });
+    }
+
+    function  jumlahspks() {
+       var id = $('#spks').val();
+       var type = $('#type').val();
+        var url = "{{ route('spks.get-jumlah') }}"
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                id: id,
+                type: type
+            },
+            success: function(response) {
+                console.log(response)
+                $('#jumlahspks').empty();
+                $('#jumlahspks').append(response)
+            }
+        }); 
     }
 </script>
 @endsection

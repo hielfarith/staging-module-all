@@ -21,7 +21,7 @@
 </h5>
 
 <hr>
-
+ 
 @php
 $jumlahs_spks = [
     'Aspek 1: Pengurusan Aktiviti Murid',
@@ -73,8 +73,18 @@ $jumlahs_spks = [
 
 <hr>
 
+@if($disabled != 'disabled')
 <div class="buy-now">
-    <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
-        Simpan
+    <button class="btn btn-primary waves-effect waves-float waves-light" type="button" 
+    onclick="formhantar('hantar-aspek')">
+        Hantar
     </button>
 </div>
+@endif
+@section('script')
+<script type="text/javascript">
+    function  formhantar(argument) {
+        // body...
+    }
+</script>
+@endsection

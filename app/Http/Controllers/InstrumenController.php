@@ -682,7 +682,7 @@ class InstrumenController extends Controller
         return view('instrumen_update.skpak.list');
     }
 
-     public function listSpks(Request $request)
+    public function listSpks(Request $request)
     {
         if ($request->ajax()) {
             $instrumenList = InstrumenSkpakSpksIkeps::where('id', '!=', 0)->where('type', 'SPKS');
@@ -730,11 +730,9 @@ class InstrumenController extends Controller
     public function tambahSpks(Request $request)
     {
         $negeris = MasterState::all();
-        $spks = null;
-        $totalya = 0;
-        $totaltidak = 0; 
+        $spks = $type = null;
         $disabled = 'disabled';
-        return view('instrumen_update.spks.form', compact('negeris', 'spks', 'totalya', 'totaltidak', 'disabled'));
+        return view('instrumen_update.spks.form', compact('negeris', 'spks', 'disabled'));
     }
 
     public function saveSpks(Request $request)

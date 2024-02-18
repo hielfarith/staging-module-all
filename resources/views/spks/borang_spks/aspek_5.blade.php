@@ -41,7 +41,14 @@ $number = 1;
 </h5>
 
 <hr>
-
+<?php
+    if ($spks) {
+        $aspek5 = json_decode($spks->aspek5, true);
+        
+    } else {
+        $aspek5 = null;
+    }
+?>
 <form id="aspek5">
 <input type="hidden" name="spks_id" value="{{$spks?->id}}">
 <div class="table-responsive">
@@ -75,24 +82,24 @@ $number = 1;
                         <td>{{ $subsection_aspek5 }}</td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0">
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" {{$disabled}}>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1">
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" {{$disabled}}>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2">
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" {{$disabled}}>
                             </div>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="5" class="bg-light-success">
-                            <input type="text" name="catatan_{{$index}}" class="form-control" placeholder="Catatan">
+                            <input required type="text" name="catatan_{{$index}}" class="form-control" placeholder="Catatan" {{$disabled}}>
                         </td>
                     </tr>
                 @endforeach

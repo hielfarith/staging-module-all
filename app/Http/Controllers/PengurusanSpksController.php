@@ -12,12 +12,12 @@ use Yajra\DataTables\DataTables;
 class PengurusanSpksController extends Controller
 {
     public function BorangSpksBaru(Request $request, $id = ''){
-        $disabled = '';
+        $disabled = $type = '';
         $spks = null;
         if(!empty($id)) {
             $spks = SpksPengisian::where('id', $id)->first();
         }
-        return view('spks.index', compact('disabled', 'spks'));
+        return view('spks.index', compact('disabled', 'spks', 'type'));
     }
 
     public function ValidasiSpksSenarai(Request $request){
@@ -59,5 +59,82 @@ class PengurusanSpksController extends Controller
             DB::rollback();
             return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
         }
+    }
+
+    public function GetJumlah(Request $request)
+    {
+        $id = $request->id;
+        $type = $request->type;
+        $array = [];
+        $spks = null;
+        if ($type == 'lihat') {
+            $disabled = 'disabled';
+        } else {
+            $disabled = '';
+        }
+        if ($id) {
+            $spks = SpksPengisian::where('id', $id)->first();
+        }
+
+        return view('spks.borang_spks.jumlah', compact('array', 'spks', 'disabled'));
+    }
+
+    public function SenaraiSpks(Request $request)
+    {
+         if($request->ajax()) {
+
+            $spks = SpksPengisian::select(['instrumen_skpak_spks_ikep.pengguna_instrumen', 'instrumen_skpak_spks_ikep.pengisian_oleh', 'instrumen_skpak_spks_ikep.tempoh_pengisian', 'instrumen_skpak_spks_ikep.tempoh_pengisian_lain', 'spks_pengisians.status', 'spks_pengisians.id as spks_id'])->join('instrumen_skpak_spks_ikep', 'instrumen_skpak_spks_ikep.id', '=', 'spks_pengisians.instrumen_id')->whereIn('spks_pengisians.status', [1,2]);
+
+            return Datatables::of($spks)
+                ->editColumn('pengguna_instrumen', function ($skpak) {
+                    return $skpak->pengguna_instrumen;
+                })
+                ->editColumn('pengisian_oleh', function ($skpak) {
+                    return $skpak->pengisian_oleh;
+                })
+                ->editColumn('tempoh_pengisian', function ($skpak) {
+                    return $skpak->tempoh_pengisian;
+                })
+                 ->editColumn('tempoh_pengisian_lain', function ($skpak) {
+                    return $skpak->tempoh_pengisian_lain;
+                })
+                  ->editColumn('status', function ($skpak) {
+                    return $skpak->status;
+                })
+                ->addColumn('DT_RowIndex', function ($skpak) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('action', function ($skpak) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatSpks(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSpksEdit(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('spks.list');
+    }
+
+    public function borangView(Request $request, $id, $type){
+        if (!empty($id)) {
+            $spks = SpksPengisian::where('id', $id)->first();
+        } else {
+            $spks = null;
+        }
+
+        if ($type == 'kemaskini') {
+            $disabled = '';
+        } else {
+            $disabled = 'disabled';
+        }
+        return view ('spks.index', compact('spks', 'disabled', 'type'));
     }
 }

@@ -547,6 +547,14 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
 
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.senarai-spks']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.senarai-spks') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Spks
+                            </span>
+                        </a>
+                    </li>
+                    
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.validasi_senarai']) ? 'active' : '' }}">
                         <a href="{{ route('spks.validasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
