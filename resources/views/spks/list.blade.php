@@ -149,13 +149,13 @@ function maklumatSpksEdit(id){
     window.location.href = url;
 }
 function maklumatSpksverfikasi(id){
-    var url = "{{ route('skpak.verfikasi_skpak',['id'=> ':id']) }}";
+    var url = "{{ route('spks.verfikasi_spks',['id'=> ':id']) }}";
     var url = url.replace(':id', id);
     window.location.href = url;
 }
 
-function maklumatSkpakValidasi(id){
-    var url = "{{ route('skpak.validasi_skpak',['id'=> ':id']) }}";
+function maklumatSpksValidasi(id){
+    var url = "{{ route('spks.validasi_spks',['id'=> ':id']) }}";
     var url = url.replace(':id', id);
     window.location.href = url;
 }

@@ -21,14 +21,104 @@ class PengurusanSpksController extends Controller
     }
 
     public function ValidasiSpksSenarai(Request $request){
+         if($request->ajax()) {
+
+            $spks = SpksPengisian::select(['instrumen_skpak_spks_ikep.pengguna_instrumen', 'instrumen_skpak_spks_ikep.pengisian_oleh', 'instrumen_skpak_spks_ikep.tempoh_pengisian', 'instrumen_skpak_spks_ikep.tempoh_pengisian_lain', 'spks_pengisians.status', 'spks_pengisians.id as spks_id'])->join('instrumen_skpak_spks_ikep', 'instrumen_skpak_spks_ikep.id', '=', 'spks_pengisians.instrumen_id')->whereIn('spks_pengisians.status', [1,2,3]);
+
+            return Datatables::of($spks)
+                ->editColumn('pengguna_instrumen', function ($skpak) {
+                    return $skpak->pengguna_instrumen;
+                })
+                ->editColumn('pengisian_oleh', function ($skpak) {
+                    return $skpak->pengisian_oleh;
+                })
+                ->editColumn('tempoh_pengisian', function ($skpak) {
+                    return $skpak->tempoh_pengisian;
+                })
+                 ->editColumn('tempoh_pengisian_lain', function ($skpak) {
+                    return $skpak->tempoh_pengisian_lain;
+                })
+                  ->editColumn('status', function ($skpak) {
+                    return $skpak->status;
+                })
+                ->addColumn('DT_RowIndex', function ($skpak) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('action', function ($skpak) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatSpks(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSpksValidasi(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
         return view('spks.list');
     }
 
+    public function verfikasiSpksSenarai(Request $request){
+         if($request->ajax()) {
+
+            $spks = SpksPengisian::select(['instrumen_skpak_spks_ikep.pengguna_instrumen', 'instrumen_skpak_spks_ikep.pengisian_oleh', 'instrumen_skpak_spks_ikep.tempoh_pengisian', 'instrumen_skpak_spks_ikep.tempoh_pengisian_lain', 'spks_pengisians.status', 'spks_pengisians.id as spks_id'])->join('instrumen_skpak_spks_ikep', 'instrumen_skpak_spks_ikep.id', '=', 'spks_pengisians.instrumen_id')->whereIn('spks_pengisians.status', [1,2,3]);
+
+            return Datatables::of($spks)
+                ->editColumn('pengguna_instrumen', function ($skpak) {
+                    return $skpak->pengguna_instrumen;
+                })
+                ->editColumn('pengisian_oleh', function ($skpak) {
+                    return $skpak->pengisian_oleh;
+                })
+                ->editColumn('tempoh_pengisian', function ($skpak) {
+                    return $skpak->tempoh_pengisian;
+                })
+                 ->editColumn('tempoh_pengisian_lain', function ($skpak) {
+                    return $skpak->tempoh_pengisian_lain;
+                })
+                  ->editColumn('status', function ($skpak) {
+                    return $skpak->status;
+                })
+                ->addColumn('DT_RowIndex', function ($skpak) {
+                    static $index = 1;
+                    return $index++;
+                })
+                ->editColumn('action', function ($skpak) {
+                    $button = "";
+                    $button .= '<div class="btn-group " role="group" aria-label="Action">';
+
+                    $button .= '<a onclick="maklumatSpks(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSpksverfikasi(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+
+                    $button .= "</div>";
+
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('spks.list');
+    }
+
+    public function verfikasiSpks(Request $request, $id)
+    {
+        $spks = $type = null;
+        if(!empty($id)) {
+            $spks = SpksPengisian::where('id', $id)->first();
+        }
+        $disabled = 'disabled';
+        return view('spks.index_validasi', compact('disabled', 'spks'));
+    }
     public function ValidasiSpks (Request $request) 
     {
         $disabled = '';
         $spks = null;
-
         return view('spks.index_validasi', compact('disabled', 'spks'));
     }
     public  function saveSpks(Request $request, $tab)

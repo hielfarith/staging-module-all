@@ -9,8 +9,10 @@ Route::controller(PengurusanSpksController::class)->group(function () {
         Route::post('get-jumlah','GetJumlah')->name('get-jumlah');
         Route::get('borang/{id}/{type}','borangView')->name('borang-view');
         Route::get('senarai-spks','SenaraiSpks')->name('senarai-spks');
+        Route::get('verfikasi-senarai','verfikasiSpksSenarai')->name('verfikasi_senarai');
+        Route::get('verfikasi-pengisian/{id}','verfikasiSpks')->name('verfikasi_spks');
 
         Route::get('validasi-senarai','ValidasiSpksSenarai')->name('validasi_senarai');
-        Route::get('validasi-pengisian','ValidasiSpks')->name('validasi_pengisian');
+        Route::get('validasi-pengisian/{id}','ValidasiSpks')->name('validasi_spks');
     });
 });

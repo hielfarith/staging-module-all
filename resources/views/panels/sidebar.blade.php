@@ -555,8 +555,8 @@ $configData = Helper::applClasses();
                         </a>
                     </li>
                     
-                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.validasi_senarai']) ? 'active' : '' }}">
-                        <a href="{{ route('spks.validasi_senarai') }}" class="nav-link">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.verfikasi_senarai']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.verfikasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Verifikasi Data Instrumen
                             </span>
