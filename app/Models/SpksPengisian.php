@@ -18,6 +18,10 @@ class SpksPengisian extends Model
             'aspek6',
             'status',
             'instrumen_id',
-            'jumlah'
+            'jumlah',
+            'aspek1_sectionb',
+            'aspek1_sectionc',
+            'aspek1_sectiond',
+            'aspek1_sectione'
     ];
 }

@@ -126,6 +126,7 @@ class PengurusanSpksController extends Controller
         DB::beginTransaction();
         try { 
             $input = $request->input();
+            dd($input);
             $tabsarray = ['aspek1','aspek2','aspek3','aspek4','aspek5','aspek6'];
             $instrument = InstrumenSkpakSpksIkeps::where('type', 'SPKS')->where('status',1)->first();
             $input['status'] = 1;
@@ -133,13 +134,13 @@ class PengurusanSpksController extends Controller
             $data['spks_id'] = $input['spks_id'];
             $data['instrumen_id'] = $instrument->id;
             $data[$tab] = json_encode($input);
-            unset($data['spks_id']);
-
             if (isset($data['spks_id'])) {
                 $SpksPengisian = SpksPengisian::where('id', $input['spks_id'])->first();
+                unset($data['spks_id']);
                 $spksPengisian = $SpksPengisian->update($data);
             } else {
                 $SpksPengisian = new SpksPengisian;
+                unset($data['spks_id']);
                 $SpksPengisian = $SpksPengisian->create($data);
             }
 
@@ -164,6 +165,41 @@ class PengurusanSpksController extends Controller
         }
         if ($id) {
             $spks = SpksPengisian::where('id', $id)->first();
+            $tabsarray = ['aspek1','aspek2','aspek3','aspek4','aspek5','aspek6'];
+
+            $array = [];
+            foreach ($tabsarray as $variable) {
+                $$variable = json_decode($spks->$variable, true);
+                $zero = $one = $two = $tb = 0;
+                if (!empty($$variable)) {
+                    foreach ($$variable as $key =>  $value) {
+                        if (str_contains($key, 'spks') || str_contains($key, 'catatan') || str_contains($key, 'status')) {
+                            continue;
+                        }
+                        if ($value == '0') {
+                            $zero += 1;
+                            $array[$variable][0] = $zero;
+                        }
+                        if ($value == '1') {
+                            $one += 1;
+                            $array[$variable][1] = $one;
+                        }
+                        if ($value == '2') {
+                            $two += 1;
+                            $array[$variable][2] = $two;
+                        }
+                        if ($value == 'TB') {
+                            $tb += 1;
+                            $array[$variable]['tb'] = $tb;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        foreach ($array as $key => $value) {
+            // dd($array);
         }
 
         return view('spks.borang_spks.jumlah', compact('array', 'spks', 'disabled'));

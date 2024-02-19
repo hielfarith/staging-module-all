@@ -38,6 +38,16 @@ $aspeks_1_secA = [
 $number = 1;
 @endphp
 
+<hr>
+<?php
+    if ($spks) {
+        $aspek1 = json_decode($spks->aspek1, true);
+    } else {
+        $aspek1 = null;
+    }
+?>
+<form id="aspek1">
+<input type="hidden" name="spks_id" value="{{$spks?->id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek1">
 
@@ -74,8 +84,13 @@ $number = 1;
 
                 $name = $index.'_'.$loop->index;
                 $withTB = ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah') || ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Semasa Pengajaran & Pembelajaran Dan Waktu Rehat') || ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Semasa Aktiviti Kokurikulum, Sukan Dan Permainan') || ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan') || ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Di Asrama');
+                
                 $nameIndex = $index.'_'.$loop->index;
-                $catatanIndex = 'catatan_'.$index;
+                $catatanIndex = 'catatan_'.$nameIndex;
+                $catatan = '';
+                if ($aspek1) {
+                    $catatan = isset($aspek1[$catatanIndex]) ? $aspek1[$catatanIndex] : '';
+                }
             ?>
             <tr>
                 <td>{{ $number++ }}</td>
@@ -83,26 +98,26 @@ $number = 1;
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input required class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0">
+                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" @if (isset($aspek1) && $aspek1[$nameIndex] == "0") checked  @endif {{$disabled}}>
                     </div>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input required class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1">
+                            name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" @if (isset($aspek1) && $aspek1[$nameIndex] == "1") checked  @endif {{$disabled}}>
                     </div>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input required class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2">
+                            name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" @if (isset($aspek1) && $aspek1[$nameIndex] == "2") checked  @endif {{$disabled}}>
                     </div>
                 </td>
                 @if($withTB)
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input required class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB">
+                            name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB" @if (isset($aspek1) && $aspek1[$nameIndex] == "TB") checked  @endif {{$disabled}}>
                     </div>
                 </td>
                 @else
@@ -112,7 +127,7 @@ $number = 1;
 
             <tr>
                 <td colspan="6" class="bg-light-success">
-                    <input required type="text" name="catatan_{{$index}}" class="form-control" placeholder="Catatan">
+                    <input required type="text" name="catatan_{{ $index }}_{{ $loop->index }}" class="form-control" placeholder="Catatan" value="{{ $catatan }}" {{$disabled}}>
                 </td>
             </tr>
             @endforeach
@@ -126,3 +141,4 @@ $number = 1;
         Simpan
     </button>
 </div>
+</form>

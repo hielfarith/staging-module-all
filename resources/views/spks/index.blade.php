@@ -98,7 +98,9 @@ SPKS
             return false;
         }
 
-        var url = "{{ route('spks.save-spks', ['tab' => 'aspek1']) }}"
+        var url = "{{ route('spks.save-spks', ['tab' => ':tab']) }}";
+        url = url.replace(':tab', type);
+
         $.ajax({
             url: url,
             method: 'POST',
