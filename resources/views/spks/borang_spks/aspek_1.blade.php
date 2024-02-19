@@ -102,6 +102,8 @@ $number = 1;
 <input type="hidden" name="spks_id" value="{{$spks?->id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek1">
+
+
         <thead>
             <tr>
                 <th rowspan="2" width="1%">No.</th>
@@ -117,6 +119,12 @@ $number = 1;
             </tr>
         </thead>
         <tbody>
+            <tr class="bg-light-danger">
+                <td colspan="2" class="text-end">
+                    Jumlah Skor
+                </td>
+                <td colspan="4" class="text-center"></td>
+            </tr>
             @foreach ($aspeks_1 as $index => $aspek_1)
             <tr>
                 <td colspan="6" class="bg-light-primary text-uppercase">
@@ -127,7 +135,7 @@ $number = 1;
             <?php
 
                 $name = $index.'_'.$loop->index;
-                $withTB = ($aspek_1['section'] == 'Pengurusan Aktiviti Murid') ||  ($aspek_1['section'] == 'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan') || ($aspek_1['section'] == 'Arahan Keselamatan Murid Di Asrama');
+                $withTB = ($aspek_1['section'] == 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah') ||  ($aspek_1['section'] == 'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan') || ($aspek_1['section'] == 'Arahan Keselamatan Murid Di Asrama');
                 $nameIndex = $index.'_'.$loop->index;
                 $catatanIndex = 'catatan_'.$index;
                 $catatan = '';
@@ -177,7 +185,7 @@ $number = 1;
             @endforeach
             @endforeach
         </tbody>
-        <tfoot>
+        {{-- <tfoot>
             <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Skor
@@ -193,7 +201,7 @@ $number = 1;
                 </td>
                 <td colspan="4" class="text-center"></td>
             </tr>
-        </tfoot>
+        </tfoot> --}}
     </table>
 </div>
 

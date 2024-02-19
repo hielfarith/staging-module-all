@@ -46,7 +46,7 @@ $number = 1;
 <?php
     if ($spks) {
         $aspek4 = json_decode($spks->aspek4, true);
-        
+
     } else {
         $aspek4 = null;
     }
@@ -69,6 +69,12 @@ $number = 1;
             </tr>
         </thead>
         <tbody>
+            <tr class="bg-light-danger">
+                <td colspan="2" class="text-end">
+                    Jumlah Skor
+                </td>
+                <td colspan="4" class="text-center"></td>
+            </tr>
             @foreach ($aspeks_4 as $index => $aspek_4)
             <tr>
                 <td colspan="5" class="bg-light-primary text-uppercase">
@@ -110,7 +116,7 @@ $number = 1;
             @endforeach
             @endforeach
         </tbody>
-        <tfoot>
+        {{-- <tfoot>
             <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Skor
@@ -125,7 +131,7 @@ $number = 1;
                 </td>
                 <td colspan="3" class="text-center"></td>
             </tr>
-        </tfoot>
+        </tfoot> --}}
     </table>
 </div>
 

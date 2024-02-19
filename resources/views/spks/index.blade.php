@@ -55,7 +55,7 @@ SPKS
     <div class="card-body">
         <div class="tab-content">
             <div class="tab-pane active" id="aspek-1" role="tabpanel" aria-labelledby="aspek-1-tab">
-                @include('spks.borang_spks.aspek_1')
+                @include('spks.borang_spks.aspek_1.index_aspek1')
             </div>
             <div class="tab-pane fade" id="aspek-2" role="tabpanel" aria-labelledby="aspek-2-tab">
                 @include('spks.borang_spks.aspek_2')
@@ -136,7 +136,7 @@ SPKS
                 $('#jumlahspks').empty();
                 $('#jumlahspks').append(response)
             }
-        }); 
+        });
     }
 </script>
 @endsection
