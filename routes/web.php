@@ -270,6 +270,10 @@ Route::controller(InstrumenController::class)->prefix('instrumen')->middleware([
     Route::get('tambah-skpak','tambahSkpak')->name('admin.instrumen.tambah-skpak');
     Route::get('senarai-skpak','listSkpak')->name('admin.instrumen.senarai-skpak');
     Route::post('instrumenskpak-submit','saveSkpak')->name('admin.instrumen.instrumenskpak-submit');
+    //spks
+    Route::get('tambah-spks','tambahSpks')->name('admin.instrumen.tambah-spks');
+    Route::get('senarai-spks','listSpks')->name('admin.instrumen.senarai-spks');
+    Route::post('instrumenspks-submit','saveSpks')->name('admin.instrumen.instrumenspks-submit');
 
 });
 

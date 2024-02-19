@@ -20,8 +20,8 @@
     JUMLAH KESELURUHAN STANDARD PENILAIAN
 </h5>
 
-<hr>
 
+<hr>
 @php
 $jumlahs_spks = [
     'Aspek 1: Pengurusan Aktiviti Murid',

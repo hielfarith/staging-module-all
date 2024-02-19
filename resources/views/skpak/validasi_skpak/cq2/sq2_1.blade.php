@@ -66,9 +66,9 @@
 <?php
     $id = Request::segment(3);
     $itemcq2 = $item = null;
-    // if ($skpakfilleddata){
-    //     $itemcq2 = json_decode($skpakfilleddata->itemcq2, true);
-    // }
+    if ($skpakfilleddata){
+        $itemcq2 = json_decode($skpakfilleddata->itemcq2, true);
+    }
     if ($itemcq2 && isset($itemcq2['sq2.1'])) {
         $item = $itemcq2['sq2.1'];
     }
@@ -108,8 +108,10 @@
                      <?php
                         $keyString = str_replace(".","_",$index);
                         $catatanData = '';
+                        $uploadData = false;
                         if($item) {
                             $catatanData = $item['catatan_'.$keyString];
+                            $uploadData = isset($item['upload_'.$keyString]) ? $item['upload_'.$keyString] : false ;
                             $keyValue = $item[$keyString];
                             $totalvalue += $keyValue;
                         }
@@ -126,7 +128,7 @@
                         ?>
                         <td>
                             <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$checked}} onchange='assignmandatory("{{$keyString}}",  this)'>
+                                <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required {{$checked}} onchange='assignmandatory("{{$keyString}}",  this)' {{$disabled}}>
                             </div>
                             <br>
 
@@ -141,14 +143,23 @@
                 <tr class="bg-light-primary">
                     <td colspan="6">
                         <label class="fw-bolder">Upload: </label>
-                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)'>
+                        <input type="file" name="upload_{{$keyString}}[]" id="uploadfile_{{$keyString}}" class="form-control" multiple accept="image/*" onchange='filechange("uploadfile_{{$keyString}}", "filelist_{{$keyString}}", this)' {{$disabled}}>
                         <pre id="filelist_{{$keyString}}" style="display:none;"></pre>
+                         @if($uploadData)
+                            @foreach($uploadData as $val)
+                            <?php
+                                $val = str_replace('public/uploads/upload_'.$keyString.'/'.$id.'/', '', $val);
+                            ?>
+                            <pre class="uploadfile_{{$keyString}}_view">{{$val}}</pre>
+                            @endforeach
+                            <input type="hidden" name="uploadfile_{{$keyString}}_list" value="{{json_encode($item['upload_'.$keyString])}}" id="uploadfile_{{$keyString}}_list">
+                        @endif
                     </td>
                 </tr>
                 <tr class="bg-light-success">
                     <td colspan="6">
                         <label class="fw-bolder">Catatan: </label>
-                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control">{{ $catatanData }}</textarea>
+                        <textarea name="catatan_{{$index}}" id="" rows="2" class="form-control" {{$disabled}}>{{ $catatanData }}</textarea>
                     </td>
                     <td class="bg-dark"></td>
                 </tr>
@@ -166,11 +177,13 @@
 </div>
 
 <hr>
+@if($disabled != 'disabled')
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="submitcq2sq1()">
         Simpan
     </button>
 </div>
+@endif
 {{-- <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="submitcq2sq1()">Simpan</button>
 </div> --}}

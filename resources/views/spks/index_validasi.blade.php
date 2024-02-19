@@ -43,8 +43,14 @@ SPKS
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-jumlah-tab" data-bs-toggle="tab" href="#validasi-jumlah" aria-controls="validasi-jumlah" role="tab" aria-selected="false" onclick="jumlah()">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-jumlah-tab" data-bs-toggle="tab" href="#validasi-jumlah" aria-controls="validasi-jumlah" role="tab" aria-selected="false" onclick="">
             JUMLAH
+        </a>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="catatan-validasi-tab" data-bs-toggle="tab" href="#catatan-validasi" aria-controls="catatan-validasi" role="tab" aria-selected="false" onclick="">
+            RINGKASAN CATATAN
         </a>
     </li>
 </ul>
@@ -72,6 +78,9 @@ SPKS
             </div>
             <div class="tab-pane fade" id="validasi-jumlah" role="tabpanel" aria-labelledby="validasi-jumlah-tab">
                 @include('spks.validasi_spks.jumlah')
+            </div>
+            <div class="tab-pane fade" id="catatan-validasi" role="tabpanel" aria-labelledby="catatan-validasi-tab">
+                @include('spks.validasi_spks.catatan_sekolah')
             </div>
         </div>
     </div>

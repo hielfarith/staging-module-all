@@ -37,6 +37,7 @@ Instrumen
                         <!-- <th>PPD</th> -->
                         <th>Negeri</th>
                         <th>Status</th>
+                        <th>Dokumen</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
@@ -124,12 +125,19 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
                         return $("<div/>").html(data).text();
                     }
                 },
+                   {
+                    data: 'document',
+                    name: 'document',
+                    orderable: false,
+                    searchable: false
+                },
                 {
                     data: 'action',
                     name: 'action',
                     orderable: true,
                     searchable: true
                 },
+                
             ],
         });
     });

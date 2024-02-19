@@ -20,7 +20,6 @@
     } else {
         $penubuhan_pendaftaran = $penubuhan_pendaftaran_verfikasi = null;
     }
-
     $total = $score = 0;
     $totalv = $scorev = 0;
 
@@ -33,7 +32,7 @@
                 <th width="5%">1.0.</th>
                 <th> PENUBUHAN & PENDAFTARAN </th>
                 <th width="10%">SKOR</th>
-                 @if($type == 'verfikasi')
+                 @if($type == 'verfikasi' || $type == 'done')
                     <th width="10%">SKOR VERFIKASI</th>
                 @endif
             </tr>
@@ -56,19 +55,19 @@
                         <?php
                             if($penubuhan_pendaftaran) {
                                 $score = $penubuhan_pendaftaran->$key;
-                                $total = $total+$score;
+                                $total +=$score;
                             }
                         ?>
                         <a class="text-success">{{$score}}</a>
                     </td>
-                    @if($type == 'verfikasi')
+                    @if($type == 'verfikasi' || $type == 'done')
                         <td>
                         <?php
                             if($penubuhan_pendaftaran_verfikasi) {
                                 $keyval = '';
                                 $keyval = $key.'_verfikasi';
                                 $scorev = $penubuhan_pendaftaran_verfikasi->$keyval;
-                                $totalv = $totalv+$scorev;
+                                $totalv += $scorev;
                             }
                         ?>
                         <a class="text-success">{{$scorev}}</a>
@@ -82,7 +81,7 @@
             $total = $total + $totalv;
             $percentage = ($total/90);
             $percentage = $percentage*100;
-             if($type == 'verfikasi') {
+             if($type == 'verfikasi' || $type == 'done') {
                  $col = 2;
              } else {
                  $col =1;
@@ -92,7 +91,7 @@
             <tr>
                 <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
                 <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{$total}}</a>
+                    <a class="text-success">{{ $total }}</a>
                 </td>
             </tr>
            

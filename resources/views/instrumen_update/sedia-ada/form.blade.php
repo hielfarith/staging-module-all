@@ -20,6 +20,12 @@ Medan Data Tambah / Kemaskini Instrumen SKPAK, SPKS, IKEPS
 
 @section('content')
 
+<?php
+$disabled = 'disabled';
+$checkReadOnly = true;
+$verifyStatus = true;
+?>
+
 <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder active" id="simple-tab-0" data-bs-toggle="tab"

@@ -38,7 +38,9 @@ class InstrumenSkpakSpksIkeps extends Model
         'tempoh_validasi_lain',
         'tempoh_perakuan',
         'tempoh_perakuan_lain',
-        'type'
+        'type',
+        'kategori',
+        'jenis_ips'
     ];
 
     public function butiranInstitusiSkips()

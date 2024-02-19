@@ -38,13 +38,17 @@
 
 <script type="text/javascript">
      function filechange1(id, file, event){
-          var list = document.getElementById(file);
-          list.innerHTML = '';
-          for (var i = 0; i < event.files.length; i++) {
-            list.innerHTML += (i + 1) + '. ' + event.files[i].name + '\n';
-          }
-          if (list.innerHTML == '') list.style.display = 'none';
-          else list.style.display = 'block';
+        var updateid = id+'_view'; 
+        var inputname = id+'_list'; 
+        $('.'+updateid).css('display', 'none');
+        $('#'+inputname).val('');
+        var list = document.getElementById(file);
+        list.innerHTML = '';
+        for (var i = 0; i < event.files.length; i++) {
+        list.innerHTML += (i + 1) + '. ' + event.files[i].name + '\n';
+        }
+        if (list.innerHTML == '') list.style.display = 'none';
+        else list.style.display = 'block';
     }
 
     function assignmandatory1(id, event) {
@@ -60,13 +64,16 @@
     }
     
     function  updateJumlah(tabname, id) {
-        var url = "{{ route('skpak.get-verfikasi-jumlah') }}"
+        var url = "{{ route('skpak.get-verfikasi-jumlah') }}";
+        var data = '<?php echo Request::segment(2); ?>';
+        
         $.ajax({
             url: url,
             method: 'POST',
             data: {
                 id:id,
-                tabname: tabname
+                tabname: tabname,
+                type: data
             },
             success: function(response) {
                 $('#jumlah-sq1').empty();

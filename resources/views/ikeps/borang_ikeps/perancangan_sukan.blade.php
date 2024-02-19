@@ -44,10 +44,7 @@
                     'kepegawaian' => '6.3 Kursus Kepegawaian',
                     'sains_sukan' => '6.4 Kursus Sains Sukan'
                 ];
-                $ada_tiadas = [
-                    'ada' => 1,
-                    'tiada' => 0
-                ];
+                $ada_tiadas = config('staticdata.ikeps.ada_tiada');
             ?>
 
             @foreach($perancangans as $rancangKey => $perancangan)
@@ -56,28 +53,34 @@
                     @foreach ($ada_tiadas as $id => $ada_tiada)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="{{ $rancangKey }}" id="{{ $rancangKey.'_'.$id }}" value="{{ $ada_tiada }}">
+                                <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$rancangKey == $id) checked @endif name="{{ $rancangKey }}" id="{{ $rancangKey.'_'.$id }}" value="{{ $id }}">
                             </div>
                         </td>
                     @endforeach
 
+                    <?php
+                    $butiran = $rancangKey.'_butiran';
+                    ?>
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $rancangKey.'_butiran' }}" id="{{ $rancangKey.'_butiran_1' }}" value="1">
+                            <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$butiran == 1) checked @endif name="{{ $rancangKey.'_butiran' }}" id="{{ $rancangKey.'_butiran_1' }}" value="1">
                         </div>
                     </td>
 
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $rancangKey.'_butiran' }}" id="{{ $rancangKey.'_butiran_2' }}" value="2">
+                            <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$butiran == 2) checked @endif name="{{ $rancangKey.'_butiran' }}" id="{{ $rancangKey.'_butiran_2' }}" value="2">
                         </div>
                     </td>
 
+                    <?php
+                    $program = $rancangKey.'_program';
+                    ?>
                     <td>
                         <select name="{{ $rancangKey.'_program' }}" id="{{ $rancangKey.'_program' }}" class="form-control select2">
                             <option value="" hidden>Kenyataan Program</option>
-                            <option value="1">Olahraga</option>
-                            <option value="2">Merentas Desa</option>
+                            <option value="1" @if($perancanganSukan && $perancanganSukan->$program == 1) selected @endif>Olahraga</option>
+                            <option value="2" @if($perancanganSukan && $perancanganSukan->$program == 2) selected @endif>Merentas Desa</option>
                         </select>
                     </td>
                 </tr>
@@ -97,20 +100,23 @@
                     @foreach ($ada_tiadas as $id => $ada_tiada)
                         <td>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="{{ $kursusKey }}" id="{{ $kursusKey.'_'.$id }}" value="{{ $ada_tiada }}">
+                                <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$kursusKey == $id) checked @endif name="{{ $kursusKey }}" id="{{ $kursusKey.'_'.$id }}" value="{{ $id }}">
                             </div>
                         </td>
                     @endforeach
 
+                    <?php
+                    $butiran = $kursusKey.'_butiran';
+                    ?>
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $kursusKey.'_butiran' }}" id="{{ $kursusKey.'_butiran_1' }}" value="1">
+                            <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$butiran == 1) checked @endif name="{{ $kursusKey.'_butiran' }}" id="{{ $kursusKey.'_butiran_1' }}" value="1">
                         </div>
                     </td>
 
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $kursusKey.'_butiran' }}" id="{{ $kursusKey.'_butiran_2' }}" value="2">
+                            <input class="form-check-input" type="radio" @if($perancanganSukan && $perancanganSukan->$butiran == 2) checked @endif name="{{ $kursusKey.'_butiran' }}" id="{{ $kursusKey.'_butiran_2' }}" value="2">
                         </div>
                     </td>
 
@@ -125,9 +131,10 @@
 
 <br>
 <?php
-    $segment = Request::segment(3);
+    //$segment = Request::segment(3);
 ?>
-@if($segment != 'sedia-ada')
+{{-- @if($segment != 'sedia-ada') --}}
+@if(!$checkReadOnly)
 <div class="d-flex justify-content-center">
     <button type="button" class="btn btn-primary" onclick="submitTab('#perSukForm')">Simpan</button>
 </div>

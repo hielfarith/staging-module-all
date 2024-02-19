@@ -33,13 +33,13 @@
             </select>
         </div>
 
-        <div class="col-md-4 mb-1">
+        {{-- <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Instrumen perlu diisi
                 <span class="text-danger">*</span>
             </label>
             <input type="text" class="form-control" name="instrumen_perlu_diisi" required
                 onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
-        </div>
+        </div> --}}
 
         <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Tarikh Kuatkuasa
@@ -76,8 +76,9 @@
                 </label>
                 <select class="form-control select2" name="pengisian_oleh" required>
                     <option value="">Sila Pilih</option>
-                    <option value="PENGETUA">PENGETUA</option>
-                    <option value="GURU BESAR INSTITUSI">GURU BESAR INSTITUSI</option>
+                    {{-- <option value="PENGETUA">PENGETUA</option>
+                    <option value="GURU BESAR INSTITUSI">GURU BESAR INSTITUSI</option> --}}
+                    <option value="SETIAUSAHA SUKAN">SETIAUSAHA SUKAN</option>
                 </select>
             </div>
 
@@ -112,8 +113,10 @@
                 </label>
                 <select class="form-control select2" name="pengesahan_ole" required>
                     <option value="">Sila Pilih</option>
-                    <option value="PPD ">PPD </option>
-                    <option value="JPN">JPN</option>
+                    {{-- <option value="PPD ">PPD </option>
+                    <option value="JPN">JPN</option> --}}
+                    <option value="GURU BESAR">GURU BESAR</option>
+                    <option value="PK KOKU">PK KOKU</option>
                 </select>
             </div>
 
@@ -148,8 +151,11 @@
                 </label>
                 <select class="form-control select2" name="verifikasi_oleh" required>
                     <option value="">Sila Pilih</option>
-                    <option value="JPN">JPN</option>
+                    {{-- <option value="JPN">JPN</option>
+                    <option value="KS">KS</option> --}}
                     <option value="KPM">KPM</option>
+                    <option value="KPP">KPP</option>
+                    <option value="PP">PP</option>
                 </select>
             </div>
 
@@ -171,7 +177,7 @@
             </div>
         </div>
 
-        <div class="col">
+        {{-- <div class="col">
             <h5 class="mb-2 fw-bold">
                 <span class="badge rounded-pill badge-light-primary">
                     Maklumat Validasi
@@ -242,7 +248,7 @@
                     </span>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <div class="card-footer">

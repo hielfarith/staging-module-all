@@ -26,7 +26,7 @@ $total = $score = 0;    $totalv = $scorev = 0;
                 <th width="5%">4.0</th>
                 <th> PENGAJARAN DAN PEMBELAJARAN </th>
                 <th width="10%">SKOR</th>
-                 @if($type == 'verfikasi')
+                 @if($type == 'verfikasi' || $type == 'done')
                     <th width="10%">SKOR VERFIKASI</th>
                 @endif
             </tr>
@@ -55,7 +55,7 @@ $total = $score = 0;    $totalv = $scorev = 0;
 
                         <a class="text-success">{{$score}}</a>
                     </td>
-                     @if($type == 'verfikasi')
+                     @if($type == 'verfikasi' || $type == 'done')
                         <td>
                         <?php
                             if($pengajaran_verfikasi) {
@@ -75,7 +75,7 @@ $total = $score = 0;    $totalv = $scorev = 0;
             $total = $total + $totalv;
             $percentage = ($total/40);
             $percentage = $percentage*100;
-             if($type == 'verfikasi') {
+             if($type == 'verfikasi' || $type == 'done') {
                  $col = 2;
              } else {
                  $col =1;

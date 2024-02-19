@@ -73,26 +73,42 @@ $number = 1;
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0">
+                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled>
                     </div>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1">
+                            name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" disabled>
                     </div>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2">
+                            name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" disabled>
                     </div>
                 </td>
             </tr>
 
-            <tr>
-                <td colspan="6" class="bg-light-success">
-                    <input type="text" class="form-control" placeholder="Catatan">
+            <tr id="pengisianAspek3{{ $index }}_{{ $loop->index }}">
+                <td colspan="6" class="bg-light-warning">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Catatan" disabled>
+                        <button class="btn btn-success btn-sm" type="button" id="checkAspek3_{{ $index }}_{{ $loop->index }}">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" type="button" id="rejectAspek3_{{ $index }}_{{ $loop->index }}">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <tr id="catatanAspek3_{{ $index }}_{{ $loop->index }}" style="display: none;">
+                <td colspan="6" class="bg-light-danger">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Catatan Validasi">
+                    </div>
                 </td>
             </tr>
             @endforeach
@@ -124,3 +140,27 @@ $number = 1;
         Simpan
     </button>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("[id^='checkAspek3']").on("click", function () {
+            var indexValues = $(this).attr("id").split('_');
+            var index = indexValues[1];
+            var loopIndex = indexValues[2];
+
+            $("#pengisianAspek3" + index + "_" + loopIndex).removeClass("bg-light-warning bg-light-danger").addClass("bg-light-success");
+
+            $("#catatanAspek3_" + index + "_" + loopIndex).hide(300);
+        });
+
+        $("[id^='rejectAspek3']").on("click", function () {
+            var indexValues = $(this).attr("id").split('_');
+            var index = indexValues[1];
+            var loopIndex = indexValues[2];
+
+            $("#pengisianAspek3" + index + "_" + loopIndex).removeClass("bg-light-success bg-light-warning").addClass("bg-light-danger");
+            $("#catatanAspek3_" + index + "_" + loopIndex).show(200);
+        });
+    });
+</script>

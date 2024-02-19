@@ -336,7 +336,22 @@ class PengurusanSkpakController extends Controller
 
         $data['skpak_standard_penilaian_id'] = $input['skpak_standard_penilaian_id'];
         unset($input['skpak_standard_penilaian_id']);
+        // check if array contains the uploaded data, this means data not changed.
+        foreach ($input as $key => $value) {
+            if (str_contains($key, 'uploadfile') && !empty($value)) {
+                $updatedkey = str_replace('uploadfile', 'upload', $key); 
+                $updatedkey = str_replace('_list', '', $updatedkey); 
+                $updatedValue = json_decode($value, true);
+                unset($input[$key]);
+                $input[$updatedkey] = $updatedValue;
+            }
+            if (str_contains($key, 'uploadfile') && empty($value)) {
+                unset($input[$key]);
+            }
+        }
+
         $savedData = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $data['skpak_standard_penilaian_id'])->first();
+        
         if ($savedData) {
             $tabData = $savedData->$tabname;
             $array = [];
@@ -428,6 +443,13 @@ class PengurusanSkpakController extends Controller
     {
         $verficationData = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $request->id)->first();
         $tabname = $request->tabname;
+        $type = $request->type;
+        if ($type == 'verfikasi-pengisian') {
+            $disabled = '';
+        } else {
+            $disabled = 'disabled';
+        }
+
         $array = [];
         $totalValue = 0;
         $ulasan = '';
@@ -454,15 +476,15 @@ class PengurusanSkpakController extends Controller
         }
         $id = $request->id;
         if ($tabname == 'itemcq1') {
-            return view('skpak.validasi_skpak.cq1.jumlah', compact('array', 'tabData', 'totalValue', 'id', 'ulasan'));
+            return view('skpak.validasi_skpak.cq1.jumlah', compact('array', 'tabData', 'totalValue', 'id', 'ulasan', 'disabled'));
         } elseif ($tabname == 'itemcq2') {
-            return view('skpak.validasi_skpak.cq2.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
+            return view('skpak.validasi_skpak.cq2.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan', 'disabled'));
         } elseif ($tabname == 'itemcq3') {
-            return view('skpak.validasi_skpak.cq3.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
+            return view('skpak.validasi_skpak.cq3.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan', 'disabled'));
         } elseif ($tabname == 'itemcq4') {
-            return view('skpak.validasi_skpak.cq4.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
+            return view('skpak.validasi_skpak.cq4.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan', 'disabled'));
         } elseif ($tabname == 'itemcq5') {
-            return view('skpak.validasi_skpak.cq5.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan'));
+            return view('skpak.validasi_skpak.cq5.jumlah', compact('array', 'tabData', 'totalValue' , 'id', 'ulasan', 'disabled'));
         }
     }
 

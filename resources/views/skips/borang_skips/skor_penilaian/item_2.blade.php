@@ -47,7 +47,7 @@ $institusis = [
                 <th width="5%">2.0.</th>
                 <th> PENUBUHAN INSTITUSI </th>
                 <th width="10%">SKOR</th>
-                @if($type == 'verfikasi')
+                @if($type == 'verfikasi' || $type == 'done')
                     <th width="10%">SKOR VERFIKASI</th>
                 @endif
             </tr>
@@ -75,7 +75,7 @@ $institusis = [
                     ?>
                         <a class="text-success">{{$score}}</a>
                     </td>
-                     @if($type == 'verfikasi')
+                     @if($type == 'verfikasi' || $type == 'done')
                         <td>
                         <?php
                             if($pengurusan_institusi_verfikasi) {
@@ -99,7 +99,7 @@ $institusis = [
             $total = $total + $totalv;
             $percentage = ($total/210);
             $percentage = $percentage*100;
-             if($type == 'verfikasi') {
+             if($type == 'verfikasi' || $type == 'done') {
                  $col = 2;
              } else {
                  $col =1;

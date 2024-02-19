@@ -25,7 +25,7 @@ $displins = [
                 <th width="5%">7.0</th>
                 <th> DISIPLIN </th>
                 <th width="10%">SKOR</th>
-                 @if($type == 'verfikasi')
+                 @if($type == 'verfikasi' || $type == 'done')
                     <th width="10%">SKOR VERFIKASI</th>
                 @endif
             </tr>
@@ -54,7 +54,7 @@ $displins = [
 
                         <a class="text-success">{{$score}}</a>
                     </td>
-                     @if($type == 'verfikasi')
+                     @if($type == 'verfikasi' || $type == 'done')
                         <td>
                         <?php
                             if($disiplin_verfikasi) {
@@ -74,7 +74,7 @@ $displins = [
             $total = $total + $totalv;
             $percentage = ($total/30);
             $percentage = $percentage*100;
-             if($type == 'verfikasi') {
+             if($type == 'verfikasi' || $type == 'done') {
                  $col = 2;
              } else {
                  $col =1;

@@ -58,7 +58,7 @@
                 @foreach ($ada_tiadas as $id => $ada_tiada)
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputKemudahan('{{ $sukanKey }}', '{{ $id }}', true)">
+                            <input class="form-check-input" type="radio" @if($kemudahanSukan && $kemudahanSukan->$sukanKey == $id) checked @endif name="{{ $sukanKey }}" id="{{ $sukanKey.'_'.$id }}" value="{{ $id }}" onclick="checkInputKemudahan('{{ $sukanKey }}', '{{ $id }}', true)" {{ $disabled }}>
                         </div>
                     </td>
                 @endforeach
@@ -67,8 +67,11 @@
                     Maklumat Tidak Berkenaan
                 </td>
 
+                <?php
+                $bilangan = $sukanKey.'_bilangan';
+                ?>
                 <td>
-                    <input type="text" class="form-control" id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
+                    <input type="text" class="form-control" value="{{ $kemudahanSukan?->$bilangan }}" id="{{ $sukanKey.'_bilangan' }}" name="{{ $sukanKey.'_bilangan' }}" disabled>
                 </td>
 
                 <td colspan="7" class="text-danger">
@@ -78,39 +81,54 @@
 
                 @foreach($sukan['sub'] as $subKey => $sub)
             <tr>
-                <td> {{ $sub }} @if($subKey == 'bt_lain' || $subKey == 'lain_kemudahan' ) <input class="form-control" name="{{ $subKey.'_butiran' }}" id="{{ $subKey.'_butiran' }}" disabled> @endif</td>
+                <?php
+                $butiran = $subKey.'_butiran';
+                ?>
+                <td> {{ $sub }} @if($subKey == 'bt_lain' || $subKey == 'lain_kemudahan' ) <input class="form-control" value="{{ $kemudahanSukan?->$butiran }}" name="{{ $subKey.'_butiran' }}" id="{{ $subKey.'_butiran' }}" disabled> @endif</td>
                         @foreach ($ada_tiadas as $id => $ada_tiada)
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="{{ $subKey }}" id="{{ $subKey.'_'.$id }}" value="{{ $id }}" disabled onclick="checkInputKemudahan('{{ $subKey }}', '{{ $id }}', false)">
+                        <input class="form-check-input" type="radio" @if($kemudahanSukan && $kemudahanSukan->$subKey == $id) checked @endif name="{{ $subKey }}" id="{{ $subKey.'_'.$id }}" value="{{ $id }}" disabled onclick="checkInputKemudahan('{{ $subKey }}', '{{ $id }}', false)">
                     </div>
                 </td>
                         @endforeach
 
                         @foreach ($gunasamas as $id => $gunasama)
+                        <?php
+                        $guna_sama = $subKey.'_gunasama';
+                        ?>
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
+                        <input class="form-check-input" type="radio" @if($kemudahanSukan && $kemudahanSukan->$guna_sama == $id) checked @endif name="{{ $subKey.'_gunasama' }}" id="{{ $subKey.'_gunasama_'.$id }}" value="{{ $id }}" disabled>
                     </div>
                 </td>
                         @endforeach
 
+                        <?php
+                        $bilangan = $subKey.'_bilangan';
+                        ?>
                 <td>
-                    <input type="text" class="form-control" id="{{ $subKey.'_bilangan' }}" name="{{ $subKey.'_bilangan' }}" disabled>
+                    <input type="text" class="form-control" value="{{ $kemudahanSukan?->$bilangan }}" id="{{ $subKey.'_bilangan' }}" name="{{ $subKey.'_bilangan' }}" disabled>
                 </td>
 
                         @foreach ($masih_digunakans as $id => $masih_digunakan)
+                        <?php
+                        $masihDigunakan = $subKey.'_masih_digunakan';
+                        ?>
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="{{ $subKey.'_masih_digunakan' }}" id="{{ $subKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
+                        <input class="form-check-input" type="radio" @if($kemudahanSukan && $kemudahanSukan->$masihDigunakan == $id) checked @endif name="{{ $subKey.'_masih_digunakan' }}" id="{{ $subKey.'_masih_digunakan_'.$id }}" value="{{ $id }}" disabled>
                     </div>
                 </td>
                         @endforeach
 
                         @foreach ($status_fizikals as $id => $status_fizikal)
+                        <?php
+                        $statusFizikal = $subKey.'_status_fizikal';
+                        ?>
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="{{ $subKey.'_status_fizikal' }}" id="{{ $subKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
+                        <input class="form-check-input" type="radio" @if($kemudahanSukan && $kemudahanSukan->$statusFizikal == $id) checked @endif name="{{ $subKey.'_status_fizikal' }}" id="{{ $subKey.'_status_fizikal_'.$id }}" value="{{ $id }}" disabled>
                     </div>
                 </td>
                         @endforeach
@@ -123,9 +141,10 @@
 
 <br>
 <?php
-    $segment = Request::segment(3);
+    //$segment = Request::segment(3);
 ?>
-@if($segment != 'sedia-ada')
+{{-- @if($segment != 'sedia-ada') --}}
+@if(!$checkReadOnly)
 <div class="d-flex justify-content-center">
     <button type="button" class="btn btn-primary" onclick="submitTab('#kemSukForm')">Simpan</button>
 </div>

@@ -15,9 +15,14 @@ I-KePS
     <div class="card-header">
         <h4 class="card-title fw-bolder"> Instrumen Bancian Kemudahan Prasasarana dan Program Sukan Sekolah </h4>
 
-        <div class="d-flex justify-content-end align-items-center">
+        {{-- <div class="d-flex justify-content-end align-items-center">
             <a type="button" class="btn btn-primary float-right" href="{{ route('ikeps.ikeps_baru') }}">
                 Pengisian Baru
+            </a>
+        </div> --}}
+        <div class="d-flex justify-content-end align-items-center">
+            <a type="button" class="btn btn-primary float-right" href="#">
+                Status : {{$statusOfRecord}}
             </a>
         </div>
     </div>
@@ -272,15 +277,15 @@ I-KePS
         <hr>
 
         <div class="table-responsive">
-            <table class="table header_uppercase table-bordered table-responsive table-hovered" id="table-status-pertanyaan">
+            <table class="table header_uppercase table-bordered table-responsive table-hovered" id="table-status-penyertaan">
                 <thead>
                     <tr>
-                        <th>STATUS PERTANYAAN</th>
+                        <th>STATUS PENYERTAAN</th>
                     </tr>
                 </thead>
             </table>
             <?php
-            $jenis_pertanyaan = config('staticdata.ikeps.status_penyertaan.jenis_penyertaan');
+            $jenis_penyertaan = config('staticdata.ikeps.status_penyertaan.jenis_penyertaan');
             ?>
             <table class="table header_uppercase table-bordered table-responsive table-hovered" id="table-sukan-mssm">
                 <thead>
@@ -297,7 +302,7 @@ I-KePS
                 <?php 
                 $totalZon = $totalDaerah = $totalBahagian = $totalNegeri = $totalKebangsaan = $totalAntarabangsa = 0;
 
-                if($statusPertanyaan){
+                if($statusPenyertaan){
                 ?>
                 <tbody>
                     <?php
@@ -313,29 +318,29 @@ I-KePS
                         $antarabangsa = $mssmKey.'_antarabangsa';
                         ?>
                         @if(
-                            $statusPertanyaan->$zon || 
-                            $statusPertanyaan->$daerah || 
-                            $statusPertanyaan->$bahagian ||
-                            $statusPertanyaan->$negeri ||
-                            $statusPertanyaan->$kebangsaan ||
-                            $statusPertanyaan->$antarabangsa
+                            $statusPenyertaan->$zon || 
+                            $statusPenyertaan->$daerah || 
+                            $statusPenyertaan->$bahagian ||
+                            $statusPenyertaan->$negeri ||
+                            $statusPenyertaan->$kebangsaan ||
+                            $statusPenyertaan->$antarabangsa
                         )
                         <?php
-                        $totalZon+=$statusPertanyaan->$zon; 
-                        $totalDaerah+=$statusPertanyaan->$daerah; 
-                        $totalBahagian+=$statusPertanyaan->$bahagian;
-                        $totalNegeri+=$statusPertanyaan->$negeri;
-                        $totalKebangsaan+=$statusPertanyaan->$kebangsaan;
-                        $totalAntarabangsa+=$statusPertanyaan->$antarabangsa;
+                        $totalZon+=$statusPenyertaan->$zon; 
+                        $totalDaerah+=$statusPenyertaan->$daerah; 
+                        $totalBahagian+=$statusPenyertaan->$bahagian;
+                        $totalNegeri+=$statusPenyertaan->$negeri;
+                        $totalKebangsaan+=$statusPenyertaan->$kebangsaan;
+                        $totalAntarabangsa+=$statusPenyertaan->$antarabangsa;
                         ?>
                     <tr>
                         <td>{{ $sukan }}</td>
-                        <td>{{ $statusPertanyaan->$zon }}</td>
-                        <td>{{ $statusPertanyaan->$daerah }}</td>
-                        <td>{{ $statusPertanyaan->$bahagian }}</td>
-                        <td>{{ $statusPertanyaan->$negeri }}</td>
-                        <td>{{ $statusPertanyaan->$kebangsaan }}</td>
-                        <td>{{ $statusPertanyaan->$antarabangsa }}</td>
+                        <td>{{ $statusPenyertaan->$zon }}</td>
+                        <td>{{ $statusPenyertaan->$daerah }}</td>
+                        <td>{{ $statusPenyertaan->$bahagian }}</td>
+                        <td>{{ $statusPenyertaan->$negeri }}</td>
+                        <td>{{ $statusPenyertaan->$kebangsaan }}</td>
+                        <td>{{ $statusPenyertaan->$antarabangsa }}</td>
                     </tr>
                         @endif
                     @endforeach
@@ -371,7 +376,7 @@ I-KePS
                 <?php 
                 $totalZon = $totalDaerah = $totalBahagian = $totalNegeri = $totalKebangsaan = $totalAntarabangsa = 0;
                 
-                if($statusPertanyaan){
+                if($statusPenyertaan){
                 ?>
                 <tbody>
                     <?php
@@ -387,29 +392,29 @@ I-KePS
                         $antarabangsa = $lainKey.'_antarabangsa';
                         ?>
                         @if(
-                            $statusPertanyaan->$zon || 
-                            $statusPertanyaan->$daerah || 
-                            $statusPertanyaan->$bahagian ||
-                            $statusPertanyaan->$negeri ||
-                            $statusPertanyaan->$kebangsaan ||
-                            $statusPertanyaan->$antarabangsa
+                            $statusPenyertaan->$zon || 
+                            $statusPenyertaan->$daerah || 
+                            $statusPenyertaan->$bahagian ||
+                            $statusPenyertaan->$negeri ||
+                            $statusPenyertaan->$kebangsaan ||
+                            $statusPenyertaan->$antarabangsa
                         )
                         <?php
-                        $totalZon+=$statusPertanyaan->$zon; 
-                        $totalDaerah+=$statusPertanyaan->$daerah; 
-                        $totalBahagian+=$statusPertanyaan->$bahagian;
-                        $totalNegeri+=$statusPertanyaan->$negeri;
-                        $totalKebangsaan+=$statusPertanyaan->$kebangsaan;
-                        $totalAntarabangsa+=$statusPertanyaan->$antarabangsa;
+                        $totalZon+=$statusPenyertaan->$zon; 
+                        $totalDaerah+=$statusPenyertaan->$daerah; 
+                        $totalBahagian+=$statusPenyertaan->$bahagian;
+                        $totalNegeri+=$statusPenyertaan->$negeri;
+                        $totalKebangsaan+=$statusPenyertaan->$kebangsaan;
+                        $totalAntarabangsa+=$statusPenyertaan->$antarabangsa;
                         ?>
                     <tr>
                         <td>{{ $sukan }}</td>
-                        <td>{{ $statusPertanyaan->$zon }}</td>
-                        <td>{{ $statusPertanyaan->$daerah }}</td>
-                        <td>{{ $statusPertanyaan->$bahagian }}</td>
-                        <td>{{ $statusPertanyaan->$negeri }}</td>
-                        <td>{{ $statusPertanyaan->$kebangsaan }}</td>
-                        <td>{{ $statusPertanyaan->$antarabangsa }}</td>
+                        <td>{{ $statusPenyertaan->$zon }}</td>
+                        <td>{{ $statusPenyertaan->$daerah }}</td>
+                        <td>{{ $statusPenyertaan->$bahagian }}</td>
+                        <td>{{ $statusPenyertaan->$negeri }}</td>
+                        <td>{{ $statusPenyertaan->$kebangsaan }}</td>
+                        <td>{{ $statusPenyertaan->$antarabangsa }}</td>
                     </tr>
                         @endif
                     @endforeach
@@ -484,4 +489,42 @@ I-KePS
         
     </div>
 </div>
+
+@if ($canApprove)
+
+@php
+    $status = \App\Helpers\FMF::getNextStatus($staticModuleId, $ikeps->status);
+@endphp
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" style="margin-right:10px;" onclick="formverifyIkeps('{{ $status }}','{{ $ikeps->id }}')">Approve</button>
+
+    {{-- <button type="button" class="btn btn-danger" style="margin-right:10px;" onclick="formverifyIkeps('{{$status}}','{{$ikeps->id}}')">Reject</button> --}}
+</div>
+<div>
+    &nbsp;
+</div>
+@endif
+
+@endsection
+
+@section('script')
+<script>
+    function  formverifyIkeps(status, formid) {
+        var url = "{{route('ikeps.verify-ikeps')}}";
+
+        $.ajax({
+            url: url, // Route URL
+            type: 'POST', // Request type (GET, POST, etc.)
+             data: {
+                status: status,
+                formid: formid
+             }, 
+            success: function(response) {
+                if (response.success) {
+                    window.location.reload();
+               } 
+            }
+        });
+    }
+</script>
 @endsection
