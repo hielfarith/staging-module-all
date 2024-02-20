@@ -88,7 +88,7 @@
     $itemStandardQualitySkips = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
     //get instrumen details
     $instrumen = \App\Models\ButiranInstitusiSkips::where('id', $butiran_id)->first();
-    if ($instrumen->jenis_ips == 'Pusat Perkembangan Minda' || $instrumen->jenis_ips == 'Pusat Tuisyen') {
+    if ($instrumen && $instrumen?->jenis_ips == 'Pusat Perkembangan Minda' || $instrumen?->jenis_ips == 'Pusat Tuisyen') {
         $antarabangsa = true;
     } else {
         $antarabangsa = !empty($itemStandardQualitySkips->pengurusan_pelajar_antarabangsa) ? true : false;
