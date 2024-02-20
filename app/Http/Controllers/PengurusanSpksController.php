@@ -221,7 +221,7 @@ class PengurusanSpksController extends Controller
     {
          if($request->ajax()) {
 
-            $spks = SpksPengisian::select(['instrumen_skpak_spks_ikep.pengguna_instrumen', 'instrumen_skpak_spks_ikep.pengisian_oleh', 'instrumen_skpak_spks_ikep.tempoh_pengisian', 'instrumen_skpak_spks_ikep.tempoh_pengisian_lain', 'spks_pengisians.status', 'spks_pengisians.id as spks_id'])->join('instrumen_skpak_spks_ikep', 'instrumen_skpak_spks_ikep.id', '=', 'spks_pengisians.instrumen_id')->whereIn('spks_pengisians.status', [1,2]);
+            $spks = SpksPengisian::select(['instrumen_skpak_spks_ikep.pengguna_instrumen', 'instrumen_skpak_spks_ikep.pengisian_oleh', 'instrumen_skpak_spks_ikep.tempoh_pengisian', 'instrumen_skpak_spks_ikep.tempoh_pengisian_lain', 'spks_pengisians.status as spks_status', 'spks_pengisians.id as spks_id'])->join('instrumen_skpak_spks_ikep', 'instrumen_skpak_spks_ikep.id', '=', 'spks_pengisians.instrumen_id')->whereIn('spks_pengisians.status', [1,2]);
 
             return Datatables::of($spks)
                 ->editColumn('pengguna_instrumen', function ($skpak) {
@@ -237,7 +237,7 @@ class PengurusanSpksController extends Controller
                     return $skpak->tempoh_pengisian_lain;
                 })
                   ->editColumn('status', function ($skpak) {
-                    return $skpak->status;
+                    return $skpak->spks_status;
                 })
                 ->addColumn('DT_RowIndex', function ($skpak) {
                     static $index = 1;
@@ -248,8 +248,9 @@ class PengurusanSpksController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatSpks(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatSpksEdit(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
-
+                    if ($skpak->spks_status  == 1) {
+                        $button .= '<a onclick="maklumatSpksEdit(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    }
                     $button .= "</div>";
 
                     return $button;
