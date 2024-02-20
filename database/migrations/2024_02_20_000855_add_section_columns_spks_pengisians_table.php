@@ -17,6 +17,7 @@ return new class extends Migration
             $table->longText('aspek1_sectionb')->nullable();
             $table->longText('aspek1_sectionc')->nullable();
             $table->longText('aspek1_sectiond')->nullable();
+            $table->string('remarks')->nullable();
         });
     }
 
@@ -28,7 +29,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('spks_pengisians', function (Blueprint $table) {
-            $table->dropColumn(['aspek1_sectionb', 'aspek1_sectionc', 'aspek1_sectiond']);
+            $table->dropColumn(['aspek1_sectionb', 'aspek1_sectionc', 'aspek1_sectiond', 'remarks']);
         });
     }
 };

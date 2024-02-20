@@ -75,7 +75,13 @@ $jumlahs_spks = [
     </table>
 </div>
 
+
 <hr>
+@if($spks?->status == 3 || $spks?->remarks)
+<label class="fw-bolder">Remarks :</label>
+<textarea id="remarks" class="form-control" name="remarks" disabled>{{ $spks?->remarks }}</textarea>
+@endif 
+
 
 @if($disabled != 'disabled')
 <div class="buy-now">
@@ -84,15 +90,38 @@ $jumlahs_spks = [
     </button>
 </div>
 @endif
+
+@if($disabled == 'disabled' && $spks?->status == 2) 
+<label class="fw-bolder">Remarks :</label>
+<textarea id="remarks" class="form-control" name="remarks"></textarea>
+<div class="buy-now">
+    <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="formHantar('approve')">
+        Approve
+    </button>
+    <button class="btn btn-warning waves-effect waves-float waves-light" type="button" onclick="formHantar('query')">
+        Query
+    </button>
+</div>
+@endif
 <script type="text/javascript">
     function  formHantar(argument) {
         var id = $('#spks_id').val();
+        var remarks = '';
+        if (argument != 'hantar-aspek') {
+            var remarks = $('#remarks').val();
+            if (remarks == '') {
+                Swal.fire('Gagal', 'Please enter remarks', 'error');
+                return false;
+            }
+        }
         var url = "{{ route('spks.submit-jumlah') }}"
         $.ajax({
             url: url,
             method: 'POST',
             data: {
                 id: id,
+                argument:argument,
+                remarks: remarks
             },
             success: function(response) {
                 if (response.status) {

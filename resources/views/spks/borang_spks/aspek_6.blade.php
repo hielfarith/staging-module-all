@@ -53,10 +53,10 @@ $number = 1;
 <hr>
 <?php
     if ($spks) {
-        $aspek6 = json_decode($spks->aspek6, true);
+        $aspek = json_decode($spks->aspek6, true);
 
     } else {
-        $aspek6 = null;
+        $aspek = null;
     }
 ?>
 <form id="aspek6">
@@ -92,30 +92,36 @@ $number = 1;
                 @foreach ($aspek_6['subSections'] as $subsection_aspek6)
                     <?php
                         $name = $index.'_'.$loop->index;
+                         $nameIndex = $index.'_'.$loop->index;
+                        $catatanIndex = 'catatan_'.$nameIndex;
+                        $catatan = '';
+                        if ($aspek) {
+                            $catatan = isset($aspek[$catatanIndex]) ? $aspek[$catatanIndex] : '';
+                        }
                     ?>
                     <tr>
                         <td>{{ $number++ }}</td>
                         <td>{{ $subsection_aspek6 }}</td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" {{$disabled}}>
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" {{$disabled}} @if (isset($aspek) && $aspek[$nameIndex] == "0") checked  @endif>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" {{$disabled}}>
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" {{$disabled}} @if (isset($aspek) && $aspek[$nameIndex] == "1") checked  @endif>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" {{$disabled}}>
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" {{$disabled}} @if (isset($aspek) && $aspek[$nameIndex] == "2") checked  @endif>
                             </div>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="5" class="bg-light-success">
-                            <input required type="text" name="catatan_{{$index}}" class="form-control" placeholder="Catatan" {{$disabled}}>
+                            <input required type="text" name="catatan_{{$name}}" class="form-control" placeholder="Catatan" {{$disabled}} value="{{$catatan}}">
                         </td>
                     </tr>
                 @endforeach

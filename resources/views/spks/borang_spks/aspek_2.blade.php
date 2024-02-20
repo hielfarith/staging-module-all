@@ -48,10 +48,9 @@ $number = 1;
 <hr>
 <?php
     if ($spks) {
-        $aspek2 = json_decode($spks->aspek2, true);
-
+        $aspek = json_decode($spks->aspek2, true);
     } else {
-        $aspek2 = null;
+        $aspek = null;
     }
 ?>
 <form id="aspek2">
@@ -89,35 +88,41 @@ $number = 1;
                 @foreach ($aspek_2['subSections'] as $subsection_aspek2)
                     <?php
                         $name = $index.'_'.$loop->index;
+                        $nameIndex = $index.'_'.$loop->index;
+                        $catatanIndex = 'catatan_'.$nameIndex;
+                        $catatan = '';
+                        if ($aspek) {
+                            $catatan = isset($aspek[$catatanIndex]) ? $aspek[$catatanIndex] : '';
+                        }
                     ?>
                     <tr>
                         <td>{{ $number++ }}</td>
                         <td>{{ $subsection_aspek2 }}</td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" {{$disabled}}>
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" {{$disabled}} @if (isset($aspek) && $aspek[$nameIndex] == "0") checked  @endif>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" {{$disabled}}>
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" {{$disabled}} @if (isset($aspek) && $aspek[$nameIndex] == "1") checked  @endif>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" {{$disabled}}>
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" {{$disabled}} @if (isset($aspek) && $aspek[$nameIndex] == "2") checked  @endif>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB" {{$disabled}}>
+                                <input required class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB" {{$disabled}} @if (isset($aspek) && $aspek[$nameIndex] == "TB") checked  @endif>
                             </div>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="6" class="bg-light-success">
-                            <input required type="text" name="catatan_{{$index}}" class="form-control" placeholder="Catatan" {{$disabled}}>
+                            <input required type="text" name="catatan_{{$nameIndex}}" class="form-control" placeholder="Catatan" {{$disabled}} value="{{$catatan}}">
                         </td>
                     </tr>
                 @endforeach

@@ -130,9 +130,11 @@ $number = 1;
     </table>
 </div>
 
+@if($disabled != 'disabled')
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="formsubmit('aspek1_sectionc')">
         Simpan
     </button>
 </div>
+@endif
 </form>
