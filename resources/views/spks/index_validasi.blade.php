@@ -84,7 +84,7 @@ SPKS
             <div class="tab-pane fade" id="validasi-jumlah" role="tabpanel" aria-labelledby="validasi-jumlah-tab">
                 @include('spks.validasi_spks.jumlah')
             </div>
-            <div class="tab-pane fade" id="validasi-jumlah" role="tabpanel" aria-labelledby="validasi-jumlah-tab">
+            <div class="tab-pane fade" id="validasi-skor" role="tabpanel" aria-labelledby="validasi-skor-tab">
                 @include('spks.validasi_spks.skor_piawaian')
             </div>
             <div class="tab-pane fade" id="catatan-validasi" role="tabpanel" aria-labelledby="catatan-validasi-tab">
