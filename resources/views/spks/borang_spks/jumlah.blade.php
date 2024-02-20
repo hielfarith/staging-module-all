@@ -100,7 +100,7 @@ $jumlahs_spks = [
                     var location = "{{route('spks.senarai-spks')}}";
                     window.location.href = location;
                 } else {
-                    Swal.fire('Gagal', 'Gagal', 'error');
+                    Swal.fire('Gagal', response.detail, 'error');
                 }
             }
         });

@@ -283,8 +283,12 @@ class PengurusanSpksController extends Controller
         try { 
         if ($id) {
             $spks = SpksPengisian::where('id', $id)->first();
-            $spks->status = 2;
-            $spks->save();
+            if (!empty($spks->aspek1) && !empty($spks->aspek2) && !empty($spks->aspek3) && !empty($spks->aspek4) && !empty($spks->aspek5) && !empty($spks->aspek6) && !empty($spks->aspek1_sectionb) && !empty($spks->aspek1_sectionc) && !empty($spks->aspek1_sectiond) && !empty($spks->aspek1_sectione)) {
+                $spks->status = 2;
+                $spks->save();
+            } else {
+                return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => 'Please fill all the tabs'], 404);
+            }
         } else {
             return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => 'Record not found'], 404);
         }
