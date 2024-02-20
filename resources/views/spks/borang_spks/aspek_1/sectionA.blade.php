@@ -38,7 +38,7 @@ $aspeks_1_secA = [
 $number = 1;
 @endphp
 
-<hr>
+
 <?php
     if ($spks) {
         $aspek1 = json_decode($spks->aspek1, true);
@@ -84,7 +84,7 @@ $number = 1;
 
                 $name = $index.'_'.$loop->index;
                 $withTB = ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah') || ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Semasa Pengajaran & Pembelajaran Dan Waktu Rehat') || ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Semasa Aktiviti Kokurikulum, Sukan Dan Permainan') || ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan') || ($aspek_1_secA['section'] == 'Arahan Keselamatan Murid Di Asrama');
-                
+
                 $nameIndex = $index.'_'.$loop->index;
                 $catatanIndex = 'catatan_'.$nameIndex;
                 $catatan = '';
