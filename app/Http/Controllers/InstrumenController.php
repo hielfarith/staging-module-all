@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
 
+use App\Models\IkepsKemudahanSukan;
+use App\Models\IkepsPrasaranaSukan;
+use App\Models\IkepsPerancanganSukan;
+use App\Models\IkepsStatusPenyertaan;
+use App\Models\IkepsProgramSekolah;
+use Carbon;
+use PDO;
+
 class InstrumenController extends Controller
 {
     public function __construct()
@@ -52,7 +60,14 @@ class InstrumenController extends Controller
                 $query->where('name', 'pengetua_guru_besar');
             })->get();
 
-            return view('instrumen_update.sedia-ada.form', compact('suSukan', 'guruBesar'));
+            $tahun = Carbon::now()->format('Y');
+            $prasaranaSukan = IkepsPrasaranaSukan::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+            $kemudahanSukan = IkepsKemudahanSukan::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+            $perancanganSukan = IkepsPerancanganSukan::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+            $statusPenyertaan = IkepsStatusPenyertaan::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+            $programSekolah = IkepsProgramSekolah::where('kod_sekolah', 0)->where('tahun', $tahun)->first();
+
+            return view('instrumen_update.sedia-ada.form', compact('suSukan', 'guruBesar', 'prasaranaSukan','kemudahanSukan','perancanganSukan','statusPenyertaan','programSekolah'));
         } elseif ($request->type == 'skips') {
             return view('instrumen_update.skips.form');
         }
