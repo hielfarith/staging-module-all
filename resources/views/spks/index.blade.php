@@ -134,7 +134,6 @@ SPKS
                 type: type
             },
             success: function(response) {
-                console.log(response)
                 $('#jumlahspks').empty();
                 $('#jumlahspks').append(response)
             }

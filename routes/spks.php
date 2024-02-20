@@ -7,6 +7,8 @@ Route::controller(PengurusanSpksController::class)->group(function () {
         Route::get('borang-pengisian/{id?}','BorangSpksBaru')->name('spks_baru');
         Route::post('save-spks/{tab}','saveSpks')->name('save-spks');
         Route::post('get-jumlah','GetJumlah')->name('get-jumlah');
+        Route::post('submit-jumlah','SubmitJumlah')->name('submit-jumlah');
+
         Route::get('borang/{id}/{type}','borangView')->name('borang-view');
         Route::get('senarai-spks','SenaraiSpks')->name('senarai-spks');
         Route::get('verfikasi-senarai','verfikasiSpksSenarai')->name('verfikasi_senarai');

@@ -163,46 +163,58 @@ class PengurusanSpksController extends Controller
         } else {
             $disabled = '';
         }
+        
+        $array = [];
+        $jumlah = [];
         if ($id) {
             $spks = SpksPengisian::where('id', $id)->first();
             $tabsarray = ['aspek1','aspek2','aspek3','aspek4','aspek5','aspek6'];
-
-            $array = [];
+           
+            $fzero = $fone = $ftwo = $ftb = 0;
             foreach ($tabsarray as $variable) {
                 $$variable = json_decode($spks->$variable, true);
+                $array[$variable][0] = 0;
+                $array[$variable][1] = 0;
+                $array[$variable][2] = 0;
+                $array[$variable]['tb'] = 0;
                 $zero = $one = $two = $tb = 0;
                 if (!empty($$variable)) {
+
                     foreach ($$variable as $key =>  $value) {
                         if (str_contains($key, 'spks') || str_contains($key, 'catatan') || str_contains($key, 'status')) {
                             continue;
                         }
+                    
                         if ($value == '0') {
                             $zero += 1;
+                            $fzero += 1;
                             $array[$variable][0] = $zero;
+                            $jumlah['f0'] = $fzero;
                         }
+                      
                         if ($value == '1') {
                             $one += 1;
+                            $fone += 1;
                             $array[$variable][1] = $one;
+                            $jumlah['f1'] = $fone;
                         }
                         if ($value == '2') {
                             $two += 1;
+                            $ftwo += 1;
+                            $jumlah['f2'] = $ftwo;
                             $array[$variable][2] = $two;
                         }
                         if ($value == 'TB') {
                             $tb += 1;
+                            $ftb += 1;
+                            $jumlah['ftb'] = $ftb;
                             $array[$variable]['tb'] = $tb;
                         }
                     }
                 }
-
             }
         }
-
-        foreach ($array as $key => $value) {
-            // dd($array);
-        }
-
-        return view('spks.borang_spks.jumlah', compact('array', 'spks', 'disabled'));
+        return view('spks.borang_spks.jumlah', compact('array', 'spks', 'disabled', 'array', 'jumlah', 'id'));
     }
 
     public function SenaraiSpks(Request $request)
@@ -262,5 +274,25 @@ class PengurusanSpksController extends Controller
             $disabled = 'disabled';
         }
         return view ('spks.index', compact('spks', 'disabled', 'type'));
+    }
+    public function SubmitJumlah(Request $request)
+    {
+      DB::beginTransaction();
+      $id = $request->id;
+        try { 
+        if ($id) {
+            $spks = SpksPengisian::where('id', $id)->first();
+            $spks->status = 2;
+            $spks->save();
+        } else {
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => 'Record not found'], 404);
+        }
+        DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => "berjaya", 'data' => $spks]);
+        } catch (\Throwable $e) {
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
+
     }
 }
