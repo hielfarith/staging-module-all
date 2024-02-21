@@ -135,27 +135,27 @@ class ButiranInstitusiSkips extends Model
         return [
             'zero_star' => [
                 'total' => $zeroStar,
-                'percentage' => number_format(($zeroStar/$bilInstitutions)*100),
+                'percentage' => $bilInstitutions ? number_format(($zeroStar/$bilInstitutions)*100) : 0,
             ],
             'one_star' => [
                 'total' => $oneStar,
-                'percentage' => number_format(($oneStar/$bilInstitutions)*100),
+                'percentage' => $bilInstitutions ? number_format(($oneStar/$bilInstitutions)*100) : 0,
             ],
             'two_star' => [
                 'total' => $twoStar,
-                'percentage' => number_format(($twoStar/$bilInstitutions)*100),
+                'percentage' => $bilInstitutions ? number_format(($twoStar/$bilInstitutions)*100) : 0,
             ],
             'three_star' => [
                 'total' => $threeStar,
-                'percentage' => number_format(($threeStar/$bilInstitutions)*100),
+                'percentage' => $bilInstitutions ? number_format(($threeStar/$bilInstitutions)*100) : 0,
             ],
             'four_star' => [
                 'total' => $fourStar,
-                'percentage' => number_format(($fourStar/$bilInstitutions)*100),
+                'percentage' => $bilInstitutions ? number_format(($fourStar/$bilInstitutions)*100) : 0,
             ],
             'five_star' => [
                 'total' => $fiveStar,
-                'percentage' => number_format(($fiveStar/$bilInstitutions)*100),
+                'percentage' => $bilInstitutions ? number_format(($fiveStar/$bilInstitutions)*100) : 0,
             ],
         ];
     }
