@@ -745,9 +745,9 @@ class InstrumenController extends Controller
     public function tambahSpks(Request $request)
     {
         $negeris = MasterState::all();
-        $spks = $type = null;
+        $spks = $type = $id = null;
         $disabled = 'disabled';
-        return view('instrumen_update.spks.form', compact('negeris', 'spks', 'disabled'));
+        return view('instrumen_update.spks.form', compact('negeris', 'spks', 'disabled', 'id'));
     }
 
     public function saveSpks(Request $request)
