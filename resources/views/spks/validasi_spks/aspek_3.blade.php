@@ -57,6 +57,12 @@ $number = 1;
             </tr>
         </thead>
         <tbody>
+            <tr class="bg-light-danger">
+                <td colspan="2" class="text-end">
+                    Jumlah Skor
+                </td>
+                <td colspan="3" class="text-center"></td>
+            </tr>
             @foreach ($aspeks_3 as $index => $aspek_3)
             <tr>
                 <td colspan="5" class="bg-light-primary text-uppercase">
@@ -115,20 +121,15 @@ $number = 1;
             @endforeach
         </tbody>
         <tfoot>
-            <tr class="bg-light-danger">
+            {{-- <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Skor
                 </td>
                 <td class="text-center"></td>
                 <td class="text-center"></td>
                 <td class="text-center"></td>
-            </tr>
-            <tr class="bg-light-danger">
-                <td colspan="2" class="text-end">
-                    Jumlah Skor
-                </td>
-                <td colspan="3" class="text-center"></td>
-            </tr>
+            </tr> --}}
+
         </tfoot>
     </table>
 </div>

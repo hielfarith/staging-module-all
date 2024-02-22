@@ -1,8 +1,8 @@
 <div  class="bs-stepper vertical vertical-wizard">
-    <div class="bs-stepper-header">
+    <div style="width: 10%" class="bs-stepper-header">
         <div class="step" data-target="#account-details-vertical" role="tab" id="account-details-vertical-trigger">
             <button type="button" class="step-trigger">
-                <span class="bs-stepper-box">A</span>
+                <span style="width: 100%;padding-left:10%;padding-right:10%" class="bs-stepper-box">Section A</span>
                 <span class="bs-stepper-label">
                     <span class="bs-stepper-title"></span>
                     <span class="bs-stepper-subtitle"></span>
@@ -13,7 +13,7 @@
 
         <div class="step" data-target="#personal-info-vertical" role="tab" id="personal-info-vertical-trigger">
             <button type="button" class="step-trigger">
-                <span class="bs-stepper-box">B</span>
+                <span style="width: 100%;padding-left:10%;padding-right:10%" class="bs-stepper-box">Section B</span>
                 <span class="bs-stepper-label">
                     <span class="bs-stepper-title"></span>
                     <span class="bs-stepper-subtitle"></span>
@@ -22,7 +22,7 @@
         </div>
         <div class="step" data-target="#address-step-vertical" role="tab" id="address-step-vertical-trigger">
             <button type="button" class="step-trigger">
-                <span class="bs-stepper-box">C</span>
+                <span style="width: 100%;padding-left:10%;padding-right:10%"" class="bs-stepper-box">Section C</span>
                 <span class="bs-stepper-label">
                     <span class="bs-stepper-title"></span>
                     <span class="bs-stepper-subtitle"></span>
@@ -31,7 +31,7 @@
         </div>
         <div class="step" data-target="#social-links-vertical" role="tab" id="social-links-vertical-trigger">
             <button type="button" class="step-trigger">
-                <span class="bs-stepper-box">D</span>
+                <span style="width: 100%;padding-left:10%;padding-right:10%"" class="bs-stepper-box">Section D</span>
                 <span class="bs-stepper-label">
                     <span class="bs-stepper-title"></span>
                     <span class="bs-stepper-subtitle"></span>
@@ -40,7 +40,7 @@
         </div>
         <div class="step" data-target="#eela" role="tab" id="eela-trigger">
             <button type="button" class="step-trigger">
-                <span class="bs-stepper-box">E</span>
+                <span style="width: 100%;padding-left:10%;padding-right:10%"" class="bs-stepper-box">Section E</span>
                 <span class="bs-stepper-label">
                     <span class="bs-stepper-title"></span>
                     <span class="bs-stepper-subtitle"></span>
