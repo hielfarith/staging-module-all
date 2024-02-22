@@ -1,15 +1,15 @@
 <style>
-    #spks_aspek4 thead th {
+    #spks_aspek2 thead th {
         vertical-align: middle;
         text-align: center;
     }
 
-    #spks_aspek4 tbody {
+    #spks_aspek2 tbody {
         vertical-align: middle;
         /* text-align: center; */
     }
 
-    #spks_aspek4 table {
+    #spks_aspek2 table {
         width: 100% !important;
         /* word-wrap: break-word; */
     }
@@ -18,8 +18,8 @@
 
 @php
 $aspeks_4 = [
-[
-    'section' => 'Arahan Keselamatan Menghadapi Krisis Dan Bencana',
+    [
+        'section' => 'Arahan Keselamatan Menghadapi Krisis Dan Bencana',
     'subSections' => [
         'Menyedia dan mempamer tatacara keselamatan berkaitan krisis/bencana (kebakaran, perubahan cuaca, ribut petir, kemarau,
         jerebu, banjir dan lain-lain yang berkaitan).',
@@ -29,133 +29,80 @@ $aspeks_4 = [
         'Ada nombor-nombor telefon pihak berkuasa berkaitan.',
         'Kerjasama dengan pihak berkuasa berkaitan.',
         'Pematuhan Buku Panduan dan Surat Pekeliling Ikhtisas, Kementerian Pendidikan Malaysia.',
-
         ]
     ],
 ];
 
 $number = 1;
-
 @endphp
 
+{{-- <div style="height: ;" class="card-header">
+    <h5 class="card-title fw-bolder text-uppercase"> Pengurusan Keselamatan Infrastruktur Sekolah </h5>
 
-<div style="height: ;" class="card-header">
-    <h5 class="card-title fw-bolder text-uppercase"> Pengurusan Krisis/Bencana </h5>
 
-    <div class="justify-content-end align-items-center" style="width: 20%">
-        <div style="text-align:center">
-            <span>Jumlah Skor</span>
-        </div>
-        <div style="text-align:center;padding-right:"><span>20</span>
-        </div>
-
-    </div>
  </div>
-<hr>
+<hr> --}}
 
 <div class="table-responsive">
-    <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek4">
-        <thead>
-            <tr>
-                <th style="font-size: 10pt" rowspan="2">No.</th>
-                <th style="font-size: 10pt" colspan="3" rowspan="2">Item</th>
-                {{-- <th colspan="3">Skor Sekolah</th> --}}
-            </tr>
+    <div class="justify-content-end align-items-center" style="margin-bottom:1%">
+        <div style="text-align: right;">
+            <label for="jumlahSkor"
+                style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;font-weight:bold;color:white;font-size:10pt">Jumlah
+                Skor<span id="jumlahSkor"
+                    style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;">20</span></label>
 
-            {{-- <tr>
-                <th>0</th>
-                <th>1</th>
-                <th>2</th>
-            </tr> --}}
-        </thead>
-        <tbody>
-            {{-- <tr class="bg-light-danger">
-                <td colspan="2" class="text-end">
-                    Jumlah Skor
-                </td>
-                <td colspan="3" class="text-center"></td>
-            </tr> --}}
+        </div>
+    </div>
+    <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek2">
+        <thead>
+
             @foreach ($aspeks_4 as $index => $aspek_4)
             <tr>
-                <td style="font-size: 11pt" colspan="2" class="bg-light-primary text-uppercase">
+                <td style="font-size: 11pt;width:85%" colspan="2" class="bg-light-primary text-uppercase">
                     {{ $aspek_4['section'] }}
                 </td>
                 <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
                     Skor Sekolah
                 </td>
             </tr>
-            @foreach ($aspek_4['subSections'] as $subsection_aspek4)
-            <?php
+            @endforeach
+
+        </thead>
+        <tbody>
+
+            @foreach ($aspeks_4 as $index => $aspek_4)
+                {{-- <tr>
+                    <td style="font-size: 11pt" colspan="2" class="bg-light-primary text-uppercase">
+                        {{ $aspek_2['section'] }}
+                    </td>
+                    <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
+                        Skor Sekolah
+                    </td>
+                </tr> --}}
+                @foreach ($aspek_4['subSections'] as $subsection_aspek4)
+                    <?php
                         $name = $index.'_'.$loop->index;
                     ?>
-            <tr>
-                <td style="font-size: 10pt">{{ $number++ }}</td>
-                <td style="font-size: 10pt">{{ $subsection_aspek4 }}</td>
-                <td>
-                    <div style="font-size: 10pt" class="d-flex justify-content-center align-items-center">
-                        {{-- <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled> --}}
-                        <span>1</span>
-                    </div>
-                </td>
-                {{-- <td>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <input class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled>
-                    </div>
-                </td>
-                <td>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <input class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" disabled>
-                    </div>
-                </td>
-                <td>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <input class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" disabled>
-                    </div>
-                </td> --}}
-            </tr>
+                    <tr>
+                        <td style="font-size: 10pt">{{ $number++ }}</td>
+                        <td style="font-size: 10pt">{{ $subsection_aspek4 }}</td>
+                        <td>
+                            <div style="font-size: 10pt" class="d-flex justify-content-center align-items-center">
+                                {{-- <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled> --}}
+                                <span>1</span>
+                            </div>
+                        </td>
 
-            {{-- <tr id="pengisianAspek4_{{ $index }}_{{ $loop->index }}">
-                <td colspan="6" class="bg-light-warning">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Catatan" disabled>
-                        <button class="btn btn-success btn-sm" type="button" id="checkAspek4_{{ $index }}_{{ $loop->index }}">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                        </button>
-                        <button class="btn btn-danger btn-sm" type="button" id="rejectAspek4_{{ $index }}_{{ $loop->index }}">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
+                    </tr>
 
-            <tr id="catatanAspek4{{ $index }}_{{ $loop->index }}" style="display: none;">
-                <td colspan="6" class="bg-light-danger">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Catatan Validasi">
-                    </div>
-                </td>
-            </tr> --}}
-            @endforeach
+                @endforeach
             @endforeach
         </tbody>
-        <tfoot>
-            {{-- <tr class="bg-light-danger">
-                <td colspan="2" class="text-end">
-                    Skor
-                </td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-            </tr> --}}
 
-        </tfoot>
     </table>
 </div>
 
-<hr>
+
 
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
@@ -173,7 +120,7 @@ $number = 1;
 
             $("#pengisianAspek4_" + index + "_" + loopIndex).removeClass("bg-light-warning bg-light-danger").addClass("bg-light-success");
 
-            $("#catatanAspek4" + index + "_" + loopIndex).hide(300);
+            $("#catatanAspek4_" + index + "_" + loopIndex).hide(300);
         });
 
         $("[id^='rejectAspek4']").on("click", function () {
@@ -182,7 +129,7 @@ $number = 1;
             var loopIndex = indexValues[2];
 
             $("#pengisianAspek4_" + index + "_" + loopIndex).removeClass("bg-light-success bg-light-warning").addClass("bg-light-danger");
-            $("#catatanAspek4" + index + "_" + loopIndex).show(200);
+            $("#catatanAspek4_" + index + "_" + loopIndex).show(200);
         });
     });
 </script>

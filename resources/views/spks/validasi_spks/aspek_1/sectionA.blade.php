@@ -18,21 +18,21 @@
 
 @php
 $aspeks_1_secA = [
-    [
-    'section' => 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah',
-        'subSections' => [
-            'Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga,
-            Bot/Perahu,Kereta sendiri, Kereta api)',
-            'Menyedia dan mempamer tatacara keselamatan pergi dan balik sekolah.',
-            'pemeriksaan berkala ke atas kenderaan yang digunakan murid ke sekolah.(Basikal, Motosikal, Kereta)',
-            'Mematuhi prosedur dan peraturan berkaitan keselamatan daripada pihak berkuasa berkenaan. (Jaket keselamatan/topi
-            keledar/lesen memandu/cukai jalan dan lain-lain berkaitan)',
-            'Menetapkan laluan pejalan kaki, laluan dan parkir kenderaan yang digunakan oleh murid.',
-            'Menetapkan tempat menurunkan dan mengambil murid yang menggunakan bas dan yang dihantar oleh penjaga.',
-            'Kawal selia pengurusan sekolah sewaktu murid datang dan balik dari sekolah.',
-            'Ada arahan berkaitan keselamatan murid semasa berada di jeti / stesen bas/ stesen kereta api/ dan lain-lain.',
-        ]
-    ],
+[
+'section' => 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah',
+'subSections' => [
+'Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga,
+Bot/Perahu,Kereta sendiri, Kereta api)',
+'Menyedia dan mempamer tatacara keselamatan pergi dan balik sekolah.',
+'pemeriksaan berkala ke atas kenderaan yang digunakan murid ke sekolah.(Basikal, Motosikal, Kereta)',
+'Mematuhi prosedur dan peraturan berkaitan keselamatan daripada pihak berkuasa berkenaan. (Jaket keselamatan/topi
+keledar/lesen memandu/cukai jalan dan lain-lain berkaitan)',
+'Menetapkan laluan pejalan kaki, laluan dan parkir kenderaan yang digunakan oleh murid.',
+'Menetapkan tempat menurunkan dan mengambil murid yang menggunakan bas dan yang dihantar oleh penjaga.',
+'Kawal selia pengurusan sekolah sewaktu murid datang dan balik dari sekolah.',
+'Ada arahan berkaitan keselamatan murid semasa berada di jeti / stesen bas/ stesen kereta api/ dan lain-lain.',
+]
+],
 ];
 
 $number = 1;
@@ -40,13 +40,52 @@ $number = 1;
 
 
 <div class="table-responsive">
+    <div class="justify-content-end align-items-center" style="margin-bottom:1%">
+        <div style="text-align: right;">
+            <label for="jumlahSkor"
+                style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;font-weight:bold;color:white;font-size:10pt">Jumlah
+                Skor<span id="jumlahSkor"
+                    style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;">20</span></label>
+
+        </div>
+
+
+        {{-- <div style="text-align:right;padding-right:">
+        </div> --}}
+
+    </div>
+    {{-- <div class="justify-content-end align-items-center" style="text-align:right;width: ">
+        <div style="text-align:;padding-right:3%">
+            <span>Jumlah Skor</span>
+        </div>
+        <div style="text-align:;padding-right:5%"><span>20</span>
+        </div>
+
+    </div> --}}
     <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek1">
         <thead>
-            <tr>
-                <th style="font-size: 10pt" rowspan="2">No.</th>
+
+            @foreach ($aspeks_1_secA as $index => $aspek_1)
+                        <tr>
+                            <td style="font-size: 11pt;width:85%" colspan="2" class="bg-light-primary text-uppercase">
+                                {{ $aspek_1['section'] }}
+                            </td>
+                            <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
+                                Skor Sekolah
+                            </td>
+                        </tr>
+
+                        {{-- <tr>
+                            <td colspan="6" class="bg-light-primary text-uppercase">
+                                {{ $aspek_1['section'] }}
+                            </td>
+                        </tr> --}}
+                        @foreach ($aspek_1['subSections'] as $subsection_aspek1)
+            {{-- <tr>
+                <th style="text-align:left;font-size: 10pt" rowspan="2" colspan="3" >No.</th>
                 <th style="font-size: 10pt" colspan="3" rowspan="2">Item</th>
-                {{-- <th colspan="5">Skor Sekolah</th> --}}
-            </tr>
+                <th colspan="5">Skor Sekolah</th>
+            </tr> --}}
 
             {{-- <tr>
                 <th>0</th>
@@ -56,22 +95,7 @@ $number = 1;
             </tr> --}}
         </thead>
         <tbody>
-            @foreach ($aspeks_1_secA as $index => $aspek_1)
-            <tr>
-                <td style="font-size: 11pt" colspan="2" class="bg-light-primary text-uppercase">
-                {{ $aspek_1['section'] }}
-            </td>
-            <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
-                Skor Sekolah
-            </td>
-           </tr>
 
-            {{-- <tr>
-                <td colspan="6" class="bg-light-primary text-uppercase">
-                    {{ $aspek_1['section'] }}
-                </td>
-            </tr> --}}
-            @foreach ($aspek_1['subSections'] as $subsection_aspek1)
             <?php
                 $name = $index.'_'.$loop->index;
 
@@ -82,7 +106,9 @@ $number = 1;
                 <td style="font-size: 10pt">{{ $subsection_aspek1 }}</td>
                 <td>
                     <div style="font-size: 10pt" class="d-flex justify-content-center align-items-center">
-                        {{-- <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled> --}}
+                        {{-- <input class="form-check-input radio-input-2" type="radio"
+                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0"
+                            disabled> --}}
                         <span>1</span>
                     </div>
                 </td>
