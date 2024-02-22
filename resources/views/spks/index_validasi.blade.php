@@ -10,6 +10,14 @@ SPKS
     <li class="breadcrumb-item"><a href="#"> Sistem Penarafan Keselamatan Sekolah </a></li>
 @endsection
 
+@section('page-style')
+    <style>
+        .nav-pills .nav-link {
+            font-size:12px;
+        }
+    </style>
+@endsection
+
 @section('content')
 <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
