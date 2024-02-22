@@ -38,23 +38,26 @@ $number = 1;
     <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek1">
         <thead>
             <tr>
-                <th rowspan="2" width="1%">No.</th>
-                <th rowspan="2">Item</th>
-                <th colspan="5">Skor Sekolah</th>
+                <th style="font-size: 10pt" rowspan="2">No.</th>
+                <th style="font-size: 10pt" colspan="3" rowspan="2">Item</th>
+                {{-- <th colspan="5">Skor Sekolah</th> --}}
             </tr>
 
-            <tr>
+            {{-- <tr>
                 <th>0</th>
                 <th>1</th>
                 <th>2</th>
                 <th>TB</th>
-            </tr>
+            </tr> --}}
         </thead>
         <tbody>
             @foreach ($aspeks_1_secC as $index => $aspek_1)
             <tr>
-                <td colspan="6" class="bg-light-primary text-uppercase">
+                <td style="font-size: 11pt" colspan="2" class="bg-light-primary text-uppercase">
                     {{ $aspek_1['section'] }}
+                </td>
+                <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
+                    Skor Sekolah
                 </td>
             </tr>
             @foreach ($aspek_1['subSections'] as $subsection_aspek1)
@@ -64,9 +67,15 @@ $number = 1;
                 $withTB = ($aspek_1['section'] == 'Pengurusan Aktiviti Murid') ||  ($aspek_1['section'] == 'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan') || ($aspek_1['section'] == 'Arahan Keselamatan Murid Di Asrama');
             ?>
             <tr>
-                <td>{{ $number++ }}</td>
-                <td>{{ $subsection_aspek1 }}</td>
+                <td style="font-size: 10pt">{{ $number++ }}</td>
+                <td style="font-size: 10pt">{{ $subsection_aspek1 }}</td>
                 <td>
+                    <div style="font-size: 10pt" class="d-flex justify-content-center align-items-center">
+                        {{-- <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled> --}}
+                        <span>1</span>
+                    </div>
+                </td>
+                {{-- <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input class="form-check-input radio-input-2" type="radio"
                             name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0"
@@ -94,10 +103,10 @@ $number = 1;
                             name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB"
                             disabled>
                     </div>
-                </td>
-                @else
+                </td> --}}
+                {{-- @else
                 <td class="bg-light-primary"></td>
-                @endif
+                @endif --}}
             </tr>
 
             {{-- <tr id="pengisianAspek1_{{ $index }}_{{ $loop->index }}">
@@ -126,7 +135,7 @@ $number = 1;
             @endforeach
             @endforeach
         </tbody>
-        <tfoot>
+        {{-- <tfoot>
             <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Skor
@@ -142,7 +151,7 @@ $number = 1;
                 </td>
                 <td colspan="4" class="text-center"></td>
             </tr>
-        </tfoot>
+        </tfoot> --}}
     </table>
 </div>
 

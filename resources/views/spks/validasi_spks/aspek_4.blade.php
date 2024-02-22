@@ -38,38 +38,50 @@ $number = 1;
 
 @endphp
 
-<h5 class="card-title fw-bolder text-uppercase">
-    Pengurusan Krisis/ Bencana
-</h5>
 
+<div class="card-header">
+    <h5 class="card-title fw-bolder"> Pengurusan Krisis/Bencana </h5>
+
+    <div class="justify-content-end align-items-center" style="width: 10%">
+        <div style="text-align:center">
+            <span>Jumlah Skor</span>
+        </div>
+        <div style="text-align:center;padding-right:"><span>20</span>
+        </div>
+
+    </div>
+ </div>
 <hr>
 
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek4">
         <thead>
             <tr>
-                <th rowspan="2">No.</th>
-                <th rowspan="2">Item</th>
-                <th colspan="3">Skor Sekolah</th>
+                <th style="font-size: 10pt" rowspan="2">No.</th>
+                <th style="font-size: 10pt" colspan="3" rowspan="2">Item</th>
+                {{-- <th colspan="3">Skor Sekolah</th> --}}
             </tr>
 
-            <tr>
+            {{-- <tr>
                 <th>0</th>
                 <th>1</th>
                 <th>2</th>
-            </tr>
+            </tr> --}}
         </thead>
         <tbody>
-            <tr class="bg-light-danger">
+            {{-- <tr class="bg-light-danger">
                 <td colspan="2" class="text-end">
                     Jumlah Skor
                 </td>
                 <td colspan="3" class="text-center"></td>
-            </tr>
+            </tr> --}}
             @foreach ($aspeks_4 as $index => $aspek_4)
             <tr>
-                <td colspan="5" class="bg-light-primary text-uppercase">
+                <td style="font-size: 11pt" colspan="2" class="bg-light-primary text-uppercase">
                     {{ $aspek_4['section'] }}
+                </td>
+                <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
+                    Skor Sekolah
                 </td>
             </tr>
             @foreach ($aspek_4['subSections'] as $subsection_aspek4)
@@ -77,9 +89,15 @@ $number = 1;
                         $name = $index.'_'.$loop->index;
                     ?>
             <tr>
-                <td>{{ $number++ }}</td>
-                <td>{{ $subsection_aspek4 }}</td>
+                <td style="font-size: 10pt">{{ $number++ }}</td>
+                <td style="font-size: 10pt">{{ $subsection_aspek4 }}</td>
                 <td>
+                    <div style="font-size: 10pt" class="d-flex justify-content-center align-items-center">
+                        {{-- <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled> --}}
+                        <span>1</span>
+                    </div>
+                </td>
+                {{-- <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input class="form-check-input radio-input-2" type="radio"
                             name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled>
@@ -96,7 +114,7 @@ $number = 1;
                         <input class="form-check-input radio-input-2" type="radio"
                             name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" disabled>
                     </div>
-                </td>
+                </td> --}}
             </tr>
 
             {{-- <tr id="pengisianAspek4_{{ $index }}_{{ $loop->index }}">
