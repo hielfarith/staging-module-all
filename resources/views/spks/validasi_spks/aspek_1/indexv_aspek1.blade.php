@@ -49,10 +49,10 @@
         </div>
     </div>
     <div class="bs-stepper-content">
-        <div class="card-header">
-            <h5 class="card-title fw-bolder"> Pengurusan Aktiviti Murid </h5>
+        <div style="height: ;" class="card-header">
+            <h5 class="card-title fw-bolder text-uppercase"> Pengurusan Aktiviti Murid </h5>
 
-            <div class="justify-content-end align-items-center" style="width: 10%">
+            <div class="justify-content-end align-items-center" style="width: 20%">
                 <div style="text-align:center">
                     <span>Jumlah Skor</span>
                 </div>
