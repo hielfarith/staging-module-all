@@ -37,35 +37,35 @@ $jumlahs_spks = [
     <table class="table header_uppercase table-bordered table-hovered" id="jumlahKeseluruhanSpks">
         <thead>
             <tr>
-                <th>Nama Aspek Penilaian</th>
-                <th width="3%">0</th>
-                <th width="3%">1</th>
-                <th width="3%">2</th>
-                <th width="3%">TB</th>
+                <th style="font-size: 10pt">Nama Aspek Penilaian</th>
+                <th style="font-size: 10pt" width="3%">0</th>
+                <th style="font-size: 10pt" width="3%">1</th>
+                <th style="font-size: 10pt" width="3%">2</th>
+                <th style="font-size: 10pt" width="3%">TB</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($jumlahs_spks as $key => $jumlah_spks)
             <tr>
-                <td>{{ $jumlah_spks }}</td>
-                <td class="text-center">Auto Calculated</td>
-                <td class="text-center">Auto Calculated</td>
-                <td class="text-center">Auto Calculated</td>
-                <td class="text-center">Auto Calculated</td>
+                <td style="font-size: 10pt">{{ $jumlah_spks }}</td>
+                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
             </tr>
             @endforeach
         </tbody>
 
         <tfoot>
             <tr class="bg-light-danger">
-                <td class="text-end">
+                <td style="font-size: 10pt" class="text-end">
                     Jumlah Keseluruhan
                 </td>
-                <td class="text-center">Auto Calculated</td>
-                <td class="text-center">Auto Calculated</td>
-                <td class="text-center">Auto Calculated</td>
-                <td class="text-center">Auto Calculated</td>
+                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
             </tr>
         </tfoot>
     </table>

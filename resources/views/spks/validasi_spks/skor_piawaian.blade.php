@@ -25,77 +25,77 @@
     <table class="table header_uppercase table-bordered table-hovered" id="jumlahKeseluruhanSpks">
         <thead>
             <tr>
-                <th width="4%">Bil</th>
-                <th width="20%">ASPEk</th>
-                <th width="18%">WAJARAN</th>
-                <th width="18%">SKOR PENUH</th>
-                <th width="18%">SKOR DIPEROLEHI</th>
-                <th width="18%">PERATUS PENCAPAIAN</th>
+                <th style="font-size: 10pt" width="4%">Bil</th>
+                <th style="font-size: 10pt" width="20%">ASPEk</th>
+                <th style="font-size: 10pt" width="18%">WAJARAN</th>
+                <th style="font-size: 10pt" width="18%">SKOR PENUH</th>
+                <th style="font-size: 10pt" width="18%">SKOR DIPEROLEHI</th>
+                <th style="font-size: 10pt" width="18%">PERATUS PENCAPAIAN</th>
             </tr>
         </thead>
 
         <tbody>
 
             <tr>
-                <td class="text-center">1</td>
-                <td >Pengurusan Aktiviti Murid</td>
-                <td class="text-center">30%</td>
-                <td class="text-center">Jumlah item berkaitan x2</td>
-                <td class="text-center">0</td>
-                <td class="text-center">0.00</td>
+                <td style="font-size: 10pt" class="text-center">1</td>
+                <td style="font-size: 10pt">Pengurusan Aktiviti Murid</td>
+                <td style="font-size: 10pt" class="text-center">30%</td>
+                <td style="font-size: 10pt" class="text-center">Jumlah item berkaitan x2</td>
+                <td style="font-size: 10pt" class="text-center">0</td>
+                <td style="font-size: 10pt" class="text-center">0.00</td>
             </tr>
             <tr>
-                <td class="text-center">2</td>
-                <td >Pengurusan Keselamatan Infrastruktur Sekolah</td>
-                <td class="text-center">20%</td>
-                <td class="text-center">Jumlah item berkaitan x2</td>
-                <td class="text-center">0</td>
-                <td class="text-center">0.00</td>
+                <td style="font-size: 10pt" class="text-center">2</td>
+                <td style="font-size: 10pt">Pengurusan Keselamatan Infrastruktur Sekolah</td>
+                <td style="font-size: 10pt" class="text-center">20%</td>
+                <td style="font-size: 10pt" class="text-center">Jumlah item berkaitan x2</td>
+                <td style="font-size: 10pt" class="text-center">0</td>
+                <td style="font-size: 10pt" class="text-center">0.00</td>
             </tr>
             <tr>
-                <td class="text-center">3</td>
-                <td >Pengurusan Sosial</td>
-                <td class="text-center">10%</td>
-                <td class="text-center">14</td>
-                <td class="text-center">0</td>
-                <td class="text-center">0.00</td>
+                <td style="font-size: 10pt" class="text-center">3</td>
+                <td style="font-size: 10pt">Pengurusan Sosial</td>
+                <td style="font-size: 10pt" class="text-center">10%</td>
+                <td style="font-size: 10pt" class="text-center">14</td>
+                <td style="font-size: 10pt" class="text-center">0</td>
+                <td style="font-size: 10pt" class="text-center">0.00</td>
             </tr>
             <tr>
-                <td class="text-center">4</td>
-                <td >Pengurusan Krisis/Bencana</td>
-                <td class="text-center">10%</td>
-                <td class="text-center">14</td>
-                <td class="text-center">0</td>
-                <td class="text-center">0.00</td>
+                <td style="font-size: 10pt" class="text-center">4</td>
+                <td style="font-size: 10pt">Pengurusan Krisis/Bencana</td>
+                <td style="font-size: 10pt" class="text-center">10%</td>
+                <td style="font-size: 10pt" class="text-center">14</td>
+                <td style="font-size: 10pt" class="text-center">0</td>
+                <td style="font-size: 10pt" class="text-center">0.00</td>
             </tr>
             <tr>
-                <td class="text-center">5</td>
-                <td >Pengurusan Risiko</td>
-                <td class="text-center">10%</td>
-                <td class="text-center">14</td>
-                <td class="text-center">0</td>
-                <td class="text-center">0.00</td>
+                <td style="font-size: 10pt" class="text-center">5</td>
+                <td style="font-size: 10pt">Pengurusan Risiko</td>
+                <td style="font-size: 10pt" class="text-center">10%</td>
+                <td style="font-size: 10pt" class="text-center">14</td>
+                <td style="font-size: 10pt" class="text-center">0</td>
+                <td style="font-size: 10pt" class="text-center">0.00</td>
             </tr>
             <tr>
-                <td class="text-center">6</td>
-                <td >Pengurusan Perkhidmatan Pengawal Keselamatan Sekolah</td>
-                <td class="text-center">20%</td>
-                <td class="text-center">32</td>
-                <td class="text-center">0</td>
-                <td class="text-center">0.00</td>
+                <td style="font-size: 10pt" class="text-center">6</td>
+                <td style="font-size: 10pt">Pengurusan Perkhidmatan Pengawal Keselamatan Sekolah</td>
+                <td style="font-size: 10pt" class="text-center">20%</td>
+                <td style="font-size: 10pt" class="text-center">32</td>
+                <td style="font-size: 10pt" class="text-center">0</td>
+                <td style="font-size: 10pt" class="text-center">0.00</td>
             </tr>
 
         </tbody>
 
         <tfoot>
             <tr class="bg-light-danger">
-                <td class="text-end" colspan="2">
+                <td style="font-size: 10pt" class="text-end" colspan="2">
                     JUMLAH
                 </td>
-                <td class="text-center">100%</td>
-                <td class="text-center">172</td>
-                <td class="text-center">0</td>
-                <td class="text-center">0.00</td>
+                <td style="font-size: 10pt" class="text-center">100%</td>
+                <td style="font-size: 10pt" class="text-center">172</td>
+                <td style="font-size: 10pt" class="text-center">0</td>
+                <td style="font-size: 10pt" class="text-center">0.00</td>
             </tr>
         </tfoot>
     </table>
@@ -112,10 +112,10 @@
     <table class="table header_uppercase table-bordered table-hovered" id="jumlahKeseluruhanSpks">
         <thead>
             <tr>
-                <th width="5%">Bil</th>
-                <th width="30%">PERATUS PENCAPAIAN</th>
-                <th width="25%">KATEGORI</th>
-                <th width="40%">PIAWAIAN SEKOLAH</th>
+                <th style="font-size: 10pt" width="5%">Bil</th>
+                <th style="font-size: 10pt" width="30%">PERATUS PENCAPAIAN</th>
+                <th style="font-size: 10pt" width="25%">KATEGORI</th>
+                <th style="font-size: 10pt" width="40%">PIAWAIAN SEKOLAH</th>
 
             </tr>
         </thead>
@@ -123,24 +123,25 @@
         <tbody>
 
             <tr>
-                <td class="text-center">1</td>
-                <td >80-100</td>
-                <td class="text-center">I</td>
-                <td class="text-center">SEKOLAH SELAMAT</td>
+                <td style="font-size: 10pt" class="text-center">1</td>
+                <td style="font-size: 10pt">80-100</td>
+                <td style="font-size: 10pt" class="text-center">I</td>
+                <td style="font-size: 10pt" class="text-center">SEKOLAH SELAMAT</td>
 
             </tr>
             <tr>
-                <td class="text-center">2</td>
-                <td >50-79</td>
-                <td class="text-center">II</td>
-                <td class="text-center">MEMERLUKAN PENINGKATAN TAHAP KESELAMATAN SEKOLAH</td>
+                <td style="font-size: 10pt" class="text-center">2</td>
+                <td style="font-size: 10pt">50-79</td>
+                <td style="font-size: 10pt" class="text-center">II</td>
+                <td style="font-size: 10pt" class="text-center">MEMERLUKAN PENINGKATAN TAHAP KESELAMATAN SEKOLAH</td>
 
             </tr>
             <tr>
-                <td class="text-center">3</td>
-                <td >0-49</td>
-                <td class="text-center">III</td>
-                <td class="text-center">MEMERLUKAN PERHATIAN KHUSUS TERHADAP KESELAMATAN SEKOLAH</td>
+                <td style="font-size: 10pt" class="text-center">3</td>
+                <td style="font-size: 10pt">0-49</td>
+                <td style="font-size: 10pt" class="text-center">III</td>
+                <td style="font-size: 10pt" class="text-center">MEMERLUKAN PERHATIAN KHUSUS TERHADAP KESELAMATAN SEKOLAH
+                </td>
 
             </tr>
 

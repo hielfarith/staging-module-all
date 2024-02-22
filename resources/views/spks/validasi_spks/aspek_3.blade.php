@@ -36,10 +36,10 @@ $number = 1;
 @endphp
 
 
-<div class="card-header">
-    <h5 class="card-title fw-bolder"> Pengurusan Sosial </h5>
+<div style="height: ;" class="card-header">
+    <h5 class="card-title fw-bolder text-uppercase"> Pengurusan Sosial </h5>
 
-    <div class="justify-content-end align-items-center" style="width: 10%">
+    <div class="justify-content-end align-items-center" style="width: 20%">
         <div style="text-align:center">
             <span>Jumlah Skor</span>
         </div>

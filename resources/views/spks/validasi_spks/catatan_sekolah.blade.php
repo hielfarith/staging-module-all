@@ -25,23 +25,23 @@
     <table class="table header_uppercase table-bordered table-hovered" id="catatan_sekolah">
         <thead>
             <tr>
-                <th width="5%">No.</th>
-                <th width="5%">Aspek</th>
-                <th width="15%">Maklumat Item</th>
-                <th>Catatan Sekolah</th>
-                <th>Catatan Validasi (PPD)</th>
-                <th width="5%">Tindakan</th>
+                <th style="font-size: 10pt" width="5%">No.</th>
+                <th style="font-size: 10pt" width="5%">Aspek</th>
+                <th style="font-size: 10pt" width="15%">Maklumat Item</th>
+                <th style="font-size: 10pt" >Catatan Sekolah</th>
+                <th style="font-size: 10pt">Catatan Validasi (PPD)</th>
+                <th style="font-size: 10pt"width="5%">Tindakan</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="font-size: 10pt">
             <tr>
                 <td>1</td>
                 <td>Aspek 1</td>
                 <td>Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)</td>
                 <td>Tiada laluan perjalanan kaki</td>
                 <td>
-                    <textarea rows="5" class="form-control">
-                        Ni amik dari yang dah masukkan dalam table from aspek tu
+                    <textarea rows="5" class="form-control">Ni amik dari yang dah masukkan dalam table from aspek tu
+
                     </textarea>
                 </td>
                 <td>
