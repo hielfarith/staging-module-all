@@ -41,52 +41,49 @@ $aspeks_2 = [
 $number = 1;
 @endphp
 
-<div style="height: ;" class="card-header">
+{{-- <div style="height: ;" class="card-header">
     <h5 class="card-title fw-bolder text-uppercase"> Pengurusan Keselamatan Infrastruktur Sekolah </h5>
 
-    <div class="justify-content-end align-items-center" style="width: 20%">
-        <div style="text-align:center">
-            <span>Jumlah Skor</span>
-        </div>
-        <div style="text-align:center;padding-right:"><span>20</span>
-        </div>
 
-    </div>
  </div>
-<hr>
+<hr> --}}
 
 <div class="table-responsive">
+    <div class="justify-content-end align-items-center" style="margin-bottom:1%">
+        <div style="text-align: right;">
+            <label for="jumlahSkor"
+                style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;font-weight:bold;color:white;font-size:10pt">Jumlah
+                Skor<span id="jumlahSkor"
+                    style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;">20</span></label>
+
+        </div>
+    </div>
     <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek2">
         <thead>
-            <tr>
-                <th style="font-size: 10pt" rowspan="2">No.</th>
-                <th style="font-size: 10pt" colspan="3" rowspan="2">Item</th>
-                {{-- <th colspan="5">Skor Sekolah</th> --}}
-            </tr>
 
-            {{-- <tr>
-                <th>0</th>
-                <th>1</th>
-                <th>2</th>
-                <th>TB</th>
-            </tr> --}}
+            @foreach ($aspeks_2 as $index => $aspek_2)
+            <tr>
+                <td style="font-size: 11pt;width:85%" colspan="2" class="bg-light-primary text-uppercase">
+                    {{ $aspek_2['section'] }}
+                </td>
+                <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
+                    Skor Sekolah
+                </td>
+            </tr>
+            @endforeach
+
         </thead>
         <tbody>
-            {{-- <tr class="bg-light-danger">
-                <td colspan="2" class="text-end">
-                    Jumlah Skor
-                </td>
-               <td colspan="4" class="text-center"></td>
-            </tr> --}}
+
             @foreach ($aspeks_2 as $index => $aspek_2)
-                <tr>
+                {{-- <tr>
                     <td style="font-size: 11pt" colspan="2" class="bg-light-primary text-uppercase">
                         {{ $aspek_2['section'] }}
                     </td>
                     <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
                         Skor Sekolah
                     </td>
-                </tr>
+                </tr> --}}
                 @foreach ($aspek_2['subSections'] as $subsection_aspek2)
                     <?php
                         $name = $index.'_'.$loop->index;
@@ -100,70 +97,17 @@ $number = 1;
                                 <span>1</span>
                             </div>
                         </td>
-                        {{-- <td>
-                            <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="1_{{ $index }}_{{ $loop->index }}" value="1" disabled>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="2_{{ $index }}_{{ $loop->index }}" value="2" disabled>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex justify-content-center align-items-center">
-                                <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="TB_{{ $index }}_{{ $loop->index }}" value="TB" disabled>
-                            </div>
-                        </td> --}}
-                    </tr>
-
-                    {{-- <tr id="pengisianAspek2_{{ $index }}_{{ $loop->index }}">
-                        <td colspan="6" class="bg-light-warning">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Catatan" disabled>
-                                <button class="btn btn-success btn-sm" type="button" id="checkAspek2_{{ $index }}_{{ $loop->index }}">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm" type="button" id="rejectAspek2_{{ $index }}_{{ $loop->index }}">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </td>
 
                     </tr>
-
-                    <tr id="catatanAspek2_{{ $index }}_{{ $loop->index }}" style="display: none;">
-                        <td colspan="6" class="bg-light-danger">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Catatan Validasi">
-                            </div>
-                        </td>
-                    </tr> --}}
 
                 @endforeach
             @endforeach
         </tbody>
-        <tfoot>
-            {{-- <tr class="bg-light-danger">
-                <td colspan="2" class="text-end">
-                    Skor
-                </td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-            </tr> --}}
 
-        </tfoot>
     </table>
 </div>
 
-<hr>
+
 
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">

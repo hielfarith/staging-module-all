@@ -14,32 +14,32 @@ SPKS
 <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder active" id="validasi-aspek-1-tab" data-bs-toggle="tab" href="#validasi-aspek-1" aria-controls="validasi-aspek-1" role="tab" aria-selected="true">
-            ASPEK 1
+            PENGURUSAN AKTIVITI MURID
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-2-tab" data-bs-toggle="tab" href="#validasi-aspek-2" aria-controls="validasi-aspek-2" role="tab" aria-selected="false">
-            ASPEK 2
+            PENGURUSAN KESELAMATAN INFRASTRUKTUR SEKOLAH
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-3-tab" data-bs-toggle="tab" href="#validasi-aspek-3" aria-controls="validasi-aspek-3" role="tab" aria-selected="false">
-            ASPEK 3
+            PENGURUSAN SOSIAL
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-4-tab" data-bs-toggle="tab" href="#validasi-aspek-4" aria-controls="validasi-aspek-4" role="tab" aria-selected="false">
-            ASPEK 4
+            PENGURUSAN KRISIS/BENCANA
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-5-tab" data-bs-toggle="tab" href="#validasi-aspek-5" aria-controls="validasi-aspek-5" role="tab" aria-selected="false">
-            ASPEK 5
+            PENGURUSAN RISIKO
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-6-tab" data-bs-toggle="tab" href="#validasi-aspek-6" aria-controls="validasi-aspek-6" role="tab" aria-selected="false">
-            ASPEK 6
+            PENGURUSAN PERKHIDMATAN PENGAWAL KESELAMATAN SEKOLAH
         </a>
     </li>
     <li class="nav-item" role="presentation">

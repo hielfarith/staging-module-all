@@ -1,3 +1,4 @@
+
 <div   class="bs-stepper vertical vertical-wizard">
     <div style="width: 10%" class="bs-stepper-header">
         <div class="step" data-target="#account-details-vertical" role="tab" id="account-details-vertical-trigger">
@@ -49,18 +50,7 @@
         </div>
     </div>
     <div class="bs-stepper-content">
-        <div style="height: ;" class="card-header">
-            <h5 class="card-title fw-bolder text-uppercase"> Pengurusan Aktiviti Murid </h5>
 
-            <div class="justify-content-end align-items-center" style="width: 20%">
-                <div style="text-align:center">
-                    <span>Jumlah Skor</span>
-                </div>
-                <div style="text-align:center;padding-right:"><span>20</span>
-                </div>
-
-            </div>
-         </div>
         <div id="account-details-vertical" class="content" role="tabpanel" aria-labelledby="account-details-vertical-trigger">
             @include('spks.validasi_spks.aspek_1.sectionA')
         </div>
