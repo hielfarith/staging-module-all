@@ -1,5 +1,5 @@
-<div  style="width: 10%" class="bs-stepper vertical vertical-wizard">
-    <div class="bs-stepper-header">
+<div   class="bs-stepper vertical vertical-wizard">
+    <div style="width: 10%" class="bs-stepper-header">
         <div class="step" data-target="#account-details-vertical" role="tab" id="account-details-vertical-trigger">
             <button type="button" class="step-trigger">
                 <span style="width: 100%;padding-left:10%;padding-right:10%" class="bs-stepper-box">Section A</span>
