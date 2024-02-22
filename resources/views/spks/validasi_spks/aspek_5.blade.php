@@ -94,7 +94,7 @@ $number = 1;
                         </td>
                     </tr>
 
-                    <tr id="pengisianAspek5{{ $index }}_{{ $loop->index }}">
+                    {{-- <tr id="pengisianAspek5{{ $index }}_{{ $loop->index }}">
                         <td colspan="6" class="bg-light-warning">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Catatan" disabled>
@@ -114,7 +114,7 @@ $number = 1;
                                 <input type="text" class="form-control" placeholder="Catatan Validasi">
                             </div>
                         </td>
-                    </tr>
+                    </tr> --}}
                 @endforeach
             @endforeach
         </tbody>
