@@ -13,33 +13,38 @@ SPKS
 @section('content')
 <ul class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="g-tab" data-bs-toggle="tab" href="#g" aria-controls="g" role="tab" aria-selected="false">
+            GENERAL
+        </a>
+    </li>
+    <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder active" id="validasi-aspek-1-tab" data-bs-toggle="tab" href="#validasi-aspek-1" aria-controls="validasi-aspek-1" role="tab" aria-selected="true">
-            PENGURUSAN AKTIVITI MURID
+            ASPEK 1
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-2-tab" data-bs-toggle="tab" href="#validasi-aspek-2" aria-controls="validasi-aspek-2" role="tab" aria-selected="false">
-            PENGURUSAN KESELAMATAN INFRASTRUKTUR SEKOLAH
+            ASPEK 2
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-3-tab" data-bs-toggle="tab" href="#validasi-aspek-3" aria-controls="validasi-aspek-3" role="tab" aria-selected="false">
-            PENGURUSAN SOSIAL
+            ASPEK 3
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-4-tab" data-bs-toggle="tab" href="#validasi-aspek-4" aria-controls="validasi-aspek-4" role="tab" aria-selected="false">
-            PENGURUSAN KRISIS/BENCANA
+            ASPEK 4
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-5-tab" data-bs-toggle="tab" href="#validasi-aspek-5" aria-controls="validasi-aspek-5" role="tab" aria-selected="false">
-            PENGURUSAN RISIKO
+            ASPEK 5
         </a>
     </li>
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-6-tab" data-bs-toggle="tab" href="#validasi-aspek-6" aria-controls="validasi-aspek-6" role="tab" aria-selected="false">
-            PENGURUSAN PERKHIDMATAN PENGAWAL KESELAMATAN SEKOLAH
+            ASPEK 6
         </a>
     </li>
     <li class="nav-item" role="presentation">
@@ -63,6 +68,9 @@ SPKS
 <div class="card">
     <div class="card-body">
         <div class="tab-content">
+            <div class="tab-pane fade" id="g" role="tabpanel" aria-labelledby="g-tab">
+                @include('spks.validasi_spks.general')
+            </div>
             <div class="tab-pane active" id="validasi-aspek-1" role="tabpanel" aria-labelledby="validasi-aspek-1-tab">
                 @include('spks.validasi_spks.aspek_1.indexv_aspek1')
             </div>

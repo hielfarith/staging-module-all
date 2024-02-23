@@ -6,15 +6,20 @@ SPKS
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('msg.home') }}</a></li>
-    <li class="breadcrumb-item"><a href="#"> Instumen/ Modul </a></li>
+    <li class="breadcrumb-item"><a href="#"> InstRumen/ Modul </a></li>
     <li class="breadcrumb-item"><a href="#"> Sistem Penarafan Keselamatan Sekolah </a></li>
 @endsection
 
 @section('content')
 <input type="hidden" name="spks" id="spks" value="{{$spks?->id}}">
 <input type="hidden" name="type" id="type" value="{{$type}}">
-<ul class="nav nav-pills nav-justified" role="tablist">
+<ul  class="nav nav-pills nav-justified" role="tablist">
     <li class="nav-item" role="presentation">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="g-tab" data-bs-toggle="tab" href="#g" aria-controls="g" role="tab" aria-selected="false">
+            GENERAL
+        </a>
+    </li>
+    <li style="bg-color:black;font-size: 10pt" class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder active" id="aspek-1-tab" data-bs-toggle="tab" href="#aspek-1" aria-controls="aspek-1" role="tab" aria-selected="true">
             ASPEK 1
         </a>
@@ -54,11 +59,14 @@ SPKS
 <div class="card">
     <div class="card-body">
         <div class="tab-content">
+            <div class="tab-pane fade" id="g" role="tabpanel" aria-labelledby="g-tab">
+                @include('spks.validasi_spks.general')
+            </div>
             <div class="tab-pane active" id="aspek-1" role="tabpanel" aria-labelledby="aspek-1-tab">
                 @include('spks.borang_spks.aspek_1.index_aspek1')
             </div>
             <div class="tab-pane fade" id="aspek-2" role="tabpanel" aria-labelledby="aspek-2-tab">
-                @include('spks.borang_spks.aspek_2')
+                @include('spks.validasi_spks.test_aspek')
             </div>
             <div class="tab-pane fade" id="aspek-3" role="tabpanel" aria-labelledby="aspek-3-tab">
                 @include('spks.borang_spks.aspek_3')
@@ -73,6 +81,7 @@ SPKS
                 @include('spks.borang_spks.aspek_6')
             </div>
             <div class="tab-pane fade" id="jumlahspks" role="tabpanel" aria-labelledby="jumlah-tab">
+                @include('spks.borang_spks.jumlah.index_jumlah')
             </div>
         </div>
     </div>
@@ -122,22 +131,23 @@ SPKS
         });
     }
 
-    function  jumlahspks() {
-       var id = $('#spks').val();
-       var type = $('#type').val();
-        var url = "{{ route('spks.get-jumlah') }}"
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: {
-                id: id,
-                type: type
-            },
-            success: function(response) {
-                $('#jumlahspks').empty();
-                $('#jumlahspks').append(response)
-            }
-        });
-    }
+    // function  jumlahspks() {
+    //    var id = $('#spks').val();
+    //    var type = $('#type').val();
+    //     var url = "{{ route('spks.get-jumlah') }}"
+    //     $.ajax({
+    //         url: url,
+    //         method: 'POST',
+    //         data: {
+    //             id: id,
+    //             type: type
+    //         },
+    //         success: function(response) {
+    //             console.log(response)
+    //             $('#jumlahspks').empty();
+    //             $('#jumlahspks').append(response)
+    //         }
+    //     });
+    // }
 </script>
 @endsection
