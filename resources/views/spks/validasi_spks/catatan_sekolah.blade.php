@@ -28,7 +28,7 @@
                 <th style="font-size: 10pt" width="5%">No.</th>
                 <th style="font-size: 10pt" width="5%">Aspek</th>
                 <th style="font-size: 10pt" width="15%">Maklumat Item</th>
-                <th style="font-size: 10pt" >Catatan Sekolah</th>
+                {{-- <th style="font-size: 10pt" >Catatan Sekolah</th> --}}
                 <th style="font-size: 10pt">Catatan Validasi (PPD)</th>
                 <th style="font-size: 10pt"width="5%">Tindakan</th>
             </tr>
@@ -38,20 +38,24 @@
                 <td>1</td>
                 <td>Aspek 1</td>
                 <td>Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)</td>
-                <td>Tiada laluan perjalanan kaki</td>
+                {{-- <td>Tiada laluan perjalanan kaki</td> --}}
                 <td>
                     <textarea rows="5" class="form-control">Ni amik dari yang dah masukkan dalam table from aspek tu
 
                     </textarea>
                 </td>
-                <td>
+                <td style="text-align: center;">
                     <div class="btn-group " role="group" aria-label="Action">
-                        <a href="#" class="btn btn-xs btn-default" title="">
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input required class="form-check-input radio-input-2" type="radio" checked>
+                        </div>
+                        {{-- <a href="#" class="btn btn-xs btn-default" title="">
                             <i class="fa fa-save text-success" aria-hidden="true"></i>
                         </a>
                         <a class="btn btn-xs btn-default" title="">
                             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
-                        </a>
+                        </a> --}}
                     </div>
                 </td>
             </tr>

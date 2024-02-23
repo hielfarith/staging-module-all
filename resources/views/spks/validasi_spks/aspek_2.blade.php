@@ -63,7 +63,7 @@ $number = 1;
 
             @foreach ($aspeks_2 as $index => $aspek_2)
             <tr>
-                <td style="font-size: 11pt;width:85%" colspan="2" class="bg-light-primary text-uppercase">
+                <td style="font-size: 11pt;width:82%" colspan="2" class="bg-light-primary text-uppercase">
                     {{ $aspek_2['section'] }}
                 </td>
                 <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
