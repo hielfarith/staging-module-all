@@ -15,7 +15,7 @@
 
 <div class="card">
     <div class="card-body">
-        <div class="tab-content">
+        <div style="margin-top: -3%" class="tab-content">
 
             <div class="tab-pane active" id="skor" role="tabpanel" aria-labelledby="skor-tab">
                 @include('spks.validasi_spks.piawaian.skor')

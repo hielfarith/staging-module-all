@@ -30,6 +30,7 @@
                 <th style="font-size: 10pt" width="15%">Maklumat Item</th>
                 {{-- <th style="font-size: 10pt" >Catatan Sekolah</th> --}}
                 <th style="font-size: 10pt">Catatan Validasi (PPD)</th>
+                <th style="font-size: 10pt"width="5%">Penentuan Critically</th>
                 <th style="font-size: 10pt"width="5%">Tindakan</th>
             </tr>
         </thead>
@@ -41,6 +42,11 @@
                 {{-- <td>Tiada laluan perjalanan kaki</td> --}}
                 <td>
                     <textarea rows="5" class="form-control">Ni amik dari yang dah masukkan dalam table from aspek tu
+
+                    </textarea>
+                </td>
+                <td>
+                    <textarea rows="5" class="form-control">Pemeriksaan
 
                     </textarea>
                 </td>
