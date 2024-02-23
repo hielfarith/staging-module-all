@@ -13,6 +13,7 @@
         width: 100% !important;
         /* word-wrap: break-word; */
     }
+
 </style>
 
 <h5 class="card-title fw-bolder text-uppercase">
@@ -28,25 +29,30 @@
                 <th style="font-size: 10pt" width="5%">No.</th>
                 <th style="font-size: 10pt" width="5%">Aspek</th>
                 <th style="font-size: 10pt" width="15%">Maklumat Item</th>
-                {{-- <th style="font-size: 10pt" >Catatan Sekolah</th> --}}
-                <th style="font-size: 10pt">Catatan Validasi (PPD)</th>
-                <th style="font-size: 10pt"width="5%">Penentuan Critically</th>
-                <th style="font-size: 10pt"width="5%">Tindakan</th>
+                <th style="font-size: 10pt" width="10%">Isu/Permasalahan</th>
+                <th style="font-size: 10pt" width="15%">Catatan Validasi (PPD)</th>
+                <th style="font-size: 10pt" width="10%">Penentuan Criticality</th>
+                <th style="font-size: 10pt" width="5%">Tindakan</th>
             </tr>
         </thead>
         <tbody style="font-size: 10pt">
             <tr>
                 <td>1</td>
                 <td>Aspek 1</td>
-                <td>Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)</td>
-                {{-- <td>Tiada laluan perjalanan kaki</td> --}}
+                <td>Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah,
+                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)</td>
+                <td>Tiada laluan perjalanan kaki</td>
                 <td>
                     <textarea rows="5" class="form-control">Ni amik dari yang dah masukkan dalam table from aspek tu
 
                     </textarea>
                 </td>
                 <td>
-                    <textarea rows="5" class="form-control">Pemeriksaan
+                    <textarea rows="5" class="form-control">- tidak berkaitan
+                                                            - ⁠selesai peringkat sekolah
+                                                            - ⁠selesai peringkat PPD
+                                                            - ⁠belum selesai
+                                                            - ⁠belum mendapat laporan dari sekolah
 
                     </textarea>
                 </td>

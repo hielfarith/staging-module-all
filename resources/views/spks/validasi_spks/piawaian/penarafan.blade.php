@@ -16,10 +16,10 @@
 
 </style>
 
-<div class="card-header d-flex justify-content-between align-items-center">
+<div style="padding-top:3% " class="card-header d-flex justify-content-between align-items-center">
     <h5 class="card-title fw-bolder">PENARAFAN PIAWAIAN</h5>
     <div style="padding-top:2% " class="content-end align-items-center">
-        <p style="background-color: #0C2043;color:white;padding: 5px 10px;font-weight:bold">Status: <span>Sekolah</span></p>
+        <div></div>
     </div>
 </div>
 

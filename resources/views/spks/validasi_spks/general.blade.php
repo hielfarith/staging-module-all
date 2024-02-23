@@ -61,15 +61,15 @@ $number = 1;
             <div class="col-lg-4">
                 <div class="petak-bulat card rounded" style="">
                     <div class="card-header">
-                        <h4 class="card-title">Kronologi</h4>
+                        <h6 class="card-title">Kronologi</h4>
                     </div>
                     <div class="card-body">
-                        <ul class="timeline">
+                        <ul style="font-size: 9pt;" class="timeline">
                             <li class="timeline-item">
                                 <span class="timeline-point timeline-point-indicator"></span>
                                 <div class="timeline-event">
                                     <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                        <h6>12 Invoices have been paid</h6>
+                                        <h8>12 Invoices have been paid</h8>
                                         <span class="timeline-event-time">12 min ago</span>
                                     </div>
                                     <p>Invoices have been paid to the company.</p>
@@ -84,7 +84,7 @@ $number = 1;
                                 <span class="timeline-point timeline-point-secondary timeline-point-indicator"></span>
                                 <div class="timeline-event">
                                     <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                        <h6>Client Meeting</h6>
+                                        <h8>Client Meeting</h8>
                                         <span class="timeline-event-time">45 min ago</span>
                                     </div>
                                     <p>Project meeting with john @10:15am.</p>
@@ -94,7 +94,7 @@ $number = 1;
                                                 width="38" />
                                         </div>
                                         <div class="ms-50">
-                                            <h6 class="mb-0">John Doe (Client)</h6>
+                                            <h8 class="mb-0">John Doe (Client)</h8>
                                             <span>CEO of Infibeam</span>
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@ $number = 1;
                                 <span class="timeline-point timeline-point-success timeline-point-indicator"></span>
                                 <div class="timeline-event">
                                     <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                        <h6>Financial Report</h6>
+                                        <h8>Financial Report</h8>
                                         <span class="timeline-event-time">2 hours ago</span>
                                     </div>
                                     <p class="mb-50">Click the button below to read financial reports</p>
@@ -146,7 +146,7 @@ $number = 1;
                                 <span class="timeline-point timeline-point-warning timeline-point-indicator"></span>
                                 <div class="timeline-event">
                                     <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                        <h6 class="mb-50">Interview Schedule</h6>
+                                        <h8 class="mb-50">Interview Schedule</h8>
                                         <span class="timeline-event-time">03:00 PM</span>
                                     </div>
                                     <p>Have to interview Katy Turner for the developer job.</p>
@@ -173,7 +173,7 @@ $number = 1;
                                 <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
                                 <div class="timeline-event">
                                     <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                        <h6>Online Store</h6>
+                                        <h8>Online Store</h8>
                                         <span class="timeline-event-time">03:00PM</span>
                                     </div>
                                     <p>
@@ -212,7 +212,7 @@ $number = 1;
                                 <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
                                 <div class="timeline-event">
                                     <div class="d-flex justify-content-between align-items-center mb-50">
-                                        <h6>Designing UI</h6>
+                                        <h8>Designing UI</h8>
                                         <div>
                                             <span class="badge rounded-pill badge-light-primary">Design</span>
                                         </div>
