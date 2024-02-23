@@ -47,11 +47,11 @@ SPKS
             ASPEK 6
         </a>
     </li>
-    <li class="nav-item" role="presentation">
+    {{-- <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-jumlah-tab" data-bs-toggle="tab" href="#validasi-jumlah" aria-controls="validasi-jumlah" role="tab" aria-selected="false" onclick="">
             JUMLAH
         </a>
-    </li>
+    </li> --}}
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-skor-tab" data-bs-toggle="tab" href="#validasi-skor" aria-controls="validasi-skor" role="tab" aria-selected="false" onclick="">
             SKOR PIAWAIAN

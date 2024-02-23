@@ -6,7 +6,7 @@ SPKS
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('msg.home') }}</a></li>
-    <li class="breadcrumb-item"><a href="#"> InstRumen/ Modul </a></li>
+    <li class="breadcrumb-item"><a href="#"> Instrumen/ Modul </a></li>
     <li class="breadcrumb-item"><a href="#"> Sistem Penarafan Keselamatan Sekolah </a></li>
 @endsection
 
@@ -81,7 +81,7 @@ SPKS
                 @include('spks.borang_spks.aspek_6')
             </div>
             <div class="tab-pane fade" id="jumlahspks" role="tabpanel" aria-labelledby="jumlah-tab">
-                @include('spks.borang_spks.jumlah.index_jumlah')
+                @include('spks.borang_spks.jumlah')
             </div>
         </div>
     </div>
