@@ -71,6 +71,11 @@ SPKS
             RINGKASAN CATATAN
         </a>
     </li>
+    <li class="nav-item" role="presentation">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="jpn-verifikasi-tab" data-bs-toggle="tab" href="#jpn-verifikasi" aria-controls="jpn-verifikasi" role="tab" aria-selected="false" onclick="">
+            VERIFIKASI JPN
+        </a>
+    </li>
 </ul>
 
 <div class="card">
@@ -105,6 +110,9 @@ SPKS
             </div>
             <div class="tab-pane fade" id="catatan-validasi" role="tabpanel" aria-labelledby="catatan-validasi-tab">
                 @include('spks.validasi_spks.catatan_sekolah')
+            </div>
+            <div class="tab-pane fade" id="jpn-verifikasi" role="tabpanel" aria-labelledby="jpn-verifikasi-tab">
+                @include('spks.validasi_spks.jpn_verifikasi')
             </div>
         </div>
     </div>
