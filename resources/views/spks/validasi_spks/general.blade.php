@@ -253,68 +253,88 @@ $number = 1;
 
             <div class="col-lg-8">
                 <div class=" card rounded">
+
+                    <style>
+                        #jumlahKeseluruhanSpks thead th {
+                            vertical-align: middle;
+                            text-align: center;
+                        }
+
+                        #jumlahKeseluruhanSpks tbody {
+                            vertical-align: middle;
+                            /* text-align: center; */
+                        }
+
+                        #jumlahKeseluruhanSpks table {
+                            width: 100% !important;
+                            /* word-wrap: break-word; */
+                        }
+
+                    </style>
+
+                    <p style="font-size: 12pt " class="card-title fw-bolder">
+                        JUMLAH KESELURUHAN STANDARD PENILAIAN
+                   </p>
+
+
+                    @php
+                    $jumlahs_spks = [
+                        'Aspek 1: Pengurusan Aktiviti Murid',
+                        'Aspek 2: Pengurusan Keselamatan Infrastruktur Sekolah',
+                        'Aspek 3: Pengurusan Sosial',
+                        'Aspek 4: Pengurusan Krisis/ Bencana',
+                        'Aspek 5: Pengurusan Risiko',
+                        'Aspek 6: Pengurusan Perkhidmatan Pengawal Keselamatan Sekolah',
+                    ];
+                    @endphp
+
                     <div class="table-responsive">
-                        <div class="justify-content-end align-items-center" style="margin-bottom:1%">
-                            <div style="text-align: right;">
-                                <label for="jumlahSkor"
-                                    style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;font-weight:bold;color:white;font-size:10pt">Jumlah
-                                    Skor<span id="jumlahSkor"
-                                        style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;">20</span></label>
-
-                            </div>
-                        </div>
-                        <table class="table header_uppercase table-bordered table-hovered" id="spks_aspek2">
+                        <table class="table header_uppercase table-bordered table-hovered" id="jumlahKeseluruhanSpks">
                             <thead>
-
-                                @foreach ($aspeks_2 as $index => $aspek_2)
                                 <tr>
-                                    <td style="font-size: 11pt;width:85%" colspan="2"
-                                        class="bg-light-primary text-uppercase">
-                                        {{ $aspek_2['section'] }}
-                                    </td>
-                                    <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
-                                        Skor Sekolah
-                                    </td>
+                                    <th style="font-size: 10pt">Nama Aspek Penilaian</th>
+                                    <th style="font-size: 10pt" width="3%">0</th>
+                                    <th style="font-size: 10pt" width="3%">1</th>
+                                    <th style="font-size: 10pt" width="3%">2</th>
+                                    <th style="font-size: 10pt" width="3%">TB</th>
                                 </tr>
-                                @endforeach
-
                             </thead>
+
                             <tbody>
-
-                                @foreach ($aspeks_2 as $index => $aspek_2)
-                                {{-- <tr>
-                                    <td style="font-size: 11pt" colspan="2" class="bg-light-primary text-uppercase">
-                                        {{ $aspek_2['section'] }}
-                                    </td>
-                                    <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
-                                        Skor Sekolah
-                                    </td>
-                                </tr> --}}
-                                @foreach ($aspek_2['subSections'] as $subsection_aspek2)
-                                <?php
-                                    $name = $index.'_'.$loop->index;
-                                ?>
+                                @foreach ($jumlahs_spks as $key => $jumlah_spks)
                                 <tr>
-                                    <td style="font-size: 10pt">{{ $number++ }}</td>
-                                    <td style="font-size: 10pt">{{ $subsection_aspek2 }}</td>
-                                    <td>
-                                        <div style="font-size: 10pt"
-                                            class="d-flex justify-content-center align-items-center">
-                                            {{-- <input class="form-check-input radio-input-2" type="radio"
-                                                name="{{ $index }}_{{ $loop->index }}"
-                                                id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled> --}}
-                                            <span>1</span>
-                                        </div>
-                                    </td>
-
+                                    <td style="font-size: 10pt">{{ $jumlah_spks }}</td>
+                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
                                 </tr>
-
-                                @endforeach
                                 @endforeach
                             </tbody>
 
+                            <tfoot>
+                                <tr class="bg-light-danger">
+                                    <td style="font-size: 10pt" class="text-end">
+                                        Jumlah Keseluruhan
+                                    </td>
+                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
+
+                    <hr>
+
+                    <div class="buy-now">
+                        <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
+                            Simpan
+                        </button>
+                    </div>
+
+
                 </div>
             </div>
         </div>

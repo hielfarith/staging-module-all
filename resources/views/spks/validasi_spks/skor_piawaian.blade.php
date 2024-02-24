@@ -1,3 +1,12 @@
+@section('page-style')
+    <style>
+        .nav-pills .nav-link{
+            font-size:12px;
+        }
+
+    </style>
+@endsection
+
 <ul class="nav nav-pills nav-justified" role="tablist">
 
     <li class="nav-item" role="presentation">

@@ -13,29 +13,35 @@
         width: 100% !important;
         /* word-wrap: break-word; */
     }
+    .catatan{
+        font-size: 11pt;
+    }
 
 </style>
 
-<h5 class="card-title fw-bolder text-uppercase">
+<div class="catatan">
+    <p class=" fw-bolder text-uppercase">
     Catatan Sekolah
-</h5>
+    </p>
+</div>
+
 
 <hr>
 
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="catatan_sekolah">
-        <thead>
+        <thead style="font-size: 9pt">
             <tr>
-                <th style="font-size: 10pt" width="5%">No.</th>
-                <th style="font-size: 10pt" width="5%">Aspek</th>
-                <th style="font-size: 10pt" width="15%">Maklumat Item</th>
-                <th style="font-size: 10pt" width="10%">Isu/Permasalahan</th>
-                <th style="font-size: 10pt" width="15%">Catatan Validasi (PPD)</th>
-                <th style="font-size: 10pt" width="10%">Penentuan Criticality</th>
-                <th style="font-size: 10pt" width="5%">Tindakan</th>
+                <th style="font-size: 9pt" width="5%">No.</th>
+                <th style="font-size: 9pt" width="5%">Aspek</th>
+                <th style="font-size: 9pt" width="15%">Maklumat Item</th>
+                <th style="font-size: 9pt" width="10%">Isu/Permasalahan</th>
+                <th style="font-size: 9pt" width="15%">Catatan Verifikasi (PPD)</th>
+                <th style="font-size: 9pt" width="10%">Penentuan Criticality</th>
+                <th style="font-size: 9pt" width="5%">Tindakan</th>
             </tr>
         </thead>
-        <tbody style="font-size: 10pt">
+        <tbody style="font-size: 9pt">
             <tr>
                 <td>1</td>
                 <td>Aspek 1</td>
@@ -43,31 +49,89 @@
                     Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)</td>
                 <td>Tiada laluan perjalanan kaki</td>
                 <td>
-                    <textarea rows="5" class="form-control">Ni amik dari yang dah masukkan dalam table from aspek tu
+                    <textarea style="font-size: 9pt" rows="5" class="form-control">Ni ambil dari yang dah masukkan dalam table from aspek tu
 
                     </textarea>
                 </td>
                 <td>
-                    <textarea rows="5" class="form-control">- tidak berkaitan
-                                                            - ⁠selesai peringkat sekolah
-                                                            - ⁠selesai peringkat PPD
-                                                            - ⁠belum selesai
-                                                            - ⁠belum mendapat laporan dari sekolah
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;">
+                            <input required class="form-check-input radio-input-2" type="radio" id="kritikal" name="status1">
+                        </div>
+                        <label class="form-check-label" for="kritikal">Kritikal</label>
+                    </div>
+
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;">
+                            <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal" name="status1">
+                        </div>
+                        <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
+                    </div>
+
+                </td>
+                <td style="text-align: center;">
+                    <div class="btn-group " role="group" aria-label="Action">
+
+                        <div class="d-flex">
+                            <div style="margin-right: 10px;">
+                                <input required class="form-check-input radio-input-2" type="radio" id="r" name="status3" unchecked>
+                            </div>
+                            <label class="form-check-label" for="r"></label>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Aspek 2</td>
+                <td>Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah,
+                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)</td>
+                <td>Tiada laluan perjalanan kaki</td>
+                <td>
+                    <textarea style="font-size: 9pt" rows="5" class="form-control">Ni ambil dari yang dah masukkan dalam table from aspek tu
 
                     </textarea>
+                </td>
+                <td>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;">
+                            <input required class="form-check-input radio-input-2" type="radio" id="Selesa" name="status2">
+                        </div>
+                        <label class="form-check-label" for="Selesa">Selesa</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;">
+                            <input required class="form-check-input radio-input-2" type="radio" id="Tidak Selesa" name="status2">
+                        </div>
+                        <label class="form-check-label" for="Tidak Selesa">Tidak Selesa</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;">
+                            <input required class="form-check-input radio-input-2" type="radio" id="Kefungsian" name="status2">
+                        </div>
+                        <label class="form-check-label" for="Kefungsian">Kefungsian</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;">
+                            <input required class="form-check-input radio-input-2" type="radio" id="Sekuriti" name="status2">
+                        </div>
+                        <label class="form-check-label" for="Sekuriti">Sekuriti</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;">
+                            <input required class="form-check-input radio-input-2" type="radio" id="Keselamatan" name="status2">
+                        </div>
+                        <label class="form-check-label" for="Keselamatan">Keselamatan</label>
+                    </div>
                 </td>
                 <td style="text-align: center;">
                     <div class="btn-group " role="group" aria-label="Action">
 
                         <div class="d-flex justify-content-center align-items-center">
-                            <input required class="form-check-input radio-input-2" type="radio" checked>
+                            <input required class="form-check-input radio-input-2" type="radio" unchecked>
                         </div>
-                        {{-- <a href="#" class="btn btn-xs btn-default" title="">
-                            <i class="fa fa-save text-success" aria-hidden="true"></i>
-                        </a>
-                        <a class="btn btn-xs btn-default" title="">
-                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
-                        </a> --}}
+
                     </div>
                 </td>
             </tr>
