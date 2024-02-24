@@ -58,15 +58,59 @@
                     Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)
                 </td>
                 <td style="font-size: 9pt; width:10%">
-                    Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki,
-                    Berbasikal, Motosikal, Bas sekolah,
-                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="kritikal"
+                                name="status1" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="kritikal">Kritikal</label>
+                    </div>
+
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal"
+                                name="status1" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
+                    </div>
 
                 </td>
                 <td style="font-size: 9pt; width:10%">
-                    Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki,
-                    Berbasikal, Motosikal, Bas sekolah,
-                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="kaitan"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="kaitan">Tidak berkaitan</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatSekolah"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatPPD"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="belumSelesai">Belum selesai</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="belumMendapat"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label>
+                    </div>
                 </td>
                 <td style="font-size: 9pt; width:10%">
                     <div class="d-flex">
@@ -99,14 +143,58 @@
                     Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)
                 </td>
                 <td style="font-size: 9pt; width:10%">
-                    Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki,
-                    Berbasikal, Motosikal, Bas sekolah,
-                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="kritikal"
+                                name="status1" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="kritikal">Kritikal</label>
+                    </div>
+
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal"
+                                name="status1" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
+                    </div>
                 </td>
                 <td style="text-align: center; width:10%">
-                    Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki,
-                    Berbasikal, Motosikal, Bas sekolah,
-                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="kaitan"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="kaitan">Tidak berkaitan</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatSekolah"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatPPD"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="belumSelesai">Belum selesai</label>
+                    </div>
+                    <div class="d-flex">
+                        <div style="margin-right: 10px;margin-bottom:10px">
+                            <input required class="form-check-input radio-input-2" type="radio" id="belumMendapat"
+                                name="status4" style="transform: scale(1.2);">
+                        </div>
+                        <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label>
+                    </div>
                 </td>
                 <td style="font-size: 9pt; width:10%">
                     <div class="d-flex">
