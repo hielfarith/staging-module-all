@@ -227,12 +227,13 @@ $number = 1;
         })
 
         var APIUrl = "{{ env('APP_VERFIKASI_URL')}}"+'api/spks/get-tab-jumlah';
-        
+        var id = <?php echo Request::segment(3); ?>
+
         $.ajax({
             url: APIUrl,
             method: 'POST',
             data: {
-                id: 2,
+                id: id,
                 tab:'aspek1'
             },
             success: function(response) {

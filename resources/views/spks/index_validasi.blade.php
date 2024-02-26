@@ -127,13 +127,16 @@ SPKS
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     })
+
     function  choosetabMain(argument) {
         var APIUrl = "{{ env('APP_VERFIKASI_URL')}}"+'api/spks/get-tab-jumlah';
+        var id = <?php echo Request::segment(3); ?>
+
         $.ajax({
             url: APIUrl,
             method: 'POST',
             data: {
-                id: 2,
+                id: id,
                 tab:argument
             },
             success: function(response) {
