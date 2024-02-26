@@ -102,7 +102,7 @@ $number = 1;
         <div style="text-align:center">
             <span>Jumlah Skor</span>
         </div>
-        <div style="text-align:center;padding-right:"><span>20</span>
+        <div style="text-align:center;padding-right:"><span id="aspek2_sum"></span>
         </div>
 
     </div>
@@ -154,7 +154,7 @@ $number = 1;
                 <td>
                     <div style="font-size: 10pt" class="d-flex justify-content-center align-items-center">
                         {{-- <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled> --}}
-                        <span>1</span>
+                        <span id="aspek2_{{$name}}"></span>
                     </div>
                 </td>
                 {{-- <td>

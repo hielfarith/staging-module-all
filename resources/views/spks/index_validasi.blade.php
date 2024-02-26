@@ -31,27 +31,27 @@ SPKS
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-2-tab" data-bs-toggle="tab" href="#validasi-aspek-2" aria-controls="validasi-aspek-2" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-2-tab" data-bs-toggle="tab" href="#validasi-aspek-2" aria-controls="validasi-aspek-2" role="tab" aria-selected="false" onclick="choosetabMain('aspek2')">
             ASPEK 2
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-3-tab" data-bs-toggle="tab" href="#validasi-aspek-3" aria-controls="validasi-aspek-3" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-3-tab" data-bs-toggle="tab" href="#validasi-aspek-3" aria-controls="validasi-aspek-3" role="tab" aria-selected="false" onclick="choosetabMain('aspek3')">
             ASPEK 3
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-4-tab" data-bs-toggle="tab" href="#validasi-aspek-4" aria-controls="validasi-aspek-4" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-4-tab" data-bs-toggle="tab" href="#validasi-aspek-4" aria-controls="validasi-aspek-4" role="tab" aria-selected="false" onclick="choosetabMain('aspek4')">
             ASPEK 4
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-5-tab" data-bs-toggle="tab" href="#validasi-aspek-5" aria-controls="validasi-aspek-5" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-5-tab" data-bs-toggle="tab" href="#validasi-aspek-5" aria-controls="validasi-aspek-5" role="tab" aria-selected="false" onclick="choosetabMain('aspek5')">
             ASPEK 5
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-6-tab" data-bs-toggle="tab" href="#validasi-aspek-6" aria-controls="validasi-aspek-6" role="tab" aria-selected="false">
+        <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-aspek-6-tab" data-bs-toggle="tab" href="#validasi-aspek-6" aria-controls="validasi-aspek-6" role="tab" aria-selected="false" onclick="choosetabMain('aspek6')">
             ASPEK 6
         </a>
     </li>
@@ -118,3 +118,49 @@ SPKS
     </div>
 </div>
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script type="text/javascript">
+     $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+    function  choosetabMain(argument) {
+        var APIUrl = "{{ env('APP_VERFIKASI_URL')}}"+'api/spks/get-tab-jumlah';
+        $.ajax({
+            url: APIUrl,
+            method: 'POST',
+            data: {
+                id: 2,
+                tab:argument
+            },
+            success: function(response) {
+                var data = response.data; 
+                 var length = 8;
+                var sum = 0;
+                var sumid = argument+'_sum';
+                if (argument == 'aspek1_sectionc') {
+                    var length = 6;
+                } else if (argument == 'aspek1_sectione') {
+                    var length = 9;
+                } else if(argument == 'aspek2') {
+                    length = 13;
+                } else if(argument == 'aspek6') {
+                    length = 16;
+                }
+
+                for (var i = 0; i < length; i++) {
+                    var id = argument+'_0_'+i;
+                    var dataid = '0_'+i;
+                    if ($.isNumeric(data[dataid])) {
+                        sum += parseInt(data[dataid]);
+                    }   
+                    $('#'+id).html(data[dataid]); 
+                }
+                $('#'+sumid).html(sum);
+            }
+        });
+    }
+</script>

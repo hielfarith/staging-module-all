@@ -44,8 +44,8 @@ $number = 1;
         <div style="text-align: right;">
             <label for="jumlahSkor"
                 style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;font-weight:bold;color:white;font-size:10pt">Jumlah
-                Skor<span id="jumlahSkor"
-                    style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;">20</span></label>
+                Skor<span id="aspek1_sum"
+                    style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;"></span></label>
 
         </div>
 
@@ -58,7 +58,7 @@ $number = 1;
         <div style="text-align:;padding-right:3%">
             <span>Jumlah Skor</span>
         </div>
-        <div style="text-align:;padding-right:5%"><span>20</span>
+        <div style="text-align:;padding-right:5%"><span id=""></span>
         </div>
 
     </div> --}}
@@ -106,10 +106,7 @@ $number = 1;
                 <td style="font-size: 10pt">{{ $subsection_aspek1 }}</td>
                 <td>
                     <div style="font-size: 10pt" class="d-flex justify-content-center align-items-center">
-                        {{-- <input class="form-check-input radio-input-2" type="radio"
-                            name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0"
-                            disabled> --}}
-                        <span>1</span>
+                        <span id="aspek1_{{$name}}"></span>
                     </div>
                 </td>
                 {{-- <td>
@@ -192,11 +189,11 @@ $number = 1;
     </table>
 </div>
 
-<div class="buy-now">
+<!-- <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="formsubmit('aspek1')">
         Simpan
     </button>
-</div>
+</div> -->
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -220,5 +217,38 @@ $number = 1;
             $("#pengisianAspek1_" + index + "_" + loopIndex).removeClass("bg-light-success bg-light-warning").addClass("bg-light-danger");
             $("#catatanAspek1_" + index + "_" + loopIndex).show(200);
         });
+
+        //ajax call to pull data
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
+        var APIUrl = "{{ env('APP_VERFIKASI_URL')}}"+'api/spks/get-tab-jumlah';
+        
+        $.ajax({
+            url: APIUrl,
+            method: 'POST',
+            data: {
+                id: 2,
+                tab:'aspek1'
+            },
+            success: function(response) {
+                var data = response.data; 
+                var sum = 0;
+                for (var i = 0; i < 8; i++) {
+                    var id = 'aspek1_0_'+i;
+                    var dataid = '0_'+i;
+                    if ($.isNumeric(data[dataid])) {
+                        sum += parseInt(data[dataid]);
+                    }                  
+                    $('#'+id).html(data[dataid]); 
+                }
+                $('#aspek1_sum').html(sum)
+            }
+        });
+
     });
 </script>

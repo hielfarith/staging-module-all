@@ -41,8 +41,8 @@
                 <div style="text-align: right;">
                     <label for="jumlahSkor"
                         style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;font-weight:bold;color:white;font-size:10pt">Jumlah
-                        Skor<span id="jumlahSkor"
-                            style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;">20</span></label>
+                        Skor<span id="aspek1_sectiond_sum"
+                            style="background-color: #0C2043; padding: 5px 10px; border-radius: 5px;"></span></label>
 
                 </div>
             </div>
@@ -73,7 +73,7 @@
                         <td>
                             <div style="font-size: 10pt" class="d-flex justify-content-center align-items-center">
                                 {{-- <input class="form-check-input radio-input-2" type="radio" name="{{ $index }}_{{ $loop->index }}" id="0_{{ $index }}_{{ $loop->index }}" value="0" disabled> --}}
-                                <span>1</span>
+                                <span id="aspek1_sectiond_{{$name}}"></span>
                             </div>
                         </td>
 
@@ -88,12 +88,12 @@
         </div>
 
 
-
+<!-- 
         <div class="buy-now">
             <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="formsubmit('aspek1_sectionb')">
                 Simpan
             </button>
-        </div>
+        </div> -->
         </form>
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

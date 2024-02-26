@@ -44,7 +44,7 @@ Skpak
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="table-spks-body">
                 </tbody>
             </table>
         </div>
@@ -57,6 +57,12 @@ Skpak
 <script>
 $(document).ready(function() {
 
+$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+})
+
 $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
     $('.select2').select2({
     });
@@ -65,78 +71,41 @@ $('#modal-instrumen-diisi').on('shown.bs.modal', function () {
     });
 
 });
+    
+    var APIUrl = '{{ env('APP_VERFIKASI_URL')}}'+'api/spks/verfikasi-senarai';
+    // TableSenaraiInstrumenSpks
+     $.ajax({
+        url: APIUrl,
+        method: 'GET',
+        success: function(response) {
+           if (response.status == 'success') {
+                var data = response.data;
+                $('#table-spks-body').empty();
+                for (var i = 0; i < data.length; i++) {
+                    var tableData = "<tr>";
+                    var sn = i+1;
+                    tableData = tableData+'<td>'+sn+'</td>';
+                    tableData = tableData+'<td>'+data[i].pengguna_instrumen+'</td>';
+                    tableData = tableData+'<td>'+data[i].pengisian_oleh+'</td>';
+                    tableData = tableData+'<td>'+data[i].tempoh_pengisian+'</td>';
+                    tableData = tableData+'<td>'+data[i].tempoh_pengisian_lain+'</td>';
+                    tableData = tableData+'<td>'+data[i].spks_status+'</';
+                    tableData = tableData+'<td>'+data[i].spks_status+'</td>';
 
-    $(function() {
-        var table = $('#TableSenaraiInstrumenSpks').DataTable({
-            orderCellsTop: true,
-            colReorder: false,
-            pageLength: 10,
-            processing: true,
-            searching: false,
-            serverSide: true, //enable if data is large (more than 50,000)
-            ajax: {
-                url: "{{ fullUrl() }}",
-                cache: false,
-            },
-            columns: [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-
-                {
-                    data: "pengguna_instrumen",
-                    name: "pengguna_instrumen",
-                    searchable: true,
-                    render: function(data, type, row) {
-                        return $("<div/>").html(data).text();
-                    }
-                },
-                {
-                    data: "pengisian_oleh",
-                    name: "pengisian_oleh",
-                    searchable: true,
-                    render: function(data, type, row) {
-                        return $("<div/>").html(data).text();
-                    }
-                },
-                {
-                    data: "tempoh_pengisian",
-                    name: "tempoh_pengisian",
-                    searchable: true,
-                    render: function(data, type, row) {
-                        return $("<div/>").html(data).text();
-                    }
-                },
-                {
-                    data: "tempoh_pengisian_lain",
-                    name: "tempoh_pengisian_lain",
-                    searchable: true,
-                    render: function(data, type, row) {
-                        return $("<div/>").html(data).text();
-                    }
-                },
-                 {
-                    data: "status",
-                    name: "status",
-                    searchable: true,
-                    render: function(data, type, row) {
-                        return $("<div/>").html(data).text();
-                    }
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: true,
-                    searchable: true
-                },
-            ],
-        });
+                    var button = "";
+                    button = button+'<div class="btn-group " role="group" aria-label="Action">';
+                    button = button+'<a onclick="maklumatSpks('+data[i].spks_id+')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                    button = button+'<a onclick="maklumatSpksValidasi('+data[i].spks_id+')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    button = button+"</div>";
+                    tableData = tableData+'<td>'+button+'</td></tr>';
+                    $('#table-spks-body').append(tableData);
+                }
+           }
+        }
     });
 });
 
-$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-})
+
 
 function maklumatSpks(id){
     var url = "{{ route('spks.borang-view',['id'=> ':id', 'type' => 'lihat']) }}";
