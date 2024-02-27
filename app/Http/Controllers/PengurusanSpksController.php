@@ -73,7 +73,7 @@ class PengurusanSpksController extends Controller
                 ->make(true);
         }
 
-        return view('spks.list');
+        return view('spks.list_validasi');
     }
 
     public function verfikasiSpksSenarai(Request $request){
