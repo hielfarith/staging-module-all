@@ -19,6 +19,9 @@
   .card-img-overlay {
     border-radius: $card-border-radius;
   }
+  .card-body{
+    font-size: 1.1rem;
+  }
 
   //fullscreen card
   &.card-fullscreen {

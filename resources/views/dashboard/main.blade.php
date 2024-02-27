@@ -59,7 +59,7 @@
                                             <span class="badge bg-light-primary">{{ Str::ucfirst($role) }}</span>
                                         @elseif ($role == 'superadmin')
                                             <span class="badge bg-light-success">{{ Str::ucfirst($role) }}</span>
-                                        @elseif ($role == 'pengguna_luar')
+                                        @else
                                             <span class="badge bg-light-warning">{{ Str::ucfirst($role) }}</span>
                                         @endif
                                     @endforeach

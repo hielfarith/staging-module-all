@@ -18,40 +18,6 @@
             opacity: 0.5;
             background-image: url('{{ asset('images/bg_sppip.jpg') }}');
         }
-
-        a.ViewProposalButton {
-            background-color: #1c87c9;
-            -webkit-border-radius: 60px;
-            border-radius: 60px;
-            border: none;
-            color: #eeeeee;
-            cursor: pointer;
-            display: inline-block;
-            padding: 5px 15px;
-            text-align: center;
-            text-decoration: none;
-        }
-
-        @keyframes glowing {
-            0% {
-                background-color: #0d0f65;
-                box-shadow: 0 0 5px #0d0f65;
-            }
-
-            50% {
-                background-color: #0d0f65;
-                box-shadow: 0 0 20px #0d0f65;
-            }
-
-            100% {
-                background-color: #0d0f65;
-                box-shadow: 0 0 5px #0d0f65;
-            }
-        }
-
-        a.ViewProposalButton {
-            animation: glowing 1300ms infinite;
-        }
     </style>
 @endsection
 
@@ -69,11 +35,6 @@
                         <h2 class="mt-2 card-title fw-bold mb-1">
                             SISTEM PEMERIKSAAN DAN PENILAIAN INSTITUSI PENDIDIKAN
                         </h2>
-                        <p class="text-center mt-2 mt-2">
-                            <a class="ViewProposalButton" target="_blank" href="{{ url('https://online.anyflip.com/akkxw/gdpq/mobile/index.html') }}">
-                                <span class="fw-bolder ViewProposalButton">View Proposal</span>
-                            </a>
-                        </p>
 
                         <p class="card-text mb-2">Please sign-in to your account</p>
 
@@ -144,12 +105,12 @@
         <div class="modal login fade right" id="loginDemo" tabindex="-1" aria-labelledby="loginDemo"
             data-bs-backdrop="false" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content" style="margin-top: 65%">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Pengguna Demo untuk SPPIP®</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body login" style="height:10%; ">
+                    <div class="modal-body login" style="height:10%;">
                         <div class="list-group">
                             <a href="javascript:demoLogin(0)" class="list-group-item list-group-item-action">
                                 Superadmin
@@ -159,6 +120,39 @@
                             </a>
                             <a href="javascript:demoLogin(2)" class="list-group-item list-group-item-action">
                                 Pengguna Luar
+                            </a>
+                            <a href="javascript:demoLogin(3)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Pengguna
+                            </a>
+                            <a href="javascript:demoLogin(4)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Pentadbir
+                            </a>
+                            <a href="javascript:demoLogin(5)" class="list-group-item list-group-item-action">
+                                [User SPPIP] SU Sukan
+                            </a>
+                            <a href="javascript:demoLogin(6)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Guru Besar
+                            </a>
+                            <a href="javascript:demoLogin(7)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Pengetua
+                            </a>
+                            <a href="javascript:demoLogin(8)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Penolong Kanan
+                            </a>
+                            <a href="javascript:demoLogin(9)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Ketua Sukan
+                            </a>
+                            <a href="javascript:demoLogin(10)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Institusi
+                            </a>
+                            <a href="javascript:demoLogin(11)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Bahagian Pendidikan Swasta
+                            </a>
+                            <a href="javascript:demoLogin(12)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Jabatan Pendidikan Negeri
+                            </a>
+                            <a href="javascript:demoLogin(13)" class="list-group-item list-group-item-action">
+                                [User SPPIP] Jabatan SKIPS
                             </a>
                         </div>
                     </div>
@@ -186,6 +180,50 @@
                     },
                     {
                         email: 'siti_ahmad@yopmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'pengguna1@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'pentadbir@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'setiausaha@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'gurusekolah@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'pengetua@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'penolong@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'ketuasukan@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'userinstitute@yopmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'bahagian@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'jabatan_negeri@gmail.com',
+                        password: 'password',
+                    },
+                    {
+                        email: 'jabat_skips@gmail.com',
                         password: 'password',
                     }
                 ];

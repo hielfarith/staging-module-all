@@ -10,13 +10,17 @@ class InputSelectField extends Component
 {
     public $label;
     public $name;
+    public $required;
+    public $placeholder;
     /**
      * Create a new component instance.
      */
-    public function __construct($label, $name)
+    public function __construct($label, $name, $required, $placeholder)
     {
         $this->label = $label;
         $this->name = $name;
+        $this->required = $required;
+        $this->placeholder = $placeholder;
     }
 
     /**

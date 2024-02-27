@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
+use App\Models\RoleAccess;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
@@ -86,9 +87,28 @@ class RoleController extends Controller
             'description' => 'required|string',
             'display_name' => 'required|string',
         ]);
+        if (isset($request->dynamic)) {
+            $dynamic = 1;
+        } else {
+            $dynamic = 0;
+        }
+        $role = Role::create([
+            'name' => $request->role_name, 
+            'description' => $request->role_description, 
+            'display_name' => $request->role_display, 
+            'guard_name' => 'web', 
+            'dynamic' => $dynamic
+        ]);
 
-        $role = Role::create(['name' => $request->role_name, 'description' => $request->role_description, 'display_name' => $request->role_display, 'guard_name' => 'web']);
-
+        if($role){
+            RoleAccess::create([
+                'role_id' => $role->id,
+                'modul' => $request->modul,
+                'proses' => $request->proses,
+                'capaian' => $request->capaian,
+                'jenis' => $request->jenis,
+            ]);
+        }
 
 
         return redirect()->route('role.index');
@@ -103,18 +123,19 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         $permissions = Permission::all();
-        return view('admin.role.edit', compact('role', 'permissions'));
+        $access = $role->access;
+        return view('admin.role.edit', compact('role', 'permissions', 'access'));
     }
 
     public function update(Request $request,$id_used)
     {
         DB::beginTransaction();
         try{
-            $validatedData = $request->validate([
-                'role_name' => 'required|string',
-                'role_description' => 'required|string',
-                'role_display' => 'required|string',
-            ]);
+            // $validatedData = $request->validate([
+            //     'role_name' => 'required|string',
+            //     'role_description' => 'required|string',
+            //     'role_display' => 'required|string',
+            // ]);
 
             if($id_used)
                 $role = Role::find($id_used);
@@ -126,7 +147,7 @@ class RoleController extends Controller
             $role->description = $request->role_description;
             $role->display_name = $request->role_display;
             // $role->update($request->only('role_name', 'role_description','role_display'));
-            $role->syncPermissions($request->permissions ? $request->permissions : []);
+            //$role->syncPermissions($request->permissions ? $request->permissions : []);
             $role->save();
             DB::commit();
 

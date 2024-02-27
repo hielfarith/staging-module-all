@@ -515,7 +515,7 @@
                                     </td>
                                     <td>
                                         <h4 class="fw-bolder mb-0">30</h4>
-                                        <p class="card-text font-small-3 mb-0" href="{{ route('jawab_instrumen') }}">Instrumen Diterima</p>
+                                        <p class="card-text font-small-3 mb-0" href="">Instrumen Diterima</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -563,7 +563,7 @@
                                     </td>
                                     <td>
                                         <h4 class="fw-bolder mb-0">30</h4>
-                                        <p class="card-text font-small-3 mb-0" href="{{ route('jawab_instrumen') }}">Instrumen Diterima</p>
+                                        <p class="card-text font-small-3 mb-0" href="">Instrumen Diterima</p>
                                     </td>
                                 </tr>
                                 <tr>

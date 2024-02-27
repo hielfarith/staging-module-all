@@ -40,14 +40,9 @@
           	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
+		   
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="{{route('create-form')}}">Create Form</a>
-		    </div>
-		    <div class="navbar-header">
-		      <a class="navbar-brand" href="{{route('fillform')}}">Fill Form</a>
-		    </div>
-		    <div class="navbar-header">
-		      <a class="navbar-brand" href="{{route('listfillform')}}">List Form</a>
+		      <h4>List Form</h4>
 		    </div>
 		</div>
         </nav>
@@ -63,7 +58,7 @@
 			      <th scope="col">#</th>
 			      <th scope="col">Form Name</th>
 			      <th scope="col">Category</th>
-			      <th scope="col">Filled By</th>
+			      <th scope="col">Status</th>
 			      <th scope="col">Action</th>
 			    </tr>
 			  </thead>
@@ -73,7 +68,8 @@
 			    		<td>{{$key+1}}</td>
 			    		<td>{{$forms->form_name}}</td>
 			    		<td>{{$forms->category}}</td>
-			    		<td>User</td>
+			    		
+			    		<td>{{$forms->statuses?->status_description ?? '-'}}</td>
 			    		<td><a class="btn-btn-primary" onclick="listForm({{$forms->id}})">
 					            <i class="fa fa-eye"></i>
 					        </a></td>
@@ -82,7 +78,9 @@
 			  </tbody>
 			</table>
     </div>
-    
+
+    <!-- determining roles and permission who can submit and approve -->
+
   	<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
 	  	<div class="modal-dialog">
 	    	<div class="modal-content">
@@ -93,10 +91,6 @@
 		      	<div class="modal-body" id="append">
 				
 			   	</div>
-		      	<div class="modal-footer">
-		        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		       	 	<button type="button" class="btn btn-primary" onclick="submitform()">submit</button>
-		      	</div>
 			</div>
 		</div>
 	</div>
@@ -130,7 +124,24 @@
             success: function(response) {
             	$('#Modal').modal("show");
                 $('#append').empty();
-                $('#append').append(response);            
+                $('#append').append(response);   
+            }
+        });
+    }
+    function  formverify(status, formid) {
+    	var url = "{{route('verify')}}";
+
+    	$.ajax({
+            url: url, // Route URL
+            type: 'POST', // Request type (GET, POST, etc.)
+             data: {
+                status: status,
+                formid: formid
+             }, 
+            success: function(response) {
+            	if (response.success) {
+             		window.location.reload();
+               } 
             }
         });
     }

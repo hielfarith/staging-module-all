@@ -11,15 +11,19 @@ class InputField extends Component
     public $type;
     public $label;
     public $name;
+    public $required;
+    public $placeholder;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($type,$label,$name)
+    public function __construct($type, $label, $name,  $required, $placeholder)
     {
         $this->type = $type;
         $this->label = $label;
         $this->name = $name;
+        $this->required = $required;
+        $this->placeholder = $placeholder;
     }
 
     /**

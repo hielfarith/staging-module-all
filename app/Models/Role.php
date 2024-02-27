@@ -44,4 +44,9 @@ class Role extends Model
     {
         return $this->belongsToMany('App\Models\Permission', 'role_has_permissions');
     }
+
+    public function access()
+    {
+        return $this->hasOne('App\Models\RoleAccess', 'role_id', 'id');
+    }
 }

@@ -34,15 +34,16 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-            <div class="navbar-header">
+            <!-- <div class="navbar-header">
               <a class="navbar-brand" href="{{route('create-form')}}">Create Form</a>
-            </div>
+            </div> -->
             <div class="navbar-header">
-              <a class="navbar-brand" href="{{route('fillform')}}">Fill Form</a>
+              <h4>Fill Form</h4>
+              <!-- <a class="navbar-brand" href="{{route('fillform')}}">Fill Form</a> -->
             </div>
-            <div class="navbar-header">
+            <!-- <div class="navbar-header">
               <a class="navbar-brand" href="{{route('listfillform')}}">List Form</a>
-            </div>
+            </div> -->
         </div>
         </nav>
     </div>
