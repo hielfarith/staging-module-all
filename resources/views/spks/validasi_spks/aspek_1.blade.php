@@ -234,11 +234,11 @@ $number = 1;
 
 <hr>
 
-<div class="buy-now">
+{{-- <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
         Simpan
     </button>
-</div>
+</div> --}}
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
