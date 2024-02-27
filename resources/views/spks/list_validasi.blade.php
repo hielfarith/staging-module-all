@@ -20,10 +20,10 @@
             <h4 class="card-title fw-bolder"> Senarai Skpak </h4>
 
             <!--  <div class="d-flex justify-content-end align-items-center">
-                                <a href="{{ asset('template/BORANG DEMOGRAFI SKIPS.pdf') }}" class="btn btn-primary float-right" download>
-                                    <i class="fa-solid fa-file"></i> Muat Turun Dokumen
-                                </a>
-                            </div> -->
+                            <a href="{{ asset('template/BORANG DEMOGRAFI SKIPS.pdf') }}" class="btn btn-primary float-right" download>
+                                <i class="fa-solid fa-file"></i> Muat Turun Dokumen
+                            </a>
+                        </div> -->
         </div>
 
         <hr>
@@ -69,7 +69,7 @@
 
             });
 
-            var APIUrl = '{{ env('APP_VERFIKASI_URL') }}' + 'api/spks/validasi-senarai';
+            var APIUrl = '{{ env('APP_VERFIKASI_URL') }}' + 'api/spks/verfikasi-senarai';
             // TableSenaraiInstrumenSpks
             $.ajax({
                 url: APIUrl,
