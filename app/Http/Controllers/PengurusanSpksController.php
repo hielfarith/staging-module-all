@@ -356,4 +356,9 @@ class PengurusanSpksController extends Controller
         }
 
     }
+
+    public function SenaraiInstrumen(Request $request)
+    {
+        return view('spks.instrumen.list');
+    }
 }
