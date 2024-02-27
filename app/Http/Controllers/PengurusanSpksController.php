@@ -42,7 +42,7 @@ class PengurusanSpksController extends Controller
                     return $skpak->tempoh_pengisian_lain;
                 })
                   ->editColumn('status', function ($skpak) {
-                     if ($spks->spks_status == 1) {  
+                     if ($spks->spks_status == 1) {
                         return 'Draft';
                     } elseif ($spks->spks_status == 2) {
                         return 'Telah Dihantar';
@@ -95,7 +95,7 @@ class PengurusanSpksController extends Controller
                     return $spks->tempoh_pengisian_lain;
                 })
                   ->editColumn('status', function ($spks) {
-                     if ($spks->spks_status == 1) {  
+                     if ($spks->spks_status == 1) {
                         return 'Draft';
                     } elseif ($spks->spks_status == 2) {
                         return 'Telah Dihantar';
@@ -136,9 +136,9 @@ class PengurusanSpksController extends Controller
             $spks = SpksPengisian::where('id', $id)->first();
         }
         $disabled = 'disabled';
-        return view('spks.index_validasi', compact('disabled', 'spks'));
+        return view('spks.index_verifikasi', compact('disabled', 'spks'));
     }
-    public function ValidasiSpks (Request $request) 
+    public function ValidasiSpks (Request $request)
     {
         $disabled = '';
         $spks = null;
@@ -147,12 +147,12 @@ class PengurusanSpksController extends Controller
     public  function saveSpks(Request $request, $tab)
     {
         DB::beginTransaction();
-        try { 
+        try {
             $input = $request->input();
             $tabsarray = ['aspek1','aspek2','aspek3','aspek4','aspek5','aspek6'];
             $instrument = InstrumenSkpakSpksIkeps::where('type', 'SPKS')->where('status',1)->first();
             $input['status'] = 1;
-            
+
             $data['spks_id'] = $input['spks_id'];
             $data['instrumen_id'] = $instrument->id;
             $data[$tab] = json_encode($input);
@@ -185,7 +185,7 @@ class PengurusanSpksController extends Controller
         } else {
             $disabled = '';
         }
-        
+
         $array = [];
         $jumlah = [];
         if ($id) {
@@ -196,10 +196,10 @@ class PengurusanSpksController extends Controller
                 $disabled = 'disabled';
             }
             if ($type == 'lihat') {
-               $disabled = 'disabled'; 
+               $disabled = 'disabled';
             }
             $tabsarray = ['aspek1','aspek2','aspek3','aspek4','aspek5','aspek6'];
-           
+
             $fzero = $fone = $ftwo = $ftb = 0;
             foreach ($tabsarray as $variable) {
                 $$variable = json_decode($spks->$variable, true);
@@ -214,14 +214,14 @@ class PengurusanSpksController extends Controller
                         if (str_contains($key, 'spks') || str_contains($key, 'catatan') || str_contains($key, 'status')) {
                             continue;
                         }
-                    
+
                         if ($value == '0') {
                             $zero += 1;
                             $fzero += 1;
                             $array[$variable][0] = $zero;
                             $jumlah['f0'] = $fzero;
                         }
-                      
+
                         if ($value == '1') {
                             $one += 1;
                             $fone += 1;
@@ -269,7 +269,7 @@ class PengurusanSpksController extends Controller
                 })
                   ->editColumn('status', function ($spks) {
                     // return $spks->spks_status;
-                    if ($spks->spks_status == 1) {  
+                    if ($spks->spks_status == 1) {
                         return 'Draft';
                     } elseif ($spks->spks_status == 3) {
                         return 'Telah Dihantar';
@@ -328,7 +328,7 @@ class PengurusanSpksController extends Controller
         $type = $request->argument;
         $remarks = $request->remarks;
 
-        try { 
+        try {
         if ($id) {
             $spks = SpksPengisian::where('id', $id)->first();
             if (!empty($spks->aspek1) && !empty($spks->aspek2) && !empty($spks->aspek3) && !empty($spks->aspek4) && !empty($spks->aspek5) && !empty($spks->aspek6) && !empty($spks->aspek1_sectionb) && !empty($spks->aspek1_sectionc) && !empty($spks->aspek1_sectiond) && !empty($spks->aspek1_sectione)) {

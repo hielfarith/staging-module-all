@@ -127,10 +127,10 @@
                     @include('spks.validasi_spks.skor_piawaian')
                 </div>
                 <div class="tab-pane fade" id="catatan-validasi" role="tabpanel" aria-labelledby="catatan-validasi-tab">
-                    @include('spks.validasi_spks.catatan_sekolah_validasi')
+                    @include('spks.validasi_spks.catatan_sekolah')
                 </div>
                 <div class="tab-pane fade" id="jpn-verifikasi" role="tabpanel" aria-labelledby="jpn-verifikasi-tab">
-                    @include('spks.validasi_spks.jpn_validasi')
+                    @include('spks.validasi_spks.jpn_verifikasi')
                 </div>
             </div>
         </div>

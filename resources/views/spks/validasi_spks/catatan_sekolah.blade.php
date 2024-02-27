@@ -29,7 +29,7 @@
 <hr>
 
 <div class="table-responsive">
-    <table class="table header_uppercase table-bordered table-hovered" style="width:100%" id="catatan_sekolah">
+    <table class="table header_uppercase table-bordered table-hovered mb-5" style="width:100%" id="catatan_sekolah">
         <thead style="font-size: 9pt;width:100%">
             <tr style="font-size: 9pt;width:100%">
                 <th style="font-size: 9pt; width:1%">No.</th>
@@ -55,7 +55,7 @@
                     </textarea>
                 </td>
                 <td style="font-size: 9pt; width:10%">
-                    {{-- <div class="d-flex">
+                    <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="kritikal"
                                 name="status1" style="transform: scale(1.2);">
@@ -69,13 +69,11 @@
                                 name="status1" style="transform: scale(1.2);">
                         </div>
                         <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
-                    </div> --}}
-                    <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
-
+                    </div>
 
                 </td>
                 <td style="font-size: 9pt; width:20%">
-                    {{-- <div class="d-flex">
+                    <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="kaitan"
                                 name="status4" style="transform: scale(1.2);">
@@ -109,9 +107,7 @@
                                 name="status4" style="transform: scale(1.2);">
                         </div>
                         <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label>
-                    </div> --}}
-                    <label class="form-check-label" for="kaitan">Tidak berkaitan</label>
-
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -127,7 +123,7 @@
                     </textarea>
                 </td>
                 <td style="font-size: 9pt; width:10%">
-                    {{-- <div class="d-flex">
+                    <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="Selesa"
                                 name="status2" style="transform: scale(1.2);">
@@ -161,13 +157,10 @@
                                 name="status2" style="transform: scale(1.2);">
                         </div>
                         <label class="form-check-label" for="Keselamatan">Keselamatan</label>
-                    </div> --}}
-                    <label class="form-check-label" for="Selesa">Selesai</label>
-
+                    </div>
                 </td>
-                <td style="font-size: 9pt; width:10%">
-
-                    {{-- <div class="d-flex">
+                <td style="font-size: 9pt; width:20%">
+                    <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="kaitan"
                                 name="status4" style="transform: scale(1.2);">
@@ -176,8 +169,8 @@
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatSekolah"
-                                name="status4" style="transform: scale(1.2);">
+                            <input required class="form-check-input radio-input-2" type="radio"
+                                id="peringkatSekolah" name="status4" style="transform: scale(1.2);">
                         </div>
                         <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label>
                     </div>
@@ -201,13 +194,11 @@
                                 name="status4" style="transform: scale(1.2);">
                         </div>
                         <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label>
-                    </div> --}}
-                    <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <div class="buy-now">
