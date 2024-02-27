@@ -60,7 +60,7 @@
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="kritikal"
-                                name="status1" style="transform: scale(1.2);">
+                                name="status1">
                         </div>
                         <label class="form-check-label" for="kritikal">Kritikal</label>
                     </div>
@@ -68,7 +68,7 @@
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal"
-                                name="status1" style="transform: scale(1.2);">
+                                name="status1">
                         </div>
                         <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
                     </div>
@@ -78,35 +78,35 @@
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="kaitan"
-                                name="status4" style="transform: scale(1.2);">
+                                name="status4">
                         </div>
                         <label class="form-check-label" for="kaitan">Tidak berkaitan</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="peringkatSekolah"
-                                name="status4" style="transform: scale(1.2);">
+                                name="status4">
                         </div>
                         <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="peringkatPPD"
-                                name="status4" style="transform: scale(1.2);">
+                                name="status4">
                         </div>
                         <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai"
-                                name="status4" style="transform: scale(1.2);">
+                                name="status4">
                         </div>
                         <label class="form-check-label" for="belumSelesai">Belum selesai</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="belumMendapat"
-                                name="status4" style="transform: scale(1.2);">
+                                name="status4">
                         </div>
                         <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label>
                     </div>
@@ -115,14 +115,14 @@
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="peringkatJPN"
-                                name="status3" style="transform: scale(1.2);">
+                                name="status3">
                         </div>
                         <label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai1"
-                                name="status3" style="transform: scale(1.2);">
+                                name="status3">
                         </div>
                         <label class="form-check-label" for="belumSelesai1">Belum selesai</label>
                     </div>
@@ -145,7 +145,7 @@
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="kritikal"
-                                name="status1" style="transform: scale(1.2);">
+                                name="status1">
                         </div>
                         <label class="form-check-label" for="kritikal">Kritikal</label>
                     </div>
@@ -153,7 +153,7 @@
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal"
-                                name="status1" style="transform: scale(1.2);">
+                                name="status1">
                         </div>
                         <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
                     </div>
@@ -162,35 +162,35 @@
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="kaitan"
-                                name="status4" style="transform: scale(1.2);">
+                                name="status4">
                         </div>
                         <label class="form-check-label" for="kaitan">Tidak berkaitan</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio"
-                                id="peringkatSekolah" name="status4" style="transform: scale(1.2);">
+                                id="peringkatSekolah" name="status4">
                         </div>
                         <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="peringkatPPD"
-                                name="status4" style="transform: scale(1.2);">
+                                name="status4">
                         </div>
                         <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai"
-                                name="status4" style="transform: scale(1.2);">
+                                name="status4">
                         </div>
                         <label class="form-check-label" for="belumSelesai">Belum selesai</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="belumMendapat"
-                                name="status4" style="transform: scale(1.2);">
+                                name="status4">
                         </div>
                         <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label>
                     </div>
@@ -199,14 +199,14 @@
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="peringkatJPN"
-                                name="status5" style="transform: scale(1.2);">
+                                name="status5">
                         </div>
                         <label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai1"
-                                name="status5" style="transform: scale(1.2);">
+                                name="status5">
                         </div>
                         <label class="form-check-label" for="belumSelesai1">Belum selesai</label>
                     </div>
@@ -223,10 +223,4 @@
     </div>
 </div>
 
-</div>
-
-<div class="buy-now">
-    <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
-        Simpan
-    </button>
 </div>
