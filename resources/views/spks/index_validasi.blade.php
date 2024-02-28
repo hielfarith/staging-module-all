@@ -90,7 +90,7 @@
             <a class="text-uppercase text-wrap nav-link fw-bolder" id="jpn-verifikasi-tab" data-bs-toggle="tab"
                 href="#jpn-verifikasi" aria-controls="jpn-verifikasi" role="tab" aria-selected="false"
                 onclick="">
-                VERIFIKASI JPN
+                VALIDASI KPM
             </a>
         </li>
     </ul>

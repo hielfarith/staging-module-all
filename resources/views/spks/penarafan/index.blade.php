@@ -31,45 +31,32 @@
         <div class="card-body">
             <h4 class="card-title fw-bolder">Pengguna Hendaklah Membuat Carian Dahulu </h4>
             <div class="row">
-                <div class="col-md-4">
-                    <label class="fw-bolder">Tahun</label>
-                    <select class="form-select" id="tahun">
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                    </select>
-                </div>
 
                 <div class="col-md-4">
-                    <label class="fw-bolder">Bulan</label>
-                    <select class="form-select" id="bulan">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </div>
-
-                <div class="col-md-4">
-                    <label class="fw-bolder">Daerah</label>
-                    <select class="form-control " name="ppd" id="ppd">
-                        <option value="" hidden>Negeri</option>
+                    <label class="fw-bolder">Negeri</label>
+                    <select class="form-control " name="negeri" id="negeri">
+                        <option value="" hidden>Pilih Negeri</option>
                         @foreach ($states as $negeri)
                             <option value="{{ $negeri->name }}">{{ $negeri->name }}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <div class="col-md-4">
+                    <label class="fw-bolder">PPD</label>
+                    <select class="form-select" id="ppd">
+                        <option value="" hidden>Pilih PPD</option>
+                        <option value="Petaling Utama">Petaling Utama</option>
+                        <option value="Gombak">Gombak</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="fw-bolder">Instrumen</label>
+                    <input type="text" name="instrumen" id="instrumen" class="form-control">
+                </div>
+
+
 
             </div>
 
@@ -85,8 +72,8 @@
 
             <hr>
 
-            <div class="table-responsive" style="display: none;">
-                <table class="table table-bordered">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="display: none;">
                     <thead class="table-secondary">
                         <tr class="text-center align-middle">
                             <td rowspan="3">No.</td>
@@ -127,7 +114,44 @@
                             <td>1</td>
                             <td>27</td>
                         </tr>
-
+                        <tr class="text-center">
+                            <td>2</td>
+                            <td>PPD Gombak</td>
+                            <td> <a href="#" class="nav-link">
+                                    <span class="text-decoration text-info">56</span>
+                                </a></td>
+                            <td><a href="#" class="nav-link">
+                                    <span class="text-decoration text-info">16</span>
+                                </a></td>
+                            <td>72</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>56</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>16</td>
+                        </tr>
+                        <tr class="text-center table-warning">
+                            <td colspan="2" class="table-info">Jumlah</td>
+                            <td>123</td>
+                            <td>123</td>
+                            <td>123</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>114</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>43</td>
+                        </tr>
+                        <tr class="text-center table-warning">
+                            <td colspan="5" class="table-info">Jumlah</td>
+                            <td>0%</td>
+                            <td>1%</td>
+                            <td>99%</td>
+                            <td>0%</td>
+                            <td>1%</td>
+                            <td>98%</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -139,14 +163,14 @@
     <script>
         function search() {
             // Get the selected values from the dropdowns
-            var year = document.querySelector('#tahun').value;
-            var month = document.querySelector('#bulan').value;
-            var ppd = document.querySelector('#ppd').value;
+            var year = document.querySelector('#negeri').value;
+            var month = document.querySelector('#ppd').value;
+            var ppd = document.querySelector('#instrumen').value;
 
             // Check if all inputs are filled
             if (year && month && ppd) {
                 // Show the table
-                document.querySelector('.table-responsive').style.display = 'block';
+                document.querySelector('.table').style.display = 'block';
             } else {
                 // If any input is empty, alert the user or handle it accordingly
                 alert('Please fill in all fields.');
