@@ -32,52 +32,27 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <label class="fw-bolder">Tahun</label>
-                    <select class="form-select">
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
+                    <label class="fw-bolder">Negeri</label>
+                    <select class="form-control " name="negeri" id="negeri">
+                        <option value="" hidden>Pilih Negeri</option>
+                        @foreach ($states as $negeri)
+                            <option value="{{ $negeri->name }}">{{ $negeri->name }}</option>
+                        @endforeach
                     </select>
                 </div>
 
                 <div class="col-md-4">
-                    <label class="fw-bolder">Bulan</label>
-                    <select class="form-select">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </div>
-
-                <div class="col-md-4">
-                    <label class="fw-bolder">Intrumen</label>
-                    <input type="text" name="nama_instrumen" id="nama_instrumen" class="form-control">
-                </div>
-
-                <div class="col-md-4">
-                    <label class="fw-bolder mt-1">Negeri</label>
-                    <input type="text" name="negeri" id="negeri" class="form-control">
-                </div>
-
-                <div class="col-md-4 mt-1">
                     <label class="fw-bolder">PPD</label>
-                    <input type="text" name="PPD" id="PPD" class="form-control">
+                    <select class="form-select" id="ppd">
+                        <option value="" hidden>Pilih PPD</option>
+                        <option value="Petaling Utama">Petaling Utama</option>
+                        <option value="Gombak">Gombak</option>
+                    </select>
                 </div>
-                <div class="col-md-4 mt-1">
-                    <label class="fw-bolder">Sekolah</label>
-                    <input type="text" name="Sekolah" id="Sekolah" class="form-control">
+
+                <div class="col-md-4">
+                    <label class="fw-bolder">Instrumen</label>
+                    <input type="text" name="input_instrumen" id="input_instrumen" class="form-control">
                 </div>
             </div>
 

@@ -28,7 +28,7 @@
 
 <hr>
 
-<div class="table-responsive mb-5">
+<div class="table-responsive mb-3">
     <table class="table header_uppercase table-bordered table-hovered" style="width:100%" id="catatan_sekolah">
         <thead style="font-size: 9pt;width:100%">
             <tr style="font-size: 9pt;width:100%">
@@ -224,7 +224,12 @@
         </tbody>
     </table>
 
-    <div class="d-flex justify-content-end align-items-center mt-1 mb-2">
+    <div class="mt-1">
+        <label for="comment">Komen:</label>
+        <textarea class="form-control" id="comment" rows="3"></textarea>
+    </div>
+
+    <div class="d-flex justify-content-end align-items-center mt-1 mb-1">
         <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light">Selesai</button>
         <div style="margin-left: 10px;"></div> <!-- Adjust margin as needed -->
         <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light">Tidak
