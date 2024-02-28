@@ -128,14 +128,14 @@
                             <input required class="form-check-input radio-input-1" type="radio" id="Selesa"
                                 name="status2">
                         </div>
-                        <label class="form-check-label" for="Selesa">Selesai</label>
+                        <label class="form-check-label" for="Selesa">Selesa</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
                             <input required class="form-check-input radio-input-1" type="radio" id="Tidak Selesa"
                                 name="status2">
                         </div>
-                        <label class="form-check-label" for="Tidak Selesa">Tidak Selesai</label>
+                        <label class="form-check-label" for="Tidak Selesa">Tidak Selesa</label>
                     </div>
                     <div class="d-flex">
                         <div style="margin-right: 10px;margin-bottom:10px">
@@ -200,7 +200,7 @@
         </tbody>
     </table>
 </div>
-{{-- 
+{{--
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
         Simpan
