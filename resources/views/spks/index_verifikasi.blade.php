@@ -74,7 +74,7 @@
     </li> --}}
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder" id="validasi-skor-tab" data-bs-toggle="tab"
-                href="#validasi-skor" aria-controls="validasi-skor" role="tab" aria-selected="false" onclick="">
+                href="#validasi-skor" aria-controls="validasi-skor" role="tab" aria-selected="false" onclick="choosetabSkor()">
                 SKOR PIAWAIAN
             </a>
         </li>
@@ -145,11 +145,10 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     })
+    var id = <?php echo Request::segment(3); ?>
 
     function choosetabMain(argument) {
         var APIUrl = "{{ env('APP_VERFIKASI_URL') }}" + 'api/spks/get-tab-jumlah';
-        var id = <?php echo Request::segment(3); ?>
-
         $.ajax({
             url: APIUrl,
             method: 'POST',
@@ -190,6 +189,43 @@
                     $('#' + id).html(data[dataid]);
                 }
                 $('#' + sumid).html(sum);
+            }
+        });
+    }
+
+    function choosetabSkor() {
+        var APIUrl = "{{ env('APP_VERFIKASI_URL') }}" + 'api/spks/get-skor';
+
+         $.ajax({
+            url: APIUrl,
+            method: 'POST',
+            data: {
+                id: id
+            },
+            success: function(response) {
+                $('#count1').html(response.count1);
+                $('#count2').html(response.count2);
+                $('#count3').html(response.count3);
+                $('#count4').html(response.count4);
+                $('#count5').html(response.count5);
+                $('#count6').html(response.count6);
+
+                $('#count1Total').html(response.count1Total);
+                $('#count2Total').html(response.count2Total);
+                $('#count3Total').html(response.count3Total);
+                $('#count4Total').html(response.count4Total);
+                $('#count5Total').html(response.count5Total);
+                $('#count6Total').html(response.count6Total);
+                $('#totalskor').html(response.totalskor);
+                $('#total').html(response.total);
+
+                $('#percentage1').html(response.percentage1);
+                $('#percentage2').html(response.percentage2);
+                $('#percentage3').html(response.percentage3);
+                $('#percentage4').html(response.percentage4);
+                $('#percentage5').html(response.percentage5);
+                $('#percentage6').html(response.percentage6);
+                $('#percentage').html(response.percentage);
             }
         });
     }
