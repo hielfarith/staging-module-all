@@ -13,7 +13,6 @@
         width: 100% !important;
         /* word-wrap: break-word; */
     }
-
 </style>
 
 {{-- <div style="padding-top:3% " class="card-header d-flex justify-content-between align-items-center">
@@ -68,8 +67,8 @@
     </table>
 </div>
 
-<div class="buy-now">
+{{-- <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
         Simpan
     </button>
-</div>
+</div> --}}

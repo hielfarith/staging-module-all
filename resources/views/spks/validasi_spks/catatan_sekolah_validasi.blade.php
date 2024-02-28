@@ -208,9 +208,9 @@
         </tbody>
     </table>
 </div>
-
+{{-- 
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
         Simpan
     </button>
-</div>
+</div> --}}
