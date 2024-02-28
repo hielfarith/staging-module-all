@@ -68,12 +68,21 @@
 
                 <div class="col-md-4">
                     <label class="fw-bolder mt-1">Negeri</label>
-                    <input type="text" name="negeri" id="negeri" class="form-control">
+                    <select class="form-control " name="ppd" id="ppd">
+                        <option value="" hidden>Pilih Negeri</option>
+                        @foreach ($states as $negeri)
+                            <option value="{{ $negeri->name }}">{{ $negeri->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="col-md-4 mt-1">
                     <label class="fw-bolder">PPD</label>
-                    <input type="text" name="PPD" id="PPD" class="form-control">
+                    <select class="form-control " name="ppd" id="ppd">
+                        <option value="" hidden>Pilih PPD</option>
+                        <option value="" hidden>Petaling Utama</option>
+                        <option value="" hidden></option>
+                    </select>
                 </div>
                 <div class="col-md-4 mt-1">
                     <label class="fw-bolder">Sekolah</label>

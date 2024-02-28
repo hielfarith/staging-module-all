@@ -18,6 +18,7 @@ Route::controller(PengurusanSpksController::class)->group(function () {
         Route::get('validasi-pengisian/{id}','ValidasiSpks')->name('validasi_spks');
 
         Route::get('senarai-instrumen','SenaraiInstrumen')->name('senarai-instrumen');
-
+        Route::get('laporan-penarafan','LaporanPenarafan')->name('laporan-penarafan');
+        Route::get('sekolah-penarafan','SenaraiSekolahPenarafan')->name('sekolah-penarafan');
     });
 });

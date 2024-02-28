@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 use App\Models\InstrumenSkpakSpksIkeps;
 use App\Models\SpksPengisian;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use App\Models\Master\MasterState;
+
 
 class PengurusanSpksController extends Controller
 {
@@ -359,6 +360,19 @@ class PengurusanSpksController extends Controller
 
     public function SenaraiInstrumen(Request $request)
     {
-        return view('spks.instrumen.list');
+        $states = MasterState::all();
+        return view('spks.instrumen.list', compact('states'));
     }
+
+    public function LaporanPenarafan(Request $request)
+    {
+        $states = MasterState::all();
+        return view('spks.penarafan.index', compact('states'));
+    }
+    public function SenaraiSekolahPenarafan(Request $request)
+    {
+        return view('spks.penarafan.senarai-sekolah');
+    }
+
+
 }
