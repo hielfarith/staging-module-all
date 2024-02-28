@@ -52,7 +52,7 @@
 
                 <div class="col-md-4">
                     <label class="fw-bolder">Instrumen</label>
-                    <input type="text" name="instrumen" id="instrumen" class="form-control">
+                    <input type="text" name="input_instrumen" id="input_instrumen" class="form-control">
                 </div>
             </div>
 

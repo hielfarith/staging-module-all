@@ -82,14 +82,14 @@
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder" id="catatan-validasi-tab" data-bs-toggle="tab"
                 href="#catatan-validasi" aria-controls="catatan-validasi" role="tab" aria-selected="false"
-                onclick="">
+                onclick="choosetabMain('ringkasan_catatan')">
                 RINGKASAN CATATAN
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder" id="jpn-verifikasi-tab" data-bs-toggle="tab"
                 href="#jpn-verifikasi" aria-controls="jpn-verifikasi" role="tab" aria-selected="false"
-                onclick="">
+                onclick="choosetabMain('verfikasi_jpn')">
                 VERIFIKASI JPN
             </a>
         </li>
@@ -159,6 +159,15 @@
             },
             success: function(response) {
                 var data = response.data;
+                if (argument == 'ringkasan_catatan') {
+                    
+                    return;
+                }
+                if (argument == 'verfikasi_jpn') {
+
+                    return;
+                }
+
                 var length = 8;
                 var sum = 0;
                 var sumid = argument + '_sum';
