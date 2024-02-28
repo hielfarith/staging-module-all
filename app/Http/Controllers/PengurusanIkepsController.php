@@ -37,7 +37,7 @@ class PengurusanIkepsController extends Controller
         } else {
             $tahun = $request->tahun;
 
-            $instrumen = InstrumenSkpakSpksIkeps::where('type', 'SEDIA')->where('status', 1)->orderBy('created_at', 'DESC')->first();
+            $instrumen = InstrumenSkpakSpksIkeps::where('type', 'IKEPS')->where('status', 1)->orderBy('created_at', 'DESC')->first();
             $tarikhKuatKuasa = Carbon::createFromFormat('d/m/Y', $instrumen->tarikh_kuatkuasa);
             if($instrumen->tempoh_pengisian == 'Minggu'){
                 $tarikhTamatPengisian = $tarikhKuatKuasa->clone()->addWeeks($instrumen->tempoh_pengisian_lain)->format('Y-m-d');
