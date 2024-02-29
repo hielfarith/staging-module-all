@@ -82,14 +82,14 @@
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder" id="catatan-validasi-tab" data-bs-toggle="tab"
                 href="#catatan-validasi" aria-controls="catatan-validasi" role="tab" aria-selected="false"
-                onclick="choosetabMain('ringkasan_catatan')">
+                onclick="choosetabverfikasi('ringkasan_catatan')">
                 RINGKASAN CATATAN
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder" id="jpn-verifikasi-tab" data-bs-toggle="tab"
                 href="#jpn-verifikasi" aria-controls="jpn-verifikasi" role="tab" aria-selected="false"
-                onclick="choosetabMain('verfikasi_jpn')">
+                onclick="choosetabverfikasi('verfikasi_jpn')">
                 VERIFIKASI JPN
             </a>
         </li>
@@ -229,4 +229,45 @@
             }
         });
     }
+
+    function  choosetabverfikasi(argument) {
+        console.log(argument);
+
+        if (argument == 'ringkasan_catatan') {
+            var APIUrl = "{{ env('APP_VERFIKASI_URL') }}" + 'api/spks/pull-catatan';
+
+            $.ajax({
+                url: APIUrl,
+                method: 'POST',
+                data: {
+                    id : id
+                },
+                success: function(response) {
+                   // write the loop
+                    // 1. aspek 1
+                   $('#catatan_sekolah_body').empty();
+                   var i =1;
+                   var tableringaskanData = ''
+                   if (Object.keys(response.aspek1).length > 0) {
+                        Object.keys(response.aspek1).forEach(key => {
+                            const value = response.aspek1[key];
+                            console.log(`Key: ${key}, Value: ${value}`);
+                            tableringaskanData = tableringaskanData + '<tr>';
+                            tableringaskanData = tableringaskanData + '<td style="font-size: 10pt;width:1%">'+i+'</td>';
+                            i++;
+                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">Aspek 1</td>';
+                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">--</td>';
+                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">'+value+'</td>';
+                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%"><textarea style="font-size: 9pt" rows="5" class="form-control" name="catatan_aspek1"></textarea></td>';
+                            tableringaskanData = tableringaskanData+ ' <td style="font-size: 9pt; width:10%"> <div class="d-flex"> <div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio" id="kritikal" name="kritikal_aspek1" value="1"></div> <label class="form-check-label" for="kritikal">Kritikal</label> </div> <div class="d-flex"> <div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal" name="kritikal_aspek1" value="2"> </div> <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label> </div></td>'
+                        });
+                   }
+                   $('#catatan_sekolah_body').append(tableringaskanData);
+                    
+                }
+            });
+
+        }
+    }
+    
 </script>
