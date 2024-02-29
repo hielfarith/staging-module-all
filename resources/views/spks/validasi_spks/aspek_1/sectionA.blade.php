@@ -21,8 +21,7 @@ $aspeks_1_secA = [
 [
 'section' => 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah',
 'subSections' => [
-'Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga,
-Bot/Perahu,Kereta sendiri, Kereta api)',
+'Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)',
 'Menyedia dan mempamer tatacara keselamatan pergi dan balik sekolah.',
 'pemeriksaan berkala ke atas kenderaan yang digunakan murid ke sekolah.(Basikal, Motosikal, Kereta)',
 'Mematuhi prosedur dan peraturan berkaitan keselamatan daripada pihak berkuasa berkenaan. (Jaket keselamatan/topi

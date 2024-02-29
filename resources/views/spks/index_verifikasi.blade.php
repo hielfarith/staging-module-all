@@ -229,10 +229,11 @@
             }
         });
     }
+    function getmaklumat(argument) {
 
+    }
     function  choosetabverfikasi(argument) {
-        console.log(argument);
-
+        
         if (argument == 'ringkasan_catatan') {
             var APIUrl = "{{ env('APP_VERFIKASI_URL') }}" + 'api/spks/pull-catatan';
 
@@ -247,19 +248,25 @@
                     // 1. aspek 1
                    $('#catatan_sekolah_body').empty();
                    var i =1;
-                   var tableringaskanData = ''
-                   if (Object.keys(response.aspek1).length > 0) {
+                   var tableringaskanData = '';
+                       if (Object.keys(response.aspek1).length > 0) {
                         Object.keys(response.aspek1).forEach(key => {
+                            var config = 'status.aspek1.'+key
+                            console.log(config)
                             const value = response.aspek1[key];
                             console.log(`Key: ${key}, Value: ${value}`);
                             tableringaskanData = tableringaskanData + '<tr>';
                             tableringaskanData = tableringaskanData + '<td style="font-size: 10pt;width:1%">'+i+'</td>';
                             i++;
                             tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">Aspek 1</td>';
-                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">--</td>';
+
+                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">'+response.aspek1Maklumat[key]+'</td>';
                             tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">'+value+'</td>';
-                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%"><textarea style="font-size: 9pt" rows="5" class="form-control" name="catatan_aspek1"></textarea></td>';
-                            tableringaskanData = tableringaskanData+ ' <td style="font-size: 9pt; width:10%"> <div class="d-flex"> <div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio" id="kritikal" name="kritikal_aspek1" value="1"></div> <label class="form-check-label" for="kritikal">Kritikal</label> </div> <div class="d-flex"> <div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal" name="kritikal_aspek1" value="2"> </div> <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label> </div></td>'
+                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%"><textarea style="font-size: 9pt" rows="5" class="form-control" name="catatan_aspek1_'+key+'"></textarea></td>';
+
+                            tableringaskanData = tableringaskanData+ '<td style="font-size: 9pt; width:10%"><div class="d-flex"> <div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="kritikal"name="kritikal_aspek1" value="1"></div><label class="form-check-label" for="kritikal">Kritikal</label></div>   <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal"name="kritikal_aspek1" value="2"></div><label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label></div></td>';
+                            tableringaskanData = tableringaskanData+ '<td style="text-align: center; width:10%"><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="kaitan" name="tindakan_ppd_aspek2"> </div><label class="form-check-label" for="kaitan">Tidak berkaitan</label> </div> <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="peringkatSekolah" name="tindakan_ppd_aspek2"> </div> <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label> </div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="peringkatPPD" name="tindakan_ppd_aspek2"> </div> <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label> </div> <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai" name="tindakan_ppd_aspek2"> </div> <label class="form-check-label" for="belumSelesai">Belum selesai</label> </div> <div class="d-flex"> <div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio" id="belumMendapat" name="tindakan_ppd_aspek2"> </div> <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label> </div></td>';
+                            tableringaskanData = tableringaskanData+ '</tr>'
                         });
                    }
                    $('#catatan_sekolah_body').append(tableringaskanData);
