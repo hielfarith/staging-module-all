@@ -13,9 +13,9 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header bg-danger">
+        <div class="col-md-6 ">
+            <div class="card h-100">
+                <div class="card-header" style="background-color: #F75D59">
                     <h4 class="card-title fw-bolder">Pengumuman</h4>
                 </div>
                 <div class="card-body">
@@ -24,9 +24,9 @@
             </div>
         </div>
 
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-warning">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header" style="background-color: #FCDCCE;">
                     <h4 class="card-title fw-bolder"><i class="fa-regular fa-clone"></i> Profil Pengguna</h4>
                 </div>
                 <div class="card-body mt-2">
@@ -100,12 +100,8 @@
                         </tr>
                     </table>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-success">
+                <div class="card-header " style="background-color: #C3FDB8;">
                     <h4 class="card-title fw-bolder"><i class="fa fa-info-circle"></i> Profil Sekolah</h4>
                 </div>
                 <div class="card-body mt-2">
@@ -147,6 +143,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 @endsection
 
