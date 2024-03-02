@@ -13,7 +13,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-header bg-danger">
                     <h4 class="card-title fw-bolder">Pengumuman</h4>
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-warning">
                     <h4 class="card-title fw-bolder"><i class="fa-regular fa-clone"></i> Profil Pengguna</h4>
