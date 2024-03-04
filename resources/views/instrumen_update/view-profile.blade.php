@@ -365,7 +365,7 @@
                                         <label class="fw-bold form-label">Institut <span
                                                 class="text-danger">:</span></label>
                                     </div>
-                                    <div class="col-md-8 mt-1">
+                                    <div class="col-md-8 ">
                                         <select class="form-control select2" name="jenis_ips" required
                                             id="jenis_ips">
                                             <option value="{{ $instrumen->jenis_ips }}">{{ $instrumen->jenis_ips }}
@@ -419,7 +419,7 @@
                                         <label class="fw-bold form-label">Institut <span
                                                 class="text-danger">:</span></label>
                                     </div>
-                                    <div class="col-md-8 mt-1">
+                                    <div class="col-md-8 ">
                                         <select class="form-control select2" name="jenis_ips" required
                                             id="jenis_ips">
                                             <option value="{{ $instrumen->jenis_ips }}">{{ $instrumen->jenis_ips }}
@@ -473,7 +473,7 @@
                                         <label class="fw-bold form-label">Institut <span
                                                 class="text-danger">:</span></label>
                                     </div>
-                                    <div class="col-md-8 mt-1">
+                                    <div class="col-md-8 ">
                                         <select class="form-control select2" name="jenis_ips" required
                                             id="jenis_ips">
                                             <option value="{{ $instrumen->jenis_ips }}">{{ $instrumen->jenis_ips }}

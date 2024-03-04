@@ -25,12 +25,7 @@
                 </a>
             </div>
         </div>
-
         <hr>
-        <a data-bs-toggle="modal" data-bs-target="#modal-instrumen-diisi" aria-controls="#modal-instrumen-diisi"
-            class="btn btn-xs btn-default" title="">
-            <i class="fas fa-eye text-primary"></i>
-        </a>
         <div class="card-body">
 
             <div class="row">
