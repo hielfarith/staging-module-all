@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
 
         $user = Auth::user();
-        return view('dashboard.main', compact('user'));
+        return view('dashboard.dashboard_spks', compact('user'));
 
         // $pageConfigs = ['pageHeader' => false];
 
