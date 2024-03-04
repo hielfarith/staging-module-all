@@ -96,6 +96,8 @@
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    var location = "{{ route('spks.verfikasi_senarai')}}"
+                    window.location.href = location;
                }
             }
         });
