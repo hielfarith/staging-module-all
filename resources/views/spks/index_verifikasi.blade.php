@@ -229,13 +229,11 @@
             }
         });
     }
-    function getmaklumat(argument) {
-
-    }
+    
     function  choosetabverfikasi(argument) {
-        
-        if (argument == 'ringkasan_catatan') {
-            var APIUrl = "{{ env('APP_VERFIKASI_URL') }}" + 'api/spks/pull-catatan';
+
+        if (argument == 'ringkasan_catatan' || argument == 'verfikasi_jpn') {
+            var APIUrl = "{{ env('APP_VERFIKASI_URL') }}" + 'api/spks/view-catatan';
 
             $.ajax({
                 url: APIUrl,
@@ -247,34 +245,163 @@
                    // write the loop
                     // 1. aspek 1
                    $('#catatan_sekolah_body').empty();
-                   var i =1;
-                   var tableringaskanData = '';
-                       if (Object.keys(response.aspek1).length > 0) {
-                        Object.keys(response.aspek1).forEach(key => {
-                            var config = 'status.aspek1.'+key
-                            console.log(config)
-                            const value = response.aspek1[key];
-                            console.log(`Key: ${key}, Value: ${value}`);
-                            tableringaskanData = tableringaskanData + '<tr>';
-                            tableringaskanData = tableringaskanData + '<td style="font-size: 10pt;width:1%">'+i+'</td>';
-                            i++;
-                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">Aspek 1</td>';
+                    var j =1;
+                    var tableringaskanData = '';
+                    let arrayData = ['aspek1', 'aspek2','aspek3','aspek4','aspek5','aspek6','aspek1_sectionb','aspek1_sectionc','aspek1_sectiond','aspek1_sectione'];
+                    var data = response;
+                    var aspek = '';
+                    var maklumat = '';
+                    for (var i = 1; i <= 10; i++) {
+                        if (i == 1) {
+                            data = response.aspek1;
+                            aspek = 'Aspek 1';
+                            maklumat = response.aspek1Maklumat;
+                        } else if(i == 2) {
+                            aspek = 'Aspek 1 Section B';
+                            data = response.aspek1_sectionb;
+                            maklumat = response.aspek1_sectionBMaklumat;
+                        } else if(i == 3) {
+                            aspek = 'Aspek 1 Section C';
+                            data = response.aspek1_sectionc;
+                            maklumat = response.aspek1_sectionCMaklumat;
+                        } else if(i == 4) {
+                            aspek = 'Aspek 1 Section D';
+                            data = response.aspek1_sectiond;
+                            maklumat = response.aspek1_sectionDMaklumat;
+                        } else if(i == 5) {
+                            aspek = 'Aspek 1 Section E';
+                            data = response.aspek1_sectione;
+                            maklumat = response.aspek1_sectionEMaklumat;
+                        } else if(i == 6) {
+                            aspek = 'Aspek 2';
+                            data = response.aspek2;
+                            maklumat = response.aspek2Maklumat;
+                        } else if(i == 7) {
+                            aspek = 'Aspek 3';
+                            data = response.aspek3;
+                            maklumat = response.aspek3Maklumat;
+                        } else if(i == 8) {
+                            aspek = 'Aspek 4';
+                            data = response.aspek4;
+                            maklumat = response.aspek4Maklumat;
+                        } else if(i == 9) {
+                            aspek = 'Aspek 5';
+                            data = response.aspek5;
+                            maklumat = response.aspek5Maklumat;
+                        } else if(i == 10) {
+                            aspek = 'Aspek 6';
+                            data = response.aspek6;
+                            maklumat = response.aspek6Maklumat;
+                        }
+                        console.log(response);
+                        if (Object.keys(data).length > 0) {
+                            Object.keys(data).forEach(key => {
+                                const value = data[key];
+                                tableringaskanData = tableringaskanData + '<tr>';
+                                tableringaskanData = tableringaskanData + '<td style="font-size: 10pt;width:1%">'+j+'</td>';
+                                j++;
+                                aspek = aspek.replaceAll("_", " ");
+                                tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">'+aspek+'</td>';
+                                aspek = aspek.replaceAll(" ", "_");
 
-                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">'+response.aspek1Maklumat[key]+'</td>';
-                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">'+value+'</td>';
-                            tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%"><textarea style="font-size: 9pt" rows="5" class="form-control" name="catatan_aspek1_'+key+'"></textarea></td>';
-
-                            tableringaskanData = tableringaskanData+ '<td style="font-size: 9pt; width:10%"><div class="d-flex"> <div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="kritikal"name="kritikal_aspek1" value="1"></div><label class="form-check-label" for="kritikal">Kritikal</label></div>   <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal"name="kritikal_aspek1" value="2"></div><label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label></div></td>';
-                            tableringaskanData = tableringaskanData+ '<td style="text-align: center; width:10%"><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="kaitan" name="tindakan_ppd_aspek2"> </div><label class="form-check-label" for="kaitan">Tidak berkaitan</label> </div> <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="peringkatSekolah" name="tindakan_ppd_aspek2"> </div> <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label> </div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" id="peringkatPPD" name="tindakan_ppd_aspek2"> </div> <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label> </div> <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai" name="tindakan_ppd_aspek2"> </div> <label class="form-check-label" for="belumSelesai">Belum selesai</label> </div> <div class="d-flex"> <div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio" id="belumMendapat" name="tindakan_ppd_aspek2"> </div> <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label> </div></td>';
-                            tableringaskanData = tableringaskanData+ '</tr>'
-                        });
+                                tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">'+maklumat[key]+'</td>';
+                                tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%">'+value+'</td>';
+                                if (Object.keys(response.catatan).length > 0) {
+                                    var name = 'catatan_'+aspek+'_'+key;
+                                    var catatan = response.catatan[name];
+                                } else {
+                                    var catatan = '';
+                                }
+                                tableringaskanData = tableringaskanData + '<td style="font-size: 9pt; width:10%"><textarea style="font-size: 9pt" rows="5" class="form-control" name="catatan_'+aspek+'_'+key+'">'+catatan+'</textarea></td>';
+                                if (Object.keys(response.tindakan).length > 0) {
+                                    var name = 'kritikal_'+aspek+'_'+key;
+                                    var critical = response.critical[name];
+                                    if (critical == 1) {
+                                        var checked1 = 'checked';
+                                        var checked2 = '';
+                                    } else {
+                                        var checked2 = 'checked';
+                                        var checked1 = '';
+                                    }
+                                } else {
+                                    var checked2 = '';
+                                    var checked1 = '';
+                                }
+                                 tableringaskanData = tableringaskanData+ '<td style="font-size: 9pt; width:10%"><div class="d-flex"> <div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="kritikal_'+aspek+'_'+key+'" value="1" '+checked1+'></div><label class="form-check-label" for="kritikal">Kritikal</label></div>   <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="kritikal_'+aspek+'_'+key+'" value="2" '+checked2+'></div><label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label></div></td>';
+                                 if (Object.keys(response.tindakan).length > 0) {
+                                    var name = 'tindakan_ppd_'+aspek+'_'+key;
+                                    var tindakan = response.tindakan[name];
+                                    if (tindakan == 1) {
+                                        var checked1 = 'checked';
+                                        var checked2 = '';
+                                        var checked3 = '';
+                                        var checked4 = '';
+                                        var checked5 = '';
+                                    } else if (tindakan == 2) {
+                                        var checked2 = 'checked';
+                                        var checked1 = '';
+                                        var checked3 = '';
+                                        var checked4 = '';
+                                        var checked5 = '';
+                                    } else if (tindakan == 3) {
+                                        var checked3 = 'checked';
+                                        var checked1 = '';
+                                        var checked2 = '';
+                                        var checked4 = '';
+                                        var checked5 = '';
+                                    } else if (tindakan == 4) {
+                                        var checked4 = 'checked';
+                                        var checked1 = '';
+                                        var checked3 = '';
+                                        var checked2 = '';
+                                        var checked5 = '';
+                                    } else if (tindakan == 5) {
+                                        var checked5 = 'checked';
+                                        var checked1 = '';
+                                        var checked3 = '';
+                                        var checked2 = '';
+                                        var checked4 = '';
+                                    }
+                                } else {
+                                    var checked2 = '';
+                                    var checked1 = '';
+                                    var checked3 = '';
+                                    var checked4 = '';
+                                    var checked5 = '';
+                                }
+                                tableringaskanData = tableringaskanData+ '<td style="text-align: center; width:10%"><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'" '+checked1+' value="1"> </div><label class="form-check-label" for="kaitan">Tidak berkaitan</label> </div> <div class="d-flex"><div style="margin-right: 6px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'" value="2" '+checked2+'> </div> <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label> </div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'" '+checked3+' value="3"> </div> <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label> </div> <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio"  name="tindakan_ppd_'+aspek+'_'+key+'" '+checked4+' value="4"></div> <label class="form-check-label" for="belumSelesai">Belum selesai</label></div><div class="d-flex"><div style="margin-right: 6px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'"  '+checked5+' value="5"></div><label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label></div></td>';
+                                if (argument == 'verfikasi_jpn') {
+                                    tableringaskanData = tableringaskanData + '<td style="font-size: 9pt;width:10%"><div class="d-flex"><div style="margin-right:10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"  name="tindakan_ppd_'+aspek+'_'+key+'"></div><label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label></div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"   name="tindakan_ppd_'+aspek+'_'+key+'"></div><label class="form-check-label" for="belumSelesai1">Belum selesai</label></div></td>';
+                                }
+                                tableringaskanData = tableringaskanData+ '</tr>'
+                            });
+                        }
+                    }
+                    if (argument == 'ringkasan_catatan') {
+                        $('#catatan_sekolah_body').append(tableringaskanData);
+                    }
+                   if (argument == 'verfikasi_jpn') {
+                        $('#catatan_sekolah_jpn').append(tableringaskanData);
                    }
-                   $('#catatan_sekolah_body').append(tableringaskanData);
-                    
                 }
             });
 
         }
+    }
+
+    function  pullcatatan() {
+        var APIUrl = "{{ env('APP_VERFIKASI_URL') }}" + 'api/spks/pull-catatan';
+
+        $.ajax({
+            url: APIUrl,
+            method: 'POST',
+            data: {
+                id : id
+            },
+            success: function(response) {
+
+            }
+        });
     }
     
 </script>

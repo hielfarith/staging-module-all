@@ -46,74 +46,6 @@
             </tr>
         </thead>
         <tbody style="font-size: 10pt;width:100%" id="catatan_sekolah_body">
-            <tr>
-                <td style="font-size: 10pt;width:1%">1</td>
-                <td style="font-size: 9pt; width:10%">Aspek 1</td>
-                <td style="font-size: 9pt; width:22%">Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki,
-                    Berbasikal, Motosikal, Bas sekolah,
-                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)</td>
-                <td style="font-size: 9pt; width:17%">Tiada laluan perjalanan kaki</td>
-                <td style="font-size: 9pt; width:20%">
-                    <textarea style="font-size: 9pt" rows="5" class="form-control" name="catatan_aspek1">Ni ambil dari yang dah masukkan dalam table from aspek tu
-
-                    </textarea>
-                </td>
-                <td style="font-size: 9pt; width:10%">
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="kritikal"
-                                name="kritikal_aspek1" value="1">
-                        </div>
-                        <label class="form-check-label" for="kritikal">Kritikal</label>
-                    </div>
-
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal"
-                                name="kritikal_aspek1" value="2">
-                        </div>
-                        <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
-                    </div>
-
-                </td>
-                <td style="font-size: 9pt; width:20%">
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="kaitan"
-                                name="tindakan_aspek1" value="1">
-                        </div>
-                        <label class="form-check-label" for="kaitan">Tidak berkaitan</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatSekolah"
-                                name="tindakan_aspek1" value="2">
-                        </div>
-                        <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatPPD"
-                                name="tindakan_aspek1" value="3">
-                        </div>
-                        <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai"
-                                name="tindakan_aspek1" value="4">
-                        </div>
-                        <label class="form-check-label" for="belumSelesai">Belum selesai</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="belumMendapat"
-                                name="tindakan_aspek1" value="5">
-                        </div>
-                        <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label>
-                    </div>
-                </td>
-            </tr>
            
         </tbody>
     </table>
@@ -133,7 +65,7 @@
         var formData = new FormData(document.getElementById('catatan'));
         var error = false;
 
-         $('form#catatan').find('radio, input, checkbox').each(function() {
+         $('form#catatan').find('radio, input, checkbox, textarea').each(function() {
             if(this.required && this.type == 'radio' && !this.checked) {
                 var val = $("input[type='radio'][name="+this.name+"]:checked", '#catatan').val();
                 if (typeof val == 'undefined') {
@@ -157,13 +89,10 @@
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-
                }
             }
         });
     }
-
-   
 
 </script>
 
