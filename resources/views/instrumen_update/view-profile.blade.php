@@ -365,7 +365,7 @@
                                         <label class="fw-bold form-label">Institut <span
                                                 class="text-danger">:</span></label>
                                     </div>
-                                    <div class="col-md-8 ">
+                                    <div class="col-md-8 mt-1">
                                         <select class="form-control select2" name="jenis_ips" required
                                             id="jenis_ips">
                                             <option value="{{ $instrumen->jenis_ips }}">{{ $instrumen->jenis_ips }}
@@ -376,7 +376,7 @@
                                         <label class="fw-bold form-label">Peranan <span
                                                 class="text-danger">:</span></label>
                                     </div>
-                                    <div class="col-md-8 ">
+                                    <div class="col-md-8 mt-1">
                                         <select class="form-control select2" name="perakuan_oleh" {{ $disabled }}
                                             required>
                                             <option value="">Sila Pilih</option>
@@ -419,7 +419,7 @@
                                         <label class="fw-bold form-label">Institut <span
                                                 class="text-danger">:</span></label>
                                     </div>
-                                    <div class="col-md-8 ">
+                                    <div class="col-md-8 mt-1">
                                         <select class="form-control select2" name="jenis_ips" required
                                             id="jenis_ips">
                                             <option value="{{ $instrumen->jenis_ips }}">{{ $instrumen->jenis_ips }}
@@ -430,7 +430,7 @@
                                         <label class="fw-bold form-label">Peranan <span
                                                 class="text-danger">:</span></label>
                                     </div>
-                                    <div class="col-md-8 ">
+                                    <div class="col-md-8 mt-1">
                                         <select class="form-control select2" name="perakuan_oleh" {{ $disabled }}
                                             required>
                                             <option value="">Sila Pilih</option>
@@ -473,7 +473,7 @@
                                         <label class="fw-bold form-label">Institut <span
                                                 class="text-danger">:</span></label>
                                     </div>
-                                    <div class="col-md-8 ">
+                                    <div class="col-md-8 mt-1">
                                         <select class="form-control select2" name="jenis_ips" required
                                             id="jenis_ips">
                                             <option value="{{ $instrumen->jenis_ips }}">{{ $instrumen->jenis_ips }}
@@ -484,7 +484,7 @@
                                         <label class="fw-bold form-label">Peranan <span
                                                 class="text-danger">:</span></label>
                                     </div>
-                                    <div class="col-md-8 ">
+                                    <div class="col-md-8 mt-1">
                                         <select class="form-control select2" name="perakuan_oleh" {{ $disabled }}
                                             required>
                                             <option value="">Sila Pilih</option>
