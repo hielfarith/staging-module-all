@@ -308,7 +308,7 @@
         </form>
 
         <!-- ----start skps--- -->
-        @if ($instrumen->type == 'SKPS')
+        @if ($instrumen->type == 'SPKS')
             <form id="forminstrumenskpak" novalidate="novalidate">
                 <div class="row">
                     <h5 class="mb-2 fw-bold">
