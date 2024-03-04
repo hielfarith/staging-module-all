@@ -366,14 +366,27 @@
                                                 class="text-danger">:</span></label>
                                     </div>
                                     <div class="col-md-8 ">
-                                        {{-- dropdown --}}
+                                        <select class="form-control select2" name="jenis_ips" required
+                                            id="jenis_ips">
+                                            <option value="{{ $instrumen->jenis_ips }}">{{ $instrumen->jenis_ips }}
+                                            </option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4 mt-1">
                                         <label class="fw-bold form-label">Peranan <span
                                                 class="text-danger">:</span></label>
                                     </div>
                                     <div class="col-md-8 ">
-                                        {{-- dropdown --}}
+                                        <select class="form-control select2" name="perakuan_oleh" {{ $disabled }}
+                                            required>
+                                            <option value="">Sila Pilih</option>
+                                            <option value="PENTADBIR"
+                                                @if ($instrumen->perakuan_oleh == 'PENTADBIR') selected @endif>PENTADBIR
+                                            </option>
+                                            <option value="GURU INSTITUSI"
+                                                @if ($instrumen->perakuan_oleh == 'GURU INSTITUSI') selected @endif>GURU
+                                                INSTITUSI</option>
+                                        </select>
                                     </div>
 
                                     <div class="col-md-12 mt-1">
@@ -407,8 +420,8 @@
                                                 class="text-danger">:</span></label>
                                     </div>
                                     <div class="col-md-8 ">
-                                        <select class="form-control select2" name="jenis_ips" required id="jenis_ips"
-                                            {{ $disabled }}>
+                                        <select class="form-control select2" name="jenis_ips" required
+                                            id="jenis_ips">
                                             <option value="{{ $instrumen->jenis_ips }}">{{ $instrumen->jenis_ips }}
                                             </option>
                                         </select>
@@ -418,7 +431,16 @@
                                                 class="text-danger">:</span></label>
                                     </div>
                                     <div class="col-md-8 ">
-                                        {{-- dropdown --}}
+                                        <select class="form-control select2" name="perakuan_oleh" {{ $disabled }}
+                                            required>
+                                            <option value="">Sila Pilih</option>
+                                            <option value="PENTADBIR"
+                                                @if ($instrumen->perakuan_oleh == 'PENTADBIR') selected @endif>PENTADBIR
+                                            </option>
+                                            <option value="GURU INSTITUSI"
+                                                @if ($instrumen->perakuan_oleh == 'GURU INSTITUSI') selected @endif>GURU
+                                                INSTITUSI</option>
+                                        </select>
                                     </div>
 
                                     <div class="col-md-12 mt-1">
@@ -452,7 +474,11 @@
                                                 class="text-danger">:</span></label>
                                     </div>
                                     <div class="col-md-8 ">
-                                        {{-- dropdown --}}
+                                        <select class="form-control select2" name="jenis_ips" required
+                                            id="jenis_ips">
+                                            <option value="{{ $instrumen->jenis_ips }}">{{ $instrumen->jenis_ips }}
+                                            </option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4 mt-1">
                                         <label class="fw-bold form-label">Peranan <span
