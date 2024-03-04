@@ -37,7 +37,7 @@
                 <th style="font-size: 9pt; width:22%">Maklumat Item</th>
                 <th style="font-size: 9pt; width:17%">Isu/Permasalahan</th>
                 <th style="font-size: 9pt; width:20%">Catatan Verifikasi (PPD)</th>
-                <th style="font-size: 9pt; width:10%">Penentuan Criticality</th>
+                <th style="font-size: 9pt; width:10%">KLASIFIKASI ISU</th>
                 <th style="font-size: 9pt; width:20%">Tindakan</th>
             </tr>
         </thead>
@@ -208,7 +208,7 @@
         </tbody>
     </table>
 </div>
-{{-- 
+{{--
 <div class="buy-now">
     <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
         Simpan
