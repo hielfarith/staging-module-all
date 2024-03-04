@@ -37,7 +37,7 @@
                 <th style="font-size: 9pt; width:22%">Maklumat Item</th>
                 <th style="font-size: 9pt; width:17%">Isu/Permasalahan</th>
                 <th style="font-size: 9pt; width:10%">Catatan Verifikasi (PPD)</th>
-                <th style="font-size: 9pt; width:10%">Penentuan Criticality</th>
+                <th style="font-size: 9pt; width:10%">KLASIFIKASI ISU</th>
                 <th style="font-size: 9pt; width:10%">Tindakan PPD</th>
                 <th style="font-size: 9pt; width:10%">Tindakan JPN</th>
             </tr>
