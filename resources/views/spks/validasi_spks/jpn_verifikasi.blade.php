@@ -97,9 +97,13 @@ $id = Request::segment(3);
             contentType: false,
             processData: false,
             success: function(response) {
-                if (response.status) {
+                if (response.status == 'success') {
                     Swal.fire('Success', 'Berjaya', 'success');
-                }
+                    var location = "{{ route('spks.verfikasi_senarai')}}"
+                    window.location.href = location;
+               } else {
+                    Swal.fire('Gagal', 'gagal', 'error');
+               }
             }
         });
     }
