@@ -69,7 +69,7 @@
 
             });
 
-            var APIUrl = '{{ env('APP_VERFIKASI_URL') }}' + 'api/spks/verfikasi-senarai';
+            var APIUrl = '{{ env('APP_VALIDASI_URL') }}' + 'api/spks/validasi-senarai';
             // TableSenaraiInstrumenSpks
             $.ajax({
                 url: APIUrl,
@@ -86,7 +86,6 @@
                             tableData = tableData + '<td>' + data[i].pengisian_oleh + '</td>';
                             tableData = tableData + '<td>' + data[i].tempoh_pengisian + '</td>';
                             tableData = tableData + '<td>' + data[i].tempoh_pengisian_lain + '</td>';
-                            tableData = tableData + '<td>' + data[i].spks_status + '</';
                             tableData = tableData + '<td>' + data[i].spks_status + '</td>';
 
                             var button = "";

@@ -86,7 +86,6 @@
                             tableData = tableData + '<td>' + data[i].pengisian_oleh + '</td>';
                             tableData = tableData + '<td>' + data[i].tempoh_pengisian + '</td>';
                             tableData = tableData + '<td>' + data[i].tempoh_pengisian_lain + '</td>';
-                            tableData = tableData + '<td>' + data[i].spks_status + '</';
                             tableData = tableData + '<td>' + data[i].spks_status + '</td>';
 
                             var button = "";

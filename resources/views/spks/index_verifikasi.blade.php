@@ -371,7 +371,7 @@
                                 }
                                 tableringaskanData = tableringaskanData+ '<td style="text-align: center; width:10%"><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'" '+checked1+' value="1"> </div><label class="form-check-label" for="kaitan">Tidak berkaitan</label> </div> <div class="d-flex"><div style="margin-right: 6px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'" value="2" '+checked2+'> </div> <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label> </div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'" '+checked3+' value="3"> </div> <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label> </div> <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio"  name="tindakan_ppd_'+aspek+'_'+key+'" '+checked4+' value="4"></div> <label class="form-check-label" for="belumSelesai">Belum selesai</label></div><div class="d-flex"><div style="margin-right: 6px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'"  '+checked5+' value="5"></div><label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label></div></td>';
                                 if (argument == 'verfikasi_jpn') {
-                                    tableringaskanData = tableringaskanData + '<td style="font-size: 9pt;width:10%"><div class="d-flex"><div style="margin-right:10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"  name="tindakan_jpn_'+aspek+'_'+key+'" checked></div><label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label></div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"   name="tindakan_jpn_'+aspek+'_'+key+'"></div><label class="form-check-label" for="belumSelesai1">Belum selesai</label></div></td>';
+                                    tableringaskanData = tableringaskanData + '<td style="font-size: 9pt;width:10%"><div class="d-flex"><div style="margin-right:10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"  name="tindakan_jpn_'+aspek+'_'+key+'" ></div><label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label></div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"   name="tindakan_jpn_'+aspek+'_'+key+'"></div><label class="form-check-label" for="belumSelesai1">Belum selesai</label></div></td>';
                                 }
                                 tableringaskanData = tableringaskanData+ '</tr>'
                             });
@@ -387,21 +387,6 @@
             });
 
         }
-    }
-
-    function  pullcatatan() {
-        var APIUrl = "{{ env('APP_VERFIKASI_URL') }}" + 'api/spks/pull-catatan';
-
-        $.ajax({
-            url: APIUrl,
-            method: 'POST',
-            data: {
-                id : id
-            },
-            success: function(response) {
-
-            }
-        });
     }
     
 </script>
