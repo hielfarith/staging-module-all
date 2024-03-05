@@ -37,201 +37,29 @@
                 <th style="font-size: 9pt; width:22%">Maklumat Item</th>
                 <th style="font-size: 9pt; width:17%">Isu/Permasalahan</th>
                 <th style="font-size: 9pt; width:10%">Catatan Verifikasi (PPD)</th>
-                <th style="font-size: 9pt; width:10%">Penentuan Criticality</th>
+                <th style="font-size: 9pt; width:10%">KLASIFIKASI ISU</th>
                 <th style="font-size: 9pt; width:10%">Tindakan PPD</th>
                 <th style="font-size: 9pt; width:10%">Tindakan JPN</th>
             </tr>
         </thead>
-        <tbody style="font-size: 10pt;width:100%">
-            <tr>
-                <td style="font-size: 10pt;width:1%">1</td>
-                <td style="font-size: 9pt; width:10%">Aspek 1</td>
-                <td style="font-size: 9pt; width:22%">Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki,
-                    Berbasikal, Motosikal, Bas sekolah,
-                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)</td>
-                <td style="font-size: 9pt; width:17%">Tiada laluan perjalanan kaki</td>
-                <td style="font-size: 9pt; width:10%">
+        <tbody style="font-size: 10pt;width:100%" id="catatan_sekolah_jpn_validasi">
 
-                    Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki,
-                    Berbasikal, Motosikal, Bas sekolah,
-                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)
-                </td>
-                <td style="font-size: 9pt; width:10%">
-                    {{-- <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="kritikal"
-                                name="status1" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="kritikal">Kritikal</label>
-                    </div>
-
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal"
-                                name="status1" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
-                    </div> --}}
-                    <label class="form-check-label" for="kritikal">Kritikal</label>
-
-                </td>
-                <td style="font-size: 9pt; width:10%">
-                    {{-- <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="kaitan"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="kaitan">Tidak berkaitan</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatSekolah"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatPPD"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="belumSelesai">Belum selesai</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="belumMendapat"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label>
-                    </div> --}}
-                    <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label>
-
-                </td>
-                <td style="font-size: 9pt; width:10%">
-                    {{-- <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatJPN"
-                                name="status3" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai1"
-                                name="status3" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="belumSelesai1">Belum selesai</label>
-                    </div> --}}
-                    <label class="form-check-label" for="belumSelesai1">Belum selesai</label>
-
-                </td>
-            </tr>
-            <tr>
-                <td style="font-size: 10pt;width:1%">2</td>
-                <td style="font-size: 9pt; width:10%">Aspek 2</td>
-                <td style="font-size: 9pt; width:22%">Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki,
-                    Berbasikal, Motosikal, Bas sekolah,
-                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)</td>
-                <td style="font-size: 9pt; width:17%">Tiada laluan perjalanan kaki</td>
-                <td style="font-size: 9pt; width:10%">
-                    Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki,
-                    Berbasikal, Motosikal, Bas sekolah,
-                    Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)
-                </td>
-                <td style="font-size: 9pt; width:10%">
-                    {{-- {{-- <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="kritikal"
-                                name="status1" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="kritikal">Kritikal</label>
-                    </div>
-
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="tidakKritikal"
-                                name="status1" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="tidakKritikal">Tidak Kritikal</label>
-                    </div> --}}
-                    <label class="form-check-label" for="kritikal">Kritikal</label>
-
-                </td>
-                <td style="font-size: 9pt; width:20%">
-                    {{-- <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="kaitan"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="kaitan">Tidak berkaitan</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatSekolah"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatPPD"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="belumSelesai">Belum selesai</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="belumMendapat"
-                                name="status4" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label>
-                    </div> --}}
-                    <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label>
-
-                </td>
-                <td style="font-size: 9pt; width:10%">
-                    {{-- <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="peringkatJPN"
-                                name="status5" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label>
-                    </div>
-                    <div class="d-flex">
-                        <div style="margin-right: 10px;margin-bottom:10px">
-                            <input required class="form-check-input radio-input-2" type="radio" id="belumSelesai1"
-                                name="status5" style="transform: scale(1.2);">
-                        </div>
-                        <label class="form-check-label" for="belumSelesai1">Belum selesai</label>
-                    </div> --}}
-                    <label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label>
-                </td>
-            </tr>
         </tbody>
     </table>
+<?php
+    $id = Request::segment(3);
+?>
+<form id="jpn_validasi">
+    <input type="hidden" name="spks_id" value="{{ $id }}">
 
     <div class="mt-1">
         <label for="comment">Komen:</label>
         <textarea class="form-control" id="comment" rows="3"></textarea>
     </div>
-
+    <input type="hidden" name="selesai" value="" id="selesai_validasi">
     <div class="d-flex justify-content-end align-items-center mt-1 mb-1">
         <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light">Selesai</button>
-        <div style="margin-left: 10px;"></div> <!-- Adjust margin as needed -->
+        <div style="margin-left: 10px;"></div> 
         <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light">Tidak
             Selesai</button>
     </div>
@@ -239,3 +67,34 @@
 </div>
 
 </div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+    var id = <?php echo Request::segment(3); ?>;
+
+    function formsubmitv(argument) {
+        $('#selesai_validasi').val(argument);
+        var formData = new FormData(document.getElementById('jpn_validasi'));
+        var error = false;
+
+        var APIUrl = "{{ env('APP_VALIDASI_URL') }}" + 'api/spks/save-validasi';
+
+        $.ajax({
+            url: APIUrl,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                if (response.status == 'success') {
+                    Swal.fire('Success', 'Berjaya', 'success');
+                    var location = "{{ route('spks.verfikasi_senarai')}}"
+                    window.location.href = location;
+               } else {
+                    Swal.fire('Gagal', 'gagal', 'error');
+               }
+            }
+        });
+    }
+</script>

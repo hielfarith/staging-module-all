@@ -47,49 +47,49 @@
                     <td style="font-size: 9pt" class="text-center">1</td>
                     <td style="font-size: 9pt">Pengurusan Aktiviti Murid</td>
                     <td style="font-size: 9pt" class="text-center">30%</td>
-                    <td style="font-size: 9pt" class="text-center">Jumlah item berkaitan x2</td>
-                    <td style="font-size: 9pt" class="text-center">0</td>
-                    <td style="font-size: 9pt" class="text-center">0.00</td>
+                    <td style="font-size: 9pt" class="text-center" id="count1Total"></td>
+                    <td style="font-size: 9pt" class="text-center" id="count1"></td>
+                    <td style="font-size: 9pt" class="text-center" id="percentage1"></td>
                 </tr>
                 <tr>
                     <td style="font-size: 9pt" class="text-center">2</td>
                     <td style="font-size: 9pt">Pengurusan Keselamatan Infrastruktur Sekolah</td>
                     <td style="font-size: 9pt" class="text-center">20%</td>
-                    <td style="font-size: 9pt" class="text-center">Jumlah item berkaitan x2</td>
-                    <td style="font-size: 9pt" class="text-center">0</td>
-                    <td style="font-size: 9pt" class="text-center">0.00</td>
+                    <td style="font-size: 9pt" class="text-center" id="count2Total"></td>
+                    <td style="font-size: 9pt" class="text-center" id="count2"></td>
+                    <td style="font-size: 9pt" class="text-center" id="percentage2"></td>
                 </tr>
                 <tr>
                     <td style="font-size: 9pt" class="text-center">3</td>
                     <td style="font-size: 9pt">Pengurusan Sosial</td>
                     <td style="font-size: 9pt" class="text-center">10%</td>
-                    <td style="font-size: 9pt" class="text-center">14</td>
-                    <td style="font-size: 9pt" class="text-center">0</td>
-                    <td style="font-size: 9pt" class="text-center">0.00</td>
+                    <td style="font-size: 9pt" class="text-center" id="count3Total"></td>
+                    <td style="font-size: 9pt" class="text-center" id="count3"></td>
+                    <td style="font-size: 9pt" class="text-center" id="percentage3"></td>
                 </tr>
                 <tr>
                     <td style="font-size: 9pt" class="text-center">4</td>
                     <td style="font-size: 9pt">Pengurusan Krisis/Bencana</td>
                     <td style="font-size: 9pt" class="text-center">9%</td>
-                    <td style="font-size: 9pt" class="text-center">14</td>
-                    <td style="font-size: 9pt" class="text-center">0</td>
-                    <td style="font-size: 9pt" class="text-center">0.00</td>
+                    <td style="font-size: 9pt" class="text-center" id="count4Total"></td>
+                    <td style="font-size: 9pt" class="text-center" id="count4"></td>
+                    <td style="font-size: 9pt" class="text-center" id="percentage4"></td>
                 </tr>
                 <tr>
                     <td style="font-size: 9pt" class="text-center">5</td>
                     <td style="font-size: 9pt">Pengurusan Risiko</td>
                     <td style="font-size: 9pt" class="text-center">10%</td>
-                    <td style="font-size: 9pt" class="text-center">14</td>
-                    <td style="font-size: 9pt" class="text-center">0</td>
-                    <td style="font-size: 9pt" class="text-center">0.00</td>
+                    <td style="font-size: 9pt" class="text-center" id="count5Total"></td>
+                    <td style="font-size: 9pt" class="text-center" id="count5"></td>
+                    <td style="font-size: 9pt" class="text-center" id="percentage5"></td>
                 </tr>
                 <tr>
                     <td style="font-size: 9pt" class="text-center">6</td>
                     <td style="font-size: 9pt">Pengurusan Perkhidmatan Pengawal Keselamatan Sekolah</td>
                     <td style="font-size: 9pt" class="text-center">20%</td>
-                    <td style="font-size: 9pt" class="text-center">32</td>
-                    <td style="font-size: 9pt" class="text-center">0</td>
-                    <td style="font-size: 9pt" class="text-center">0.00</td>
+                    <td style="font-size: 9pt" class="text-center" id="count6Total"></td>
+                    <td style="font-size: 9pt" class="text-center" id="count6"></td>
+                    <td style="font-size: 9pt" class="text-center" id="percentage6"></td>
                 </tr>
 
             </tbody>
@@ -100,9 +100,9 @@
                         JUMLAH
                     </td>
                     <td style="font-size: 10pt" class="text-center">100%</td>
-                    <td style="font-size: 10pt" class="text-center">172</td>
-                    <td style="font-size: 10pt" class="text-center">0</td>
-                    <td style="font-size: 10pt" class="text-center">0.00</td>
+                    <td style="font-size: 10pt" class="text-center" id="total"></td>
+                    <td style="font-size: 10pt" class="text-center" id="totalskor"></td>
+                    <td style="font-size: 10pt" class="text-center" id="percentage">0.00</td>
                 </tr>
             </tfoot>
         </table>

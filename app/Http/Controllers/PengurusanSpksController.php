@@ -134,7 +134,7 @@ class PengurusanSpksController extends Controller
     {
         $spks = $type = null;
         if(!empty($id)) {
-            $spks = SpksPengisian::where('id', $id)->first();
+            $spks = SpksPengisian::where('id', $id)->whereIn('status',[1,2])->first();
         }
         $disabled = 'disabled';
         return view('spks.index_verifikasi', compact('disabled', 'spks'));
@@ -372,6 +372,11 @@ class PengurusanSpksController extends Controller
     public function SenaraiSekolahPenarafan(Request $request)
     {
         return view('spks.penarafan.senarai-sekolah');
+    }
+
+    public function DashboardSPKS (Request $request){
+
+        return view('dashboard.dashboard_spks');
     }
 
 
