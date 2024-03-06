@@ -54,14 +54,13 @@
 
     <div class="mt-1">
         <label for="comment">Komen:</label>
-        <textarea class="form-control" id="comment" rows="3"></textarea>
+        <textarea class="form-control" id="comment" rows="3" name="comment"></textarea>
     </div>
     <input type="hidden" name="selesai" value="" id="selesai_validasi">
     <div class="d-flex justify-content-end align-items-center mt-1 mb-1">
-        <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light">Selesai</button>
+        <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light" onclick="formsubmitval('1')">Selesai</button>
         <div style="margin-left: 10px;"></div> 
-        <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light">Tidak
-            Selesai</button>
+        <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light" onclick="formsubmitval('2')">Tidak Selesai</button>
     </div>
 
 </div>
@@ -73,7 +72,7 @@
 <script type="text/javascript">
     var id = <?php echo Request::segment(3); ?>;
 
-    function formsubmitv(argument) {
+    function formsubmitval(argument) {
         $('#selesai_validasi').val(argument);
         var formData = new FormData(document.getElementById('jpn_validasi'));
         var error = false;
@@ -89,7 +88,7 @@
             success: function(response) {
                 if (response.status == 'success') {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{ route('spks.verfikasi_senarai')}}"
+                    var location = "{{ route('spks.validasi_senarai')}}"
                     window.location.href = location;
                } else {
                     Swal.fire('Gagal', 'gagal', 'error');

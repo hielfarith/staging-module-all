@@ -56,10 +56,11 @@ $id = Request::segment(3);
         <div class="d-flex justify-content-end align-items-center mt-1">
             <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light"
                 onclick="formsubmitv('1')">Selesai</button>
-            <div style="margin-left: 10px;"></div> <!-- Adjust margin as needed -->
-            <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light"
+            <div style="margin-left: 10px;"></div> 
+            <!-- Adjust margin as needed -->
+            <!-- <button type="button" class="btn btn-primary btn-sm waves-effect waves-float waves-light"
                 onclick="formsubmitv('2')">Tidak
-                Selesai</button>
+                Selesai</button> -->
         </div>
     </div>
 
