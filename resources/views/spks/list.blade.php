@@ -20,10 +20,10 @@
             <h4 class="card-title fw-bolder"> Senarai Skpak </h4>
 
             <!--  <div class="d-flex justify-content-end align-items-center">
-                    <a href="{{ asset('template/BORANG DEMOGRAFI SKIPS.pdf') }}" class="btn btn-primary float-right" download>
-                        <i class="fa-solid fa-file"></i> Muat Turun Dokumen
-                    </a>
-                </div> -->
+                        <a href="{{ asset('template/BORANG DEMOGRAFI SKIPS.pdf') }}" class="btn btn-primary float-right" download>
+                            <i class="fa-solid fa-file"></i> Muat Turun Dokumen
+                        </a>
+                    </div> -->
         </div>
 
         <hr>
@@ -93,7 +93,7 @@
                                 '<div class="btn-group " role="group" aria-label="Action">';
                             button = button + '<a onclick="maklumatSpks(' + data[i].spks_id +
                                 ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                            button = button + '<a onclick="maklumatSpksverfikasi(' + data[i].spks_id +
+                            button = button + '<a onclick="maklumatSpksEdit(' + data[i].spks_id +
                                 ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
                             button = button + "</div>";
                             tableData = tableData + '<td>' + button + '</td></tr>';

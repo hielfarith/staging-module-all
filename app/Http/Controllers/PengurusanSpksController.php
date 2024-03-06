@@ -272,7 +272,7 @@ class PengurusanSpksController extends Controller
                     // return $spks->spks_status;
                     if ($spks->spks_status == 1) {
                         return 'Draft';
-                    } elseif ($spks->spks_status == 3) {
+                    } elseif ($spks->spks_status == 2) {
                         return 'Telah Dihantar';
                     } elseif($spks->spks_status == 3) {
                         return 'Kuiri';
