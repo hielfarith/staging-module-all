@@ -379,7 +379,7 @@
                                         var checked2 = '';
                                         var checked1 = '';
                                     }
-                                    tableringaskanData = tableringaskanData + '<td style="font-size: 9pt;width:10%"><div class="d-flex"><div style="margin-right:10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"  name="tindakan_jpn_'+aspek+'_'+key+'" value="1" '+checked1+'></div><label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label></div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"   name="tindakan_jpn_'+aspek+'_'+key+'" value="2" '+checked2+'></div><label class="form-check-label" for="belumSelesai1">Belum selesai</label></div></td>';
+                                    tableringaskanData = tableringaskanData + '<td style="font-size: 9pt;width:10%"><div class="d-flex"><div style="margin-right:10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"  name="tindakan_jpn_'+aspek+'_'+key+'" value="1" '+checked1+' disabled></div><label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label></div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"   name="tindakan_jpn_'+aspek+'_'+key+'" value="2" '+checked2+' disabled></div><label class="form-check-label" for="belumSelesai1">Belum selesai</label></div></td>';
                                 }
                                 tableringaskanData = tableringaskanData+ '</tr>'
                             });
