@@ -34,6 +34,10 @@ Route::controller(PengurusanInstrumenController::class)->group(function () {
     Route::get('/generate-pdf3', [formPdfController::class, 'generatePDF3'])->name('generatePDF3');
     Route::get('/generate-pdf4', [formPdfController::class, 'generatePDF4'])->name('generatePDF4');
     Route::get('/generate-pdf5', [formPdfController::class, 'generatePDF5'])->name('generatePDF5');
-
+    Route::get('/generate-pdf6', [formPdfController::class, 'generatePDF6'])->name('generatePDF6');
+    Route::get('/generate-pdf7', [formPdfController::class, 'generatePDF7'])->name('generatePDF7');
+    Route::get('/generate-pdf8', [formPdfController::class, 'generatePDF8'])->name('generatePDF8');
+    Route::get('/generate-pdf9', [formPdfController::class, 'generatePDF9'])->name('generatePDF9');
+    Route::get('/generate-pdf10', [formPdfController::class, 'generatePDF10'])->name('generatePDF10');
 
 });

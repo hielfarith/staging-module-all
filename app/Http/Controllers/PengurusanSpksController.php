@@ -373,9 +373,8 @@ class PengurusanSpksController extends Controller
     {
         return view('spks.penarafan.senarai-sekolah');
     }
-
-    public function DashboardSPKS (Request $request){
-
+    public function DashboardSPKS(Request $request)
+    {
         return view('dashboard.dashboard_spks');
     }
 
