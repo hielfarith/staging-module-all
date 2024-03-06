@@ -219,6 +219,7 @@
                 $('#percentage5').html(response.percentage5);
                 $('#percentage6').html(response.percentage6);
                 $('#percentage').html(response.percentage);
+                $('#skoreview').text(response.skore);
             }
         });
     }
@@ -356,15 +357,29 @@
                                         var checked4 = '';
                                     }
                                 } else {
-                                    var checked2 = '';
                                     var checked1 = '';
+                                    var checked2 = '';
                                     var checked3 = '';
                                     var checked4 = '';
                                     var checked5 = '';
                                 }
                                 tableringaskanData = tableringaskanData+ '<td style="text-align: center; width:10%"><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'" '+checked1+' disabled value="1"> </div><label class="form-check-label" for="kaitan">Tidak berkaitan</label> </div> <div class="d-flex"><div style="margin-right: 6px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'" disabled value="2" '+checked2+'> </div> <label class="form-check-label" for="peringkatSekolah">Selesai peringkat sekolah</label> </div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'" '+checked3+' disabled value="3"> </div> <label class="form-check-label" for="peringkatPPD">Selesai peringkat PPD</label> </div> <div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"> <input required class="form-check-input radio-input-2" type="radio"  name="tindakan_ppd_'+aspek+'_'+key+'" '+checked4+' disabled value="4"></div> <label class="form-check-label" for="belumSelesai">Belum selesai</label></div><div class="d-flex"><div style="margin-right: 6px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio" name="tindakan_ppd_'+aspek+'_'+key+'"  '+checked5+' disabled value="5"></div><label class="form-check-label" for="belumMendapat">Belum mendapat laporan sekolah</label></div></td>';
                                 if (argument == 'validasi_kpm') {
-                                    tableringaskanData = tableringaskanData + '<td style="font-size: 9pt;width:10%"><div class="d-flex"><div style="margin-right:10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"  name="tindakan_jpn_'+aspek+'_'+key+'" disabled></div><label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label></div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"   name="tindakan_jpn_'+aspek+'_'+key+'" disabled></div><label class="form-check-label" for="belumSelesai1">Belum selesai</label></div></td>';
+                                    if (Object.keys(response.tindakan_jpn).length > 0) {
+                                        var name = 'tindakan_jpn_'+aspek+'_'+key;
+                                        var tindakan_jpn = response.tindakan_jpn[name];
+                                        if (tindakan_jpn == 1) {
+                                            var checked1 = 'checked';
+                                            var checked2 = '';
+                                        } else {
+                                            var checked2 = 'checked';
+                                            var checked1 = '';
+                                        }
+                                    } else {
+                                        var checked2 = '';
+                                        var checked1 = '';
+                                    }
+                                    tableringaskanData = tableringaskanData + '<td style="font-size: 9pt;width:10%"><div class="d-flex"><div style="margin-right:10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"  name="tindakan_jpn_'+aspek+'_'+key+'" value="1" '+checked1+' disabled></div><label class="form-check-label" for="peringkatJPN">Selesai peringkat JPN</label></div><div class="d-flex"><div style="margin-right: 10px;margin-bottom:10px"><input required class="form-check-input radio-input-2" type="radio"   name="tindakan_jpn_'+aspek+'_'+key+'" value="2" '+checked2+' disabled></div><label class="form-check-label" for="belumSelesai1">Belum selesai</label></div></td>';
                                 }
                                 tableringaskanData = tableringaskanData+ '</tr>'
                             });
@@ -373,9 +388,9 @@
                     if (argument == 'ringkasan_catatan') {
                         $('#catatan_sekolah_body_validasi').append(tableringaskanData);
                     }
-                   if (argument == 'validasi_kpm') {
+                    if (argument == 'validasi_kpm') {
                         $('#catatan_sekolah_jpn_validasi').append(tableringaskanData);
-                   }
+                    }
                 }
             });
 

@@ -22,7 +22,7 @@
         {{-- <h5 class="card-title fw-bolder">SKOR PIAWAIAN</h5> --}}
         <div style="padding-top: 1%;">
             <p style="font-size:10pt;background-color: #0C2043; color: white; padding: 5px 10px; font-weight: bold;">Status Sekolah:
-                <span></span></p>
+                <span id="skoreview"></span></p>
         </div>
     </div>
 

@@ -226,6 +226,7 @@
                 $('#percentage5').html(response.percentage5);
                 $('#percentage6').html(response.percentage6);
                 $('#percentage').html(response.percentage);
+                $('#skoreview').text(response.skore);
             }
         });
     }
