@@ -93,7 +93,7 @@
                                 '<div class="btn-group " role="group" aria-label="Action">';
                             button = button + '<a onclick="maklumatSpks(' + data[i].spks_id +
                                 ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                            button = button + '<a onclick="maklumatSpksEdit(' + data[i].spks_id +
+                            button = button + '<a onclick="maklumatSpksverfikasi(' + data[i].spks_id +
                                 ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
                             button = button + "</div>";
                             tableData = tableData + '<td>' + button + '</td></tr>';
