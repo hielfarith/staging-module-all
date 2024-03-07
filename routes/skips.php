@@ -7,6 +7,9 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
         Route::get('borang/{id?}','BorangSkipsBaru')->name('skips_baru');
         Route::get('verfikasi/{id}','BorangSkipsBaru')->name('verfikasi-view');
 
+        Route::get('skips_sekolah','BorangSkipsSekolahBaru')->name('skips_sekolah');
+
+
         Route::get('skips-fmf/{id}','FmfView')->name('fmf-view');
 
         Route::post('store/{tab}', 'store')->name('instrumen-submit');
