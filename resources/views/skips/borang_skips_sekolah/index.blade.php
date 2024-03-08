@@ -20,6 +20,13 @@
             </a>
         </li>
         <li class="nav-item" role="presentation">
+            <a class="text-uppercase text-wrap nav-link fw-bolder" id="instrumen-skips-tab" data-bs-toggle="tab"
+                href="#instrumen-skips" aria-controls="instrumen-skips" role="tab" aria-selected="true"
+                onclick="tabclicked('#instrumen-skips')">
+                INSTRUMEN SKIPS
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder" id="pendidikan-swasta-tab" data-bs-toggle="tab"
                 href="#pendidikan-swasta" aria-controls="pendidikan-swasta" role="tab" aria-selected="true"
                 onclick="tabclicked('#pendidikan-swasta')">
@@ -36,6 +43,10 @@
                 <div class="tab-pane active" id="penilai-kendiri" role="tabpanel" aria-labelledby="penilai-kendiri-tab">
                     @include('skips.borang_skips_sekolah.borang.penilai')
                 </div>
+                <div class="tab-pane fade" id="instrumen-skips" role="tabpanel" aria-labelledby="instrumen-skips-tab">
+                    @include('skips.borang_skips_sekolah.borang.instrumen.index')
+                </div>
+
                 <div class="tab-pane fade" id="pendidikan-swasta" role="tabpanel" aria-labelledby="pendidikan-swasta-tab">
                     @include('skips.borang_skips_sekolah.borang.institut')
                 </div>
