@@ -172,9 +172,118 @@
             <input type="text" name="jumlah_guru_Perempuan" id="jumlah_guru_Perempuan" class="form-control">
         </div>
 
+        <hr>
+        <h5 class="mb-2 mt-1 fw-bold">
+            <span class="badge rounded-pill badge-light-primary">
+                Maklumat Kakitangan
+            </span>
+        </h5>
+        <hr>
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Bilangan Lelaki Warganegara
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="guru_lelaki_warganegara" id="guru_lelaki_warganegara" class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Bilangan Lelaki Antarabangsa
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="kakitangan_lelaki_bukan_warganegara" id="kakitangan_lelaki_bukan_warganegara"
+                class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Jumlah Keseluruhan
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="jumlah_kakitangan_lelaki" id="jumlah_kakitangan_lelaki"
+                class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Bilangan Perempuan Warganegara
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="kakitangan_Perempuan_warganegara" id="kakitangan_Perempuan_warganegara"
+                class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Bilangan Perempuan Antarabangsa
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="kakitangan_Perempuan_bukan_warganegara"
+                id="kakitangan_Perempuan_bukan_warganegara" class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Jumlah Keseluruhan
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="jumlah_kakitangan_Perempuan" id="jumlah_kakitangan_Perempuan"
+                class="form-control">
+        </div>
+
+        <hr>
+        <h5 class="mb-2 mt-1 fw-bold">
+            <span class="badge rounded-pill badge-light-primary">
+                Maklumat Enrollmen Murid
+            </span>
+        </h5>
+        <hr>
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Bilangan Lelaki Warganegara
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="Murid_lelaki_warganegara" id="Murid_lelaki_warganegara"
+                class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Bilangan Lelaki Antarabangsa
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="Murid_lelaki_bukan_warganegara" id="Murid_lelaki_bukan_warganegara"
+                class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Jumlah Keseluruhan
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="jumlah_Murid_lelaki" id="jumlah_Murid_lelaki" class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Bilangan Perempuan Warganegara
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="kakitangan_Perempuan_warganegara" id="kakitangan_Perempuan_warganegara"
+                class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Bilangan Perempuan Antarabangsa
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="kakitangan_Perempuan_bukan_warganegara"
+                id="kakitangan_Perempuan_bukan_warganegara" class="form-control">
+        </div>
+
+        <div class="col-md-4 mb-1">
+            <label class="form-label fw-bold text-titlecase"> Jumlah Keseluruhan
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="jumlah_kakitangan_Perempuan" id="jumlah_kakitangan_Perempuan"
+                class="form-control">
+        </div>
+
+
 
         <div class="d-flex justify-content-end align-items-center mt-1">
-            <button type="submit" class="btn btn-primary float-right">Simpan</button>
+            <button type="submit" class="btn btn-primary float-right">Hantar</button>
         </div>
     </div>
 </form>
