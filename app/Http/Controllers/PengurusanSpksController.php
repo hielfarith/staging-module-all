@@ -254,7 +254,6 @@ class PengurusanSpksController extends Controller
          if($request->ajax()) {
 
             $spks = SpksPengisian::select(['instrumen_skpak_spks_ikep.pengguna_instrumen', 'instrumen_skpak_spks_ikep.pengisian_oleh', 'instrumen_skpak_spks_ikep.tempoh_pengisian', 'instrumen_skpak_spks_ikep.tempoh_pengisian_lain', 'spks_pengisians.status as spks_status', 'spks_pengisians.id as spks_id'])->join('instrumen_skpak_spks_ikep', 'instrumen_skpak_spks_ikep.id', '=', 'spks_pengisians.instrumen_id')->whereIn('spks_pengisians.status', [1,2,3,4,5]);
-
             return Datatables::of($spks)
                 ->editColumn('pengguna_instrumen', function ($spks) {
                     return $spks->pengguna_instrumen;
@@ -305,7 +304,7 @@ class PengurusanSpksController extends Controller
                 ->make(true);
         }
 
-        return view('spks.list');
+        return view('spks.list-view');
     }
 
     public function borangView(Request $request, $id, $type){
