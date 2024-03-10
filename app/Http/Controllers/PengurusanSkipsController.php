@@ -109,7 +109,7 @@ class PengurusanSkipsController extends Controller
         }
         return view ('skips.fmf.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes', 'status', 'canView','canVerify', 'canApprove'));
     }
-    
+
     public function chooseInstituteDetails(Request $request)
     {
         $id = $request->id;
@@ -220,7 +220,7 @@ class PengurusanSkipsController extends Controller
                     if(isset($input['usertype'] ) && $input['usertype'] == 'borang') {
                         unset($input['usertype']);
                         $formfilled = true;
-                        
+
                         // getnext status
                         // we need to skips the antarbangsa if jenis_ips has selcted values
                         foreach ($tabsarray as $value) {
@@ -287,12 +287,12 @@ class PengurusanSkipsController extends Controller
     public function SenaraiSkips(Request $request){
         $DynamicFormData = InstrumenSkpakSpksIkeps::where('type','skips')->where('status',1)->first();
         if ($request->segment('2') == 'verfikasi') {
-            $status = [1,2];            
+            $status = [1,2];
         } elseif ($request->segment('2') == 'validasi') {
             $status = [3];
         }
         if($request->ajax()) {
-           
+
             $instrumentListings = ButiranInstitusiSkips::select(['butiran_institusi_id','item_standard_quality_skips.id as item_id', 'butiran_institusi_skips.id as id', 'butiran_institusi_skips.nama_institusi', 'butiran_institusi_skips.nama_pengetua','butiran_institusi_skips.negeri','item_standard_quality_skips.status'])->join('item_standard_quality_skips','item_standard_quality_skips.butiran_institusi_id','=','butiran_institusi_skips.id')
                 ->whereIn('item_standard_quality_skips.status', $status);
 
@@ -553,7 +553,7 @@ class PengurusanSkipsController extends Controller
     public function DashboardSkips(Request $request){
 
         if($request->ajax()) {
-           
+
             $instrumentListings = InstrumenSkpakSpksIkeps::where('type', 'SKIPS');
 
             return Datatables::of($instrumentListings)
@@ -584,7 +584,7 @@ class PengurusanSkipsController extends Controller
     public function SenaraiSkipsInstitusi(Request $request) {
         // link fmf
         if($request->ajax()) {
-           
+
             $instrumentListings = ButiranInstitusiSkips::select(['butiran_institusi_id','item_standard_quality_skips.id as item_id', 'butiran_institusi_skips.id as id', 'butiran_institusi_skips.nama_institusi', 'butiran_institusi_skips.nama_pengetua','butiran_institusi_skips.negeri','item_standard_quality_skips.status'])->join('item_standard_quality_skips','item_standard_quality_skips.butiran_institusi_id','=','butiran_institusi_skips.id')->where('item_standard_quality_skips.status', '!=' , null);
 
             return Datatables::of($instrumentListings)
@@ -607,7 +607,7 @@ class PengurusanSkipsController extends Controller
                     return $index++;
                 })
                  ->addColumn('document', function ($instrumenList) {
-                    $button = '<a onclick="#" class="btn btn-xs btn-default" title="">Document<i class="fas fa-download text-primary"></i></a>'; 
+                    $button = '<a onclick="#" class="btn btn-xs btn-default" title="">Document<i class="fas fa-download text-primary"></i></a>';
 
                     return $button;
                 })
@@ -620,7 +620,7 @@ class PengurusanSkipsController extends Controller
                     } else {
                         $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
                     }
-                   
+
 
                     $button .= "</div>";
 
@@ -643,7 +643,7 @@ class PengurusanSkipsController extends Controller
                 $states = MasterState::whereNot('code', '00')->get();
 
                 $dataNegeri = [];
-                
+
                 foreach($states as $state){
                     if($state->name == 'Wilayah Persekutuan Kuala Lumpur' || $state->name == 'Wilayah Persekutuan Labuan' || $state->name == 'Wilayah Persekutuan Putrajaya'){
                         $negeri = strtoupper(str_replace('Wilayah Persekutuan', 'WP', $state->name));
@@ -777,5 +777,11 @@ class PengurusanSkipsController extends Controller
         }
 
         return view ('dashboard.dashboard_instrumen', compact('star', 'kriteria'));
+    }
+
+    public function BorangSkipsSekolahBaru(Request $request)
+    {
+        $states = MasterState::all();
+        return view('skips.borang_skips_sekolah.index', compact('states'));
     }
 }
