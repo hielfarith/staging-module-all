@@ -54,165 +54,165 @@
 
             @hasanyrole('superadmin|admin')
                 <!-- <li class="navigation-header">
-                                                                                                                        <span> Pengurusan Modul </span>
-                                                                                                                    </li>
-                                                                                                                    <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
-                                                                                                                        <a href="#" class="nav-link">
-                                                                                                                            <i data-feather="folder"></i>
-                                                                                                                            <span class="menu-title text-truncate text-wrap"> Modul </span>
-                                                                                                                        </a>
-                                                                                                                        <ul class="nav">
-
+                                                                                                                                <span> Pengurusan Modul </span>
+                                                                                                                            </li>
                                                                                                                             <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
                                                                                                                                 <a href="#" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap">
-                                                                                                                                        Instrument SKIPS
-                                                                                                                                    </span>
+                                                                                                                                    <i data-feather="folder"></i>
+                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Modul </span>
                                                                                                                                 </a>
+                                                                                                                                <ul class="nav">
 
-                                                                                                                                <ul class="nav"> -->
-                <!--  <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
-                                                                                                                                        <a href="{{ route('skips.skips_baru') }}" class="nav-link">
+                                                                                                                                    <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
+                                                                                                                                        <a href="#" class="nav-link">
                                                                                                                                             <span class="menu-title text-truncate text-wrap">
-                                                                                                                                                Pengisian SKIPS
+                                                                                                                                                Instrument SKIPS
                                                                                                                                             </span>
+                                                                                                                                        </a>
+
+                                                                                                                                        <ul class="nav"> -->
+                <!--  <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                                                                                                                                                <a href="{{ route('skips.skips_baru') }}" class="nav-link">
+                                                                                                                                                    <span class="menu-title text-truncate text-wrap">
+                                                                                                                                                        Pengisian SKIPS
+                                                                                                                                                    </span>
+                                                                                                                                                </a>
+                                                                                                                                            </li> -->
+
+                <!--       <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.ringkasan_skips']) ? 'active' : '' }}">
+                                                                                                                                                <a href="{{ route('skips.ringkasan_skips') }}" class="nav-link">
+                                                                                                                                                    <span class="menu-title text-truncate text-wrap">
+                                                                                                                                                        Ringkasan Maklumat
+                                                                                                                                                    </span>
+                                                                                                                                                </a>
+                                                                                                                                            </li>
+                                                                                                                                        </ul>
+                                                                                                                                    </li>
+                                                                                                                                </ul>
+                                                                                                                            </li> -->
+
+                <!-- <li class="navigation-header">
+                                                                                                                                <span> Pengurusan Instrumen</span>
+                                                                                                                            </li>
+                                                                                                                            <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
+                                                                                                                                <a href="#" class="nav-link">
+                                                                                                                                    <i data-feather="folder"></i>
+                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Instrumen </span>
+                                                                                                                                </a>
+                                                                                                                                <ul class="nav"> -->
+
+                <!--  <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Aspek</span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-ikeps-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Aspek Ikeps</span>
                                                                                                                                         </a>
                                                                                                                                     </li> -->
 
-                <!--       <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.ringkasan_skips']) ? 'active' : '' }}">
-                                                                                                                                        <a href="{{ route('skips.ringkasan_skips') }}" class="nav-link">
-                                                                                                                                            <span class="menu-title text-truncate text-wrap">
-                                                                                                                                                Ringkasan Maklumat
-                                                                                                                                            </span>
+                <!--
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-sub-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-aspek-sub-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Sub Aspek</span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-item-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-item-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Item</span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-item-sub-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-item-sub-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Item SKPS</span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['instrumen_baru']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('instrumen_baru') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Tambah Instrumen </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+
+
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['senarai_instrumen_dijawab']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Instrumen Dijawab </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['pilih_instrumen']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('pilih_instrumen') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Jawab Instrumen </span>
                                                                                                                                         </a>
                                                                                                                                     </li>
                                                                                                                                 </ul>
-                                                                                                                            </li>
-                                                                                                                        </ul>
-                                                                                                                    </li> -->
-
-                <!-- <li class="navigation-header">
-                                                                                                                        <span> Pengurusan Instrumen</span>
-                                                                                                                    </li>
-                                                                                                                    <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
-                                                                                                                        <a href="#" class="nav-link">
-                                                                                                                            <i data-feather="folder"></i>
-                                                                                                                            <span class="menu-title text-truncate text-wrap"> Instrumen </span>
-                                                                                                                        </a>
-                                                                                                                        <ul class="nav"> -->
-
-                <!--  <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Aspek</span>
-                                                                                                                                </a>
-                                                                                                                            </li>
-
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-ikeps-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Aspek Ikeps</span>
-                                                                                                                                </a>
                                                                                                                             </li> -->
 
-                <!--
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-sub-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-aspek-sub-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Sub Aspek</span>
-                                                                                                                                </a>
-                                                                                                                            </li>
-
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-item-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-item-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Item</span>
-                                                                                                                                </a>
-                                                                                                                            </li>
-
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-item-sub-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-item-sub-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Senarai Tetapan Item SKPS</span>
-                                                                                                                                </a>
-                                                                                                                            </li>
-
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['instrumen_baru']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('instrumen_baru') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Tambah Instrumen </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
-
-
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['senarai_instrumen_dijawab']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('senarai_instrumen_dijawab') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Instrumen Dijawab </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['pilih_instrumen']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('pilih_instrumen') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Jawab Instrumen </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
-                                                                                                                        </ul>
-                                                                                                                    </li> -->
-
                 <!-- <li class="navigation-header">
-                                                                                                                        <span> SKIPS</span>
-                                                                                                                    </li>
-                                                                                                                     <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
-                                                                                                                        <a href="#" class="nav-link">
-                                                                                                                            <i data-feather="folder"></i>
-                                                                                                                            <span class="menu-title text-truncate text-wrap"> SKIPS </span>
-                                                                                                                        </a>
-                                                                                                                        <ul class="nav">
+                                                                                                                                <span> SKIPS</span>
+                                                                                                                            </li>
+                                                                                                                             <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
+                                                                                                                                <a href="#" class="nav-link">
+                                                                                                                                    <i data-feather="folder"></i>
+                                                                                                                                    <span class="menu-title text-truncate text-wrap"> SKIPS </span>
+                                                                                                                                </a>
+                                                                                                                                <ul class="nav">
 
 
-                                                                                                                        </ul>
-                                                                                                                    </li> -->
+                                                                                                                                </ul>
+                                                                                                                            </li> -->
 
                 <!-- <li class="navigation-header text-wrap">
-                                                                                                                        <span>  Modul Pengurusan Instrumen </span>
-                                                                                                                    </li>
-                                                                                                                    <li class="nav-item">
-                                                                                                                        <a href="#" class="nav-link">
-                                                                                                                            <i data-feather="folder"></i>
-                                                                                                                            <span class="menu-title text-truncate text-wrap"> Pengurusan Instrumen </span>
-                                                                                                                        </a>
-                                                                                                                        <ul class="nav">
-
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.instrumenikeps-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
-                                                                                                                                </a>
+                                                                                                                                <span>  Modul Pengurusan Instrumen </span>
                                                                                                                             </li>
-
-                                                                                                                             <li class="nav-item {{ in_array(request()->route()->getName(), ['show_all_forms']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('show_all_forms') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Senarai Instrumen </span>
+                                                                                                                            <li class="nav-item">
+                                                                                                                                <a href="#" class="nav-link">
+                                                                                                                                    <i data-feather="folder"></i>
+                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Pengurusan Instrumen </span>
                                                                                                                                 </a>
-                                                                                                                            </li>
+                                                                                                                                <ul class="nav">
 
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-sedia-ada']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.senarai-sedia-ada') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Senarai Sedia Ada </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.instrumenikeps-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
 
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
+                                                                                                                                     <li class="nav-item {{ in_array(request()->route()->getName(), ['show_all_forms']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('show_all_forms') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Senarai Instrumen </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
 
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-ikeps-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek I-KePS </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-sedia-ada']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.senarai-sedia-ada') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Senarai Sedia Ada </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
 
-                                                                                                                             <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-tarikh-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-tarikh-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Pengurusan Tarikh Instrumen </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
-                                                                                                                        </ul>
-                                                                                                                    </li> -->
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-ikeps-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek I-KePS </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+
+                                                                                                                                     <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-tarikh-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-tarikh-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Pengurusan Tarikh Instrumen </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+                                                                                                                                </ul>
+                                                                                                                            </li> -->
 
                 <li class="navigation-header">
                     <span> I-KePS </span>
@@ -331,10 +331,10 @@
                         </li>
 
                         <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
-                                                                                                                                <a href="#" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
-                                                                                                                                </a>
-                                                                                                                            </li> -->
+                                                                                                                                        <a href="#" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
+                                                                                                                                        </a>
+                                                                                                                                    </li> -->
                         <li
                             class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
                             <a href="{{ route('skips.skips_baru') }}" class="nav-link">
@@ -365,19 +365,27 @@
                         </li>
 
 
-                        <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap">
-                                                                                                                                        Modul Verifikasi Data Instrumen
-                                                                                                                                    </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
+                        <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                            <a href="#" class="nav-link">
+                                <span class="menu-title text-truncate text-wrap">
+                                    Modul Validasi
+                                </span>
+                            </a>
+                        </li>
 
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.validasi-skips']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('skips.validasi-skips') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
-                                                                                                                                </a>
-                                                                                                                            </li> -->
+                        <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap">
+                                                                                                                                                Modul Verifikasi Data Instrumen
+                                                                                                                                            </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.validasi-skips']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('skips.validasi-skips') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
+                                                                                                                                        </a>
+                                                                                                                                    </li> -->
 
                         <li
                             class="nav-item {{ in_array(request()->route()->getName(), ['skips.pelaporan-penarafan']) ? 'active' : '' }}">
@@ -765,34 +773,34 @@
                 </li>
 
                 <!--    <li class="navigation-header">
-                                                                                                                        <span> Dynamic Form </span>
-                                                                                                                    </li>
-                                                                                                                    <li
-                                                                                                                        class="nav-item nav-tour system-management {{ request()->is('dynamic*') ? 'menu-open' : '' }}">
-                                                                                                                        <a href="#" class="nav-link">
-                                                                                                                            <i data-feather="settings"></i>
-                                                                                                                            <span class="menu-title text-truncate text-wrap"> Dynamic Form </span>
-                                                                                                                        </a>
-                                                                                                                        <ul class="menu-content">
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['create-form']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('create-form') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Create Dynamic Form </span>
-                                                                                                                                </a>
+                                                                                                                                <span> Dynamic Form </span>
                                                                                                                             </li>
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['dynamic-form-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('dynamic-form-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> List Dynamic Form </span>
+                                                                                                                            <li
+                                                                                                                                class="nav-item nav-tour system-management {{ request()->is('dynamic*') ? 'menu-open' : '' }}">
+                                                                                                                                <a href="#" class="nav-link">
+                                                                                                                                    <i data-feather="settings"></i>
+                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Dynamic Form </span>
                                                                                                                                 </a>
-                                                                                                                            </li>
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['listfillform']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('listfillform') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> List Filled Form </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
-                                                                                                                        </ul>
+                                                                                                                                <ul class="menu-content">
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['create-form']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('create-form') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Create Dynamic Form </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['dynamic-form-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('dynamic-form-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> List Dynamic Form </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['listfillform']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('listfillform') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> List Filled Form </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+                                                                                                                                </ul>
 
-                                                                                                                    </li>
-                                                                                                         -->
+                                                                                                                            </li>
+                                                                                                                 -->
                 <li class="navigation-header">
                     <span> Pengurusan Sistem</span>
                 </li>
@@ -864,22 +872,22 @@
                         </li>
 
                         <!--    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-aspek-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
 
-                                                                                                                            <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-ikeps-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek I-KePS </span>
-                                                                                                                                </a>
-                                                                                                                            </li>
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-aspek-ikeps-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-aspek-ikeps-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Pengurusan Aspek I-KePS </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
 
-                                                                                                                             <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-tarikh-list']) ? 'active' : '' }}">
-                                                                                                                                <a href="{{ route('admin.instrumen.tetapan-tarikh-list') }}" class="nav-link">
-                                                                                                                                    <span class="menu-title text-truncate text-wrap"> Pengurusan Tarikh Instrumen </span>
-                                                                                                                                </a>
-                                                                                                                            </li> -->
+                                                                                                                                     <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.tetapan-tarikh-list']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('admin.instrumen.tetapan-tarikh-list') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap"> Pengurusan Tarikh Instrumen </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li> -->
 
 
                     </ul>

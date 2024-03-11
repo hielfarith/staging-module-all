@@ -1,5 +1,5 @@
 <div class="row">
-   <!--  <div class="col-md-12 mb-1">
+    <!--  <div class="col-md-12 mb-1">
         <label class="form-label fw-bold text-titlecase">Nama Institusi
             <span class="text-danger">*</span>
         </label>
@@ -19,11 +19,23 @@
         </label>
         <select class="form-control select2" name="" id="">
             <option value="" hidden>Negeri</option>
-                @foreach($negeris as $negeri)
-                    <option value="{{$negeri->name}}">{{$negeri->name}}</option>
-                @endforeach
+                @foreach ($negeris as $negeri)
+<option value="{{ $negeri->name }}">{{ $negeri->name }}</option>
+@endforeach
         </select>
     </div> -->
+
+    <div class="col-md-4 mb-1">
+        <div class="card bg-light-primary align-content-middle">
+            <div class="card-header">
+                <h4 class="fw-bolder">Gred Penilaian Keseluruhan</h4>
+            </div>
+
+            <div class="card-body">
+                <span id="set_gred"></span>
+            </div>
+        </div>
+    </div>
 
     <div class="table-responsive mb-2">
         <table class="table header_uppercase table-bordered table-hovered" id="">
@@ -48,48 +60,48 @@
                         '9.0' => 'ITEM 9: KEBERSIHAN DAN KECERIAAN',
                         '10.0' => 'ITEM 10: PENGURUSAN PELAJAR ANTARABANGSA',
                     ];
-                    $wajran = [ 
-                        '1.0' => '12.0', 
+                    $wajran = [
+                        '1.0' => '12.0',
                         '2.0' => '7.0',
                         '3.0' => '12.0',
-                        '4.0' =>  '12.0',
+                        '4.0' => '12.0',
                         '5.0' => '10.0',
                         '6.0' => '7.0',
                         '7.0' => '5.0',
                         '8.0' => '13.0',
                         '9.0' => '7.0',
-                        '10.0' => '15.0'
+                        '10.0' => '15.0',
                     ];
 
                 @endphp
 
-                <tbody>
-                    @foreach ($item_pencapaians as $itemKey => $item)
-                        <tr>
-                            <td>{{ $item }}</td>
-                            <td>
-                                <!-- <a class="text-success">auto-calculated</a> -->
-                                <?php
-                                    $id = str_replace(".", "_", $itemKey);
-                                ?>  
-                                <span id="set_percentage_{{$id}}"></span>
-                            </td>
-                            <td>
-                                <span id="set_skor_{{$id}}"></span>
-                            </td>
-                            <td><span id="wajaran_{{$id}}">{{ $wajran[$itemKey] }}</span></td>
-                        </tr>
-                    @endforeach
-                </tbody>
-
-                <tfoot>
-                    <tr class="bg-light-primary">
-                        <td colspan="2"> Jumlah Skor Keseluruhan </td>
-                        <td colspan="2">
-                            <span id="set_total_skor"></span>
+            <tbody>
+                @foreach ($item_pencapaians as $itemKey => $item)
+                    <tr>
+                        <td>{{ $item }}</td>
+                        <td>
+                            <!-- <a class="text-success">auto-calculated</a> -->
+                            <?php
+                            $id = str_replace('.', '_', $itemKey);
+                            ?>
+                            <span id="set_percentage_{{ $id }}"></span>
                         </td>
+                        <td>
+                            <span id="set_skor_{{ $id }}"></span>
+                        </td>
+                        <td><span id="wajaran_{{ $id }}">{{ $wajran[$itemKey] }}</span></td>
                     </tr>
-                </tfoot>
+                @endforeach
+            </tbody>
+
+            <tfoot>
+                <tr class="bg-light-primary">
+                    <td colspan="2"> Jumlah Skor Keseluruhan </td>
+                    <td colspan="2">
+                        <span id="set_total_skor"></span>
+                    </td>
+                </tr>
+            </tfoot>
             </thead>
         </table>
     </div>
@@ -100,17 +112,7 @@
         &nbsp;
     </div>
 
-    <div class="col-md-4 mb-1">
-        <div class="card bg-light-primary align-content-middle">
-            <div class="card-header">
-                <h4 class="fw-bolder">Gred Penilaian Keseluruhan</h4>
-            </div>
 
-            <div class="card-body">
-                <span id="set_gred"></span>
-            </div>
-        </div>
-    </div>
 
     <div class="col-md-4">
         &nbsp;
@@ -119,11 +121,11 @@
 <script type="text/javascript">
     var totalskor = 0;
     for (var i = 1; i <= 10; i++) {
-       $('#set_percentage_'+i+'_0').text($('#tab'+i+'_percentage').val());
-       var skor = parseFloat(($('#tab'+i+'_percentage').val()/100)*($('#wajaran_'+i+'_0').text()));
-       $('#set_skor_'+i+'_0').text(skor.toFixed(2));
-        totalskor = parseFloat(totalskor) +  parseFloat($('#set_skor_'+i+'_0').text());
-       if (i == 10) {
+        $('#set_percentage_' + i + '_0').text($('#tab' + i + '_percentage').val());
+        var skor = parseFloat(($('#tab' + i + '_percentage').val() / 100) * ($('#wajaran_' + i + '_0').text()));
+        $('#set_skor_' + i + '_0').text(skor.toFixed(2));
+        totalskor = parseFloat(totalskor) + parseFloat($('#set_skor_' + i + '_0').text());
+        if (i == 10) {
             $('#set_total_skor').text(totalskor.toFixed(2));
             var gred = '-';
             // =IF(O328>94,"CEMERLANG",IF(O328>80,"BAIK", IF(O328>70,"HARAPAN",IF(O328>60,"SEDERHANA",IF(O328>50,"LEMAH", IF(O328>0,"SANGAT LEMAH"," "))))))
@@ -141,7 +143,6 @@
                 gred = 'SANGAT LEMAH';
             }
             $('#set_gred').text(gred);
-       }
+        }
     }
-
 </script>
