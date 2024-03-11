@@ -56,7 +56,7 @@
 
             <hr>
             <div class="table-responsive">
-                <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiInstrumen">
+                <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiInstrumenSpks">
                     <thead>
                         <tr>
                             <th width="5%">No.</th>
@@ -109,7 +109,7 @@
             });
 
             $(function() {
-                var table = $('#TableSenaraiInstrumen').DataTable({
+                var table = $('#TableSenaraiInstrumenSpks').DataTable({
                     orderCellsTop: true,
                     colReorder: false,
                     pageLength: 10,
@@ -221,7 +221,7 @@
             var tujuan_instrumen = $('#tujuan_instrumen').val();
             var pengguna_instrumen = $('#pengguna_instrumen').val();
 
-            $('#TableSenaraiInstrumen').DataTable().ajax.reload(null, false, {
+            $('#TableSenaraiInstrumenSpks').DataTable().ajax.reload(null, false, {
                 data: {
                     nama_instrumen: $('#nama_instrumen').val(),
                     tujuan_instrumen: $('#tujuan_instrumen').val(),
