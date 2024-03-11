@@ -1,4 +1,4 @@
-<div class="row align-content-middle text-center">
+<div class="row justify-content-center">
     <!--  <div class="col-md-12 mb-1">
         <label class="form-label fw-bold text-titlecase">Nama Institusi
             <span class="text-danger">*</span>
