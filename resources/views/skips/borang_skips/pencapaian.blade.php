@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row align-content-middle text-center">
     <!--  <div class="col-md-12 mb-1">
         <label class="form-label fw-bold text-titlecase">Nama Institusi
             <span class="text-danger">*</span>
@@ -26,9 +26,9 @@
     </div> -->
 
     <div class="col-md-4 mb-1">
-        <div class="card bg-light-primary align-content-middle text-center">
+        <div class="card bg-light-primary align-content-middle">
             <div class="card-header">
-                <h4 class="fw-bolder">Gred Penilaian Keseluruhan</h4>
+                <h4 class="fw-bolder text-center">Gred Penilaian Keseluruhan</h4>
             </div>
 
             <div class="card-body">
