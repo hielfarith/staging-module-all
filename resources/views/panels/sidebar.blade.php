@@ -635,11 +635,11 @@
                             </a>
                         </li> --}}
 
-                        <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                      <!--   <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                             <a href="#" class="nav-link">
                                 <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
                             </a>
-                        </li>
+                        </li> -->
 
                         <li
                             class="nav-item {{ in_array(request()->route()->getName(), ['spks.dashboard']) ? 'active' : '' }}">
@@ -655,12 +655,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi
                                     Pendidikan</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
 
