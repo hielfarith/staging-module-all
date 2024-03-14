@@ -73,8 +73,7 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase">Nama Pengurus
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="nama_pengurus" id="nama_pengurus" class="form-control"
-                        value="Ahmad bin Abu" disabled>
+                    <input type="text" name="nama_pengurus" id="nama_pengurus" class="form-control">
                 </div>
 
 
@@ -82,8 +81,7 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase">Nama Pengerusi
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="nama_pengerusi" id="nama_pengerusi" class="form-control"
-                        value="Ali bin Salim" disabled>
+                    <input type="text" name="nama_pengerusi" id="nama_pengerusi" class="form-control">
                 </div>
                 {{-- <div class="col-md-4 mb-1">
                         <label class="form-label fw-bold text-titlecase">Nama Pengetua
@@ -181,9 +179,9 @@ if ($type == 'borang') {
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Surat Kelulusan
                         KDN?</label>
-                    <input type="radio" id="kdn_approval_yes" name="kdn_approval" value="yes" checked>
+                    <input type="radio" id="kdn_approval_yes" name="kdn_approval" value="yes">
                     <label for="kdn_approval_yes">Ada</label>
-                    <input type="radio" id="kdn_approval_no" name="kdn_approval" value="no" disabled>
+                    <input type="radio" id="kdn_approval_no" name="kdn_approval" value="no">
                     <label for="kdn_approval_no">Tiada</label>
                 </div>
 
@@ -245,10 +243,10 @@ if ($type == 'borang') {
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Audit Kewangan?</label>
                     <input type="radio" id="audit_approval_yes" name="audit_approval" value="yes"
-                        onclick="toggleAuditDiv(true)" checked>
+                        onclick="toggleAuditDiv(true)">
                     <label for="audit_approval_yes">Ada</label>
                     <input type="radio" id="audit_approval_no" name="audit_approval" value="no"
-                        onclick="toggleAuditDiv(false)" disabled>
+                        onclick="toggleAuditDiv(false)">
                     <label for="audit_approval_no">Tiada</label>
                 </div>
 
@@ -264,10 +262,10 @@ if ($type == 'borang') {
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Laporan Audit?</label>
                     <input type="radio" id="laporan_approval_yes" name="laporan_approval" value="yes"
-                        onclick="toggleLaporanDiv(true)" checked>
+                        onclick="toggleLaporanDiv(true)">
                     <label for="laporan_approval_yes">Ada</label>
                     <input type="radio" id="laporan_approval_no" name="laporan_approval" value="no"
-                        onclick="toggleLaporanDiv(false)" disabled>
+                        onclick="toggleLaporanDiv(false)">
                     <label for="laporan_approval_no">Tiada</label>
                 </div>
 
