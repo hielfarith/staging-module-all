@@ -397,14 +397,13 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Lelaki
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_guru_lelaki" class="form-control" required value="32">
+                    <input type="text" name="bilangan_guru_lelaki" class="form-control" required>
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Perempuan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_guru_perempuan" class="form-control" required
-                        value="18">
+                    <input type="text" name="bilangan_guru_perempuan" class="form-control" required>
 
                 </div>
                 <div class="col-md-4 mb-1">
@@ -425,15 +424,14 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Lelaki
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_guru_lelakiBukanWarganegara" class="form-control" required
-                        value="31">
+                    <input type="text" name="bilangan_guru_lelakiBukanWarganegara" class="form-control" required>
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Perempuan
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" name="bilangan_guru_perempuanBukanWarganegara" class="form-control"
-                        required value="20">
+                        required>
 
                 </div>
                 <div class="col-md-4 mb-1">
