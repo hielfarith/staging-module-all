@@ -16,6 +16,7 @@ use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
 
 use App\Models\IkepsKemudahanSukan;
+use App\Models\Configuration;
 use App\Models\IkepsPrasaranaSukan;
 use App\Models\IkepsPerancanganSukan;
 use App\Models\IkepsStatusPenyertaan;
@@ -173,7 +174,21 @@ class InstrumenController extends Controller
             $readonly = '';
             $disabled = '';
         }
+
         return view('instrumen_update.view-profile', compact('instrumen', 'readonly', 'disabled'));
+    }
+
+     public function viewConfiguration(Request $request)
+    {
+        if ($request->type == 'view') {
+            $readonly = 'readonly';
+            $disabled = 'disabled';
+        } else {
+            $readonly = '';
+            $disabled = '';
+        }
+        
+        return view('instrumen_update.view-configuration', compact('readonly', 'disabled'));
     }
 
     // Aspek //

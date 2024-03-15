@@ -67,7 +67,7 @@
                             <th width="5%">Tindakan</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="instrumen-table-spks-body">
 
                     </tbody>
                 </table>
@@ -100,6 +100,12 @@
     <script>
         $(document).ready(function() {
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+
             $('#modal-instrumen-diisi').on('shown.bs.modal', function() {
                 $('.select2').select2({});
                 flatpickr(".flatpickr", {
@@ -108,80 +114,48 @@
 
             });
 
-            $(function() {
-                var table = $('#TableSenaraiInstrumenSpks').DataTable({
-                    orderCellsTop: true,
-                    colReorder: false,
-                    pageLength: 10,
-                    processing: true,
-                    searching: false,
-                    serverSide: true, //enable if data is large (more than 50,000)
-                    ajax: {
-                        url: "{{ fullUrl() }}",
-                        cache: false,
-                        data: function(d) {
-                            d.nama_instrumen = $('#nama_instrumen').val();
-                            d.tujuan_instrumen = $('#tujuan_instrumen').val();
-                            d.pengguna_instrumen = $('#pengguna_instrumen').val();
-                        },
-                    },
-                    columns: [{
-                            data: 'DT_RowIndex',
-                            name: 'DT_RowIndex',
-                            orderable: false,
-                            searchable: false
-                        },
-                        {
-                            data: "nama_instrumen",
-                            name: "nama_instrumen",
-                            searchable: true,
-                            render: function(data, type, row) {
-                                return $("<div/>").html(data).text();
-                            }
-                        },
-                        {
-                            data: "tujuan_instrumen",
-                            name: "tujuan_instrumen",
-                            searchable: true,
-                            render: function(data, type, row) {
-                                return $("<div/>").html(data).text();
-                            }
-                        },
-                        {
-                            data: "pengguna_instrumen",
-                            name: "pengguna_instrumen",
-                            searchable: true,
-                            render: function(data, type, row) {
-                                return $("<div/>").html(data).text();
-                            }
-                        },
-                        {
-                            data: "tarikh_kuatkuasa",
-                            name: "tarikh_kuatkuasa",
-                            searchable: true,
-                            render: function(data, type, row) {
-                                return $("<div/>").html(data).text();
-                            }
-                        },
-                        {
-                            data: 'action',
-                            name: 'action',
-                            orderable: true,
-                            searchable: true
-                        },
-                    ],
-                });
+
+            var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/senarai';
+            // TableSenaraiInstrumenSpks
+            $.ajax({
+                url: APIUrl,
+                method: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if (response.status == 'success') {
+                        var data = response.data;
+                        $('#instrumen-table-spks-body').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            var tableData = "<tr>";
+                            var sn = i + 1;
+                            tableData = tableData + '<td>' + sn + '</td>';
+                            tableData = tableData + '<td>' + data[i].instrumen_name + '</td>';
+                            tableData = tableData + '<td>' + data[i].tujuan_instrumen + '</td>';
+                            tableData = tableData + '<td>' + data[i].pengisian_institut + '</td>';
+                            tableData = tableData + '<td>' + data[i].tarikh_kuatkuasa + '</td>';
+                            // tableData = tableData + '<td>' + data[i].status + '</td>';
+
+                            var button = "";
+                            button = button +
+                                '<div class="btn-group " role="group" aria-label="Action">';
+                            button = button + '<a onclick="maklumatSpks(' + data[i].id +
+                                ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                            button = button + '<a onclick="maklumatSpksEdit(' + data[i].id +
+                                ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                            button = button + "</div>";
+                            tableData = tableData + '<td>' + button + '</td></tr>';
+                            $('#instrumen-table-spks-body').append(tableData);
+                        }
+                    }
+                }
             });
+
+            
         });
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        })
 
         function maklumatSpks(id) {
-            var url = "{{ route('admin.instrumen.instrumenikeps-view', ['id' => ':id', 'type' => 'view']) }}";
+            var url = "{{ route('admin.instrumen.configuration-view', ['id' => ':id', 'type' => 'view']) }}";
             var url = url.replace(':id', id);
 
             $.ajax({
@@ -199,7 +173,7 @@
         }
 
         function maklumatSpksEdit(id) {
-            var url = "{{ route('admin.instrumen.instrumenikeps-view', ['id' => ':id', 'type' => 'edit']) }}";
+            var url = "{{ route('admin.instrumen.configuration-view', ['id' => ':id', 'type' => 'edit']) }}";
             var url = url.replace(':id', id);
 
             $.ajax({
@@ -221,13 +195,7 @@
             var tujuan_instrumen = $('#tujuan_instrumen').val();
             var pengguna_instrumen = $('#pengguna_instrumen').val();
 
-            $('#TableSenaraiInstrumenSpks').DataTable().ajax.reload(null, false, {
-                data: {
-                    nama_instrumen: $('#nama_instrumen').val(),
-                    tujuan_instrumen: $('#tujuan_instrumen').val(),
-                    pengguna_instrumen: $('#pengguna_instrumen').val()
-                }
-            });
+             
         }
     </script>
 @endsection

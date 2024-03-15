@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
             $table->string('instrumen_name');
-            $table->string('itarikh_kuatkuasa');
+            $table->string('tarikh_kuatkuasa');
             $table->string('tujuan_instrumen');
             $table->integer('status')->default(0);
-            
+
             $table->string('pengisian_institut');
             $table->string('pengisian_peranan');
             $table->string('pengisian_dari');
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('verfikasi_hingga');
 
             $table->string('type');
-            $table->string('remarks');
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

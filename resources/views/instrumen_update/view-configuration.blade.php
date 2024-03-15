@@ -1,28 +1,7 @@
-<style type="text/css">
-    
-.date-container {
-  position: relative;
-  float: left;
-  .date-text {
-    position: absolute;
-    top: 6px;
-    left: 12px;
-    color: #aaa;
-  }
+<div class="card">
+    <div class="card-body">
   
-  .date-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    /* pointer-events: none; */
-    cursor: pointer;
-    color: #aaa;
-  }
-}
-
-
-</style>
-<form id="forminstrumenspks" novalidate="novalidate">
+            <form id="forminstrumenspks" novalidate="novalidate">
         <div class="row">
             <h5 class="mb-2 fw-bold">
                 <span class="badge rounded-pill badge-light-primary">
@@ -33,26 +12,26 @@
                 <label class="fw-bold form-label">Nama Instrumen <span class="text-danger">:</span></label>
             </div>
             <div class="col-md-4 mb-1">
-                <input type="text" class="form-control" name="instrumen_name"
+                <input {{ $readonly }} {{ $disabled }} type="text" class="form-control" name="instrumen_name"
                      required onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
             </div>
             <div class="col-md-2 mb-1">
                 <label class="fw-bold form-label">Tarikh Kuatkuasa<span class="text-danger">:</span></label>
             </div>
             <div class="col-md-4 mb-1">
-                <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" required>
+                <input {{ $readonly }} {{ $disabled }} type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" required>
             </div>
             <div class="col-md-2 mb-1">
                 <label class="fw-bold form-label">Tujuan Instrumen<span class="text-danger">:</span></label>
             </div>
             <div class="col-md-4 mb-1">
-                <input type="text" class="form-control" name="tujuan_instrumen" value=""  required>
+                <input {{ $readonly }} {{ $disabled }} type="text" class="form-control" name="tujuan_instrumen" value=""  required>
             </div>
             <div class="col-md-2 mb-1">
                 <label class="fw-bold form-label">Status<span class="text-danger">:</span></label>
             </div>
             <div class="col-md-4 mb-1">
-                <select class="form-control select2" name="status" required>
+                <select {{ $readonly }} {{ $disabled }} class="form-control select2" name="status" required>
                     <option value="">Sila Pilih</option>
                     <option value="1">Active </option>
                     <option value="2">InActive </option>
@@ -71,7 +50,7 @@
                                         class="text-danger">:</span></label>
                             </div>
                             <div class="col-md-8 ">
-                                <select class="form-control select2" name="pengisian_institut" required>
+                                <select {{ $readonly }} {{ $disabled }} class="form-control select2" name="pengisian_institut" required>
                                      <option value="">Sila Pilih</option>
                                     <option value="Bahagian">Bahagian </option>
                                     <option value="JPN">JPN </option>
@@ -84,7 +63,7 @@
                                         class="text-danger">:</span></label>
                             </div>
                             <div class="col-md-8 mt-1">
-                                <select class="form-control select2" name="pengisian_peranan" required>
+                                <select {{ $readonly }} {{ $disabled }} class="form-control select2" name="pengisian_peranan" required>
                                     <option value="">Sila Pilih</option>
                                     <option value="PENTADBIR">PENTADBIR </option>
                                     <option value="GURU INSTITUSI">GURU INSTITUSI</option>
@@ -98,10 +77,10 @@
                                     <div class="input-group">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Dari</span>
-                                        <input type="date" class="form-control flatpickr flatpickr-input" id="fromDate" name="pengisian_dari">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="fromDate" name="pengisian_dari">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Hingga</span>
-                                        <input type="date" class="form-control flatpickr flatpickr-input" id="toDate" name="pengisian_hingga">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="toDate" name="pengisian_hingga">
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +101,7 @@
                                     <span class="text-danger">:</span></label>
                             </div>
                             <div class="col-md-8 ">
-                                <select class="form-control select2" name="validasi_institut" required>
+                                <select {{ $readonly }} {{ $disabled }} class="form-control select2" name="validasi_institut" required>
                                      <option value="">Sila Pilih</option>
                                     <option value="Bahagian">Bahagian </option>
                                     <option value="JPN">JPN </option>
@@ -135,7 +114,7 @@
                                         class="text-danger">:</span></label>
                             </div>
                             <div class="col-md-8 mt-1">
-                                <select class="form-control select2" name="validasi_peranan"
+                                <select {{ $readonly }} {{ $disabled }} class="form-control select2" name="validasi_peranan"
                                     required>
                                     <option value="">Sila Pilih</option>
                                     <option value="PENTADBIR">PENTADBIR </option>
@@ -149,10 +128,10 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
-                                        <input type="date" class="form-control flatpickr flatpickr-input" id="fromDate" name="validasi_dari">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="fromDate" name="validasi_dari">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Hingga</span>
-                                        <input type="date" class="form-control flatpickr flatpickr-input" id="toDate" name="validasi_hingga">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="toDate" name="validasi_hingga">
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +152,7 @@
                                         class="text-danger">:</span></label>
                             </div>
                             <div class="col-md-8 ">
-                                <select class="form-control select2" name="verfikasi_institut" required>
+                                <select {{ $readonly }} {{ $disabled }} class="form-control select2" name="verfikasi_institut" required>
                                     <option value="">Sila Pilih</option>
                                     <option value="Bahagian">Bahagian </option>
                                     <option value="JPN">JPN </option>
@@ -186,7 +165,7 @@
                                         class="text-danger">:</span></label>
                             </div>
                             <div class="col-md-8 mt-1">
-                                <select class="form-control select2" name="verfikasi_peranan" required>
+                                <select {{ $readonly }} {{ $disabled }} class="form-control select2" name="verfikasi_peranan" required>
                                     <option value="">Sila Pilih</option>
                                     <option value="PENTADBIR">PENTADBIR </option>
                                     <option value="GURU INSTITUSI">GURU INSTITUSI</option>
@@ -200,10 +179,10 @@
                                     <div class="input-group">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Dari</span>
-                                        <input type="date" class="form-control flatpickr flatpickr-input" id="fromDate" name="verfikasi_dari">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="fromDate" name="verfikasi_dari">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Hingga</span>
-                                        <input type="date" class="form-control flatpickr flatpickr-input" id="toDate" name="verfikasi_hingga">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="toDate" name="verfikasi_hingga">
                                     </div>
                                 </div>
                             </div>
@@ -211,68 +190,121 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="d-flex justify-content-end align-items-center my-1">
-                <button type="submit" class="btn btn-primary float-right">Hantar</button>
+                @if ($readonly != 'readonly')
+                    <div class="d-flex justify-content-end align-items-center my-1">
+                        <button type="submit" class="btn btn-primary float-right">Hantar</button>
+                    </div>
+                @endif
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
 
-@section('script')
+</div>
+</div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-    $('.select2').select2({
-        placeholder: 'Sila Pilih',
-        allowClear: true // Adds a clear button to the dropdown
-        });
-   });
-
-    $('#forminstrumenspks').submit(function(event) {
+    $('#forminstrumenskpak').submit(function(event) {
         event.preventDefault();
-        var formData = new FormData(document.getElementById('forminstrumenspks'));
+        var formData = new FormData(document.getElementById('forminstrumenskpak'));
         var error = false;
+        $('select.select2').each(function() {
+            var element = $(this);
+            var select2Value = element.select2('data');
+            var selectedValues = element.val();
+            var fieldName = element.attr('name');
+            if (typeof element.attr('disabled') == 'undefined') {
 
-         $('form#forminstrumenspks').find('select, textarea, input, checkbox').each(function() {
-            if(this.required && this.type == 'checkbox' && !this.checked) {
-                error = true;
+                if (!selectedValues || selectedValues === '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    return false; // Stop the loop if an error is found
+                }
             }
-            if (this.required && this.value == '') {
-                error = true;
+        });
+
+        formData.forEach(function(value, name) {
+            var element = $("input[name='" + name + "']");
+            if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') !=
+                'undefined') {
+                if (element.val() == '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
+                    return false;
+                }
             }
         });
 
         if (error) {
-             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        })
-
-        var url = "{{ route('admin.instrumen.instrumenspks-submit') }}"
-        var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/save';
-
+        var type = $('#type').val();
+        var url = "{{ route('admin.instrumen.instrumenikeps-submit') }}"
+        if (type == 'SKIPS') {
+            var url = "{{ route('admin.instrumen.instrumenskips-submit') }}"
+        }
+        if (type == 'SPKS') {
+            var url = "{{ route('admin.instrumen.instrumenspks-submit') }}"
+        }
         $.ajax({
-            url: APIUrl,
+            url: url,
             type: 'POST',
             data: formData,
             contentType: false,
             processData: false,
             success: function(response) {
-               if (response.status) {
+                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.instrumen.senarai-spks')}}";
+                    var type = $('#type').val();
+                    if (type == 'IKEPS') {
+                        var location = "{{ route('admin.instrumen.instrumenikeps-list') }}"
+                    } else if (type == 'SEDIA') {
+                        var location = "{{ route('admin.instrumen.senarai-sedia-ada') }}"
+                    } else if (type == 'SKIPS') {
+                        var location = "{{ route('admin.instrumen.senarai-skips') }}"
+                    } else if (type == 'SKPAK') {
+                        var location = "{{ route('admin.instrumen.senarai-skpak') }}"
+                    } else if (type == 'SPKS') {
+                        var location = "{{ route('admin.instrumen.senarai-spks') }}"
+                    }
                     window.location.href = location;
-               }
+                }
             }
         });
 
     });
-</script>
 
-@endsection
+    function changeKategori(event) {
+        if (event.value == 'Sekolah') {
+            $('#Pusat').prop('checked', false);
+            var data = ['Sekolah Rendah Akademik Swasta',
+                'Sekolah Menengah Akademik Swasta',
+                'Sekolah Rendah Agama Swasta',
+                'Sekolah Menengah Agama Swasta',
+                'Sekolah Antarabangsa',
+                'Sekolah Menengah Persendirian Cina',
+                'Sekolah Pendidikan Khas',
+                'Sekolah Ekspatriat'
+            ];
+        } else {
+            $('#Sekolah').prop('checked', false);
+            var data = [
+                'Pusat Bahasa',
+                'Pusat Latihan/ Kemahiran',
+                'Pusat Perkembangan Minda',
+                'Pusat Tuisyen'
+            ];
+        }
+
+        const el = document.getElementById(event.value);
+        if (el && el.type === "checkbox" && !el.checked) {
+            $('#jenis_ips').empty();
+            return false;
+        }
+
+        $('#jenis_ips').empty();
+        for (var i = 0; i < data.length; i++) {
+            $('#jenis_ips').append('<option value="' + data[i] + '">' + data[i] + '</option>');
+        }
+    }
+</script>

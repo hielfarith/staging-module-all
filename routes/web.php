@@ -250,6 +250,7 @@ Route::controller(InstrumenController::class)->prefix('instrumen')->middleware([
     Route::post('instrumenikeps-submit','saveIkeps')->name('admin.instrumen.instrumenikeps-submit');
     Route::get('instrumenikeps-list','listInstrumenIkeps')->name('admin.instrumen.instrumenikeps-list');
     Route::post('instrumenikeps-view/{id}/{type}','viewInstrumenIkeps')->name('admin.instrumen.instrumenikeps-view');
+    Route::post('configuation-view/{id}/{type}','viewConfiguration')->name('admin.instrumen.configuration-view');
 
     Route::post('tetapan-aspek-submit','saveAspek')->name('admin.instrumen.tetapan-aspek-submit');
     Route::post('tetapan-aspek-view/{id}/{type}','viewTetapanAspek')->name('admin.instrumen.tetapan-aspek-view');
