@@ -187,8 +187,9 @@ class InstrumenController extends Controller
             $readonly = '';
             $disabled = '';
         }
+        $configurationID = $request->id;
         
-        return view('instrumen_update.view-configuration', compact('readonly', 'disabled'));
+        return view('instrumen_update.view-configuration', compact('readonly', 'disabled', 'configurationID'));
     }
 
     // Aspek //

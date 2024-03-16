@@ -254,7 +254,6 @@
             }
         })
 
-        var url = "{{ route('admin.instrumen.instrumenspks-submit') }}"
         var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/save';
 
         $.ajax({

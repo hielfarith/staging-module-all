@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
-  
-            <form id="forminstrumenspks" novalidate="novalidate">
+        <form id="forminstrumenspksedit" novalidate="novalidate">
+        <input type="hidden" name="configurationID" value="{{$configurationID}}" id="configurationID">
         <div class="row">
             <h5 class="mb-2 fw-bold">
                 <span class="badge rounded-pill badge-light-primary">
@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-md-8 ">
                                 <select {{ $readonly }} {{ $disabled }} class="form-control select2" name="validasi_institut" required>
-                                     <option value="">Sila Pilih</option>
+                                    <option value="">Sila Pilih</option>
                                     <option value="Bahagian">Bahagian </option>
                                     <option value="JPN">JPN </option>
                                     <option value="PPD">PPD </option>
@@ -165,7 +165,7 @@
                                         class="text-danger">:</span></label>
                             </div>
                             <div class="col-md-8 mt-1">
-                                <select {{ $readonly }} {{ $disabled }} class="form-control select2" name="verfikasi_peranan" required>
+                                <select {{ $readonly }} {{ $disabled }} class="form-control select2" id="verfikasi_peranan" name="verfikasi_peranan" required>
                                     <option value="">Sila Pilih</option>
                                     <option value="PENTADBIR">PENTADBIR </option>
                                     <option value="GURU INSTITUSI">GURU INSTITUSI</option>
@@ -198,15 +198,39 @@
             </div>
         </form>
     </div>
-
-
 </div>
 </div>
 
 <script type="text/javascript">
-    $('#forminstrumenskpak').submit(function(event) {
+    $(document).ready(function() {
+        var configurationID = $('#configurationID').val();
+        var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/pull';
+
+         $.ajax({
+            url: APIUrl,
+            type: 'POST',
+            data: {
+                id: configurationID
+            },
+            success: function(response) {
+                var array = ['pengisian_institut', 'pengisian_peranan', 'validasi_institut', 'validasi_peranan', 'verfikasi_institut', 'verfikasi_peranan', 'status'];
+                for (const [key, value] of Object.entries(response.data)) {
+                    if (key != 'id' || key != 'remarks' || key != 'created_at' || key != 'updated_at') {
+                        if (jQuery.inArray(key, array) !== -1 ) {
+                            $('select[name='+key +']').val(value).trigger('change');;
+                        } else {
+                            $("input[name='"+key +"']").val(value);
+                        }
+                    }
+                }
+            }
+        });
+
+    });
+
+    $('#forminstrumenspksedit').submit(function(event) {
         event.preventDefault();
-        var formData = new FormData(document.getElementById('forminstrumenskpak'));
+        var formData = new FormData(document.getElementById('forminstrumenspksedit'));
         var error = false;
         $('select.select2').each(function() {
             var element = $(this);
@@ -237,17 +261,10 @@
         if (error) {
             return false;
         }
+        var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/update';
 
-        var type = $('#type').val();
-        var url = "{{ route('admin.instrumen.instrumenikeps-submit') }}"
-        if (type == 'SKIPS') {
-            var url = "{{ route('admin.instrumen.instrumenskips-submit') }}"
-        }
-        if (type == 'SPKS') {
-            var url = "{{ route('admin.instrumen.instrumenspks-submit') }}"
-        }
         $.ajax({
-            url: url,
+            url: APIUrl,
             type: 'POST',
             data: formData,
             contentType: false,
@@ -255,18 +272,7 @@
             success: function(response) {
                 if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-                    var type = $('#type').val();
-                    if (type == 'IKEPS') {
-                        var location = "{{ route('admin.instrumen.instrumenikeps-list') }}"
-                    } else if (type == 'SEDIA') {
-                        var location = "{{ route('admin.instrumen.senarai-sedia-ada') }}"
-                    } else if (type == 'SKIPS') {
-                        var location = "{{ route('admin.instrumen.senarai-skips') }}"
-                    } else if (type == 'SKPAK') {
-                        var location = "{{ route('admin.instrumen.senarai-skpak') }}"
-                    } else if (type == 'SPKS') {
-                        var location = "{{ route('admin.instrumen.senarai-spks') }}"
-                    }
+                    var location = "{{ route('admin.instrumen.senarai-spks') }}"
                     window.location.href = location;
                 }
             }
@@ -274,37 +280,4 @@
 
     });
 
-    function changeKategori(event) {
-        if (event.value == 'Sekolah') {
-            $('#Pusat').prop('checked', false);
-            var data = ['Sekolah Rendah Akademik Swasta',
-                'Sekolah Menengah Akademik Swasta',
-                'Sekolah Rendah Agama Swasta',
-                'Sekolah Menengah Agama Swasta',
-                'Sekolah Antarabangsa',
-                'Sekolah Menengah Persendirian Cina',
-                'Sekolah Pendidikan Khas',
-                'Sekolah Ekspatriat'
-            ];
-        } else {
-            $('#Sekolah').prop('checked', false);
-            var data = [
-                'Pusat Bahasa',
-                'Pusat Latihan/ Kemahiran',
-                'Pusat Perkembangan Minda',
-                'Pusat Tuisyen'
-            ];
-        }
-
-        const el = document.getElementById(event.value);
-        if (el && el.type === "checkbox" && !el.checked) {
-            $('#jenis_ips').empty();
-            return false;
-        }
-
-        $('#jenis_ips').empty();
-        for (var i = 0; i < data.length; i++) {
-            $('#jenis_ips').append('<option value="' + data[i] + '">' + data[i] + '</option>');
-        }
-    }
 </script>
