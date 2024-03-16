@@ -40,13 +40,13 @@
                 </div>
 
                 <div class="col-md-4">
-                    <label class="fw-bolder">Pengguna Instrumen</label>
-                    <input type="text" name="pengguna_instrumen" id="pengguna_instrumen" class="form-control">
+                    <label class="fw-bolder">Pengisian Institut</label>
+                    <input type="text" name="pengisian_institut" id="pengisian_institut" class="form-control">
                 </div>
             </div>
 
             <div class="d-flex justify-content-end align-items-center mt-1">
-                <a class="me-3 text-danger" type="button" id="reset" href="#">
+                <a class="me-3 text-danger" type="button" id="reset" href="#" onclick="reset()">
                     Setkan Semula
                 </a>
                 <button type="button" onclick="search()" class="btn btn-success float-right">
@@ -62,7 +62,7 @@
                             <th width="5%">No.</th>
                             <th>Nama Instrumen</th>
                             <th>Tujuan Instrumen</th>
-                            <th>Pengguna Instrumen</th>
+                            <th>Pengisian Institut</th>
                             <th>Tarikh Kuatkuasa</th>
                             <th width="5%">Tindakan</th>
                         </tr>
@@ -121,7 +121,6 @@
                 url: APIUrl,
                 method: 'GET',
                 success: function(response) {
-                    console.log(response);
                     if (response.status == 'success') {
                         var data = response.data;
                         $('#instrumen-table-spks-body').empty();
@@ -193,9 +192,48 @@
         function search() {
             var nama_instrumen = $('#nama_instrumen').val();
             var tujuan_instrumen = $('#tujuan_instrumen').val();
-            var pengguna_instrumen = $('#pengguna_instrumen').val();
+            var pengisian_institut = $('#pengisian_institut').val();
+            var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/search';
+             $.ajax({
+                url: APIUrl, // Route URL
+                type: 'POST', // Request type (GET, POST, etc.)
+                data: {
+                    nama_instrumen: nama_instrumen,
+                    tujuan_instrumen: tujuan_instrumen,
+                    pengisian_institut: pengisian_institut
+                },
+                success: function(response) {
+                   if (response.status == 'success') {
+                        var data = response.data;
+                        $('#instrumen-table-spks-body').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            var tableData = "<tr>";
+                            var sn = i + 1;
+                            tableData = tableData + '<td>' + sn + '</td>';
+                            tableData = tableData + '<td>' + data[i].instrumen_name + '</td>';
+                            tableData = tableData + '<td>' + data[i].tujuan_instrumen + '</td>';
+                            tableData = tableData + '<td>' + data[i].pengisian_institut + '</td>';
+                            tableData = tableData + '<td>' + data[i].tarikh_kuatkuasa + '</td>';
+                            // tableData = tableData + '<td>' + data[i].status + '</td>';
 
-             
+                            var button = "";
+                            button = button +
+                                '<div class="btn-group " role="group" aria-label="Action">';
+                            button = button + '<a onclick="maklumatSpks(' + data[i].id +
+                                ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
+                            button = button + '<a onclick="maklumatSpksEdit(' + data[i].id +
+                                ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                            button = button + "</div>";
+                            tableData = tableData + '<td>' + button + '</td></tr>';
+                            $('#instrumen-table-spks-body').append(tableData);
+                        }
+                    }
+                }
+            });
+        }
+        function reset() {
+            var location = "{{route('admin.instrumen.senarai-spks')}}";
+            window.location.href = location;
         }
     </script>
 @endsection
