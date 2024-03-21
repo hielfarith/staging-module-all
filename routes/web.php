@@ -288,6 +288,6 @@ Route::controller(PengumumanController::class)->prefix('pengumuman')->middleware
     Route::get('/', 'index')->name('pengumuman.index');
 });
 
-Route::controller(IdmeController::class)->prefix('integration')->group(function () {
+Route::controller(IdmeController::class)->prefix('integration')->middleware(['web'])->group(function () {
     Route::get('idme', 'index')->name('integration.idme.index');
 });
