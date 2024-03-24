@@ -1,26 +1,16 @@
 <?php
-$id = $butiran_id;
-$checkforTambah = Request::segment(2);
-
-if (!empty($id)) {
-    $butiranInstitusi = \App\Models\ButiranInstitusiSkips::where('id', $id)->first();
-} else {
-    $butiranInstitusi = null;
-}
-if ((isset($type) && ($type == 'verfikasi' || $type == 'validasi')) || $type == 'done') {
-    $disabled = 'disabled';
-} else {
-    $disabled = '';
-}
-$readonly = $name = '';
-if ($type == 'borang') {
-    $readonly = 'readonly';
-    $name = \Auth::user()->name;
-}
+    if ((isset($type) && ($type == 'verfikasi' || $type == 'validasi')) || $type == 'done') {
+        $disabled = 'disabled';
+    } else {
+        $disabled = '';
+    }
+    $readonly = $name = '';
+    if ($type == 'borang') {
+        $readonly = 'readonly';
+        $name = \Auth::user()->name;
+    }
 ?>
-<form id="butiran_institusi" novalidate="novalidate">
-    {{-- <input type="hidden" name="butiranInstitusi_id" value="{{$butiranInstitusi?->id}}">
-<input type="hidden" name="nama_institusi" id="nama_institusi" value="{{$butiranInstitusi?->nama_institusi}}"> --}}
+<form id="butiran_institusi_tab1" novalidate="novalidate">
     <ul class="nav nav-pills nav-justified" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder active" id="institusi-tab" data-bs-toggle="tab"
@@ -53,16 +43,17 @@ if ($type == 'borang') {
                         Maklumat Institusi
                     </span>
                 </h5>
-
+                <input type="hidden" name="nama_institusi" id="nama_institusi">
+                <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id">
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase">Nama Institusi
                         <span class="text-danger">*</span>
                     </label>
                     <select name="institusi_id" id="institusi_id" class="form-control select2" required
-                        {{ $disabled }} onchange="updateInstitusi(this)">
+                         onchange="updateInstitusi(this)">
                         <option value="">Sila Pilih</option>
                         @foreach ($allInstitutes as $id => $nama)
-                            <option value="{{ $id }}" @if ($id == $butiranInstitusi?->institusi_id) selected @endif>
+                            <option value="{{ $id }}">
                                 {{ $nama }}
                             </option>
                         @endforeach
@@ -83,56 +74,49 @@ if ($type == 'borang') {
                     </label>
                     <input type="text" name="nama_pengerusi" id="nama_pengerusi" class="form-control">
                 </div>
-                {{-- <div class="col-md-4 mb-1">
-                        <label class="form-label fw-bold text-titlecase">Nama Pengetua
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" name="nama_pengetua" id="nama_pengetua"
-                            class="form-control">
-                    </div> --}}
 
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Alamat
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" required {{ $disabled }} name="alamat"
-                        id="alamat" {{ $readonly }} value="{{ $butiranInstitusi?->alamat }}">
+                    <input type="text" class="form-control" required  name="alamat"
+                        id="alamat" value="">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Alamat2
                     </label>
-                    <input type="text" class="form-control" required {{ $disabled }} id="alamat2"
-                        {{ $readonly }} value="">
+                    <input type="text" class="form-control" required  name="alamat2"
+                        value="" id="alamat_2">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Alamat3
                     </label>
-                    <input type="text" class="form-control" required {{ $disabled }} id="alamat3"
-                        {{ $readonly }} value="">
+                    <input type="text" class="form-control" required  name="alamat3"
+                        value="" id="alamat_3">
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Negeri
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control" name="negeri" id="negeri" required
-                        {{ $disabled }} {{ $readonly }} value="{{ $butiranInstitusi?->negeri }}">
+                         value="">
 
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase">Daerah
                     </label>
-                    <input type="text" class="form-control" id="daerah" required {{ $disabled }}
-                        {{ $readonly }} value="{{ $butiranInstitusi?->no_telephone }}">
+                    <input type="text" class="form-control" name="daerah" id="daerah" required 
+                        value="">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase">Poskod
                     </label>
-                    <input type="text" class="form-control" id="poskod" required {{ $disabled }}
-                        {{ $readonly }} value="{{ $butiranInstitusi?->no_telephone }}">
+                    <input type="text" class="form-control" name="poskod" id="poskod" required 
+                        value="">
                 </div>
 
                 <div class="col-md-3 mb-1">
@@ -140,7 +124,7 @@ if ($type == 'borang') {
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" name="no_telephone" id="no_telephone" class="form-control" required
-                        {{ $disabled }} {{ $readonly }} value="{{ $butiranInstitusi?->no_telephone }}">
+                         value="">
 
                 </div>
 
@@ -148,8 +132,8 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase"> No. Faks
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="fax" class="form-control" required {{ $disabled }}
-                        value="{{ $butiranInstitusi?->fax }}">
+                    <input type="text" name="fax" id="fax" class="form-control" required 
+                        value="">
                 </div>
 
                 <div class="col-md-3 mb-1">
@@ -157,7 +141,7 @@ if ($type == 'borang') {
                         <span class="text-danger">*</span>
                     </label>
                     <input type="email" name="email" id="email" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->email }}" {{ $readonly }}>
+                         value="">
 
                 </div>
 
@@ -165,8 +149,8 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase"> Laman Web
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="laman_web" class="form-control" required {{ $disabled }}
-                        value="{{ $butiranInstitusi?->laman_web }}">
+                    <input type="text" name="laman_web" id="laman_web" class="form-control" required 
+                        value="">
                 </div>
 
                 <hr>
@@ -179,9 +163,9 @@ if ($type == 'borang') {
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Surat Kelulusan
                         KDN?</label>
-                    <input type="radio" id="kdn_approval_yes" name="kdn_approval" value="yes">
-                    <label for="kdn_approval_yes">Ada</label>
-                    <input type="radio" id="kdn_approval_no" name="kdn_approval" value="no">
+                    <input type="radio" id="mempunyai_surat_kelulusan_kdn_yes" name="mempunyai_surat_kelulusan_kdn" value="yes">
+                    <label for="mempunyai_surat_kelulusan_kdn_yes">Ada</label>
+                    <input type="radio" id="mempunyai_surat_kelulusan_kdn_no" name="mempunyai_surat_kelulusan_kdn" value="no">
                     <label for="kdn_approval_no">Tiada</label>
                 </div>
 
@@ -189,15 +173,15 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase"> No. Surat Kelulusan KDN
                         <span class="text-danger"></span>
                     </label>
-                    <input type="text" name="no_surat_kelulusan" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->no_surat_kelulusan }}">
+                    <input type="text" name="no_surat_kelulusan_kdn" class="form-control" required
+                         value="">
 
                     <label class="form-label fw-bold text-titlecase mt-1"> Tarikh Tamat Kelulusan KDN
                         <span class="text-danger"></span>
                     </label>
-                    <input type="text" id="" name="tarikh_tamat_kelulusan"
-                        class="form-control flatpickr" placeholder="YYYY-MM-DD" required {{ $disabled }}
-                        value="{{ $butiranInstitusi?->tarikh_tamat_kelulusan }}">
+                    <input type="text" id="" name="tarikh_tamat_kelulusan_kdn"
+                        class="form-control flatpickr" placeholder="d/m/Y" required 
+                        value="">
 
                 </div>
 
@@ -205,17 +189,16 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase"> No. Perakuan Pendaftaran
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="no_pendaftaran_syarikat" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->no_pendaftaran_syarikat }}">
+                    <input type="text" name="no_perakuan_pendaftaran" class="form-control" required
+                         value="">
 
 
                     <label class="form-label fw-bold text-titlecase mt-1"> Tarikh Tamat Perakuan
                         Pendaftaran
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="tarikh_tamat_perakuan" class="form-control flatpickr"
-                        placeholder="YYYY-MM-DD" required {{ $disabled }}
-                        value="{{ $butiranInstitusi?->tarikh_tamat_perakuan }}">
+                    <input type="text" id="" name="tarikh_tamat_perakuan_pendaftaran" class="form-control flatpickr"
+                        placeholder="d/m/Y" required  value="">
 
                 </div>
 
@@ -225,13 +208,13 @@ if ($type == 'borang') {
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" name="no_pendaftaran_syarikat" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->no_pendaftaran_syarikat }}">
+                         value="">
 
                     <label class="form-label fw-bold text-titlecase mt-1"> No. Lesen Perniagaan
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" name="no_lesen_perniagaan" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->no_lesen_perniagaan }}">
+                         value="">
                 </div>
 
                 <h5 class="mb-2 fw-bold">
@@ -242,10 +225,9 @@ if ($type == 'borang') {
 
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Audit Kewangan?</label>
-                    <input type="radio" id="audit_approval_yes" name="audit_approval" value="yes"
-                        onclick="toggleAuditDiv(true)">
-                    <label for="audit_approval_yes">Ada</label>
-                    <input type="radio" id="audit_approval_no" name="audit_approval" value="no"
+                    <input type="radio" id="mempunyai_audit_kewangan_yes" name="mempunyai_audit_kewangan" value="yes" onclick="toggleAuditDiv(true)">
+                    <label for="mempunyai_audit_kewangan_yes">Ada</label>
+                    <input type="radio" id="mempunyai_audit_kewangan_no" name="mempunyai_audit_kewangan" value="no"
                         onclick="toggleAuditDiv(false)">
                     <label for="audit_approval_no">Tiada</label>
                 </div>
@@ -255,18 +237,17 @@ if ($type == 'borang') {
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" id="" name="tarikh_audit" class="form-control flatpickr" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->tarikh_audit }}">
-
+                         value="">
                 </div>
 
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Laporan Audit?</label>
-                    <input type="radio" id="laporan_approval_yes" name="laporan_approval" value="yes"
+                    <input type="radio" id="mempunyai_laporan_audityes" name="mempunyai_laporan_audit" value="yes"
                         onclick="toggleLaporanDiv(true)">
-                    <label for="laporan_approval_yes">Ada</label>
-                    <input type="radio" id="laporan_approval_no" name="laporan_approval" value="no"
+                    <label for="mempunyai_laporan_audityes">Ada</label>
+                    <input type="radio" id="mempunyai_laporan_auditno" name="mempunyai_laporan_audit" value="no"
                         onclick="toggleLaporanDiv(false)">
-                    <label for="laporan_approval_no">Tiada</label>
+                    <label for="mempunyai_laporan_auditno">Tiada</label>
                 </div>
 
 
@@ -275,116 +256,17 @@ if ($type == 'borang') {
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" id="" name="tarikh_lapor" class="form-control flatpickr" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->tarikh_lapor }}">
+                         value="">
 
                 </div>
-                {{--
-                    <hr>
-                    <h5 class="mb-2 fw-bold">
-                        <span class="badge rounded-pill badge-light-primary">
-                            Maklumat Pelajar dan Kakitangan
-                        </span>
-                    </h5>
-
-                    <div class="col-md-3 mb-1">
-                        <label class="form-label fw-bold text-titlecase"> Bilangan Enrolmen Pelajar
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" name="bilangan_enrolmen_pelajar" class="form-control"
-                            required>
-
-                        <label class="form-label fw-bold text-titlecase mt-1"> Kapasiti Maksimum Pelajar
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" name="kapasiti_maksimum_pelajar" class="form-control"
-                            required>
-                    </div>
-
-                    <div class="col-md-3 mb-1">
-                        <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Tempatan
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" name="bilangan_pelajar_tempatan" class="form-control"
-                            required>
-
-                        <label class="form-label fw-bold text-titlecase mt-1"> Pecahan (Pelajar Tempatan)
-                            <span class="text-danger">*</span>
-                        </label>
-                        <div class="input-group">
-                            <input type="text" id="" name="pecahan_tempatan_lelaki"
-                                class="form-control">
-                            <input type="text" id="" name="pecahan_tempatan_perempuan"
-                                class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 mb-1">
-                        <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Antarabangsa
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" name="bilangan_pelajar_antarabangsa" class="form-control"
-                            required>
-
-                        <label class="form-label fw-bold text-titlecase mt-1"> Pecahan (Pelajar
-                            Antarabangsa)
-                            <span class="text-danger">*</span>
-                        </label>
-                        <div class="input-group">
-                            <input type="text" id="" name="pecahan_pelajar_lelaki"
-                                class="form-control">
-                            <input type="text" id="" name="pecahan_pelajar_perempuan"
-                                class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 mb-1">
-                        <label class="form-label fw-bold text-titlecase"> Bilangan Guru Keseluruhan
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" name="bilangan_guru_keseluruhan" class="form-control"
-                            required>
-
-                        <label class="form-label fw-bold text-titlecase mt-1"> Pecahan (Guru)
-                            <span class="text-danger">*</span>
-                        </label>
-                        <div class="input-group">
-                            <input type="text" id="" name="pecahan_temparan"
-                                class="form-control">
-                            <input type="text" id="" name="pecahan_antarabangsa"
-                                class="form-control">
-                        </div>
-                    </div>
-
-                    <hr>
-                    <h5 class="mb-2 fw-bold">
-                        <span class="badge rounded-pill badge-light-primary">
-                            Laporan Kewangan
-                        </span>
-                    </h5>
-
-                    <div class="col-md-4 mb-1">
-                        <label class="form-label fw-bold text-titlecase"> Tarikh Audit
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" id="" name="tarikh_audit"
-                            class="form-control flatpickr">
-                    </div>
-
-                    <div class="col-md-4 mb-1">
-                        <label class="form-label fw-bold text-titlecase"> Tarikh Lapor
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" id="" name="tarikh_lapor"
-                            class="form-control flatpickr">
-                    </div>
-                </div> --}}
 
                 <hr>
                 <div class="d-flex justify-content-end align-items-center mt-1">
-                    <button type="submit" class="btn btn-primary float-right">Simpan</button>
+                    <button type="button" onclick="submit1('butiran_institusi')" class="btn btn-primary float-right">Simpan</button>
                 </div>
             </div>
         </div>
+
         <div class="tab-pane fade" id="guru" role="tabpanel" aria-labelledby="guru-tab">
             <div class="row">
                 <hr>
@@ -411,7 +293,7 @@ if ($type == 'borang') {
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" name="bilangan_guru_keseluruhan" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->bilangan_guru_keseluruhan }}">
+                         value="">
 
                 </div>
 
@@ -439,12 +321,11 @@ if ($type == 'borang') {
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" id="" name="pecahan_antarabangsa" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->pecahan_antarabangsa }}"
-                        placeholder="Antarabangsa">
+                         value="" placeholder="Antarabangsa">
 
                 </div>
                 <div class="d-flex justify-content-end align-items-center mt-1">
-                    <button type="submit" class="btn btn-primary float-right">Simpan</button>
+                    <button type="button" onclick="submit1('guru')" class="btn btn-primary float-right">Simpan</button>
                 </div>
             </div>
         </div>
@@ -460,18 +341,16 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Lelaki
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="pecahan_tempatan_lelaki" class="form-control"
-                        required {{ $disabled }} value="{{ $butiranInstitusi?->pecahan_tempatan_lelaki }}"
-                        placeholder="Lelaki">
+                    <input type="text" id="" name="bilangan_pelajar_lelaki" class="form-control"
+                        required  value="" placeholder="Lelaki">
 
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Perempuan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="pecahan_tempatan_perempuan" class="form-control"
-                        required {{ $disabled }} value="{{ $butiranInstitusi?->pecahan_tempatan_perempuan }}"
-                        placeholder="Perempuan">
+                    <input type="text" id="" name="bilangan_pelajar_perempuan" class="form-control"
+                        required  value="" placeholder="Perempuan">
 
 
                 </div>
@@ -479,8 +358,8 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Keseluruhan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_pelajar_tempatan" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->bilangan_pelajar_tempatan }}">
+                    <input type="text" name="bilangan_pelajar_keseluruhan" class="form-control" required
+                         value="">
 
                 </div>
 
@@ -493,30 +372,28 @@ if ($type == 'borang') {
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Lelaki
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="pecahan_pelajar_lelaki" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->pecahan_pelajar_lelaki }}"
-                        placeholder="Lelaki">
+                    <input type="text" id="" name="bilangan_pelajar_lelaki_warganegara" class="form-control" required
+                        value="" placeholder="Lelaki">
 
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Perempuan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="pecahan_pelajar_perempuan" class="form-control"
-                        required {{ $disabled }} value="{{ $butiranInstitusi?->pecahan_pelajar_perempuan }}"
-                        placeholder="Perempuan">
+                    <input type="text" id="" name="bilangan_pelajar_perempuan_warganegara" class="form-control"
+                        required  value=""  placeholder="Perempuan">
 
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Keseluruhan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_pelajar_antarabangsa" class="form-control" required
-                        {{ $disabled }} value="{{ $butiranInstitusi?->bilangan_pelajar_antarabangsa }}">
+                    <input type="text" name="bilangan_pelajar_keseluruhan_warganegara" class="form-control" required
+                         value="">
 
                 </div>
                 <div class="d-flex justify-content-end align-items-center mt-1">
-                    <button type="submit" class="btn btn-primary float-right">Simpan</button>
+                    <button type="button" onclick="submit1('pelajar')" class="btn btn-primary float-right">Simpan</button>
                 </div>
             </div>
         </div>
@@ -531,45 +408,7 @@ if ($type == 'borang') {
         }
     })
     $("#institusi_id").trigger('change');
-    document.getElementById("butiran_institusi").addEventListener("submit", function(event) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById('butiran_institusi'));
-
-        var error = false;
-        $('form#butiran_institusi').find('select, textarea, input, checkbox').each(function() {
-            if (this.required && this.type == 'checkbox' && !this.checked) {
-                error = true;
-            }
-            if (this.required && this.value == '') {
-                error = true;
-            }
-        });
-
-        if (error) {
-            Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-            return false;
-        }
-
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'butiran_institusi']) }}"
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                if (response.status == 'success') {
-                    Swal.fire('Success', 'Berjaya', 'success');
-                    var id = response.data.id;
-                    var location = "{{ route('skips.skips_baru', ['id' => ':id']) }}";
-                    var location = location.replace(':id', id);
-                    window.location.href = location;
-                } else {
-                    Swal.fire('Gagal', response.detail, 'error');
-                }
-            }
-        });
-    });
+    
 
     function updateInstitusi(institusi) {
         id = institusi.value;
@@ -625,8 +464,8 @@ if ($type == 'borang') {
     }
 
     // Get the radio buttons for Yes and No
-    const radioYes = document.getElementById('kdn_approval_yes');
-    const radioNo = document.getElementById('kdn_approval_no');
+    const radioYes = document.getElementById('mempunyai_surat_kelulusan_kdn_yes');
+    const radioNo = document.getElementById('mempunyai_surat_kelulusan_kdn_no');
     // Get the div element to be toggled
     const div = document.getElementById('kdn_approval_div');
 
@@ -660,5 +499,28 @@ if ($type == 'borang') {
         } else {
             laporanDiv.style.display = 'none';
         }
+    }
+
+    function  submit1(tab) {
+        var formData = new FormData(document.getElementById('butiran_institusi_tab1'));
+        formData.append("tab", tab);
+
+        var APIUrl = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/save';
+
+        $.ajax({
+            url: APIUrl,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                if (response.status == 'success') {
+                    $('#butiran_institusi_id').val(response.data.id)
+                    Swal.fire('Success', 'Berjaya', 'success');
+                } else {
+                    Swal.fire('Gagal', response.detail, 'error');
+                }
+            }
+        });
     }
 </script>

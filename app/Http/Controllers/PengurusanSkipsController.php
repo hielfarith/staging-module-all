@@ -65,6 +65,7 @@ class PengurusanSkipsController extends Controller
         }
         $type = $request->segment(2);
         $status = null;
+        $disabled = $readonly = '';
         if ($canFill || $canView) {
             return view ('skips.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes', 'canVerify', 'canApprove', 'canView','canFill', 'status'));
         } else {
