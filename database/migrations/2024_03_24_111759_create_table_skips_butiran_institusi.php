@@ -41,6 +41,7 @@ return new class extends Migration
             $table->longText('butiran_pelajar')->nullable();
              $table->string('tarikh_audit')->nullable();
             $table->string('tarikh_lapor')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

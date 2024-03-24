@@ -212,7 +212,9 @@ $count = 1.1;
              Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'penubuhan_pendaftaran']) }}"
+        // var url = "{{ route('skips.instrumen-submit', ['tab' => 'penubuhan_pendaftaran']) }}"
+         var url = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/store-item-standard/penubuhan_pendaftaran';
+
         $.ajax({
             url: url,
             method: 'POST',

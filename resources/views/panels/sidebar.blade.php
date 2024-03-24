@@ -330,11 +330,6 @@
                             </a>
                         </li>
 
-                        <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
-                                                                                                                                        <a href="#" class="nav-link">
-                                                                                                                                            <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
-                                                                                                                                        </a>
-                                                                                                                                    </li> -->
                         <li
                             class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
                             <a href="{{ route('skips.skips_baru') }}" class="nav-link">
@@ -348,7 +343,7 @@
                             class="nav-item {{ in_array(request()->route()->getName(), ['skips.sekolah']) ? 'active' : '' }}">
                             <a href="{{ route('skips.skips_sekolah') }}" class="nav-link">
                                 <span class="menu-title text-truncate text-wrap">
-                                    Modul Pengisian Data Instrumen [Sekolah]
+                                    Modul Pengisian Data Instrumen [Sekolah]
                                 </span>
                             </a>
                         </li>
@@ -359,10 +354,20 @@
                             class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
                             <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
                                 <span class="menu-title text-truncate text-wrap">
-                                    Senarai Skips
+                                    Senarai Skips[Pusat]
                                 </span>
                             </a>
                         </li>
+
+                          <li
+                            class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi-sekolah']) ? 'active' : '' }}">
+                            <a href="{{ route('skips.senarai-skips-institusi-sekolah') }}" class="nav-link">
+                                <span class="menu-title text-truncate text-wrap">
+                                    Senarai Skips [Sekolah]
+                                </span>
+                            </a>
+                        </li>
+
 
 
                         <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">

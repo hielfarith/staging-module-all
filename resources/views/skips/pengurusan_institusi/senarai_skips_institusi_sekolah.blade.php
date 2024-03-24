@@ -26,23 +26,21 @@ Instrumen
     <div class="card-body">
         <hr>
         <div class="table-responsive">
-            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiInstrumenSkips">
+            <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiInstrumenSkips-sekolah">
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
-                        <!-- <th>Kod Sekolah</th> -->
+                        <th>Kod Sekolah</th>
                         <th>Nama Institusi</th>
-                        <!-- <th>Jenis Institusi</th> -->
-                        <th>Nama Pengurus</th>
-                        <!-- <th>PPD</th> -->
-                        <th>Nama Pengerusi</th>
+                        <th>Jenis Perakuan Pendaftaran</th>
+                        <th>Nama Syarikat</th>
                         <th>Negeri</th>
                         <th>Status</th>
                         <th>Dokumen</th>
                         <th width="5%">Tindakan</th>
                     </tr>
                 </thead>
-                <tbody id="TableSenaraiInstrumenSkips-body">
+                <tbody id="TableSenaraiInstrumenSkips-sekolah-body">
                 </tbody>
             </table>
         </div>
@@ -84,7 +82,7 @@ $.ajaxSetup({
 })
 
 
-    var APIUrl = '{{ env('APP_PENGISIAN_URL') }}' + 'api/skips/list-pusat';
+    var APIUrl = '{{ env('APP_PENGISIAN_URL') }}' + 'api/skips/list-sekolah';
     // TableSenaraiInstrumenSpks
     $.ajax({
         url: APIUrl,
@@ -92,17 +90,17 @@ $.ajaxSetup({
         success: function(response) {
             if (response.status == 'success') {
                 var data = response.data;
-                $('#TableSenaraiInstrumenSkips-body').empty();
+                $('#TableSenaraiInstrumenSkips-sekolah-body').empty();
                 for (var i = 0; i < data.length; i++) {
                     var tableData = "<tr>";
                     var sn = i + 1;
                     tableData = tableData + '<td>' + sn + '</td>';
+                    tableData = tableData + '<td>' + data[i].kod_sekolah + '</td>';
                     tableData = tableData + '<td>' + data[i].nama_institusi + '</td>';
-                    tableData = tableData + '<td>' + data[i].nama_pengurus + '</td>';
-                    tableData = tableData + '<td>' + data[i].nama_pengerusi + '</td>';
+                    tableData = tableData + '<td>' + data[i].jenis_perakuan_pendaftaran + '</td>';
+                    tableData = tableData + '<td>' + data[i].nama_syarikat + '</td>';
                     tableData = tableData + '<td>' + data[i].negeri + '</td>';
                     tableData = tableData + '<td>' + data[i].status + '</td>';
-
                     var button1 = '<a onclick="#" class="btn btn-xs btn-default" title="">Document<i class="fas fa-download text-primary"></i></a>';
                     tableData = tableData + '<td>' + button1 + '</td>';
                     var button = "";
@@ -114,7 +112,7 @@ $.ajaxSetup({
                         ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
                     button = button + "</div>";
                     tableData = tableData + '<td>' + button + '</td></tr>';
-                    $('#TableSenaraiInstrumenSkips-body').append(tableData);
+                    $('#TableSenaraiInstrumenSkips-sekolah-body').append(tableData);
                 }
             }
         }

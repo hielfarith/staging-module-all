@@ -282,7 +282,9 @@
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengurusan_pelajar_antarabangsa']) }}"
+        // var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengurusan_pelajar_antarabangsa']) }}"
+        var url = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/store-item-standard/pengurusan_pelajar_antarabangsa';
+
         $.ajax({
             url: url,
             method: 'POST',

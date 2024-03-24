@@ -34,6 +34,7 @@
                     </span>
                 </h5>
                 <hr>
+                <input type="hidden" name="butiran_institusi_id_sekolah" id="butiran_institusi_id_sekolah">
 
                 <div class="col-md-6 mb-1">
                     <label class="form-label fw-bold text-titlecase">Kod Sekolah
@@ -46,7 +47,7 @@
                     <label class="form-label fw-bold text-titlecase">Nama Institut
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="nama_institut" id="nama_institut" class="form-control">
+                    <input type="text" name="nama_institusi" id="nama_institusi" class="form-control">
                 </div>
 
 
@@ -74,19 +75,19 @@
                 <div class="col-md-3 mb-1">
                     <label class="form-label fw-bold text-titlecase">Daerah
                     </label>
-                    <input type="text" class="form-control" id="daerah">
+                    <input type="text" class="form-control" name="daerah">
                 </div>
 
                 <div class="col-md-3 mb-1">
                     <label class="form-label fw-bold text-titlecase">Bandar
                     </label>
-                    <input type="text" class="form-control" id="Bandar">
+                    <input type="text" class="form-control" id="Bandar" name="bandar">
                 </div>
 
                 <div class="col-md-3 mb-1">
                     <label class="form-label fw-bold text-titlecase">Poskod
                     </label>
-                    <input type="text" class="form-control" id="poskod">
+                    <input type="text" class="form-control" id="poskod" name="poskod">
                 </div>
 
 
@@ -94,21 +95,21 @@
                     <label class="form-label fw-bold text-titlecase">No. Telefon Pejabat
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="noTelPejabat" id="noTelPejabat" class="form-control">
+                    <input type="text" name="no_telephone" id="noTelPejabat" class="form-control">
                 </div>
 
                 <div class="col-md-3 mb-1">
                     <label class="form-label fw-bold text-titlecase"> E-mel Sekolah
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="emelSekolah" id="emelSekolah" class="form-control">
+                    <input type="text" name="email" id="emelSekolah" class="form-control">
                 </div>
 
                 <div class="col-md-3 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Jenis Perakuan Pendaftaran
                         <span class="text-danger">*</span>
                     </label>
-                    <select name="perakuan" id="perakuan" class="form-control">
+                    <select name="jenis_perakuan_pendaftaran" id="perakuan" class="form-control">
                         <option value="Kekal">Kekal</option>
                         <option value="Sementara">Sementara</option>
                     </select>
@@ -118,7 +119,7 @@
                     <label class="form-label fw-bold text-titlecase"> Tarikh Tamat
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" name="tarikh" id="tarikh" class="form-control">
+                    <input type="date" name="tarikh_tamat" id="tarikh_tamat" class="form-control">
                 </div>
 
                 <div class="col-md-12 mb-1">
@@ -133,24 +134,24 @@
                     <label class="form-label fw-bold text-titlecase"> No. Pendaftaran Syarikat (SSM)
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="noPendaftaranSSM" id="noPendaftaranSSM" class="form-control">
+                    <input type="text" name="no_pendaftaran_syarikat" id="noPendaftaranSSM" class="form-control">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Tarikh Audit Laporan Kewangan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" name="tarikh_audit" id="tarikh_audit" class="form-control">
+                    <input type="date" name="tarikh_audit_laporan_kewangan" id="tarikh_audit_laporan_kewangan" class="form-control">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Tarikh Pengesahan Laporan Kewangan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" name="tarikh_kewangan" id="tarikh_kewangan" class="form-control">
+                    <input type="date" name="tarikh_pengesahan_laporan_kewangan" id="tarikh_pengesahan_laporan_kewangan" class="form-control">
                 </div>
                 <div class="d-flex justify-content-end align-items-center mt-1">
-                    <button type="submit" class="btn btn-primary float-right">Simpan</button>
+                    <button type="button" class="btn btn-primary float-right" onclick="submitsekolah('institusi')">Simpan</button>
                 </div>
             </div>
         </div>
@@ -221,7 +222,7 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Lelaki Warganegara
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="guru_lelaki_warganegara" id="guru_lelaki_warganegara"
+                    <input type="text" name="guru_lelaki_kakitangan" id="guru_lelaki_kakitangan"
                         class="form-control">
                 </div>
 
@@ -266,7 +267,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end align-items-center mt-1">
-                    <button type="submit" class="btn btn-primary float-right">Simpan</button>
+                    <button type="button" class="btn btn-primary float-right" onclick="submitsekolah('guru')">Simpan</button>
                 </div>
             </div>
         </div>
@@ -307,37 +308,66 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Perempuan Warganegara
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="kakitangan_Perempuan_warganegara"
-                        id="kakitangan_Perempuan_warganegara" class="form-control">
+                    <input type="text" name="Murid_Perempuan_warganegara"
+                        id="Murid_Perempuan_warganegara" class="form-control">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Bilangan Perempuan Antarabangsa
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="kakitangan_Perempuan_bukan_warganegara"
-                        id="kakitangan_Perempuan_bukan_warganegara" class="form-control">
+                    <input type="text" name="Murid_Perempuan_bukan_warganegara"
+                        id="Murid_Perempuan_bukan_warganegara" class="form-control">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Jumlah Keseluruhan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="jumlah_kakitangan_Perempuan" id="jumlah_kakitangan_Perempuan"
+                    <input type="text" name="jumlah_Murid_Perempuan" id="jumlah_Murid_Perempuan"
                         class="form-control">
                 </div>
 
 
 
                 <div class="d-flex justify-content-end align-items-center mt-1">
-                    <button type="submit" class="btn btn-primary float-right">Simpan</button>
+                    <button type="button" class="btn btn-primary float-right" onclick="submitsekolah('pelajar')">Simpan</button>
                 </div>
             </div>
         </div>
     </div>
 
-
-
-
-
 </form>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    function  submitsekolah(tab) {
+         var formData = new FormData(document.getElementById('butiran_institut_sekolah'));
+        formData.append("tab", tab);
+
+        var APIUrl = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/save-sekolah';
+
+        $.ajax({
+            url: APIUrl,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                if (response.status == 'success') {
+                    $('#butiran_institusi_id_sekolah').val(response.data.id)
+                    Swal.fire('Success', 'Berjaya', 'success');
+                } else {
+                    Swal.fire('Gagal', response.detail, 'error');
+                }
+            }
+        });
+    }
+</script>

@@ -152,7 +152,9 @@
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'kebersihan']) }}"
+        // var url = "{{ route('skips.instrumen-submit', ['tab' => 'kebersihan']) }}"
+        var url = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/store-item-standard/kebersihan';
+
         $.ajax({
             url: url,
             method: 'POST',

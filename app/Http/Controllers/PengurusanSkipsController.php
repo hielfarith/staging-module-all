@@ -634,6 +634,14 @@ class PengurusanSkipsController extends Controller
         return view('skips.pengurusan_institusi.senarai_skips_institusi');
     }
 
+    
+
+    public function SenaraiSkipsInstitusiSekolah(Request $request) {
+
+        return view('skips.pengurusan_institusi.senarai_skips_institusi_sekolah');
+    }
+
+
     public function dashboardInstrumen(Request $request){
 
         $star = ButiranInstitusiSkips::peratusanBintang($request->instrumen_id);
