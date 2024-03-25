@@ -326,7 +326,7 @@ $option_institusis = [
 
     <hr>
 
-    @if(!empty($butiran_id) && $type == 'borang' && $canFill)
+    @if($type != 'laporan')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform2()">Simpan</button>
     </div>

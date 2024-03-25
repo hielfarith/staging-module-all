@@ -1,15 +1,4 @@
-<?php
-    if ((isset($type) && ($type == 'verfikasi' || $type == 'validasi')) || $type == 'done') {
-        $disabled = 'disabled';
-    } else {
-        $disabled = '';
-    }
-    $readonly = $name = '';
-    if ($type == 'borang') {
-        $readonly = 'readonly';
-        $name = \Auth::user()->name;
-    }
-?>
+
 <form id="butiran_institusi_tab1" novalidate="novalidate">
     <ul class="nav nav-pills nav-justified" role="tablist">
         <li class="nav-item" role="presentation">
@@ -53,7 +42,7 @@
                          onchange="updateInstitusi(this)">
                         <option value="">Sila Pilih</option>
                         @foreach ($allInstitutes as $id => $nama)
-                            <option value="{{ $id }}">
+                            <option value="{{ $nama }}">
                                 {{ $nama }}
                             </option>
                         @endforeach
@@ -242,12 +231,12 @@
 
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Laporan Audit?</label>
-                    <input type="radio" id="mempunyai_laporan_audityes" name="mempunyai_laporan_audit" value="yes"
+                    <input type="radio" id="mempunyai_laporan_audit_yes" name="mempunyai_laporan_audit" value="yes"
                         onclick="toggleLaporanDiv(true)">
-                    <label for="mempunyai_laporan_audityes">Ada</label>
-                    <input type="radio" id="mempunyai_laporan_auditno" name="mempunyai_laporan_audit" value="no"
+                    <label for="mempunyai_laporan_audit_yes">Ada</label>
+                    <input type="radio" id="mempunyai_laporan_audit_no" name="mempunyai_laporan_audit" value="no"
                         onclick="toggleLaporanDiv(false)">
-                    <label for="mempunyai_laporan_auditno">Tiada</label>
+                    <label for="mempunyai_laporan_audit_no">Tiada</label>
                 </div>
 
 
@@ -402,6 +391,57 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script type="text/javascript">
+    
+    $(document).ready(function() {
+        var butiranid = $('#butiran_id').val();
+        if (butiranid == '') {
+            return false;
+        }
+        var APIUrl = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/pull-data';
+
+        $.ajax({
+            url: APIUrl,
+            method: 'POST',
+            data: {
+                id: butiranid
+            },
+            success: function(response) {
+                if (response.status == 'success') {
+                    var radio = ['mempunyai_audit_kewangan','mempunyai_laporan_audit','mempunyai_surat_kelulusan_kdn'];
+
+                    $('#institusi_id').select2().val(response.data['nama_institusi']).trigger("change");
+                    for (const [key, value] of Object.entries(response.data)) {
+                        if (jQuery.inArray(key, radio) !== -1 ) {
+                            $("#"+key+'_'+value).attr('checked', true).trigger('click');;
+                        } else {
+                            $("input[name='"+key +"']").val(value);
+                        }
+                    }
+                    if (response.guru != '') {
+
+                        for (const [key, value] of Object.entries(response.guru)) {
+                            if (jQuery.inArray(key, radio) !== -1 ) {
+                                $("#"+key+'_'+value).attr('checked', true).trigger('click');;
+                            } else {
+                                $("input[name='"+key +"']").val(value);
+                            }
+                        }
+                    }
+                    if (response.pelajar != '') {
+                        for (const [key, value] of Object.entries(response.pelajar)) {
+                            if (jQuery.inArray(key, radio) !== -1 ) {
+                                $("#"+key+'_'+value).attr('checked', true).trigger('click');;
+                            } else {
+                                $("input[name='"+key +"']").val(value);
+                            }
+                        }
+                    }
+
+                }
+            }
+        });
+    });
+    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

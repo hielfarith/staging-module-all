@@ -7,7 +7,6 @@
     } else {
         $pengurusan_kurikulum = null;
     }
-
 ?>
     @php
     $butiran_institusi_id = $butiran_id;
@@ -169,7 +168,7 @@
 
     <hr>
 
-    @if(!empty($butiran_id) && $type == 'borang' && $canFill)
+    @if($type != 'laporan')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform3()">Simpan</button>
     </div>

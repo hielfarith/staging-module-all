@@ -186,30 +186,28 @@ $count = 1.1;
 
     <hr>
 
-    @if(!empty($butiran_id) && $type == 'borang' && $canFill)
+    @if($type != 'laporan')
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right formdd" onclick="submitform1()">Simpan</button>
+        <button type="button" class="btn btn-primary float-right formdd" onclick="submitformTab1()">Simpan</button>
     </div>
     @endif
 
 </form>
 
 <script>
-    function submitform1() {
+    function submitformTab1() {
         var formData = new FormData(document.getElementById('penubuhan_pendaftaran'));
         var error = false;
 
-         $('form#penubuhan_pendaftaran').find('radio, input, checkbox').each(function() {
-            if(this.required && this.type == 'checkbox' && !this.checked) {
-                error = true;
-            }
-            if (this.required && this.value == '') {
+        $('form#penubuhan_pendaftaran').find('radio, input').each(function() {
+            var value = $("input[name='"+this.name+"']:checked").val();
+            if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;
             }
         });
 
         if (error) {
-             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
         // var url = "{{ route('skips.instrumen-submit', ['tab' => 'penubuhan_pendaftaran']) }}"

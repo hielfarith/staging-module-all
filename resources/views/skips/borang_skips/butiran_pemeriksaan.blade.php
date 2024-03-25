@@ -2,7 +2,7 @@
 $instrumen_id = Request::segment(3);
 $pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $instrumen_id)->first();
 $checkforTambah = Request::segment(2);
-if ($type == 'done' || $type == 'validasi') {
+if ($type == 'done' || $type == 'laporan') {
     $disabled = 'disabled';
 } else {
     $disabled = '';
@@ -77,12 +77,11 @@ if ($type == 'done' || $type == 'validasi') {
         <input type="text" name="ketua_pemeriksa" class="form-control" required {{$disabled}} value={{$pemeriskan?->ketua_pemeriksa}}>
     </div>
 </div>
-@if($checkforTambah != 'tambah-skips' && $canVerify )
 <hr>
+
 <div class="d-flex justify-content-end align-items-center mt-1">
     <button type="button" class="btn btn-primary float-right" onclick="submitformPemeriksan()">Hantar</button>
 </div>
-@endif
 </form>
 @section('script')
 <script>

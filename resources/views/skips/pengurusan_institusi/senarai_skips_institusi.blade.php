@@ -108,9 +108,9 @@ $.ajaxSetup({
                     var button = "";
                     button = button +
                         '<div class="btn-group " role="group" aria-label="Action">';
-                    button = button + '<a onclick="maklumatSpks(' + data[i].id +
+                    button = button + '<a onclick="maklumatSkips(' + data[i].id +
                         ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    button = button + '<a onclick="maklumatSpksverfikasi(' + data[i].id +
+                    button = button + '<a onclick="maklumatSkipsAction(' + data[i].id +
                         ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
                     button = button + "</div>";
                     tableData = tableData + '<td>' + button + '</td></tr>';
@@ -123,8 +123,14 @@ $.ajaxSetup({
 });
 
 
-function maklumatInstrumen(id){
-    var url = "{{ route('skips.fmf-view',['id'=> ':id']) }}";
+function maklumatSkips(id){
+    var url = "{{ route('skips.skips_baru',['id'=> ':id', 'type' => 'laporan']) }}";
+    var url = url.replace(':id', id);
+    window.location.href = url;
+}
+
+function maklumatSkipsAction(id){
+    var url = "{{ route('skips.skips_baru',['id'=> ':id', 'type' => 'kemaskini']) }}";
     var url = url.replace(':id', id);
     window.location.href = url;
 }

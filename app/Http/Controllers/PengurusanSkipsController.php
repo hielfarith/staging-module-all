@@ -28,50 +28,20 @@ class PengurusanSkipsController extends Controller
         $this->middleware('auth');
     }
 
-    public function BorangSkipsBaru(Request $request, $id = null) {
+    public function BorangSkipsBaru(Request $request, $id = null, $type = null) {
         $negeris = MasterState::all();
         $allInstitutes = SkipsInstitusiPendidikan::pluck('nama','id');
         $butiran_id = $id;
-        $canView = $canApprove = $canVerify = $canFill = false;
-        // $DynamicFormData = InstrumenSkpakSpksIkeps::where('type','skips')->where('status',1)->first();
-        $instrument = InstrumenSkpakSpksIkeps::where('type', 'SKIPS')->where('status',1)->orderBy('id','desc')->get();
-        foreach ($instrument as $key => $value) {
-            $moduleId = Module::where('module_name', $value->id)->first();
-            if ($moduleId) {
-                break;
-            }
-        }
-        // $moduleId = Module::where('module_name',$DynamicFormData->id)->first();
-        $dynamicModuleId = $moduleId->id;
-
-        if (!empty($butiran_id)) {
-            $butiranInstitusi = ButiranInstitusiSkips::where('id', $butiran_id)->first();
-            if (empty($butiranInstitusi)) {
-                return redirect()->route('skips.skips_baru');
-            }
-            $item = ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_id)->first();
-            // // get skips instrumen configuration id
-
-            if ($item) {
-                $canFill = FMF::checkPermission($dynamicModuleId, $item->status, 'fill form');
-                $canView = FMF::checkPermission($dynamicModuleId, $item->status, 'view form');
-                $canVerify = FMF::checkPermission($dynamicModuleId, $item->status, 'verify form');
-                $canApprove = FMF::checkPermission($dynamicModuleId, $item->status, 'approve form');
-            }
+        if ($type == 'laporan') {
+            $disabled = 'disabled';
+            $readonly = 'readonly';
         } else {
-            $status = ModuleStatus::where('status_index', 1)->where('module_id', $moduleId->id)->first();
-            $canView = FMF::checkPermission($dynamicModuleId, $status->id, 'view form');
-            $canFill = FMF::checkPermission($dynamicModuleId, $status->id, 'fill form');
+            $disabled = $readonly = '';
         }
-        $type = $request->segment(2);
+
         $status = null;
-        $disabled = $readonly = '';
-        if ($canFill || $canView) {
-            return view ('skips.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes', 'canVerify', 'canApprove', 'canView','canFill', 'status'));
-        } else {
-            $request->session()->flash('success', 'Permission denied');
-            return redirect()->route('skips.skips_baru');
-        }
+        return view ('skips.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes', 'status', 'disabled', 'readonly'));
+         
     }
 
     public function FmfView(Request $request, $id = null){
@@ -114,7 +84,7 @@ class PengurusanSkipsController extends Controller
     public function chooseInstituteDetails(Request $request)
     {
         $id = $request->id;
-        $institute = SkipsInstitusiPendidikan::where('id', $id)->first();
+        $institute = SkipsInstitusiPendidikan::where('nama', $id)->first();
         return ['success' => true, 'data' => $institute];
     }
 
@@ -793,4 +763,5 @@ class PengurusanSkipsController extends Controller
         $states = MasterState::all();
         return view('skips.borang_skips_sekolah.index', compact('states'));
     }
+
 }

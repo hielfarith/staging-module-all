@@ -148,12 +148,10 @@ $option_peperiksaans = [
         <label class="fw-bolder">Ulasan</label>
         <textarea name="ulasan_verfikasi" id="" rows="3" class="form-control">{{$pengurusan_penilaian?->ulasan_verfikasi}}</textarea>
     </div>
-@if($canVerify)
 
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform5v()">Simpan</button>
     </div>
-    @endif
 
 </form>
 

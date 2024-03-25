@@ -126,7 +126,7 @@
 
     <hr>
 
-    @if(!empty($butiran_institusi_id) && $type == 'borang' && $canFill)
+    @if($type != 'laporan')
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform9()">Simpan</button>
     </div>

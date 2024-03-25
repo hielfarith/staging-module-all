@@ -10,7 +10,7 @@
         }
     }
 
-    if ($type == 'done') {
+    if ($type == 'done' || $type == 'laporan') {
         $disabled = 'disabled';
     } else {
         $disabled = '';
@@ -49,7 +49,7 @@
     </div>
 </div>
  <hr>
-    @if($showHantarulasan && $canApprove)
+    @if($showHantarulasan)
      <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitformulasan()">Hantar</button>
     </div>

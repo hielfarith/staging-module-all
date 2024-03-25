@@ -4,7 +4,7 @@ use App\Http\Controllers\PengurusanSkipsController;
 
 Route::controller(PengurusanSkipsController::class)->group(function () {
     Route::prefix('skips')->name('skips.')->group(function() {
-        Route::get('borang/{id?}','BorangSkipsBaru')->name('skips_baru');
+        Route::get('borang/{id?}/{type?}','BorangSkipsBaru')->name('skips_baru');
         Route::get('verfikasi/{id}','BorangSkipsBaru')->name('verfikasi-view');
 
         Route::get('skips_sekolah','BorangSkipsSekolahBaru')->name('skips_sekolah');
@@ -33,5 +33,10 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
 
         Route::get('dashboard', 'DashboardSkips')->name('dashboard_skips');
         Route::get('dashboard/view/{instrumen_id}', 'dashboardInstrumen')->name('dashboard.instrumen');
+
+        Route::get('laporan/{id}', 'ViewRecord')->name('view');
+        Route::get('kemaskini/{instrumen_id}', 'EditRecord')->name('edit');
+
+
     });
 });

@@ -274,13 +274,11 @@ $option_antarabangsas = [
     <label class="fw-bolder">Ulasan</label>
     <textarea name="ulasan_verfikasi" id="" rows="3" class="form-control">{{$pengurusan_pelajar_antarabangsa?->ulasan_verfikasi}}</textarea>
 </div>
-@if($canVerify)
 
 
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right verify" onclick="submitform10v()">Simpan</button>
     </div>
-    @endif
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
