@@ -15,7 +15,7 @@ Route::controller(PengurusanSkipsController::class)->group(function () {
         Route::post('store/{tab}', 'store')->name('instrumen-submit');
         Route::post('update-status', 'updateStatus')->name('instrumen-update');
         Route::get('ringkasan-pengisian','RingkasanSkips')->name('ringkasan_skips');
-        Route::get('verfikasi','SenaraiSkips')->name('verfikasi-skips');
+        Route::get('verfikasi','laporanSkips')->name('verfikasi-skips');
         Route::get('validasi','SenaraiSkips')->name('validasi-skips');
         Route::get('validasi/{id}', 'BorangSkipsBaru')->name('validasi-view');
         Route::post('choose-institute-details', 'chooseInstituteDetails')->name('choose-institute-details');
