@@ -33,7 +33,7 @@
                     </span>
                 </h5>
                 <input type="hidden" name="nama_institusi" id="nama_institusi">
-                <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id">
+                <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_id}}">
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase">Nama Institusi
                         <span class="text-danger">*</span>
@@ -563,6 +563,11 @@
                 if (response.status == 'success') {
                     $('#butiran_institusi_id').val(response.data.id)
                     Swal.fire('Success', 'Berjaya', 'success');
+                    if (tab == 'butiran_institusi') {
+                        var url = "{{ route('skips.skips_baru', ['id' => ':id']) }}";
+                        var url = url.replace(':id', response.data.id);
+                        window.location.href = url;
+                    }
                 } else {
                     Swal.fire('Gagal', response.detail, 'error');
                 }

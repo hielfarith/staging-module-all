@@ -34,7 +34,7 @@
                     </span>
                 </h5>
                 <hr>
-                <input type="hidden" name="butiran_institusi_id_sekolah" id="butiran_institusi_id_sekolah">
+                <input type="hidden" name="butiran_institusi_id_sekolah" id="butiran_institusi_id_sekolah" value="{{$butiran_id}}">
 
                 <div class="col-md-6 mb-1">
                     <label class="form-label fw-bold text-titlecase">Kod Sekolah
@@ -56,7 +56,7 @@
                     <label class="fw-bold form-label">Alamat 1
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="alamat1" id="alamat1">
+                    <input type="text" class="form-control" name="alamat" id="alamat">
                 </div>
 
                 <div class="col-md-6 mb-1">
@@ -342,6 +342,44 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script type="text/javascript">
+
+        $(document).ready(function() {
+        var butiranid = $('#butiran_id').val();
+        if (butiranid == '') {
+            return false;
+        }
+        var APIUrl = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/pull-data-sekolah';
+
+        $.ajax({
+            url: APIUrl,
+            method: 'POST',
+            data: {
+                id: butiranid
+            },
+            success: function(response) {
+                if (response.status == 'success') {
+                    console.log(response)
+                    for (const [key, value] of Object.entries(response.data)) {
+                        $("input[name='"+key +"']").val(value);
+                    }
+
+                    if (response.guru != '') {
+                        for (const [key, value] of Object.entries(response.guru)) {
+                            $("input[name='"+key +"']").val(value);
+                        }
+                    }
+
+                    if (response.pelajar != '') {
+                        for (const [key, value] of Object.entries(response.pelajar)) {
+                            $("input[name='"+key +"']").val(value);
+                        }
+                    }
+
+                }
+            }
+        });
+    });
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -364,6 +402,11 @@
                 if (response.status == 'success') {
                     $('#butiran_institusi_id_sekolah').val(response.data.id)
                     Swal.fire('Success', 'Berjaya', 'success');
+                    if (tab == 'institusi') {
+                        var url = "{{ route('skips.skips_sekolah', ['id' => ':id']) }}";
+                        var url = url.replace(':id', response.data.id);
+                        window.location.href = url;
+                    }
                 } else {
                     Swal.fire('Gagal', response.detail, 'error');
                 }

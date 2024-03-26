@@ -134,7 +134,7 @@
 
     <hr>
 
-    @if($type != 'laporan')
+    @if($type != 'laporan' && !empty($butiran_id))
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitform6()">Simpan</button>
     </div>
@@ -172,6 +172,9 @@
             success: function(response) {
                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    if (response.formfilled == true) {
+                        window.location.reload();
+                    }
                }
             }
         });

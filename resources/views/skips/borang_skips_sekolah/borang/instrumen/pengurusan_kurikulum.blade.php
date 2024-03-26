@@ -79,7 +79,7 @@
         /* word-wrap: break-word; */
     }
 </style>
-<form id="penubuhan_pendaftaran">
+<form id="pengurusan_kurikulum_sekolah">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai1">
             <thead>
@@ -104,6 +104,7 @@
                 </tr>
             </thead>
             <tbody>
+                <input type="hidden" name="butiran_institusi_id" value="{{$butiran_id}}">
 
                 <tr>
                     <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Kurikulum</td>
@@ -149,23 +150,20 @@
 
     <hr>
 
-
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right formdd">Simpan</button>
+        <button type="button" class="btn btn-primary float-right formdd" onclick="submitformsekolah6()">Simpan</button>
     </div>
 
 </form>
 
 <script>
-    function submitform1() {
-        var formData = new FormData(document.getElementById('penubuhan_pendaftaran'));
+    function submitformsekolah6() {
+        var formData = new FormData(document.getElementById('pengurusan_kurikulum_sekolah'));
         var error = false;
 
-        $('form#penubuhan_pendaftaran').find('radio, input, checkbox').each(function() {
-            if (this.required && this.type == 'checkbox' && !this.checked) {
-                error = true;
-            }
-            if (this.required && this.value == '') {
+        $('form#pengurusan_kurikulum_sekolah').find('radio, input, checkbox').each(function() {
+             var value = $("input[name='"+this.name+"']:checked").val();
+            if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;
             }
         });
@@ -174,7 +172,9 @@
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'penubuhan_pendaftaran']) }}"
+
+        var url = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/store-item-standard-sekolah/pengurusan_kurikulum';
+
         $.ajax({
             url: url,
             method: 'POST',

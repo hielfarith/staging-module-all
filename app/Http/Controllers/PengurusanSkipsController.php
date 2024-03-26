@@ -758,10 +758,18 @@ class PengurusanSkipsController extends Controller
         return view ('dashboard.dashboard_instrumen', compact('star', 'kriteria'));
     }
 
-    public function BorangSkipsSekolahBaru(Request $request)
+    public function BorangSkipsSekolahBaru(Request $request, $id=null, $type=null)
     {
         $states = MasterState::all();
-        return view('skips.borang_skips_sekolah.index', compact('states'));
+        $butiran_id = $id;
+        if ($type == 'laporan') {
+            $disabled = 'disabled';
+            $readonly = 'readonly';
+        } else {
+            $disabled = $readonly = '';
+        }
+
+        return view('skips.borang_skips_sekolah.index', compact('states', 'butiran_id', 'disabled', 'readonly'));
     }
 
 }

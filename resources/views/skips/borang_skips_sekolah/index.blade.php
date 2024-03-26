@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    {{-- <input type="hidden" name="butiran_id" id="butiran_id" value="{{ $butiran_id }}"> --}}
+    <input type="hidden" name="butiran_id" id="butiran_id" value="{{ $butiran_id }}"> 
     <ul class="nav nav-pills nav-justified" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder active" id="pendidikan-swasta-tab" data-bs-toggle="tab"
@@ -53,4 +53,10 @@
     </div>
 @endsection
 
-<script type="text/javascript"></script>
+
+<script type="text/javascript">
+var fragmentIdentifier = window.location.hash;
+function tabclicked(argument) {
+    console.log(argument)
+ }
+</script>
