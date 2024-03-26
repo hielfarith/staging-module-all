@@ -39,7 +39,7 @@
                         <span class="text-danger">*</span>
                     </label>
                     <select name="institusi_id" id="institusi_id" class="form-control select2" required
-                         onchange="updateInstitusi(this)">
+                         onchange="updateInstitusi(this)" {{$disabled}}>
                         <option value="">Sila Pilih</option>
                         @foreach ($allInstitutes as $id => $nama)
                             <option value="{{ $nama }}">
@@ -53,7 +53,7 @@
                     <label class="form-label fw-bold text-titlecase">Nama Pengurus
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="nama_pengurus" id="nama_pengurus" class="form-control">
+                    <input {{$disabled}} type="text" name="nama_pengurus" id="nama_pengurus" class="form-control">
                 </div>
 
 
@@ -61,35 +61,35 @@
                     <label class="form-label fw-bold text-titlecase">Nama Pengerusi
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="nama_pengerusi" id="nama_pengerusi" class="form-control">
+                    <input {{$disabled}} type="text" name="nama_pengerusi" id="nama_pengerusi" class="form-control">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Alamat
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" required  name="alamat"
+                    <input {{$disabled}} type="text" class="form-control" required  name="alamat"
                         id="alamat" value="">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Alamat2
                     </label>
-                    <input type="text" class="form-control" required  name="alamat2"
+                    <input {{$disabled}} type="text" class="form-control" required  name="alamat2"
                         value="" id="alamat_2">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Alamat3
                     </label>
-                    <input type="text" class="form-control" required  name="alamat3"
+                    <input {{$disabled}} type="text" class="form-control" required  name="alamat3"
                         value="" id="alamat_3">
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="fw-bold form-label">Negeri
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" class="form-control" name="negeri" id="negeri" required
+                    <input {{$disabled}} type="text" class="form-control" name="negeri" id="negeri" required
                          value="">
 
                 </div>
@@ -97,14 +97,14 @@
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase">Daerah
                     </label>
-                    <input type="text" class="form-control" name="daerah" id="daerah" required 
+                    <input {{$disabled}} type="text" class="form-control" name="daerah" id="daerah" required 
                         value="">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase">Poskod
                     </label>
-                    <input type="text" class="form-control" name="poskod" id="poskod" required 
+                    <input {{$disabled}} type="text" class="form-control" name="poskod" id="poskod" required 
                         value="">
                 </div>
 
@@ -112,7 +112,7 @@
                     <label class="form-label fw-bold text-titlecase">No. Telefon
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="no_telephone" id="no_telephone" class="form-control" required
+                    <input {{$disabled}} type="text" name="no_telephone" id="no_telephone" class="form-control" required
                          value="">
 
                 </div>
@@ -121,7 +121,7 @@
                     <label class="form-label fw-bold text-titlecase"> No. Faks
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="fax" id="fax" class="form-control" required 
+                    <input {{$disabled}} type="text" name="fax" id="fax" class="form-control" required 
                         value="">
                 </div>
 
@@ -129,7 +129,7 @@
                     <label class="form-label fw-bold text-titlecase"> Alamat Emel
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="email" name="email" id="email" class="form-control" required
+                    <input {{$disabled}} type="email" name="email" id="email" class="form-control" required
                          value="">
 
                 </div>
@@ -138,7 +138,7 @@
                     <label class="form-label fw-bold text-titlecase"> Laman Web
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="laman_web" id="laman_web" class="form-control" required 
+                    <input {{$disabled}} type="text" name="laman_web" id="laman_web" class="form-control" required 
                         value="">
                 </div>
 
@@ -152,9 +152,9 @@
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Surat Kelulusan
                         KDN?</label>
-                    <input type="radio" id="mempunyai_surat_kelulusan_kdn_yes" name="mempunyai_surat_kelulusan_kdn" value="yes">
+                    <input {{$disabled}} type="radio" id="mempunyai_surat_kelulusan_kdn_yes" name="mempunyai_surat_kelulusan_kdn" value="yes">
                     <label for="mempunyai_surat_kelulusan_kdn_yes">Ada</label>
-                    <input type="radio" id="mempunyai_surat_kelulusan_kdn_no" name="mempunyai_surat_kelulusan_kdn" value="no">
+                    <input {{$disabled}} type="radio" id="mempunyai_surat_kelulusan_kdn_no" name="mempunyai_surat_kelulusan_kdn" value="no">
                     <label for="kdn_approval_no">Tiada</label>
                 </div>
 
@@ -162,13 +162,13 @@
                     <label class="form-label fw-bold text-titlecase"> No. Surat Kelulusan KDN
                         <span class="text-danger"></span>
                     </label>
-                    <input type="text" name="no_surat_kelulusan_kdn" class="form-control" required
+                    <input {{$disabled}} type="text" name="no_surat_kelulusan_kdn" class="form-control" required
                          value="">
 
                     <label class="form-label fw-bold text-titlecase mt-1"> Tarikh Tamat Kelulusan KDN
                         <span class="text-danger"></span>
                     </label>
-                    <input type="text" id="" name="tarikh_tamat_kelulusan_kdn"
+                    <input {{$disabled}} type="text" id="" name="tarikh_tamat_kelulusan_kdn"
                         class="form-control flatpickr" placeholder="d/m/Y" required 
                         value="">
 
@@ -178,7 +178,7 @@
                     <label class="form-label fw-bold text-titlecase"> No. Perakuan Pendaftaran
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="no_perakuan_pendaftaran" class="form-control" required
+                    <input {{$disabled}} type="text" name="no_perakuan_pendaftaran" class="form-control" required
                          value="">
 
 
@@ -186,7 +186,7 @@
                         Pendaftaran
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="tarikh_tamat_perakuan_pendaftaran" class="form-control flatpickr"
+                    <input {{$disabled}} type="text" id="" name="tarikh_tamat_perakuan_pendaftaran" class="form-control flatpickr"
                         placeholder="d/m/Y" required  value="">
 
                 </div>
@@ -196,13 +196,13 @@
                     <label class="form-label fw-bold text-titlecase"> No. Pendaftaran Syarikat
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="no_pendaftaran_syarikat" class="form-control" required
+                    <input {{$disabled}} type="text" name="no_pendaftaran_syarikat" class="form-control" required
                          value="">
 
                     <label class="form-label fw-bold text-titlecase mt-1"> No. Lesen Perniagaan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="no_lesen_perniagaan" class="form-control" required
+                    <input {{$disabled}} type="text" name="no_lesen_perniagaan" class="form-control" required
                          value="">
                 </div>
 
@@ -214,9 +214,9 @@
 
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Audit Kewangan?</label>
-                    <input type="radio" id="mempunyai_audit_kewangan_yes" name="mempunyai_audit_kewangan" value="yes" onclick="toggleAuditDiv(true)">
+                    <input {{$disabled}} type="radio" id="mempunyai_audit_kewangan_yes" name="mempunyai_audit_kewangan" value="yes" onclick="toggleAuditDiv(true)">
                     <label for="mempunyai_audit_kewangan_yes">Ada</label>
-                    <input type="radio" id="mempunyai_audit_kewangan_no" name="mempunyai_audit_kewangan" value="no"
+                    <input {{$disabled}} type="radio" id="mempunyai_audit_kewangan_no" name="mempunyai_audit_kewangan" value="no"
                         onclick="toggleAuditDiv(false)">
                     <label for="audit_approval_no">Tiada</label>
                 </div>
@@ -225,16 +225,16 @@
                     <label class="form-label fw-bold text-titlecase"> Tarikh Audit
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="tarikh_audit" class="form-control flatpickr" required
+                    <input {{$disabled}} type="text" id="" name="tarikh_audit" class="form-control flatpickr" required
                          value="">
                 </div>
 
                 <div class="col-md-12 mb-1">
                     <label class="form-label fw-bold text-titlecase">Mempunyai Laporan Audit?</label>
-                    <input type="radio" id="mempunyai_laporan_audit_yes" name="mempunyai_laporan_audit" value="yes"
+                    <input {{$disabled}} type="radio" id="mempunyai_laporan_audit_yes" name="mempunyai_laporan_audit" value="yes"
                         onclick="toggleLaporanDiv(true)">
                     <label for="mempunyai_laporan_audit_yes">Ada</label>
-                    <input type="radio" id="mempunyai_laporan_audit_no" name="mempunyai_laporan_audit" value="no"
+                    <input {{$disabled}} type="radio" id="mempunyai_laporan_audit_no" name="mempunyai_laporan_audit" value="no"
                         onclick="toggleLaporanDiv(false)">
                     <label for="mempunyai_laporan_audit_no">Tiada</label>
                 </div>
@@ -244,15 +244,17 @@
                     <label class="form-label fw-bold text-titlecase"> Tarikh Lapor
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="tarikh_lapor" class="form-control flatpickr" required
+                    <input {{$disabled}} type="text" id="" name="tarikh_lapor" class="form-control flatpickr" required
                          value="">
 
                 </div>
 
                 <hr>
+                 @if($type != 'laporan')
                 <div class="d-flex justify-content-end align-items-center mt-1">
                     <button type="button" onclick="submit1('butiran_institusi')" class="btn btn-primary float-right">Simpan</button>
                 </div>
+                @endif
             </div>
         </div>
 
@@ -268,20 +270,20 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Lelaki
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_guru_lelaki" class="form-control" required>
+                    <input {{$disabled}} type="text" name="bilangan_guru_lelaki" class="form-control" required>
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Perempuan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_guru_perempuan" class="form-control" required>
+                    <input {{$disabled}} type="text" name="bilangan_guru_perempuan" class="form-control" required>
 
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Keseluruhan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_guru_keseluruhan" class="form-control" required
+                    <input {{$disabled}} type="text" name="bilangan_guru_keseluruhan" class="form-control" required
                          value="">
 
                 </div>
@@ -295,13 +297,13 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Lelaki
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_guru_lelakiBukanWarganegara" class="form-control" required>
+                    <input {{$disabled}} type="text" name="bilangan_guru_lelakiBukanWarganegara" class="form-control" required>
                 </div>
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Perempuan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_guru_perempuanBukanWarganegara" class="form-control"
+                    <input {{$disabled}} type="text" name="bilangan_guru_perempuanBukanWarganegara" class="form-control"
                         required>
 
                 </div>
@@ -309,13 +311,15 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Guru Keseluruhan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="pecahan_antarabangsa" class="form-control" required
+                    <input {{$disabled}} type="text" id="" name="pecahan_antarabangsa" class="form-control" required
                          value="" placeholder="Antarabangsa">
 
                 </div>
+                 @if($type != 'laporan')
                 <div class="d-flex justify-content-end align-items-center mt-1">
                     <button type="button" onclick="submit1('guru')" class="btn btn-primary float-right">Simpan</button>
                 </div>
+                @endif
             </div>
         </div>
 
@@ -330,7 +334,7 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Lelaki
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="bilangan_pelajar_lelaki" class="form-control"
+                    <input {{$disabled}} type="text" id="" name="bilangan_pelajar_lelaki" class="form-control"
                         required  value="" placeholder="Lelaki">
 
                 </div>
@@ -338,7 +342,7 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Perempuan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="bilangan_pelajar_perempuan" class="form-control"
+                    <input {{$disabled}} type="text" id="" name="bilangan_pelajar_perempuan" class="form-control"
                         required  value="" placeholder="Perempuan">
 
 
@@ -347,7 +351,7 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Keseluruhan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_pelajar_keseluruhan" class="form-control" required
+                    <input {{$disabled}} type="text" name="bilangan_pelajar_keseluruhan" class="form-control" required
                          value="">
 
                 </div>
@@ -361,7 +365,7 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Lelaki
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="bilangan_pelajar_lelaki_warganegara" class="form-control" required
+                    <input {{$disabled}} type="text" id="" name="bilangan_pelajar_lelaki_warganegara" class="form-control" required
                         value="" placeholder="Lelaki">
 
                 </div>
@@ -369,7 +373,7 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Perempuan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" id="" name="bilangan_pelajar_perempuan_warganegara" class="form-control"
+                    <input {{$disabled}} type="text" id="" name="bilangan_pelajar_perempuan_warganegara" class="form-control"
                         required  value=""  placeholder="Perempuan">
 
                 </div>
@@ -377,13 +381,15 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Pelajar Keseluruhan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="bilangan_pelajar_keseluruhan_warganegara" class="form-control" required
+                    <input {{$disabled}} type="text" name="bilangan_pelajar_keseluruhan_warganegara" class="form-control" required
                          value="">
 
                 </div>
+                @if($type != 'laporan')
                 <div class="d-flex justify-content-end align-items-center mt-1">
                     <button type="button" onclick="submit1('pelajar')" class="btn btn-primary float-right">Simpan</button>
                 </div>
+                @endif
             </div>
         </div>
     </div>
