@@ -43,6 +43,16 @@
         /* word-wrap: break-word; */
     }
 </style>
+
+<?php
+    $butiran_institusi_id = $butiran_id;
+    $tab1 = App\Models\ItemStandardQualitySkipsSekolah::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $perwatakan_sekolah = json_decode($tab1->perwatakan_sekolah);
+    } else {
+        $perwatakan_sekolah = null;
+    }
+?>
 <form id="perwatakan_sekolah">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai1">
@@ -96,8 +106,8 @@
                             <td>
                                 <div
                                     class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="radio_{{ $index }}"
-                                        value="{{ $key }}" required>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}"
+                                        value="{{ $key }}" required @if($perwatakan_sekolah && $perwatakan_sekolah->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
                                 </div>
                                 <br>
 
@@ -115,13 +125,13 @@
     <hr>
 
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right formdd" onclick="submitformsekolah4()">Simpan</button>
+        <button type="button" class="btn btn-primary float-right formdd" onclick="submitformsekolahperwatan()">Simpan</button>
     </div>
 
 </form>
 
 <script>
-    function submitformsekolah4() {
+    function submitformsekolahperwatan() {
         var formData = new FormData(document.getElementById('perwatakan_sekolah'));
         var error = false;
 
@@ -148,6 +158,9 @@
             success: function(response) {
                 if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    if (response.formfilled == true) {
+                        window.location.reload();
+                    }
                 }
             }
         });

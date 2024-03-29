@@ -57,6 +57,6 @@
 <script type="text/javascript">
 var fragmentIdentifier = window.location.hash;
 function tabclicked(argument) {
-    console.log(argument)
+    // console.log(argument)
  }
 </script>

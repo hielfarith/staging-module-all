@@ -1,3 +1,12 @@
+<?php
+    $butiran_institusi_id = $butiran_id;
+    $tab1 = App\Models\ItemStandardQualitySkipsSekolah::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pencapaian_kokurikulum = json_decode($tab1->pencapaian_kokurikulum);
+    } else {
+        $pencapaian_kokurikulum = null;
+    }
+?>
 @php
     $pendaftarans = [
         'aktiviti_1' => '11.1 Aktiviti  - Kelab (bukan akademik) ',
@@ -129,8 +138,8 @@
                             <td>
                                 <div
                                     class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="radio_{{ $index }}"
-                                        value="{{ $key }}" required>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}"
+                                        value="{{ $key }}" required @if($pencapaian_kokurikulum && $pencapaian_kokurikulum->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
                                 </div>
                                 <br>
 
@@ -182,6 +191,9 @@
             success: function(response) {
                 if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    if (response.formfilled == true) {
+                        window.location.reload();
+                    }
                 }
             }
         });

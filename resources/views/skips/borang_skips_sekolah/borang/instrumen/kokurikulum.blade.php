@@ -1,3 +1,14 @@
+
+<?php
+    $butiran_institusi_id = $butiran_id;
+    $tab1 = App\Models\ItemStandardQualitySkipsSekolah::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $kokurikulum = json_decode($tab1->kokurikulum);
+    } else {
+        $kokurikulum = null;
+    }
+?>
+
 @php
     $pendaftarans = [
         'sumbangan_komuniti' => '14.1 Kelab dan Persatuan atau Sumbangan kepada Komuniti <br> <br> Mempunyai sekurang-kurangnya tiga (kelab dan persatuan) atau tiga aktiviti komuniti (cth gotong royong/korban/tadarus dengan pihak luar) serta keperluan ini <br><br>
@@ -112,8 +123,8 @@
                             <td>
                                 <div
                                     class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="radio_{{ $index }}"
-                                        value="{{ $key }}" required>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}"
+                                        value="{{ $key }}" required @if($kokurikulum && $kokurikulum->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
                                 </div>
                                 <br>
 
@@ -165,6 +176,9 @@
             success: function(response) {
                 if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    if (response.formfilled == true) {
+                        window.location.reload();
+                    }
                 }
             }
         });

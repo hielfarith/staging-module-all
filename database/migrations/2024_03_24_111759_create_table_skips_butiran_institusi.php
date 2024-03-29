@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('skips_butiran_institusi_pusat', function (Blueprint $table) {
             $table->id();
             $table->string('nama_institusi');
-            $table->string('nama_pengurus');
             $table->string('nama_pengerusi');
             $table->string('alamat');
             $table->string('alamat2')->nullable();

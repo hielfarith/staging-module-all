@@ -1,3 +1,12 @@
+<?php
+    $butiran_institusi_id = $butiran_id;
+    $tab1 = App\Models\ItemStandardQualitySkipsSekolah::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru);
+    } else {
+        $pengurusan_pembangunan_guru = null;
+    }
+?>
 @php
     $pendaftarans = [
         'program_guru' => '6.1 Program Pembangunan Guru',
@@ -104,8 +113,8 @@
                             <td>
                                 <div
                                     class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="radio_{{ $index }}"
-                                        value="{{ $key }}" required>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}"
+                                        value="{{ $key }}" required @if($pengurusan_pembangunan_guru && $pengurusan_pembangunan_guru->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
                                 </div>
                                 <br>
 
@@ -157,6 +166,9 @@
             success: function(response) {
                 if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    if (response.formfilled == true) {
+                        window.location.reload();
+                    }
                 }
             }
         });

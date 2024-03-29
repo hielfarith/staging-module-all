@@ -79,6 +79,15 @@
         /* word-wrap: break-word; */
     }
 </style>
+<?php
+    $butiran_institusi_id = $butiran_id;
+    $tab1 = App\Models\ItemStandardQualitySkipsSekolah::where('butiran_institusi_id', $butiran_institusi_id)->first();
+    if ($butiran_institusi_id && $tab1) {
+        $pengurusan_kurikulum = json_decode($tab1->pengurusan_kurikulum);
+    } else {
+        $pengurusan_kurikulum = null;
+    }
+?>
 <form id="pengurusan_kurikulum_sekolah">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai1">
@@ -132,8 +141,8 @@
                             <td>
                                 <div
                                     class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="radio_{{ $index }}"
-                                        value="{{ $key }}" required>
+                                    <input class="form-check-input" type="radio" name="{{ $index }}"
+                                        value="{{ $key }}" required @if($pengurusan_kurikulum && $pengurusan_kurikulum->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
                                 </div>
                                 <br>
 
@@ -184,6 +193,9 @@
             success: function(response) {
                 if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
+                    if (response.formfilled == true) {
+                        window.location.reload();
+                    }
                 }
             }
         });

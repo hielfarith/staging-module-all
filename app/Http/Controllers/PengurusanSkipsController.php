@@ -769,7 +769,7 @@ class PengurusanSkipsController extends Controller
             $disabled = $readonly = '';
         }
 
-        return view('skips.borang_skips_sekolah.index', compact('states', 'butiran_id', 'disabled', 'readonly'));
+        return view('skips.borang_skips_sekolah.index', compact('states', 'butiran_id', 'disabled', 'readonly', 'type'));
     }
 
 }
