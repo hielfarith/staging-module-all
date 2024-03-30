@@ -169,7 +169,9 @@ $option_pembangunan_gurus = [
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengurusan_pembangunan_guru']) }}"
+        // var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengurusan_pembangunan_guru']) }}"
+        var url = "{{ env('APP_VERFIKASI_URL') }}" + 'api/skips/verfikasi/submit/pengurusan_pembangunan_guru_verfikasi';
+
         $.ajax({
             url: url,
             method: 'POST',

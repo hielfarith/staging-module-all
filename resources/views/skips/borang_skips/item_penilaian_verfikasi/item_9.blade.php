@@ -163,7 +163,9 @@ $option_kebersihans = [
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'kebersihan']) }}"
+        // var url = "{{ route('skips.instrumen-submit', ['tab' => 'kebersihan']) }}"
+        var url = "{{ env('APP_VERFIKASI_URL') }}" + 'api/skips/verfikasi/submit/kebersihan_verfikasi';
+        
         $.ajax({
             url: url,
             method: 'POST',

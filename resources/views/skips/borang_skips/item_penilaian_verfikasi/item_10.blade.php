@@ -298,7 +298,9 @@ $option_antarabangsas = [
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengurusan_pelajar_antarabangsa']) }}"
+        // var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengurusan_pelajar_antarabangsa']) }}"
+        var url = "{{ env('APP_VERFIKASI_URL') }}" + 'api/skips/verfikasi/submit/pengurusan_pelajar_antarabangsa_verfikasi';
+
         $.ajax({
             url: url,
             method: 'POST',

@@ -180,7 +180,8 @@ $option_pdps = [
             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengajaran']) }}"
+        // var url = "{{ route('skips.instrumen-submit', ['tab' => 'pengajaran']) }}"
+        var url = "{{ env('APP_VERFIKASI_URL') }}" + 'api/skips/verfikasi/submit/pengajaran_verfikasi';
         $.ajax({
             url: url,
             method: 'POST',
