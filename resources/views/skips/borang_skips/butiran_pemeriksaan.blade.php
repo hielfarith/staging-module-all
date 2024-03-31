@@ -1,6 +1,7 @@
 <?php
-$instrumen_id = Request::segment(3);
-$pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $instrumen_id)->first();
+
+$butiran_institusi_id = $butiran_id;;
+$pemeriskan = \App\Models\ButiranPemeriksaanSkips::where('instrumen_id', $butiran_id)->first();
 $checkforTambah = Request::segment(2);
 if ($type == 'done' || $type == 'laporan') {
     $disabled = 'disabled';
@@ -9,7 +10,7 @@ if ($type == 'done' || $type == 'laporan') {
 }
 ?>
 <form id="butiran_pemeriksaan">
-    <input type="hidden" name="instrumen_id" value="{{$instrumen_id}}">
+    <input type="hidden" name="instrumen_id" value="{{$butiran_institusi_id}}">
 <div class="row">
     <div class="col-md-4 mb-1">
         <label class="form-label fw-bold">Kod Sekolah
@@ -103,7 +104,9 @@ if ($type == 'done' || $type == 'laporan') {
              Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
             return false;
         }
-        var url = "{{ route('skips.instrumen-submit', ['tab' => 'butiran_pemeriksaan']) }}"
+        // var url = "{{ route('skips.instrumen-submit', ['tab' => 'butiran_pemeriksaan']) }}"
+        var url = "{{ env('APP_VERFIKASI_URL') }}" + 'api/skips/verfikasi/submit/butiran_pemeriksaan';
+
         $.ajax({
             url: url,
             method: 'POST',
