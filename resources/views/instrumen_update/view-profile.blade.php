@@ -437,9 +437,9 @@
                 </div>
             </form>
         @endif
-        <!-- ----end skps--- -->
+        <!-- ----end spks--- -->
 
-        <!-- ----start skps--- -->
+        <!-- ----start skpak--- -->
         @if ($instrumen->type == 'SKPAK')
             <form id="forminstrumenskpak" novalidate="novalidate">
                 <div class="row">
@@ -655,14 +655,14 @@
                 </div>
             </form>
         @endif
-        <!-- ----end skps--- -->
-        <!-- ----start skps--- -->
-        @if ($instrumen->type == 'IKEPS')
+        <!-- ----end skpak--- -->
+        <!-- ----start ikeps--- -->
+        @if ($instrumen->type == 'SEDIA')
             <form id="forminstrumensedia" novalidate="novalidate">
                 <div class="row">
                     <h5 class="mb-2 fw-bold">
                         <span class="badge rounded-pill badge-light-primary">
-                            Maklumat MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SPKS
+                            Maklumat MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN IKEPS
                         </span>
                     </h5>
                     <div class="col-md-2 mb-1">
