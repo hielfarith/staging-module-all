@@ -439,8 +439,8 @@
         @endif
         <!-- ----end skps--- -->
 
-        <!-- ----start ikeps--- -->
-        @if ($instrumen->type == 'IKEPS')
+        <!-- ----start skps--- -->
+        @if ($instrumen->type == 'SKPAK')
             <form id="forminstrumenskpak" novalidate="novalidate">
                 <div class="row">
                     <h5 class="mb-2 fw-bold">
@@ -655,7 +655,7 @@
                 </div>
             </form>
         @endif
-        <!-- ----end ikeps--- -->
+        <!-- ----end skps--- -->
     </div>
 
 
