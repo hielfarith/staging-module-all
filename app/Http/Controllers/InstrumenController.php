@@ -540,10 +540,11 @@ class InstrumenController extends Controller
     {
         $negeris = MasterState::all();
         $allInstitutes = SkipsInstitusiPendidikan::pluck('nama', 'id');
+        $disabled = '';
 
         $type = 'borang';
         $butiran_id = null;
-        return view('instrumen_update.skips.form', compact('negeris', 'type', 'butiran_id', 'allInstitutes'));
+        return view('instrumen_update.skips.form', compact('negeris', 'type', 'butiran_id', 'allInstitutes', 'disabled'));
     }
 
     public function saveSkips(Request $request)
