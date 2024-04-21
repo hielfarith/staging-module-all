@@ -31,9 +31,11 @@ class PengurusanIkepsController extends Controller
 
     public function BorangIkepsBaru(Request $request)
     {
+        $type = $request->type;
+
         if(!isset($request->tahun)){
             $tahun = Carbon::now()->format('Y');
-            return to_route('ikeps.ikeps_baru', ['tahun' => $tahun]);
+            return to_route('ikeps.ikeps_baru', ['tahun' => $tahun, 'type' => $type]);
         } else {
             $tahun = $request->tahun;
 
@@ -98,7 +100,7 @@ class PengurusanIkepsController extends Controller
                 }
                
                 if ($canFill || $canView) {
-                    return view('ikeps.index', compact('tahun', 'ikeps', 'checkReadOnly', 'verifyStatus' , 'suSukan', 'guruBesar', 'prasaranaSukan', 'kemudahanSukan', 'perancanganSukan', 'statusPenyertaan', 'programSekolah'));
+                    return view('ikeps.index', compact('type', 'tahun', 'ikeps', 'checkReadOnly', 'verifyStatus' , 'suSukan', 'guruBesar', 'prasaranaSukan', 'kemudahanSukan', 'perancanganSukan', 'statusPenyertaan', 'programSekolah'));
                 } else {
                     $request->session()->flash('danger', 'Permission denied');
                     //return redirect()->route('ikeps.ringkasan_ikeps', ['tahun' => $tahun]);

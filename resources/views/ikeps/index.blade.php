@@ -44,21 +44,21 @@ if($checkReadOnly){
     <hr>
 
     <div class="card-body">
-        <ul class="nav nav-pills nav-justified" role="tablist">
+        <ul class="nav nav-pills nav-justified" role="tablist" style="display:none">
             <li class="nav-item" role="presentation">
-                <a class="text-uppercase text-wrap nav-link fw-bolder active" id="tab-prasarana-kemudahan" data-bs-toggle="tab" href="#prasarana-kemudahan" aria-controls="prasarana-kemudahan" role="tab" aria-selected="true">
+                <a class="text-uppercase text-wrap nav-link fw-bolder @if($type==1) active @endif" id="tab-prasarana-kemudahan" data-bs-toggle="tab" href="#prasarana-kemudahan" aria-controls="prasarana-kemudahan" role="tab" aria-selected="true">
                     Prasarana & Kemudahan Sukan
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="text-uppercase text-wrap nav-link fw-bolder" id="tab-program-koku-seni" data-bs-toggle="tab" href="#program-koku-seni" aria-controls="program-koku-seni" role="tab" aria-selected="true">
+                <a class="text-uppercase text-wrap nav-link fw-bolder @if($type==2) active @endif" id="tab-program-koku-seni" data-bs-toggle="tab" href="#program-koku-seni" aria-controls="program-koku-seni" role="tab" aria-selected="true">
                     Program Sukan, Kokurikulum & Kesenian
                 </a>
             </li>
         </ul>
         <hr>
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="prasarana-kemudahan" role="tabpanel" aria-labelledby="tab-prasarana-kemudahan">
+            <div class="tab-pane fade show @if($type==1) active @endif" id="prasarana-kemudahan" role="tabpanel" aria-labelledby="tab-prasarana-kemudahan">
                 <ul class="nav nav-pills nav-justified" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="text-uppercase text-wrap nav-link fw-bolder active" id="prasarana-sukan-tab" data-bs-toggle="tab" href="#prasarana-sukan" aria-controls="prasarana-sukan" role="tab" aria-selected="true">
@@ -81,7 +81,7 @@ if($checkReadOnly){
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade show" id="program-koku-seni" role="tabpanel" aria-labelledby="tab-program-koku-seni">
+            <div class="tab-pane fade show @if($type==2) active @endif" id="program-koku-seni" role="tabpanel" aria-labelledby="tab-program-koku-seni">
                 <ul class="nav nav-pills nav-justified" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="text-uppercase text-wrap nav-link fw-bolder active" id="perancangan-sukan-tab" data-bs-toggle="tab" href="#perancangan-sukan" aria-controls="perancangan-sukan" role="tab" aria-selected="true">

@@ -233,12 +233,27 @@
                         </li>
 
                         <li
-                            class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
-                            <a href="{{ route('ikeps.ikeps_baru') }}" class="nav-link">
-                                <span class="menu-title text-truncate text-wrap">
-                                    Modul Pengisian Data Instrumen
-                                </span>
+                            class="nav-item">
+
+                            <a href="#" class="nav-link">
+                                <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
                             </a>
+
+                            <ul class="nav">
+                                <li
+                                    class="nav-item {{ (request()->route()->getName() == 'ikeps.ikeps_baru' && request()->route()->parameter('type') == 1) ? 'active' : '' }}">
+                                    <a href="{{ route('ikeps.ikeps_baru', ['type' => 1]) }}" class="nav-link">
+                                        <span class="menu-title text-truncate text-wrap">Prasarana & Kemudahan Sukan</span>
+                                    </a>
+                                </li>
+
+                                <li
+                                    class="nav-item {{ (request()->route()->getName() == 'ikeps.ikeps_baru' && request()->route()->parameter('type') == 2) ? 'active' : '' }}">
+                                    <a href="{{ route('ikeps.ikeps_baru', ['type' => 2]) }}" class="nav-link">
+                                        <span class="menu-title text-truncate text-wrap">Program Sukan, Kokurikulum & Kesenian</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li
@@ -979,7 +994,7 @@
 
                         <ul class="nav">
                             <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
-                                <a href="{{ route('ikeps.ikeps_baru') }}" class="nav-link">
+                                <a href="{{ route('ikeps.ikeps_baru', ['type' => 1]) }}" class="nav-link">
                                     <span class="menu-title text-truncate text-wrap">
                                         Pengisian I-KePS
                                     </span>
@@ -1030,12 +1045,27 @@
                         </li>
 
                         <li
-                            class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
-                            <a href="{{ route('ikeps.ikeps_baru') }}" class="nav-link">
-                                <span class="menu-title text-truncate text-wrap">
-                                    Modul Pengisian Data Instrumen
-                                </span>
+                            class="nav-item">
+
+                            <a href="#" class="nav-link">
+                                <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
                             </a>
+
+                            <ul class="nav">
+                                <li
+                                    class="nav-item {{ (request()->route()->getName() == 'ikeps.ikeps_baru' && request()->route()->parameter('type') == 1) ? 'active' : '' }}">
+                                    <a href="{{ route('ikeps.ikeps_baru', ['type' => 1]) }}" class="nav-link">
+                                        <span class="menu-title text-truncate text-wrap">Prasarana & Kemudahan Sukan</span>
+                                    </a>
+                                </li>
+
+                                <li
+                                    class="nav-item {{ (request()->route()->getName() == 'ikeps.ikeps_baru' && request()->route()->parameter('type') == 2) ? 'active' : '' }}">
+                                    <a href="{{ route('ikeps.ikeps_baru', ['type' => 2]) }}" class="nav-link">
+                                        <span class="menu-title text-truncate text-wrap">Program Sukan, Kokurikulum & Kesenian</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li
