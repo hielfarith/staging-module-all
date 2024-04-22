@@ -540,7 +540,7 @@ class InstrumenController extends Controller
     {
         $negeris = MasterState::all();
         $allInstitutes = SkipsInstitusiPendidikan::pluck('nama', 'id');
-        $disabled = '';
+        $disabled = 'disabled';
 
         $type = 'borang';
         $butiran_id = null;

@@ -6,7 +6,7 @@
         $instrumenData = null;
     }
 ?>
-<form id="forminstrumenskips" novalidate="novalidate">
+{{-- <form id="forminstrumenskips" novalidate="novalidate">
     <div class="row">
         <h5 class="mb-2 fw-bold">
             <span class="badge rounded-pill badge-light-primary">
@@ -341,6 +341,282 @@
         </div>
     </div>
     <input type="hidden" name="instrumen_id" id="instrumen_id" value="{{$instrumenData ? $instrumenData->id : 0}}">
+</form> --}}
+
+<form id="forminstrumenskips" novalidate="novalidate">
+    <div class="row">
+        <h5 class="mb-2 fw-bold">
+            <span class="badge rounded-pill badge-light-primary">
+                Maklumat MEDAN DATA TAMBAH / KEMASKINI INSTRUMEN SKIPS
+            </span>
+        </h5>
+        <div class="col-md-2 mb-1">
+            <label class="fw-bold form-label">Nama Instrumen <span class="text-danger">:</span></label>
+        </div>
+        <div class="col-md-4 mb-1">
+            <input type="text" class="form-control" name="nama_instrumen"
+                required
+                onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
+        </div>
+        <div class="col-md-2 mb-1">
+            <label class="fw-bold form-label">Tarikh Kuatkuasa<span class="text-danger">:</span></label>
+        </div>
+        <div class="col-md-4 mb-1">
+            <input type="text" class="form-control flatpickr" name="tarikh_kuatkuasa" required>
+        </div>
+        <div class="col-md-2 mb-1">
+            <label class="fw-bold form-label">Tujuan Instrumen<span class="text-danger">:</span></label>
+        </div>
+        <div class="col-md-4 mb-1">
+            <input type="text" class="form-control" name="tujuan_instrumen" required>
+        </div>
+        <div class="col-md-2 mb-1">
+            <label class="fw-bold form-label">Status<span class="text-danger">:</span></label>
+        </div>
+        <div class="col-md-4 mb-1">
+            <select class="form-control select2" name="status" required>
+                <option value="">Sila Pilih</option>
+                <option value="1">Active</option>
+                <option value="2">InActive</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 ">
+            <div class="card ">
+                <div class="card-header" style="background-color: #F3F2F7">
+                    <h4 class="card-title fw-bolder">Pengisian</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-1">
+                        <div class="col-md-4 ">
+                            <label class="fw-bold form-label">Institut <span
+                                    class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 ">
+                            <select class="form-control select2" name="institusi_pengisian" required id="institusi_pengisian">
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mt-1">
+                            <label class="fw-bold form-label">Peranan <span class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 mt-1">
+                            <select class="form-control select2" name="pengisian_oleh" required>
+                                <option value="">Sila Pilih</option>
+                                <option value="PENGETUA">PENGETUA</option>
+                                <option value="GURU BESAR INSTITUSI">GURU BESAR INSTITUSI</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mt-1">
+                            <label class="fw-bold form-label">Tarikh <span
+                                    class="text-danger">:</span></label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Dari</span>
+                                    <input type="date" class="form-control" id="fromDate" name="pengisian_dari">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate" name="pengisian_hingga">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 ">
+            <div class="card ">
+                <div class="card-header" style="background-color: #F3F2F7">
+                    <h4 class="card-title fw-bolder">Pengesahan</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-1">
+                        <div class="col-md-4 ">
+                            <label class="fw-bold form-label">Institut <span
+                                    class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 ">
+                            <select class="form-control select2" name="institusi_pengesahan" required id="institusi_pengesahan">
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mt-1">
+                            <label class="fw-bold form-label">Peranan <span class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 mt-1">
+                            <select class="form-control select2" name="pengesahan_ole" required>
+                                <option value="">Sila Pilih</option>
+                                <option value="PPD">PPD</option>
+                                <option value="JPN">JPN</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mt-1">
+                            <label class="fw-bold form-label">Tarikh <span
+                                    class="text-danger">:</span></label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Dari</span>
+                                    <input type="date" class="form-control" id="fromDate" name="pengesahan_dari">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate" name="pengesahan_hingga">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 ">
+            <div class="card ">
+                <div class="card-header" style="background-color: #F3F2F7">
+                    <h4 class="card-title fw-bolder">Verifikasi</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-1">
+                        <div class="col-md-4 ">
+                            <label class="fw-bold form-label">Institut <span
+                                    class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 ">
+                            <select class="form-control select2" name="institusi_verifikasi" required id="institusi_verifikasi">
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mt-1">
+                            <label class="fw-bold form-label">Peranan <span class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 mt-1">
+                            <select class="form-control select2" name="verifikasi_oleh" required>
+                                <option value="">Sila Pilih</option>
+                                <option value="JPN">JPN</option>
+                                <option value="KPM">KPM</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mt-1">
+                            <label class="fw-bold form-label">Tarikh <span
+                                    class="text-danger">:</span></label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Dari</span>
+                                    <input type="date" class="form-control" id="fromDate" name="verifikasi_dari">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate" name="verifikasi_hingga">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 ">
+            <div class="card ">
+                <div class="card-header" style="background-color: #F3F2F7">
+                    <h4 class="card-title fw-bolder">Validasi</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-1">
+                        <div class="col-md-4 ">
+                            <label class="fw-bold form-label">Institut <span
+                                    class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 ">
+                            <select class="form-control select2" name="institusi_validasi" required id="institusi_validasi">
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mt-1">
+                            <label class="fw-bold form-label">Peranan <span class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 mt-1">
+                            <select class="form-control select2" name="validasi_oleh" required>
+                                <option value="">Sila Pilih</option>
+                                <option value="PPD">PPD</option>
+                                <option value="JPN">JPN</option>
+                                <option value="KPM">KPM</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mt-1">
+                            <label class="fw-bold form-label">Tarikh <span
+                                    class="text-danger">:</span></label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Dari</span>
+                                    <input type="date" class="form-control" id="fromDate" name="validasi_dari">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate" name="validasi_hingga">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 ">
+            <div class="card ">
+                <div class="card-header" style="background-color: #F3F2F7">
+                    <h4 class="card-title fw-bolder">Perakuan</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-1">
+                        <div class="col-md-4 ">
+                            <label class="fw-bold form-label">Institut <span class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 ">
+                            <select class="form-control select2" name="institusi_perakuan" required id="institusi_perakuan">
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mt-1">
+                            <label class="fw-bold form-label">Peranan <span class="text-danger">:</span></label>
+                        </div>
+                        <div class="col-md-8 mt-1">
+                            <select class="form-control select2" name="perakuan_oleh" required>
+                                <option value="">Sila Pilih</option>
+                                <option value="PENTADBIR">PENTADBIR</option>
+                                <option value="GURU INSTITUSI">GURU INSTITUSI</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mt-1">
+                            <label class="fw-bold form-label">Tarikh <span
+                                    class="text-danger">:</span></label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Dari</span>
+                                    <input type="date" class="form-control" id="fromDate" name="perakuan_dari">
+                                    <span class="input-group-text"
+                                        style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate" name="perakuan_hingga">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {{-- @if ($readonly != 'readonly') --}}
+            <div class="d-flex justify-content-end align-items-center my-1">
+                <button type="submit" class="btn btn-primary float-right">Hantar</button>
+            </div>
+        {{-- @endif --}}
+    </div>        
 </form>
 
 

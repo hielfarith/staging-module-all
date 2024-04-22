@@ -217,6 +217,7 @@
                                 <button type="submit" class="btn btn-primary float-right">Hantar</button>
                             </div>
                         @endif
+                    </div>
                 @endif
                 <!-- ----end skips--- -->
         </form>
