@@ -5,9 +5,8 @@
                 <h3 class="card-title-modal">
                     Pendaftaran Akaun Modul I-KePS
                 </h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+
             </div>
             <div class="modal-body" style="overflow-y: auto; max-height: 80vh;">
                 {{-- <div class="row">
