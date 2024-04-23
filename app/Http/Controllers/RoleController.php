@@ -82,32 +82,43 @@ class RoleController extends Controller
         //     }
         // }
 
-        Validator::make($request->all(), [
-            'name' => 'required|string|unique:role',
-            'description' => 'required|string',
-            'display_name' => 'required|string',
-        ]);
-        if (isset($request->dynamic)) {
-            $dynamic = 1;
-        } else {
-            $dynamic = 0;
-        }
-        $role = Role::create([
-            'name' => $request->role_name, 
-            'description' => $request->role_description, 
-            'display_name' => $request->role_display, 
-            'guard_name' => 'web', 
-            'dynamic' => $dynamic
-        ]);
-
-        if($role){
-            RoleAccess::create([
-                'role_id' => $role->id,
-                'modul' => $request->modul,
-                'proses' => $request->proses,
-                'capaian' => $request->capaian,
-                'jenis' => $request->jenis,
+        DB::beginTransaction();
+        try{
+            Validator::make($request->all(), [
+                'name' => 'required|string|unique:role',
+                'description' => 'required|string',
+                'display_name' => 'required|string',
             ]);
+            // if (isset($request->dynamic)) {
+            //     $dynamic = 1;
+            // } else {
+            //     $dynamic = 0;
+            // }
+            
+            $role = Role::create([
+                'name' => $request->role_name, 
+                'description' => $request->role_description, 
+                'display_name' => $request->role_display, 
+                'guard_name' => 'web', 
+                'is_internal' => $request->internal
+            ]);
+
+            if($role){
+                RoleAccess::create([
+                    'role_id' => $role->id,
+                    'modul' => $request->modul,
+                    'sub_modul' => implode(',', $request->sub_modul),
+                    'jenis' => implode(',', $request->jenis),
+                ]);
+            }
+
+            DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya"]);
+
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()],404);
         }
 
 
@@ -137,19 +148,38 @@ class RoleController extends Controller
             //     'role_display' => 'required|string',
             // ]);
 
-            if($id_used)
+            // if($id_used)
                 $role = Role::find($id_used);
-            else
-                $role = new Role;
+            // else
+            //     $role = new Role;
 
 
-            $role->name = $request->role_name;
-            $role->description = $request->role_description;
-            $role->display_name = $request->role_display;
-            // $role->update($request->only('role_name', 'role_description','role_display'));
-            //$role->syncPermissions($request->permissions ? $request->permissions : []);
-            $role->save();
+            $role->update([
+                'name' => $request->name, 
+                'description' => $request->description, 
+                'display_name' => $request->display_name, 
+                'is_internal' => $request->internal
+            ]);
+
+            $roleAccess = RoleAccess::where('role_id', $id_used)->first();
+
+            if($roleAccess){
+                $roleAccess->update([
+                    'modul' => $request->modul,
+                    'sub_modul' => implode(',', $request->sub_modul),
+                    'jenis' => implode(',', $request->jenis),
+                ]);
+            } else {
+                RoleAccess::create([
+                    'role_id' => $id_used,
+                    'modul' => $request->modul,
+                    'sub_modul' => implode(',', $request->sub_modul),
+                    'jenis' => implode(',', $request->jenis),
+                ]);
+            }
+
             DB::commit();
+            //return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya"]);
 
         } catch (\Throwable $e) {
 
@@ -157,7 +187,7 @@ class RoleController extends Controller
             return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()],404);
         }
 
-        return to_route('role.index', [$role]);
+       return to_route('role.index');
     }
 
     public function destroy(Request $request, Role $role)
@@ -167,7 +197,8 @@ class RoleController extends Controller
         return redirect()->route('role.index');
     }
 
-    public function getRole(Request $request,Role $roleId){
+    public function getRole(Request $request,Role $roleId)
+    {
 
         DB::beginTransaction();
         $permissions = Permission::all();
@@ -186,5 +217,40 @@ class RoleController extends Controller
         }
 
         DB::commit();
-        return view('admin.role.edit', compact('role', 'permissions'));    }
+        return view('admin.role.edit', compact('role', 'permissions'));    
+    }
+
+    public function getSubModul(Request $request)
+    {
+        if($request->type == 1){
+            $type = 'ikeps';
+        } else if($request->type == 2){
+            $type = 'skips';
+        } else if($request->type == 3){
+            $type = 'skpak';
+        } else {
+            $type = 'spks';
+        }
+        
+        $subModul = config('staticdata.role.sub_modul.'.$type);
+
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => $subModul]);
+    }
+
+    public function getPeranan(Request $request)
+    {
+        if($request->type == 1){
+            $type = 'ikeps';
+        } else if($request->type == 2){
+            $type = 'skips';
+        } else if($request->type == 3){
+            $type = 'skpak';
+        } else {
+            $type = 'spks';
+        }
+        
+        $peranan = config('staticdata.role.jenis_peranan.'.$type);
+
+        return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => $peranan]);
+    }
 }

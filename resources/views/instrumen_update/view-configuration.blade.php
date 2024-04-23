@@ -204,7 +204,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var configurationID = $('#configurationID').val();
-        var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/pull';
+        var APIUrl = "{{ env('APP_KONFIGURASI_URL') }}" + "api/spks/konfiguration/pull";
 
          $.ajax({
             url: APIUrl,
@@ -213,7 +213,7 @@
                 id: configurationID
             },
             success: function(response) {
-                var array = ['pengisian_institut', 'pengisian_peranan', 'validasi_institut', 'validasi_peranan', 'verfikasi_institut', 'verfikasi_peranan', 'status'];
+                var array = ['pengisian_institut', 'pengisian_peranan', 'pengisian_dari', 'pengisian_hingga', 'validasi_institut', 'validasi_peranan', 'validasi_dari', 'validasi_hingga', 'verfikasi_institut', 'verfikasi_peranan', 'verifikasi_dari', 'verifikasi_hingga', 'status'];
                 for (const [key, value] of Object.entries(response.data)) {
                     if (key != 'id' || key != 'remarks' || key != 'created_at' || key != 'updated_at') {
                         if (jQuery.inArray(key, array) !== -1 ) {
@@ -261,7 +261,7 @@
         if (error) {
             return false;
         }
-        var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/update';
+        var APIUrl = "{{ env('APP_KONFIGURASI_URL') }}" + "api/spks/konfiguration/update";
 
         $.ajax({
             url: APIUrl,

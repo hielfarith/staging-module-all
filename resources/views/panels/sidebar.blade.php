@@ -1,7 +1,6 @@
 @php
     $configData = Helper::applClasses();
 @endphp
-
 <div class="main-menu menu-fixed {{ $configData['theme'] === 'dark' || $configData['theme'] === 'semi-dark' ? 'menu-dark' : 'menu-light' }} menu-accordion menu-shadow"
     data-scroll-to-active="true">
     <div class="navbar-header">
@@ -40,6 +39,7 @@
                     <span class="menu-title text-truncate text-wrap">Pengumuman </span>
                 </a>
             </li>
+            
             <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                 <a href="#" class="nav-link">
                     {{-- <i data-feather="home"></i> --}}
@@ -838,6 +838,495 @@
                 </li>
             @endhasanyrole
 
+
+            <?php
+                $role = auth()->user()->roles()->first();
+                $roleAccess = App\Models\RoleAccess::where('role_id', $role->id)->first();
+
+                if($roleAccess){
+                    $subModul = explode(',', $roleAccess->sub_modul);
+                }
+                
+            ?>
+            
+            @if($roleAccess)
+            @if($roleAccess->modul == 1)
+            <li class="navigation-header">
+                <span> I-KePS </span>
+            </li>
+            <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> I-KePS </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Pengumuman
+                            </span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item">
+
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
+                        </a>
+
+                        <ul class="nav">
+                            <li
+                                class="nav-item {{ (request()->route()->getName() == 'ikeps.ikeps_baru' && request()->route()->parameter('type') == 1) ? 'active' : '' }}">
+                                <a href="{{ route('ikeps.ikeps_baru', ['type' => 1]) }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap">Prasarana & Kemudahan Sukan</span>
+                                </a>
+                            </li>
+
+                            <li
+                                class="nav-item {{ (request()->route()->getName() == 'ikeps.ikeps_baru' && request()->route()->parameter('type') == 2) ? 'active' : '' }}">
+                                <a href="{{ route('ikeps.ikeps_baru', ['type' => 2]) }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap">Program Sukan, Kokurikulum & Kesenian</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ringkasan_ikeps']) ? 'active' : '' }}">
+                        <a href="{{ route('ikeps.ringkasan_ikeps') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Verifikasi Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.laporan_ikeps']) ? 'active' : '' }}">
+                        <a href="{{ route('ikeps.laporan_ikeps') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Muat Turun Data Penilaian
+                            </span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.pemantauan_ikeps']) ? 'active' : '' }}">
+                        <a href="{{ route('ikeps.pemantauan_ikeps') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Dashboard
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Sistem</span>
+                        </a>
+
+                        <ul class="nav">
+
+                            <li
+                                class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-sedia-ada']) ? 'active' : '' }}">
+                                <a href="{{ route('admin.instrumen.senarai-sedia-ada') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Senarai Instrumen Sedia Ada
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li
+                                class="nav-item {{ in_array(request()->route()->getName(), ['show_all_forms']) ? 'active' : '' }}">
+                                <a href="{{ route('show_all_forms') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Senarai Instrumen Dinamik </span>
+                                </a>
+                            </li>
+
+                            <li
+                                class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.instrumenikeps-list']) ? 'active' : '' }}">
+                                <a href="{{ route('admin.instrumen.instrumenikeps-list') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap">Instrumen Baru</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['admin.internal.jurulatihlist']) ? 'active' : '' }}">
+                        <a href="{{ route('admin.internal.jurulatihlist') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap"> Modul Kemaskini Profil Pengguna </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
+            @if($roleAccess->modul == 2)
+            <li class="navigation-header">
+                <span> SKIPS </span>
+            </li>
+            <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> SKIPS </span>
+                </a>
+                <ul class="nav">
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Pengumuman</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.skips_baru') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen [Pusat]
+                            </span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.sekolah']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.skips_sekolah') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen [Sekolah]
+                            </span>
+                        </a>
+                    </li>
+
+                    <!--  -->
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Skips[Pusat]
+                            </span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi-sekolah']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai-skips-institusi-sekolah') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai Skips [Sekolah]
+                            </span>
+                        </a>
+                    </li>
+
+
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Validasi
+                            </span>
+                        </a>
+                    </li>
+
+                    <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap">
+                                                                                                                                                Modul Verifikasi Data Instrumen
+                                                                                                                                            </span>
+                                                                                                                                        </a>
+                                                                                                                                    </li>
+
+                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.validasi-skips']) ? 'active' : '' }}">
+                                                                                                                                        <a href="{{ route('skips.validasi-skips') }}" class="nav-link">
+                                                                                                                                            <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
+                                                                                                                                        </a>
+                                                                                                                                    </li> -->
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.pelaporan-penarafan']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.pelaporan-penarafan') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
+                        </a>
+                    </li>
+
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
+                            <!-- {{-- <i data-feather="home"></i> --}} -->
+                            <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-skips']) ? 'active' : '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai_institusi']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.senarai_institusi') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi
+                                Pendidikan</span>
+                        </a>
+                    </li>
+
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.kemaskini-profil']) ? 'active' : '' }}">
+                        <a href="{{ route('skips.kemaskini-profil') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
+                        </a>
+                    </li>
+
+                    <!--    {{-- <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <span class="menu-title text-truncate text-wrap">Modul Notifikasi</span>
+                    </a>
+                </li> --}} -->
+
+                </ul>
+            </li>
+            @endif
+
+            @if($roleAccess->modul == 3)
+            <li class="navigation-header">
+                <span> SKPAK </span>
+            </li>
+            <li class="nav-item ">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> SKPAK </span>
+                </a>
+                <ul class="nav">
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Pengumuman</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.skpak_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.skpak_baru') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pengesahan Pengisian Data
+                                Instrumen</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.verfikasi_senarai']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.verfikasi_senarai') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Verifikasi Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.validasi_senarai']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.validasi_senarai') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.menunggu_penarafan']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.menunggu_penarafan') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.dashboard']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.dashboard') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-skpak']) ? 'active' : '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-skpak') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi
+                                Pendidikan</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.senarai_penetapan']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.senarai_penetapan') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Penetapan Penilai</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.borang_rentas']) ? 'active' : '' }}">
+                        <a href="{{ route('skpak.borang_rentas') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Rentas</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
+                        <a href="#" class="nav-link">
+                            <i data-feather="folder"></i>
+                            <span class="menu-title text-truncate text-wrap"> Modul Kemaskini Profil Pengguna </span>
+                        </a>
+                        <ul class="nav">
+                            <li
+                                class="nav-item {{ in_array(request()->route()->getName(), ['admin.internal.penggunalist']) ? 'active' : '' }}">
+                                <a href="{{ route('admin.internal.penggunalist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Ketua Taska </span>
+                                </a>
+                            </li>
+
+                            <li
+                                class="nav-item {{ in_array(request()->route()->getName(), ['admin.internal.penilailist']) ? 'active' : '' }}">
+                                <a href="{{ route('admin.internal.penilailist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Panel Penilai </span>
+                                </a>
+                            </li>
+
+                            <li
+                                class="nav-item {{ in_array(request()->route()->getName(), ['admin.internal.agensilist']) ? 'active' : '' }}">
+                                <a href="{{ route('admin.internal.agensilist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Ketua Agensi </span>
+                                </a>
+                            </li>
+
+                            <li
+                                class="nav-item {{ in_array(request()->route()->getName(), ['admin.internal.jawatankuasalist']) ? 'active' : '' }}">
+                                <a href="{{ route('admin.internal.jawatankuasalist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Ahli Jawatan Kerja </span>
+                                </a>
+                            </li>
+                            <li
+                                class="nav-item {{ in_array(request()->route()->getName(), ['admin.internal.jawatankuasatertinggilist']) ? 'active' : '' }}">
+                                <a href="{{ route('admin.internal.jawatankuasatertinggilist') }}" class="nav-link">
+                                    <span class="menu-title text-truncate text-wrap"> Ahli Jawatan Tertinggi </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
+            @if($roleAccess->modul ==4)
+            <li class="navigation-header">
+                <span> SPKS</span>
+            </li>
+            <li class="nav-item {{ request()->is('admin/internal*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i data-feather="folder"></i>
+                    <span class="menu-title text-truncate text-wrap"> SPKS </span>
+                </a>
+                <ul class="nav">
+                    @if(in_array(1, $subModul))
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.spks_baru']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.spks_baru') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Pengisian Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array(2, $subModul))
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.senarai-spks']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.senarai-spks') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Senarai SPKS
+                            </span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array(3, $subModul))
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.verfikasi_senarai']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.verfikasi_senarai') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">
+                                Modul Verifikasi Data Instrumen
+                            </span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array(4, $subModul))
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.validasi_senarai']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.validasi_senarai') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array(5, $subModul))
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.senarai-instrumen']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.senarai-instrumen') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Instrumen</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array(6, $subModul))
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.laporan-penarafan']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.laporan-penarafan') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array(7, $subModul))
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.dashboard']) ? 'active' : '' }}">
+                        <a href="{{ route('spks.dashboard') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array(8, $subModul))
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-spks']) ? 'active' : '' }}">
+                        <a href="{{ route('admin.instrumen.senarai-spks') }}" class="nav-link">
+                            <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Sistem</span>
+                        </a>
+                    </li>
+                    @endif
+                </ul>
+            </li>
+            @endif
+            @endif
+
             @hasanyrole('jabatan_pendidikan_negeri')
                 <li class="navigation-header">
                     <span> Pengurusan Pengguna</span>
@@ -964,71 +1453,71 @@
             @endhasanyrole
 
             @hasanyrole('setiausaha_sukan|guru_sekolah')
-                {{-- <li class="navigation-header">
+            {{-- <li class="navigation-header">
                 <span> Pengurusan Instrumen</span>
-            </li>
-            <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link">
-                    <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate text-wrap"> Instrumen </span>
-                </a>
-                <ul class="nav">
+                </li>
+                <li class="nav-item {{ request()->is('pengurusan_instrumen*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i data-feather="folder"></i>
+                        <span class="menu-title text-truncate text-wrap"> Instrumen </span>
+                    </a>
+                    <ul class="nav">
 
-                    <li class="nav-item {{ in_array(request()->route()->getName(),['pilih_instrumen'])? 'active': '' }}">
-                        <a href="{{ route('pilih_instrumen') }}" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap"> Jawab Instrumen </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                        <li class="nav-item {{ in_array(request()->route()->getName(),['pilih_instrumen'])? 'active': '' }}">
+                            <a href="{{ route('pilih_instrumen') }}" class="nav-link">
+                                <span class="menu-title text-truncate text-wrap"> Jawab Instrumen </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-            <li class="navigation-header">
-                <span> Pengurusan Modul </span>
-            </li>
-            <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link">
-                    <i data-feather="folder"></i>
-                    <span class="menu-title text-truncate text-wrap"> Modul </span>
-                </a>
-                <ul class="nav">
-                    <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">
-                                Instrument I-KePS
-                            </span>
-                        </a>
+                <li class="navigation-header">
+                    <span> Pengurusan Modul </span>
+                </li>
+                <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i data-feather="folder"></i>
+                        <span class="menu-title text-truncate text-wrap"> Modul </span>
+                    </a>
+                    <ul class="nav">
+                        <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
+                            <a href="#" class="nav-link">
+                                <span class="menu-title text-truncate text-wrap">
+                                    Instrument I-KePS
+                                </span>
+                            </a>
+
+                            <ul class="nav">
+                                <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
+                                    <a href="{{ route('ikeps.ikeps_baru', ['type' => 1]) }}" class="nav-link">
+                                        <span class="menu-title text-truncate text-wrap">
+                                            Pengisian I-KePS
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
+                            <a href="#" class="nav-link">
+                                <span class="menu-title text-truncate text-wrap">
+                                    Instrument I-SKIPS
+                                </span>
+                            </a>
 
                         <ul class="nav">
-                            <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ikeps_baru']) ? 'active' : '' }}">
-                                <a href="{{ route('ikeps.ikeps_baru', ['type' => 1]) }}" class="nav-link">
+                            <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                                <a href="{{ route('skips.skips_baru') }}" class="nav-link">
                                     <span class="menu-title text-truncate text-wrap">
-                                        Pengisian I-KePS
+                                        Pengisian SKIPS
                                     </span>
                                 </a>
                             </li>
-                        </ul>
-                    </li>
-                </ul>
-                 <ul class="nav">
-                    <li class="nav-item {{ request()->is('modul_instrumen*') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link">
-                            <span class="menu-title text-truncate text-wrap">
-                                Instrument I-SKIPS
-                            </span>
-                        </a>
-
-                     <ul class="nav">
-                        <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
-                            <a href="{{ route('skips.skips_baru') }}" class="nav-link">
-                                <span class="menu-title text-truncate text-wrap">
-                                    Pengisian SKIPS
-                                </span>
-                            </a>
+                            </ul>
                         </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li> --}}
+                    </ul>
+                </li> --}}
             @endhasanyrole
 
             @hasanyrole('setiausaha_sukan|pengetua_guru_besar|penolong_kanan_kokurikulum|kpp_pp_ppp')

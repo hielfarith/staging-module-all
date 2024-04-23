@@ -53,9 +53,12 @@
 
                          <div class="form-group row">
                             <div class="col-md-12 col-12">
-                            <label for="inputDescription" class="col-form-label">
-                                <input type="checkbox" name="dynamic" class="form-check-input" value="1"> 
-                                FMF</label>
+                                <label for="inputDescription" class="col-form-label">
+                                <input type="radio" name="internal" class="form-check-input" value="1"> 
+                                Internal</label>
+                                <label for="inputDescription" class="col-form-label">
+                                <input type="radio" name="internal" class="form-check-input" value="0"> 
+                                External</label>
                             </div>
                         </div>
                         {{-- <div class="col-md-12 col-12">
@@ -82,7 +85,7 @@
                             <div class="form-group">
                                 <label class="form-label fw-bolder" for="modul">Modul<span
                                         class="text text-danger">*</span> </label>
-                                <select id="modul" class="form-control select2" name="modul" required>
+                                <select id="modul" class="form-control select2" name="modul" required onchange="getSubModul(this.value)">
                                     <option value="" hidden></option>
                                     @foreach(config('staticdata.role.modul') as $key => $modul)
                                     <option value="{{ $key }}">{{ $modul }}</option>
@@ -91,6 +94,18 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-label fw-bolder" for="sub_modul">Sub Modul<span
+                                        class="text text-danger">*</span> </label>
+                                <select id="sub_modul" class="form-control select2" name="sub_modu[]" required multiple>
+                                    <option value="" hidden></option>
+                                    {{-- @foreach(config('staticdata.role.sub_modul.spks') as $key => $subModul)
+                                    <option value="{{ $key }}">{{ $subModul }}</option>
+                                    @endforeach --}}
+                                </select>
+                            </div>
+                        </div>
+                        {{-- <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="form-label fw-bolder" for="proses">Pilihan Proses<span
                                         class="text text-danger">*</span> </label>
@@ -101,28 +116,28 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-12">
+                        </div> --}}
+                        {{-- <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="form-label fw-bolder" for="capaian">Had Capaian<span
                                         class="text text-danger">*</span> </label>
-                                <select id="capaian" class="form-control select2" name="capaian" required>
+                                <select id="capaian" class="form-control select2" name="capaian[]" required multiple>
                                     <option value="" hidden></option>
                                     @foreach(config('staticdata.role.had_capaian') as $key => $capaian)
                                     <option value="{{ $key }}">{{ $capaian }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="form-label fw-bolder" for="jenis">Jenis Peranan<span
                                         class="text text-danger">*</span> </label>
-                                <select id="jenis" class="form-control select2" name="jenis" required>
+                                <select id="jenis" class="form-control select2" name="jenis[]" required multiple>
                                     <option value="" hidden></option>
-                                    @foreach(config('staticdata.role.jenis_peranan') as $key => $jenis)
+                                    {{-- @foreach(config('staticdata.role.jenis_peranan') as $key => $jenis)
                                     <option value="{{ $key }}">{{ $jenis }}</option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                             </div>
                         </div>
@@ -139,6 +154,54 @@
     </div>
 </div>
 
+<script>
+    function getSubModul($type){
+        
+        url = "{{ route('role.get-sub-modul', ':replaceThis') }}";
+        url = url.replace(':replaceThis', $type);
+
+        $.ajax({
+            url: url,
+            method: 'GET',
+            async: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#sub_modul option:not([hidden])').remove();
+
+                // Iterate over the 'detail' object and append options
+                $.each(data.detail, function(key, value) {
+                    $('#sub_modul').append($('<option>', {
+                        value: key,
+                        text: value
+                    }));
+                });
+            }
+        });
+
+        url2 = "{{ route('role.get-peranan', ':replaceThis') }}";
+        url2 = url2.replace(':replaceThis', $type);
+
+        $.ajax({
+            url: url2,
+            method: 'GET',
+            async: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#jenis option:not([hidden])').remove();
+
+                // Iterate over the 'detail' object and append options
+                $.each(data.detail, function(key, value) {
+                    $('#jenis').append($('<option>', {
+                        value: key,
+                        text: value
+                    }));
+                });
+            }
+        });
+    }
+</script>
 @section('vendor-script')
     <!-- vendor files -->
     <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>

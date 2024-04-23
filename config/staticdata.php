@@ -19,19 +19,44 @@ return [
 
     'role' => [
         'modul' => [
-            1 => 'SKPAK',
-            2 => 'SPKS',
-            3 => 'SKIPS',
-            4 => 'iKEPS',
-            5 => 'Admin',
+            1 => 'iKEPS',
+            2 => 'SKIPS',
+            3 => 'SKPAK',
+            4 => 'SPKS',
+            //5 => 'Admin',
+        ],
+        'sub_modul' => [
+            'ikeps' => [
+
+            ],
+            'skips' => [
+                
+            ],
+            'skpak' => [
+
+            ],
+            'spks' => [
+                1 => 'Modul Pengisian Data Instrumen',
+                2 => 'Senarai SPKS',
+                3 => 'Modul Verifikasi Data Instrumen',
+                4 => 'Modul Validasi Data Instrumen' ,
+                5 => 'Modul Pelaporan Data Instrumen',
+                6 => 'Modul Pelaporan Penarafan',
+                7 => 'Modul Dashboard',
+                8 => 'Modul Konfigurasi Sistem',
+            ]
         ],
         'pilihan_proses' => [
-            1 => 'Pengurusan Pengguna',
-            2 => 'Pentadbiran Sistem Dan Pengurusan Instrumen Peperiksaan Dan Pengisian',
-            3 => 'Pengisian Data Pemeriksaan Dan Penilaian',
-            4 => 'Modul Verifikasi Dan Validasi Data Pemeriksaan Dan Penilaian',
-            5 => 'Laporan Penarafan / Muat Turun',
-            6 => 'Analisa & Dashboard',
+            // 1 => 'Pengurusan Pengguna',
+            // 2 => 'Pentadbiran Sistem Dan Pengurusan Instrumen Peperiksaan Dan Pengisian',
+            // 3 => 'Pengisian Data Pemeriksaan Dan Penilaian',
+            // 4 => 'Modul Verifikasi Dan Validasi Data Pemeriksaan Dan Penilaian',
+            // 5 => 'Laporan Penarafan / Muat Turun',
+            // 6 => 'Analisa & Dashboard',
+            1 => 'Pengisian',
+            2 => 'Hantar Penilaian Kendiri',
+            3 => 'Semakan dan Verifikasi Instrumen',
+            4 => 'Validasi Instrumen',
         ],
         'had_capaian' => [
             1 => 'Tambah Data',
@@ -40,9 +65,16 @@ return [
             4 => 'Lihat Sahaja',
         ],
         'jenis_peranan' => [
-            1 => 'PPD',
-            2 => 'JPN',
-            3 => 'BPSwasta',
+            'spks' => [
+                1 => 'Penyelaras SPKS',
+                2 => 'Pengesah SPKS',
+                3 => 'Pegawai Pengesah SPKS PPD',
+                4 => 'Pegawai Pengesah SPKS JPN',
+                5 => 'Pegawai Pengesah BPSH SPKS',
+            ]
+            // 1 => 'PPD',
+            // 2 => 'JPN',
+            // 3 => 'BPSwasta',
         ],
     ],
 

@@ -115,7 +115,7 @@
             });
 
 
-            var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/senarai';
+            var APIUrl = "{{ env('APP_KONFIGURASI_URL') }}" + "api/spks/konfiguration/senarai";
             // TableSenaraiInstrumenSpks
             $.ajax({
                 url: APIUrl,
@@ -193,7 +193,7 @@
             var nama_instrumen = $('#nama_instrumen').val();
             var tujuan_instrumen = $('#tujuan_instrumen').val();
             var pengisian_institut = $('#pengisian_institut').val();
-            var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/search';
+            var APIUrl = "{{ env('APP_KONFIGURASI_URL') }}" + "api/spks/konfiguration/search";
              $.ajax({
                 url: APIUrl, // Route URL
                 type: 'POST', // Request type (GET, POST, etc.)

@@ -254,7 +254,7 @@
             }
         })
 
-        var APIUrl = '{{ env('APP_KONFIGURASI_URL') }}' + 'api/spks/konfiguration/save';
+        var APIUrl = "{{ env('APP_KONFIGURASI_URL') }}" + "api/spks/konfiguration/save";
 
         $.ajax({
             url: APIUrl,

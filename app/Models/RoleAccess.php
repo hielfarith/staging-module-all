@@ -11,11 +11,12 @@ class RoleAccess extends Model
 
     protected $table = 'role_access';
 
+    protected $primaryKey = 'role_id';
+
     protected $fillable = [
         'role_id', 
         'modul', 
-        'proses',
-        'capaian',
+        'sub_modul',
         'jenis' 
     ];
 

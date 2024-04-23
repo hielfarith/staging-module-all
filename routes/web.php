@@ -79,6 +79,8 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::get('edit/{roleId}', [RoleController::class, 'getRole'])->name('role.edit');
+    Route::get('role/get-sub-modul/{type}', [RoleController::class, 'getSubModul'])->name('role.get-sub-modul');
+    Route::get('role/get-peranan/{type}', [RoleController::class, 'getPeranan'])->name('role.get-peranan');
 
     Route::prefix('settings')->group(function () {
         Route::controller(SettingsController::class)->group(function () {

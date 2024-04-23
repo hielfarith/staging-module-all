@@ -23,15 +23,15 @@
                     @csrf
                     <input type="hidden" name="_method" value="PUT"/>
                     <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" value="{{ $role->name }}" class="form-control" id="inputName" placeholder="Name" readonly>
+                            <input type="text" name="name" value="{{ $role->name }}" class="form-control" id="name" placeholder="Name" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Display Name</label>
+                        <label for="display_name" class="col-sm-2 col-form-label">Display Name</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" value="{{ $role->display_name }}" class="form-control" id="inputName" placeholder="Name">
+                            <input type="text" name="display_name" value="{{ $role->display_name }}" class="form-control" id="display_name" placeholder="Name">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -39,6 +39,15 @@
                         <div class="col-sm-10">
                             <input type="text" name="description" value="{{ $role->description }}" class="form-control" id="inputDescription" placeholder="Description">
                         </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label for="internal" class="col-form-label">
+                                <input type="radio" name="internal" class="form-check-input" value="1" @if($role->is_internal) checked @endif> 
+                                Internal</label>
+                                <label for="inputDescription" class="col-form-label">
+                                <input type="radio" name="internal" class="form-check-input" value="0" @if(!$role->is_internal) checked @endif> 
+                                External</label></div>
                     </div>
                     {{-- <div class="form-group row">
                         <label for="inputDescription" class="col-sm-2 col-form-label">Permissions</label>
@@ -54,9 +63,9 @@
                         </div>
                     </div> --}}
                     <div class="form-group row">
-                        <label for="inputDescription" class="col-sm-2 col-form-label">Modul</label>
+                        <label for="modul" class="col-sm-2 col-form-label">Modul</label>
                         <div class="col-sm-10">
-                            <select id="modul" class="form-control select2" name="modul" required>
+                            <select id="modul" class="form-control select2" name="modul" required onchange="getSubModul(this.value)">
                                 <option value="" hidden></option>
                                 @foreach(config('staticdata.role.modul') as $key => $modul)
                                 <option value="{{ $key }}" @if($role->access) @if($key == $role->access->modul) selected @endif @endif>{{ $modul }}</option>
@@ -64,7 +73,30 @@
                             </select>
                         </div>
                     </div>
+                    <?php
+                    if($role->access->modul == 1){
+                        $type = 'ikeps';
+                    } else if($role->access->modul == 2){
+                        $type = 'skips';
+                    } else if($role->access->modul == 3){
+                        $type = 'skpak';
+                    } else {
+                        $type = 'spks';
+                    }
+                    $sub_modul = explode(',', $role->access->sub_modul);
+                    ?>
                     <div class="form-group row">
+                        <label for="sub_modul" class="col-sm-2 col-form-label">Sub Modul</label>
+                        <div class="col-sm-10">
+                            <select id="sub_modul" class="form-control select2" name="sub_modul[]" required multiple>
+                                <option value="" hidden></option>
+                                @foreach(config('staticdata.role.sub_modul.'.$type) as $key => $subModul)
+                                <option value="{{ $key }}" @if($role->access) @if(in_array($key, $sub_modul)) selected @endif @endif>{{ $subModul }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    {{-- <div class="form-group row">
                         <label for="inputDescription" class="col-sm-2 col-form-label">Pilihan Proses</label>
                         <div class="col-sm-10">
                             <select id="proses" class="form-control select2" name="proses" required>
@@ -85,13 +117,13 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
                         <label for="inputDescription" class="col-sm-2 col-form-label">Jenis Peranan</label>
                         <div class="col-sm-10">
-                            <select id="jenis" class="form-control select2" name="jenis" required>
+                            <select id="jenis" class="form-control select2" name="jenis[]" required>
                                 <option value="" hidden></option>
-                                @foreach(config('staticdata.role.jenis_peranan') as $key => $jenis)
+                                @foreach(config('staticdata.role.jenis_peranan.'.$type) as $key => $jenis)
                                 <option value="{{ $key }}" @if($role->access) @if($key == $role->access->jenis) selected @endif @endif>{{ $jenis }}</option>
                                 @endforeach
                             </select>
@@ -102,15 +134,9 @@
                             <a href="{{ route('role.index') }}" class="btn btn-light-secondary text-danger me-1">
                                 Cancel
                             </a>
-                            <a class="btn btn-primary">
-                                Update
-                            </a>
+                            <button type="submit" class="btn btn-primary float-end hovertext waves-effect waves-float waves-light">Update</button>
                         </div>
                     </div>
-
-                    {{-- <div class="card-footer">
-                        <button type="submit" class="btn btn-primary float-end hovertext waves-effect waves-float waves-light">Submit</button>
-                    </div> --}}
                 </form>
             </div>
         </div>
@@ -118,4 +144,53 @@
 
     </div>
 </div>
+
+<script>
+    function getSubModul($type){
+        
+        url = "{{ route('role.get-sub-modul', ':replaceThis') }}";
+        url = url.replace(':replaceThis', $type);
+
+        $.ajax({
+            url: url,
+            method: 'GET',
+            async: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#sub_modul option:not([hidden])').remove();
+
+                // Iterate over the 'detail' object and append options
+                $.each(data.detail, function(key, value) {
+                    $('#sub_modul').append($('<option>', {
+                        value: key,
+                        text: value
+                    }));
+                });
+            }
+        });
+
+        url2 = "{{ route('role.get-peranan', ':replaceThis') }}";
+        url2 = url2.replace(':replaceThis', $type);
+
+        $.ajax({
+            url: url2,
+            method: 'GET',
+            async: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#jenis option:not([hidden])').remove();
+
+                // Iterate over the 'detail' object and append options
+                $.each(data.detail, function(key, value) {
+                    $('#jenis').append($('<option>', {
+                        value: key,
+                        text: value
+                    }));
+                });
+            }
+        });
+    }
+</script>
 @endsection
