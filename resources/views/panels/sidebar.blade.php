@@ -849,7 +849,7 @@
                 
             ?>
             
-            @if($roleAccess)
+            @if($role && $roleAccess)
             @if($roleAccess->modul == 1)
             <li class="navigation-header">
                 <span> I-KePS </span>
