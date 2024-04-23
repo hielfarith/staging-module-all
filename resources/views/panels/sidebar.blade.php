@@ -841,7 +841,11 @@
 
             <?php
                 $role = auth()->user()->roles()->first();
+                if($role) {
                 $roleAccess = App\Models\RoleAccess::where('role_id', $role->id)->first();
+                } else {
+                    $roleAccess = '';
+                }
 
                 if($roleAccess){
                     $subModul = explode(',', $roleAccess->sub_modul);
@@ -849,7 +853,7 @@
                 
             ?>
             
-            @if($role && $roleAccess)
+            @if($roleAccess)
             @if($roleAccess->modul == 1)
             <li class="navigation-header">
                 <span> I-KePS </span>
