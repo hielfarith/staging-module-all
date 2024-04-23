@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Integration\IdmeController;
+use App\Models\Pengumuman;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class PengumumanController extends Controller
 {
@@ -57,5 +61,42 @@ class PengumumanController extends Controller
         // Simulate the call to IdmeController's index method
         $idmeController = new IdmeController;
         return $idmeController->index($request);
+    }
+
+    public function create(){
+        return view('pengumuman.create');
+    }
+
+    public function store(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            
+            if ($request->hasfile('dokumen')) {
+                $file = $request->file('dokumen');
+                $name = Carbon::now()->format('YmdHis').'_'.$file->getClientOriginalName();
+                $path = Storage::disk('public')->putFileAs(
+                    '/pengumuman/dokumen',
+                    $request->file('dokumen'),
+                    $name
+                );
+            } else {
+                $path = null;
+            }
+
+            Pengumuman::create([
+                'tajuk' => $request->tajuk,
+                'keterangan' => $request->keterangan,
+                'dokumen' => $path,
+                'created_by' => auth()->user()->id,
+                'updated_by' => auth()->user()->id
+            ]);
+
+            DB::commit();
+            return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Data Disimpan", 'detail' => "berjaya"]);
+
+        } catch (\Throwable $e) {
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+        }
     }
 }

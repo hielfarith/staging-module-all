@@ -19,7 +19,26 @@
                     <h4 class="card-title fw-bolder">Pengumuman</h4>
                 </div>
                 <div class="card-body">
-
+                    @foreach ($pengumumans as $pengumuman)
+                    <div class="mt-75">
+                        <div class="d-flex mb-2">
+                            <a href="{{ Illuminate\Support\Facades\Storage::disk('public')->url($pengumuman->dokumen) }}" class="me-2">
+                            <img
+                                class="rounded"
+                                src="{{ asset('images/icons/icon-file.png') }}"
+                                width="100"
+                                height="100"
+                            />
+                            </a>
+                            <div class="blog-info">
+                                <h4 class="blog-recent-post-title">{{ $pengumuman->tajuk }}</h4>
+                                <h6 class="blog-recent-post-title">{{ $pengumuman->keterangan }}</h6>
+                                <div class="text-muted mb-0">{{ date_format($pengumuman->created_at, 'Y-m-d') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    @endforeach 
                 </div>
             </div>
         </div>

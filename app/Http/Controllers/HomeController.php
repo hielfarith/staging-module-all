@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use App\Models\Pengumuman;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $pengumumans = Pengumuman::orderBy('created_at', 'desc')->get();
+    
         $user = Auth::user();
 
         $apiKey = config('api.key');
@@ -44,7 +47,7 @@ class HomeController extends Controller
 
         $institusi = $institusiUser;
 
-        return view('dashboard.dashboard_main', compact('user', 'institusi'));
+        return view('dashboard.dashboard_main', compact('pengumumans', 'user', 'institusi'));
 
         // $pageConfigs = ['pageHeader' => false];
 

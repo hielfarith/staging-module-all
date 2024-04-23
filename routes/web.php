@@ -289,6 +289,8 @@ Route::controller(InstrumenController::class)->prefix('ikeps')->middleware(['web
 
 Route::controller(PengumumanController::class)->prefix('pengumuman')->middleware(['web'])->group(function () {
     Route::get('/', 'index')->name('pengumuman.index');
+    Route::get('create', 'create')->name('pengumuman.create')->middleware('auth');
+    Route::post('store', 'store')->name('pengumuman.store')->middleware('auth');
 });
 
 Route::controller(IdmeController::class)->prefix('integration')->middleware(['web'])->group(function () {
