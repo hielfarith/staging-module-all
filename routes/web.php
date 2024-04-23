@@ -9,6 +9,7 @@ use App\Http\Controllers\PengurusanProfilPenggunaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Integration\IdmeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
