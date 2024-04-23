@@ -15,6 +15,7 @@ use PhpParser\Node\Expr\Include_;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PengurusanProfilPenggunaController;
 use App\Http\Controllers\InstrumenController;
+use App\Http\Controllers\LandingPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,11 @@ use App\Http\Controllers\InstrumenController;
 // Route::get('test-ts', [App\Http\Controllers\TestController::class, 'updateTimesheet']);
 // Route::get('test-chart', [FinanceController::class, 'manpowerChart']);
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+// Route::get('/', function () {
+//     return redirect()->route('login');
+// });
+
+Route::get('/', [LandingPageController::class, 'index'])->name('landing_page');
 
 Route::get('emptyresponse', function () {
     return response()->json(['title' => ' ']);
