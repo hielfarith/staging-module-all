@@ -78,6 +78,14 @@
             height: 40vh;
         }
 
+        .card-body .btn {
+            background-color: #C5DBC4;
+        }
+
+        #button-addon1 {
+            background-color: #ff8e74;
+        }
+
         .card {
             border-radius: 40px;
             background-image: url('{{ asset('images/card-book.jpg') }}');

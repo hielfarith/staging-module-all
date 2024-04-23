@@ -37,7 +37,7 @@
                 <div class="input-group  w-75 ">
                     <input type="text" class="form-control rounded-pill" placeholder="Masukkan No Pengenalan"
                         aria-label="Example input" aria-describedby="button-addon1" />
-                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark rounded-pill" type="button"
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn  rounded-pill" type="button"
                         id="button-addon1" data-mdb-ripple-color="dark">
                         Semak
                     </button>
@@ -57,12 +57,12 @@
                 <div class="col">
                     <div class="card  overflow-hidden">
                         <div class="card-header">
-                            <h5 class="card-title">I-KePS</h5>
+                            <h5 class="card-title" style="color:#8cb2e8;">I-KePS</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">Instrumen Kemudahan Prasarana dan Program Sukan Sekolah.</p>
                             <a data-toggle="modal" data-target="#daftar_ikeps" aria-controls="daftar_ikeps"
-                                class="btn btn-secondary rounded-pill">Daftar</a>
+                                class="btn rounded-pill">Daftar</a>
                         </div>
                         <div class="card-footer text-center"> <!-- New footer for the button -->
 
@@ -72,12 +72,12 @@
                 <div class="col">
                     <div class="card  overflow-hidden">
                         <div class="card-header">
-                            <h5 class="card-title">SKIPS</h5>
+                            <h5 class="card-title" style="color:#8cb2e8;">SKIPS</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">Standard Kualiti Institusi <br> Pendidikan Swasta</p>
                             <a data-toggle="modal" data-target="#daftar_skips" aria-controls="daftar_skips"
-                                class="btn btn-secondary rounded-pill">Daftar</a>
+                                class="btn rounded-pill">Daftar</a>
                         </div>
                         <div class="card-footer text-center"> <!-- New footer for the button -->
 
@@ -87,12 +87,12 @@
                 <div class="col">
                     <div class="card  overflow-hidden">
                         <div class="card-header">
-                            <h5 class="card-title">SKPAK</h5>
+                            <h5 class="card-title" style="color:#8cb2e8;">SKPAK</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">Standard Kualiti Pengasuhan & Pendidikan Awal Kanak-Kanak</p>
                             <a data-toggle="modal" data-target="#daftar_skpak" aria-controls="daftar_skpak"
-                                class="btn btn-secondary rounded-pill">Daftar</a>
+                                class="btn rounded-pill">Daftar</a>
                         </div>
                         <div class="card-footer text-center"> <!-- New footer for the button -->
 
