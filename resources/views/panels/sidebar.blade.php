@@ -34,6 +34,12 @@
                     <span class="menu-title text-truncate text-wrap">{{ __('msg.home') }} </span>
                 </a>
             </li>
+            <li class="nav-item {{ in_array(request()->route()->getName(), ['pengumuman.create']) ? 'active' : '' }}">
+                <a href="{{ route('pengumuman.create') }}" class="nav-link">
+                    <i data-feather="bell"></i>
+                    <span class="menu-title text-truncate text-wrap">Pengumuman </span>
+                </a>
+            </li>
             <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                 <a href="#" class="nav-link">
                     {{-- <i data-feather="home"></i> --}}
