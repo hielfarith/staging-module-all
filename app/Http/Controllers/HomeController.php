@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Notifications\ProfileUpdated;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -25,9 +24,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $user = Auth::user();
-        return view('dashboard.dashboard_main', compact('user'));
+
+        $apiKey = config('api.key');
+
+        $response = Http::withHeaders([
+            'APIKEY' => $apiKey,
+        ])->withOptions([
+            'verify' => false,
+        ])->get('https://integrasi.moe.gov.my/General-stage/staffKPM?NoKP=750808025271');
+
+        $user = $response['details'][0];
+
+        $institusiUser = Http::withHeaders([
+            'APIKEY' => $apiKey,
+        ])->withOptions([
+            'verify' => false,
+        ])->get('https://integrasi.moe.gov.my/Institusi-stage/instituteprofile?inkod=' . $user['kod_institusi']);
+
+        $institusi = $institusiUser;
+
+        return view('dashboard.dashboard_main', compact('user', 'institusi'));
 
         // $pageConfigs = ['pageHeader' => false];
 
