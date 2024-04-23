@@ -25,7 +25,7 @@
                     <label class="fw-bold form-label">Warganegara
                         <span class="text-danger">*</span>
                     </label>
-                    <select name="warganegara" id="warganegara" class="form-select select2">
+                    <select name="warganegara" id="warganegara" class="form-select ">
                         <option value="" hidden>Warganergara</option>
                         @foreach ($negaras as $negara)
                             <option value="{{ $negara->name }}">{{ $negara->name }}</option>
@@ -37,7 +37,7 @@
                     <label class="fw-bold form-label">Jantina
                         <span class="text-danger">*</span>
                     </label>
-                    <select name="jantina" id="jantina" class="form-select select2">
+                    <select name="jantina" id="jantina" class="form-select ">
                         <option value="" hidden>Jantina</option>
                         @foreach ($jantinas as $id => $jantina)
                             <option value="{{ $id }}">{{ $jantina }}</option>
@@ -49,7 +49,7 @@
                     <label class="fw-bold form-label">Kaum
                         <span class="text-danger">*</span>
                     </label>
-                    <select name="kaum" id="kaum" class="form-select select2">
+                    <select name="kaum" id="kaum" class="form-select ">
                         <option value="" hidden>Kaum</option>
                         @foreach ($kaums as $id => $kaum)
                             <option value="{{ $id }}">{{ $kaum }}</option>
@@ -98,7 +98,7 @@
                     <label class="fw-bold form-label">Gred Jawatan
                         <span class="text-danger">*</span>
                     </label> <br>
-                    <select class="form-select select2" name="gred_jawatan" id="gred_jawatan" required>
+                    <select class="form-select " name="gred_jawatan" id="gred_jawatan" required>
                         <option value="" hidden>Gred</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -193,7 +193,7 @@
                     <label class="fw-bold form-label">Negeri
                         <span class="text-danger">*</span>
                     </label><br>
-                    <select name="negeri" id="" class="form-select select2" style="width: 300px;">
+                    <select name="negeri" id="" class="form-select ">
                         <option value="" hidden>Negeri</option>
                         @foreach ($negeris as $negeri)
                             <option value="{{ $negeri->name }}">{{ $negeri->name }}</option>

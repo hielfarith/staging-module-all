@@ -33,7 +33,7 @@
         <div class="col-md-3 mb-1">
             <label class="form-label fw-bolder">Agensi/ Kementerian<span style="color: red;">*</span></label>
             <div class="position-relative">
-                <select class="form-control select2" name="agensi_kementerian" required>
+                <select class="form-select " name="agensi_kementerian" required>
                     <option value="">Pilih</option>
                     <option value="Agensi">Agensi</option>
                     <option value="Kementerian">Kementerian</option>
@@ -43,7 +43,7 @@
 
         <div class="col-md-3 mb-1">
             <label class="form-label fw-bolder">Jenis<span style="color: red;">*</span></label><br>
-            <select class="form-control select2" id="pilihan_swasta" name="pilihan_swasta" required
+            <select class="form-select " id="pilihan_swasta" name="pilihan_swasta" required
                 onchange="checksjenis(this)">
                 <option value="">Pilih</option>
                 <option value="Kerajaan">Kerajaan</option>
@@ -53,7 +53,7 @@
 
         <div class="col-md-3 mb-1">
             <label class="form-label fw-bolder">Jawatan<span style="color: red;">*</span></label><br>
-            <select class="form-control select2" id="jawatan" name="jawatan" id="jawatan" required>
+            <select class="form-select " id="jawatan" name="jawatan" id="jawatan" required>
                 <option value="" hidden>Jawatan</option>
                 <option value="1">1</option>
                 <option value="2" selected>2</option>
@@ -62,7 +62,7 @@
 
         <div class="col-md-3 mb-1">
             <label class="form-label fw-bolder">Gred<span style="color: red;">*</span></label><br>
-            <select class="form-control select2" id="gred" name="gred" id="gred" required>
+            <select class="form-select " id="gred" name="gred" id="gred" required>
                 <option value="" hidden>Gred</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -93,7 +93,7 @@
 
         <div class="col-md-4 mb-1">
             <label class="form-label fw-bolder">Negeri <span style="color: red;">*</span></label><br>
-            <select class="form-control select2" name="negeri" required>
+            <select class="form-select " name="negeri" required>
                 <option value="">pilih</option>
                 @foreach ($negeris as $state)
                     <option value="{{ $state->name }}">{{ $state->name }}</option>
@@ -103,7 +103,7 @@
 
         <div class="col-md-4 mb-1">
             <label class="form-label fw-bolder">Daerah<span style="color: red;">*</span></label><br>
-            <select class="form-control select2" id="daerah" name="daerah" required>
+            <select class="form-select " id="daerah" name="daerah" required>
                 <option value="" hidden>Daerah</option>
                 <option value="1">Hulu Langat</option>
                 <option value="2">Ampang</option>
@@ -127,7 +127,7 @@
 
         <div class="col-md-3 mb-1">
             <label class="form-label fw-bolder">Jenis Taska<span style="color: red;">*</span></label>
-            <select class="form-control select2" id="jenisbanugunan" name="jenisbanugunan" required>
+            <select class="form-select " id="jenisbanugunan" name="jenisbanugunan" required>
                 <option value="" hidden>Jenis Taska</option>
                 <option value="1">Swasta</option>
                 <option value="2">Kerajaan</option>
@@ -136,7 +136,7 @@
 
         <div class="col-md-3 mb-1">
             <label class="form-label fw-bolder">Jenis Bangunan<span style="color: red;">*</span></label>
-            <select class="form-control select2" id="jenis_taska" name="jenis_taska" required>
+            <select class="form-select " id="jenis_taska" name="jenis_taska" required>
                 <option value="" hidden>Jenis Bangunan</option>
                 <option value="tempat_kerja">Tempat Kerja</option>
                 <option value="rumah_kedai">Rumah Kedai</option>

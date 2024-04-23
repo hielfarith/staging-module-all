@@ -63,7 +63,7 @@
                 <label class="fw-bold form-label">Agensi/ Kementerian
                     <span class="text-danger">*</span>
                 </label>
-                <select class="form-control select2" name="agensi_kementerian" required>
+                <select class="form-select " name="agensi_kementerian" required>
                     <option value="" hidden>Agensi/ Kementerian</option>
                     <option value="Agensi">Agensi</option>
                     <option value="Kementerian">Kementerian</option>
@@ -74,7 +74,7 @@
                 <label class="fw-bold form-label">Gred
                     <span class="text-danger">*</span>
                 </label><br>
-                <select class="form-control select2" name="gred" id="gred" required>
+                <select class="form-select " name="gred" id="gred" required>
                     <option value="" hidden>Gred</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -85,8 +85,8 @@
                 <label class="fw-bold form-label">3 negeri pilihan bagi menjalankan penilaian SKPAK
                     <span class="text-danger">*</span>
                 </label>
-                <select class="form-control select2" name="negeri_skpak[]" id="negeri_skpak" multiple
-                    style="width: 300px;">
+                <select class="form-select select2" name="negeri_skpak[]" id="negeri_skpak" multiple
+                    style="width: 500px;">
                     <option value="" hidden>Pilih Negeri</option>
                     @foreach ($negeris as $state)
                         <option value="{{ $state->name }}">{{ $state->name }}</option>
@@ -124,8 +124,7 @@
                 <label class="fw-bold form-label">Negeri
                     <span class="text-danger">*</span>
                 </label><br>
-                <select class="form-control select2" name="negeri" id="negeri" required
-                    onchange="changenegeri(this)" style="width: 300px;">
+                <select class="form-select " name="negeri" id="negeri" required onchange="changenegeri(this)">
                     <option value="" hidden>Negeri</option>
                     @foreach ($negeris as $state)
                         <option value="{{ $state->name }}">{{ $state->name }}</option>
@@ -137,7 +136,7 @@
                 <label class="fw-bold form-label">Daerah
                     <span class="text-danger">*</span>
                 </label><br>
-                <select class="form-control select2" name="daerah" id="daerah" required style="width: 300px;">
+                <select class="form-select " name="daerah" id="daerah" required>
 
                 </select>
             </div>

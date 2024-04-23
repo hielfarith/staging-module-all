@@ -12,7 +12,7 @@
             </label>
             <div class="input-group">
                 <span class="input-group-text">
-                    <select class="form-control select2" name="panggilan" required>
+                    <select class="form-select " name="panggilan" required>
                         <option value="" hidden>Gelaran</option>
                         <option value="Dato'">Dato'</option>
                         <option value="Datin">Datin</option>
@@ -62,7 +62,7 @@
             <label class="fw-bold form-label">Jenis
                 <span class="text-danger">*</span>
             </label><br>
-            <select class="form-select select2" name="jawatan" required style="width: 300px;">
+            <select class="form-select " name="jawatan" required>
                 <option value="" hidden>Jenis</option>
                 <option value="Jawatan">Jawatan</option>
                 <option value="Gred">Gred</option>
@@ -73,7 +73,7 @@
             <label class="fw-bold form-label">Agensi/ Kementerian
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-select select2" name="agensi_kementerian" required style="width: 300px;">
+            <select class="form-select " name="agensi_kementerian" required>
                 <option value="" hidden>Jenis</option>
                 <option value="Agensi">Agensi</option>
                 <option value="Kementerian">Kementerian</option>
@@ -139,8 +139,7 @@
             <label class="fw-bold form-label">Negeri
                 <span class="text-danger">*</span>
             </label><br>
-            <select class="form-control select2" name="negeri" id="negeri" required
-                onchange="changenegeri(this)" style="width: 300px;">
+            <select class="form-select " name="negeri" id="negeri" required onchange="changenegeri(this)">
                 <option value="" hidden>Sila pilih</option>
                 @foreach ($negeris as $state)
                     <option value="{{ $state->name }}">{{ $state->name }}</option>
@@ -152,7 +151,7 @@
             <label class="fw-bold form-label">Daerah
                 <span class="text-danger">*</span>
             </label><br>
-            <select class="form-control select2" name="daerah" id="daerah" required style="width: 300px;">
+            <select class="form-select " name="daerah" id="daerah" required>
                 <option value="" hidden>Daerah</option>
                 <option value="1">Hulu Langat</option>
                 <option value="2">Ampang</option>
