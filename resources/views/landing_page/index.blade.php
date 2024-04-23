@@ -57,7 +57,7 @@
                 <div class="col">
                     <div class="card  overflow-hidden">
                         <div class="card-header">
-                            <h5 class="card-title" style="color:#8cb2e8;">I-KePS</h5>
+                            <h5 class="card-title" style="color:#ff6c62;">I-KePS</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">Instrumen Kemudahan Prasarana dan Program Sukan Sekolah.</p>
@@ -72,7 +72,7 @@
                 <div class="col">
                     <div class="card  overflow-hidden">
                         <div class="card-header">
-                            <h5 class="card-title" style="color:#8cb2e8;">SKIPS</h5>
+                            <h5 class="card-title" style="color:#ff6c62;">SKIPS</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">Standard Kualiti Institusi <br> Pendidikan Swasta</p>
@@ -87,7 +87,7 @@
                 <div class="col">
                     <div class="card  overflow-hidden">
                         <div class="card-header">
-                            <h5 class="card-title" style="color:#8cb2e8;">SKPAK</h5>
+                            <h5 class="card-title" style="color:#ff6c62;">SKPAK</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">Standard Kualiti Pengasuhan & Pendidikan Awal Kanak-Kanak</p>
