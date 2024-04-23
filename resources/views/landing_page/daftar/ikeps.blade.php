@@ -1,14 +1,16 @@
 <div class="modal fade" id="daftar_ikeps" tabindex="-1" aria-labelledby="daftar_ikeps" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-light-primary">
                 <h3 class="card-title-modal">
                     Pendaftaran Akaun Modul I-KePS
                 </h3>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-body">
-                <div class="row">
+            <div class="modal-body" style="overflow-y: auto; max-height: 80vh;">
+                {{-- <div class="row">
                     <div class="col-md-12 mb-1">
                         <label class="form-label fw-bolder">Pilih Peranan </label>
                         <br>
@@ -29,28 +31,8 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="col-md-8 mb-1">
-                        <label class="form-label fw-bolder">Nama </label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col-md-4 mb-1">
-                        <label class="form-label fw-bolder">No Kad Pengenalan </label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col-md-6 mb-1">
-                        <label class="form-label fw-bolder">No Telefon </label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col-md-6 mb-1">
-                        <label class="form-label fw-bolder">Emel </label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col-md-12 mb-1">
-                        <label class="form-label fw-bolder">Alamat </label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                </div>
+                </div> --}}
+                @include('landing_page.daftar.ikeps.jurulatih')
             </div>
 
             <div class="modal-footer">
@@ -64,8 +46,16 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Include SweetAlert2 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
+    $('.select2').each(function() {
+        $(this).select2({
+            dropdownParent: $(this).parent(),
+        });
+    });
+
     fakeSuccess = function(title, text) {
         Swal.fire({
             title: "Adakah anda pasti?",

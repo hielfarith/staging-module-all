@@ -1,5 +1,7 @@
 @extends('landing_page.layout')
-
+@section('vendor-style')
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+@endsection
 @section('content')
     {{-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -108,14 +110,16 @@
     @include('landing_page.daftar.skpak')
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 @endsection
 
 
-@section('developer-script')
+@section('script')
     <script>
         fakeSuccess = function(title, text) {
             Swal.fire({
