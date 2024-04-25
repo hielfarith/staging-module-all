@@ -151,7 +151,7 @@ class InstrumenController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatInstrumen(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatInstrumenEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatInstrumenEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
@@ -188,7 +188,7 @@ class InstrumenController extends Controller
             $disabled = '';
         }
         $configurationID = $request->id;
-        
+
         return view('instrumen_update.view-configuration', compact('readonly', 'disabled', 'configurationID'));
     }
 
@@ -523,7 +523,7 @@ class InstrumenController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatInstrumen(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatInstrumenEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatInstrumenEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
@@ -610,13 +610,13 @@ class InstrumenController extends Controller
                 ->editColumn('tarikh_kuatkuasa', function ($instrumenList) {
                     return $instrumenList->tarikh_kuatkuasa;
                 })
-               
+
                 ->editColumn('action', function ($instrumenList) {
                     $button = "";
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatSkips(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatSkipsEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSkipsEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 

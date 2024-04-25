@@ -1,51 +1,61 @@
-<ul class="nav nav-pills justify-content-center" role="tablist">
+<ul class="nav nav-pills nav-second justify-content-center" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder active" id="skor-1-tab" data-bs-toggle="tab" href="#skor-1" aria-controls="skor-1" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder active" id="skor-1-tab" data-bs-toggle="tab" href="#skor-1"
+            aria-controls="skor-1" role="tab" aria-selected="true">
             PENUBUHAN & PENDAFTARAN
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder" id="skor-2-tab" data-bs-toggle="tab" href="#skor-2" aria-controls="skor-2" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder" id="skor-2-tab" data-bs-toggle="tab" href="#skor-2"
+            aria-controls="skor-2" role="tab" aria-selected="true">
             PENGURUSAN INSTITUSI
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder" id="skor-3-tab" data-bs-toggle="tab" href="#skor-3" aria-controls="skor-3" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder" id="skor-3-tab" data-bs-toggle="tab" href="#skor-3"
+            aria-controls="skor-3" role="tab" aria-selected="true">
             PENGURUSAN KURIKULUM
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder" id="skor-4-tab" data-bs-toggle="tab" href="#skor-4" aria-controls="skor-4" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder" id="skor-4-tab" data-bs-toggle="tab" href="#skor-4"
+            aria-controls="skor-4" role="tab" aria-selected="true">
             PENGAJARAN & PEMBELAJARAN
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder" id="skor-5-tab" data-bs-toggle="tab" href="#skor-5" aria-controls="skor-5" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder" id="skor-5-tab" data-bs-toggle="tab" href="#skor-5"
+            aria-controls="skor-5" role="tab" aria-selected="true">
             PENGURUSAN PENILAIAN / PEPERIKSAAN
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder" id="skor-6-tab" data-bs-toggle="tab" href="#skor-6" aria-controls="skor-6" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder" id="skor-6-tab" data-bs-toggle="tab" href="#skor-6"
+            aria-controls="skor-6" role="tab" aria-selected="true">
             PENGURUSAN & PEMBANGUNAN GURU
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder" id="skor-7-tab" data-bs-toggle="tab" href="#skor-7" aria-controls="skor-7" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder" id="skor-7-tab" data-bs-toggle="tab" href="#skor-7"
+            aria-controls="skor-7" role="tab" aria-selected="true">
             DISIPLIN
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder" id="skor-8-tab" data-bs-toggle="tab" href="#skor-8" aria-controls="skor-8" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder" id="skor-8-tab" data-bs-toggle="tab" href="#skor-8"
+            aria-controls="skor-8" role="tab" aria-selected="true">
             PIAWAIAN
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder" id="skor-9-tab" data-bs-toggle="tab" href="#skor-9" aria-controls="skor-9" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder" id="skor-9-tab" data-bs-toggle="tab" href="#skor-9"
+            aria-controls="skor-9" role="tab" aria-selected="true">
             KEBERSIHAN & KECERIAAN
         </a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="text-wrap nav-link fw-bolder" id="skor-10-tab" data-bs-toggle="tab" href="#skor-10" aria-controls="skor-10" role="tab" aria-selected="true">
+        <a class="text-wrap nav-link fw-bolder" id="skor-10-tab" data-bs-toggle="tab" href="#skor-10"
+            aria-controls="skor-10" role="tab" aria-selected="true">
             PENGURUSAN PELAJAR ANTARABANGSA
         </a>
     </li>
@@ -84,25 +94,25 @@
     </div>
 </div>
 <?php
-    $butiran_institusi_id = $butiran_id;
-    $itemStandardQualitySkips = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
-    //get instrumen details
-    $instrumen = \App\Models\ButiranInstitusiSkips::where('id', $butiran_id)->first();
-    if ($instrumen && $instrumen?->jenis_ips == 'Pusat Perkembangan Minda' || $instrumen?->jenis_ips == 'Pusat Tuisyen') {
-        $antarabangsa = true;
-    } else {
-        $antarabangsa = !empty($itemStandardQualitySkips->pengurusan_pelajar_antarabangsa) ? true : false;
+$butiran_institusi_id = $butiran_id;
+$itemStandardQualitySkips = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+//get instrumen details
+$instrumen = \App\Models\ButiranInstitusiSkips::where('id', $butiran_id)->first();
+if (($instrumen && $instrumen?->jenis_ips == 'Pusat Perkembangan Minda') || $instrumen?->jenis_ips == 'Pusat Tuisyen') {
+    $antarabangsa = true;
+} else {
+    $antarabangsa = !empty($itemStandardQualitySkips->pengurusan_pelajar_antarabangsa) ? true : false;
+}
+$showHantar = false;
+if ($butiran_institusi_id) {
+    if (!empty($itemStandardQualitySkips->penubuhan_pendaftaran) && !empty($itemStandardQualitySkips->pengurusan_institusi) && !empty($itemStandardQualitySkips->pengurusan_kurikulum) && !empty($itemStandardQualitySkips->pengajaran) && !empty($itemStandardQualitySkips->pengurusan_penilaian) && !empty($itemStandardQualitySkips->pengurusan_pembangunan_guru) && !empty($itemStandardQualitySkips->displin) && !empty($itemStandardQualitySkips->piawaian) && !empty($itemStandardQualitySkips->kebersihan) && $antarabangsa) {
+        $showHantar = true;
     }
-    $showHantar = false;
-    if ($butiran_institusi_id) {
-        if (!empty($itemStandardQualitySkips->penubuhan_pendaftaran) && !empty($itemStandardQualitySkips->pengurusan_institusi) && !empty($itemStandardQualitySkips->pengurusan_kurikulum) && !empty($itemStandardQualitySkips->pengajaran) && !empty($itemStandardQualitySkips->pengurusan_penilaian) && !empty($itemStandardQualitySkips->pengurusan_pembangunan_guru) && !empty($itemStandardQualitySkips->displin) && !empty($itemStandardQualitySkips->piawaian) && !empty($itemStandardQualitySkips->kebersihan) && $antarabangsa ) {
-            $showHantar = true;
-        }
-    }
+}
 ?>
 <hr>
-<!-- @if($showHantar && $type != 'verfikasi')
-    <div class="d-flex justify-content-end align-items-center mt-1">
+<!-- @if ($showHantar && $type != 'verfikasi')
+<div class="d-flex justify-content-end align-items-center mt-1">
         <button type="button" class="btn btn-primary float-right" onclick="submitCompleteForm(1)">Hantar</button>
     </div>
 @endif -->
@@ -120,9 +130,9 @@
             contentType: false,
             processData: false,
             success: function(response) {
-               if (response.status) {
+                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
-               }
+                }
             }
         });
     }

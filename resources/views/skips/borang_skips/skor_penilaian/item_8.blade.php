@@ -9,26 +9,26 @@ $piawaians = [
     'penyelenggaraan_tandas' => '8.6 Penyelenggaraan Tandas',
 ];
 
-$butiran_institusi_id = $butiran_id;;
-    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
-    if ($butiran_institusi_id && $tab1) {
-        $piawaianData = json_decode($tab1->piawaian); 
-        $piawaianData_verfikasi = $tab1->piawaian_verfikasi ? json_decode($tab1->piawaian_verfikasi) : null;   
-  
-    } else {
-        $piawaianData =$piawaianData =  null;
-    }
-    $score = $total = 0;    $totalv = $scorev = 0;
+$butiran_institusi_id = $butiran_id;
+$tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+if ($butiran_institusi_id && $tab1) {
+    $piawaianData = json_decode($tab1->piawaian);
+    $piawaianData_verfikasi = $tab1->piawaian_verfikasi ? json_decode($tab1->piawaian_verfikasi) : null;
+} else {
+    $piawaianData = $piawaianData = null;
+}
+$score = $total = 0;
+$totalv = $scorev = 0;
 ?>
 
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="">
-        <thead>
+        <thead style="color:black; background-color: #d8bfb0">
             <tr>
                 <th width="5%">8.0</th>
                 <th> PIAWAIAN </th>
                 <th width="10%">SKOR</th>
-                @if($type == 'verfikasi' || $type == 'done')
+                @if ($type == 'verfikasi' || $type == 'done')
                     <th width="10%">SKOR VERFIKASI</th>
                 @endif
             </tr>
@@ -44,60 +44,61 @@ $butiran_institusi_id = $butiran_id;;
                         {{ $piawaian }}
                     </td>
                     <td>
-                    <?php
-                        if($piawaianData) {
-                            if (isset($piawaianData->$key)){
+                        <?php
+                        if ($piawaianData) {
+                            if (isset($piawaianData->$key)) {
                                 $score = $piawaianData->$key;
                             } else {
                                 $score = 0;
                             }
-                            $total = $total+$score;
+                            $total = $total + $score;
                         }
-                    ?>
-
-                        <a class="text-success">{{$score}}</a>
-                    </td>
-                     @if($type == 'verfikasi' || $type == 'done')
-                        <td>
-                        <?php
-                            if($piawaianData_verfikasi) {
-                                $keyval = '';
-                                $keyval = $key.'_verfikasi';
-                                $scorev = $piawaianData_verfikasi->$keyval;
-                                $totalv = $totalv+$scorev;
-                            }
                         ?>
-                        <a class="text-success">{{$scorev}}</a>
+
+                        <a class="text-success">{{ $score }}</a>
                     </td>
+                    @if ($type == 'verfikasi' || $type == 'done')
+                        <td>
+                            <?php
+                            if ($piawaianData_verfikasi) {
+                                $keyval = '';
+                                $keyval = $key . '_verfikasi';
+                                $scorev = $piawaianData_verfikasi->$keyval;
+                                $totalv = $totalv + $scorev;
+                            }
+                            ?>
+                            <a class="text-success">{{ $scorev }}</a>
+                        </td>
                     @endif
                 </tr>
             @endforeach
         </tbody>
-            <?php
-            $total = $total + $totalv;
-            $percentage = ($total/60);
-            $percentage = $percentage*100;
-             if($type == 'verfikasi' || $type == 'done') {
-                 $col = 2;
-             } else {
-                 $col =1;
-             }
-            ?>
+        <?php
+        $total = $total + $totalv;
+        $percentage = $total / 60;
+        $percentage = $percentage * 100;
+        if ($type == 'verfikasi' || $type == 'done') {
+            $col = 2;
+        } else {
+            $col = 1;
+        }
+        ?>
         <tfoot>
             <tr>
-                <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{$total}}</a>
+                <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor
+                </td>
+                <td colspan="{{ $col }}" style="text-align: center;">
+                    <a class="text-success">{{ $total }}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
-                <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{ number_format($percentage,2) }}</a>
+                <td colspan="{{ $col }}" style="text-align: center;">
+                    <a class="text-success">{{ number_format($percentage, 2) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
-<input type="hidden" value="{{$total}}" name="tab8_skor" id="tab8_skor">
-<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab8_percentage" id="tab8_percentage">
+<input type="hidden" value="{{ $total }}" name="tab8_skor" id="tab8_skor">
+<input type="hidden" value="{{ number_format($percentage, 2) }}" name="tab8_percentage" id="tab8_percentage">

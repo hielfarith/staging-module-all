@@ -1,11 +1,11 @@
 <?php
-    $butiran_institusi_id = $butiran_id;
-    $tab1 = App\Models\ItemStandardQualitySkipsSekolah::where('butiran_institusi_id', $butiran_institusi_id)->first();
-    if ($butiran_institusi_id && $tab1) {
-        $pencapaian_academik = json_decode($tab1->pencapaian_academik);
-    } else {
-        $pencapaian_academik = null;
-    }
+$butiran_institusi_id = $butiran_id;
+$tab1 = App\Models\ItemStandardQualitySkipsSekolah::where('butiran_institusi_id', $butiran_institusi_id)->first();
+if ($butiran_institusi_id && $tab1) {
+    $pencapaian_academik = json_decode($tab1->pencapaian_academik);
+} else {
+    $pencapaian_academik = null;
+}
 ?>
 @php
     $pendaftarans = [
@@ -57,7 +57,7 @@
 <form id="pencapaian_academik_sekolah">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai1">
-            <thead>
+            <thead style="color:black; background-color: #d8bfb0">
                 <tr>
                     <th rowspan="2" width="5%">No.</th>
                     <th rowspan="2" width="20%"> Kriteria </th>
@@ -79,7 +79,7 @@
                 </tr>
             </thead>
             <tbody>
-                <input type="hidden" name="butiran_institusi_id" value="{{$butiran_id}}">
+                <input type="hidden" name="butiran_institusi_id" value="{{ $butiran_id }}">
 
                 <tr>
                     <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pencapaian Academik</td>
@@ -108,7 +108,9 @@
                                 <div
                                     class="form-check form-check-inline d-flex justify-content-center align-items-center">
                                     <input class="form-check-input" type="radio" name="{{ $index }}"
-                                        value="{{ $key }}" required @if($pencapaian_academik && $pencapaian_academik->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
+                                        value="{{ $key }}" required
+                                        @if ($pencapaian_academik && $pencapaian_academik->$index == $key) checked @endif
+                                        @if ($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
                                 </div>
                                 <br>
 
@@ -127,7 +129,8 @@
 
 
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right formdd" onclick="submitformsekolah10()">Simpan</button>
+        <button type="button" class="btn btn-primary float-right formdd"
+            onclick="submitformsekolah10()">Simpan</button>
     </div>
 
 </form>
@@ -138,7 +141,7 @@
         var error = false;
 
         $('form#pencapaian_academik_sekolah').find('radio, input, checkbox').each(function() {
-             var value = $("input[name='"+this.name+"']:checked").val();
+            var value = $("input[name='" + this.name + "']:checked").val();
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;
             }

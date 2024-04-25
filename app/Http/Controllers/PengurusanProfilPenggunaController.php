@@ -563,7 +563,7 @@ class PengurusanProfilPenggunaController extends Controller
 			if (array_key_exists('pengetua_id', $input)) {
             	$PengerusiPengetuaGuru = PengerusiPengetuaGuru::where('id', $input['pengetua_id'])->first();
             	unset($input['pengetua_id']);
-				
+
 				$input['status'] = 'Menunggu Verifikasi';
             	$PengerusiPengetuaGuru->update($input);
             } else {
@@ -712,7 +712,7 @@ class PengurusanProfilPenggunaController extends Controller
 
 	                $button .= '<a onclick="maklumatJurulatih(' . $Jurulatih->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
 
-	                 $button .= '<a onclick="maklumatJurulatihEdit(' . $Jurulatih->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+	                 $button .= '<a onclick="maklumatJurulatihEdit(' . $Jurulatih->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
 
 	                $button .= "</div>";
@@ -791,7 +791,7 @@ class PengurusanProfilPenggunaController extends Controller
 	        	$jurulatih = new Jurulatih;
 	    		$jurulatih->create($input);
 	        }
-		      
+
           DB::commit();
             return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
         } catch (\Throwable $e) {

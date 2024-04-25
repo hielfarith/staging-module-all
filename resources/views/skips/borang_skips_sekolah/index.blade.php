@@ -11,8 +11,37 @@
 @endsection
 
 @section('content')
-    <input type="hidden" name="butiran_id" id="butiran_id" value="{{ $butiran_id }}"> 
-    <ul class="nav nav-pills nav-justified" role="tablist">
+    <style>
+        .nav-first .nav-item {
+            background-color: #FAE9DA;
+            /* Set your desired background color */
+            padding: 10px;
+            /* Add padding for better appearance */
+
+            /* Add border-radius for rounded corners */
+        }
+
+        .nav-first .nav-link.active {
+            background-color: #ff6c62;
+            /* Set your desired background color */
+        }
+
+        .nav-second .nav-item {
+            background-color: #E4F1EE;
+            /* Set your desired background color */
+            padding: 10px;
+            /* Add padding for better appearance */
+
+            /* Add border-radius for rounded corners */
+        }
+
+        .nav-second .nav-link.active {
+            background-color: #39c3b5;
+            /* Set your desired background color */
+        }
+    </style>
+    <input type="hidden" name="butiran_id" id="butiran_id" value="{{ $butiran_id }}">
+    <ul class="nav nav-pills nav-first nav-justified" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder active" id="pendidikan-swasta-tab" data-bs-toggle="tab"
                 href="#pendidikan-swasta" aria-controls="pendidikan-swasta" role="tab" aria-selected="true"
@@ -55,8 +84,9 @@
 
 
 <script type="text/javascript">
-var fragmentIdentifier = window.location.hash;
-function tabclicked(argument) {
-    // console.log(argument)
- }
+    var fragmentIdentifier = window.location.hash;
+
+    function tabclicked(argument) {
+        // console.log(argument)
+    }
 </script>

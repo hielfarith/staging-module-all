@@ -14,7 +14,7 @@
             <input type="text" class="form-control" name="nama_instrumen" required
                 onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
         </div>
-        
+
         <div class="col-md-6 mb-1">
             <label class="fw-bold form-label"> Tujuan Instrumen
                 <span class="text-danger">*</span>
@@ -270,8 +270,7 @@
             <label class="fw-bold form-label">Nama Instrumen <span class="text-danger">:</span></label>
         </div>
         <div class="col-md-4 mb-1">
-            <input type="text" class="form-control" name="nama_instrumen"
-                required
+            <input type="text" class="form-control" name="nama_instrumen" required
                 onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 32) || event.charCode == 8">
         </div>
         <div class="col-md-2 mb-1">
@@ -299,7 +298,7 @@
 
         <div class="col-md-4 ">
             <div class="card ">
-                <div class="card-header" style="background-color: #F3F2F7">
+                <div class="card-header" style="color:white; background-color: #C5DBC4">
                     <h4 class="card-title fw-bolder">Pengisian</h4>
                 </div>
                 <div class="card-body">
@@ -323,15 +322,12 @@
                         </div>
 
                         <div class="col-md-12 mt-1">
-                            <label class="fw-bold form-label">Tarikh <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Tarikh <span class="text-danger">:</span></label>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Dari</span>
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
                                     <input type="date" class="form-control" id="fromDate" name="pengisian_dari">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Hingga</span>
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Hingga</span>
                                     <input type="date" class="form-control" id="toDate" name="pengisian_hingga">
                                 </div>
                             </div>
@@ -343,7 +339,7 @@
 
         <div class="col-md-4 ">
             <div class="card ">
-                <div class="card-header" style="background-color: #F3F2F7">
+                <div class="card-header" style="color:white; background-color: #C5DBC4">
                     <h4 class="card-title fw-bolder">Pengesahan</h4>
                 </div>
                 <div class="card-body">
@@ -368,16 +364,15 @@
                         </div>
 
                         <div class="col-md-12 mt-1">
-                            <label class="fw-bold form-label">Tarikh <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Tarikh <span class="text-danger">:</span></label>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Dari</span>
-                                    <input type="date" class="form-control" id="fromDate" name="pengesahan_dari">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Hingga</span>
-                                    <input type="date" class="form-control" id="toDate" name="pengesahan_hingga">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
+                                    <input type="date" class="form-control" id="fromDate"
+                                        name="pengesahan_dari">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate"
+                                        name="pengesahan_hingga">
                                 </div>
                             </div>
                         </div>
@@ -388,17 +383,17 @@
 
         <div class="col-md-4 ">
             <div class="card ">
-                <div class="card-header" style="background-color: #F3F2F7">
+                <div class="card-header" style="color:white; background-color: #C5DBC4">
                     <h4 class="card-title fw-bolder">Verifikasi</h4>
                 </div>
                 <div class="card-body">
                     <div class="row mt-1">
                         <div class="col-md-4 ">
-                            <label class="fw-bold form-label">Institut <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Institut <span class="text-danger">:</span></label>
                         </div>
                         <div class="col-md-8 ">
-                            <select class="form-control select2" name="institusi_verifikasi" id="institusi_verifikasi">
+                            <select class="form-control select2" name="institusi_verifikasi"
+                                id="institusi_verifikasi">
                                 <option value="1">1</option>
                             </select>
                         </div>
@@ -415,16 +410,15 @@
                         </div>
 
                         <div class="col-md-12 mt-1">
-                            <label class="fw-bold form-label">Tarikh <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Tarikh <span class="text-danger">:</span></label>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Dari</span>
-                                    <input type="date" class="form-control" id="fromDate" name="verifikasi_dari">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Hingga</span>
-                                    <input type="date" class="form-control" id="toDate" name="verifikasi_hingga">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
+                                    <input type="date" class="form-control" id="fromDate"
+                                        name="verifikasi_dari">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate"
+                                        name="verifikasi_hingga">
                                 </div>
                             </div>
                         </div>
@@ -434,77 +428,76 @@
         </div>
 
         <input type="hidden" name="type" value="SEDIA">
-        
+
         {{-- @if ($readonly != 'readonly') --}}
-            <div class="d-flex justify-content-end align-items-center my-1">
-                <button type="submit" class="btn btn-primary float-right">Hantar</button>
-            </div>
+        <div class="d-flex justify-content-end align-items-center my-1">
+            <button type="submit" class="btn btn-primary float-right">Hantar</button>
+        </div>
         {{-- @endif --}}
     </div>
 </form>
 
 
 @section('script')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: 'Sila Pilih',
+                allowClear: true // Adds a clear button to the dropdown
+            });
+        });
 
-<script type="text/javascript">
-    $(document).ready(function() {
-    $('.select2').select2({
-      placeholder: 'Sila Pilih',
-      allowClear: true // Adds a clear button to the dropdown
-    });
-  });
+        $('#forminstrumensedia').submit(function(event) {
+            event.preventDefault();
+            var formData = new FormData(document.getElementById('forminstrumensedia'));
+            var error = false;
+            $('#forminstrumensedia').find('select.select2').each(function() {
+                var element = $(this);
+                var select2Value = element.select2('data');
+                var selectedValues = element.val();
+                var fieldName = element.attr('name');
+                if (typeof element.attr('disabled') == 'undefined') {
 
-    $('#forminstrumensedia').submit(function(event) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById('forminstrumensedia'));
-        var error = false;
-        $('#forminstrumensedia').find('select.select2').each(function() {
-            var element = $(this);
-            var select2Value = element.select2('data');
-            var selectedValues = element.val();
-            var fieldName = element.attr('name');
-            if (typeof element.attr('disabled') == 'undefined') {
-
-                if (!selectedValues || selectedValues === '') {
-                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-                    error = true;
-                    return false; // Stop the loop if an error is found
+                    if (!selectedValues || selectedValues === '') {
+                        Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                        error = true;
+                        return false; // Stop the loop if an error is found
+                    }
                 }
-            }
-        });
+            });
 
 
-        formData.forEach(function(value, name) {
-            var element = $("input[name='"+name+"']");
-            if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
-                if (element.val() == '') {
-                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-                    error = true;
-                    return false;
+            formData.forEach(function(value, name) {
+                var element = $("input[name='" + name + "']");
+                if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') !=
+                    'undefined') {
+                    if (element.val() == '') {
+                        Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                        error = true;
+                        return false;
+                    }
                 }
+            });
+
+            if (error) {
+                return false;
             }
+            var url = "{{ route('admin.instrumen.instrumenikeps-submit') }}"
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response.status) {
+                        Swal.fire('Success', 'Berjaya', 'success');
+                        var location = "{{ route('admin.instrumen.senarai-sedia-ada') }}"
+                        window.location.href = location;
+                    }
+                }
+            });
+
         });
-
-        if (error) {
-            return false;
-        }
-        var url = "{{ route('admin.instrumen.instrumenikeps-submit') }}"
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-               if (response.status) {
-                    Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.instrumen.senarai-sedia-ada')}}"
-                    window.location.href = location;
-               }
-            }
-        });
-
-    });
-</script>
-
+    </script>
 @endsection

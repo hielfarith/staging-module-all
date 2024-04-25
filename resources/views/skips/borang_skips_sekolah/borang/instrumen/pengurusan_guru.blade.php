@@ -1,11 +1,11 @@
 <?php
-    $butiran_institusi_id = $butiran_id;
-    $tab1 = App\Models\ItemStandardQualitySkipsSekolah::where('butiran_institusi_id', $butiran_institusi_id)->first();
-    if ($butiran_institusi_id && $tab1) {
-        $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru);
-    } else {
-        $pengurusan_pembangunan_guru = null;
-    }
+$butiran_institusi_id = $butiran_id;
+$tab1 = App\Models\ItemStandardQualitySkipsSekolah::where('butiran_institusi_id', $butiran_institusi_id)->first();
+if ($butiran_institusi_id && $tab1) {
+    $pengurusan_pembangunan_guru = json_decode($tab1->pengurusan_pembangunan_guru);
+} else {
+    $pengurusan_pembangunan_guru = null;
+}
 ?>
 @php
     $pendaftarans = [
@@ -63,7 +63,7 @@
 <form id="pengurusan_pembangunan_guru_sekolah">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai1">
-            <thead>
+            <thead style="color:black; background-color: #d8bfb0">
                 <tr>
                     <th rowspan="2" width="5%">No.</th>
                     <th rowspan="2" width="20%"> Kriteria </th>
@@ -74,7 +74,7 @@
                     <th width="12">4</th>
                     <th width="12">5</th>
                 </tr>
-                
+
                 <tr>
                     <th>TIADA</th>
                     <th>LEMAH</th>
@@ -85,7 +85,7 @@
                 </tr>
             </thead>
             <tbody>
-                <input type="hidden" name="butiran_institusi_id" value="{{$butiran_id}}">
+                <input type="hidden" name="butiran_institusi_id" value="{{ $butiran_id }}">
 
                 <tr>
                     <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Guru</td>
@@ -114,7 +114,9 @@
                                 <div
                                     class="form-check form-check-inline d-flex justify-content-center align-items-center">
                                     <input class="form-check-input" type="radio" name="{{ $index }}"
-                                        value="{{ $key }}" required @if($pengurusan_pembangunan_guru && $pengurusan_pembangunan_guru->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
+                                        value="{{ $key }}" required
+                                        @if ($pengurusan_pembangunan_guru && $pengurusan_pembangunan_guru->$index == $key) checked @endif
+                                        @if ($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
                                 </div>
                                 <br>
 
@@ -144,7 +146,7 @@
         var error = false;
 
         $('form#pengurusan_pembangunan_guru_sekolah').find('radio, input, checkbox').each(function() {
-             var value = $("input[name='"+this.name+"']:checked").val();
+            var value = $("input[name='" + this.name + "']:checked").val();
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;
             }
@@ -155,7 +157,8 @@
             return false;
         }
 
-        var url = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/store-item-standard-sekolah/pengurusan_pembangunan_guru';
+        var url = "{{ env('APP_PENGISIAN_URL') }}" +
+        'api/skips/store-item-standard-sekolah/pengurusan_pembangunan_guru';
 
         $.ajax({
             url: url,
@@ -175,4 +178,3 @@
 
     };
 </script>
-

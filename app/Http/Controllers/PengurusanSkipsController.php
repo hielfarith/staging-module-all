@@ -41,7 +41,7 @@ class PengurusanSkipsController extends Controller
 
         $status = null;
         return view ('skips.index', compact('negeris', 'butiran_id', 'type', 'allInstitutes', 'status', 'disabled', 'readonly'));
-         
+
     }
 
     public function FmfView(Request $request, $id = null){
@@ -348,7 +348,7 @@ class PengurusanSkipsController extends Controller
 
                    $button .= '<a onclick="maklumatpengetua(' . $pengetuaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
 
-                    $button .= '<a onclick="maklumatpengetuaEdit(' . $pengetuaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatpengetuaEdit(' . $pengetuaList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
 
                    $button .= "</div>";
@@ -412,7 +412,7 @@ class PengurusanSkipsController extends Controller
                     $button = "";
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
-                    $button .= '<a onclick="downloadDemografi(' . $institutions->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-file text-primary"></i></a>';
+                    $button .= '<a onclick="downloadDemografi(' . $institutions->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-file text-success"></i></a>';
 
                     $button .= "</div>";
 
@@ -479,7 +479,7 @@ class PengurusanSkipsController extends Controller
 
                    $button .= '<a onclick="maklumatInstitusi(' . $institusi->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
 
-                    $button .= '<a onclick="maklumatmaklumatInstitusiEdit(' . $institusi->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatmaklumatInstitusiEdit(' . $institusi->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
 
                    $button .= "</div>";
@@ -589,7 +589,7 @@ class PengurusanSkipsController extends Controller
                     if ($item->statuses?->status_description == 'done') {
                         $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-search text-primary"></i></a>';
                     } else {
-                        $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                        $button .= '<a onclick="maklumatInstrumen(' . $instrument->butiran_institusi_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
                     }
 
 
@@ -604,7 +604,7 @@ class PengurusanSkipsController extends Controller
         return view('skips.pengurusan_institusi.senarai_skips_institusi');
     }
 
-    
+
 
     public function SenaraiSkipsInstitusiSekolah(Request $request) {
 

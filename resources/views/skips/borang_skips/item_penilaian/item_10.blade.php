@@ -1,18 +1,19 @@
 <?php
-    $butiran_institusi_id = $butiran_id;
-    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
-    if ($butiran_institusi_id && !empty($tab1->pengurusan_pelajar_antarabangsa)) {
-        $pengurusan_pelajar_antarabangsa = json_decode($tab1->pengurusan_pelajar_antarabangsa);
-    } else {
-        $pengurusan_pelajar_antarabangsa = null;
-    }
+$butiran_institusi_id = $butiran_id;
+$tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+if ($butiran_institusi_id && !empty($tab1->pengurusan_pelajar_antarabangsa)) {
+    $pengurusan_pelajar_antarabangsa = json_decode($tab1->pengurusan_pelajar_antarabangsa);
+} else {
+    $pengurusan_pelajar_antarabangsa = null;
+}
 ?>
 
 @php
     $pelajar_antarabangsas = [
         'kawalan_dasar' => '<a class="text-primary"> 10.1 Kawalan Dasar </a>',
         'dokumentasi' => '<a> 10.1.1 Dokumentasi </a>',
-        'tidak_melebihi_kapasiti_max_lampiran_b' => '<a> 10.1.2 Tidak Melebihi Kapasiti Max Seperti Di Dalam Lampiran B </a>',
+        'tidak_melebihi_kapasiti_max_lampiran_b' =>
+            '<a> 10.1.2 Tidak Melebihi Kapasiti Max Seperti Di Dalam Lampiran B </a>',
         'tidak_melebihi_80_percent_kapasiti_max' => '<a> 10.1.3 Tidak Melebihi [Lapan Puluh] Peratus Kapasiti Max </a>',
         'mematuhi_kuota_pelajar_20_percent' => '<a> 10.1.4 Mematuhi Kuota Pelajar [Dua Puluh] Peratus </a>',
         'tempoh_pengajaran_min_20_jam_seminggu' => '<a> 10.1.5 Tempoh Pengajaran Min [Dua Puluh] Jam Seminggu </a>',
@@ -111,7 +112,7 @@
             5 => '<i style="font-size: 12px;">Ada, Difailkan, Dikemaskini, Kebolehcapaian, Sistematik</i>',
         ],
 
-            'salinan_visa_pelajar' => [
+        'salinan_visa_pelajar' => [
             0 => '',
             1 => '<i style="font-size: 12px;">Ada</i>',
             2 => '<i style="font-size: 12px;">Ada, Difailkan</i>',
@@ -182,12 +183,11 @@
         width: 100% !important;
         /* word-wrap: break-word; */
     }
-
 </style>
 <form id="pengurusan_pelajar_antarabangsa">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai10">
-            <thead>
+            <thead style="color:black; background-color: #d8bfb0;">
                 <tr>
                     <th rowspan="2" width="5%">No.</th>
                     <th rowspan="2" width="20%"> Kriteria </th>
@@ -209,10 +209,11 @@
                 </tr>
             </thead>
             <tbody>
-                <input type="hidden" name="usertype" value="{{$type}}">
-                <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
+                <input type="hidden" name="usertype" value="{{ $type }}">
+                <input type="hidden" name="butiran_institusi_id" value="{{ $butiran_institusi_id }}">
                 <tr>
-                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Pelajar Antarabangsa</td>
+                    <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Pengurusan Pelajar Antarabangsa
+                    </td>
                 </tr>
 
                 @foreach ($pelajar_antarabangsas as $index => $antarabangsa)
@@ -228,18 +229,22 @@
                             <td> {{ $numeric }} </td>
                         @endif
 
-                        @if(!$excludeNumber)
+                        @if (!$excludeNumber)
                             <td> {!! $text !!} </td>
                         @else
                             <td class="bg-light-primary" colspan="8"> {!! $text !!} </td>
                         @endif
 
-                        @if(isset($option_antarabangsas[$index]))
+                        @if (isset($option_antarabangsas[$index]))
                             @foreach ($option_antarabangsas[$index] as $key => $option_antarabangsa)
                                 <td>
-                                    @if(count($option_antarabangsas[$index]) > 1)
-                                        <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input" type="radio" name="{{ $index }}" id="" value="{{$key}}" required @if($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
+                                    @if (count($option_antarabangsas[$index]) > 1)
+                                        <div
+                                            class="form-check form-check-inline d-flex justify-content-center align-items-center">
+                                            <input class="form-check-input" type="radio" name="{{ $index }}"
+                                                id="" value="{{ $key }}" required
+                                                @if ($pengurusan_pelajar_antarabangsa && $pengurusan_pelajar_antarabangsa->$index == $key) checked @endif
+                                                @if ($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
                                         </div>
                                     @endif
                                     <br>
@@ -257,10 +262,10 @@
 
     <hr>
 
-    @if($type != 'laporan' && !empty($butiran_id))
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right formdd" onclick="submitform10()">Simpan</button>
-    </div>
+    @if ($type != 'laporan' && !empty($butiran_id))
+        <div class="d-flex justify-content-end align-items-center mt-1">
+            <button type="button" class="btn btn-primary float-right formdd" onclick="submitform10()">Simpan</button>
+        </div>
     @endif
 </form>
 
@@ -271,7 +276,7 @@
         var error = false;
 
         $('form#pengurusan_pelajar_antarabangsa').find('radio, input').each(function() {
-            var value = $("input[name='"+this.name+"']:checked").val();
+            var value = $("input[name='" + this.name + "']:checked").val();
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;
             }
@@ -291,13 +296,13 @@
             contentType: false,
             processData: false,
             success: function(response) {
-               if (response.status) {
+                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
                     if (response.formfilled == true) {
                         window.location.reload();
                     }
-               }
+                }
             }
         });
-   }
+    }
 </script>

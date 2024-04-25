@@ -1,6 +1,6 @@
 <form id="butiran_institut_sekolah" novalidate="novalidate">
 
-    <ul class="nav nav-pills nav-justified" role="tablist">
+    <ul class="nav nav-pills nav-second nav-justified" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder active" id="swasta-tab" data-bs-toggle="tab"
                 href="#swasta" aria-controls="swasta" role="tab" aria-selected="true"
@@ -34,7 +34,8 @@
                     </span>
                 </h5>
                 <hr>
-                <input type="hidden" name="butiran_institusi_id_sekolah" id="butiran_institusi_id_sekolah" value="{{$butiran_id}}">
+                <input type="hidden" name="butiran_institusi_id_sekolah" id="butiran_institusi_id_sekolah"
+                    value="{{ $butiran_id }}">
 
                 <div class="col-md-6 mb-1">
                     <label class="form-label fw-bold text-titlecase">Kod Sekolah
@@ -141,17 +142,20 @@
                     <label class="form-label fw-bold text-titlecase"> Tarikh Audit Laporan Kewangan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" name="tarikh_audit_laporan_kewangan" id="tarikh_audit_laporan_kewangan" class="form-control">
+                    <input type="date" name="tarikh_audit_laporan_kewangan" id="tarikh_audit_laporan_kewangan"
+                        class="form-control">
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <label class="form-label fw-bold text-titlecase"> Tarikh Pengesahan Laporan Kewangan
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="date" name="tarikh_pengesahan_laporan_kewangan" id="tarikh_pengesahan_laporan_kewangan" class="form-control">
+                    <input type="date" name="tarikh_pengesahan_laporan_kewangan"
+                        id="tarikh_pengesahan_laporan_kewangan" class="form-control">
                 </div>
                 <div class="d-flex justify-content-end align-items-center mt-1">
-                    <button type="button" class="btn btn-primary float-right" onclick="submitsekolah('institusi')">Simpan</button>
+                    <button type="button" class="btn btn-primary float-right"
+                        onclick="submitsekolah('institusi')">Simpan</button>
                 </div>
             </div>
         </div>
@@ -267,7 +271,8 @@
                 </div>
 
                 <div class="d-flex justify-content-end align-items-center mt-1">
-                    <button type="button" class="btn btn-primary float-right" onclick="submitsekolah('guru')">Simpan</button>
+                    <button type="button" class="btn btn-primary float-right"
+                        onclick="submitsekolah('guru')">Simpan</button>
                 </div>
             </div>
         </div>
@@ -308,8 +313,8 @@
                     <label class="form-label fw-bold text-titlecase"> Bilangan Perempuan Warganegara
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="text" name="Murid_Perempuan_warganegara"
-                        id="Murid_Perempuan_warganegara" class="form-control">
+                    <input type="text" name="Murid_Perempuan_warganegara" id="Murid_Perempuan_warganegara"
+                        class="form-control">
                 </div>
 
                 <div class="col-md-4 mb-1">
@@ -331,7 +336,8 @@
 
 
                 <div class="d-flex justify-content-end align-items-center mt-1">
-                    <button type="button" class="btn btn-primary float-right" onclick="submitsekolah('pelajar')">Simpan</button>
+                    <button type="button" class="btn btn-primary float-right"
+                        onclick="submitsekolah('pelajar')">Simpan</button>
                 </div>
             </div>
         </div>
@@ -342,8 +348,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script type="text/javascript">
-
-        $(document).ready(function() {
+    $(document).ready(function() {
         var butiranid = $('#butiran_id').val();
         if (butiranid == '') {
             return false;
@@ -360,18 +365,18 @@
                 if (response.status == 'success') {
                     console.log(response)
                     for (const [key, value] of Object.entries(response.data)) {
-                        $("input[name='"+key +"']").val(value);
+                        $("input[name='" + key + "']").val(value);
                     }
 
                     if (response.guru != '') {
                         for (const [key, value] of Object.entries(response.guru)) {
-                            $("input[name='"+key +"']").val(value);
+                            $("input[name='" + key + "']").val(value);
                         }
                     }
 
                     if (response.pelajar != '') {
                         for (const [key, value] of Object.entries(response.pelajar)) {
-                            $("input[name='"+key +"']").val(value);
+                            $("input[name='" + key + "']").val(value);
                         }
                     }
 
@@ -386,8 +391,8 @@
         }
     })
 
-    function  submitsekolah(tab) {
-         var formData = new FormData(document.getElementById('butiran_institut_sekolah'));
+    function submitsekolah(tab) {
+        var formData = new FormData(document.getElementById('butiran_institut_sekolah'));
         formData.append("tab", tab);
 
         var APIUrl = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/save-sekolah';

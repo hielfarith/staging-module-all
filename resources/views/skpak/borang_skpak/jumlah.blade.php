@@ -13,7 +13,6 @@
         width: 100% !important;
         /* word-wrap: break-word; */
     }
-
 </style>
 
 <h5 class="card-title fw-bolder">
@@ -21,31 +20,31 @@
 </h5>
 
 <?php
-    $show = false;
-    if ($skpak) {
-        if (!empty($skpak->penilaian1) && !empty($skpak->penilaian2) && !empty($skpak->penilaian3) && !empty($skpak->penilaian4) && !empty($skpak->penilaian5) && !empty($skpak->penilaian6)) {
-            $show = true;
-        }
-    } else {
-        $penilaian1 = null;
+$show = false;
+if ($skpak) {
+    if (!empty($skpak->penilaian1) && !empty($skpak->penilaian2) && !empty($skpak->penilaian3) && !empty($skpak->penilaian4) && !empty($skpak->penilaian5) && !empty($skpak->penilaian6)) {
+        $show = true;
     }
+} else {
+    $penilaian1 = null;
+}
 ?>
 
 <hr>
 @php
-$penilaians = [
-'Etika Dan Profesionalisme',
-'Keselamatan, Kesihatan Dan Kebersihan Persekitaran Fizikal Serta Kualiti Pemakanan Bayi Dan Kanak-Kanak',
-'Pengurusan Aspek Asuhan Bayi Dan Kanak-Kanak',
-'Pengalaman Pembelajaran, Interaksi Dan Penaksiran',
-'Persekitaran Fizikal Dan Sumber Pembelajaran',
-'Pengurusan Taska, Sumber Manusia Dan Kolaborasi Dengan Ibu Bapa Dan Komuniti',
-];
+    $penilaians = [
+        'Etika Dan Profesionalisme',
+        'Keselamatan, Kesihatan Dan Kebersihan Persekitaran Fizikal Serta Kualiti Pemakanan Bayi Dan Kanak-Kanak',
+        'Pengurusan Aspek Asuhan Bayi Dan Kanak-Kanak',
+        'Pengalaman Pembelajaran, Interaksi Dan Penaksiran',
+        'Persekitaran Fizikal Dan Sumber Pembelajaran',
+        'Pengurusan Taska, Sumber Manusia Dan Kolaborasi Dengan Ibu Bapa Dan Komuniti',
+    ];
 @endphp
-<input type="hidden" name="skpak_id" id="skpak_id" value="{{$skpak?->id}}">
+<input type="hidden" name="skpak_id" id="skpak_id" value="{{ $skpak?->id }}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="jumlahKeseluruhanItem">
-        <thead>
+        <thead style="color:black; background-color: #d8bfb0;">
             <tr>
                 <th>Nama Penilaian</th>
                 <th>Ya</th>
@@ -55,11 +54,13 @@ $penilaians = [
 
         <tbody>
             @foreach ($penilaians as $key => $penilaian)
-            <tr>
-                <td>{{ $penilaian }}</td>
-                <td class="text-center">{{ isset($array['penilaian'.$key+1]) ? $array['penilaian'.$key+1]['YA'] : '-'}}</td>
-                <td class="text-center">{{ isset($array['penilaian'.$key+1]) ? $array['penilaian'.$key+1]['TIDAK'] : '-'}}</td>
-            </tr>
+                <tr>
+                    <td>{{ $penilaian }}</td>
+                    <td class="text-center">
+                        {{ isset($array['penilaian' . $key + 1]) ? $array['penilaian' . $key + 1]['YA'] : '-' }}</td>
+                    <td class="text-center">
+                        {{ isset($array['penilaian' . $key + 1]) ? $array['penilaian' . $key + 1]['TIDAK'] : '-' }}</td>
+                </tr>
             @endforeach
         </tbody>
 
@@ -74,10 +75,10 @@ $penilaians = [
         </tfoot>
     </table>
 </div>
-@if($show && empty($disabled))
-<div class="d-flex justify-content-end align-items-center mt-1">
-    <button type="button" class="btn btn-primary float-right" onclick="hantar()">Simpan</button>
-</div>
+@if ($show && empty($disabled))
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="button" class="btn btn-primary float-right" onclick="hantar()">Simpan</button>
+    </div>
 @endif
 
 <script type="text/javascript">
@@ -88,11 +89,11 @@ $penilaians = [
             url: url,
             method: 'POST',
             data: {
-                id:id
+                id: id
             },
             success: function(response) {
                 Swal.fire('Success', 'Berjaya', 'success');
-                var location = "{{route('skpak.senarai-skpak')}}";
+                var location = "{{ route('skpak.senarai-skpak') }}";
                 window.location.href = location;
             }
         });

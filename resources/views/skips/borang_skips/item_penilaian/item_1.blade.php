@@ -1,105 +1,104 @@
 <?php
-    $butiran_institusi_id = $butiran_id;
-    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
-    if ($butiran_institusi_id && $tab1) {
-        $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran);
-    } else {
-        $penubuhan_pendaftaran = null;
-    }
+$butiran_institusi_id = $butiran_id;
+$tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+if ($butiran_institusi_id && $tab1) {
+    $penubuhan_pendaftaran = json_decode($tab1->penubuhan_pendaftaran);
+} else {
+    $penubuhan_pendaftaran = null;
+}
 ?>
 @php
-$pendaftarans = [
-    'kelulusan_penubuhan' => '1.1 Surat Kelulusan Penubuhan',
-    'perakuan_pendaftaran' => '1.2 Perakuan Pendaftaran',
-    'permit_pengelola' => '1.3 Permit Pengelola',
-    'permit_pekerja' => '1.4 Permit Pekerja',
-    'kelulusan_pengetua' => '1.5 Surat Kelulusan Pengetua ',
-    'permit_guru' => '1.6 Permit Guru',
-    'suratcara_pengelola' => '1.7 Suratcara Pengelola',
-    'yuran_dan_bayaran_lain' => '1.8 Yuran dan Bayaran Lain',
-    'surat_surat_sokongan_agensi' => '1.9 Surat-surat Sokongan Agensi',
-];
+    $pendaftarans = [
+        'kelulusan_penubuhan' => '1.1 Surat Kelulusan Penubuhan',
+        'perakuan_pendaftaran' => '1.2 Perakuan Pendaftaran',
+        'permit_pengelola' => '1.3 Permit Pengelola',
+        'permit_pekerja' => '1.4 Permit Pekerja',
+        'kelulusan_pengetua' => '1.5 Surat Kelulusan Pengetua ',
+        'permit_guru' => '1.6 Permit Guru',
+        'suratcara_pengelola' => '1.7 Suratcara Pengelola',
+        'yuran_dan_bayaran_lain' => '1.8 Yuran dan Bayaran Lain',
+        'surat_surat_sokongan_agensi' => '1.9 Surat-surat Sokongan Agensi',
+    ];
 
-$options = [
-    'kelulusan_penubuhan' => [
-        0 => '',
-        1 => '',
-        2 => '<i style="font-size:12px;">Ada</i>',
-        3 => '<i style="font-size:12px;">Ada, Lengkap</i>',
-        4 => '<i style="font-size:12px;">Ada, Lengkap, Difailkan</i>',
-        5 => '<i style="font-size:12px;">Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
-    ],
-    'perakuan_pendaftaran' => [
-        0 => '',
-        1 => '<i style="font-size:12px;"> Ada</i>',
-        2 => '<i style="font-size:12px;"> Ada, Lengkap</i>',
-        3 => '<i style="font-size:12px;"> Ada, Lengkap, Dipamerkan</i>',
-        4 => '<i style="font-size:12px;"> Ada, Lengkap, Dipamerkan, Strategik</i>',
-        5 => '<i style="font-size:12px;"> Ada, Lengkap, Dipamerkan, Strategik, Kemas</i>',
-    ],
+    $options = [
+        'kelulusan_penubuhan' => [
+            0 => '',
+            1 => '',
+            2 => '<i style="font-size:12px;">Ada</i>',
+            3 => '<i style="font-size:12px;">Ada, Lengkap</i>',
+            4 => '<i style="font-size:12px;">Ada, Lengkap, Difailkan</i>',
+            5 => '<i style="font-size:12px;">Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
+        ],
+        'perakuan_pendaftaran' => [
+            0 => '',
+            1 => '<i style="font-size:12px;"> Ada</i>',
+            2 => '<i style="font-size:12px;"> Ada, Lengkap</i>',
+            3 => '<i style="font-size:12px;"> Ada, Lengkap, Dipamerkan</i>',
+            4 => '<i style="font-size:12px;"> Ada, Lengkap, Dipamerkan, Strategik</i>',
+            5 => '<i style="font-size:12px;"> Ada, Lengkap, Dipamerkan, Strategik, Kemas</i>',
+        ],
 
-    'permit_pengelola' => [
-        0 => '',
-        1 => '<i style="font-size:12px;"> Ada</i>',
-        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
-        3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
-        4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
-        5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
-    ],
-    'permit_pekerja' => [
-        0 => '',
-        1 => '<i style="font-size:12px;"> Ada</i>',
-        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
-        3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
-        4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
-        5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
-    ],
+        'permit_pengelola' => [
+            0 => '',
+            1 => '<i style="font-size:12px;"> Ada</i>',
+            2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+            3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
+            4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
+            5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
+        ],
+        'permit_pekerja' => [
+            0 => '',
+            1 => '<i style="font-size:12px;"> Ada</i>',
+            2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+            3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
+            4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
+            5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
+        ],
 
-    'kelulusan_pengetua' => [
-        0 => '',
-        1 => '<i style="font-size:12px;"> Ada</i>',
-        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
-        3 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan</i>',
-        4 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
-        5 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
-    ],
-    'permit_guru' => [
-        0 => '',
-        1 => '<i style="font-size:12px;"> Ada</i>',
-        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
-        3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
-        4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
-        5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
-    ],
-    'suratcara_pengelola' => [
-        0 => '',
-        1 => '<i style="font-size:12px;"> Ada</i>',
-        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
-        3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
-        4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
-        5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
-    ],
+        'kelulusan_pengetua' => [
+            0 => '',
+            1 => '<i style="font-size:12px;"> Ada</i>',
+            2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+            3 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan</i>',
+            4 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
+            5 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
+        ],
+        'permit_guru' => [
+            0 => '',
+            1 => '<i style="font-size:12px;"> Ada</i>',
+            2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+            3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
+            4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
+            5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
+        ],
+        'suratcara_pengelola' => [
+            0 => '',
+            1 => '<i style="font-size:12px;"> Ada</i>',
+            2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+            3 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi</i>',
+            4 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan</i>',
+            5 => '<i style="font-size:12px;"> Ada, Terkini, Mecukupi, Difailkan, Kebolehcapaian</i>',
+        ],
 
-    'yuran_dan_bayaran_lain' => [
-        0 => '',
-        1 => '<i style="font-size:12px;"> Ada</i>',
-        2 => '<i style="font-size:12px;"> Ada, Lengkap</i>',
-        3 => '<i style="font-size:12px;"> Ada, Lengkap, Difailkan</i>',
-        4 => '<i style="font-size:12px;"> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
-        5 => '<i style="font-size:12px;"> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
-    ],
-    'surat_surat_sokongan_agensi' => [
-        0 => '',
-        1 => '<i style="font-size:12px;"> Ada</i>',
-        2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
-        3 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan</i>',
-        4 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
-        5 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
-    ],
+        'yuran_dan_bayaran_lain' => [
+            0 => '',
+            1 => '<i style="font-size:12px;"> Ada</i>',
+            2 => '<i style="font-size:12px;"> Ada, Lengkap</i>',
+            3 => '<i style="font-size:12px;"> Ada, Lengkap, Difailkan</i>',
+            4 => '<i style="font-size:12px;"> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
+            5 => '<i style="font-size:12px;"> Ada, Lengkap, Difailkan, Kebolehcapaian</i>',
+        ],
+        'surat_surat_sokongan_agensi' => [
+            0 => '',
+            1 => '<i style="font-size:12px;"> Ada</i>',
+            2 => '<i style="font-size:12px;"> Ada, Terkini</i>',
+            3 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan</i>',
+            4 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian</i>',
+            5 => '<i style="font-size:12px;"> Ada, Terkini, Difailkan, Kebolehcapaian, Dipamerkan</i>',
+        ],
+    ];
 
-];
-
-$count = 1.1;
+    $count = 1.1;
 @endphp
 
 <style>
@@ -120,7 +119,7 @@ $count = 1.1;
 <form id="penubuhan_pendaftaran">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai1">
-            <thead>
+            <thead style="color:black; background-color: #d8bfb0;">
                 <tr>
                     <th rowspan="2" width="5%">No.</th>
                     <th rowspan="2" width="20%"> Kriteria </th>
@@ -142,8 +141,8 @@ $count = 1.1;
                 </tr>
             </thead>
             <tbody>
-                <input type="hidden" name="usertype" value="{{$type}}">
-                <input type="hidden" name="butiran_institusi_id" value="{{$butiran_institusi_id}}">
+                <input type="hidden" name="usertype" value="{{ $type }}">
+                <input type="hidden" name="butiran_institusi_id" value="{{ $butiran_institusi_id }}">
                 <tr>
                     <td colspan="8" class="bg-light-primary fw-bolder text-uppercase">Penubuhan & Pendaftaran</td>
                 </tr>
@@ -160,7 +159,7 @@ $count = 1.1;
                             <td> {{ $numeric }} </td>
                         @endif
 
-                        @if(!$excludeNumber)
+                        @if (!$excludeNumber)
                             <td> {!! $text !!} </td>
                         @else
                             <td class="bg-light-primary" colspan="8"> {!! $text !!} </td>
@@ -168,8 +167,12 @@ $count = 1.1;
 
                         @foreach ($options[$index] as $key => $option)
                             <td>
-                                <div class="form-check form-check-inline d-flex justify-content-center align-items-center">
-                                    <input class="form-check-input" type="radio" name="{{ $index }}" value="{{$key}}" required  @if($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index == $key) checked @endif @if($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
+                                <div
+                                    class="form-check form-check-inline d-flex justify-content-center align-items-center">
+                                    <input class="form-check-input" type="radio" name="{{ $index }}"
+                                        value="{{ $key }}" required
+                                        @if ($penubuhan_pendaftaran && $penubuhan_pendaftaran->$index == $key) checked @endif
+                                        @if ($type == 'verfikasi' || $type == 'validasi' || $type == 'laporan') disabled @endif>
                                 </div>
                                 <br>
 
@@ -186,10 +189,10 @@ $count = 1.1;
 
     <hr>
 
-    @if($type != 'laporan' && !empty($butiran_id))
-    <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="button" class="btn btn-primary float-right formdd" onclick="submitformTab1()">Simpan</button>
-    </div>
+    @if ($type != 'laporan' && !empty($butiran_id))
+        <div class="d-flex justify-content-end align-items-center mt-1">
+            <button type="button" class="btn btn-primary float-right formdd" onclick="submitformTab1()">Simpan</button>
+        </div>
     @endif
 
 </form>
@@ -200,7 +203,7 @@ $count = 1.1;
         var error = false;
 
         $('form#penubuhan_pendaftaran').find('radio, input').each(function() {
-            var value = $("input[name='"+this.name+"']:checked").val();
+            var value = $("input[name='" + this.name + "']:checked").val();
             if (typeof value == 'undefined' && this.type == 'radio') {
                 error = true;
             }
@@ -211,7 +214,7 @@ $count = 1.1;
             return false;
         }
         // var url = "{{ route('skips.instrumen-submit', ['tab' => 'penubuhan_pendaftaran']) }}"
-         var url = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/store-item-standard/penubuhan_pendaftaran';
+        var url = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/store-item-standard/penubuhan_pendaftaran';
 
         $.ajax({
             url: url,
@@ -220,12 +223,12 @@ $count = 1.1;
             contentType: false,
             processData: false,
             success: function(response) {
-               if (response.status) {
+                if (response.status) {
                     Swal.fire('Success', 'Berjaya', 'success');
                     if (response.formfilled == true) {
                         window.location.reload();
                     }
-               }
+                }
             }
         });
 

@@ -15,37 +15,34 @@
     <div class="row">
         <div class="col-md-6 ">
             <div class="card h-100">
-                <div class="card-header" style="background-color: #F75D59">
+                <div class="card-header" style="background-color: #ff6c62">
                     <h4 class="card-title fw-bolder">Pengumuman</h4>
                 </div>
                 <div class="card-body">
                     @foreach ($pengumumans as $pengumuman)
-                    <div class="mt-75">
-                        <div class="d-flex mb-2">
-                            <a href="{{ Illuminate\Support\Facades\Storage::disk('public')->url($pengumuman->dokumen) }}" class="me-2">
-                            <img
-                                class="rounded"
-                                src="{{ asset('images/icons/icon-file.png') }}"
-                                width="100"
-                                height="100"
-                            />
-                            </a>
-                            <div class="blog-info">
-                                <h4 class="blog-recent-post-title">{{ $pengumuman->tajuk }}</h4>
-                                <h6 class="blog-recent-post-title">{{ $pengumuman->keterangan }}</h6>
-                                <div class="text-muted mb-0">{{ date_format($pengumuman->created_at, 'Y-m-d') }}</div>
+                        <div class="mt-75">
+                            <div class="d-flex mb-2">
+                                <a href="{{ Illuminate\Support\Facades\Storage::disk('public')->url($pengumuman->dokumen) }}"
+                                    class="me-2">
+                                    <img class="rounded" src="{{ asset('images/icons/icon-file.png') }}" width="100"
+                                        height="100" />
+                                </a>
+                                <div class="blog-info">
+                                    <h4 class="blog-recent-post-title">{{ $pengumuman->tajuk }}</h4>
+                                    <h6 class="blog-recent-post-title">{{ $pengumuman->keterangan }}</h6>
+                                    <div class="text-muted mb-0">{{ date_format($pengumuman->created_at, 'Y-m-d') }}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <hr>
-                    @endforeach 
+                        <hr>
+                    @endforeach
                 </div>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="card h-100">
-                <div class="card-header" style="background-color: #FCDCCE;">
+                <div class="card-header" style="background-color: #FAE9DA;">
                     <h4 class="card-title fw-bolder"><i class="fa-regular fa-clone"></i> Profil Pengguna</h4>
                 </div>
                 <div class="card-body mt-2">
@@ -75,7 +72,8 @@
 
                         <tr>
                             <th>Alamat Pejabat 1</th>
-                            <td colspan="4"><!-- Blok E2, Kementerian Pelajaran Malaysia, Presint 1, 62604 Putrajaya --> - </td>
+                            <td colspan="4"><!-- Blok E2, Kementerian Pelajaran Malaysia, Presint 1, 62604 Putrajaya -->
+                                - </td>
                         </tr>
                         <tr>
                             <th>Alamat Pejabat 2</th>
@@ -96,7 +94,7 @@
                         <tr>
                             <th>Alamat Pejabat Negeri</th>
                             <td colspan="4"><!-- Kompleks Bangunan Kerajaan, 50600, Jln Tuanku Abdul Halim, 50480 Kuala
-                                Lumpur, Federal Territory of Kuala Lumpur --> - </td>
+                                                Lumpur, Federal Territory of Kuala Lumpur --> - </td>
                         </tr>
                         <tr>
                             <th>No Tel. Pejabat</th>
