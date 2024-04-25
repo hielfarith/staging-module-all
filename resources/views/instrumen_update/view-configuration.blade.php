@@ -77,10 +77,10 @@
                                     <div class="input-group">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Dari</span>
-                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="fromDate" name="pengisian_dari">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="pengisian_dari" name="pengisian_dari">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Hingga</span>
-                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="toDate" name="pengisian_hingga">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="pengisian_hingga" name="pengisian_hingga">
                                     </div>
                                 </div>
                             </div>
@@ -128,10 +128,10 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
-                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="fromDate" name="validasi_dari">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="validasi_dari" name="validasi_dari">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Hingga</span>
-                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="toDate" name="validasi_hingga">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="validasi_hingga" name="validasi_hingga">
                                     </div>
                                 </div>
                             </div>
@@ -179,10 +179,10 @@
                                     <div class="input-group">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Dari</span>
-                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="fromDate" name="verfikasi_dari">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="verfikasi_dari" name="verfikasi_dari">
                                         <span class="input-group-text"
                                             style="background-color: #F3F2F7">Hingga</span>
-                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="toDate" name="verfikasi_hingga">
+                                        <input {{ $readonly }} {{ $disabled }} type="date" class="form-control flatpickr flatpickr-input" id="verfikasi_hingga" name="verfikasi_hingga">
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +213,7 @@
                 id: configurationID
             },
             success: function(response) {
-                var array = ['pengisian_institut', 'pengisian_peranan', 'pengisian_dari', 'pengisian_hingga', 'validasi_institut', 'validasi_peranan', 'validasi_dari', 'validasi_hingga', 'verfikasi_institut', 'verfikasi_peranan', 'verifikasi_dari', 'verifikasi_hingga', 'status'];
+                var array = ['pengisian_institut', 'pengisian_peranan', 'validasi_institut', 'validasi_peranan', 'verfikasi_institut', 'verfikasi_peranan', 'status'];
                 for (const [key, value] of Object.entries(response.data)) {
                     if (key != 'id' || key != 'remarks' || key != 'created_at' || key != 'updated_at') {
                         if (jQuery.inArray(key, array) !== -1 ) {
