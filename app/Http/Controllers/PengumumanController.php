@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Integration\IdmeController;
 use App\Models\Pengumuman;
-use App\Models\RoleAccess;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -24,33 +23,6 @@ class PengumumanController extends Controller
             if ($responseData->status === true && isset($responseData->data->user->data)) {
                 // Extract user data
                 $userData = $responseData->data->user->data;
-                $roleData = collect($responseData->data->access->level_roles)->pluck('ROLE_NAME')->toArray();
-
-                $listRole = config('staticdata.role.jenis_peranan');
-
-                $foundRoles = [];
-                foreach ($listRole as $type) {
-                    foreach($type as $key => $role) {
-                        if (in_array(strtoupper($role), $roleData)) {
-                            $foundRoles[] = $key;
-                        }
-                    }
-                }
-
-                $roleAccess = RoleAccess::get();
-
-                $roleSPPIP = [];
-                foreach ($roleAccess as $access) {
-                    $columnJenis = $access->jenis; // Assuming 'jenis' is the attribute name in your model
-                    $jenisArray = explode(',', $columnJenis);
-                
-                    foreach ($foundRoles as $foundRole) {
-                        if (in_array($foundRole, $jenisArray)) {
-                            // Further action here, for example:
-                            $roleSPPIP[] = $access->role_id;
-                        }
-                    }
-                }
 
                 // Check if the user exists in the database based on no_ic and email
                 $user = User::where('no_ic', $userData->NOKP)
@@ -64,8 +36,6 @@ class PengumumanController extends Controller
                         'no_ic' => $userData->NOKP,
                         'email' => $userData->EMAIL,
                     ]); 
-
-                    $user->syncRoles($roleSPPIP);
                 }
 
                 // Authenticate the user

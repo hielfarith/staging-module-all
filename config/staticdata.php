@@ -27,50 +27,23 @@ return [
         ],
         'sub_modul' => [
             'ikeps' => [
-                1 => 'Modul Pengisian Data Instrumen',
-                2 => 'Modul Verifikasi Data Instrumen',
-                3 => 'Modul Pelaporan Data Instrumen',
-                4 => 'Modul Muat Turun Data Penilaian',
-                5 => 'Modul Dashboard',
-                6 => 'Modul Konfigurasi Sistem',
-                7 => 'Modul Kemaskini Profil Pengguna'
+
             ],
             'skips' => [
-                8 => 'Modul Pengisian Data Instrumen [Pusat]',
-                9 => 'Modul Pengisian Data Instrumen [Sekolah]',
-                10 => 'Senarai Skips [Pusat]',
-                11 => 'Senarai Skips [Sekolah]',
-                12 => 'Modul Validasi',
-                13 => 'Modul Pelaporan Penarafan',
-                14 => 'Modul Dashboard',
-                15 => 'Modul Konfigurasi Instrumen',
-                16 => 'Modul Tambah/Kemaskini Institusi Pendidikan',
-                17 => 'Modul Kemaskini Profil Pengguna'
+                
             ],
             'skpak' => [
-                18 => 'Modul Pengisian Data Instrumen',
-                19 => 'Modul Pengesahan Pengisian Data Instrumen',
-                20 => 'Modul Verifikasi Data Instrumen',
-                21 => 'Modul Validasi Data Instrumen',
-                22 => 'Modul Pelaporan Data Penilaian',
-                23 => 'Modul Pelaporan Penarafan',
-                24 => 'Modul Muat Turun Data Penilaian',
-                25 => 'Modul Dashboard',
-                26 => 'Modul Konfigurasi Instrumen',
-                27 => 'Modul Tambah/Kemaskini Institusi Pendidikan',
-                28 => 'Modul Penatapan Penilai',
-                29 => 'Modul Rentas',
-                30 => 'Modul Kemaskini Profil Pengguna'
+
             ],
             'spks' => [
-                31 => 'Modul Pengisian Data Instrumen',
-                32 => 'Senarai SPKS',
-                33 => 'Modul Verifikasi Data Instrumen',
-                34 => 'Modul Validasi Data Instrumen' ,
-                35 => 'Modul Pelaporan Data Instrumen',
-                36 => 'Modul Pelaporan Penarafan',
-                37 => 'Modul Dashboard',
-                38 => 'Modul Konfigurasi Sistem',
+                1 => 'Modul Pengisian Data Instrumen',
+                2 => 'Senarai SPKS',
+                3 => 'Modul Verifikasi Data Instrumen',
+                4 => 'Modul Validasi Data Instrumen' ,
+                5 => 'Modul Pelaporan Data Instrumen',
+                6 => 'Modul Pelaporan Penarafan',
+                7 => 'Modul Dashboard',
+                8 => 'Modul Konfigurasi Sistem',
             ]
         ],
         'pilihan_proses' => [
@@ -92,29 +65,13 @@ return [
             4 => 'Lihat Sahaja',
         ],
         'jenis_peranan' => [
-            'ikeps' => [
-                1 => 'Penyelaras iKEPS',
-                2 => 'Pengesah iKEPS',
-                3 => 'Pegawai Pengesah iKEPS JPN',
-                4 => 'Pegawai Pengesah iKEPS Sekolah',
-                5 => 'Pegawai Pengesah BSKK iKEPS'
-            ],
-            'skips' => [
-                6 => 'Pentadbir Skips BPSwasta',
-                7 => 'Pegawai Pengesah PPD Skips',
-                8 => 'Pegawai Pengesah JPN Skips',
-                9 => 'Pentadbir Skips BPSwasta'
-            ],
-            'skpak' => [
-                10 => 'Pentadbir SKPAK Bhg Permata'
-            ],
             'spks' => [
-                11 => 'Penyelaras SPKS',
-                12 => 'Pengesah SPKS',
-                13 => 'Pegawai Pengesah SPKS PPD',
-                14 => 'Pegawai Pengesah SPKS JPN',
-                15 => 'Pegawai Pengesah BPSH SPKS',
-            ],
+                1 => 'Penyelaras SPKS',
+                2 => 'Pengesah SPKS',
+                3 => 'Pegawai Pengesah SPKS PPD',
+                4 => 'Pegawai Pengesah SPKS JPN',
+                5 => 'Pegawai Pengesah BPSH SPKS',
+            ]
             // 1 => 'PPD',
             // 2 => 'JPN',
             // 3 => 'BPSwasta',
