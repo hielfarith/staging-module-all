@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Models\Pengumuman;
+use App\Models\RoleAccess;
 
 class HomeController extends Controller
 {
@@ -35,7 +36,7 @@ class HomeController extends Controller
             'APIKEY' => $apiKey,
         ])->withOptions([
             'verify' => false,
-        ])->get('https://integrasi.moe.gov.my/General-stage/staffKPM?NoKP=750808025271');
+        ])->get('https://integrasi.moe.gov.my/General-stage/staffKPM?NoKP='.$user->no_ic);
 
         $user = $response['details'][0];
 

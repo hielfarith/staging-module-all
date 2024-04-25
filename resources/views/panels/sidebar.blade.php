@@ -840,21 +840,23 @@
 
 
             <?php
-                $role = auth()->user()->roles()->first();
-                if($role) {
-                $roleAccess = App\Models\RoleAccess::where('role_id', $role->id)->first();
-                } else {
-                    $roleAccess = '';
-                }
+                $roles = auth()->user()->roles;
+                $roles = $roles->pluck('id')->toArray();
 
-                if($roleAccess){
-                    $subModul = explode(',', $roleAccess->sub_modul);
+                $roleAccess = App\Models\RoleAccess::whereIn('role_id', $roles)->get();
+                
+                $modul = $subModul = [];
+                foreach($roleAccess as $access){
+                    $modul[] = $access->modul;
+                    $sub_modul = explode(',', $access->sub_modul);
+                    foreach($sub_modul as $sub){
+                        $subModul[] = $sub;
+                    }
                 }
                 
             ?>
             
-            @if($roleAccess)
-            @if($roleAccess->modul == 1)
+            @if(in_array(1, $modul))
             <li class="navigation-header">
                 <span> I-KePS </span>
             </li>
@@ -873,8 +875,8 @@
                         </a>
                     </li>
 
-                    <li
-                        class="nav-item">
+                    @if(in_array(1, $subModul))
+                    <li class="nav-item">
 
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pengisian Data Instrumen</span>
@@ -896,40 +898,47 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ringkasan_ikeps']) ? 'active' : '' }}">
+                    @if(in_array(2, $subModul))
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.ringkasan_ikeps']) ? 'active' : '' }}">
                         <a href="{{ route('ikeps.ringkasan_ikeps') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Verifikasi Data Instrumen
                             </span>
                         </a>
                     </li>
+                    @endif
 
+                    @if(in_array(3, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.laporan_ikeps']) ? 'active' : '' }}">
+                    @if(in_array(4, $subModul))     
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.laporan_ikeps']) ? 'active' : '' }}">
                         <a href="{{ route('ikeps.laporan_ikeps') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Muat Turun Data Penilaian
                             </span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.pemantauan_ikeps']) ? 'active' : '' }}">
+                    @if(in_array(5, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.pemantauan_ikeps']) ? 'active' : '' }}">
                         <a href="{{ route('ikeps.pemantauan_ikeps') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Dashboard
                             </span>
                         </a>
                     </li>
+                    @endif
 
+                    @if(in_array(6, $subModul))   
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Sistem</span>
@@ -960,18 +969,20 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['admin.internal.jurulatihlist']) ? 'active' : '' }}">
+                    @if(in_array(7, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.internal.jurulatihlist']) ? 'active' : '' }}">
                         <a href="{{ route('admin.internal.jurulatihlist') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Modul Kemaskini Profil Pengguna </span>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </li>
             @endif
 
-            @if($roleAccess->modul == 2)
+            @if(in_array(2, $modul))
             <li class="navigation-header">
                 <span> SKIPS </span>
             </li>
@@ -988,119 +999,102 @@
                         </a>
                     </li>
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
+                    @if(in_array(8, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
                         <a href="{{ route('skips.skips_baru') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Pengisian Data Instrumen [Pusat]
                             </span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.sekolah']) ? 'active' : '' }}">
+                    @if(in_array(9, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.sekolah']) ? 'active' : '' }}">
                         <a href="{{ route('skips.skips_sekolah') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Pengisian Data Instrumen [Sekolah]
                             </span>
                         </a>
                     </li>
+                    @endif
 
-                    <!--  -->
-
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
+                    @if(in_array(10, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
                         <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Senarai Skips[Pusat]
                             </span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi-sekolah']) ? 'active' : '' }}">
+                    @if(in_array(11, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi-sekolah']) ? 'active' : '' }}">
                         <a href="{{ route('skips.senarai-skips-institusi-sekolah') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Senarai Skips [Sekolah]
                             </span>
                         </a>
                     </li>
+                    @endif
 
-
-
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
+                    @if(in_array(12, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Validasi
                             </span>
                         </a>
                     </li>
+                    @endif
 
-                    <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
-                                                                                                                                        <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
-                                                                                                                                            <span class="menu-title text-truncate text-wrap">
-                                                                                                                                                Modul Verifikasi Data Instrumen
-                                                                                                                                            </span>
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-
-                                                                                                                                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.validasi-skips']) ? 'active' : '' }}">
-                                                                                                                                        <a href="{{ route('skips.validasi-skips') }}" class="nav-link">
-                                                                                                                                            <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
-                                                                                                                                        </a>
-                                                                                                                                    </li> -->
-
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.pelaporan-penarafan']) ? 'active' : '' }}">
+                    @if(in_array(13, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.pelaporan-penarafan']) ? 'active' : '' }}">
                         <a href="{{ route('skips.pelaporan-penarafan') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
                         </a>
                     </li>
+                    @endif
 
-
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
+                    @if(in_array(14, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
-                            <!-- {{-- <i data-feather="home"></i> --}} -->
                             <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-skips']) ? 'active' : '' }}">
+                    @if(in_array(15, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-skips']) ? 'active' : '' }}">
                         <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai_institusi']) ? 'active' : '' }}">
+                    @if(in_array(16, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai_institusi']) ? 'active' : '' }}">
                         <a href="{{ route('skips.senarai_institusi') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi
                                 Pendidikan</span>
                         </a>
                     </li>
+                    @endif
 
-
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skips.kemaskini-profil']) ? 'active' : '' }}">
+                    @if(in_array(17, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.kemaskini-profil']) ? 'active' : '' }}">
                         <a href="{{ route('skips.kemaskini-profil') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
                         </a>
                     </li>
-
-                    <!--    {{-- <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <span class="menu-title text-truncate text-wrap">Modul Notifikasi</span>
-                    </a>
-                </li> --}} -->
+                    @endif
 
                 </ul>
             </li>
             @endif
 
-            @if($roleAccess->modul == 3)
+            @if(in_array(3, $modul))
             <li class="navigation-header">
                 <span> SKPAK </span>
             </li>
@@ -1116,95 +1110,111 @@
                         </a>
                     </li>
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.skpak_baru']) ? 'active' : '' }}">
+                    @if(in_array(18, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.skpak_baru']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.skpak_baru') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Pengisian Data Instrumen
                             </span>
                         </a>
                     </li>
+                    @endif
 
+                    @if(in_array(19, $subModul))   
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pengesahan Pengisian Data
                                 Instrumen</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.verfikasi_senarai']) ? 'active' : '' }}">
+                    @if(in_array(20, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.verfikasi_senarai']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.verfikasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
                                 Modul Verifikasi Data Instrumen
                             </span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.validasi_senarai']) ? 'active' : '' }}">
+                    @if(in_array(21, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.validasi_senarai']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.validasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
                         </a>
                     </li>
+                    @endif
 
+                    @if(in_array(22, $subModul))   
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.menunggu_penarafan']) ? 'active' : '' }}">
+                    @if(in_array(23, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.menunggu_penarafan']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.menunggu_penarafan') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
                         </a>
                     </li>
+                    @endif
 
+                    @if(in_array(24, $subModul))   
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.dashboard']) ? 'active' : '' }}">
+                    @if(in_array(25, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.dashboard']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.dashboard') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-skpak']) ? 'active' : '' }}">
+                    @if(in_array(26, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-skpak']) ? 'active' : '' }}">
                         <a href="{{ route('admin.instrumen.senarai-skpak') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
                         </a>
                     </li>
+                    @endif
 
+                    @if(in_array(27, $subModul))   
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi
                                 Pendidikan</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.senarai_penetapan']) ? 'active' : '' }}">
+                    @if(in_array(28, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.senarai_penetapan']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.senarai_penetapan') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Penetapan Penilai</span>
                         </a>
                     </li>
+                    @endif
 
-                    <li
-                        class="nav-item {{ in_array(request()->route()->getName(), ['skpak.borang_rentas']) ? 'active' : '' }}">
+                    @if(in_array(29, $subModul))   
+                    <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.borang_rentas']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.borang_rentas') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Rentas</span>
                         </a>
                     </li>
+                    @endif
 
+                    @if(in_array(30, $subModul))   
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
-                            <i data-feather="folder"></i>
                             <span class="menu-title text-truncate text-wrap"> Modul Kemaskini Profil Pengguna </span>
                         </a>
                         <ul class="nav">
@@ -1243,11 +1253,12 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                 </ul>
             </li>
             @endif
 
-            @if($roleAccess->modul ==4)
+            @if(in_array(4, $modul))
             <li class="navigation-header">
                 <span> SPKS</span>
             </li>
@@ -1257,7 +1268,7 @@
                     <span class="menu-title text-truncate text-wrap"> SPKS </span>
                 </a>
                 <ul class="nav">
-                    @if(in_array(1, $subModul))
+                    @if(in_array(31, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.spks_baru']) ? 'active' : '' }}">
                         <a href="{{ route('spks.spks_baru') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1267,7 +1278,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(2, $subModul))
+                    @if(in_array(32, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.senarai-spks']) ? 'active' : '' }}">
                         <a href="{{ route('spks.senarai-spks') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1277,7 +1288,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(3, $subModul))
+                    @if(in_array(33, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.verfikasi_senarai']) ? 'active' : '' }}">
                         <a href="{{ route('spks.verfikasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1287,7 +1298,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(4, $subModul))
+                    @if(in_array(34, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.validasi_senarai']) ? 'active' : '' }}">
                         <a href="{{ route('spks.validasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
@@ -1295,7 +1306,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(5, $subModul))
+                    @if(in_array(35, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.senarai-instrumen']) ? 'active' : '' }}">
                         <a href="{{ route('spks.senarai-instrumen') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Instrumen</span>
@@ -1303,7 +1314,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(6, $subModul))
+                    @if(in_array(36, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.laporan-penarafan']) ? 'active' : '' }}">
                         <a href="{{ route('spks.laporan-penarafan') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
@@ -1311,7 +1322,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(7, $subModul))
+                    @if(in_array(37, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['spks.dashboard']) ? 'active' : '' }}">
                         <a href="{{ route('spks.dashboard') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
@@ -1319,7 +1330,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(8, $subModul))
+                    @if(in_array(38, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-spks']) ? 'active' : '' }}">
                         <a href="{{ route('admin.instrumen.senarai-spks') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Sistem</span>
@@ -1328,7 +1339,6 @@
                     @endif
                 </ul>
             </li>
-            @endif
             @endif
 
             @hasanyrole('jabatan_pendidikan_negeri')
