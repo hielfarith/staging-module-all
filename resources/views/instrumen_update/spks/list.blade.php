@@ -15,6 +15,26 @@
 @endsection
 
 @section('content')
+    <style>
+        .legend-container {
+            text-align: right;
+            /* Align legend to the right */
+            margin-bottom: 10px;
+            /* Optional: Add some bottom margin */
+        }
+
+        .legend {
+            display: inline-block;
+            /* background-color: #f0f0f0; */
+            padding: 5px 10px;
+            /* border: 1px solid #ccc; */
+            border-radius: 5px;
+        }
+
+        .legend-item {
+            margin-right: 10px;
+        }
+    </style>
     <div class="card">
         <div class="card-header">
             <h4 class="card-title fw-bolder"> Senarai Spks </h4>
@@ -55,16 +75,23 @@
             </div>
 
             <hr>
+            <div class="legend-container">
+                <div class="legend">
+                    <span class="legend-item"><i class="fa fa-eye text-primary" style="font-size: 16px;"></i> : Lihat
+                        Instrumen</span>
+                    <span class="legend-item"><i class="fa fa-pencil text-warning" style="font-size: 16px;"></i> : Kemas
+                        Kini Instrumen</span>
+                </div>
+            </div>
             <div class="table-responsive">
-                <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiInstrumenSpks">
-                    <thead>
-                        <tr>
-                            <th width="5%">No.</th>
-                            <th>Nama Instrumen</th>
-                            <th>Tujuan Instrumen</th>
-                            <th>Pengisian Institut</th>
-                            <th>Tarikh Kuatkuasa</th>
-                            <th width="5%">Tindakan</th>
+                <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiInstrumen">
+                    <thead style="color:white; background-color: #ff8e74">
+                        <th width="5%">No.</th>
+                        <th>Nama Instrumen</th>
+                        <th>Tujuan Instrumen</th>
+                        <th>Pengisian Institut</th>
+                        <th>Tarikh Kuatkuasa</th>
+                        <th width="5%">Tindakan</th>
                         </tr>
                     </thead>
                     <tbody id="instrumen-table-spks-body">
@@ -149,7 +176,7 @@
                 }
             });
 
-            
+
         });
 
 
@@ -194,7 +221,7 @@
             var tujuan_instrumen = $('#tujuan_instrumen').val();
             var pengisian_institut = $('#pengisian_institut').val();
             var APIUrl = "{{ env('APP_KONFIGURASI_URL') }}" + "api/spks/konfiguration/search";
-             $.ajax({
+            $.ajax({
                 url: APIUrl, // Route URL
                 type: 'POST', // Request type (GET, POST, etc.)
                 data: {
@@ -203,7 +230,7 @@
                     pengisian_institut: pengisian_institut
                 },
                 success: function(response) {
-                   if (response.status == 'success') {
+                    if (response.status == 'success') {
                         var data = response.data;
                         $('#instrumen-table-spks-body').empty();
                         for (var i = 0; i < data.length; i++) {
@@ -231,8 +258,9 @@
                 }
             });
         }
+
         function reset() {
-            var location = "{{route('admin.instrumen.senarai-spks')}}";
+            var location = "{{ route('admin.instrumen.senarai-spks') }}";
             window.location.href = location;
         }
     </script>

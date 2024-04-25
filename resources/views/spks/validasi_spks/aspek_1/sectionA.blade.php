@@ -13,28 +13,27 @@
         width: 100% !important;
         /* word-wrap: break-word; */
     }
-
 </style>
 
 @php
-$aspeks_1_secA = [
-[
-'section' => 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah',
-'subSections' => [
-'Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)',
-'Menyedia dan mempamer tatacara keselamatan pergi dan balik sekolah.',
-'pemeriksaan berkala ke atas kenderaan yang digunakan murid ke sekolah.(Basikal, Motosikal, Kereta)',
-'Mematuhi prosedur dan peraturan berkaitan keselamatan daripada pihak berkuasa berkenaan. (Jaket keselamatan/topi
+    $aspeks_1_secA = [
+        [
+            'section' => 'Arahan Keselamatan Murid Dari Aspek Pergi Dan Balik Sekolah',
+            'subSections' => [
+                'Mempunyai data dan rekod cara murid ke sekolah (Berjalan kaki, Berbasikal, Motosikal, Bas sekolah, Dihantar penjaga, Bot/Perahu,Kereta sendiri, Kereta api)',
+                'Menyedia dan mempamer tatacara keselamatan pergi dan balik sekolah.',
+                'pemeriksaan berkala ke atas kenderaan yang digunakan murid ke sekolah.(Basikal, Motosikal, Kereta)',
+                'Mematuhi prosedur dan peraturan berkaitan keselamatan daripada pihak berkuasa berkenaan. (Jaket keselamatan/topi
 keledar/lesen memandu/cukai jalan dan lain-lain berkaitan)',
-'Menetapkan laluan pejalan kaki, laluan dan parkir kenderaan yang digunakan oleh murid.',
-'Menetapkan tempat menurunkan dan mengambil murid yang menggunakan bas dan yang dihantar oleh penjaga.',
-'Kawal selia pengurusan sekolah sewaktu murid datang dan balik dari sekolah.',
-'Ada arahan berkaitan keselamatan murid semasa berada di jeti / stesen bas/ stesen kereta api/ dan lain-lain.',
-]
-],
-];
+                'Menetapkan laluan pejalan kaki, laluan dan parkir kenderaan yang digunakan oleh murid.',
+                'Menetapkan tempat menurunkan dan mengambil murid yang menggunakan bas dan yang dihantar oleh penjaga.',
+                'Kawal selia pengurusan sekolah sewaktu murid datang dan balik dari sekolah.',
+                'Ada arahan berkaitan keselamatan murid semasa berada di jeti / stesen bas/ stesen kereta api/ dan lain-lain.',
+            ],
+        ],
+    ];
 
-$number = 1;
+    $number = 1;
 @endphp
 
 
@@ -65,28 +64,28 @@ $number = 1;
         <thead>
 
             @foreach ($aspeks_1_secA as $index => $aspek_1)
-                        <tr>
-                            <td style="font-size: 11pt;width:87%" colspan="2" class="bg-light-primary text-uppercase">
-                                {{ $aspek_1['section'] }}
-                            </td>
-                            <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
-                                Skor Sekolah
-                            </td>
-                        </tr>
+                <tr>
+                    <td style="font-size: 11pt;width:87%" colspan="2" class="bg-light-primary text-uppercase">
+                        {{ $aspek_1['section'] }}
+                    </td>
+                    <td style="font-size: 10pt" colspan="1" class="bg-light-primary ">
+                        Skor Sekolah
+                    </td>
+                </tr>
 
-                        {{-- <tr>
+                {{-- <tr>
                             <td colspan="6" class="bg-light-primary text-uppercase">
                                 {{ $aspek_1['section'] }}
                             </td>
                         </tr> --}}
-                        @foreach ($aspek_1['subSections'] as $subsection_aspek1)
-            {{-- <tr>
+                @foreach ($aspek_1['subSections'] as $subsection_aspek1)
+                    {{-- <tr>
                 <th style="text-align:left;font-size: 10pt" rowspan="2" colspan="3" >No.</th>
                 <th style="font-size: 10pt" colspan="3" rowspan="2">Item</th>
                 <th colspan="5">Skor Sekolah</th>
             </tr> --}}
 
-            {{-- <tr>
+                    {{-- <tr>
                 <th>0</th>
                 <th>1</th>
                 <th>2</th>
@@ -96,16 +95,16 @@ $number = 1;
         <tbody>
 
             <?php
-                $name = $index.'_'.$loop->index;
-
-                $withTB = ($aspek_1['section'] == 'Pengurusan Aktiviti Murid') ||  ($aspek_1['section'] == 'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan') || ($aspek_1['section'] == 'Arahan Keselamatan Murid Di Asrama');
+            $name = $index . '_' . $loop->index;
+            
+            $withTB = $aspek_1['section'] == 'Pengurusan Aktiviti Murid' || $aspek_1['section'] == 'Arahan Keselamatan Murid Semasa Aktiviti Lawatan Dan Perkhemahan' || $aspek_1['section'] == 'Arahan Keselamatan Murid Di Asrama';
             ?>
             <tr>
                 <td style="font-size: 10pt">{{ $number++ }}</td>
                 <td style="font-size: 10pt">{{ $subsection_aspek1 }}</td>
                 <td>
                     <div style="font-size: 10pt" class="d-flex justify-content-center align-items-center">
-                        <span id="aspek1_{{$name}}"></span>
+                        <span id="aspek1_{{ $name }}"></span>
                     </div>
                 </td>
                 {{-- <td>
@@ -129,7 +128,7 @@ $number = 1;
                             disabled>
                     </div>
                 </td>
-                @if($withTB)
+                @if ($withTB)
                 <td>
                     <div class="d-flex justify-content-center align-items-center">
                         <input class="form-check-input radio-input-2" type="radio"
@@ -197,35 +196,37 @@ $number = 1;
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $("[id^='checkAspek1']").on("click", function () {
+    $(document).ready(function() {
+        $("[id^='checkAspek1']").on("click", function() {
             var indexValues = $(this).attr("id").split('_');
             var index = indexValues[1];
             var loopIndex = indexValues[2];
 
-            $("#pengisianAspek1_" + index + "_" + loopIndex).removeClass("bg-light-warning bg-light-danger").addClass("bg-light-success");
+            $("#pengisianAspek1_" + index + "_" + loopIndex).removeClass(
+                "bg-light-warning bg-light-danger").addClass("bg-light-success");
 
             $("#catatanAspek1_" + index + "_" + loopIndex).hide(300);
         });
 
-        $("[id^='rejectAspek1']").on("click", function () {
+        $("[id^='rejectAspek1']").on("click", function() {
             var indexValues = $(this).attr("id").split('_');
             var index = indexValues[1];
             var loopIndex = indexValues[2];
 
-            $("#pengisianAspek1_" + index + "_" + loopIndex).removeClass("bg-light-success bg-light-warning").addClass("bg-light-danger");
+            $("#pengisianAspek1_" + index + "_" + loopIndex).removeClass(
+                "bg-light-success bg-light-warning").addClass("bg-light-danger");
             $("#catatanAspek1_" + index + "_" + loopIndex).show(200);
         });
 
         //ajax call to pull data
-        
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         })
 
-        var APIUrl = "{{ env('APP_VERFIKASI_URL')}}"+'api/spks/get-tab-jumlah';
+        var APIUrl = "{{ env('APP_VERFIKASI_URL') }}" + 'api/spks/get-tab-jumlah';
         var id = <?php echo Request::segment(3); ?>
 
         $.ajax({
@@ -233,18 +234,18 @@ $number = 1;
             method: 'POST',
             data: {
                 id: id,
-                tab:'aspek1'
+                tab: 'aspek1'
             },
             success: function(response) {
-                var data = response.data; 
+                var data = response.data;
                 var sum = 0;
                 for (var i = 0; i < 8; i++) {
-                    var id = 'aspek1_0_'+i;
-                    var dataid = '0_'+i;
+                    var id = 'aspek1_0_' + i;
+                    var dataid = '0_' + i;
                     if ($.isNumeric(data[dataid])) {
                         sum += parseInt(data[dataid]);
-                    }                  
-                    $('#'+id).html(data[dataid]); 
+                    }
+                    $('#' + id).html(data[dataid]);
                 }
                 $('#aspek1_sum').html(sum)
             }

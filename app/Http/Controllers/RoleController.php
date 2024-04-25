@@ -44,7 +44,7 @@ class RoleController extends Controller
 
                     $button .= '<a href="'.route('role.show', $Role).'" class="btn btn-xs btn-default " title=""> <i class="fas fa-eye text-primary"></i> </a>';
 
-                    $button .= '<a href=" '.route('role.edit', $Role).' " class="btn btn-xs btn-default"> <i class="fas fa-pencil text-primary"></i> </a>';
+                    $button .= '<a href=" '.route('role.edit', $Role).' " class="btn btn-xs btn-default"> <i class="fas fa-pencil text-warning"></i> </a>';
 
 
 
@@ -94,12 +94,12 @@ class RoleController extends Controller
             // } else {
             //     $dynamic = 0;
             // }
-            
+
             $role = Role::create([
-                'name' => $request->role_name, 
-                'description' => $request->role_description, 
-                'display_name' => $request->role_display, 
-                'guard_name' => 'web', 
+                'name' => $request->role_name,
+                'description' => $request->role_description,
+                'display_name' => $request->role_display,
+                'guard_name' => 'web',
                 'is_internal' => $request->internal
             ]);
 
@@ -155,9 +155,9 @@ class RoleController extends Controller
 
 
             $role->update([
-                'name' => $request->name, 
-                'description' => $request->description, 
-                'display_name' => $request->display_name, 
+                'name' => $request->name,
+                'description' => $request->description,
+                'display_name' => $request->display_name,
                 'is_internal' => $request->internal
             ]);
 
@@ -217,7 +217,7 @@ class RoleController extends Controller
         }
 
         DB::commit();
-        return view('admin.role.edit', compact('role', 'permissions'));    
+        return view('admin.role.edit', compact('role', 'permissions'));
     }
 
     public function getSubModul(Request $request)
@@ -231,7 +231,7 @@ class RoleController extends Controller
         } else {
             $type = 'spks';
         }
-        
+
         $subModul = config('staticdata.role.sub_modul.'.$type);
 
         return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => $subModul]);
@@ -248,7 +248,7 @@ class RoleController extends Controller
         } else {
             $type = 'spks';
         }
-        
+
         $peranan = config('staticdata.role.jenis_peranan.'.$type);
 
         return response()->json(['title' => 'Berjaya', 'status' => 'success', 'message' => "Berjaya", 'detail' => $peranan]);

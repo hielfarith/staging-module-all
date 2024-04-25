@@ -94,7 +94,7 @@
                 </div>
                 <table class=" table header_uppercase table-bordered table-hovered" id="TableSenaraiJurulatih">
                     <thead>
-                        <tr class="bg-warning" style="color: white;">
+                        <tr style="color: white; background-color:#ff8e74;">
                             <th width="5%">No.</th>
                             <th>Nama Jurulatih/ Pengguna</th>
                             <th>No. Kad Pengenalan/ Pasport</th>

@@ -10,6 +10,26 @@
 @endsection
 
 @section('content')
+    <style>
+        .legend-container {
+            text-align: right;
+            /* Align legend to the right */
+            margin-bottom: 10px;
+            /* Optional: Add some bottom margin */
+        }
+
+        .legend {
+            display: inline-block;
+            /* background-color: #f0f0f0; */
+            padding: 5px 10px;
+            /* border: 1px solid #ccc; */
+            border-radius: 5px;
+        }
+
+        .legend-item {
+            margin-right: 10px;
+        }
+    </style>
     <div class="row">
         <div class="col-12">
             <div class="col-md-6 col-sm-12">
@@ -33,7 +53,8 @@
                             </div>
                             <div class="col-sm-7">
                                 <div class="card-body text-sm-end text-center ps-sm-0">
-                                    <a href="javascript:void(0)" class="stretched-link text-nowrap add-new-role" onclick="viewRoleForm()">
+                                    <a href="javascript:void(0)" class="stretched-link text-nowrap add-new-role"
+                                        onclick="viewRoleForm()">
                                         <span class="btn btn-primary mb-1">Add New Role</span>
                                     </a>
                                     <p class="mb-0">Add role, if it does not exist</p>
@@ -46,18 +67,27 @@
             <!--/ Role cards -->
             <div class="card">
                 <!--<div class="card-header">
-                    <h4 class="card-title">ROLE</h4>
-                    @can('admin.role.create')
-                        {{-- <a href="{{ route('role.create') }}" class="btn btn-primary float-right hovertext waves-effect waves-float waves-light"> CREATE </a> --}}
-                        <div class="d-flex justify-content-end align-items-center">
-                            <button type="button" class="btn btn-success btn-sm float-right" onclick="viewRoleForm()">
-                                <i class="fa-solid fa-add"></i> Add
-                            </button>
-                        </div>
-                    @endcan
-                </div> -->
+                                    <h4 class="card-title">ROLE</h4>
+                                    @can('admin.role.create')
+        {{-- <a href="{{ route('role.create') }}" class="btn btn-primary float-right hovertext waves-effect waves-float waves-light"> CREATE </a> --}}
+                                                        <div class="d-flex justify-content-end align-items-center">
+                                                            <button type="button" class="btn btn-success btn-sm float-right" onclick="viewRoleForm()">
+                                                                <i class="fa-solid fa-add"></i> Add
+                                                            </button>
+                                                        </div>
+    @endcan
+                                </div> -->
                 <div class="card-body">
-
+                    <div class="legend-container">
+                        <div class="legend">
+                            <span class="legend-item"><i class="fa fa-eye text-primary" style="font-size: 16px;"></i> :
+                                Lihat
+                                Pengguna</span>
+                            <span class="legend-item"><i class="fa fa-pencil text-warning" style="font-size: 16px;"></i> :
+                                Kemaskini
+                                Pengguna</span>
+                        </div>
+                    </div>
                     <table class="table header_uppercase table-bordered table-responsive" id="listRole">
                         <thead>
                             <tr>

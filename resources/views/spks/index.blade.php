@@ -11,9 +11,38 @@
 @endsection
 
 @section('content')
+    <style>
+        .nav-first .nav-item {
+            background-color: #FAE9DA;
+            /* Set your desired background color */
+            padding: 10px;
+            /* Add padding for better appearance */
+
+            /* Add border-radius for rounded corners */
+        }
+
+        .nav-first .nav-link.active {
+            background-color: #ff6c62;
+            /* Set your desired background color */
+        }
+
+        .nav-second .nav-item {
+            background-color: #E4F1EE;
+            /* Set your desired background color */
+            padding: 10px;
+            /* Add padding for better appearance */
+
+            /* Add border-radius for rounded corners */
+        }
+
+        .nav-second .nav-link.active {
+            background-color: #39c3b5;
+            /* Set your desired background color */
+        }
+    </style>
     <input type="hidden" name="spks" id="spks" value="{{ $spks?->id }}">
     <input type="hidden" name="type" id="type" value="{{ $type }}">
-    <ul class="nav nav-pills nav-justified" role="tablist">
+    <ul class="nav nav-pills nav-first nav-justified" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="text-uppercase text-wrap nav-link fw-bolder" id="g-tab" data-bs-toggle="tab" href="#g"
                 aria-controls="g" role="tab" aria-selected="false">

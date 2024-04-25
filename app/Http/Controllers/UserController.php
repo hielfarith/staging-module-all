@@ -94,12 +94,12 @@ class UserController extends Controller
                     $button .= '<div class="btn-group btn-group-sm d-flex justify-content-center" role="group" aria-label="Action">';
                     if ($type== "internal"){
                         //$button .= '<a href=" '.route('user.show', $users).' " class="btn btn-xs btn-default"> <i class="fas fa-eye text-primary"></i> </a>';
-                        $button .= '<a href="javascript:void(0);" class="btn btn-xs btn-default" onclick="viewUserForm('.$users->id.')"> <i class="fas fa-pencil text-primary"></i> ';
+                        $button .= '<a href="javascript:void(0);" class="btn btn-xs btn-default" onclick="viewUserForm('.$users->id.')"> <i class="fas fa-pencil text-warning"></i> ';
                         // $button .= '<form id="formDestroyUser_'.$user->id.'" method="POST" action=" '.route('user.destroy', $user).' "> @csrf <input type="hidden" name="_method" value="DELETE"/> </form>';
                         // $button .= '<a href="#" class="btn btn-outline-dark waves-effect" onclick="event.preventDefault(); document.getElementById('formDestroyUser_. $user->id .').submit();"> <i class="fas fa-trash"></i> </a>';
                     }else{
                         //$button .= '<a href=" '.route('user.show', $users).' " class="btn btn-xs btn-default"> <i class="fas fa-eye text-primary"></i> </a>';
-                        $button .= '<a href="javascript:void(0);" class="btn btn-xs btn-default" onclick="viewUserForm('.$users->id.')"> <i class="fas fa-pencil text-primary"></i> ';
+                        $button .= '<a href="javascript:void(0);" class="btn btn-xs btn-default" onclick="viewUserForm('.$users->id.')"> <i class="fas fa-pencil text-warning"></i> ';
                     }
                         $button .= "</div>";
 
