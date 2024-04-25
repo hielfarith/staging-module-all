@@ -64,7 +64,7 @@
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="verifikasi-sq1-3">
-        <thead>
+        <thead style="color:black; background-color: #d8bfb0;">
             <tr>
                 <th>No.</th>
                 <th>Kriteria</th>
@@ -212,5 +212,5 @@
         });
 
     };
- 
+
 </script>

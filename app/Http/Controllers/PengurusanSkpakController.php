@@ -238,7 +238,7 @@ class PengurusanSkpakController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatSkpak(' . $skpak->skpak_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatSkpakverfikasi(' . $skpak->skpak_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSkpakverfikasi(' . $skpak->skpak_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
@@ -339,8 +339,8 @@ class PengurusanSkpakController extends Controller
         // check if array contains the uploaded data, this means data not changed.
         foreach ($input as $key => $value) {
             if (str_contains($key, 'uploadfile') && !empty($value)) {
-                $updatedkey = str_replace('uploadfile', 'upload', $key); 
-                $updatedkey = str_replace('_list', '', $updatedkey); 
+                $updatedkey = str_replace('uploadfile', 'upload', $key);
+                $updatedkey = str_replace('_list', '', $updatedkey);
                 $updatedValue = json_decode($value, true);
                 unset($input[$key]);
                 $input[$updatedkey] = $updatedValue;
@@ -351,7 +351,7 @@ class PengurusanSkpakController extends Controller
         }
 
         $savedData = SkpakVerfikasiValidasi::where('skpak_standard_penilaian_id', $data['skpak_standard_penilaian_id'])->first();
-        
+
         if ($savedData) {
             $tabData = $savedData->$tabname;
             $array = [];

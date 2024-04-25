@@ -1,10 +1,10 @@
 <?php
-    $instrumenid = Request::segment(4);
-    if (!empty($instrumenid)) {
-        $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->first();
-    } else {
-        $instrumenData = null;
-    }
+$instrumenid = Request::segment(4);
+if (!empty($instrumenid)) {
+    $instrumenData = \App\Models\InstrumenSkpakSpksIkeps::where('id', $instrumenid)->first();
+} else {
+    $instrumenData = null;
+}
 ?>
 {{-- <form id="forminstrumenskips" novalidate="novalidate">
     <div class="row">
@@ -37,9 +37,9 @@
             </label>
             <select class="form-control select2" name="pengguna_instrumen" required>
                 <option value="">Sila Pilih</option>
-                <option value="PENTADBIR" @if($instrumenData?->pengguna_instrumen == 'PENTADBIR') selected
+                <option value="PENTADBIR" @if ($instrumenData?->pengguna_instrumen == 'PENTADBIR') selected
                     @endif>PENTADBIR</option>
-                <option value="GURU INSTITUSI" @if($instrumenData?->pengguna_instrumen == 'PENTADBIR') selected
+                <option value="GURU INSTITUSI" @if ($instrumenData?->pengguna_instrumen == 'PENTADBIR') selected
                     @endif>GURU INSTITUSI</option>
             </select>
         </div>
@@ -65,7 +65,7 @@
             <div class="demo-inline-spacing">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="tetapan_keperluan_pengemaskinian_data_terkini"
-                        name="tetapan_keperluan_pengemaskinian_data_terkini" value="1" required @if($instrumenData?->tetapan_keperluan_pengemaskinian_data_terkini) checked @endif />
+                        name="tetapan_keperluan_pengemaskinian_data_terkini" value="1" required @if ($instrumenData?->tetapan_keperluan_pengemaskinian_data_terkini) checked @endif />
                     <label class="form-check-label" for="tetapan_keperluan_pengemaskinian_data_terkini">Tetapan
                         Keperluan <br> Pengemaskinian Data Terkini
                         <span class="text-danger">*</span>
@@ -89,9 +89,9 @@
                 </label>
                 <select class="form-control select2" name="pengisian_oleh" required>
                     <option value="">Sila Pilih</option>
-                    <option value="PENGETUA" @if($instrumenData?->pengisian_oleh == 'PENGETUA') selected @endif>PENGETUA
+                    <option value="PENGETUA" @if ($instrumenData?->pengisian_oleh == 'PENGETUA') selected @endif>PENGETUA
                     </option>
-                    <option value="GURU BESAR INSTITUSI" @if($instrumenData?->pengisian_oleh == 'GURU BESAR INSTITUSI')
+                    <option value="GURU BESAR INSTITUSI" @if ($instrumenData?->pengisian_oleh == 'GURU BESAR INSTITUSI')
                         selected @endif>GURU BESAR INSTITUSI</option>
                 </select>
             </div>
@@ -110,9 +110,9 @@
                     <span class="input-group-text">
                         <select class="form-control select2" name="tempoh_pengisian" required readonly>
                             <!-- <option value="">Sila Pilih</option>
-                            <option value="Bulan" @if($instrumenData?->tempoh_pengisian == 'Bulan') selected @endif>Bulan
+                            <option value="Bulan" @if ($instrumenData?->tempoh_pengisian == 'Bulan') selected @endif>Bulan
                             </option>
-                            <option value="Minggu" @if($instrumenData?->tempoh_pengisian == 'Minggu') selected @endif>Minggu
+                            <option value="Minggu" @if ($instrumenData?->tempoh_pengisian == 'Minggu') selected @endif>Minggu
                             </option> -->
                             <option value="Minggu" selected>Minggu
                             </option>
@@ -135,8 +135,8 @@
                 </label>
                 <select class="form-control select2" name="pengesahan_ole" required>
                     <option value="">Sila Pilih</option>
-                    <option value="PPD" @if($instrumenData?->pengesahan_ole == 'PPD') selected @endif>PPD </option>
-                    <option value="JPN" @if($instrumenData?->pengesahan_ole == 'JPN') selected @endif>JPN</option>
+                    <option value="PPD" @if ($instrumenData?->pengesahan_ole == 'PPD') selected @endif>PPD </option>
+                    <option value="JPN" @if ($instrumenData?->pengesahan_ole == 'JPN') selected @endif>JPN</option>
                 </select>
             </div>
 
@@ -151,9 +151,9 @@
                     <span class="input-group-text">
                         <select class="form-control select2" name="tempoh_pengeshan" required>
                             <option value="">Sila Pilih</option>
-                            <option value="Bulan" @if($instrumenData?->tempoh_pengeshan == 'Bulan') selected @endif>Bulan
+                            <option value="Bulan" @if ($instrumenData?->tempoh_pengeshan == 'Bulan') selected @endif>Bulan
                             </option>
-                            <option value="Minggu" @if($instrumenData?->tempoh_pengeshan == 'Minggu') selected @endif>Minggu
+                            <option value="Minggu" @if ($instrumenData?->tempoh_pengeshan == 'Minggu') selected @endif>Minggu
                             </option>
                         </select>
                     </span>
@@ -174,8 +174,8 @@
                 </label>
                 <select class="form-control select2" name="verifikasi_oleh" required>
                     <option value="">Sila Pilih</option>
-                    <option value="JPN" @if($instrumenData?->verifikasi_oleh == 'JPN') selected @endif>JPN</option>
-                    <option value="KPM" @if($instrumenData?->verifikasi_oleh == 'KPM') selected @endif>KPM</option>
+                    <option value="JPN" @if ($instrumenData?->verifikasi_oleh == 'JPN') selected @endif>JPN</option>
+                    <option value="KPM" @if ($instrumenData?->verifikasi_oleh == 'KPM') selected @endif>KPM</option>
                 </select>
             </div>
 
@@ -193,9 +193,9 @@
                     <span class="input-group-text">
                         <select class="form-control select2" name="tempoh_verifikasi" required readonly>
                             <!-- <option value="">Sila Pilih</option>
-                            <option value="Bulan" @if($instrumenData?->tempoh_verifikasi_lain == 'Bulan') selected @endif>Bulan
+                            <option value="Bulan" @if ($instrumenData?->tempoh_verifikasi_lain == 'Bulan') selected @endif>Bulan
                             </option>
-                            <option value="Minggu" @if($instrumenData?->tempoh_verifikasi_lain == 'Minggu') selected
+                            <option value="Minggu" @if ($instrumenData?->tempoh_verifikasi_lain == 'Minggu') selected
                                 @endif>Minggu</option> -->
                             <option value="Bulan" selected>Bulan
                             </option>
@@ -218,9 +218,9 @@
                 </label>
                 <select class="form-control select2" name="validasi_oleh" required>
                     <option value="">Sila Pilih</option>
-                    <option value="PPD" @if($instrumenData?->validasi_oleh == 'PPD') selected @endif>PPD</option>
-                    <option value="JPN" @if($instrumenData?->validasi_oleh == 'JPN') selected @endif>JPN</option>
-                    <option value="KPM" @if($instrumenData?->validasi_oleh == 'KPM') selected @endif>KPM</option>
+                    <option value="PPD" @if ($instrumenData?->validasi_oleh == 'PPD') selected @endif>PPD</option>
+                    <option value="JPN" @if ($instrumenData?->validasi_oleh == 'JPN') selected @endif>JPN</option>
+                    <option value="KPM" @if ($instrumenData?->validasi_oleh == 'KPM') selected @endif>KPM</option>
                 </select>
             </div>
 
@@ -238,9 +238,9 @@
                     <span class="input-group-text">
                         <select class="form-control select2" name="tempoh_validasi" required>
                             <!-- <option value="">Sila Pilih</option>
-                            <option value="Bulan" @if($instrumenData?->tempoh_validasi == 'Bulan') selected @endif>Bulan
+                            <option value="Bulan" @if ($instrumenData?->tempoh_validasi == 'Bulan') selected @endif>Bulan
                             </option>
-                            <option value="Minggu" @if($instrumenData?->tempoh_validasi == 'Minggu') selected @endif>Minggu
+                            <option value="Minggu" @if ($instrumenData?->tempoh_validasi == 'Minggu') selected @endif>Minggu
                             </option> -->
                             <option value="Bulan" selected>Bulan
                             </option>
@@ -263,9 +263,9 @@
                 </label>
                 <select class="form-control select2" name="perakuan_oleh" required>
                     <option value="">Sila Pilih</option>
-                    <option value="PENTADBIR" @if($instrumenData?->perakuan_oleh == 'PENTADBIR') selected @endif>PENTADBIR
+                    <option value="PENTADBIR" @if ($instrumenData?->perakuan_oleh == 'PENTADBIR') selected @endif>PENTADBIR
                     </option>
-                    <option value="GURU INSTITUSI" @if($instrumenData?->perakuan_oleh == 'GURU INSTITUSI') selected
+                    <option value="GURU INSTITUSI" @if ($instrumenData?->perakuan_oleh == 'GURU INSTITUSI') selected
                         @endif>GURU INSTITUSI</option>
                 </select>
             </div>
@@ -281,9 +281,9 @@
                     <span class="input-group-text">
                         <select class="form-control select2" name="tempoh_perakuan" required>
                             <option value="">Sila Pilih</option>
-                            <option value="Bulan" @if($instrumenData?->tempoh_perakuan == 'Bulan') selected @endif>Bulan
+                            <option value="Bulan" @if ($instrumenData?->tempoh_perakuan == 'Bulan') selected @endif>Bulan
                             </option>
-                            <option value="Minggu" @if($instrumenData?->tempoh_perakuan == 'Minggu') selected @endif>Minggu
+                            <option value="Minggu" @if ($instrumenData?->tempoh_perakuan == 'Minggu') selected @endif>Minggu
                             </option>
                         </select>
                     </span>
@@ -299,9 +299,9 @@
                 <div class="input-group">
                     <select class="form-control select2" name="status" required>
                         <option value="">Sila Pilih</option>
-                        <option value="1" @if($instrumenData?->status == '1') selected @endif>Active
+                        <option value="1" @if ($instrumenData?->status == '1') selected @endif>Active
                         </option>
-                        <option value="2" @if($instrumenData?->status == '2') selected @endif>InActive
+                        <option value="2" @if ($instrumenData?->status == '2') selected @endif>InActive
                         </option>
                     </select>
                 </div>
@@ -357,17 +357,17 @@
 
         <div class="col-md-4 ">
             <div class="card ">
-                <div class="card-header" style="background-color: #F3F2F7">
+                <div class="card-header" style="background-color: #C5DBC4">
                     <h4 class="card-title fw-bolder">Pengisian</h4>
                 </div>
                 <div class="card-body">
                     <div class="row mt-1">
                         <div class="col-md-4 ">
-                            <label class="fw-bold form-label">Institut <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Institut <span class="text-danger">:</span></label>
                         </div>
                         <div class="col-md-8 ">
-                            <select class="form-control select2" name="institusi_pengisian" required id="institusi_pengisian">
+                            <select class="form-control select2" name="institusi_pengisian" required
+                                id="institusi_pengisian">
                                 <option value="1">1</option>
                             </select>
                         </div>
@@ -383,15 +383,12 @@
                         </div>
 
                         <div class="col-md-12 mt-1">
-                            <label class="fw-bold form-label">Tarikh <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Tarikh <span class="text-danger">:</span></label>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Dari</span>
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
                                     <input type="date" class="form-control" id="fromDate" name="pengisian_dari">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Hingga</span>
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Hingga</span>
                                     <input type="date" class="form-control" id="toDate" name="pengisian_hingga">
                                 </div>
                             </div>
@@ -403,17 +400,17 @@
 
         <div class="col-md-4 ">
             <div class="card ">
-                <div class="card-header" style="background-color: #F3F2F7">
+                <div class="card-header" style="background-color: #C5DBC4">
                     <h4 class="card-title fw-bolder">Pengesahan</h4>
                 </div>
                 <div class="card-body">
                     <div class="row mt-1">
                         <div class="col-md-4 ">
-                            <label class="fw-bold form-label">Institut <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Institut <span class="text-danger">:</span></label>
                         </div>
                         <div class="col-md-8 ">
-                            <select class="form-control select2" name="institusi_pengesahan" required id="institusi_pengesahan">
+                            <select class="form-control select2" name="institusi_pengesahan" required
+                                id="institusi_pengesahan">
                                 <option value="1">1</option>
                             </select>
                         </div>
@@ -429,16 +426,15 @@
                         </div>
 
                         <div class="col-md-12 mt-1">
-                            <label class="fw-bold form-label">Tarikh <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Tarikh <span class="text-danger">:</span></label>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Dari</span>
-                                    <input type="date" class="form-control" id="fromDate" name="pengesahan_dari">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Hingga</span>
-                                    <input type="date" class="form-control" id="toDate" name="pengesahan_hingga">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
+                                    <input type="date" class="form-control" id="fromDate"
+                                        name="pengesahan_dari">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate"
+                                        name="pengesahan_hingga">
                                 </div>
                             </div>
                         </div>
@@ -449,17 +445,17 @@
 
         <div class="col-md-4 ">
             <div class="card ">
-                <div class="card-header" style="background-color: #F3F2F7">
+                <div class="card-header" style="background-color: #C5DBC4">
                     <h4 class="card-title fw-bolder">Verifikasi</h4>
                 </div>
                 <div class="card-body">
                     <div class="row mt-1">
                         <div class="col-md-4 ">
-                            <label class="fw-bold form-label">Institut <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Institut <span class="text-danger">:</span></label>
                         </div>
                         <div class="col-md-8 ">
-                            <select class="form-control select2" name="institusi_verifikasi" required id="institusi_verifikasi">
+                            <select class="form-control select2" name="institusi_verifikasi" required
+                                id="institusi_verifikasi">
                                 <option value="1">1</option>
                             </select>
                         </div>
@@ -475,16 +471,15 @@
                         </div>
 
                         <div class="col-md-12 mt-1">
-                            <label class="fw-bold form-label">Tarikh <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Tarikh <span class="text-danger">:</span></label>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Dari</span>
-                                    <input type="date" class="form-control" id="fromDate" name="verifikasi_dari">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Hingga</span>
-                                    <input type="date" class="form-control" id="toDate" name="verifikasi_hingga">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
+                                    <input type="date" class="form-control" id="fromDate"
+                                        name="verifikasi_dari">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate"
+                                        name="verifikasi_hingga">
                                 </div>
                             </div>
                         </div>
@@ -495,17 +490,17 @@
 
         <div class="col-md-4 ">
             <div class="card ">
-                <div class="card-header" style="background-color: #F3F2F7">
+                <div class="card-header" style="background-color: #C5DBC4">
                     <h4 class="card-title fw-bolder">Validasi</h4>
                 </div>
                 <div class="card-body">
                     <div class="row mt-1">
                         <div class="col-md-4 ">
-                            <label class="fw-bold form-label">Institut <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Institut <span class="text-danger">:</span></label>
                         </div>
                         <div class="col-md-8 ">
-                            <select class="form-control select2" name="institusi_validasi" required id="institusi_validasi">
+                            <select class="form-control select2" name="institusi_validasi" required
+                                id="institusi_validasi">
                                 <option value="1">1</option>
                             </select>
                         </div>
@@ -522,16 +517,14 @@
                         </div>
 
                         <div class="col-md-12 mt-1">
-                            <label class="fw-bold form-label">Tarikh <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Tarikh <span class="text-danger">:</span></label>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Dari</span>
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
                                     <input type="date" class="form-control" id="fromDate" name="validasi_dari">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Hingga</span>
-                                    <input type="date" class="form-control" id="toDate" name="validasi_hingga">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate"
+                                        name="validasi_hingga">
                                 </div>
                             </div>
                         </div>
@@ -542,7 +535,7 @@
 
         <div class="col-md-4 ">
             <div class="card ">
-                <div class="card-header" style="background-color: #F3F2F7">
+                <div class="card-header" style="background-color: #C5DBC4">
                     <h4 class="card-title fw-bolder">Perakuan</h4>
                 </div>
                 <div class="card-body">
@@ -551,7 +544,8 @@
                             <label class="fw-bold form-label">Institut <span class="text-danger">:</span></label>
                         </div>
                         <div class="col-md-8 ">
-                            <select class="form-control select2" name="institusi_perakuan" required id="institusi_perakuan">
+                            <select class="form-control select2" name="institusi_perakuan" required
+                                id="institusi_perakuan">
                                 <option value="1">1</option>
                             </select>
                         </div>
@@ -567,16 +561,14 @@
                         </div>
 
                         <div class="col-md-12 mt-1">
-                            <label class="fw-bold form-label">Tarikh <span
-                                    class="text-danger">:</span></label>
+                            <label class="fw-bold form-label">Tarikh <span class="text-danger">:</span></label>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Dari</span>
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Dari</span>
                                     <input type="date" class="form-control" id="fromDate" name="perakuan_dari">
-                                    <span class="input-group-text"
-                                        style="background-color: #F3F2F7">Hingga</span>
-                                    <input type="date" class="form-control" id="toDate" name="perakuan_hingga">
+                                    <span class="input-group-text" style="background-color: #F3F2F7">Hingga</span>
+                                    <input type="date" class="form-control" id="toDate"
+                                        name="perakuan_hingga">
                                 </div>
                             </div>
                         </div>
@@ -587,59 +579,57 @@
 
 
         {{-- @if ($readonly != 'readonly') --}}
-            <div class="d-flex justify-content-end align-items-center my-1">
-                <button type="submit" class="btn btn-primary float-right">Hantar</button>
-            </div>
+        <div class="d-flex justify-content-end align-items-center my-1">
+            <button type="submit" class="btn btn-primary float-right">Hantar</button>
+        </div>
         {{-- @endif --}}
     </div>
 </form>
 
 @section('script')
-
-<script type="text/javascript">
-    $(document).ready(function() {
-    $('.select2').select2({
-        placeholder: 'Sila Pilih',
-        allowClear: true // Adds a clear button to the dropdown
-        });
-   });
-
-    $('#forminstrumenskpak').submit(function(event) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById('forminstrumenskpak'));
-        var error = false;
-
-         $('form#forminstrumenskpak').find('select, textarea, input, checkbox').each(function() {
-            if(this.required && this.type == 'checkbox' && !this.checked) {
-                error = true;
-            }
-            if (this.required && this.value == '') {
-                error = true;
-            }
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: 'Sila Pilih',
+                allowClear: true // Adds a clear button to the dropdown
+            });
         });
 
-        if (error) {
-             Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
-            return false;
-        }
+        $('#forminstrumenskpak').submit(function(event) {
+            event.preventDefault();
+            var formData = new FormData(document.getElementById('forminstrumenskpak'));
+            var error = false;
 
-        var url = "{{ route('admin.instrumen.instrumenskpak-submit') }}"
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-               if (response.status) {
-                    Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.instrumen.senarai-skpak')}}";
-                    window.location.href = location;
-               }
+            $('form#forminstrumenskpak').find('select, textarea, input, checkbox').each(function() {
+                if (this.required && this.type == 'checkbox' && !this.checked) {
+                    error = true;
+                }
+                if (this.required && this.value == '') {
+                    error = true;
+                }
+            });
+
+            if (error) {
+                Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                return false;
             }
+
+            var url = "{{ route('admin.instrumen.instrumenskpak-submit') }}"
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response.status) {
+                        Swal.fire('Success', 'Berjaya', 'success');
+                        var location = "{{ route('admin.instrumen.senarai-skpak') }}";
+                        window.location.href = location;
+                    }
+                }
+            });
+
         });
-
-    });
-</script>
-
+    </script>
 @endsection

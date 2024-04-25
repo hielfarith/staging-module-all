@@ -104,7 +104,7 @@ class PengurusanProfilPenggunaController extends Controller
 	                $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
 	                $button .= '<a onclick="maklumatPengguna('.$penggunaList->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-	                $button .= '<a onclick="maklumatPenggunaEdit('.$penggunaList->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+	                $button .= '<a onclick="maklumatPenggunaEdit('.$penggunaList->id.')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
 	                $button .= "</div>";
 

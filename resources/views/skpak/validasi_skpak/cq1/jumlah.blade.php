@@ -73,7 +73,7 @@
 <hr>
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="jumlah-cq-1">
-        <thead>
+        <thead style="color:black; background-color: #d8bfb0;">
             <tr>
                 <th>Kriteria</th>
                 <th width="10%">Jumlah</th>

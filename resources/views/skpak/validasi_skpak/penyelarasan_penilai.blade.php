@@ -141,7 +141,7 @@ $penyelarasan_penilaians = [
 @endphp
 
 <table class="table header_uppercase table-bordered table-hovered" id="penyelarasan_penilaian">
-    <thead>
+    <thead style="color:black; background-color: #d8bfb0;">
         <tr>
             <th colspan="2">Kualiti Standard</th>
             <th rowspan="2">Kriteria</th>

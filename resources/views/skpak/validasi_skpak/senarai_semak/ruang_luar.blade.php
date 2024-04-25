@@ -46,7 +46,7 @@ $ruang_luars = [
     $ruangluar = $item = null;
     if ($skpakfilleddata){
         $ruangluar = json_decode($skpakfilleddata->senaraisemak, true);
-    }  
+    }
     if ($ruangluar && isset($ruangluar['ruangluar'])) {
         $item = $ruangluar['ruangluar'];
     }
@@ -58,7 +58,7 @@ $ruang_luars = [
 <input type="hidden" name="skpak_standard_penilaian_id" value="{{$id}}">
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="ruang_luar">
-        <thead>
+        <thead style="color:black; background-color: #d8bfb0;">
             <tr>
                 <th>No.</th>
                 <th>Item</th>
@@ -134,7 +134,7 @@ $ruang_luars = [
                      $rubik = 4;
                 } else {
                     $rubik = '-';
-                }       
+                }
                 ?>
                 <td colspan="3" class="text-center" id="percentageL">{{$percentage}} %</td>
             </tr>
