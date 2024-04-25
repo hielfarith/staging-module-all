@@ -1,4 +1,5 @@
-<form id="formtertinggi" novalidate="novalidate">
+<form id="savejawatankuasatertinggi" novalidate="novalidate"type='POST'>
+@csrf
     <div class="row">
         <h5 class="mb-2 fw-bold">
             <span class="badge rounded-pill bg-danger">
@@ -139,12 +140,19 @@
             <label class="fw-bold form-label">Negeri
                 <span class="text-danger">*</span>
             </label><br>
-            <select class="form-select " name="negeri" id="negeri" required onchange="changenegeri(this)">
-                <option value="" hidden>Sila pilih</option>
+            <select class="form-select" name="negeri" id="negeri">
+                <option value="" hidden>Negeri</option>
                 @foreach ($negeris as $state)
                     <option value="{{ $state->name }}">{{ $state->name }}</option>
                 @endforeach
             </select>
+            <!--
+            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri(this)">
+                <option value="" hidden>Negeri</option>
+                @foreach ($negeris as $state)
+                    <option value="{{ $state->name }}">{{ $state->name }}</option>
+                @endforeach
+            </select> REQUIRE AMENDMENT-->
         </div>
 
         <div class="col-md-4 mb-1">
@@ -168,6 +176,9 @@
     </div>
 
     <hr>
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button type="submit" class="btn btn-primary float-right"onclick="fakeSuccess2('savejawatankuasatertinggi', 'jawatankuasatertinggisave')">Submit</button>
+    </div>
 
 
 </form>

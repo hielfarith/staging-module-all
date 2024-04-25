@@ -1,4 +1,5 @@
-<form id="formjurulaith" novalidate="novalidate">
+<form id="savejurulatih" novalidate="novalidate" type='POST'>
+    @csrf
     <div class="row">
         <div class="col-md-12">
             <h5 class="mb-2 fw-bold">

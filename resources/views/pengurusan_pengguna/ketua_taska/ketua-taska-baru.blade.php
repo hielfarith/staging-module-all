@@ -36,7 +36,7 @@ Pengurusan Ketua Taska
 
     <div class="card-body">
         <div class="row">
-            <form action="{{ route('admin.internal.penggunasave') }}" id="formpengunna" method="post" data-swal="Maklumat Ketua Taska Berjaya Disimpan">
+            <form action="{{ route('penggunasave') }}" id="formpengunna" method="post" data-swal="Maklumat Ketua Taska Berjaya Disimpan">
                 @csrf
 
                 <div class="row">
@@ -252,21 +252,26 @@ $('#formpengunna').submit(function(event) {
         });
         var select2 = ['jenis','jawatan','gred', 'negeri','daerah','jenis_taska','jenisbanugunan'];   
       
-        var url = "{{ route('admin.internal.penggunasave') }}"
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-               if (response.status) {
-                    Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.internal.penggunalist')}}"
-                    window.location.href = location;
-               }
-            }
-        });
+        var url = "{{ route('jurulatihsave') }}";
+$.ajax({
+    url: url,
+    type: 'POST',
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function(response) {
+        if (response.status) {
+            Swal.fire('Success', 'Berjaya', 'success');
+            var location = url;
+            window.location.href = location;
+        }
+    },
+    error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+        // Handle the error here, you can log it to console or show an alert
+        Swal.fire('Error', 'Failed to process request', 'error');
+    }
+});
 
     });
 

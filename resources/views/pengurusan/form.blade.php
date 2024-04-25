@@ -510,21 +510,26 @@ $('#formpengunna').submit(function(event) {
             return false;
         }
 
-        var url = "{{ route('admin.internal.penggunasave') }}"
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-               if (response.status) {
-                    Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{route('admin.internal.penggunalist')}}"
-                    window.location.href = location;
-               }
-            }
-        });
+        var url = "{{ route('jurulatihsave') }}";
+$.ajax({
+    url: url,
+    type: 'POST',
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function(response) {
+        if (response.status) {
+            Swal.fire('Success', 'Berjaya', 'success');
+            var location = url;
+            window.location.href = location;
+        }
+    },
+    error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+        // Handle the error here, you can log it to console or show an alert
+        Swal.fire('Error', 'Failed to process request', 'error');
+    }
+});
 
     });
 </script>

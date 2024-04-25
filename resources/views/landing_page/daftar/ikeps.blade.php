@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header bg-light-primary">
                 <h3 class="card-title-modal">
-                    Pendaftaran Akaun Modul I-KePS
+                    Pendaftaran Akaun Modul I-KePS 
                 </h3>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
 
@@ -36,7 +36,7 @@
 
             <div class="modal-footer">
                 <div class="d-flex justify-content-center">
-                    <a href="#" class="btn btn-success me-1" onclick="fakeSuccess()">
+                    <a href="#" class="btn btn-success me-1" onclick="fakeSuccess1()">
                         Simpan
                     </a>
                 </div>
@@ -49,25 +49,62 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
-    $('.select2').each(function() {
-        $(this).select2({
-            dropdownParent: $(this).parent(),
-        });
+    
+    fakeSuccess1 = function() {
+    event.preventDefault();
+    var formData = new FormData(document.getElementById('savejurulatih'));
+    var error = false;
+
+    $('#savejurulatih').find('select.select2').each(function() {
+        var element = $(this);
+        var select2Value = element.select2('data');
+        var selectedValues = element.val();
+        var fieldName = element.attr('name');
+        if (typeof element.attr('disabled') == 'undefined') {
+            if (!selectedValues || selectedValues === '') {
+                Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                error = true;
+                return false; // Stop the loop if an error is found
+            }
+        }
     });
 
-    fakeSuccess = function(title, text) {
-        Swal.fire({
-            title: "Adakah anda pasti?",
-            text: "Hantar. Teruskan?",
-            icon: 'success',
-            confirmButtonText: 'OK',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $('.modal').modal('hide');
-            } else {
+    formData.forEach(function(value, name) {
+        var element = $("input[name="+name+"]");
+        if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
+            if (element.val() == '') {
+                Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                error = true;
                 return false;
             }
+        }
+    });
 
-        });
+    if (error) {
+        return false;
     }
+
+    var url = "{{ route('jurulatihsave') }}";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            if (response.status) {
+                Swal.fire('Success', 'Berjaya', 'success');
+                if (response.redirectRoute ?? false) {
+                    window.location.href = response.redirectRoute;
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            // Handle the error here, you can log it to console or show an alert
+            Swal.fire('Error', 'Failed to process request', 'error');
+        }
+    });
+};
+
 </script>

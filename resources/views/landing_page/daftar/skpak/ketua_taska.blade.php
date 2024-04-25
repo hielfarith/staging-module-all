@@ -1,4 +1,5 @@
-<form id="formpengunna" novalidate="novalidate">
+<form id="simpan-pengguna" novalidate="novalidate" type='POST'>
+@csrf
     <div class="row">
         <h5 class="mb-2 fw-bold">
             <span class="badge rounded-pill bg-danger">
@@ -73,11 +74,18 @@
             <label class="fw-bold form-label">Jenis
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-select" name="jenis" required onchange="checksjenis(this)">
+            <select class="form-select" name="jenis">
                 <option value="" hidden>Jenis</option>
                 <option value="Kerajaan">Kerajaan</option>
                 <option value="Swasta">Swasta</option>
             </select>
+            <!--
+            <select class="form-select" name="jenis" required onchange="checksjenis(this)">
+                <option value="" hidden>Jenis</option>
+                <option value="Kerajaan">Kerajaan</option>
+                <option value="Swasta">Swasta</option>
+            
+            REQUIRE AMENDMENT-->
         </div>
 
         <div class="col-md-3 mb-1">
@@ -132,12 +140,19 @@
             <label class="fw-bold form-label">Negeri
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri(this)">
+            <select class="form-select" name="negeri" id="negeri">
                 <option value="" hidden>Negeri</option>
                 @foreach ($negeris as $state)
                     <option value="{{ $state->name }}">{{ $state->name }}</option>
                 @endforeach
             </select>
+            <!--
+            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri(this)">
+                <option value="" hidden>Negeri</option>
+                @foreach ($negeris as $state)
+                    <option value="{{ $state->name }}">{{ $state->name }}</option>
+                @endforeach
+            </select> REQUIRE AMENDMENT-->
         </div>
 
         <div class="col-md-4 mb-1">
@@ -145,8 +160,11 @@
                 <span class="text-danger">*</span>
             </label>
             <select class="form-select" name="daerah" required id="daerah">
-                <!-- add -->
-            </select>
+            @foreach ($negeris as $state)
+                    <option value="{{ $state->name }}">{{ $state->name }}</option>
+            @endforeach
+            
+            </select><!--REQUIRE AMENDMENT-->
         </div>
 
         <div class="col-md-4 mb-1">
@@ -231,6 +249,193 @@
 
     <hr>
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+        <button type="submit" class="btn btn-primary float-right"onclick="fakeSuccess2('simpan-pengguna', 'penggunasave')">Submit</button>
     </div>
+            
 </form>
+<!--
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const radioOptions = document.getElementsByName('inlineRadioOptions');
+
+        for (const option of radioOptions) {
+            option.addEventListener('change', function() {
+                const selectedValue = document.querySelector('input[name="inlineRadioOptions"]:checked')
+                    .value;
+
+                // Hide all divs
+                document.querySelectorAll('.modal-body > div:not(.row)').forEach(div => {
+                    div.style.display = 'none';
+                });
+
+                // Show the corresponding div based on the selected radio button
+                switch (selectedValue) {
+                    case 'option1':
+                        document.getElementById('ketuataskaDiv').style.display = 'block';
+                        break;
+                    case 'option2':
+                        document.getElementById('panelpenilai').style.display = 'block';
+                        break;
+                    case 'option3':
+                        document.getElementById('ketuaAgensi').style.display = 'block';
+                        break;
+                    case 'option4':
+                        document.getElementById('jawatan2').style.display = 'block';
+                        break;
+                    case 'option5':
+                        document.getElementById('tertinggi').style.display = 'block';
+                        break;
+                    default:
+                        break;
+                }
+            });
+        }
+    });
+    $('.select2').each(function() {
+        $(this).select2({
+            dropdownParent: $(this).parent(),
+        });
+    });
+
+    fakeSuccess = function(title, text) {
+        Swal.fire({
+            title: "Adakah anda pasti?",
+            text: "Hantar. Teruskan?",
+            icon: 'success',
+            confirmButtonText: 'OK',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('.modal').modal('hide');
+            } else {
+                return false;
+            }
+
+        });
+    }
+
+    fakeSuccess2 = function() {
+        
+        
+        event.preventDefault();
+        var formData = new FormData(document.getElementById('simpan-pengguna'));
+        var error = false;
+
+        $('#simpan-pengguna').find('select.select2').each(function() {
+            var element = $(this);
+            var select2Value = element.select2('data');
+            var selectedValues = element.val();
+            var fieldName = element.attr('name');
+            if (typeof element.attr('disabled') == 'undefined') {
+
+                if (!selectedValues || selectedValues === '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
+                    return false; // Stop the loop if an error is found
+                }
+            }
+        })
+
+        
+/*
+        $('#simpan-pengguna').submit(function(event) {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById('simpan-pengguna'));
+        formData.forEach(function(value, name) {
+            var element = $("input[name=" + name + "]");
+            if (typeof element.attr('name') != 'undefined') {
+                if (element.val() == '') {
+                    Swal.fire('Error', 'Please fill required fields', 'error');
+                    return false;
+                }
+            }
+        })});
+        
+
+        
+        formData.forEach(function(value, name) {
+            var element = $("input[name="+name+"]");
+            if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
+                if (element.val() == '') {
+                    Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                    error = true;
+                    return false;
+                }
+            }
+        });
+
+        if (error) {
+            return false;
+        }
+
+     */   
+    function checksjenis(jenis) {
+        if (jenis.value == 'Swasta') {
+            $('#jawatan').val('');
+            $('#gred').val('');
+            $('#jawatan').attr('disabled', true);
+            $('#gred').attr('disabled', true);
+            $('#jawatan').prop('required', false);
+            $('#gred').prop('required', false);
+        } else {
+            $('#jawatan').attr('disabled', false);
+            $('#gred').attr('disabled', false);
+            $('#jawatan').prop('required', true);
+            $('#gred').prop('required', true);
+        }
+    };
+
+    var select2 = ['jenis', 'jawatan', 'gred', 'negeri', 'daerah', 'jenis_taska', 'jenisbanugunan'];
+
+     var url = "{{ route('penggunasave') }}";
+
+/*
+$.ajax({
+    url: url,
+    type: 'POST',
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function(response) {
+        if (response.status) {
+            Swal.fire('Success', 'Berjaya', 'success');
+            var location = url;
+            window.location.href = location;
+        }
+    },
+    error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+        // Handle the error here, you can log it to console or show an alert
+        Swal.fire('Error', 'Failed to process request', 'error');
+    }
+});
+
+    };
+*/
+    
+$.ajax({
+    url: url,
+    type: 'POST',
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function(response) {
+        if (response.status) {
+            Swal.fire('Success', 'Berjaya', 'success');
+            var location = url;
+            if (response.redirectRoute ?? false) {
+                        window.location.href = response.redirectRoute;
+                        return false;
+                    }
+        }
+    },
+    error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+        // Handle the error here, you can log it to console or show an alert
+        Swal.fire('Error', 'Failed to process request', 'error');
+    }
+});
+
+    };
+</script>
+
+-->

@@ -58,14 +58,14 @@
                 </div>
 
             </div>
-
+<!--
             <div class="modal-footer">
                 <div class="d-flex justify-content-center">
-                    <a href="#" class="btn btn-success me-1" onclick="fakeSuccess()">
+                    <a href="#" class="btn btn-success me-1" onclick="fakeSuccess2()">
                         Simpan
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -114,20 +114,31 @@
         });
     });
 
-    fakeSuccess = function(title, text) {
-        Swal.fire({
-            title: "Adakah anda pasti?",
-            text: "Hantar. Teruskan?",
-            icon: 'success',
-            confirmButtonText: 'OK',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $('.modal').modal('hide');
-            } else {
-                return false;
-            }
+   //////////////////////////////////////////////////////////////////////
+   
 
-        });
+
+fakeSuccess2 = function(formId, routeName) {
+    event.preventDefault();
+    var formData = new FormData(document.getElementById(formId));
+    var error = false;
+
+    $('#' + formId).find('select.select2').each(function() {
+        var element = $(this);
+        var select2Value = element.select2('data');
+        var selectedValues = element.val();
+        var fieldName = element.attr('name');
+        if (typeof element.attr('disabled') == 'undefined') {
+            if (!selectedValues || selectedValues === '') {
+                Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+                error = true;
+                return false; // Stop the loop if an error is found
+            }
+        }
+    });
+
+    if (error) {
+        return false;
     }
 
     function checksjenis(jenis) {
@@ -144,37 +155,53 @@
             $('#jawatan').prop('required', true);
             $('#gred').prop('required', true);
         }
+    };
+
+    var select2 = ['jenis', 'jawatan', 'gred', 'negeri', 'daerah', 'jenis_taska', 'jenisbanugunan'];
+
+    var url;
+    // Determine the URL dynamically based on conditions
+    switch (routeName) {
+        case 'penggunasave':
+            url = "{{ route('penggunasave') }}";
+            break;
+        case 'penilaisave':
+            url = "{{ route('penilaisave') }}";
+            break;
+        case 'agensisave':
+            url = "{{ route('agensisave') }}";
+            break;
+        case 'jawatankuasasave':
+            url = "{{ route('jawatankuasasave') }}";
+            break;
+        case 'jawatankuasatertinggisave':
+            url = "{{ route('jawatankuasatertinggisave') }}";
+            break;
+        default:
+            // Handle default case if needed
+            break;
     }
 
-    $('#formpengunna').submit(function(event) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById('formpengunna'));
-        formData.forEach(function(value, name) {
-            var element = $("input[name=" + name + "]");
-            if (typeof element.attr('name') != 'undefined') {
-                if (element.val() == '') {
-                    Swal.fire('Error', 'Please fill required fields', 'error');
-                    return false;
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            if (response.status) {
+                Swal.fire('Success', 'Berjaya', 'success');
+                if (response.redirectRoute ?? false) {
+                    window.location.href = response.redirectRoute;
                 }
             }
-        });
-        var select2 = ['jenis', 'jawatan', 'gred', 'negeri', 'daerah', 'jenis_taska', 'jenisbanugunan'];
-
-        var url = "{{ route('admin.internal.penggunasave') }}"
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                if (response.status) {
-                    Swal.fire('Success', 'Berjaya', 'success');
-                    var location = "{{ route('admin.internal.penggunalist') }}"
-                    window.location.href = location;
-                }
-            }
-        });
-
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            // Handle the error here, you can log it to console or show an alert
+            Swal.fire('Error', 'Failed to process request', 'error');
+        }
     });
+};
+
 </script>
