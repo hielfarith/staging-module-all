@@ -271,7 +271,7 @@ class InstrumenController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatAspek(' . $tetapanAspek->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatAspekEdit(' . $tetapanAspek->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatAspekEdit(' . $tetapanAspek->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
@@ -374,7 +374,7 @@ class InstrumenController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatItem(' . $tetapanItem->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatItemEdit(' . $tetapanItem->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatItemEdit(' . $tetapanItem->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
@@ -433,7 +433,7 @@ class InstrumenController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatTarikh(' . $tetapanTarikh->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatTarikhEdit(' . $tetapanTarikh->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatTarikhEdit(' . $tetapanTarikh->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
@@ -701,7 +701,7 @@ class InstrumenController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatSkpak(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatSkpakEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSkpakEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
@@ -746,7 +746,7 @@ class InstrumenController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatSpks(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatSpksEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSpksEdit(' . $instrumenList->id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
