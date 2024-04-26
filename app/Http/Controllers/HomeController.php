@@ -35,7 +35,7 @@ class HomeController extends Controller
             'APIKEY' => $apiKey,
         ])->withOptions([
             'verify' => false,
-        ])->get('https://integrasi.moe.gov.my/General-stage/staffKPM?NoKP=750808025271');
+        ])->get('https://integrasi.moe.gov.my/General-stage/staffKPM?NoKP='.$user->no_ic);
 
         $user = $response['details'][0];
 
