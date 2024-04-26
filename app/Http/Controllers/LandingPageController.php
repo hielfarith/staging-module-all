@@ -23,12 +23,15 @@ use Illuminate\Support\Facades\Storage;
 
 class LandingPageController extends Controller
 {
-    public function index(Request $request)
+    
+	public function index(Request $request)
     {
         $negaras = MasterCountry::all();
         $jantinas = [1=> 'Lelaki', 2=> 'Perempuan'];
         $kaums = [1=> 'Melayu', 2=> 'Cina', 3=> 'India', 4=> 'Bumiputera Sabah', 5=> 'Bumiputera Sarawak', 6=> 'Lain-lain'];
         $negeris = MasterState::all();
+		$states = MasterState::all();
+		$institusis = SkipsInstitusiPendidikan::all();
         $sukans = [ 1 => 'Bola Sepak',
                     2 => 'Bola Keranjang',
                     3 => 'Tenis',
@@ -40,8 +43,9 @@ class LandingPageController extends Controller
                     9 => 'Berbasikal',
                     10 => 'Ping Pong',
                 ];
-        return view('landing_page.index', compact('negaras','jantinas','kaums','negeris', 'sukans'));
+        return view('landing_page.index', compact('negaras','jantinas','kaums','negeris', 'states', 'institusis', 'sukans'));
     }
+
 
     public function viewForm(Request $request)
 	{
@@ -584,13 +588,13 @@ class LandingPageController extends Controller
         		$PengerusiPengetuaGuru->create($input);
             }
 
-          DB::commit();
-            return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya"]);
-        } catch (\Throwable $e) {
-
-            DB::rollback();
-            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
-        }
+			DB::commit();
+			return response()->json(['title' => 'Berjaya', 'status' => true, 'message' => "Berjaya", 'detail' => "berjaya",'redirectRoute' => route('landing_page')]);
+			} catch (\Throwable $e) {
+	
+				DB::rollback();
+				return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => $e->getMessage()], 404);
+			}
 	}
 
 	public function listPengetua(Request $request)

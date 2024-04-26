@@ -399,7 +399,16 @@
                     <input type="text" class="form-control" name="anugerah_tahun">
                 </div>
             </div>
+            
         </div>
+        <hr>
+            <div class="modal-footer">
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="btn btn-primary me-1" onclick="fakeSuccess1()">
+                        Simpan
+                    </a>
+                </div>
+            </div>
     </div>
 
     <hr>

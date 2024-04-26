@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landing_page');
+//Route::get('/', [LandingPageController::class, 'index2'])->name('landing_page2');
 // Route::post('checkdaerah', [LandingPageController::class, 'checkDaerah'])->name('admin.internal.checkdaerah');
 // Route::get('pengguna-baru', [LandingPageController::class, 'viewForm'])->name('admin.internal.penggunaform');
 Route::post('simpan-pengguna', [LandingPageController::class, 'savePengguna'])->name('penggunasave');
@@ -55,10 +56,10 @@ Route::post('simpan-penilai', [LandingPageController::class, 'savePenilai'])->na
  Route::post('savejawatankuasatertinggi', [LandingPageController::class, 'saveJawatankuasatertinggi'])->name('jawatankuasatertinggisave');
 // Route::get('senarai-jawatankuasatertinggi', [LandingPageController::class, 'listJawatankuasatertinggi'])->name('admin.internal.jawatankuasatertinggilist');
 // Route::post('viewjawatankuasatertinggi/{id}/{type}', [LandingPageController::class, 'viewJawatankuasatertinggi'])->name('admin.internal.viewjawatankuasatertinggi');
-// Route::get('create-pengetua', [LandingPageController::class, 'viewFormPengetua'])->name('admin.internal.pengetuaform');
-// Route::post('savepengetua', [LandingPageController::class, 'savePengetua'])->name('admin.internal.pengetuasave');
-// Route::get('senarai-pengetua', [LandingPageController::class, 'listPengetua'])->name('admin.internal.pengetualist');
-// Route::post('viewpengetua/{id}/{type}', [LandingPageController::class, 'viewPengetua'])->name('admin.internal.viewpengetua');
+Route::get('create-pengetua', [LandingPageController::class, 'viewFormPengetua'])->name('pengetuaform');
+Route::post('savepengetua', [LandingPageController::class, 'savePengetua'])->name('pengetuasave');
+Route::get('senarai-pengetua', [LandingPageController::class, 'listPengetua'])->name('pengetualist');
+Route::post('viewpengetua/{id}/{type}', [LandingPageController::class, 'viewPengetua'])->name('viewpengetua');
 // Route::get('create-jurulatih', [LandingPageController::class, 'viewFormJurulatih'])->name('admin.internal.jurulatihform');
 Route::post('savejurulatih', [LandingPageController::class, 'saveJurulatih'])->name('jurulatihsave');
 // Route::get('senarai-jurulatih', [LandingPageController::class, 'listJurulatih'])->name('admin.internal.jurulatihlist');

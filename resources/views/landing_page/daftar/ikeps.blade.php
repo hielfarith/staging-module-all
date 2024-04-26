@@ -33,14 +33,14 @@
                 </div> --}}
                 @include('landing_page.daftar.ikeps.jurulatih')
             </div>
-
+<!--
             <div class="modal-footer">
                 <div class="d-flex justify-content-center">
                     <a href="#" class="btn btn-success me-1" onclick="fakeSuccess1()">
                         Simpan
                     </a>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
@@ -68,7 +68,7 @@
             }
         }
     });
-
+/*
     formData.forEach(function(value, name) {
         var element = $("input[name="+name+"]");
         if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
@@ -79,6 +79,23 @@
             }
         }
     });
+
+    formData.forEach(function(value, name) {
+    var element = $("input[name="+name+"]");
+    console.log(formData);
+    console.log("Selector:", "input[name="+name+"]");
+    console.log("Selected elements:", element);
+
+    console.log("Checking field:", name);
+    console.log("Field value:", element.val());
+    if (typeof element.attr('name') != 'undefined' && typeof element.attr('required') != 'undefined') {
+        if (element.val() == '') {
+            Swal.fire('Error', 'Sila isi ruangan yang diperlukan', 'error');
+            error = true;
+            return false;
+        }
+    }
+});*/
 
     if (error) {
         return false;
