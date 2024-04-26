@@ -167,7 +167,7 @@
                             button = button + '<a onclick="maklumatSpks(' + data[i].id +
                                 ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
                             button = button + '<a onclick="maklumatSpksEdit(' + data[i].id +
-                                ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                                ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
                             button = button + "</div>";
                             tableData = tableData + '<td>' + button + '</td></tr>';
                             $('#instrumen-table-spks-body').append(tableData);
@@ -249,7 +249,7 @@
                             button = button + '<a onclick="maklumatSpks(' + data[i].id +
                                 ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
                             button = button + '<a onclick="maklumatSpksEdit(' + data[i].id +
-                                ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                                ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
                             button = button + "</div>";
                             tableData = tableData + '<td>' + button + '</td></tr>';
                             $('#instrumen-table-spks-body').append(tableData);
