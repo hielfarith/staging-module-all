@@ -11,7 +11,7 @@
                         <img src="{{ asset('images/logo/jata_negara.png') }}" class="brand-image img-circle elevation-3"
                             style="opacity: .8">
                     </span>
-                    <h2 class="brand-text text-white">SPPIP</h2>
+                    <h2 class="brand-text text-dark">SPPIP</h2>
                 </a>
             </li>
             <li class="nav-item nav-toggle">
@@ -39,7 +39,7 @@
                     <span class="menu-title text-truncate text-wrap">Pengumuman </span>
                 </a>
             </li>
-            
+
             <!-- <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                 <a href="#" class="nav-link">
                     {{-- <i data-feather="home"></i> --}}
@@ -844,7 +844,7 @@
                 $roles = $roles->pluck('id')->toArray();
 
                 $roleAccess = App\Models\RoleAccess::whereIn('role_id', $roles)->get();
-                
+
                 $modul = $subModul = [];
                 foreach($roleAccess as $access){
                     $modul[] = $access->modul;
@@ -853,9 +853,9 @@
                         $subModul[] = $sub;
                     }
                 }
-                
+
             ?>
-            
+
             @if(in_array(1, $modul))
             <li class="navigation-header">
                 <span> I-KePS </span>
@@ -918,7 +918,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(4, $subModul))     
+                    @if(in_array(4, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.laporan_ikeps']) ? 'active' : '' }}">
                         <a href="{{ route('ikeps.laporan_ikeps') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -928,7 +928,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(5, $subModul))   
+                    @if(in_array(5, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['ikeps.pemantauan_ikeps']) ? 'active' : '' }}">
                         <a href="{{ route('ikeps.pemantauan_ikeps') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -938,7 +938,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(6, $subModul))   
+                    @if(in_array(6, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Sistem</span>
@@ -971,7 +971,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(7, $subModul))   
+                    @if(in_array(7, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.internal.jurulatihlist']) ? 'active' : '' }}">
                         <a href="{{ route('admin.internal.jurulatihlist') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Modul Kemaskini Profil Pengguna </span>
@@ -999,7 +999,7 @@
                         </a>
                     </li>
 
-                    @if(in_array(8, $subModul))   
+                    @if(in_array(8, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.skips_baru']) ? 'active' : '' }}">
                         <a href="{{ route('skips.skips_baru') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1009,7 +1009,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(9, $subModul))   
+                    @if(in_array(9, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.sekolah']) ? 'active' : '' }}">
                         <a href="{{ route('skips.skips_sekolah') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1019,7 +1019,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(10, $subModul))   
+                    @if(in_array(10, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi']) ? 'active' : '' }}">
                         <a href="{{ route('skips.senarai-skips-institusi') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1029,7 +1029,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(11, $subModul))   
+                    @if(in_array(11, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai-skips-institusi-sekolah']) ? 'active' : '' }}">
                         <a href="{{ route('skips.senarai-skips-institusi-sekolah') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1039,7 +1039,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(12, $subModul))   
+                    @if(in_array(12, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.verfikasi-skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.verfikasi-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1049,7 +1049,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(13, $subModul))   
+                    @if(in_array(13, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.pelaporan-penarafan']) ? 'active' : '' }}">
                         <a href="{{ route('skips.pelaporan-penarafan') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
@@ -1057,7 +1057,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(14, $subModul))   
+                    @if(in_array(14, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.dashboard_skips']) ? 'active' : '' }}">
                         <a href="{{ route('skips.dashboard_skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
@@ -1065,7 +1065,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(15, $subModul))   
+                    @if(in_array(15, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-skips']) ? 'active' : '' }}">
                         <a href="{{ route('admin.instrumen.senarai-skips') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
@@ -1073,7 +1073,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(16, $subModul))   
+                    @if(in_array(16, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.senarai_institusi']) ? 'active' : '' }}">
                         <a href="{{ route('skips.senarai_institusi') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi
@@ -1082,7 +1082,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(17, $subModul))   
+                    @if(in_array(17, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skips.kemaskini-profil']) ? 'active' : '' }}">
                         <a href="{{ route('skips.kemaskini-profil') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Kemaskini Profil Pengguna</span>
@@ -1110,7 +1110,7 @@
                         </a>
                     </li>
 
-                    @if(in_array(18, $subModul))   
+                    @if(in_array(18, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.skpak_baru']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.skpak_baru') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1120,7 +1120,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(19, $subModul))   
+                    @if(in_array(19, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pengesahan Pengisian Data
@@ -1129,7 +1129,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(20, $subModul))   
+                    @if(in_array(20, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.verfikasi_senarai']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.verfikasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">
@@ -1139,7 +1139,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(21, $subModul))   
+                    @if(in_array(21, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.validasi_senarai']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.validasi_senarai') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Validasi Data Instrumen</span>
@@ -1147,7 +1147,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(22, $subModul))   
+                    @if(in_array(22, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Data Penilaian</span>
@@ -1155,7 +1155,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(23, $subModul))   
+                    @if(in_array(23, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.menunggu_penarafan']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.menunggu_penarafan') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Pelaporan Penarafan</span>
@@ -1163,7 +1163,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(24, $subModul))   
+                    @if(in_array(24, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Muat Turun Data Penilaian</span>
@@ -1171,7 +1171,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(25, $subModul))   
+                    @if(in_array(25, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.dashboard']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.dashboard') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Dashboard</span>
@@ -1179,7 +1179,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(26, $subModul))   
+                    @if(in_array(26, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['admin.instrumen.senarai-skpak']) ? 'active' : '' }}">
                         <a href="{{ route('admin.instrumen.senarai-skpak') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Konfigurasi Instrumen</span>
@@ -1187,7 +1187,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(27, $subModul))   
+                    @if(in_array(27, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Tambah/Kemaskini Institusi
@@ -1196,7 +1196,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(28, $subModul))   
+                    @if(in_array(28, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.senarai_penetapan']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.senarai_penetapan') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Penetapan Penilai</span>
@@ -1204,7 +1204,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(29, $subModul))   
+                    @if(in_array(29, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['skpak.borang_rentas']) ? 'active' : '' }}">
                         <a href="{{ route('skpak.borang_rentas') }}" class="nav-link">
                             <span class="menu-title text-truncate text-wrap">Modul Rentas</span>
@@ -1212,7 +1212,7 @@
                     </li>
                     @endif
 
-                    @if(in_array(30, $subModul))   
+                    @if(in_array(30, $subModul))
                     <li class="nav-item {{ in_array(request()->route()->getName(), ['#']) ? 'active' : '' }}">
                         <a href="#" class="nav-link">
                             <span class="menu-title text-truncate text-wrap"> Modul Kemaskini Profil Pengguna </span>
