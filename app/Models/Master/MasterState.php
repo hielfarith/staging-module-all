@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Models\Master;
-
+use App\Http\Controllers\DaerahFetch;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class MasterState extends Model
 {

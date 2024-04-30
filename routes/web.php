@@ -13,6 +13,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Integration\IdmeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DaerahFetch;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return redirect()->route('login');
 // });
+
+Route::post('/postregions', [DaerahFetch::class, 'getRegionsByState'])->name('postregions');
 
 
 Route::get('/', [LandingPageController::class, 'index'])->name('landing_page');
