@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,7 +149,7 @@
             <label class="fw-bold form-label">Negeri
                 <span class="   text-danger">*</span>
             </label><br>
-            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri(this)">
+            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri5(this)">
                 <option value="" hidden>Negeri</option>
                 @foreach ($negeris as $state)
                     <option value="{{ $state->code }}">{{ $state->name }}</option>
@@ -161,13 +158,7 @@
         </div>  
 
 
-            <!--
-            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri(this)">
-                <option value="" hidden>Negeri</option>
-                @foreach ($negeris as $state)
-                    <option value="{{ $state->name }}">{{ $state->name }}</option>
-                @endforeach
-            </select> REQUIRE AMENDMENT-->
+           
         
             <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Daerah
@@ -203,11 +194,11 @@ $(document).ready(function() {
     // Attach change event listener to the state dropdown (negeri)
     $('#negeri').on('change', function() {
         // Call changenegeri function when the selected state changes
-        changenegeri(this);
+        changenegeri5(this);
     });
 });
 
-function changenegeri(negeri) {
+function changenegeri5(negeri) {
     var negerivalue = negeri.value;
     
     $.ajax({

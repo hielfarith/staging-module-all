@@ -1,4 +1,15 @@
-<form id="savejawatankuasa" novalidate="novalidate"type='POST'>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Include CSRF token here -->
+    <title>Test</title>
+    <!-- Other meta tags, stylesheets, and scripts -->
+    </head>
+<body>
+
+<form id="savejawatankuasa" action="/postregions"  novalidate="novalidate"type='POST'>
 @csrf
     <div class="row">
 
@@ -129,31 +140,23 @@
 
         <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Negeri
-                <span class="text-danger">*</span>
+                <span class="   text-danger">*</span>
             </label><br>
-            <select class="form-select" name="negeri" id="negeri">
+            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri4(this)">
                 <option value="" hidden>Negeri</option>
                 @foreach ($negeris as $state)
-                    <option value="{{ $state->name }}">{{ $state->name }}</option>
+                    <option value="{{ $state->code }}">{{ $state->name }}</option>
                 @endforeach
             </select>
-            <!--
-            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri(this)">
-                <option value="" hidden>Negeri</option>
-                @foreach ($negeris as $state)
-                    <option value="{{ $state->name }}">{{ $state->name }}</option>
-                @endforeach
-            </select> REQUIRE AMENDMENT-->
-        </div>
+        </div>  
 
         <div class="col-md-4 mb-1">
             <label class="fw-bold form-label">Daerah
                 <span class="text-danger">*</span>
             </label><br>
-            <select class="form-select " name="daerah" id="daerah" required>
-                <option value="" hidden>Daerah</option>
-                <option value="1">Hulu Langat</option>
-                <option value="2">Ampang</option>
+            <select class="form-select input" name="daerah" id="daerah" required>
+                
+                
             </select>
         </div>
 
@@ -171,3 +174,57 @@
     </div>
 
 </form>
+
+<script>
+$(document).ready(function() {
+    // Attach change event listener to the state dropdown (negeri)
+    $('#negeri').on('change', function() {
+        // Call changenegeri function when the selected state changes
+        changenegeri4(this);
+    });
+});
+
+function changenegeri4(negeri) {
+    var negerivalue = negeri.value;
+    
+    $.ajax({
+        url: '/postregions', // Update the URL to your route
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: { state_name: negerivalue },
+        success: function(data) {
+            console.log('Received data:', data);
+            
+            // Handle success
+            var daerahDropdown = $('#daerah');
+            console.log('Dropdown element:', daerahDropdown);
+            
+            $('select[name="daerah"]').empty(); // Clear existing options
+             // Add default option
+            
+            // Loop through the data fetched from the database and add options to the dropdown
+            $.each(data, function(key, value) {
+                console.log('Appending option:', value.name, value.kod);
+                
+                $('select[name="daerah"]').append('<option value="' + value.kod + '">' + value.name + '</option>');
+
+                
+
+                var optionHTML = '<option value="' + value.kod + '">' + value.name + '</option>';
+                console.log('Appending option:', optionHTML);
+                daerahDropdown.append(optionHTML);
+             });
+           
+        },
+        error: function(xhr, status, error) {
+            // Handle error
+            console.error(error);
+        }
+    });
+}
+</script>
+
+</body>
+</html>
