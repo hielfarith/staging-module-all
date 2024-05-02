@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Email;
 use App\Models\EmailRecipient;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotifikasiEmelFormDirect;
 
 class EmailController extends Controller
 {
@@ -88,4 +91,38 @@ class EmailController extends Controller
         return response()->json(['title' => 'Berjaya', 'status' => 'success']);
 
     }
+    
+
+    public function hantarNotifikasiEmel(Request $request)
+    {
+        
+
+      
+        $toEmail = 'hielfarithsuffri.unijaya@gmail.com';
+        $fungsi = 'NPE';
+        $instrumen = 'SKIPS';
+        $nombor = '25A';
+
+        $emailData = DB::table('Notifikasi_Emel')
+            ->where('Fungsi', $fungsi)
+            ->where('Instrumen', $instrumen)
+            ->where('Nombor', $nombor)
+            ->first();
+
+      
+        if ($emailData) {
+            $message = $emailData->Message;
+            $subject = $emailData->Subject;
+            $response = Mail::to($toEmail)->send(new NotifikasiEmelFormDirect($message, $subject));
+            return response()->json(['title' => 'Berjaya', 'status' => 'success']);
+        } else {
+            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => 'Email data not found'], 404);
+        }
+    }
+
+
 }
+
+
+
+

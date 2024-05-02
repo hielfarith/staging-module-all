@@ -5,7 +5,7 @@ use App\Http\Controllers\InstrumenController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PengumumanController;
-// use App\Http\Controllers\PengurusanProfilPenggunaController;
+use App\Http\Controllers\PengurusanProfilPenggunaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
@@ -14,6 +14,7 @@ use App\Http\Controllers\Integration\IdmeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DaerahFetch;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ use App\Http\Controllers\DaerahFetch;
 // Route::get('/', function () {
 //     return redirect()->route('login');
 // });
+
+Route::get('/hantar-emel-notifikasi', [EmailController::class, 'HantarNotifikasiEmel']);
 
 Route::post('/postregions', [DaerahFetch::class, 'getRegionsByState'])->name('postregions');
 
@@ -210,7 +213,49 @@ Route::controller(ModuleController::class)->prefix('module')->middleware(['web']
     Route::post('viewModuleTypes', 'viewModuleTypes')->name('module.viewModuleTypes');
 
 });
+//pengurusan controller
+Route::controller(PengurusanProfilPenggunaController::class)->prefix('pengguna-dalaman')->middleware(['web'])->group(function () {
+    Route::post('checkdaerah', 'checkDaerah')->name('admin.internal.checkdaerah');
 
+    Route::get('pengguna-baru', 'viewForm')->name('admin.internal.penggunaform');
+    Route::post('simpan-pengguna', 'savePengguna')->name('admin.internal.penggunasave');
+    Route::get('senarai-pengguna', 'listPengguna')->name('admin.internal.penggunalist');
+    Route::post('lihat-pengguna/{id}/{type}', 'viewPengguna')->name('admin.internal.viewpengguna');
+
+    Route::get('penilai-baru', 'viewFormPenilai')->name('admin.internal.penilaiform');
+    Route::post('simpan-penilai', 'savePenilai')->name('admin.internal.penilaisave');
+    Route::get('senarai-penilai', 'listPenilai')->name('admin.internal.penilailist');
+    Route::post('lihat-penilai/{id}/{type}', 'viewPenilai')->name('admin.internal.viewpenilai');
+    // Route::post('viewpenilai/{id}/{type}','viewPenilai')->name('admin.internal.viewpenilai');
+
+    Route::get('create-agensi', 'viewFormAgensi')->name('admin.internal.agensiform');
+    Route::post('saveagensi', 'saveAgensi')->name('admin.internal.agensisave');
+    Route::get('senarai-agensi', 'listAgensi')->name('admin.internal.agensilist');
+    Route::post('viewagensi/{id}/{type}', 'viewAgensi')->name('admin.internal.viewagensi');
+
+    Route::get('create-jawatankuasa', 'viewFormJawatankuasa')->name('admin.internal.jawatankuasaform');
+    Route::post('savejawatankuasa', 'saveJawatankuasa')->name('admin.internal.jawatankuasasave');
+    Route::get('senarai-jawatankuasa', 'listJawatankuasa')->name('admin.internal.jawatankuasalist');
+    Route::post('viewjawatankuasa/{id}/{type}', 'viewJawatankuasa')->name('admin.internal.viewjawatankuasa');
+
+    Route::get('create-jawatankuasatertinggi', 'viewFormJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggiform');
+    Route::post('savejawatankuasatertinggi', 'saveJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggisave');
+    Route::get('senarai-jawatankuasatertinggi', 'listJawatankuasatertinggi')->name('admin.internal.jawatankuasatertinggilist');
+    Route::post('viewjawatankuasatertinggi/{id}/{type}', 'viewJawatankuasatertinggi')->name('admin.internal.viewjawatankuasatertinggi');
+
+    Route::get('create-pengetua', 'viewFormPengetua')->name('admin.internal.pengetuaform');
+    Route::post('savepengetua', 'savePengetua')->name('admin.internal.pengetuasave');
+    Route::get('senarai-pengetua', 'listPengetua')->name('admin.internal.pengetualist');
+    Route::post('viewpengetua/{id}/{type}', 'viewPengetua')->name('admin.internal.viewpengetua');
+
+    Route::get('create-jurulatih', 'viewFormJurulatih')->name('admin.internal.jurulatihform');
+    Route::post('savejurulatih', 'saveJurulatih')->name('admin.internal.jurulatihsave');
+    Route::get('senarai-jurulatih', 'listJurulatih')->name('admin.internal.jurulatihlist');
+    Route::post('viewjurulatih/{id}/{type}', 'viewJurulatih')->name('admin.internal.viewjurulatih');
+
+    Route::get('download/{id}/{name}', 'download')->name('jurulatih-download');
+
+});
 
 // instrumen controller
 
