@@ -1,6 +1,6 @@
 <div class="modal fade" id="daftar_skips" tabindex="-1" aria-labelledby="daftar_skips" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content">
+        <div class="modal-content"style="height: 65vh;">
             <div class="modal-header bg-light-primary">
                 <h3 class="card-title-modal">
                     Pendaftaran Akaun Modul SKIPS

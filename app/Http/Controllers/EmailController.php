@@ -95,35 +95,46 @@ class EmailController extends Controller
 
     public function hantarNotifikasiEmel(Request $request)
     {
-        
+        $tahun = '2004';
+        $tarikhmulapengisian = '2023-02-01';
+        $tarikhakhirpengisian = '2023-02-28';
+        $pautan = 'www.unijaya.gov.my';
 
       
         $toEmail = 'hielfarithsuffri.unijaya@gmail.com';
         $fungsi = 'NPE';
         $instrumen = 'SKIPS';
-        $nombor = '25A';
-
-        // $fungsi = $this->getFungsi();                FUNCTION UNDEFINED
-        // $instrumen = $this->getInstrumen();          FUNCTION UNDEFINED
-        // $nombor = $this->getNombor();                FUNCTION UNDEFINED
-
-    
+        $nombor = '26';
+        
+        // Retrieve email data from the database
         $emailData = DB::table('Notifikasi_Emel')
             ->where('Fungsi', $fungsi)
             ->where('Instrumen', $instrumen)
             ->where('Nombor', $nombor)
             ->first();
 
-      
         if ($emailData) {
-            $message = $emailData->Message;
+            $htmlContent = $emailData->Message;
+
+            // Replace placeholders with actual values
+            $htmlContent = str_replace('{{ $tahun }}', $tahun, $htmlContent);
+            $htmlContent = str_replace('{{ $tarikhmulapengisian }}', $tarikhmulapengisian, $htmlContent);
+            $htmlContent = str_replace('{{ $tarikhakhirpengisian }}', $tarikhakhirpengisian, $htmlContent);
+            $htmlContent = str_replace('{{ $pautan }}', $pautan, $htmlContent);
+
+            // Convert newlines to <br> tags if needed
+            $htmlContent = nl2br($htmlContent);
+
             $subject = $emailData->Subject;
-            $response = Mail::to($toEmail)->send(new NotifikasiEmelFormDirect($message, $subject));
+
+            // Send email with formatted message and subject
+            $response = Mail::to($toEmail)->send(new NotifikasiEmelFormDirect($htmlContent, $subject));
+
             return response()->json(['title' => 'Berjaya', 'status' => 'success']);
         } else {
             return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => 'Email data not found'], 404);
         }
-    }
+        
 
 
 }
@@ -131,3 +142,4 @@ class EmailController extends Controller
 
 
 
+}

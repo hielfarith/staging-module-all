@@ -6,6 +6,6 @@
     <title>{{ $subject }}</title>
 </head>
 <body>
-    <p>{{ $mailmessage }}</p>
+    {!! $mailmessage !!}
 </body>
 </html>
