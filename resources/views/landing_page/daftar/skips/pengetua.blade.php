@@ -40,7 +40,7 @@
             <label class="fw-bold form-label">Jawatan
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-control select2" name="jawatan" id="jawatan" required>
+            <select class="form-control select2" name="jawatan1" id="jawatan1" required>
                     <option value="" hidden>Jawatan</option>
                     <option value="pengerusi">Pengerusi</option>
                     <option value="pengetua">Pengetua</option>
@@ -64,7 +64,7 @@
             <label class="fw-bold form-label">Negeri
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-control select2" name="negeri" id="negeri" required>
+            <select class="form-control select2" name="negeri1" id="negeri1" required>
                 <option value="" hidden>Negeri</option>
                 @foreach($states as $state)
                     <option value="{{$state->name}}">{{$state->name}}</option>

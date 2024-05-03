@@ -141,21 +141,7 @@ fakeSuccess2 = function(formId, routeName) {
         return false;
     }
 
-    function checksjenis(jenis) {
-        if (jenis.value == 'Swasta') {
-            $('#jawatan').val('');
-            $('#gred').val('');
-            $('#jawatan').attr('disabled', true);
-            $('#gred').attr('disabled', true);
-            $('#jawatan').prop('required', false);
-            $('#gred').prop('required', false);
-        } else {
-            $('#jawatan').attr('disabled', false);
-            $('#gred').attr('disabled', false);
-            $('#jawatan').prop('required', true);
-            $('#gred').prop('required', true);
-        }
-    };
+    
 
     var select2 = ['jenis', 'jawatan', 'gred', 'negeri', 'daerah', 'jenis_taska', 'jenisbanugunan'];
 
@@ -203,5 +189,7 @@ fakeSuccess2 = function(formId, routeName) {
         }
     });
 };
+
+
 
 </script>

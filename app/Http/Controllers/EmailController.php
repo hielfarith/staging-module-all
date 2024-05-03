@@ -103,6 +103,11 @@ class EmailController extends Controller
         $instrumen = 'SKIPS';
         $nombor = '25A';
 
+        // $fungsi = $this->getFungsi();                FUNCTION UNDEFINED
+        // $instrumen = $this->getInstrumen();          FUNCTION UNDEFINED
+        // $nombor = $this->getNombor();                FUNCTION UNDEFINED
+
+    
         $emailData = DB::table('Notifikasi_Emel')
             ->where('Fungsi', $fungsi)
             ->where('Instrumen', $instrumen)

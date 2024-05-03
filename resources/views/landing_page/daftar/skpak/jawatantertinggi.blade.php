@@ -164,7 +164,7 @@
             <label class="fw-bold form-label">Daerah
                 <span class="text-danger">*</span>
             </label><br>
-            <select class="form-select input" name="daerah" id="daerah" required>
+            <select class="form-select input" name="daerah5" id="daerah5" required>
                 
                 
             </select>
@@ -212,17 +212,17 @@ function changenegeri5(negeri) {
             console.log('Received data:', data);
             
             // Handle success
-            var daerahDropdown = $('#daerah');
+            var daerahDropdown = $('#daerah5');
             console.log('Dropdown element:', daerahDropdown);
             
-            $('select[name="daerah"]').empty(); // Clear existing options
+            $('select[name="daerah5"]').empty(); // Clear existing options
              // Add default option
             
             // Loop through the data fetched from the database and add options to the dropdown
             $.each(data, function(key, value) {
                 console.log('Appending option:', value.name, value.kod);
                 
-                $('select[name="daerah"]').append('<option value="' + value.kod + '">' + value.name + '</option>');
+                $('select[name="daerah5"]').append('<option value="' + value.kod + '">' + value.name + '</option>');
 
                 
 

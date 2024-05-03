@@ -98,7 +98,7 @@
             <label class="fw-bold form-label">Negeri
                 <span class="   text-danger">*</span>
             </label><br>
-            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri1(this)">
+            <select class="form-select" name="negeri" id="negeri" required>
                 <option value="" hidden>Negeri</option>
                 @foreach ($negeris as $state)
                     <option value="{{ $state->code }}">{{ $state->name }}</option>
@@ -148,7 +148,7 @@
             <label class="fw-bold form-label">Daerah
                 <span class="text-danger">*</span>
             </label><br>
-            <select class="form-select input" name="daerah" id="daerah" required>
+            <select class="form-select input" name="daerah2" id="daerah2" required>
                 
                 
             </select>
@@ -175,11 +175,11 @@ $(document).ready(function() {
     // Attach change event listener to the state dropdown (negeri)
     $('#negeri').on('change', function() {
         // Call changenegeri function when the selected state changes
-        changenegeri1(this);
+        changenegeri2(this);
     });
 });
 
-function changenegeri1(negeri) {
+function changenegeri2(negeri) {
     var negerivalue = negeri.value;
     
     $.ajax({
@@ -192,18 +192,18 @@ function changenegeri1(negeri) {
         success: function(data) {
             console.log('Received data:', data);
             
-            // Handle success
-            var daerahDropdown = $('#daerah');
-            console.log('Dropdown element:', daerahDropdown);
+             // Handle success
+             var daerahDropdown = $('#daerah2');
+            console.log('Dropdown element:', daerahDropdown);          
             
-            $('select[name="daerah"]').empty(); // Clear existing options
+            $('select[name="daerah2"]').empty(); // Clear existing options
              // Add default option
             
             // Loop through the data fetched from the database and add options to the dropdown
             $.each(data, function(key, value) {
                 console.log('Appending option:', value.name, value.kod);
                 
-                $('select[name="daerah"]').append('<option value="' + value.kod + '">' + value.name + '</option>');
+                $('select[name="daerah2"]').append('<option value="' + value.kod + '">' + value.name + '</option>');
 
                 
 

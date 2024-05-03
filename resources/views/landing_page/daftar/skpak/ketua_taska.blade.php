@@ -86,18 +86,12 @@
             <label class="fw-bold form-label">Jenis
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-select" name="jenis">
+            <select class="form-select" name="jenis"required onchange="checkJenis(this); checksjenis(this)">
                 <option value="" hidden>Jenis</option>
                 <option value="Kerajaan">Kerajaan</option>
                 <option value="Swasta">Swasta</option>
             </select>
-            <!--
-            <select class="form-select" name="jenis" required onchange="checksjenis(this)">
-                <option value="" hidden>Jenis</option>
-                <option value="Kerajaan">Kerajaan</option>
-                <option value="Swasta">Swasta</option>
-            
-            REQUIRE AMENDMENT-->
+
         </div>
 
         <div class="col-md-3 mb-1">
@@ -152,7 +146,7 @@
             <label class="fw-bold form-label">Negeri
                 <span class="   text-danger">*</span>
             </label><br>
-            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri2(this)">
+            <select class="form-select" name="negeri" id="negeri" required onchange="changenegeri1(this)">
                 <option value="" hidden>Negeri</option>
                 @foreach ($negeris as $state)
                     <option value="{{ $state->code }}">{{ $state->name }}</option>
@@ -164,7 +158,7 @@
             <label class="fw-bold form-label">Daerah
                 <span class="text-danger">*</span>
             </label><br>
-            <select class="form-select input" name="daerah" id="daerah" required>
+            <select class="form-select input" name="daerah1" id="daerah1" required>
                 
                 
             </select>
@@ -189,10 +183,8 @@
             <label class="fw-bold form-label">Jenis Taska
                 <span class="text-danger">*</span>
             </label>
-            <select class="form-select" name="jenis_taska" required>
-                <option value="">Jenis Taska</option>
-                <option value="swasta">swasta</option>
-                <option value="kerajan">kerajan</option>
+            <select class="form-select" name="jenis_taska" disabled>
+ 
             </select>
         </div>
 
@@ -261,11 +253,40 @@ $(document).ready(function() {
     // Attach change event listener to the state dropdown (negeri)
     $('#negeri').on('change', function() {
         // Call changenegeri function when the selected state changes
-        changenegeri2(this);
+        changenegeri1(this);
     });
 });
+// function checkJenis(element) {
+//         var jenisTaskaSelect = document.querySelector('[name="jenis_taska"]');
+//         if (element.value === "Kerajaan") {
+//         $('select[name="jenis_taska"]').append('<option value="Kerajaan">Kerajaan</option>');
+//         } else if (element.value === "Swasta") {
+//         $('select[name="jenis_taska"]').append('<option value="Swasta">Swasta</option>');
+//         }
+//         checksjenis(element);
+//     }
+function checkJenis(element) {
+var jenisTaskaSelect = document.querySelector('[name="jenis_taska"]');
+jenisTaskaSelect.innerHTML = ''; // Clear existing options
+if (element.value === "Kerajaan") {
+    jenisTaskaSelect.appendChild(new Option('Kerajaan', 'Kerajaan'));
+} else if (element.value === "Swasta") {
+    jenisTaskaSelect.appendChild(new Option('Swasta', 'Swasta'));
+}
+checksjenis(element);
+}
+    
+    function checksjenis(jenis) {
+        if (jenis.value === 'Swasta') {
+            $('#jawatan, #gred').val('').prop('disabled', true).prop('required', false);
+        } else {
+            $('#jawatan, #gred').prop('disabled', false).prop('required', true);
+        }
+    }
 
-function changenegeri2(negeri) {
+
+
+function changenegeri1(negeri) {
     var negerivalue = negeri.value;
     
     $.ajax({
@@ -278,18 +299,18 @@ function changenegeri2(negeri) {
         success: function(data) {
             console.log('Received data:', data);
             
-            // Handle success
-            var daerahDropdown = $('#daerah');
+             // Handle success
+            var daerahDropdown = $('#daerah1');
             console.log('Dropdown element:', daerahDropdown);
             
-            $('select[name="daerah"]').empty(); // Clear existing options
+            $('select[name="daerah1"]').empty(); // Clear existing options
              // Add default option
             
             // Loop through the data fetched from the database and add options to the dropdown
             $.each(data, function(key, value) {
                 console.log('Appending option:', value.name, value.kod);
                 
-                $('select[name="daerah"]').append('<option value="' + value.kod + '">' + value.name + '</option>');
+                $('select[name="daerah1"]').append('<option value="' + value.kod + '">' + value.name + '</option>');
 
                 
 
