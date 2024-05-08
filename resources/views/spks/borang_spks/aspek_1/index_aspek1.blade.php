@@ -1,4 +1,4 @@
-<div  class="bs-stepper vertical vertical-wizard">
+<div class="bs-stepper vertical vertical-wizard">
     <div style="width: 10%" class="bs-stepper-header">
         <div class="step" data-target="#account-details-vertical" role="tab" id="account-details-vertical-trigger">
             <button type="button" class="step-trigger">
@@ -52,7 +52,8 @@
         <h5 class="card-title fw-bolder text-uppercase">
             Pengurusan Aktiviti Murid
         </h5>
-        <div id="account-details-vertical" class="content" role="tabpanel" aria-labelledby="account-details-vertical-trigger">
+        <div id="account-details-vertical" class="content" role="tabpanel"
+            aria-labelledby="account-details-vertical-trigger">
             @include('spks.borang_spks.aspek_1.sectionA')
         </div>
         <div id="personal-info-vertical" class="content" role="tabpanel"

@@ -15,24 +15,52 @@
 @endsection
 
 @section('content')
+    <style>
+        .legend-container {
+            text-align: right;
+            /* Align legend to the right */
+            margin-bottom: 10px;
+            /* Optional: Add some bottom margin */
+        }
+
+        .legend {
+            display: inline-block;
+            /* background-color: #f0f0f0; */
+            padding: 5px 10px;
+            /* border: 1px solid #ccc; */
+            border-radius: 5px;
+        }
+
+        .legend-item {
+            margin-right: 10px;
+        }
+    </style>
+
     <div class="card">
         <div class="card-header">
             <h4 class="card-title fw-bolder"> Senarai Skpak </h4>
 
             <!--  <div class="d-flex justify-content-end align-items-center">
-                                    <a href="{{ asset('template/BORANG DEMOGRAFI SKIPS.pdf') }}" class="btn btn-primary float-right" download>
-                                        <i class="fa-solid fa-file"></i> Muat Turun Dokumen
-                                    </a>
-                                </div> -->
+                                            <a href="{{ asset('template/BORANG DEMOGRAFI SKIPS.pdf') }}" class="btn btn-primary float-right" download>
+                                                <i class="fa-solid fa-file"></i> Muat Turun Dokumen
+                                            </a>
+                                        </div> -->
         </div>
 
         <hr>
 
         <div class="card-body">
-            <hr>
+            <div class="legend-container">
+                <div class="legend">
+                    <span class="legend-item"><i class="fa fa-eye text-primary" style="font-size: 16px;"></i> : Lihat
+                        Pengguna</span>
+                    <span class="legend-item"><i class="fa fa-pencil text-warning" style="font-size: 16px;"></i> : Kemas
+                        Kini Pengguna</span>
+                </div>
+            </div>
             <div class="table-responsive">
-                <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiInstrumenSpks">
-                    <thead>
+                <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPengurusan">
+                    <thead style="color:white; background-color: #9ae596 ">
                         <tr>
                             <th width="5%">No.</th>
                             <th>Nama Pengguna</th>

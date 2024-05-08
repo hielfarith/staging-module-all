@@ -74,8 +74,8 @@
 
             <div class="table-responsive">
                 <table class="table table-bordered">
-                    <thead class="table-secondary">
-                        <tr class="text-center align-middle">
+                    <thead>
+                        <tr class="text-center align-middle" style="background-color: #d8bfb0;">
                             <td rowspan="3">No.</td>
                             <td rowspan="3">PPD</td>
                             <td rowspan="3">Bil.Sekolah Rendah</td>
@@ -83,7 +83,7 @@
                             <td rowspan="3">Bil.Sekolah</td>
                             <td colspan="28">Penarafan Keselamatan Sekolah</td>
                         </tr>
-                        <tr class="text-center">
+                        <tr class="text-center" style="background-color: #C5DBC4; font-weight:bold">
                             <td colspan="2">Kebersihan</td>
                             <td colspan="2">Kokurikulum</td>
                             <td colspan="2">Perwatakan Sekolah</td>
@@ -100,7 +100,7 @@
                             <td colspan="2">Penubuhan & Pendaftaran </td>
 
                         </tr>
-                        <tr>
+                        <tr style="background-color: #ff8e74;">
                             <td>Yang Telah Dihantar</td>
                             <td>Yang Belum Dihantar</td>
                             <td>Yang Telah Dihantar</td>

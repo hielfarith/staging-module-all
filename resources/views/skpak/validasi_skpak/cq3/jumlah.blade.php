@@ -101,7 +101,7 @@
 
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="jumlah-cq-3">
-        <thead>
+        <thead style="color:black; background-color: #d8bfb0;">
             <tr>
                 <th>Kriteria</th>
                 <th width="10%">Jumlah</th>
@@ -125,7 +125,7 @@
                         }
 
                         ?>
-                        <td> {{$value}} </td> 
+                        <td> {{$value}} </td>
                     </tr>
                 @endforeach
             @endforeach

@@ -50,7 +50,7 @@ $programs = [
 
 <div class="table-responsive mt-2">
     <table class="table table-bordered table-hovered" id="ringkasan_program">
-        <thead>
+        <thead style="color: white; background-color:#39c3b5;">
             <tr>
                 <th rowspan="2">Item</th>
                 <th colspan="4">Bilangan Sekolah</th>

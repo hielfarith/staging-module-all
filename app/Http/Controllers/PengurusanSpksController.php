@@ -64,7 +64,7 @@ class PengurusanSpksController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatSpks(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatSpksValidasi(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSpksValidasi(' . $skpak->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
@@ -117,7 +117,7 @@ class PengurusanSpksController extends Controller
                     $button .= '<div class="btn-group " role="group" aria-label="Action">';
 
                     $button .= '<a onclick="maklumatSpks(' . $spks->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
-                    $button .= '<a onclick="maklumatSpksverfikasi(' . $spks->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                    $button .= '<a onclick="maklumatSpksverfikasi(' . $spks->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
 
                     $button .= "</div>";
 
@@ -291,10 +291,10 @@ class PengurusanSpksController extends Controller
 
                     $button .= '<a onclick="maklumatSpks(' . $spks->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-eye text-primary"></i></a>';
                     if ($spks->spks_status == 1 || $spks->spks_status == 3) {
-                        $button .= '<a onclick="maklumatSpksEdit(' . $spks->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                        $button .= '<a onclick="maklumatSpksEdit(' . $spks->spks_id . ')" class="btn btn-xs btn-default" title=""><i class="fas fa-pencil text-warning"></i></a>';
                     }
                     if ($spks->spks_status == 2) {
-                        $button .= '<a onclick="maklumatSpksEdit(' . $spks->spks_id . ')" class="btn btn-xs btn-warning" title=""><i class="fas fa-pencil text-primary"></i></a>';
+                        $button .= '<a onclick="maklumatSpksEdit(' . $spks->spks_id . ')" class="btn btn-xs btn-warning" title=""><i class="fas fa-pencil text-warning"></i></a>';
                     }
                     $button .= "</div>";
 

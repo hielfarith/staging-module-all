@@ -99,7 +99,7 @@
 
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai3">
-            <thead>
+            <thead style="color:black; background-color: #d8bfb0;">
                 <tr>
                     <th rowspan="2" width="5%">No.</th>
                     <th rowspan="2" width="20%"> Kriteria </th>

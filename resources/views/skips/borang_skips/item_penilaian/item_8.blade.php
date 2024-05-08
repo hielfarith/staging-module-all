@@ -100,7 +100,7 @@
     <input type="hidden" name="butiran_institusi_id" id="butiran_institusi_id" value="{{$butiran_institusi_id}}">
     <div class="table-responsive">
         <table class="table header_uppercase table-bordered table-hovered" id="SkipsNilai8">
-            <thead>
+            <thead style="color:black; background-color: #d8bfb0;">
                 <tr>
                     <th rowspan="2" width="5%">No.</th>
                     <th rowspan="2" width="20%"> Kriteria </th>
@@ -191,7 +191,7 @@
         }
         // var url = "{{ route('skips.instrumen-submit', ['tab' => 'piawaian']) }}"
         var url = "{{ env('APP_PENGISIAN_URL') }}" + 'api/skips/store-item-standard/piawaian';
-        
+
         $.ajax({
             url: url,
             method: 'POST',

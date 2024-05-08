@@ -28,7 +28,7 @@ $penyelarasan_penilaians = [
               '1.2.1 Tanggungjawab terhadap organisasi',
               '1.2.2 Interaksi dan komunikasi',
               '1.2.3 Sikap dan sokongan terhadap organisasi',
-          ],  
+          ],
           '1.3 HUBUNGAN DENGAN KELUARGA' => [
               '1.3.1 Tanggungjawab terhadap organisasi',
               '1.3.2 Interaksi dan komunikasi',
@@ -143,7 +143,7 @@ $penyelarasan_penilaians = [
 
 <div class="table-responsive">
   <table class="table header_uppercase table-bordered table-hovered" id="penilai">
-    <thead>
+    <thead style="color:black; background-color: #d8bfb0;">
         <tr>
             <th style="width: 10%" colspan="2">Kualiti Standard</th>
             <th rowspan="2">Kriteria</th>

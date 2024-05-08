@@ -27,27 +27,27 @@ $institusis = [
     'pengurusan_aduan' => '2.10 Pengurusan Aduan',
 ];
 
-    $butiran_institusi_id = $butiran_id;;
-    $tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
-    if ($butiran_institusi_id && $tab1) {
-        $pengurusan_institusi = json_decode($tab1->pengurusan_institusi);   
-        $pengurusan_institusi_verfikasi = $tab1->pengurusan_institusi_verfikasi ? json_decode($tab1->pengurusan_institusi_verfikasi) : null;   
-    } else {
-        $pengurusan_institusi = $pengurusan_institusi_verfikasi = null;
-    }
-    $total = $score = 0;
-    $totalv = $scorev = 0;
+$butiran_institusi_id = $butiran_id;
+$tab1 = App\Models\ItemStandardQualitySkips::where('butiran_institusi_id', $butiran_institusi_id)->first();
+if ($butiran_institusi_id && $tab1) {
+    $pengurusan_institusi = json_decode($tab1->pengurusan_institusi);
+    $pengurusan_institusi_verfikasi = $tab1->pengurusan_institusi_verfikasi ? json_decode($tab1->pengurusan_institusi_verfikasi) : null;
+} else {
+    $pengurusan_institusi = $pengurusan_institusi_verfikasi = null;
+}
+$total = $score = 0;
+$totalv = $scorev = 0;
 
 ?>
 
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="">
-        <thead>
+        <thead style="color:black; background-color: #d8bfb0">
             <tr>
                 <th width="5%">2.0.</th>
                 <th> PENUBUHAN INSTITUSI </th>
                 <th width="10%">SKOR</th>
-                @if($type == 'verfikasi' || $type == 'done')
+                @if ($type == 'verfikasi' || $type == 'done')
                     <th width="10%">SKOR VERFIKASI</th>
                 @endif
             </tr>
@@ -63,64 +63,65 @@ $institusis = [
                         {{ $institusi }}
                     </td>
                     <td>
-                    <?php
-                        if($pengurusan_institusi) {
-                            if (isset($pengurusan_institusi->$key)){
+                        <?php
+                        if ($pengurusan_institusi) {
+                            if (isset($pengurusan_institusi->$key)) {
                                 $score = $pengurusan_institusi->$key;
                             } else {
                                 $score = 0;
                             }
-                            $total = $total+$score;
+                            $total = $total + $score;
                         }
-                    ?>
-                        <a class="text-success">{{$score}}</a>
+                        ?>
+                        <a class="text-success">{{ $score }}</a>
                     </td>
-                     @if($type == 'verfikasi' || $type == 'done')
+                    @if ($type == 'verfikasi' || $type == 'done')
                         <td>
-                        <?php
-                            if($pengurusan_institusi_verfikasi) {
+                            <?php
+                            if ($pengurusan_institusi_verfikasi) {
                                 $keyval = '';
-                                $keyval = $key.'_verfikasi';
-                                if (isset($pengurusan_institusi_verfikasi->$keyval)){
+                                $keyval = $key . '_verfikasi';
+                                if (isset($pengurusan_institusi_verfikasi->$keyval)) {
                                     $scorev = $pengurusan_institusi_verfikasi->$keyval;
                                 } else {
                                     $scorev = 0;
                                 }
-                                $totalv = $totalv+$scorev;
+                                $totalv = $totalv + $scorev;
                             }
-                        ?>
-                        <a class="text-success">{{$scorev}}</a>
-                    </td>
+                            ?>
+                            <a class="text-success">{{ $scorev }}</a>
+                        </td>
                     @endif
                 </tr>
             @endforeach
         </tbody>
-         <?php
-            $total = $total + $totalv;
-            $percentage = ($total/210);
-            $percentage = $percentage*100;
-             if($type == 'verfikasi' || $type == 'done') {
-                 $col = 2;
-             } else {
-                 $col =1;
-             }
-            ?>
+        <?php
+        $total = $total + $totalv;
+        $percentage = $total / 210;
+        $percentage = $percentage * 100;
+        if ($type == 'verfikasi' || $type == 'done') {
+            $col = 2;
+        } else {
+            $col = 1;
+        }
+        ?>
         <tfoot>
             <tr>
-                <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor</td>
-                
-                <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{$total}}</a>
+                <td colspan="2" style="text-align: end;" class="fw-bolder text-uppercase bg-light-primary">Total Skor
+                </td>
+
+                <td colspan="{{ $col }}" style="text-align: center;">
+                    <a class="text-success">{{ $total }}</a>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: end" class="fw-bolder text-uppercase bg-light-primary">%</td>
-                <td colspan="{{$col}}" style="text-align: center;">
-                    <a class="text-success">{{number_format($percentage,2)}}</a>
+                <td colspan="{{ $col }}" style="text-align: center;">
+                    <a class="text-success">{{ number_format($percentage, 2) }}</a>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
-<input type="hidden" value="{{$total}}" name="tab2_skor" id="tab2_skor">
-<input type="hidden" value="{{ number_format($percentage,2) }}" name="tab2_percentage" id="tab2_percentage">
+<input type="hidden" value="{{ $total }}" name="tab2_skor" id="tab2_skor">
+<input type="hidden" value="{{ number_format($percentage, 2) }}" name="tab2_percentage" id="tab2_percentage">

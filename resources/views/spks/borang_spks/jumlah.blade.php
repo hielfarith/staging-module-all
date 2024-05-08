@@ -13,7 +13,6 @@
         width: 100% !important;
         /* word-wrap: break-word; */
     }
-
 </style>
 
 <h5 class="card-title fw-bolder">
@@ -23,19 +22,19 @@
 
 <hr>
 @php
-$jumlahs_spks = [
-    'Aspek 1: Pengurusan Aktiviti Murid',
-    'Aspek 2: Pengurusan Keselamatan Infrastruktur Sekolah',
-    'Aspek 3: Pengurusan Sosial',
-    'Aspek 4: Pengurusan Krisis/ Bencana',
-    'Aspek 5: Pengurusan Risiko',
-    'Aspek 6: Pengurusan Perkhidmatan Pengawal Keselamatan Sekolah',
-];
+    $jumlahs_spks = [
+        'Aspek 1: Pengurusan Aktiviti Murid',
+        'Aspek 2: Pengurusan Keselamatan Infrastruktur Sekolah',
+        'Aspek 3: Pengurusan Sosial',
+        'Aspek 4: Pengurusan Krisis/ Bencana',
+        'Aspek 5: Pengurusan Risiko',
+        'Aspek 6: Pengurusan Perkhidmatan Pengawal Keselamatan Sekolah',
+    ];
 @endphp
 
 <div class="table-responsive">
     <table class="table header_uppercase table-bordered table-hovered" id="jumlahKeseluruhanSpks">
-        <thead>
+        <thead style="color:black; background-color: #d8bfb0;">
             <tr>
                 <th style="font-size: 10pt">Nama Aspek Penilaian</th>
                 <th style="font-size: 10pt" width="3%">0</th>
@@ -47,13 +46,13 @@ $jumlahs_spks = [
 
         <tbody>
             @foreach ($jumlahs_spks as $key => $jumlah_spks)
-            <tr>
-                <td style="font-size: 10pt">{{ $jumlah_spks }}</td>
-                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
-                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
-                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
-                <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
-            </tr>
+                <tr>
+                    <td style="font-size: 10pt">{{ $jumlah_spks }}</td>
+                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                </tr>
             @endforeach
         </tbody>
 

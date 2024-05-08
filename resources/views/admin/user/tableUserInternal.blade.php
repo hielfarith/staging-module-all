@@ -1,6 +1,13 @@
+<div class="legend-container">
+    <div class="legend">
+        <span class="legend-item"><i class="fa fa-pencil text-warning" style="font-size: 16px;"></i> : Lihat
+            Pengguna</span>
+
+    </div>
+</div>
 <div class="table-responsive" style="width:100%">
     <table class="table header_uppercase table-bordered" id="internalUser">
-        <thead>
+        <thead style="color:white; background-color:#9ae596;">
             <tr>
                 <th class="font-weight-bold text-center" width="1%"> NO. </th>
                 <th class="font-weight-bold text-center"> NAME </th>

@@ -1,11 +1,11 @@
 <?php
-    $sukans = [
-        1 => 'Bola Baling',
-        2 => 'Bola Jaring',
-        3 => 'Bola Keranjang',
-        4 => 'Bola Sepak',
-        5 => 'Bola Tampar',
-    ];
+$sukans = [
+    1 => 'Bola Baling',
+    2 => 'Bola Jaring',
+    3 => 'Bola Keranjang',
+    4 => 'Bola Sepak',
+    5 => 'Bola Tampar',
+];
 ?>
 
 <div class="row">
@@ -13,9 +13,9 @@
         <label class="form-label fw-bold">Jenis Sukan</label>
         <select name="" id="" class="form-control select2" multiple>
             <option value="" hidden>Jenis Sukan</option>
-                @foreach ($sukans as  $sukanKey => $sukan)
-                    <option value="{{ $sukanKey }}">{{ $sukan }}</option>
-                @endforeach
+            @foreach ($sukans as $sukanKey => $sukan)
+                <option value="{{ $sukanKey }}">{{ $sukan }}</option>
+            @endforeach
         </select>
     </div>
 
@@ -44,14 +44,13 @@
         width: 100% !important;
         /* word-wrap: break-word; */
     }
-
 </style>
 
 <hr>
 
 <div class="table-responsive mt-2">
     <table class="table table-bordered table-hovered" id="ringkasan_penyertaan">
-        <thead>
+        <thead style="color: white; background-color:#39c3b5;">
             <tr>
                 <th rowspan="2">#</th>
                 <th rowspan="2">Nama Sukan</th>
@@ -68,7 +67,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($sukans as $id => $sukan)
+            @foreach ($sukans as $id => $sukan)
                 <tr>
                     <td> {{ $id }} </td>
                     <td> {{ $sukan }} </td>

@@ -45,7 +45,7 @@
 
 <div class="table-responsive mt-2">
     <table class="table table-bordered table-hovered" id="ringkasan_kemudahan_sukan">
-        <thead>
+        <thead style="color: white; background-color:#39c3b5;">
             <tr>
                 <th rowspan="2">No.</th>
                 <th rowspan="2">Jenis Prasarana</th>

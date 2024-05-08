@@ -15,6 +15,26 @@
 @endsection
 
 @section('content')
+    <style>
+        .legend-container {
+            text-align: right;
+            /* Align legend to the right */
+            margin-bottom: 10px;
+            /* Optional: Add some bottom margin */
+        }
+
+        .legend {
+            display: inline-block;
+            /* background-color: #f0f0f0; */
+            padding: 5px 10px;
+            /* border: 1px solid #ccc; */
+            border-radius: 5px;
+        }
+
+        .legend-item {
+            margin-right: 10px;
+        }
+    </style>
     <div class="card">
         <div class="card-header">
             <h4 class="card-title fw-bolder"> Senarai Sekolah Selamat </h4>
@@ -68,9 +88,17 @@
 
             <hr>
 
+            <div class="legend-container">
+                <div class="legend">
+                    <span class="legend-item"><i class="fa fa-eye text-primary" style="font-size: 16px;"></i> : Lihat
+                        Sekolah</span>
+                    <span class="legend-item"><i class="fa fa-print text-success" style="font-size: 16px;"></i> : Muat Turun
+                        Sekolah</span>
+                </div>
+            </div>
             <div class="table-responsive">
-                <table id="instrumen" class="table">
-                    <thead class="table-secondary">
+                <table class="table header_uppercase table-bordered table-hovered" id="TableSenaraiPengurusan">
+                    <thead style="color:white; background-color: #8cb2e8 ">
                         <tr>
                             <th>No. </th>
                             <th>Kod Sekolah</th>
@@ -92,7 +120,7 @@
                                         <i class="fas fa-eye text-primary"></i>
                                     </a>
                                     <a class="btn btn-xs btn-default" title="">
-                                        <i class="fas fa-print text-primary"></i>
+                                        <i class="fas fa-print text-success"></i>
                                     </a>
                                 </div>
                             </td>

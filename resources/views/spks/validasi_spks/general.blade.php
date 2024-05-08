@@ -14,38 +14,37 @@
         /* word-wrap: break-word; */
     }
 
-    .petak-bulat{
+    .petak-bulat {
         border-color: 0 4px 18px -4px #6a6d6b;
-        background-color:rgba(173, 228, 248, 0.5);
+        background-color: rgba(173, 228, 248, 0.5);
 
 
     }
-
 </style>
 
 @php
-$aspeks_2 = [
-[
-'section' => 'PENGURUSAN KESELAMATAN INFRASTRUKTUR SEKOLAH',
-'subSections' => [
-'Rekod pemantauan, penyelenggaraan dan pelaporan fizikal bangunan.',
-'Rekod pemantauan, penyelenggaraan dan pelaporan pendawaian dan peralatan elektrik.',
-'Rekod pemantauan, penyelenggaraan dan pelaporan retikulasi air.',
-'Rekod pemantauan, penyelenggaraan dan pelaporan paip-paip gas.',
-'Rekod pemantauan, penyelenggaraan dan pelaporan sistem perparitan.',
-'Rekod pemantauan, penyelenggaraan dan pelaporan sistem pembentungan.',
-'Rekod pemantauan, penyelenggaraan dan pelaporan lanskap sekolah.',
-'Pemantauan, tatacara penggunaan,penyelenggaraan peralatan di bilik-bilik khas.',
-'Pemantauan, tatacara penggunaan,penyelenggaraan padang dan gelanggang permainan.',
-'Pencahayaan mencukupi dalam kawasan sekolah.',
-'Arahan keselamatan dipamerkan.',
-'Penetapan kawasan larangan di sekolah.',
-'Rekod pemantauan, penggunaan, penyelenggaraan dan penyimpanan peralatan, dokumen dan harta sekolah.',
-]
-],
-];
+    $aspeks_2 = [
+        [
+            'section' => 'PENGURUSAN KESELAMATAN INFRASTRUKTUR SEKOLAH',
+            'subSections' => [
+                'Rekod pemantauan, penyelenggaraan dan pelaporan fizikal bangunan.',
+                'Rekod pemantauan, penyelenggaraan dan pelaporan pendawaian dan peralatan elektrik.',
+                'Rekod pemantauan, penyelenggaraan dan pelaporan retikulasi air.',
+                'Rekod pemantauan, penyelenggaraan dan pelaporan paip-paip gas.',
+                'Rekod pemantauan, penyelenggaraan dan pelaporan sistem perparitan.',
+                'Rekod pemantauan, penyelenggaraan dan pelaporan sistem pembentungan.',
+                'Rekod pemantauan, penyelenggaraan dan pelaporan lanskap sekolah.',
+                'Pemantauan, tatacara penggunaan,penyelenggaraan peralatan di bilik-bilik khas.',
+                'Pemantauan, tatacara penggunaan,penyelenggaraan padang dan gelanggang permainan.',
+                'Pencahayaan mencukupi dalam kawasan sekolah.',
+                'Arahan keselamatan dipamerkan.',
+                'Penetapan kawasan larangan di sekolah.',
+                'Rekod pemantauan, penggunaan, penyelenggaraan dan penyimpanan peralatan, dokumen dan harta sekolah.',
+            ],
+        ],
+    ];
 
-$number = 1;
+    $number = 1;
 @endphp
 
 {{-- <div style="height: ;" class="card-header">
@@ -74,7 +73,7 @@ $number = 1;
                                     </div>
                                     <p>Invoices have been paid to the company.</p>
                                     <div class="d-flex flex-row align-items-center">
-                                        <img class="me-1" src="{{asset('images/icons/file-icons/pdf.png')}}"
+                                        <img class="me-1" src="{{ asset('images/icons/file-icons/pdf.png') }}"
                                             alt="invoice" height="23" />
                                         <span>invoice.pdf</span>
                                     </div>
@@ -90,8 +89,8 @@ $number = 1;
                                     <p>Project meeting with john @10:15am.</p>
                                     <div class="d-flex flex-row align-items-center">
                                         <div class="avatar">
-                                            <img src="{{asset('images/avatars/12-small.png')}}" alt="avatar" height="38"
-                                                width="38" />
+                                            <img src="{{ asset('images/avatars/12-small.png') }}" alt="avatar"
+                                                height="38" width="38" />
                                         </div>
                                         <div class="ms-50">
                                             <h8 class="mb-0">John Doe (Client)</h8>
@@ -154,7 +153,7 @@ $number = 1;
                                     <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
                                         <div class="d-flex flex-row align-items-center">
                                             <div class="avatar me-1">
-                                                <img src="{{asset('images/avatars/1-small.png')}}" alt="Avatar"
+                                                <img src="{{ asset('images/avatars/1-small.png') }}" alt="Avatar"
                                                     height="32" width="32" />
                                             </div>
                                             <span>
@@ -228,18 +227,19 @@ $number = 1;
                                             <div data-bs-toggle="tooltip" data-popup="tooltip-custom"
                                                 data-bs-placement="bottom" title="Vinnie Mostowy"
                                                 class="avatar pull-up">
-                                                <img src="{{asset('images/portrait/small/avatar-s-5.jpg')}}"
+                                                <img src="{{ asset('images/portrait/small/avatar-s-5.jpg') }}"
                                                     alt="Avatar" height="30" width="30" />
                                             </div>
                                             <div data-bs-toggle="tooltip" data-popup="tooltip-custom"
-                                                data-bs-placement="bottom" title="Elicia Rieske" class="avatar pull-up">
-                                                <img src="{{asset('images/portrait/small/avatar-s-7.jpg')}}"
+                                                data-bs-placement="bottom" title="Elicia Rieske"
+                                                class="avatar pull-up">
+                                                <img src="{{ asset('images/portrait/small/avatar-s-7.jpg') }}"
                                                     alt="Avatar" height="30" width="30" />
                                             </div>
                                             <div data-bs-toggle="tooltip" data-popup="tooltip-custom"
                                                 data-bs-placement="bottom" title="Julee Rossignol"
                                                 class="avatar pull-up">
-                                                <img src="{{asset('images/portrait/small/avatar-s-10.jpg')}}"
+                                                <img src="{{ asset('images/portrait/small/avatar-s-10.jpg') }}"
                                                     alt="Avatar" height="30" width="30" />
                                             </div>
                                         </div>
@@ -269,28 +269,27 @@ $number = 1;
                             width: 100% !important;
                             /* word-wrap: break-word; */
                         }
-
                     </style>
 
                     <p style="font-size: 12pt " class="card-title fw-bolder">
                         JUMLAH KESELURUHAN STANDARD PENILAIAN
-                   </p>
+                    </p>
 
 
                     @php
-                    $jumlahs_spks = [
-                        'Aspek 1: Pengurusan Aktiviti Murid',
-                        'Aspek 2: Pengurusan Keselamatan Infrastruktur Sekolah',
-                        'Aspek 3: Pengurusan Sosial',
-                        'Aspek 4: Pengurusan Krisis/ Bencana',
-                        'Aspek 5: Pengurusan Risiko',
-                        'Aspek 6: Pengurusan Perkhidmatan Pengawal Keselamatan Sekolah',
-                    ];
+                        $jumlahs_spks = [
+                            'Aspek 1: Pengurusan Aktiviti Murid',
+                            'Aspek 2: Pengurusan Keselamatan Infrastruktur Sekolah',
+                            'Aspek 3: Pengurusan Sosial',
+                            'Aspek 4: Pengurusan Krisis/ Bencana',
+                            'Aspek 5: Pengurusan Risiko',
+                            'Aspek 6: Pengurusan Perkhidmatan Pengawal Keselamatan Sekolah',
+                        ];
                     @endphp
 
                     <div class="table-responsive">
                         <table class="table header_uppercase table-bordered table-hovered" id="jumlahKeseluruhanSpks">
-                            <thead>
+                            <thead style="color:black; background-color: #d8bfb0;">
                                 <tr>
                                     <th style="font-size: 10pt">Nama Aspek Penilaian</th>
                                     <th style="font-size: 10pt" width="3%">0</th>
@@ -302,13 +301,13 @@ $number = 1;
 
                             <tbody>
                                 @foreach ($jumlahs_spks as $key => $jumlah_spks)
-                                <tr>
-                                    <td style="font-size: 10pt">{{ $jumlah_spks }}</td>
-                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
-                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
-                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
-                                    <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
-                                </tr>
+                                    <tr>
+                                        <td style="font-size: 10pt">{{ $jumlah_spks }}</td>
+                                        <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                        <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                        <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                        <td style="font-size: 10pt" class="text-center">Auto Calculated</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
 
@@ -327,7 +326,7 @@ $number = 1;
                     </div>
 
                     <hr>
-{{-- 
+                    {{--
                     <div class="buy-now">
                         <button class="btn btn-primary waves-effect waves-float waves-light" type="button" onclick="">
                             Simpan

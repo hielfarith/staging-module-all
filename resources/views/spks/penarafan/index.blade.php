@@ -74,8 +74,8 @@
 
             <div class="table-responsive">
                 <table class="table table-bordered" style="display: none;">
-                    <thead class="table-secondary">
-                        <tr class="text-center align-middle">
+                    <thead>
+                        <tr class="text-center align-middle" style="background-color: #d8bfb0;">
                             <td rowspan="3">No.</td>
                             <td rowspan="3">PPD</td>
                             <td rowspan="3">Bil.Sekolah Rendah</td>
@@ -83,7 +83,7 @@
                             <td rowspan="3">Bil.Sekolah</td>
                             <td colspan="6">Penarafan Keselamatan Sekolah</td>
                         </tr>
-                        <tr>
+                        <tr style="background-color: #d8bfb0; font-weight:bold;">
                             <td colspan="3">Kategori Sekolah Rendah</td>
                             <td colspan="3">Kategori Sekolah Menengah</td>
                         </tr>

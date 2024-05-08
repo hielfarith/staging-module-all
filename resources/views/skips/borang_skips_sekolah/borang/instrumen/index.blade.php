@@ -1,4 +1,4 @@
-<ul class="nav nav-pills  justify-content-center" role="tablist">
+<ul class="nav nav-pills  nav-second justify-content-center" role="tablist">
     <li class="nav-item" role="presentation">
         <a class="text-uppercase text-wrap nav-link fw-bolder active" id="penubuhan-tab" data-bs-toggle="tab"
             href="#penubuhan" aria-controls="penubuhan" role="tab" aria-selected="true">
