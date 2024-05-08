@@ -19,33 +19,57 @@ class SendPenilaianKendiriReminder extends Command
     public function handle()
     {
         try {
-            // Retrieve the emails associated with reminders set to 0
-            $emails = UserRolesReminder::getEmailsForReminder();
+            // Retrieve the emails associated with reminders for 7 days before FormFinalDate
+            $emails7 = UserRolesReminder::getEmailsForReminder()['emails7'];
+            // Retrieve the emails associated with reminders for 1 day before FormFinalDate
+            $emails1 = UserRolesReminder::getEmailsForReminder()['emails1'];
 
-            if ($emails->isEmpty()) {
-                $this->info('No reminders found.');
-                return 0; // Command completed successfully
+            // Sending reminders for 7 days before FormFinalDate
+            if (!$emails7->isEmpty()) {
+                $emailData7 = DB::table('notifikasi_emel')
+                    ->where('Fungsi', 'NPE')
+                    ->where('Instrumen', 'SKIPS')
+                    ->where('Nombor', '25A')
+                    ->first();
+
+                if ($emailData7) {
+                    $subject7 = $emailData7->Subject;
+                    $message7 = $emailData7->Message;
+
+                    foreach ($emails7 as $email) {
+                        Mail::to($email)->send(new NotifikasiEmelFormDirect($message7, $subject7));
+                    }
+
+                    $this->info('Reminder emails for 7 days before FormFinalDate sent successfully.');
+                } else {
+                    $this->info('No email details found for 7 days before FormFinalDate.');
+                }
+            } else {
+                $this->info('No reminders found for 7 days before FormFinalDate.');
             }
 
-            $emailData = DB::table('notifikasi_emel')
-                ->where('Fungsi', 'NPE')
-                ->where('Instrumen', 'SKIPS')
-                ->where('Nombor', '25B')
-                ->first();
+            // Sending reminders for 1 day before FormFinalDate
+            if (!$emails1->isEmpty()) {
+                $emailData1 = DB::table('notifikasi_emel')
+                    ->where('Fungsi', 'NPE')
+                    ->where('Instrumen', 'SKIPS')
+                    ->where('Nombor', '25B')
+                    ->first();
 
-            if ($emailData) {
-                // Retrieve subject and message
-                $subject = $emailData->Subject;
-                $message = $emailData->Message;
+                if ($emailData1) {
+                    $subject1 = $emailData1->Subject;
+                    $message1 = $emailData1->Message;
 
-                // Send email to each recipient
-                foreach ($emails as $email) {
-                    Mail::to($email)->send(new NotifikasiEmelFormDirect($message, $subject));
+                    foreach ($emails1 as $email) {
+                        Mail::to($email)->send(new NotifikasiEmelFormDirect($message1, $subject1));
+                    }
+
+                    $this->info('Reminder emails for 1 day before FormFinalDate sent successfully.');
+                } else {
+                    $this->info('No email details found for 1 day before FormFinalDate.');
                 }
-
-                $this->info('Reminder emails sent successfully.');
             } else {
-                $this->info('No email details found in the database.');
+                $this->info('No reminders found for 1 day before FormFinalDate.');
             }
 
             return 0; // Command completed successfully
@@ -54,4 +78,10 @@ class SendPenilaianKendiriReminder extends Command
             return 1; // Command failed
         }
     }
+
+
+
 }
+
+
+       

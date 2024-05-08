@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:generateAttendanceReportMonthly')->monthlyOn(1, '00:01');
         $schedule->command('command:generatePMReport')->monthlyOn(1, '00:10');
 
-        $schedule->command('reminder:24hours')->everyMinute();
-        $schedule->command('reminder:7days')->everyMinute();
+        //$schedule->command('reminder:24hours')->everyMinute();
+        //$schedule->command('reminder:7days')->everyMinute();
     }
 
     /**
