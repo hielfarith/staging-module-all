@@ -62,7 +62,7 @@ class LoginController extends Controller
         }
 
         auth()->logout();
-        return redirect()->route('login');
+        return redirect('http://10.46.51.37/login');
     }
 
     /**
