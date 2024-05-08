@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DaerahFetch;
 use App\Http\Controllers\EmailController;
+use Illuminate\Support\Facades\Http;
+use App\console\Commands;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +36,11 @@ use App\Http\Controllers\EmailController;
 //     return redirect()->route('login');
 // });
 
-Route::get('/hantar-emel-notifikasi', [EmailController::class, 'HantarNotifikasiEmel']);
+
+Route::get('/hantar-emel-notifikasi', [EmailController::class, 'hantarNotifikasiEmel'])->name('hantar-emel-notifikasi');
+Route::get('/KPM-hantar-data', [EmailController::class, 'KPMHantarData']);
+Route::get('/KPM-multi-notifikasi', [EmailController::class, 'KPMInstrumenmultiNotifikasiEmel']);
+
 
 Route::post('/postregions', [DaerahFetch::class, 'getRegionsByState'])->name('postregions');
 

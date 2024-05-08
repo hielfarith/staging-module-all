@@ -8,6 +8,7 @@ use App\Models\EmailRecipient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifikasiEmelFormDirect;
+use Illuminate\Support\Facades\Http;
 
 class EmailController extends Controller
 {
@@ -92,54 +93,92 @@ class EmailController extends Controller
 
     }
     
+// Assume hantarNotifikasiEmel function is defined elsewhere
 
-    public function hantarNotifikasiEmel(Request $request)
-    {
-        $tahun = '2004';
-        $tarikhmulapengisian = '2023-02-01';
-        $tarikhakhirpengisian = '2023-02-28';
-        $pautan = 'www.unijaya.gov.my';
 
-      
-        $toEmail = 'hielfarithsuffri.unijaya@gmail.com';
-        $fungsi = 'NPE';
-        $instrumen = 'SKIPS';
-        $nombor = '26';
-        
-        // Retrieve email data from the database
-        $emailData = DB::table('Notifikasi_Emel')
-            ->where('Fungsi', $fungsi)
-            ->where('Instrumen', $instrumen)
-            ->where('Nombor', $nombor)
-            ->first();
 
-        if ($emailData) {
-            $htmlContent = $emailData->Message;
 
-            // Replace placeholders with actual values
-            $htmlContent = str_replace('{{ $tahun }}', $tahun, $htmlContent);
-            $htmlContent = str_replace('{{ $tarikhmulapengisian }}', $tarikhmulapengisian, $htmlContent);
-            $htmlContent = str_replace('{{ $tarikhakhirpengisian }}', $tarikhakhirpengisian, $htmlContent);
-            $htmlContent = str_replace('{{ $pautan }}', $pautan, $htmlContent);
 
-            // Convert newlines to <br> tags if needed
-            $htmlContent = nl2br($htmlContent);
 
-            $subject = $emailData->Subject;
 
-            // Send email with formatted message and subject
-            $response = Mail::to($toEmail)->send(new NotifikasiEmelFormDirect($htmlContent, $subject));
+public function KPMHantarData(Request $request)
+{   
+    $jawatan = $request->input('jawatan', 'pengetua');
+    $instrumen = $request->input('instrumen', 'SKPAK');
+    $role = $request->input('role', 'Pentadbir Bahagian BPSH');
+    $fungsi = $request->input('fungsi', 'NPE');
+    $nombor = $request->input('nombor', '01');
 
-            return response()->json(['title' => 'Berjaya', 'status' => 'success']);
-        } else {
-            return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => 'Email data not found'], 404);
+    
+    //$dynamicData = $request->except(['jawatan', 'instrumen', 'role', 'fungsi', 'nombor']); //Untuk input yang dynamic dari client, x tahu form dia akan guna mana , input apa
+    $dynamicData = [
+        'tahun' => '2004',
+        'tarikhmulapengisian' => null,
+        'tarikhakhirpengisian' => null,
+        'pautan' => null,
+        'tarikh' => '24 Jun',
+        'masa' => '9 AM - 9 PM',
+        'medium' => 'webex',
+    ];
+
+
+    // Perlu amend ikut DB sebenar
+    $user = DB::table('sppip.user_roles')
+                ->where('jawatan', $jawatan)
+                ->where('instrumen', $instrumen)
+                ->where('role', $role)
+                ->first(); // perlu amend untuk extract multiple email
+
+    if ($user) {
+        $toEmail = $user->email;
+        $parameters = array_merge([
+            'fungsi' => $fungsi,
+            'instrumen' => $instrumen,
+            'nombor' => $nombor,
+            'toEmail' => $toEmail,
+        ], $dynamicData);
+        return redirect()->route('hantar-emel-notifikasi', $parameters);
+    } else {
+        error_log("KPMHantarData error: User not found or database query failed");
+    }
+}
+
+
+//pre-requisite, input fungsi, instrumen, nombor
+public function hantarNotifikasiEmel(Request $request)
+{
+    // Retrieve parameters from the request
+    $inputData = $request->all();
+
+    // Retrieve email data from the database
+    $DataNotifikasi = DB::table('Notifikasi_Emel')
+        ->where('Fungsi', $inputData['fungsi'])
+        ->where('Instrumen', $inputData['instrumen'])
+        ->where('Nombor', $inputData['nombor'])
+        ->first();
+
+    if ($DataNotifikasi) {
+        // Replace placeholders with actual values
+        $htmlContent = $DataNotifikasi->Message;
+        foreach ($inputData as $placeholder => $value) {
+            if ($value !== null && is_string($value)) {
+                $htmlContent = str_replace('{{ $' . $placeholder . ' }}', $value, $htmlContent);
+            }
         }
-        
 
+        // Convert newlines to <br> tags if needed
+        $htmlContent = nl2br($htmlContent);
 
+        $subject = $DataNotifikasi->Subject;
+
+        // Send email with formatted message and subject
+        $response = Mail::to($inputData['toEmail'])->send(new NotifikasiEmelFormDirect($htmlContent, $subject));
+
+        return response()->json(['title' => 'Berjaya', 'status' => 'success']);
+    } else {
+        return response()->json(['title' => 'Gagal', 'status' => 'error', 'detail' => 'Email data not found'], 404);
+    }
 }
 
 
 
-
-}
